@@ -68,18 +68,18 @@
 
 ### 개발 팀 구성
 
-  - 김동규 : 디자이너, 안드로이드
+  - 김동규 : 디자이너, 안드로이드
   - 정근철 : PM, 안드로이드, 웹 프론트엔드
   - 정민지 : 안드로이드, 웹 프론트엔드
   - 조민규 : 백엔드, 데이터베이스
 
 ### 프로젝트 준비
 
-  - 소스코드 관리 : GitHub
+  - 소스코드 관리 : GitHub
   - 디자이너 – 클라이언트 사이 리소스 관리 : Zeplin
   - 프로젝트 의존성 관리 : 서버 측 Maven, 안드로이드 측 Gradle
   - 이슈 트래커 : Git Issue, Asana
   
-  - 디자인 : Adobe XD
+  - 디자인 : Adobe XD
   - 안드로이드 : Android Studio 2.3 / minSdk 21(5.0 Lollipop)
   - 서버 : Java 1.8 / Eclipse neon.3
