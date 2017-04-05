@@ -80,6 +80,6 @@
   - 프로젝트 의존성 관리 : 서버 측 Maven, 안드로이드 측 Gradle
   - 이슈 트래커 : Git Issue, Asana
   
-  - 디자인 : Adobe XD
-  - 안드로이드 : Android Studio 2.3 / minSdk 21(5.0 Lollipop)
-  - 서버 : Java 1.8 / Eclipse neon.3
+  - 디자인, 레이아웃 : Adobe XD, ScalableLayout(in Android)
+  - 안드로이드 : Android Studio 2.3 / minSdk 21(5.0 Lollipop)
+  - 서버 : Java 1.8 / Eclipse neon.3 / REST Architecture
