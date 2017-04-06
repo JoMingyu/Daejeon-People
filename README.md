@@ -84,4 +84,4 @@
   - 디자인, 레이아웃 : Adobe XD, ScalableLayout(in Android)
   - 안드로이드 : Android Studio 2.3 / minSdk 21(5.0 Lollipop)
   - 서버 : Java 1.8 / Eclipse neon.3 / REST Architecture
-  - 데이터 통신 규격 : JSON
+  - 데이터 통신 규격 : JSON
