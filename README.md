@@ -79,7 +79,7 @@
   - 프로젝트 의존성 관리 : 서버 측 Maven, 안드로이드 측 Gradle
   - 이슈 트래커 : Git Issue, Asana
   - 디자인 : Adobe XD, Photoshop
-  - 레이아웃 : ScalableLayout
+  - 레이아웃 : ScalableLayout, ConstraintLayout
   - 안드로이드 : Android Studio 2.3 / minSdk 21(5.0 Lollipop)
   - 서버 : Java 1.8 / Eclipse neon.3 / REST Architecture / AWS EC2
   - DB : MySQL, SQLite, RealTime DataBase(Firebase)
