@@ -14,6 +14,10 @@ import io.vertx.ext.web.RoutingContext;
 public class UserManager implements AccountManageable {
 	private DataBase database = DataBase.getInstance();
 	private AES256 aes = new AES256("d.df!*&ek@s.Cde/q");
+	/*
+	 * ID, Email : AES256
+	 * PW : SHA256
+	 */
 	private ResultSet rs;
 	
 	@Override
@@ -26,7 +30,7 @@ public class UserManager implements AccountManageable {
 			if(rs.next()) {
 				result.setSuccess(false);
 			} else {
-				// 이메일 인증
+				// 이메일 인증코드 생성
 				Random random = new Random();
 				String code = StringFormatter.format("%06d", random.nextInt(1000000)).getValue();
 				database.executeUpdate("DELETE FROM certify_codes WHERE email='", encryptedEmail, "'");
