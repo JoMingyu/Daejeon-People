@@ -83,5 +83,6 @@
   - 안드로이드 : Android Studio 2.3 / minSdk 21(5.0 Lollipop)
   - 서버 : Java 1.8 / Eclipse neon.3 / REST Architecture / AWS EC2
   - DB : MySQL, SQLite, RealTime DataBase(Firebase)
+  - 통신 : Retrofit(예정)
   - 데이터 통신 규격 : JSON
   - 지속적 통합(Continuous Integration)
