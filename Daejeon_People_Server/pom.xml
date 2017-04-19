@@ -102,5 +102,33 @@
     	<artifactId>vertx-web</artifactId>
     	<version>${vertx.version}</version>
 	</dependency>
+	
+	<!-- https://mvnrepository.com/artifact/org.reflections/reflections -->
+	<dependency>
+    	<groupId>org.reflections</groupId>
+    	<artifactId>reflections</artifactId>
+    	<version>0.9.11</version>
+	</dependency>
+	
+	<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+	<dependency>
+    	<groupId>mysql</groupId>
+    	<artifactId>mysql-connector-java</artifactId>
+    	<version>5.1.38</version>
+	</dependency>
+	
+	<!-- https://mvnrepository.com/artifact/commons-codec/commons-codec -->
+	<dependency>
+    	<groupId>commons-codec</groupId>
+    	<artifactId>commons-codec</artifactId>
+    	<version>1.10</version>
+	</dependency>
+	
+	<!-- https://mvnrepository.com/artifact/javax.mail/mail -->
+	<dependency>
+    	<groupId>javax.mail</groupId>
+    	<artifactId>mail</artifactId>
+    	<version>1.4.7</version>
+	</dependency>
   </dependencies>
 </project>
