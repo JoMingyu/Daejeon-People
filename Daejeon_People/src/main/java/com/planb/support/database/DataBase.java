@@ -40,7 +40,7 @@ public class DataBase {
 		return query.toString();
 	}
 	
-	protected ResultSet executeQuery(Object... args) {
+	public ResultSet executeQuery(Object... args) {
 		String query = buildQuery(args);
 		try {
 			return statement.executeQuery(query);
@@ -50,7 +50,7 @@ public class DataBase {
 		}
 	}
 	
-	protected int executeUpdate(Object... args) {
+	public int executeUpdate(Object... args) {
 		String query = buildQuery(args);
 		try {
 			return statement.executeUpdate(query);
