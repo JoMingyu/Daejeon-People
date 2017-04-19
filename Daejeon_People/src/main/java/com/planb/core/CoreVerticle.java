@@ -1,5 +1,7 @@
 package com.planb.core;
 
+import com.planb.support.routing.Register;
+
 import io.vertx.core.AbstractVerticle;
 import io.vertx.ext.web.Router;
 import io.vertx.ext.web.handler.BodyHandler;
@@ -52,6 +54,8 @@ public class CoreVerticle extends AbstractVerticle {
 		 * @see
 		 * http://vertx.io/docs/apidocs/io/vertx/ext/web/handler/SessionHandler.html
 		 */
+		
+		Register.route(router, "com.planb.restful");
 		
 		vertx.createHttpServer().requestHandler(router::accept).listen(80);
 		/**
