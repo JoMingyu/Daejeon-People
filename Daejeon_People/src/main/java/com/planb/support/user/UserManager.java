@@ -2,10 +2,12 @@ package com.planb.support.user;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Random;
 
 import com.planb.support.crypto.AES256;
 import com.planb.support.crypto.SHA256;
 import com.planb.support.database.DataBase;
+import com.sun.javafx.binding.StringFormatter;
 
 import io.vertx.ext.web.RoutingContext;
 
@@ -25,6 +27,11 @@ public class UserManager implements AccountManageable {
 				result.setSuccess(false);
 			} else {
 				// 이메일 인증
+				Random random = new Random();
+				String code = StringFormatter.format("%06d", random.nextInt(1000000)).getValue();
+				database.executeUpdate("DELETE FROM certify_codes WHERE email='", encryptedEmail, "'");
+				database.executeUpdate("INSERT INTO certify_codes VALUES('", email, "', '", code, "')");
+				
 				result.setSuccess(true);
 			}
 			
@@ -34,6 +41,27 @@ public class UserManager implements AccountManageable {
 			result.setSuccess(false);
 			return result;
 		}
+	}
+	
+	@Override
+	public OperationResult verifyEmail(String email, String code) {
+		OperationResult result = new OperationResult();
+		String encryptedEmail = aes.encrypt(email);
+		
+		rs = database.executeQuery("SELECT * FROM certify_codes WHERE email='", encryptedEmail, "', code='", code, "'");
+		try {
+			if(rs.next()) {
+				result.setSuccess(true);
+			} else {
+				result.setSuccess(false);
+			}
+			
+			return result;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return result;
 	}
 	
 	@Override

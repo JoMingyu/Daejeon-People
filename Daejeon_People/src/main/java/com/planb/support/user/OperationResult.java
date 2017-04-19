@@ -3,6 +3,7 @@ package com.planb.support.user;
 public class OperationResult {
 	private String message;
 	private boolean success;
+	private Object data;
 	
 	public OperationResult() {
 		
@@ -22,5 +23,13 @@ public class OperationResult {
 
 	public void setSuccess(boolean success) {
 		this.success = success;
+	}
+
+	public Object getData() {
+		return data;
+	}
+
+	public void setData(Object data) {
+		this.data = data;
 	}
 }
