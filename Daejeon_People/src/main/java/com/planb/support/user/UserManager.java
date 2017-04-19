@@ -15,7 +15,7 @@ public class UserManager implements AccountManageable {
 	private ResultSet rs;
 	
 	@Override
-	public OperationResult certifyEmail(RoutingContext context, String email) {
+	public OperationResult certifyEmail(String email) {
 		OperationResult result = new OperationResult();
 		String encryptedEmail = aes.encrypt(email);
 		
@@ -23,7 +23,6 @@ public class UserManager implements AccountManageable {
 		try {
 			if(rs.next()) {
 				result.setSuccess(false);
-				result.setMessage("이미 사용중인 이메일입니다.");
 			} else {
 				// 이메일 인증
 				result.setSuccess(true);
@@ -33,44 +32,60 @@ public class UserManager implements AccountManageable {
 		} catch(SQLException e) {
 			e.printStackTrace();
 			result.setSuccess(false);
-			result.setMessage("error");
-			
 			return result;
 		}
 	}
 	
 	@Override
-	public boolean checkIdExists(String id) {
+	public OperationResult checkIdExists(String id) {
+		OperationResult result = new OperationResult();
 		String encryptedId = aes.encrypt(id);
 		
 		rs = database.executeQuery("SELECT * FROM account WHERE id='", encryptedId, "'");
 		try {
 			if(rs.next()) {
-				return true;
+				result.setSuccess(true);
 			} else {
-				return false;
+				result.setSuccess(false);
 			}
+			
+			return result;
 		} catch (SQLException e) {
 			e.printStackTrace();
-			return false;
+			result.setSuccess(false);
+			return result;
 		}
 	}
 	
 	@Override
-	public OperationResult register(String id, String email, String password) {
-		OperationResult result = new OperationResult();
+	public void register(String id, String email, String password) {
 		String encryptedId = aes.encrypt(id);
 		String encryptedEmail = aes.encrypt(email);
 		String encryptedPassword = SHA256.encrypt(password);
 		
-		return result;
+		database.executeUpdate("INSERT INTO account(id, email, password) VALUES('", encryptedId, "', '", encryptedEmail, "', '", encryptedPassword, "')");
 	}
 	
 	@Override
 	public OperationResult login(String id, String password) {
 		OperationResult result = new OperationResult();
+		String encryptedId = aes.encrypt(id);
+		String encryptedPassword = SHA256.encrypt(password);
 		
-		return result;
+		rs = database.executeQuery("SELECT * FROM account WHERE id='", encryptedId, "' AND password='", encryptedPassword, "'");
+		try {
+			if(rs.next()) {
+				result.setSuccess(true);
+			} else {
+				result.setSuccess(false);
+			}
+			
+			return result;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			result.setSuccess(false);
+			return result;
+		}
 	}
 
 	@Override
