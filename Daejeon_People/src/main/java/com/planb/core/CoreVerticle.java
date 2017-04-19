@@ -55,7 +55,7 @@ public class CoreVerticle extends AbstractVerticle {
 		 * http://vertx.io/docs/apidocs/io/vertx/ext/web/handler/SessionHandler.html
 		 */
 		
-		Register.route(router, "com.planb.restful");
+		Register.route(router, "com.planb.restful", "com.planb.developer");
 		
 		vertx.createHttpServer().requestHandler(router::accept).listen(80);
 		/**

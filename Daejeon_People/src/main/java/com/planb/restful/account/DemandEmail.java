@@ -11,7 +11,7 @@ import io.vertx.ext.web.RoutingContext;
 @Route(uri = "/signup/email/demand", method = HttpMethod.POST)
 public class DemandEmail implements Handler<RoutingContext> {
 	UserManager userManager;
-	DemandEmail() {
+	public DemandEmail() {
 		userManager = new UserManager();
 	}
 	

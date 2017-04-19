@@ -11,7 +11,7 @@ import io.vertx.ext.web.RoutingContext;
 @Route(uri = "/signup/email/check", method = HttpMethod.POST)
 public class CheckEmailExist implements Handler<RoutingContext> {
 	UserManager userManager;
-	CheckEmailExist() {
+	public CheckEmailExist() {
 		userManager = new UserManager();
 	}
 	

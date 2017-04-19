@@ -52,7 +52,7 @@ public class UserManager implements AccountManageable {
 		// 이메일 인증코드 생성
 		
 		database.executeUpdate("DELETE FROM verify_codes WHERE email='", encryptedEmail, "'");
-		database.executeUpdate("INSERT INTO verify_codes VALUES('", email, "', '", code, "')");
+		database.executeUpdate("INSERT INTO verify_codes VALUES('", encryptedEmail, "', '", code, "')");
 		// 인증코드 insert or refresh
 		
 		Mail.sendMail(email, "코드 : ".concat(code));
