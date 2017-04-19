@@ -12,5 +12,5 @@ import io.vertx.core.http.HttpMethod;
 @Target(TYPE)
 public @interface Route {
 	String path();
-	HttpMethod[] method();
+	HttpMethod method();
 }
