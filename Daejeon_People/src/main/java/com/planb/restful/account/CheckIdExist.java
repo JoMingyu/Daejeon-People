@@ -8,17 +8,17 @@ import io.vertx.core.Handler;
 import io.vertx.core.http.HttpMethod;
 import io.vertx.ext.web.RoutingContext;
 
-@Route(uri = "/signup/email/check", method = HttpMethod.POST)
-public class CheckEmailExist implements Handler<RoutingContext> {
+@Route(uri = "/signup/id/check", method = HttpMethod.POST)
+public class CheckIdExist implements Handler<RoutingContext> {
 	UserManager userManager;
-	public CheckEmailExist() {
+	public CheckIdExist() {
 		userManager = new UserManager();
 	}
 	
 	@Override
 	public void handle(RoutingContext ctx) {
-		String email = ctx.request().getFormAttribute("email");
-		OperationResult result = userManager.checkEmailExists(email);
+		String id = ctx.request().getFormAttribute("id");
+		OperationResult result = userManager.checkIdExists(id);
 		
 		if(result.isSuccess()) {
 			ctx.response().setStatusCode(409).end();

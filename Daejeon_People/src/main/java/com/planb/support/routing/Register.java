@@ -24,6 +24,7 @@ public class Register {
 				
 				try {
 					router.route(annotation.method(), annotation.uri()).handler((Handler<RoutingContext>) c.newInstance());
+					// 생성자가 public이 아니면 리플렉션으로 접근 불가능(IllegalStateException)
 				} catch (InstantiationException | IllegalAccessException e) {
 					e.printStackTrace();
 				}

@@ -70,6 +70,7 @@ public class UserManager implements AccountManageable {
 		rs = database.executeQuery("SELECT * FROM verify_codes WHERE email='", encryptedEmail, "', code='", code, "'");
 		try {
 			if (rs.next()) {
+				database.executeUpdate("DELETE FROM verify_codes WHERE email='", encryptedEmail, "', code='", code, "'");
 				result.setSuccess(true);
 			} else {
 				result.setSuccess(false);
@@ -106,17 +107,16 @@ public class UserManager implements AccountManageable {
 	}
 
 	@Override
-	public void register(String id, String email, String password) {
+	public void signup(String id, String email, String password) {
 		String encryptedId = aes.encrypt(id);
 		String encryptedEmail = aes.encrypt(email);
 		String encryptedPassword = SHA256.encrypt(password);
 
-		database.executeUpdate("INSERT INTO account(id, email, password) VALUES('", encryptedId, "', '", encryptedEmail,
-				"', '", encryptedPassword, "')");
+		database.executeUpdate("INSERT INTO account(id, email, password) VALUES('", encryptedId, "', '", encryptedEmail, "', '", encryptedPassword, "')");
 	}
 
 	@Override
-	public OperationResult login(String id, String password) {
+	public OperationResult signin(String id, String password) {
 		OperationResult result = new OperationResult();
 		String encryptedId = aes.encrypt(id);
 		String encryptedPassword = SHA256.encrypt(password);

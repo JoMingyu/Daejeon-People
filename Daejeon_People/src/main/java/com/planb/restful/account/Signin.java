@@ -8,23 +8,24 @@ import io.vertx.core.Handler;
 import io.vertx.core.http.HttpMethod;
 import io.vertx.ext.web.RoutingContext;
 
-@Route(uri = "/signup/email/check", method = HttpMethod.POST)
-public class CheckEmailExist implements Handler<RoutingContext> {
+@Route(uri = "/account/signin", method = HttpMethod.POST)
+public class Signin implements Handler<RoutingContext> {
 	UserManager userManager;
-	public CheckEmailExist() {
+	public Signin() {
 		userManager = new UserManager();
 	}
 	
 	@Override
 	public void handle(RoutingContext ctx) {
-		String email = ctx.request().getFormAttribute("email");
-		OperationResult result = userManager.checkEmailExists(email);
+		String id = ctx.request().getFormAttribute("id");
+		String password = ctx.request().getFormAttribute("password");
 		
+		OperationResult result = userManager.signin(id, password);
 		if(result.isSuccess()) {
-			ctx.response().setStatusCode(409).end();
+			ctx.response().setStatusCode(201).end();
 			ctx.response().close();
 		} else {
-			ctx.response().setStatusCode(201).end();
+			ctx.response().setStatusCode(204).end();
 			ctx.response().close();
 		}
 	}

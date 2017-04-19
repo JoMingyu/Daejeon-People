@@ -8,8 +8,8 @@ public interface AccountManageable {
 	public OperationResult verifyEmail(String email, String code);
 	
 	public OperationResult checkIdExists(String id);
-	public void register(String id, String email, String password);
-	public OperationResult login(String id, String password);
+	public void signup(String id, String email, String password);
+	public OperationResult signin(String id, String password);
 	
 	public String getIdFromSession(RoutingContext ctx);
 	public String createSession();
