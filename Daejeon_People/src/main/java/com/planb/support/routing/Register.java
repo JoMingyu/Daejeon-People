@@ -23,7 +23,7 @@ public class Register {
 				Route annotation = c.getAnnotation(Route.class);
 				
 				try {
-					router.route(annotation.method(), annotation.path()).handler((Handler<RoutingContext>) c.newInstance());
+					router.route(annotation.method(), annotation.uri()).handler((Handler<RoutingContext>) c.newInstance());
 				} catch (InstantiationException | IllegalAccessException e) {
 					e.printStackTrace();
 				}

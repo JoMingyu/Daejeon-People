@@ -11,6 +11,6 @@ import io.vertx.core.http.HttpMethod;
 @Retention(RUNTIME)
 @Target(TYPE)
 public @interface Route {
-	String path();
+	String uri();
 	HttpMethod method();
 }
