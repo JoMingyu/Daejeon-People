@@ -1,4 +1,4 @@
-package com.daejeon_people.planb.core;
+package com.planb.core;
 
 import io.vertx.core.AbstractVerticle;
 import io.vertx.ext.web.Router;

@@ -1,4 +1,4 @@
-package com.daejeon_people.planb.core;
+package com.planb.core;
 
 /**
  * @brief
