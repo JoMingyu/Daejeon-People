@@ -44,7 +44,11 @@ public class UserManager {
 	}
 
 	public void demandEmail(String email) {
+		/*
+		 * 이메일 전송
+		 */
 		String encryptedEmail = aes.encrypt(email);
+		// 이메일 암호화
 
 		Random random = new Random();
 		String code = StringFormatter.format("%06d", random.nextInt(1000000)).getValue();
@@ -59,6 +63,10 @@ public class UserManager {
 	}
 
 	public boolean verifyEmail(String email, String code) {
+		/*
+		 * 인증코드 인증
+		 * 성공 시 true, 실패 시 false
+		 */
 		String encryptedEmail = aes.encrypt(email);
 
 		rs = database.executeQuery("SELECT * FROM verify_codes WHERE email='", encryptedEmail, "' AND code='", code, "'");
@@ -77,6 +85,10 @@ public class UserManager {
 	}
 
 	public boolean checkIdExists(String id) {
+		/*
+		 *  아이디 존재 여부 체크
+		 *  존재 시 true, 실패 시 false
+		 */
 		String encryptedId = aes.encrypt(id);
 
 		rs = database.executeQuery("SELECT * FROM account WHERE id='", encryptedId, "'");
@@ -94,6 +106,10 @@ public class UserManager {
 	}
 
 	public void signup(String id, String email, String password) {
+		/*
+		 * 회원가입
+		 * id와 이메일 중복 체크는 다른 URI에서 수행
+		 */
 		String encryptedId = aes.encrypt(id);
 		String encryptedEmail = aes.encrypt(email);
 		String encryptedPassword = SHA256.encrypt(password);
@@ -103,6 +119,10 @@ public class UserManager {
 	}
 
 	public boolean signin(String id, String password) {
+		/*
+		 * 로그인
+		 * 성공 시 true, 실패 시 false
+		 */
 		String encryptedId = aes.encrypt(id);
 		String encryptedPassword = SHA256.encrypt(password);
 
@@ -121,10 +141,29 @@ public class UserManager {
 	}
 
 	public String getIdFromSession(RoutingContext ctx) {
-		return SessionUtil.getRegistedSessionKey(ctx, "UserSession");
+		/*
+		 * 세션으로부터 암호화된 id get
+		 */
+		String encryptedSessionId = SessionUtil.getRegistedSessionKey(ctx, "UserSession");
+		String encryptedId = null;
+		
+		rs = database.executeQuery("SELECT * FROM account WHERE session_id='", encryptedSessionId, "'");
+		try {
+			rs.next();
+			encryptedId = rs.getString("id");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return encryptedId;
 	}
 	
-	public String getEncryptedSessionId(String id) {
+	private String getEncryptedSessionId(String id) {
+		/*
+		 * id로부터 암호화된 session id get
+		 * 로그인 시 현재 세션 키가 있는지 체크하기 위해 사용
+		 * 추후 하이브리드 서버로 활용 시 필요한 메소드
+		 */
 		String encryptedId = aes.encrypt(id);
 		String encryptedSessionId = null;
 		
@@ -142,6 +181,9 @@ public class UserManager {
 	}
 
 	public String createEncryptedSessionId() {
+		/*
+		 * 다른 계정들과 중복되지 않는 암호화된 session id 생성
+		 */
 		String encryptedUUID;
 		
 		while(true) {
@@ -160,18 +202,18 @@ public class UserManager {
 	}
 
 	public void registerSessionId(RoutingContext ctx, boolean keepLogin, String id) {
+		/*
+		 * keepLogin 설정에 따라 세션 혹은 쿠키 설정
+		 */
 		String encryptedSessionId = getEncryptedSessionId(id);
+		if(encryptedSessionId == null) {
+			encryptedSessionId = createEncryptedSessionId();
+		}
 		String encryptedId = aes.encrypt(id);
 		
 		if(keepLogin) {
-			if(encryptedSessionId == null) {
-				encryptedSessionId = createEncryptedSessionId();
-			}
 			SessionUtil.createCookie(ctx, "UserSession", encryptedSessionId);
 		} else {
-			if(encryptedSessionId == null) {
-				encryptedSessionId = createEncryptedSessionId();
-			}
 			SessionUtil.createSession(ctx, "UserSession", encryptedSessionId);
 		}
 		database.executeUpdate("UPDATE account SET session_id='", encryptedSessionId, "' WHERE id='", encryptedId, "'");
