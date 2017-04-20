@@ -7,7 +7,7 @@ import io.vertx.core.Handler;
 import io.vertx.core.http.HttpMethod;
 import io.vertx.ext.web.RoutingContext;
 
-@Route(uri = "/account/signup", method = HttpMethod.POST)
+@Route(uri = "/signup", method = HttpMethod.POST)
 public class Signup implements Handler<RoutingContext> {
 	UserManager userManager;
 	public Signup() {
