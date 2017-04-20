@@ -17,8 +17,6 @@ public class Mail {
 	private static final String SENDER_PW = "uursty199";
 	private static final int PORT = 587;
 	
-	private static final String DEFAULT_SUBJECT = "[대전사람] 회원가입 인증 코드입니다.";
-	
 	private static Properties props;
 	private static Session session;
 	private static Message mimeMessage;
@@ -41,11 +39,11 @@ public class Mail {
 		mimeMessage = new MimeMessage(session);
 	}
 	
-	public static void sendMail(String recipient, String body) {
+	public static void sendMail(String recipient, String subject, String body) {
 		try {
 			mimeMessage.setFrom(new InternetAddress(SENDER_ID.concat("@naver.com")));
 			mimeMessage.setRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
-			mimeMessage.setSubject(DEFAULT_SUBJECT);
+			mimeMessage.setSubject(subject);
 			mimeMessage.setText(body);
 			
 			Transport.send(mimeMessage);

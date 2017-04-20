@@ -8,6 +8,7 @@ import com.planb.support.crypto.AES256;
 import com.planb.support.crypto.SHA256;
 import com.planb.support.database.DataBase;
 import com.planb.support.mail.Mail;
+import com.planb.support.mail.MailSubjects;
 import com.sun.javafx.binding.StringFormatter;
 
 import io.vertx.ext.web.RoutingContext;
@@ -55,7 +56,7 @@ public class UserManager implements AccountManageable {
 		database.executeUpdate("INSERT INTO verify_codes VALUES('", encryptedEmail, "', '", code, "')");
 		// 인증코드 insert or refresh
 		
-		Mail.sendMail(email, "코드 : ".concat(code));
+		Mail.sendMail(email, MailSubjects.VERIFY_SUBJECT.getName(), "코드 : ".concat(code));
 		// 인증코드 전송
 		
 		result.setSuccess(true);
@@ -67,10 +68,10 @@ public class UserManager implements AccountManageable {
 		OperationResult result = new OperationResult();
 		String encryptedEmail = aes.encrypt(email);
 
-		rs = database.executeQuery("SELECT * FROM verify_codes WHERE email='", encryptedEmail, "', code='", code, "'");
+		rs = database.executeQuery("SELECT * FROM verify_codes WHERE email='", encryptedEmail, "' AND code='", code, "'");
 		try {
 			if (rs.next()) {
-				database.executeUpdate("DELETE FROM verify_codes WHERE email='", encryptedEmail, "', code='", code, "'");
+				database.executeUpdate("DELETE FROM verify_codes WHERE email='", encryptedEmail, "' AND code='", code, "'");
 				result.setSuccess(true);
 			} else {
 				result.setSuccess(false);
@@ -113,6 +114,7 @@ public class UserManager implements AccountManageable {
 		String encryptedPassword = SHA256.encrypt(password);
 
 		database.executeUpdate("INSERT INTO account(id, email, password) VALUES('", encryptedId, "', '", encryptedEmail, "', '", encryptedPassword, "')");
+		Mail.sendMail(email, MailSubjects.WELCOME_SUBJECT.getName(), "환영환영");
 	}
 
 	@Override
