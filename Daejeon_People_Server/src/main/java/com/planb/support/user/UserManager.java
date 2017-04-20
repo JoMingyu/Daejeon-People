@@ -55,7 +55,7 @@ public class UserManager implements AccountManageable {
 		database.executeUpdate("INSERT INTO verify_codes VALUES('", encryptedEmail, "', '", code, "')");
 		// 인증코드 insert or refresh
 		
-		Mail.sendMail(email, code);
+		Mail.sendMail(email, "코드 : ".concat(code));
 		// 인증코드 전송
 		
 		result.setSuccess(true);

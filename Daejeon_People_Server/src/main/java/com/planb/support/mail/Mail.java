@@ -41,12 +41,12 @@ public class Mail {
 		mimeMessage = new MimeMessage(session);
 	}
 	
-	public static void sendMail(String recipient, String code) {
+	public static void sendMail(String recipient, String body) {
 		try {
 			mimeMessage.setFrom(new InternetAddress(SENDER_ID.concat("@naver.com")));
 			mimeMessage.setRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
 			mimeMessage.setSubject(DEFAULT_SUBJECT);
-			mimeMessage.setText("코드 : ".concat(code));
+			mimeMessage.setText(body);
 			
 			Transport.send(mimeMessage);
 		} catch (MessagingException e) {
