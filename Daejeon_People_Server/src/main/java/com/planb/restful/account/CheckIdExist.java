@@ -18,9 +18,8 @@ public class CheckIdExist implements Handler<RoutingContext> {
 	@Override
 	public void handle(RoutingContext ctx) {
 		String id = ctx.request().getFormAttribute("id");
-		OperationResult result = userManager.checkIdExists(id);
 		
-		if(result.isSuccess()) {
+		if(userManager.checkIdExists(id)) {
 			ctx.response().setStatusCode(409).end();
 			ctx.response().close();
 		} else {

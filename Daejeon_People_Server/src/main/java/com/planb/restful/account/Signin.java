@@ -22,11 +22,13 @@ public class Signin implements Handler<RoutingContext> {
 		String password = ctx.request().getFormAttribute("password");
 		boolean keepLogin = Boolean.parseBoolean(ctx.request().getFormAttribute("keepLogin"));
 
-		OperationResult signinResult = userManager.signin(id, password);
-		if (signinResult.isSuccess()) {
+		if (userManager.signin(id, password)) {
 			userManager.registerSessionId(ctx, keepLogin, id);
 
 			ctx.response().setStatusCode(201).end();
+			ctx.response().close();
+		} else {
+			ctx.response().setStatusCode(204).end();
 			ctx.response().close();
 		}
 	}

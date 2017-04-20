@@ -20,8 +20,7 @@ public class VerifyEmailCode implements Handler<RoutingContext> {
 		String email = ctx.request().getFormAttribute("email");
 		String code = ctx.request().getFormAttribute("code");
 		
-		OperationResult result = userManager.verifyEmail(email, code);
-		if(result.isSuccess()) {
+		if(userManager.verifyEmail(email, code)) {
 			ctx.response().setStatusCode(201).end();
 			ctx.response().close();
 		} else {

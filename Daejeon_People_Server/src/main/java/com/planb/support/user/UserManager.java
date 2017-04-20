@@ -14,7 +14,7 @@ import com.sun.javafx.binding.StringFormatter;
 
 import io.vertx.ext.web.RoutingContext;
 
-public class UserManager implements AccountManageable {
+public class UserManager {
 	private DataBase database = DataBase.getInstance();
 	private AES256 aes = new AES256("d.df!*&ek@s.Cde/q");
 	/*
@@ -23,31 +23,27 @@ public class UserManager implements AccountManageable {
 	 */
 	private ResultSet rs;
 
-	@Override
-	public OperationResult checkEmailExists(String email) {
-		OperationResult result = new OperationResult();
+	public boolean checkEmailExists(String email) {
+		/*
+		 *  이메일 존재 여부 체크
+		 *  존재 시 true, 실패 시 false
+		 */
 		String encryptedEmail = aes.encrypt(email);
 
 		rs = database.executeQuery("SELECT * FROM account WHERE email='", encryptedEmail, "'");
 		try {
 			if (rs.next()) {
-				// 이메일 존재
-				result.setSuccess(true);
+				return true;
 			} else {
-				result.setSuccess(false);
+				return false;
 			}
-
-			return result;
 		} catch (SQLException e) {
 			e.printStackTrace();
-			result.setSuccess(false);
-			return result;
+			return false;
 		}
 	}
 
-	@Override
-	public OperationResult demandEmail(String email) {
-		OperationResult result = new OperationResult();
+	public void demandEmail(String email) {
 		String encryptedEmail = aes.encrypt(email);
 
 		Random random = new Random();
@@ -60,56 +56,43 @@ public class UserManager implements AccountManageable {
 		
 		Mail.sendMail(email, MailSubjects.VERIFY_SUBJECT.getName(), "코드 : ".concat(code));
 		// 인증코드 전송
-		
-		result.setSuccess(true);
-		return result;
 	}
 
-	@Override
-	public OperationResult verifyEmail(String email, String code) {
-		OperationResult result = new OperationResult();
+	public boolean verifyEmail(String email, String code) {
 		String encryptedEmail = aes.encrypt(email);
 
 		rs = database.executeQuery("SELECT * FROM verify_codes WHERE email='", encryptedEmail, "' AND code='", code, "'");
 		try {
 			if (rs.next()) {
 				database.executeUpdate("DELETE FROM verify_codes WHERE email='", encryptedEmail, "' AND code='", code, "'");
-				result.setSuccess(true);
+				return true;
 			} else {
-				result.setSuccess(false);
+				return false;
 			}
 
-			return result;
 		} catch (SQLException e) {
 			e.printStackTrace();
+			return false;
 		}
-
-		return result;
 	}
 
-	@Override
-	public OperationResult checkIdExists(String id) {
-		OperationResult result = new OperationResult();
+	public boolean checkIdExists(String id) {
 		String encryptedId = aes.encrypt(id);
 
 		rs = database.executeQuery("SELECT * FROM account WHERE id='", encryptedId, "'");
 		try {
 			if (rs.next()) {
-				// 아이디 존재
-				result.setSuccess(true);
+				return true;
 			} else {
-				result.setSuccess(false);
+				return false;
 			}
 
-			return result;
 		} catch (SQLException e) {
 			e.printStackTrace();
-			result.setSuccess(false);
-			return result;
+			return false;
 		}
 	}
 
-	@Override
 	public void signup(String id, String email, String password) {
 		String encryptedId = aes.encrypt(id);
 		String encryptedEmail = aes.encrypt(email);
@@ -119,9 +102,7 @@ public class UserManager implements AccountManageable {
 		Mail.sendMail(email, MailSubjects.WELCOME_SUBJECT.getName(), "환영환영");
 	}
 
-	@Override
-	public OperationResult signin(String id, String password) {
-		OperationResult result = new OperationResult();
+	public boolean signin(String id, String password) {
 		String encryptedId = aes.encrypt(id);
 		String encryptedPassword = SHA256.encrypt(password);
 
@@ -129,25 +110,20 @@ public class UserManager implements AccountManageable {
 				encryptedPassword, "'");
 		try {
 			if (rs.next()) {
-				result.setSuccess(true);
+				return true;
 			} else {
-				result.setSuccess(false);
+				return false;
 			}
-
-			return result;
 		} catch (SQLException e) {
 			e.printStackTrace();
-			result.setSuccess(false);
-			return result;
+			return false;
 		}
 	}
 
-	@Override
 	public String getIdFromSession(RoutingContext ctx) {
 		return SessionUtil.getRegistedSessionKey(ctx, "UserSession");
 	}
 	
-	@Override
 	public String getEncryptedSessionId(String id) {
 		String encryptedId = aes.encrypt(id);
 		String encryptedSessionId = null;
@@ -165,7 +141,6 @@ public class UserManager implements AccountManageable {
 		return encryptedSessionId;
 	}
 
-	@Override
 	public String createEncryptedSessionId() {
 		String encryptedUUID;
 		
@@ -184,7 +159,6 @@ public class UserManager implements AccountManageable {
 		return encryptedUUID;
 	}
 
-	@Override
 	public void registerSessionId(RoutingContext ctx, boolean keepLogin, String id) {
 		String encryptedSessionId = getEncryptedSessionId(id);
 		String encryptedId = aes.encrypt(id);
@@ -203,7 +177,6 @@ public class UserManager implements AccountManageable {
 		database.executeUpdate("UPDATE account SET session_id='", encryptedSessionId, "' WHERE id='", encryptedId, "'");
 	}
 	
-	@Override
 	public boolean isLogined(RoutingContext ctx) {
 		return ((getIdFromSession(ctx) == null) ? false : true);
 	}

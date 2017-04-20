@@ -18,11 +18,9 @@ public class DemandEmail implements Handler<RoutingContext> {
 	@Override
 	public void handle(RoutingContext ctx) {
 		String email = ctx.request().getFormAttribute("email");
-		OperationResult result = userManager.demandEmail(email);
+		userManager.demandEmail(email);
 		
-		if(result.isSuccess()) {
-			ctx.response().setStatusCode(201).end();
-			ctx.response().close();
-		}
+		ctx.response().setStatusCode(201).end();
+		ctx.response().close();
 	}
 }

@@ -1,7 +1,6 @@
 package com.planb.restful.account;
 
 import com.planb.support.routing.Route;
-import com.planb.support.user.OperationResult;
 import com.planb.support.user.UserManager;
 
 import io.vertx.core.Handler;
@@ -18,9 +17,8 @@ public class CheckEmailExist implements Handler<RoutingContext> {
 	@Override
 	public void handle(RoutingContext ctx) {
 		String email = ctx.request().getFormAttribute("email");
-		OperationResult result = userManager.checkEmailExists(email);
 		
-		if(result.isSuccess()) {
+		if(userManager.checkEmailExists(email)) {
 			ctx.response().setStatusCode(409).end();
 			ctx.response().close();
 		} else {
