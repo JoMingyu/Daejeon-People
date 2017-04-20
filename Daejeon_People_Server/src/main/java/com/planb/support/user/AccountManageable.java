@@ -12,8 +12,8 @@ public interface AccountManageable {
 	public OperationResult signin(String id, String password);
 	
 	public String getIdFromSession(RoutingContext ctx);
-	public String createEncryptedSessionId();
 	public String getEncryptedSessionId(String id);
+	public String createEncryptedSessionId();
 	public void registerSessionId(RoutingContext ctx, boolean keepLogin, String id);
 	public boolean isLogined(RoutingContext ctx);
 }

@@ -146,27 +146,6 @@ public class UserManager implements AccountManageable {
 	public String getIdFromSession(RoutingContext ctx) {
 		return SessionUtil.getRegistedSessionKey(ctx, "UserSession");
 	}
-
-	@Override
-	public String createEncryptedSessionId() {
-		String uuid;
-		String encryptedUUID;
-		
-		while(true) {
-			uuid = UUID.randomUUID().toString();
-			encryptedUUID = SHA256.encrypt(uuid);
-			rs = database.executeQuery("SELECT * FROM account WHERE session_id='", encryptedUUID, "'");
-			try {
-				if(!rs.next()) {
-					break;
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-		
-		return encryptedUUID;
-	}
 	
 	@Override
 	public String getEncryptedSessionId(String id) {
@@ -184,6 +163,25 @@ public class UserManager implements AccountManageable {
 		}
 		
 		return encryptedSessionId;
+	}
+
+	@Override
+	public String createEncryptedSessionId() {
+		String encryptedUUID;
+		
+		while(true) {
+			encryptedUUID = SHA256.encrypt(UUID.randomUUID().toString());
+			rs = database.executeQuery("SELECT * FROM account WHERE session_id='", encryptedUUID, "'");
+			try {
+				if(!rs.next()) {
+					break;
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return encryptedUUID;
 	}
 
 	@Override
