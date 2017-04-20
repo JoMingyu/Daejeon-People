@@ -1,5 +1,7 @@
 package com.planb.support.user;
 
+import com.planb.support.database.DataBase;
+
 import io.vertx.ext.web.Cookie;
 import io.vertx.ext.web.RoutingContext;
 
@@ -15,14 +17,23 @@ public class SessionUtil {
 		ctx.addCookie(cookie);
 	}
 	
-	public static String getRegistedSessionKey(RoutingContext ctx, String key) {
-		String sessionKey = null;
-		if(ctx.session() != null) {
-			sessionKey = ctx.session().get(key);
+	public static void removeSession(RoutingContext ctx, String key, String encryptedId) {
+		if(ctx.session().get(key) != null) {
+			ctx.session().remove(key);
+		}
+		if(ctx.getCookie(key) != null) {
+			ctx.getCookie(key).setMaxAge(0);
+		}
+	}
+	
+	public static String getRegistedSessionId(RoutingContext ctx, String key) {
+		String sessionId = null;
+		if(ctx.session().get(key) != null) {
+			sessionId = ctx.session().get(key);
 		} else if(ctx.getCookie(key) != null) {
-			sessionKey = ctx.getCookie(key).getValue();
+			sessionId = ctx.getCookie(key).getValue();
 		}
 		
-		return sessionKey;
+		return sessionId;
 	}
 }

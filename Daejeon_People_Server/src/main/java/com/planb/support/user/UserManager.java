@@ -140,11 +140,11 @@ public class UserManager {
 		}
 	}
 
-	public String getIdFromSession(RoutingContext ctx) {
+	public String getEncryptedIdFromSession(RoutingContext ctx) {
 		/*
 		 * 세션으로부터 암호화된 id get
 		 */
-		String encryptedSessionId = SessionUtil.getRegistedSessionKey(ctx, "UserSession");
+		String encryptedSessionId = SessionUtil.getRegistedSessionId(ctx, "UserSession");
 		String encryptedId = null;
 		
 		rs = database.executeQuery("SELECT * FROM account WHERE session_id='", encryptedSessionId, "'");
@@ -158,9 +158,9 @@ public class UserManager {
 		return encryptedId;
 	}
 	
-	private String getEncryptedSessionId(String id) {
+	private String getEncryptedSessionFromId(String id) {
 		/*
-		 * id로부터 암호화된 session id get
+		 * DB에서 id로부터 암호화된 session id get
 		 * 로그인 시 현재 세션 키가 있는지 체크하기 위해 사용
 		 * 추후 하이브리드 서버로 활용 시 필요한 메소드
 		 */
@@ -205,7 +205,7 @@ public class UserManager {
 		/*
 		 * keepLogin 설정에 따라 세션 혹은 쿠키 설정
 		 */
-		String encryptedSessionId = getEncryptedSessionId(id);
+		String encryptedSessionId = getEncryptedSessionFromId(id);
 		if(encryptedSessionId == null) {
 			encryptedSessionId = createEncryptedSessionId();
 		}
@@ -220,6 +220,15 @@ public class UserManager {
 	}
 	
 	public boolean isLogined(RoutingContext ctx) {
-		return ((getIdFromSession(ctx) == null) ? false : true);
+		return ((getEncryptedIdFromSession(ctx) == null) ? false : true);
+	}
+	
+	public void logout(RoutingContext ctx) {
+		/*
+		 * 로그아웃, 세션 또는 쿠키에 있는 session id 삭제
+		 */
+		String encryptedId = getEncryptedIdFromSession(ctx);
+		SessionUtil.removeSession(ctx, "UserSession", encryptedId);
+		database.executeUpdate("UPDATE account SET session_id=null WHERE id='", encryptedId, "'");
 	}
 }
