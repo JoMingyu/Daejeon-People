@@ -3,6 +3,7 @@ package com.planb.support.user;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Random;
+import java.util.UUID;
 
 import com.planb.support.crypto.AES256;
 import com.planb.support.crypto.SHA256;
@@ -17,7 +18,8 @@ public class UserManager implements AccountManageable {
 	private DataBase database = DataBase.getInstance();
 	private AES256 aes = new AES256("d.df!*&ek@s.Cde/q");
 	/*
-	 * ID, Email : AES256 PW : SHA256
+	 * ID, Email : AES256
+	 * PW, sessionId : SHA256
 	 */
 	private ResultSet rs;
 
@@ -142,16 +144,69 @@ public class UserManager implements AccountManageable {
 
 	@Override
 	public String getIdFromSession(RoutingContext ctx) {
-		return null;
+		return SessionUtil.getRegistedSessionKey(ctx, "UserSession");
 	}
 
 	@Override
-	public String createSession() {
-		return null;
+	public String createEncryptedSessionId() {
+		String uuid;
+		String encryptedUUID;
+		
+		while(true) {
+			uuid = UUID.randomUUID().toString();
+			encryptedUUID = SHA256.encrypt(uuid);
+			rs = database.executeQuery("SELECT * FROM account WHERE session_id='", encryptedUUID, "'");
+			try {
+				if(!rs.next()) {
+					break;
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return encryptedUUID;
+	}
+	
+	@Override
+	public String getEncryptedSessionId(String id) {
+		String encryptedId = aes.encrypt(id);
+		String encryptedSessionId = null;
+		
+		rs = database.executeQuery("SELECT * FROM account WHERE id='", encryptedId, "'");
+		try {
+			rs.next();
+			if(rs.getString("session_id") != null) {
+				encryptedSessionId = rs.getString("session_id");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return encryptedSessionId;
 	}
 
 	@Override
-	public String registerSessionId(RoutingContext ctx, String id) {
-		return null;
+	public void registerSessionId(RoutingContext ctx, boolean keepLogin, String id) {
+		String encryptedSessionId = getEncryptedSessionId(id);
+		String encryptedId = aes.encrypt(id);
+		
+		if(keepLogin) {
+			if(encryptedSessionId == null) {
+				encryptedSessionId = createEncryptedSessionId();
+			}
+			SessionUtil.createCookie(ctx, "UserSession", encryptedSessionId);
+		} else {
+			if(encryptedSessionId == null) {
+				encryptedSessionId = createEncryptedSessionId();
+			}
+			SessionUtil.createSession(ctx, "UserSession", encryptedSessionId);
+		}
+		database.executeUpdate("UPDATE account SET session_id='", encryptedSessionId, "' WHERE id='", encryptedId, "'");
+	}
+	
+	@Override
+	public boolean isLogined(RoutingContext ctx) {
+		return ((getIdFromSession(ctx) == null) ? false : true);
 	}
 }

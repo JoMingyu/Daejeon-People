@@ -2,7 +2,7 @@ package com.planb.support.user;
 
 public class OperationResult {
 	private String message;
-	private boolean success;
+	private boolean success = true;
 	private Object data;
 	
 	public OperationResult() {
