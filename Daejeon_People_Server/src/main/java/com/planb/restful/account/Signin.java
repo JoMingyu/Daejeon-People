@@ -1,7 +1,6 @@
 package com.planb.restful.account;
 
 import com.planb.support.routing.Route;
-import com.planb.support.user.OperationResult;
 import com.planb.support.user.UserManager;
 
 import io.vertx.core.Handler;
