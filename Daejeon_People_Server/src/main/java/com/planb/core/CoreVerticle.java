@@ -1,14 +1,15 @@
 package com.planb.core;
 
 import com.planb.support.routing.Register;
+import com.planb.tourapi.support.ParserThread;
 
 import io.vertx.core.AbstractVerticle;
 import io.vertx.ext.web.Router;
 import io.vertx.ext.web.handler.BodyHandler;
 import io.vertx.ext.web.handler.CookieHandler;
 import io.vertx.ext.web.handler.SessionHandler;
-import io.vertx.ext.web.sstore.LocalSessionStore;
 import io.vertx.ext.web.handler.StaticHandler;
+import io.vertx.ext.web.sstore.LocalSessionStore;
 
 public class CoreVerticle extends AbstractVerticle {
 	public void start() throws Exception {
@@ -56,6 +57,8 @@ public class CoreVerticle extends AbstractVerticle {
 		 */
 		
 		Register.route(router, "com.planb.restful", "com.planb.developer");
+		ParserThread thread = new ParserThread();
+		thread.start();
 		
 		vertx.createHttpServer().requestHandler(router::accept).listen(80);
 		/**

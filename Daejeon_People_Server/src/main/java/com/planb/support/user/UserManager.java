@@ -58,7 +58,7 @@ public class UserManager {
 		database.executeUpdate("INSERT INTO verify_codes VALUES('", encryptedEmail, "', '", code, "')");
 		// 인증코드 insert or refresh
 		
-		Mail.sendMail(email, MailSubjects.VERIFY_SUBJECT.getName(), "코드 : ".concat(code));
+		Mail.sendMail(email, MailSubjects.VERIFY_SUBJECT.getName(), "코드 : " + code);
 		// 인증코드 전송
 	}
 
@@ -240,7 +240,7 @@ public class UserManager {
 		try {
 			if(rs.next()) {
 				String decryptedId = aes.decrypt(rs.getString("id"));
-				Mail.sendMail(email, MailSubjects.FIND_ID_SUBJECT.getName(), "ID : ".concat(decryptedId));
+				Mail.sendMail(email, MailSubjects.FIND_ID_SUBJECT.getName(), "ID : " + decryptedId);
 				return true;
 			} else {
 				return false;
@@ -281,7 +281,7 @@ public class UserManager {
 				String tempPassword = createTempPassword();
 				String encryptedTempPassword = SHA256.encrypt(tempPassword);
 				database.executeUpdate("UPDATE account SET password='", encryptedTempPassword, "' WHERE id='", encryptedId, "'");
-				Mail.sendMail(email, MailSubjects.FIND_PASSWORD_SUBJECT.getName(), "임시 비밀번호 : ".concat(tempPassword));
+				Mail.sendMail(email, MailSubjects.FIND_PASSWORD_SUBJECT.getName(), "임시 비밀번호 : " + tempPassword);
 				return true;
 			} else {
 				return false;

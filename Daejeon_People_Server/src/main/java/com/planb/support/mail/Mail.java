@@ -41,7 +41,7 @@ public class Mail {
 	
 	public static void sendMail(String recipient, String subject, String body) {
 		try {
-			mimeMessage.setFrom(new InternetAddress(SENDER_ID.concat("@naver.com")));
+			mimeMessage.setFrom(new InternetAddress(SENDER_ID + "@naver.com"));
 			mimeMessage.setRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
 			mimeMessage.setSubject(subject);
 			mimeMessage.setText(body);
