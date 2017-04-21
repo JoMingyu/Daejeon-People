@@ -18,6 +18,7 @@ public class TableDataDropper implements Handler<RoutingContext> {
 	public void handle(RoutingContext ctx) {
 		database.executeUpdate("DELETE FROM account");
 		database.executeUpdate("DELETE FROM verify_codes");
+		database.executeUpdate("DELETE FROM attractions_basic");
 		
 		ctx.response().setStatusCode(201).end();
 		ctx.response().close();

@@ -34,7 +34,7 @@ public class DataBase {
 		StringBuilder query = new StringBuilder();
 		
 		for(Object o: args) {
-			query.append((String) o);
+			query.append(o);
 		}
 		
 		return query.toString();

@@ -18,8 +18,8 @@ public class UserManager {
 	private DataBase database = DataBase.getInstance();
 	private AES256 aes = new AES256("d.df!*&ek@s.Cde/q");
 	/*
-	 * ID, Email : AES256
-	 * PW, sessionId : SHA256
+	 * ID : AES256
+	 * PW, Email, Name, sessionId : SHA256
 	 */
 	private ResultSet rs;
 
@@ -28,7 +28,7 @@ public class UserManager {
 		 *  이메일 존재 여부 체크
 		 *  존재 시 true, 실패 시 false
 		 */
-		String encryptedEmail = aes.encrypt(email);
+		String encryptedEmail = SHA256.encrypt(email);
 
 		rs = database.executeQuery("SELECT * FROM account WHERE email='", encryptedEmail, "'");
 		try {
@@ -47,7 +47,7 @@ public class UserManager {
 		/*
 		 * 이메일 전송
 		 */
-		String encryptedEmail = aes.encrypt(email);
+		String encryptedEmail = SHA256.encrypt(email);
 		// 이메일 암호화
 
 		Random random = new Random();
@@ -58,7 +58,7 @@ public class UserManager {
 		database.executeUpdate("INSERT INTO verify_codes VALUES('", encryptedEmail, "', '", code, "')");
 		// 인증코드 insert or refresh
 		
-		Mail.sendMail(email, MailSubjects.VERIFY_SUBJECT.getName(), "코드 : ".concat(code));
+		Mail.sendMail(email, MailSubjects.VERIFY_SUBJECT.getName(), "코드 : " + code);
 		// 인증코드 전송
 	}
 
@@ -67,7 +67,7 @@ public class UserManager {
 		 * 인증코드 인증
 		 * 성공 시 true, 실패 시 false
 		 */
-		String encryptedEmail = aes.encrypt(email);
+		String encryptedEmail = SHA256.encrypt(email);
 
 		rs = database.executeQuery("SELECT * FROM verify_codes WHERE email='", encryptedEmail, "' AND code='", code, "'");
 		try {
@@ -105,16 +105,17 @@ public class UserManager {
 		}
 	}
 
-	public void signup(String id, String email, String password) {
+	public void signup(String id, String password, String email, String name) {
 		/*
 		 * 회원가입
 		 * id와 이메일 중복 체크는 다른 URI에서 수행
 		 */
 		String encryptedId = aes.encrypt(id);
-		String encryptedEmail = aes.encrypt(email);
 		String encryptedPassword = SHA256.encrypt(password);
+		String encryptedEmail = SHA256.encrypt(email);
+		String encryptedName = SHA256.encrypt(name);
 
-		database.executeUpdate("INSERT INTO account(id, email, password) VALUES('", encryptedId, "', '", encryptedEmail, "', '", encryptedPassword, "')");
+		database.executeUpdate("INSERT INTO account(id, password, email, name) VALUES('", encryptedId, "', '", encryptedPassword, "', '", encryptedEmail, "', '", encryptedName, "')");
 		Mail.sendMail(email, MailSubjects.WELCOME_SUBJECT.getName(), "환영환영");
 	}
 
@@ -126,8 +127,7 @@ public class UserManager {
 		String encryptedId = aes.encrypt(id);
 		String encryptedPassword = SHA256.encrypt(password);
 
-		rs = database.executeQuery("SELECT * FROM account WHERE id='", encryptedId, "' AND password='",
-				encryptedPassword, "'");
+		rs = database.executeQuery("SELECT * FROM account WHERE id='", encryptedId, "' AND password='", encryptedPassword, "'");
 		try {
 			if (rs.next()) {
 				return true;
@@ -180,7 +180,7 @@ public class UserManager {
 		return encryptedSessionId;
 	}
 
-	public String createEncryptedSessionId() {
+	private String createEncryptedSessionId() {
 		/*
 		 * 다른 계정들과 중복되지 않는 암호화된 session id 생성
 		 */
@@ -230,5 +230,84 @@ public class UserManager {
 		String encryptedId = getEncryptedIdFromSession(ctx);
 		SessionUtil.removeSession(ctx, "UserSession", encryptedId);
 		database.executeUpdate("UPDATE account SET session_id=null WHERE id='", encryptedId, "'");
+	}
+	
+	public boolean findId(String email, String name) {
+		String encryptedEmail = SHA256.encrypt(email);
+		String encryptedName = SHA256.encrypt(name);
+		
+		rs = database.executeQuery("SELECT id FROM account WHERE email='", encryptedEmail, "' AND name='", encryptedName, "'");
+		try {
+			if(rs.next()) {
+				String decryptedId = aes.decrypt(rs.getString("id"));
+				Mail.sendMail(email, MailSubjects.FIND_ID_SUBJECT.getName(), "ID : " + decryptedId);
+				return true;
+			} else {
+				return false;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+	private String createTempPassword() {
+		String tempPassword;
+		String encryptedTempPassword;
+		
+		while(true) {
+			tempPassword = UUID.randomUUID().toString().substring(0, 8);
+			encryptedTempPassword = SHA256.encrypt(tempPassword);
+			rs = database.executeQuery("SELECT * FROM account WHERE password='", encryptedTempPassword);
+			try {
+				if(!rs.next()) {
+					break;
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return tempPassword;
+	}
+	
+	public boolean findPassword(String id, String email, String name) {
+		String encryptedId = aes.encrypt(id);
+		String encryptedEmail = SHA256.encrypt(email);
+		String encryptedName = SHA256.encrypt(name);
+		
+		rs = database.executeQuery("SELECT * FROM account WHERE id='", encryptedId, "' AND email='", encryptedEmail, "' AND name='", encryptedName, "'");
+		try {
+			if(rs.next()) {
+				String tempPassword = createTempPassword();
+				String encryptedTempPassword = SHA256.encrypt(tempPassword);
+				database.executeUpdate("UPDATE account SET password='", encryptedTempPassword, "' WHERE id='", encryptedId, "'");
+				Mail.sendMail(email, MailSubjects.FIND_PASSWORD_SUBJECT.getName(), "임시 비밀번호 : " + tempPassword);
+				return true;
+			} else {
+				return false;
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+	public boolean changePassword(String id, String currentPassword, String newPassword) {
+		String encryptedId = aes.encrypt(id);
+		String encryptedCurrentPassword = SHA256.encrypt(currentPassword);
+		String encryptedNewPassword = SHA256.encrypt(newPassword);
+		
+		rs = database.executeQuery("SELECT * FROM account WHERE id='", encryptedId, "' AND password='", encryptedCurrentPassword, "'");
+		try {
+			if(rs.next()) {
+				database.executeUpdate("UPDATE account SET password='", encryptedNewPassword, "' WHERE id='", encryptedId, "'");
+				return true;
+			} else {
+				return false;
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 }
