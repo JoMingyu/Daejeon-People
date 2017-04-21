@@ -144,7 +144,7 @@ public class UserManager {
 		/*
 		 * 세션으로부터 암호화된 id get
 		 */
-		String encryptedSessionId = SessionUtil.getRegistedSessionId(ctx, "UserSession");
+		String encryptedSessionId = SessionUtil.getClientSessionId(ctx, "UserSession");
 		String encryptedId = null;
 		
 		rs = database.executeQuery("SELECT * FROM account WHERE session_id='", encryptedSessionId, "'");
