@@ -48,6 +48,8 @@ public class Request {
 		/*
 		 * 현재 요청에 대한 전체 카운트
 		 * 기본적으로 page와 numOfRows라는 파라미터로 응답 아이템 페이지와 갯수를 정함
+		 * 1. TotalCount를 그대로 numOfRows에 적용하여 array를 얻어내거나
+		 * 2. TotalCount에 맞춰서 page를 넘겨가며 array를 얻어내는 등의 방법으로 활용 가능
 		 */
 		JSONObject responseEntire = request(URL);
 		JSONObject inResponse = responseEntire.getJSONObject("response");
