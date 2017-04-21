@@ -161,7 +161,7 @@ public class UserManager {
 	private String getEncryptedSessionFromId(String id) {
 		/*
 		 * DB에서 id로부터 암호화된 session id get
-		 * 로그인 시 현재 세션 키가 있는지 체크하기 위해 사용
+		 * 로그인 시 현재 DB에 세션 키가 있는지 체크하기 위해 사용
 		 * 추후 하이브리드 서버로 활용 시 필요한 메소드
 		 */
 		String encryptedId = aes.encrypt(id);
