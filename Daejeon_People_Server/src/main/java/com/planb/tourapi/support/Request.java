@@ -12,6 +12,10 @@ import org.json.JSONObject;
 
 public class Request {
 	private static JSONObject request(String URL) {
+		/*
+		 * HttpURLConnection을 이용해 URL에 GET 요청
+		 * 바이트 단위로 Json 데이터 전체를 읽어들여 리턴
+		 */
 		try {
 			URL url = new URL(URL);
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -31,7 +35,7 @@ public class Request {
 			JSONObject responseEntire = new JSONObject(new String(out.toByteArray(), "UTF-8"));
 			/*
 			 * Response 전체 : response를 key로 header와 body가 갈라짐
-			 * response -> body -> items -> item 순서로 깊어지는 파싱
+			 * response -> body -> items -> item 순서로 깊어지는 구조
 			 */
 			return responseEntire;
 		} catch (IOException | JSONException e) {
@@ -43,7 +47,7 @@ public class Request {
 	public static int getTotalCount(String URL) {
 		/*
 		 * 현재 요청에 대한 전체 카운트
-		 * 기본적으로 page와 numOfRows라는 파라미터로 응답 아이템 위치와 갯수를 정함
+		 * 기본적으로 page와 numOfRows라는 파라미터로 응답 아이템 페이지와 갯수를 정함
 		 */
 		JSONObject responseEntire = request(URL);
 		JSONObject inResponse = responseEntire.getJSONObject("response");
@@ -58,7 +62,7 @@ public class Request {
 		 * 요청에 대한 응답에서 아이템이 복수 개라면 array로 묶여 있고
 		 * 아이템이 1개라면 object로 묶여 있음
 		 * 요청에 대한 아이템의 갯수는 numOfRows라는 key로 표현함
-		 * 파싱을 위한 array들을 점차 put하는 과정에서 이를 확인해야 함
+		 * 파싱을 위해 array들을 점차 쌓아가는 과정에서 이를 확인해야 함
 		 */
 		JSONObject responseEntire = request(URL);
 		JSONObject inResponse = responseEntire.getJSONObject("response");
