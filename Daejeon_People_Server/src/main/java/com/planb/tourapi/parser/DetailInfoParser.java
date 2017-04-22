@@ -13,6 +13,11 @@ public class DetailInfoParser {
 	private static String URL = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/detailIntro" + Params.defaultAppendParams;
 	private static DataBase database = DataBase.getInstance();
 	
+	private static void clearTables() {
+		database.executeUpdate("DELETE FROM tourrism_detail_info");
+		// 추가해야 함
+	}
+	
 	public static void parse() {
 		/*
 		 *  파싱 한 번에 over 336 트래픽 발생, 주의 필요
@@ -20,6 +25,8 @@ public class DetailInfoParser {
 		 *  데이터가 확실히 존재할 것이라는 보장이 없음
 		 *  -> 데이터 존재 여부에 대한 확인 필요
 		 */
+		
+		clearTables();
 		ResultSet rs = database.executeQuery("SELECT * FROM attractions_basic");
 		try {
 			while(rs.next()) {
@@ -116,6 +123,7 @@ public class DetailInfoParser {
 					System.out.println(item);
 				}
 				
+				database.executeUpdate("INSERT INTO tourrism_detail_info VALUES(");
 //				JSONObject item = Request.getItem(URL + "&contentId=" + contentId + "&contentTypeId=" + contentTypeId);
 			}
 			System.out.println("Detail Info Parse Success.");
