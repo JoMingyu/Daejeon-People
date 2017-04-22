@@ -21,8 +21,8 @@ public class Request {
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 			
 			conn.setRequestMethod("GET");
-			conn.setConnectTimeout(10000);
-			conn.setReadTimeout(10000);
+			conn.setConnectTimeout(60000);
+			conn.setReadTimeout(60000);
 			
 			InputStream in = conn.getInputStream();
 			ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -96,10 +96,9 @@ public class Request {
 		JSONObject responseEntire = request(URL);
 		JSONObject inResponse = responseEntire.getJSONObject("response");
 		JSONObject responseBody = inResponse.getJSONObject("body");
-		JSONObject item = responseBody.getJSONObject("items");
-//		JSONObject item = items.getJSONObject("item");
+		JSONObject items = responseBody.getJSONObject("items");
+		JSONObject item = items.getJSONObject("item");
 		
 		return item;
-//		return new JSONArray().put(item);
 	}
 }

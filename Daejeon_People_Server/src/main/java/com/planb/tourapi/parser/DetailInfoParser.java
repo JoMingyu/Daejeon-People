@@ -14,17 +14,18 @@ public class DetailInfoParser {
 	private static DataBase database = DataBase.getInstance();
 	
 	public static void parse() {
-		// 파싱 한 번에 336 트래픽 발생, 주의 필요
-		database.executeUpdate("DELETE FROM attractions_detail_info");
-		URL = URL + "&introYN=Y";
+		/*
+		 *  파싱 한 번에 336 트래픽 발생, 주의 필요
+		 *  연속 200트래픽 이후 잠시동안 응답을 하지 않음
+		 */
 		ResultSet rs = database.executeQuery("SELECT * FROM attractions_basic");
+		int count = 0;
 		try {
 			while(rs.next()) {
 				int contentId = rs.getInt("content_id");
 				int contentTypeId = rs.getInt("content_type_id");
 				
-				JSONObject item = Request.getItem(URL + "&contentId=" + contentId);
-				System.out.println(item);
+				JSONObject item = Request.getItem(URL + "&contentId=" + contentId + "&contentTypeId=" + contentTypeId);
 			}
 			System.out.println("Detail Info Parse Success.");
 		} catch (SQLException e) {
