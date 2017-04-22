@@ -21,8 +21,8 @@ public class Request {
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 			
 			conn.setRequestMethod("GET");
-			conn.setConnectTimeout(3000);
-			conn.setReadTimeout(3000);
+			conn.setConnectTimeout(10000);
+			conn.setReadTimeout(10000);
 			
 			InputStream in = conn.getInputStream();
 			ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -88,7 +88,7 @@ public class Request {
 		return itemsArray;
 	}
 	
-	public static JSONArray getItem(String URL) {
+	public static JSONObject getItem(String URL) {
 		/*
 		 * 요청에 대한 응답에서 아이템이 1개라면 object로 묶여 있음
 		 * 아이템이 1개 = numOfRows가 1
@@ -96,9 +96,10 @@ public class Request {
 		JSONObject responseEntire = request(URL);
 		JSONObject inResponse = responseEntire.getJSONObject("response");
 		JSONObject responseBody = inResponse.getJSONObject("body");
-		JSONObject items = responseBody.getJSONObject("items");
-		JSONObject item = items.getJSONObject("item");
+		JSONObject item = responseBody.getJSONObject("items");
+//		JSONObject item = items.getJSONObject("item");
 		
-		return new JSONArray().put(item);
+		return item;
+//		return new JSONArray().put(item);
 	}
 }

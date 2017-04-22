@@ -16,8 +16,10 @@ public class AreaBasedTourListParser {
 	private static DataBase database = DataBase.getInstance();
 	
 	public static void parse() {
+		database.executeUpdate("DELETE FROM attractions_basic");
 		int totalCount = Request.getTotalCount(URL);
 		URL = URL + "&numOfRows=" + totalCount;
+		
 		JSONArray itemsArray = Request.getItems(URL);
 		for(int i = 0; i < itemsArray.length(); i++) {
 			JSONObject row = itemsArray.getJSONObject(i);
@@ -70,8 +72,8 @@ public class AreaBasedTourListParser {
 			}
 			// 대표이미지가 없는 경우 존재
 			
-			database.executeUpdate("DELETE FROM sttractions_basic");
 			database.executeUpdate("INSERT INTO attractions_basic VALUES(", contentId, ", ", contentTypeId, ", '", title, "', '", cat1, "', '", cat2, "', '", cat3, "', '", address, "', ", mapX, ", ", mapY, ", ", readCount, ", '", createdTime, "', '", lastModifiedTime, "', '", tel, "', '", imageMiniUrl, "', '", imageBigUrl, "')");
 		}
+		System.out.println("Area Based Tour List Parse Success.");
 	}
 }
