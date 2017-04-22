@@ -8,7 +8,7 @@ public class ParserThread extends Thread {
 			AreaBasedTourListParser.parse();
 			
 			try {
-				Thread.sleep(1000 * 3600);
+				Thread.sleep(1000 * 300);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}

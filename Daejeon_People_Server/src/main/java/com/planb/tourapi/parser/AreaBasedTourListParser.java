@@ -25,13 +25,15 @@ public class AreaBasedTourListParser {
 			int contentId = row.getInt("contentid");
 			int contentTypeId = row.getInt("contenttypeid");
 			String title = row.getString("title").replace("'", "''");
+			// 타이틀에 작은따옴표가 들어가 있는 경우 존재
+			
 			String cat1 = row.getString("cat1");
 			String cat2 = row.getString("cat2");
 			String cat3 = null;
 			if(row.has("cat3")) {
 				cat3 = row.getString("cat3");
 			}
-			// 336개 여행지 중 하나가 소분류가 없음
+			// 336개 여행지 중 하나가 소분류가 없음(대전광역시)
 			
 			String address = null;
 			if(contentTypeId != 25) {
