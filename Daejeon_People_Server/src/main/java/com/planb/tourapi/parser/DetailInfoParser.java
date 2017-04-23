@@ -61,91 +61,69 @@ public class DetailInfoParser {
 				 */
 				JSONObject item = Request.getItem(URL + "&contentId=" + contentId + "&contentTypeId=" + contentTypeId);
 
-				String accomCount = null;
-				if (item.has("accomcount")) {
-					accomCount = item.getString("accomcount");
-				}
+				String accomCount = item.has("accomcount") ? item.getString("accomcount") : null;
 				// 수용인원. 문자열 형태로, 정보가 없는 경우가 많음
 
-				String babyCarriage = null;
-				if (item.has("chkbabycarriage")) {
-					item.getString("chkbabycarriage");
-				}
+				String babyCarriage = item.has("chkbabycarriage") ? item.getString("chkbabycarriage") : null;
 				// 유모차 대여 여부
 
-				String creditCard = null;
-				if (item.has("chkcreditcard")) {
-					item.getString("chkcreditcard");
-				}
+				String creditCard = item.has("chkcreditcard") ? item.getString("chkcreditcard") : null;
 				// 신용카드 가능 여부
 
-				String pet = null;
-				if (item.has("chkpet")) {
-					item.getString("chkpet");
-				}
+				String pet = item.has("chkpet") ? item.getString("chkpet") : null;
 				// 애완동물 가능 여부
 
-				String ageRange = null;
-				if (item.has("expagerange")) {
-					ageRange = item.getString("expagerange");
-				}
+				String ageRange = item.has("expagerange") ? item.getString("expagerange") : null;
 				// 체험가능 연령
 
-				String guide = item.getString("expguide");
+				String guide = item.has("expguide") ? item.getString("expguide") : null;
 				// 가이드
 
-				boolean culturalHeritage = false;
-				boolean naturalHeritage = false;
-				boolean archivalHeritage = false;
-				if (item.has("heritage1") && item.has("heritage2") && item.has("heritage3")) {
-					int heritage1 = item.getInt("heritage1");
-					int heritage2 = item.getInt("heritage2");
-					int heritage3 = item.getInt("heritage3");
-					culturalHeritage = (heritage1 == 1) ? true : false;
-					naturalHeritage = (heritage2 == 1) ? true : false;
-					archivalHeritage = (heritage3 == 1) ? true : false;
-					// boolean이지만 값은 0 또는 1, 따라서 삼항으로 타입 변환
-				}
-				// 문화재 여부
+				int heritage1 = item.has("heritage1") ? item.getInt("heritage1") : 0;
+				int heritage2 = item.has("heritage2") ? item.getInt("heritage2") : 0;
+				int heritage3 = item.has("heritage3") ? item.getInt("heritage3") : 0;
+				boolean culturalHeritage = (heritage1 == 1) ? true : false;
+				boolean naturalHeritage = (heritage2 == 1) ? true : false;
+				boolean archivalHeritage = (heritage3 == 1) ? true : false;
+				/*
+				 *  문화재 여부
+				 *  boolean이지만 값은 0 또는 1, 따라서 타입 변환
+				 */
 
-				String infoCenter = null;
-				if (item.has("infocenter")) {
-					infoCenter = item.getString("infocenter").replace("'", "''");
-				}
+				String infoCenter = item.has("infocenter") ? item.getString("infocenter").replace("'", "''") : null;
 				// 문의처
 
-				String openDate = null;
-				if (item.has("opendate")) {
-					openDate = item.getString("opendate");
-				}
+				String openDate = item.has("opendate") ? item.getString("opendate") : null;
 				// 개장일
 
-				String restDate = null;
-				if (item.has("restdate")) {
-					restDate = item.getString("restdate");
-				}
+				String restDate = item.has("restdate") ? item.getString("restdate") : null;
 				// 쉬는날
 
-				String parking = null;
-				if (item.has("parking")) {
-					parking = item.getString("parking");
-				}
+				String parking = item.has("parking") ? item.getString("parking") : null;
 				// 주차시설
 
-				String useSeason = null;
-				if (item.has("useseason")) {
-					useSeason = item.getString("useseason");
-				}
+				String useSeason = item.has("useseason") ? item.getString("useseason") : null;
 				// 이용시기
 
-				String useTime = null;
-				if (item.has("usetime")) {
-					useTime = item.getString("usetime");
-				}
+				String useTime = item.has("usetime") ? item.getString("usetime") : null;
 				// 이용시간
 
-				System.out.println(item);
 				database.executeUpdate("INSERT INTO tourrism_detail_info VALUES(", contentId, ", '", accomCount, "', '", babyCarriage, "', '", creditCard, "', '", pet, "', '", ageRange, "', '", guide, "', ", culturalHeritage, ", ", naturalHeritage, ", ", archivalHeritage, ", '", infoCenter, "', '", openDate, "', '", restDate, "', '", parking, "', '", useSeason, "', '", useTime, "')");
+			} else if(contentTypeId == 14) {
+				// 문화시설
+				JSONObject item = Request.getItem(URL + "&contentId=" + contentId + "&contentTypeId=" + contentTypeId);
+			} else if(contentTypeId == 15) {
+				// 축제, 공연, 행사
+			} else if(contentTypeId == 25) {
+				// 여행코스
+			} else if(contentTypeId == 28) {
+				// 레포츠
+			} else if(contentTypeId == 32) {
+				// 숙박
+			} else if(contentTypeId == 38) {
+				// 쇼핑
+			} else if(contentTypeId == 39) {
+				// 음식
 			}
 		}
 		System.out.println("Detail Info Parse Success.");
