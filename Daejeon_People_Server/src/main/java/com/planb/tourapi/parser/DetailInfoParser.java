@@ -55,10 +55,6 @@ public class DetailInfoParser {
 //			 JSONObject item = Request.getItem(URL + "&contentId=" + contentId + "&contentTypeId=" + contentTypeId);
 			if (contentTypeId == 12) {
 				// 12 : 관광지
-				/*
-				 * baby_carrige, credit_card, pet 모두 null
-				 * heritage 1, 2, 3 모두 0(false)
-				 */
 				JSONObject item = Request.getItem(URL + "&contentId=" + contentId + "&contentTypeId=" + contentTypeId);
 
 				String accomCount = item.has("accomcount") ? item.getString("accomcount") : null;
