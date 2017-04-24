@@ -89,7 +89,7 @@ public class DetailInfoParser {
 				 */
 
 				String infoCenter = item.has("infocenter") ? item.getString("infocenter").replace("'", "''") : null;
-				// 문의처
+				// 문의 및 안내
 
 				String openDate = item.has("opendate") ? item.getString("opendate") : null;
 				// 개장일
@@ -127,7 +127,7 @@ public class DetailInfoParser {
 				// 할인정보
 
 				String infoCenter = item.has("infocenterculture") ? item.getString("infocenterculture") : null;
-				// 문의처
+				// 문의 및 안내
 				
 				String parking = item.has("parkingculture") ? item.getString("parkingculture") : null;
 				// 주차시설
@@ -156,38 +156,82 @@ public class DetailInfoParser {
 				JSONObject item = Request.getItem(URL + "&contentId=" + contentId + "&contentTypeId=" + contentTypeId);
 				
 				String ageLimit = item.has("agelimit") ? item.getString("agelimit") : null;
+				// 연령제한
 				
 				String reservationPlace = item.has("bookingplace") ? item.getString("bookingplace") : null;
+				// 예매처
 				
 				String startDate = item.has("eventstartdate") ? String.valueOf(item.getLong("eventstartdate")) : null;
+				// 행사 시작일
 				
 				String endDate = item.has("eventenddate") ? String.valueOf(item.getLong("eventenddate")) : null;
+				// 행사 종료일
 				
 				String homepage = item.has("eventhomepage") ? item.getString("eventhomepage") : null;
+				// 홈페이지
 				
 				String place = item.has("eventplace") ? item.getString("eventplace") : null;
-
+				// 행사 장소
+				
 				String placeInfo = item.has("placeinfo") ? item.getString("placeinfo") : null;
+				// 행사장 위치 안내
 				
 				String festivalGrade = item.has("festivalgrade") ? item.getString("festivalgrade") : null;
+				// 축제 등급
 				
 				String spendTime = item.has("spendtimefestival") ? item.getString("spendtimefestival") : null;
+				// 소요시간
 				
 				String[] sponsors = new String[2];
+				// 주최자
+				
 				String[] sponsorsTel = new String[2];
+				// 주관자
 				
 				sponsors[0] = item.has("sponsor1") ? item.getString("sponsor1") : null;
 				sponsorsTel[0] = item.has("sponsor1_tel") ? item.getString("sponsor1_tel") : null;
+				// 주최자
+				
 				sponsors[1] = item.has("sponsor2") ? item.getString("sponsor2") : null;
 				sponsorsTel[1] = item.has("sponsor2_tel") ? item.getString("sponsor2_tel") : null;
+				// 주관자
 				
 				String subEvent = item.has("subevent") ? item.getString("subevent") : null;
+				// 부대행사
 				
 				String useFee = item.has("usetimefestival") ? item.getString("usetimefestival") : null;
+				// 이용요금
 				
 				database.executeUpdate("INSERT INTO festival_detail_info VALUES(", contentId, ", '", ageLimit, "', '", reservationPlace, "', '", startDate, "', '", endDate, "', '", homepage, "', '", place, "', '", placeInfo, "' ,'", festivalGrade, "', '", spendTime, "', '", sponsors[0], "', '", sponsorsTel[0], "', '", sponsors[1], "', '", sponsorsTel[1], "', '", subEvent, "', '", useFee, "')");
 			} else if(contentTypeId == 25) {
 				// 여행코스
+				JSONObject item = Request.getItem(URL + "&contentId=" + contentId + "&contentTypeId=" + contentTypeId);
+				
+				String distance = item.has("distance") ? item.getString("distance") : null;
+				// 코스 총거리
+				
+				String infoCenter = item.has("infocentertourcourse") ? item.getString("infocentertourcourse") : null;
+				/*
+				 * 문의 및 안내
+				 * 현재 모두 null
+				 */
+				
+				String schedule = item.has("schedule") ? item.getString("schedule") : null;
+				// 코스 일정
+				
+				String spendTime = item.has("taketime") ? item.getString("taketime") : null;
+				/*
+				 * 코스 총 소요시간
+				 * 현재 모두 null
+				 */
+				
+				String theme = item.has("theme") ? item.getString("theme") : null;
+				/*
+				 * 코스 테마
+				 * 현재 모두 null
+				 */
+				
+				database.executeUpdate("INSERT INTO tour_course_detail_info VALUES(", contentId, ", '", distance, "', '", infoCenter, "', '", schedule, "', '", spendTime, "', '", theme, "')");
 			} else if(contentTypeId == 28) {
 				// 레포츠
 			} else if(contentTypeId == 32) {
