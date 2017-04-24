@@ -21,6 +21,7 @@ public class DetailInfoParser {
 	private static void clearTables() {
 		database.executeUpdate("DELETE FROM tourrism_detail_info");
 		database.executeUpdate("DELETE FROM cultural_facility_detail_info");
+		database.executeUpdate("DELETE FROM festival_detail_info");
 		// 추가해야 함
 	}
 	
@@ -152,6 +153,39 @@ public class DetailInfoParser {
 				database.executeUpdate("INSERT INTO cultural_facility_detail_info VALUES(", contentId, ", '", accomCount, "', '", babyCarriage, "', '", creditCard, "', '", pet, "', '", discount, "', '", infoCenter, "', '", parking, "', '", parkingFee, "', '", restDate, "', '", useFee, "', '", useTime, "', '", scale, "', '", spendTime, "')");
 			} else if(contentTypeId == 15) {
 				// 축제, 공연, 행사
+				JSONObject item = Request.getItem(URL + "&contentId=" + contentId + "&contentTypeId=" + contentTypeId);
+				
+				String ageLimit = item.has("agelimit") ? item.getString("agelimit") : null;
+				
+				String reservationPlace = item.has("bookingplace") ? item.getString("bookingplace") : null;
+				
+				String startDate = item.has("eventstartdate") ? String.valueOf(item.getLong("eventstartdate")) : null;
+				
+				String endDate = item.has("eventenddate") ? String.valueOf(item.getLong("eventenddate")) : null;
+				
+				String homepage = item.has("eventhomepage") ? item.getString("eventhomepage") : null;
+				
+				String place = item.has("eventplace") ? item.getString("eventplace") : null;
+
+				String placeInfo = item.has("placeinfo") ? item.getString("placeinfo") : null;
+				
+				String festivalGrade = item.has("festivalgrade") ? item.getString("festivalgrade") : null;
+				
+				String spendTime = item.has("spendtimefestival") ? item.getString("spendtimefestival") : null;
+				
+				String[] sponsors = new String[2];
+				String[] sponsorsTel = new String[2];
+				
+				sponsors[0] = item.has("sponsor1") ? item.getString("sponsor1") : null;
+				sponsorsTel[0] = item.has("sponsor1_tel") ? item.getString("sponsor1_tel") : null;
+				sponsors[1] = item.has("sponsor2") ? item.getString("sponsor2") : null;
+				sponsorsTel[1] = item.has("sponsor2_tel") ? item.getString("sponsor2_tel") : null;
+				
+				String subEvent = item.has("subevent") ? item.getString("subevent") : null;
+				
+				String useFee = item.has("usetimefestival") ? item.getString("usetimefestival") : null;
+				
+				database.executeUpdate("INSERT INTO festival_detail_info VALUES(", contentId, ", '", ageLimit, "', '", reservationPlace, "', '", startDate, "', '", endDate, "', '", homepage, "', '", place, "', '", placeInfo, "' ,'", festivalGrade, "', '", spendTime, "', '", sponsors[0], "', '", sponsorsTel[0], "', '", sponsors[1], "', '", sponsorsTel[1], "', '", subEvent, "', '", useFee, "')");
 			} else if(contentTypeId == 25) {
 				// 여행코스
 			} else if(contentTypeId == 28) {
