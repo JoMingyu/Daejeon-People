@@ -20,6 +20,7 @@ public class DetailInfoParser {
 	
 	private static void clearTables() {
 		database.executeUpdate("DELETE FROM tourrism_detail_info");
+		database.executeUpdate("DELETE FROM cultural_facility_detail_info");
 		// 추가해야 함
 	}
 	
@@ -108,6 +109,47 @@ public class DetailInfoParser {
 			} else if(contentTypeId == 14) {
 				// 문화시설
 				JSONObject item = Request.getItem(URL + "&contentId=" + contentId + "&contentTypeId=" + contentTypeId);
+				
+				String accomCount = item.has("accomcountculture") ? item.getString("accomcountculture") : null;
+				// 수용인원. 문자열 형태로, 정보가 없는 경우가 많음
+
+				String babyCarriage = item.has("chkbabycarriageculture") ? item.getString("chkbabycarriageculture") : null;
+				// 유모차 대여 여부
+
+				String creditCard = item.has("chkcreditcardculture") ? item.getString("chkcreditcardculture") : null;
+				// 신용카드 가능 여부
+
+				String pet = item.has("chkpetculture") ? item.getString("chkpetculture") : null;
+				// 애완동물 가능 여부
+				
+				String discount = item.has("discount") ? item.getString("discountinfo") : null;
+				// 할인정보
+
+				String infoCenter = item.has("infocenterculture") ? item.getString("infocenterculture") : null;
+				// 문의처
+				
+				String parking = item.has("parkingculture") ? item.getString("parkingculture") : null;
+				// 주차시설
+				
+				String parkingFee = item.has("parkingfee") ? item.getString("parkingfee") : null;
+				// 주차요금
+				
+				String restDate = item.has("restdateculture") ? item.getString("restdateculture") : null;
+				// 쉬는날
+				
+				String useFee = item.has("usefee") ? item.getString("usefee").replace("'", "''") : null;
+				// 이용요금
+				
+				String useTime = item.has("usetimeculture") ? item.getString("usetimeculture") : null;
+				// 이용시간
+				
+				String scale = item.has("scale") ? item.getString("scale") : null;
+				// 규모
+				
+				String spendTime = item.has("spendtime") ? item.getString("spendtime") : null;
+				// 관람 소요시간
+				
+				database.executeUpdate("INSERT INTO cultural_facility_detail_info VALUES(", contentId, ", '", accomCount, "', '", babyCarriage, "', '", creditCard, "', '", pet, "', '", discount, "', '", infoCenter, "', '", parking, "', '", parkingFee, "', '", restDate, "', '", useFee, "', '", useTime, "', '", scale, "', '", spendTime, "')");
 			} else if(contentTypeId == 15) {
 				// 축제, 공연, 행사
 			} else if(contentTypeId == 25) {
