@@ -286,127 +286,178 @@ public class DetailInfoParser {
 //				
 //				database.executeUpdate("INSERT INTO leisure_detail_info VALUES(", contentId, ", '", accomCount, "', '", babyCarriage, "', '", creditCard, "', '", pet, "', '", ageRange, "', '", infoCenter, "', '", openPeriod, "', '", parking, "', '", parkingFee, "', '", reservation, "', '", restDate, "', '", scale, "', '", useFee, "', '", useTime, "')");
 //			} else if(contentTypeId == 32) {
-			if(contentTypeId == 32) {
-				// 숙박
+//				// 숙박
+//				JSONObject item = Request.getItem(URL + "&contentId=" + contentId + "&contentTypeId=" + contentTypeId);
+//				
+//				String accomCount = item.has("accomcount") ? item.getString("accomcount") : null;
+//				// 수용인원
+//				
+//				int benikiaInt = item.has("benikia") ? item.getInt("benikia") : null;
+//				boolean benikia = benikiaInt == 1 ? true : false;
+//				// 베니키아 여부
+//				
+//				int goodStayInt = item.has("goodstay") ? item.getInt("goodstay") : null;
+//				boolean goodStay = goodStayInt == 1 ? true : false;
+//				// 굿스테이 여부
+//				
+//				int koreanHouseInt = item.has("hanok") ? item.getInt("hanok") : null;
+//				boolean koreanHouse = koreanHouseInt == 1 ? true : false;
+//				// 한옥 여부
+//				
+//				int barbecueInt = item.has("barbecue") ? item.getInt("barbecue") : null;
+//				boolean barbecue = barbecueInt == 1 ? true : false;
+//				// 바비큐장 여부
+//				
+//				int beautyInt = item.has("beauty") ? item.getInt("beauty") : null;
+//				boolean beauty = beautyInt == 1 ? true : false;
+//				// 뷰티시설 정보
+//				
+//				int beverageInt = item.has("beverage") ? item.getInt("beverage") : null;
+//				boolean beverage = beverageInt == 1 ? true : false;
+//				// 식음료장 여부
+//				
+//				int bicycleInt = item.has("bicycle") ? item.getInt("bicycle") : null;
+//				boolean bicycle = bicycleInt == 1 ? true : false;
+//				// 자전거 대여 여부
+//				
+//				int campfireInt = item.has("campfire") ? item.getInt("campfire") : null;
+//				boolean campfire = campfireInt == 1 ? true : false;
+//				// 캠프파이어 여부
+//				
+//				String cookInRoom = item.has("chkcooking") ? item.getString("chkcooking") : null;
+//				// 객실내 취사 여부
+//				
+//				int fitnessInt = item.has("fitness") ? item.getInt("fitness") : null;
+//				boolean fitness = fitnessInt == 1 ? true : false;
+//				// 피트니스 센터 여부
+//				
+//				int karaokeInt = item.has("karaoke") ? item.getInt("karaoke") : null;
+//				boolean karaoke = karaokeInt == 1 ? true : false;
+//				// 노래방 여부
+//				
+//				int publicBathInt = item.has("publicbath") ? item.getInt("publicbath") : null;
+//				boolean publicBath = publicBathInt == 1 ? true : false;
+//				// 공용 샤워실 여부
+//				
+//				int publicPcInt = item.has("publicpc") ? item.getInt("publicpc") : null;
+//				boolean publicPc = publicPcInt == 1 ? true : false;
+//				// 공용 PC실 여부
+//				
+//				int saunaInt = item.has("sauna") ? item.getInt("sauna") : null;
+//				boolean sauna = saunaInt == 1 ? true : false;
+//				// 사우나실 여부
+//				
+//				int seminarInt = item.has("seminar") ? item.getInt("seminar") : null;
+//				boolean seminar = seminarInt == 1 ? true : false;
+//				// 세미나실 여부
+//				
+//				int sportsInt = item.has("sports") ? item.getInt("sports") : null;
+//				boolean sports = sportsInt == 1 ? true : false;
+//				// 스포츠 시설 여부
+//				
+//				String subFacility = item.has("subfacility") ? item.getString("subfacility") : null;
+//				// 부대시설
+//				
+//				String checkinTime = item.has("checkintime") ? item.getString("checkintime") : null;
+//				// 입실 시간
+//				
+//				String checkoutTime = item.has("checkouttime") ? item.getString("checkouttime") : null;
+//				// 퇴실 시간
+//				
+//				String foodPlace = item.has("foodplace") ? item.getString("foodplace") : null;
+//				// 식음료장
+//				
+//				String infoCenter = item.has("infocenterlodging") ? item.getString("infocenterlodging") : null;
+//				// 문의 및 안내
+//				
+//				String parking = item.has("parkinglodging") ? item.getString("parkinglodging") : null;
+//				// 주차시설
+//				
+//				String pickup = item.has("pickup") ? item.getString("pickup") : null;
+//				// 픽업 서비스
+//				
+//				Object roomCountObj = item.has("roomcount") ? item.get("roomcount") : null;
+//				/*
+//				 * 객실 수
+//				 * 정수일 때도 있고 문자열일 때도 있음
+//				 */
+//				String roomCountType = roomCountObj.getClass().getSimpleName();
+//				// 타입 체크
+//				int roomCount = 0;
+//				if(!roomCountType.equals("Integer")) {
+//					// 정수형이 아니라면 Regex로 숫자만 추출
+//					Matcher m = p.matcher(roomCountObj.toString());
+//					m.find();
+//					roomCount = Integer.parseInt(m.group());
+//				}
+//				
+//				String reservation = item.has("reservationlodging") ? item.getString("reservationlodging") : null;
+//				// 예약안내
+//				
+//				String reservationUrl = item.has("reservationurl") ? item.getString("reservationurl") : null;
+//				// 예약안내 홈페이지
+//				
+//				String roomType = item.has("roomtype") ? item.getString("roomtype") : null;
+//				// 객실유형
+//				
+//				String scale = item.has("scale") ? item.getString("scale") : null;
+//				// 규모
+//				
+//				database.executeUpdate("INSERT INTO accommodation_detail_info VALUES(", contentId, ", '", accomCount, "', ", benikia, ", ", goodStay, ", ", koreanHouse, ", ", barbecue, ", ", beauty, ", ", beverage, ", ", bicycle, ", ", campfire, ", '", cookInRoom, "', ", fitness, ", ", karaoke, ", ", publicBath, ", ", publicPc, ", ", sauna, ", ", seminar, ", ", sports, ", '", subFacility, "', '", checkinTime, "', '", checkoutTime, "', '", foodPlace, "', '", infoCenter, "', '", parking, "', '", pickup, "', ", roomCount, ", '", reservation, "', '", reservationUrl, "', '", roomType, "', '", scale, "')");
+//			} else if(contentTypeId == 38) {
+			if(contentTypeId == 38) {
+				// 쇼핑
 				JSONObject item = Request.getItem(URL + "&contentId=" + contentId + "&contentTypeId=" + contentTypeId);
 				
-				String accomCount = item.has("accomcount") ? item.getString("accomcount") : null;
-				// 수용인원
+				String babyCarriage = item.has("chkbabycarriageshopping") ? item.getString("chkbabycarriageshopping") : null;
+				// 유모차 대여 여부
 				
-				int benikiaInt = item.has("benikia") ? item.getInt("benikia") : null;
-				boolean benikia = benikiaInt == 1 ? true : false;
-				// 베니키아 여부
+				String creditCard = item.has("chkcreditcardshopping") ? item.getString("chkcreditcardshopping") : null;
+				// 신용카드 가능 여부
 				
-				int goodStayInt = item.has("goodstay") ? item.getInt("goodstay") : null;
-				boolean goodStay = goodStayInt == 1 ? true : false;
-				// 굿스테이 여부
+				String pet = item.has("chkpetshopping") ? item.getString("chkpetshopping") : null;
+				// 애완동물 가능 여부
 				
-				int koreanHouseInt = item.has("hanok") ? item.getInt("hanok") : null;
-				boolean koreanHouse = koreanHouseInt == 1 ? true : false;
-				// 한옥 여부
+				String guide = item.has("shopguide") ? item.getString("shopguide") : null;
+				// 매장안내
 				
-				int barbecueInt = item.has("barbecue") ? item.getInt("barbecue") : null;
-				boolean barbecue = barbecueInt == 1 ? true : false;
-				// 바비큐장 여부
+				String cultureCenter = item.has("culturecenter") ? item.getString("culturecenter") : null;
+				/*
+				 * 문화센터 바로가기
+				 * 현재 모두 null
+				 */
 				
-				int beautyInt = item.has("beauty") ? item.getInt("beauty") : null;
-				boolean beauty = beautyInt == 1 ? true : false;
-				// 뷰티시설 정보
+				String fairDay = item.has("fairday") ? item.getString("fairday") : null;
+				// 장 서는 날, 하나 빼고 모두 null
 				
-				int beverageInt = item.has("beverage") ? item.getInt("beverage") : null;
-				boolean beverage = beverageInt == 1 ? true : false;
-				// 식음료장 여부
-				
-				int bicycleInt = item.has("bicycle") ? item.getInt("bicycle") : null;
-				boolean bicycle = bicycleInt == 1 ? true : false;
-				// 자전거 대여 여부
-				
-				int campfireInt = item.has("campfire") ? item.getInt("campfire") : null;
-				boolean campfire = campfireInt == 1 ? true : false;
-				// 캠프파이어 여부
-				
-				String cookInRoom = item.has("chkcooking") ? item.getString("chkcooking") : null;
-				// 객실내 취사 여부
-				
-				int fitnessInt = item.has("fitness") ? item.getInt("fitness") : null;
-				boolean fitness = fitnessInt == 1 ? true : false;
-				// 피트니스 센터 여부
-				
-				int karaokeInt = item.has("karaoke") ? item.getInt("karaoke") : null;
-				boolean karaoke = karaokeInt == 1 ? true : false;
-				// 노래방 여부
-				
-				int publicBathInt = item.has("publicbath") ? item.getInt("publicbath") : null;
-				boolean publicBath = publicBathInt == 1 ? true : false;
-				// 공용 샤워실 여부
-				
-				int publicPcInt = item.has("publicpc") ? item.getInt("publicpc") : null;
-				boolean publicPc = publicPcInt == 1 ? true : false;
-				// 공용 PC실 여부
-				
-				int saunaInt = item.has("sauna") ? item.getInt("sauna") : null;
-				boolean sauna = saunaInt == 1 ? true : false;
-				// 사우나실 여부
-				
-				int seminarInt = item.has("seminar") ? item.getInt("seminar") : null;
-				boolean seminar = seminarInt == 1 ? true : false;
-				// 세미나실 여부
-				
-				int sportsInt = item.has("sports") ? item.getInt("sports") : null;
-				boolean sports = sportsInt == 1 ? true : false;
-				// 스포츠 시설 여부
-				
-				String subFacility = item.has("subfacility") ? item.getString("subfacility") : null;
-				// 부대시설
-				
-				String checkinTime = item.has("checkintime") ? item.getString("checkintime") : null;
-				// 입실 시간
-				
-				String checkoutTime = item.has("checkouttime") ? item.getString("checkouttime") : null;
-				// 퇴실 시간
-				
-				String foodPlace = item.has("foodplace") ? item.getString("foodplace") : null;
-				// 식음료장
-				
-				String infoCenter = item.has("infocenterlodging") ? item.getString("infocenterlodging") : null;
+				String infoCenter = item.has("infocentershopping") ? item.getString("infocentershopping") : null;
 				// 문의 및 안내
 				
-				String parking = item.has("parkinglodging") ? item.getString("parkinglodging") : null;
+				String openDate = item.has("opendateshopping") ? item.getString("opendateshopping") : null;
+				// 개장일
+				
+				String openTime = item.has("opentime") ? item.getString("opentime") : null;
+				// 영업시간
+				
+				String parking = item.has("parkingshopping") ? item.getString("parkingshopping") : null;
 				// 주차시설
 				
-				String pickup = item.has("pickup") ? item.getString("pickup") : null;
-				// 픽업 서비스
+				String restDate = item.has("restdateshopping") ? item.getString("restdateshopping") : null;
+				// 쉬는날
 				
-				Object roomCountObj = item.has("roomcount") ? item.get("roomcount") : null;
-				/*
-				 * 객실 수
-				 * 정수일 때도 있고 문자열일 때도 있음
-				 */
-				String roomCountType = roomCountObj.getClass().getSimpleName();
-				// 타입 체크
-				int roomCount = 0;
-				if(!roomCountType.equals("Integer")) {
-					// 정수형이 아니라면 Regex로 숫자만 추출
-					Matcher m = p.matcher(roomCountObj.toString());
-					m.find();
-					roomCount = Integer.parseInt(m.group());
-				}
+				String restroom = item.has("restroom") ? item.getString("restroom") : null;
+				// 화장실 설명
 				
-				String reservation = item.has("reservationlodging") ? item.getString("reservationlodging") : null;
-				// 예약안내
+				String saleItem = item.has("saleitem") ? item.getString("saleitem") : null;
+				// 판매 품목
 				
-				String reservationUrl = item.has("reservationurl") ? item.getString("reservationurl") : null;
-				// 예약안내 홈페이지
-				
-				String roomType = item.has("roomtype") ? item.getString("roomtype") : null;
-				// 객실유형
+				String saleItemCost = item.has("saleitemcost") ? item.getString("saleitemcost") : null;
+				// 판매 품목별 가격
 				
 				String scale = item.has("scale") ? item.getString("scale") : null;
 				// 규모
 				
-				database.executeUpdate("INSERT INTO accommodation_detail_info VALUES(", contentId, ", '", accomCount, "', ", benikia, ", ", goodStay, ", ", koreanHouse, ", ", barbecue, ", ", beauty, ", ", beverage, ", ", bicycle, ", ", campfire, ", '", cookInRoom, "', ", fitness, ", ", karaoke, ", ", publicBath, ", ", publicPc, ", ", sauna, ", ", seminar, ", ", sports, ", '", subFacility, "', '", checkinTime, "', '", checkoutTime, "', '", foodPlace, "', '", infoCenter, "', '", parking, "', '", pickup, "', ", roomCount, ", '", reservation, "', '", reservationUrl, "', '", roomType, "', '", scale, "')");
-			} else if(contentTypeId == 38) {
-				// 쇼핑
+				database.executeUpdate("INSERT INTO shopping_detail_info VALUES(", contentId, ", '", babyCarriage, "', '", creditCard, "', '", pet, "', '", guide, "', '", cultureCenter, "', '", fairDay, "', '", infoCenter, "', '", openDate, "', '", openTime, "', '", parking, "', '", restDate, "', '", restroom, "', '", saleItem, "', '", saleItemCost, "', '", scale, "')");
 			} else if(contentTypeId == 39) {
 				// 음식
 			}
