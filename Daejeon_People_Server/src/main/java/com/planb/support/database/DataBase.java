@@ -19,7 +19,7 @@ public class DataBase {
 		// 2개 이상의 오브젝트가 동시에 DB 액세스 시 문제 발생.
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			connection = DriverManager.getConnection(URL.concat("daejeon_people"), USER, PASSWORD);
+			connection = DriverManager.getConnection(URL + "daejeon_people", USER, PASSWORD);
 			statement = connection.createStatement();
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();

@@ -19,15 +19,14 @@ public class Request {
 		try {
 			URL url = new URL(URL);
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-			
-			conn.setRequestMethod("GET");
-			conn.setConnectTimeout(60000);
 			conn.setReadTimeout(60000);
+			conn.setConnectTimeout(60000);
 			
 			InputStream in = conn.getInputStream();
 			ByteArrayOutputStream out = new ByteArrayOutputStream();
-			byte[] buf = new byte[1024 * 8];
-			int length = 0;
+
+			byte[] buf = new byte[1024 * 16];
+			int length;
 			while((length = in.read(buf)) != -1) {
 				out.write(buf, 0, length);
 			}

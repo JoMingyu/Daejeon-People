@@ -22,6 +22,8 @@ public class DetailInfoParser {
 		database.executeUpdate("DELETE FROM tourrism_detail_info");
 		database.executeUpdate("DELETE FROM cultural_facility_detail_info");
 		database.executeUpdate("DELETE FROM festival_detail_info");
+		database.executeUpdate("DELETE FROM tour_course_detail_info");
+		database.executeUpdate("DELETE FROM leisure_detail_info");
 		// 추가해야 함
 	}
 	
@@ -234,6 +236,51 @@ public class DetailInfoParser {
 				database.executeUpdate("INSERT INTO tour_course_detail_info VALUES(", contentId, ", '", distance, "', '", infoCenter, "', '", schedule, "', '", spendTime, "', '", theme, "')");
 			} else if(contentTypeId == 28) {
 				// 레포츠
+				JSONObject item = Request.getItem(URL + "&contentId=" + contentId + "&contentTypeId=" + contentTypeId);
+				
+				String accomCount = item.has("accomcountleports") ? item.getString("accomcountleports") : null;
+				// 수용인원
+				
+				String babyCarriage = item.has("chkbabycarriageleports") ? item.getString("chkbabycarriageleports") : null;
+				// 유모차 대여 여부
+
+				String creditCard = item.has("chkcreditcardleports") ? item.getString("chkcreditcardleports") : null;
+				// 신용카드 가능 여부
+
+				String pet = item.has("chkpetleports") ? item.getString("chkpetleports") : null;
+				// 애완동물 가능 여부
+				
+				String ageRange = item.has("expagerange") ? item.getString("expagerange") : null;
+				// 체험가능 연령
+				
+				String infoCenter = item.has("infocenterleports") ? item.getString("infocenterleports") : null;
+				// 문의 및 안내
+				
+				String openPeriod = item.has("openperiod") ? item.getString("openperiod") : null;
+				// 개장기간
+				
+				String parking = item.has("parkingleports") ? item.getString("parkingleports") : null;
+				// 주차시설
+				
+				String parkingFee = item.has("parkingfeeleports") ? item.getString("parkingfeeleports") : null;
+				// 주차요금
+				
+				String reservation = item.has("reservation") ? item.getString("reservation") : null;
+				// 예약안내
+				
+				String restDate = item.has("restdateleports") ? item.getString("restdateleports") : null;
+				// 쉬는날
+				
+				String scale = item.has("scaleleports") ? item.getString("scaleleports") : null;
+				// 규모
+				
+				String useFee = item.has("usefeeleports") ? item.getString("usefeeleports") : null;
+				// 입장료
+				
+				String useTime = item.has("usetimeleports") ? item.getString("usetimeleports") : null;
+				// 이용시간
+				
+				database.executeUpdate("INSERT INTO leisure_detail_info VALUES(", contentId, ", '", accomCount, "', '", babyCarriage, "', '", creditCard, "', '", pet, "', '", ageRange, "', '", infoCenter, "', '", openPeriod, "', '", parking, "', '", parkingFee, "', '", reservation, "', '", restDate, "', '", scale, "', '", useFee, "', '", useTime, "')");
 			} else if(contentTypeId == 32) {
 				// 숙박
 			} else if(contentTypeId == 38) {
