@@ -19,15 +19,14 @@ public class Request {
 		try {
 			URL url = new URL(URL);
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-			
-			conn.setRequestMethod("GET");
-			conn.setConnectTimeout(3000);
-			conn.setReadTimeout(3000);
+			conn.setReadTimeout(60000);
+			conn.setConnectTimeout(60000);
 			
 			InputStream in = conn.getInputStream();
 			ByteArrayOutputStream out = new ByteArrayOutputStream();
-			byte[] buf = new byte[1024 * 8];
-			int length = 0;
+
+			byte[] buf = new byte[1024 * 16];
+			int length;
 			while((length = in.read(buf)) != -1) {
 				out.write(buf, 0, length);
 			}
@@ -88,7 +87,7 @@ public class Request {
 		return itemsArray;
 	}
 	
-	public static JSONArray getItem(String URL) {
+	public static JSONObject getItem(String URL) {
 		/*
 		 * 요청에 대한 응답에서 아이템이 1개라면 object로 묶여 있음
 		 * 아이템이 1개 = numOfRows가 1
@@ -99,6 +98,6 @@ public class Request {
 		JSONObject items = responseBody.getJSONObject("items");
 		JSONObject item = items.getJSONObject("item");
 		
-		return new JSONArray().put(item);
+		return item;
 	}
 }

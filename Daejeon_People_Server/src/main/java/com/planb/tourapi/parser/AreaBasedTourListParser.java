@@ -16,61 +16,64 @@ public class AreaBasedTourListParser {
 	private static DataBase database = DataBase.getInstance();
 	
 	public static void parse() {
-		System.out.println("bdadsf");
+		database.executeUpdate("DELETE FROM attractions_basic");
 		int totalCount = Request.getTotalCount(URL);
 		URL = URL + "&numOfRows=" + totalCount;
+		
 		JSONArray itemsArray = Request.getItems(URL);
 		for(int i = 0; i < itemsArray.length(); i++) {
 			JSONObject row = itemsArray.getJSONObject(i);
 			
 			int contentId = row.getInt("contentid");
 			int contentTypeId = row.getInt("contenttypeid");
-			String title = row.getString("title");
-			// quote error
-			String cat1 = row.getString("cat1");
-			String cat2 = row.getString("cat2");
-			String cat3 = null;
-			if(row.has("cat3")) {
-				cat3 = row.getString("cat3");
-			}
-			// 336개 여행지 중 하나가 소분류가 없음
 			
-			String address = null;
-			if(contentTypeId != 25) {
-				address = row.getString("addr1");
-			}
-			// 여행코스의 경우 주소가 없음
+			String title = row.has("title") ? row.getString("title").replace("'", "''") : null;
+			/*
+			 * 여행지 타이틀
+			 * 타이틀에 작은따옴표가 들어가 있는 경우 존재
+			 */
 			
-			double mapX = 0.0;
-			if(row.has("mapx")) {
-				mapX = row.getDouble("mapx");
-			}
-			double mapY = 0.0;
-			if(row.has("mapy")) {
-				mapY = row.getDouble("mapy");
-			}
-			// 336개 여행지 중 3개가 좌표가 없음
+			String cat1 = row.has("cat1") ? row.getString("cat1") : null;
+			String cat2 = row.has("cat2") ? row.getString("cat2") : null;
+			String cat3 = row.has("cat3") ? row.getString("cat3") : null;
+			/*
+			 * 대분류, 중분류, 소분류
+			 * 336개 여행지 중 하나가 소분류가 없음(대전광역시)
+			 */
 			
-			int readCount = row.getInt("readcount");
-			String createdTime = String.valueOf(row.getLong("createdtime"));
-			String lastModifiedTime = String.valueOf(row.getLong("modifiedtime"));
-			String tel = null;
-			if(row.has("tel")) {
-				tel = row.getString("tel");
-			}
-			// 전화번호 없는 경우 존재
+			String address = row.has("addr1") ? row.getString("addr1") : null;
+			/*
+			 *  주소
+			 *  여행코스의 경우 주소가 없음
+			 */
 			
-			String imageMiniUrl = null;
-			if(row.has("firstimage2")) {
-				imageMiniUrl = row.getString("firstimage2");
-			}
-			String imageBigUrl = null;
-			if(row.has("firstimage1")) {
-				imageBigUrl = row.getString("firstimage1");
-			}
-			// 대표이미지가 없는 경우 존재
+			double mapX = row.has("mapx") ? row.getDouble("mapx") : 0.0;
+			double mapY = row.has("mapy") ? row.getDouble("mapy") : 0.0;
+			/*
+			 * 좌표
+			 * 336개 여행지 중 3개가 좌표가 없음
+			 */
+			
+			int readCount = row.has("readcount") ? row.getInt("readcount") : 0;
+			// 조회수
+			
+			String createdTime = row.has("createdtime") ? String.valueOf(row.getLong("createdtime")) : null;
+			// 생성일
+			
+			String lastModifiedTime = row.has("modifiedtime") ? String.valueOf(row.getLong("modifiedtime")) : null;
+			// 최근 수정일
+			
+			String tel = row.has("tel") ? row.getString("tel") : null;
+			// 전화번호
+			
+			String imageMiniUrl = row.has("firstimage2") ? row.getString("firstimage2") : null;
+			// 대표이미지 작은 사이즈
+			
+			String imageBigUrl = row.has("firstimage") ? row.getString("firstimage") : null;
+			// 대표이미지 큰 사이즈
 			
 			database.executeUpdate("INSERT INTO attractions_basic VALUES(", contentId, ", ", contentTypeId, ", '", title, "', '", cat1, "', '", cat2, "', '", cat3, "', '", address, "', ", mapX, ", ", mapY, ", ", readCount, ", '", createdTime, "', '", lastModifiedTime, "', '", tel, "', '", imageMiniUrl, "', '", imageBigUrl, "')");
 		}
+		System.out.println("Area Based Tour List Parse Success.");
 	}
 }
