@@ -69,8 +69,8 @@ public class AreaBasedTourListParser {
 			String imageMiniUrl = row.has("firstimage2") ? row.getString("firstimage2") : null;
 			// 대표이미지 작은 사이즈
 			
-			String imageBigUrl = row.has("firstimage1") ? row.getString("firstimage1") : null;
-			// 대표이미지가 큰 사이즈
+			String imageBigUrl = row.has("firstimage") ? row.getString("firstimage") : null;
+			// 대표이미지 큰 사이즈
 			
 			database.executeUpdate("INSERT INTO attractions_basic VALUES(", contentId, ", ", contentTypeId, ", '", title, "', '", cat1, "', '", cat2, "', '", cat3, "', '", address, "', ", mapX, ", ", mapY, ", ", readCount, ", '", createdTime, "', '", lastModifiedTime, "', '", tel, "', '", imageMiniUrl, "', '", imageBigUrl, "')");
 		}

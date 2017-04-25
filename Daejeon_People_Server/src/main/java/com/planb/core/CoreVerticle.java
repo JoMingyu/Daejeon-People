@@ -57,8 +57,7 @@ public class CoreVerticle extends AbstractVerticle {
 		 */
 		
 		Register.route(router, "com.planb.restful", "com.planb.developer");
-		ParserThread thread = new ParserThread();
-		thread.start();
+		new ParserThread().start();
 		
 		vertx.createHttpServer().requestHandler(router::accept).listen(80);
 		/**
