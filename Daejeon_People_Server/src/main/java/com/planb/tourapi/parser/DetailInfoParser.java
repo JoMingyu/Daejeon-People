@@ -386,7 +386,7 @@ public class DetailInfoParser {
 				// 타입 체크
 				int roomCount = 0;
 				if(!roomCountType.equals("Integer")) {
-					// 정수형이 아니라면 Regex로 정수형만 추출
+					// 정수형이 아니라면 Regex로 숫자만 추출
 					Matcher m = p.matcher(roomCountObj.toString());
 					m.find();
 					roomCount = Integer.parseInt(m.group());
