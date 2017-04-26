@@ -61,7 +61,7 @@ public class DetailInfoParser {
 		while (contentIdIterator.hasNext()) {
 			int contentId = contentIdIterator.next();
 			int contentTypeId = contentInfoMap.get(contentId);
-			 JSONObject item = Request.getItem(URL + "&contentId=" + contentId + "&contentTypeId=" + contentTypeId);
+			JSONObject item = Request.getItem(URL + "&contentId=" + contentId + "&contentTypeId=" + contentTypeId);
 			if (contentTypeId == 12) {
 				// 12 : 관광지
 				
@@ -128,8 +128,11 @@ public class DetailInfoParser {
 				String pet = item.has("chkpetculture") ? item.getString("chkpetculture") : null;
 				// 애완동물 가능 여부
 				
-				String discount = item.has("discount") ? item.getString("discountinfo") : null;
-				// 할인정보
+//				String discount = item.has("discountinfo") ? item.getString("discountinfo") : null;
+				/*
+				 * 할인정보
+				 * 모두 null
+				 */
 
 				String infoCenter = item.has("infocenterculture") ? item.getString("infocenterculture") : null;
 				// 문의 및 안내
@@ -155,7 +158,7 @@ public class DetailInfoParser {
 				String spendTime = item.has("spendtime") ? item.getString("spendtime") : null;
 				// 관람 소요시간
 				
-				database.executeUpdate("INSERT INTO cultural_facility_detail_info VALUES(", contentId, ", '", accomCount, "', '", babyCarriage, "', '", creditCard, "', '", pet, "', '", discount, "', '", infoCenter, "', '", parking, "', '", parkingFee, "', '", restDate, "', '", useFee, "', '", useTime, "', '", scale, "', '", spendTime, "')");
+				database.executeUpdate("INSERT INTO cultural_facility_detail_info VALUES(", contentId, ", '", accomCount, "', '", babyCarriage, "', '", creditCard, "', '", pet, "', '", infoCenter, "', '", parking, "', '", parkingFee, "', '", restDate, "', '", useFee, "', '", useTime, "', '", scale, "', '", spendTime, "')");
 			} else if(contentTypeId == 15) {
 				// 축제, 공연, 행사
 				
@@ -189,15 +192,15 @@ public class DetailInfoParser {
 				String[] sponsors = new String[2];
 				// 주최자
 				
-				String[] sponsorsTel = new String[2];
+//				String[] sponsorsTel = new String[2];
 				// 주관자
 				
 				sponsors[0] = item.has("sponsor1") ? item.getString("sponsor1") : null;
-				sponsorsTel[0] = item.has("sponsor1_tel") ? item.getString("sponsor1_tel") : null;
+//				sponsorsTel[0] = item.has("sponsor1_tel") ? item.getString("sponsor1_tel") : null;
 				// 주최자
 				
 				sponsors[1] = item.has("sponsor2") ? item.getString("sponsor2") : null;
-				sponsorsTel[1] = item.has("sponsor2_tel") ? item.getString("sponsor2_tel") : null;
+//				sponsorsTel[1] = item.has("sponsor2_tel") ? item.getString("sponsor2_tel") : null;
 				// 주관자
 				
 				String subEvent = item.has("subevent") ? item.getString("subevent") : null;
@@ -206,7 +209,7 @@ public class DetailInfoParser {
 				String useFee = item.has("usetimefestival") ? item.getString("usetimefestival") : null;
 				// 이용요금
 				
-				database.executeUpdate("INSERT INTO festival_detail_info VALUES(", contentId, ", '", ageLimit, "', '", reservationPlace, "', '", startDate, "', '", endDate, "', '", homepage, "', '", place, "', '", placeInfo, "' ,'", festivalGrade, "', '", spendTime, "', '", sponsors[0], "', '", sponsorsTel[0], "', '", sponsors[1], "', '", sponsorsTel[1], "', '", subEvent, "', '", useFee, "')");
+				database.executeUpdate("INSERT INTO festival_detail_info VALUES(", contentId, ", '", ageLimit, "', '", reservationPlace, "', '", startDate, "', '", endDate, "', '", homepage, "', '", place, "', '", placeInfo, "' ,'", festivalGrade, "', '", spendTime, "', '", sponsors[0], "', '", sponsors[1], "', '", subEvent, "', '", useFee, "')");
 			} else if(contentTypeId == 25) {
 				// 여행코스
 				
@@ -250,14 +253,17 @@ public class DetailInfoParser {
 				String pet = item.has("chkpetleports") ? item.getString("chkpetleports") : null;
 				// 애완동물 가능 여부
 				
-				String ageRange = item.has("expagerange") ? item.getString("expagerange") : null;
+				String ageRange = item.has("expagerangeleports") ? item.getString("expagerangeleports") : null;
 				// 체험가능 연령
 				
 				String infoCenter = item.has("infocenterleports") ? item.getString("infocenterleports") : null;
 				// 문의 및 안내
 				
-				String openPeriod = item.has("openperiod") ? item.getString("openperiod") : null;
-				// 개장기간
+//				String openPeriod = item.has("openperiod") ? item.getString("openperiod") : null;
+				/*
+				 * 개장기간
+				 * 모두 null
+				 */
 				
 				String parking = item.has("parkingleports") ? item.getString("parkingleports") : null;
 				// 주차시설
@@ -280,11 +286,11 @@ public class DetailInfoParser {
 				String useTime = item.has("usetimeleports") ? item.getString("usetimeleports") : null;
 				// 이용시간
 				
-				database.executeUpdate("INSERT INTO leisure_detail_info VALUES(", contentId, ", '", accomCount, "', '", babyCarriage, "', '", creditCard, "', '", pet, "', '", ageRange, "', '", infoCenter, "', '", openPeriod, "', '", parking, "', '", parkingFee, "', '", reservation, "', '", restDate, "', '", scale, "', '", useFee, "', '", useTime, "')");
+				database.executeUpdate("INSERT INTO leisure_detail_info VALUES(", contentId, ", '", accomCount, "', '", babyCarriage, "', '", creditCard, "', '", pet, "', '", ageRange, "', '", infoCenter, "', '", parking, "', '", parkingFee, "', '", reservation, "', '", restDate, "', '", scale, "', '", useFee, "', '", useTime, "')");
 			} else if(contentTypeId == 32) {
 				// 숙박
 				
-				String accomCount = item.has("accomcount") ? item.getString("accomcount") : null;
+				String accomCount = item.has("accomcountlodging") ? item.getString("accomcountlodging") : null;
 				// 수용인원
 				
 				int benikiaInt = item.has("benikia") ? item.getInt("benikia") : null;
@@ -395,7 +401,7 @@ public class DetailInfoParser {
 				String roomType = item.has("roomtype") ? item.getString("roomtype") : null;
 				// 객실유형
 				
-				String scale = item.has("scale") ? item.getString("scale") : null;
+				String scale = item.has("scalelodging") ? item.getString("scalelodging") : null;
 				// 규모
 				
 				database.executeUpdate("INSERT INTO accommodation_detail_info VALUES(", contentId, ", '", accomCount, "', ", benikia, ", ", goodStay, ", ", koreanHouse, ", ", barbecue, ", ", beauty, ", ", beverage, ", ", bicycle, ", ", campfire, ", '", cookInRoom, "', ", fitness, ", ", karaoke, ", ", publicBath, ", ", publicPc, ", ", sauna, ", ", seminar, ", ", sports, ", '", subFacility, "', '", checkinTime, "', '", checkoutTime, "', '", foodPlace, "', '", infoCenter, "', '", parking, "', '", pickup, "', ", roomCount, ", '", reservation, "', '", reservationUrl, "', '", roomType, "', '", scale, "')");
@@ -414,10 +420,10 @@ public class DetailInfoParser {
 				String guide = item.has("shopguide") ? item.getString("shopguide") : null;
 				// 매장안내
 				
-				String cultureCenter = item.has("culturecenter") ? item.getString("culturecenter") : null;
+//				String cultureCenter = item.has("culturecenter") ? item.getString("culturecenter") : null;
 				/*
 				 * 문화센터 바로가기
-				 * 현재 모두 null
+				 * 모두 null
 				 */
 				
 				String fairDay = item.has("fairday") ? item.getString("fairday") : null;
@@ -447,18 +453,21 @@ public class DetailInfoParser {
 				String saleItemCost = item.has("saleitemcost") ? item.getString("saleitemcost") : null;
 				// 판매 품목별 가격
 				
-				String scale = item.has("scale") ? item.getString("scale") : null;
+				String scale = item.has("scaleshopping") ? item.getString("scaleshopping") : null;
 				// 규모
 				
-				database.executeUpdate("INSERT INTO shopping_detail_info VALUES(", contentId, ", '", babyCarriage, "', '", creditCard, "', '", pet, "', '", guide, "', '", cultureCenter, "', '", fairDay, "', '", infoCenter, "', '", openDate, "', '", openTime, "', '", parking, "', '", restDate, "', '", restroom, "', '", saleItem, "', '", saleItemCost, "', '", scale, "')");
+				database.executeUpdate("INSERT INTO shopping_detail_info VALUES(", contentId, ", '", babyCarriage, "', '", creditCard, "', '", pet, "', '", guide, "', '", fairDay, "', '", infoCenter, "', '", openDate, "', '", openTime, "', '", parking, "', '", restDate, "', '", restroom, "', '", saleItem, "', '", saleItemCost, "', '", scale, "')");
 			} else if(contentTypeId == 39) {
 				// 음식
 				
 				String creditCard = item.has("chkcreditcardfood") ? item.getString("chkcreditcardfood") : null;
 				// 신용카드 가능 여부
 				
-				String discount = item.has("discountinfofood") ? item.getString("discountinfofood") : null;
-				// 할인정보
+//				String discount = item.has("discountinfofood") ? item.getString("discountinfofood") : null;
+				/*
+				 * 할인정보
+				 * 모두 null
+				 */
 				
 				String repMenu = item.has("firstmenu") ? item.getString("firstmenu") : null;
 				// 대표메뉴
@@ -479,13 +488,13 @@ public class DetailInfoParser {
 				String packing = item.has("packing") ? item.getString("packing") : null;
 				// 포장 가능 여부
 				
-				String parking = item.has("parking") ? item.getString("parking") : null;
+				String parking = item.has("parkingfood") ? item.getString("parkingfood") : null;
 				// 주차시설
 				
 				String reservation = item.has("reservationfood") ? item.getString("reservationfood") : null;
 				// 예약안내
 				
-				String restDate = item.has("restdate") ? item.getString("restdatefood") : null;
+				String restDate = item.has("restdatefood") ? item.getString("restdatefood") : null;
 				// 쉬는날
 				
 				String scale = item.has("scalefood") ? item.getString("scalefood") : null;
@@ -500,7 +509,7 @@ public class DetailInfoParser {
 				String treatMenu = item.has("treatmenu") ? item.getString("treatmenu") : null;
 				// 취급 메뉴
 				
-				database.executeUpdate("INSERT INTO restaurant_detail_info VALUES(", contentId, ", '", creditCard, "', '", discount, "', '", repMenu, "', '", infoCenter, "', ", kidsFacility, ", '", openDate, "', '", openTime, "', '", packing, "', '", parking, "', '", reservation, "', '", restDate, "', '", scale, "', '", seat, "', '", smoking, "', '", treatMenu, "')");
+				database.executeUpdate("INSERT INTO restaurant_detail_info VALUES(", contentId, ", '", creditCard, "', '", repMenu, "', '", infoCenter, "', ", kidsFacility, ", '", openDate, "', '", openTime, "', '", packing, "', '", parking, "', '", reservation, "', '", restDate, "', '", scale, "', '", seat, "', '", smoking, "', '", treatMenu, "')");
 			}
 		}
 		System.out.println("Detail Info Parse Success.");
