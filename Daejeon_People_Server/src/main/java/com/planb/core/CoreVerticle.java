@@ -1,7 +1,7 @@
 package com.planb.core;
 
+import com.planb.api.support.ParserThread;
 import com.planb.support.routing.Register;
-import com.planb.tourapi.support.ParserThread;
 
 import io.vertx.core.AbstractVerticle;
 import io.vertx.ext.web.Router;

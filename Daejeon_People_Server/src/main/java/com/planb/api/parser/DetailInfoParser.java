@@ -1,4 +1,4 @@
-package com.planb.tourapi.parser;
+package com.planb.api.parser;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,9 +12,9 @@ import java.util.regex.Pattern;
 
 import org.json.JSONObject;
 
+import com.planb.api.support.Params;
+import com.planb.api.support.Request;
 import com.planb.support.database.DataBase;
-import com.planb.tourapi.support.Params;
-import com.planb.tourapi.support.Request;
 
 public class DetailInfoParser {
 	private static String URL = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/detailIntro" + Params.defaultAppendParams;

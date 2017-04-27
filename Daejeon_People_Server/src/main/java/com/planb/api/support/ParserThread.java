@@ -1,7 +1,7 @@
-package com.planb.tourapi.support;
+package com.planb.api.support;
 
-import com.planb.tourapi.parser.AreaBasedTourListParser;
-import com.planb.tourapi.parser.DetailInfoParser;
+import com.planb.api.parser.AreaBasedTourListParser;
+import com.planb.api.parser.DetailInfoParser;
 
 public class ParserThread extends Thread {
 	public void run() {

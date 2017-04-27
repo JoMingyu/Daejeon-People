@@ -1,4 +1,4 @@
-package com.planb.tourapi.support;
+package com.planb.api.support;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
