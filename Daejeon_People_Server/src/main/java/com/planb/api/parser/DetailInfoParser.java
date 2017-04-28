@@ -24,7 +24,7 @@ public class DetailInfoParser {
 		database.executeUpdate("DELETE FROM accommodation_detail_info");
 		database.executeUpdate("DELETE FROM cultural_facility_detail_info");
 		database.executeUpdate("DELETE FROM festival_detail_info");
-		database.executeUpdate("DELETE FROM leisure_detail_info");
+		database.executeUpdate("DELETE FROM leports_detail_info");
 		database.executeUpdate("DELETE FROM restaurant_detail_info");
 		database.executeUpdate("DELETE FROM shopping_detail_info");
 		database.executeUpdate("DELETE FROM tour_course_detail_info");
@@ -286,7 +286,7 @@ public class DetailInfoParser {
 				String useTime = item.has("usetimeleports") ? item.getString("usetimeleports") : null;
 				// 이용시간
 				
-				database.executeUpdate("INSERT INTO leisure_detail_info VALUES(", contentId, ", '", accomCount, "', '", babyCarriage, "', '", creditCard, "', '", pet, "', '", ageRange, "', '", infoCenter, "', '", parking, "', '", parkingFee, "', '", reservation, "', '", restDate, "', '", scale, "', '", useFee, "', '", useTime, "')");
+				database.executeUpdate("INSERT INTO leports_detail_info VALUES(", contentId, ", '", accomCount, "', '", babyCarriage, "', '", creditCard, "', '", pet, "', '", ageRange, "', '", infoCenter, "', '", parking, "', '", parkingFee, "', '", reservation, "', '", restDate, "', '", scale, "', '", useFee, "', '", useTime, "')");
 			} else if(contentTypeId == 32) {
 				// 숙박
 				
