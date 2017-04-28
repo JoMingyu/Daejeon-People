@@ -1,4 +1,4 @@
-package com.planb.tourapi.support;
+package com.planb.api.support;
 
 public class Params {
 	public static final String defaultAppendParams = "?areaCode=3&ServiceKey=48I9bBbLhZbPJqPjm5Z1MQL4KzXCFjyItb1mueqElgM0F6F3aB7AcQwJLDEjjjFXCKsIlgSJRRY7FmrgtcPDPw%3D%3D&MobileOS=AND&MobileApp=DaejeonPeople&_type=json";
