@@ -63,16 +63,13 @@ public class AreaBasedTourListParser {
 			String lastModifiedTime = row.has("modifiedtime") ? String.valueOf(row.getLong("modifiedtime")) : null;
 			// 최근 수정일
 			
-			String tel = row.has("tel") ? row.getString("tel") : null;
-			// 전화번호
-			
 			String imageMiniUrl = row.has("firstimage2") ? row.getString("firstimage2") : null;
 			// 대표이미지 작은 사이즈
 			
 			String imageBigUrl = row.has("firstimage") ? row.getString("firstimage") : null;
 			// 대표이미지 큰 사이즈
 			
-			database.executeUpdate("INSERT INTO attractions_basic VALUES(", contentId, ", ", contentTypeId, ", '", title, "', '", cat1, "', '", cat2, "', '", cat3, "', '", address, "', ", mapX, ", ", mapY, ", ", readCount, ", '", createdTime, "', '", lastModifiedTime, "', '", tel, "', '", imageMiniUrl, "', '", imageBigUrl, "')");
+			database.executeUpdate("INSERT INTO attractions_basic VALUES(", contentId, ", ", contentTypeId, ", '", title, "', '", cat1, "', '", cat2, "', '", cat3, "', '", address, "', ", mapX, ", ", mapY, ", ", readCount, ", '", createdTime, "', '", lastModifiedTime, "', '", imageMiniUrl, "', '", imageBigUrl, "')");
 		}
 		System.out.println("Area Based Tour List Parse Success.");
 	}

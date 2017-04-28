@@ -63,7 +63,7 @@ public class DetailInfoParser {
 			int contentTypeId = contentInfoMap.get(contentId);
 			JSONObject item = Request.getItem(URL + "&contentId=" + contentId + "&contentTypeId=" + contentTypeId);
 			if (contentTypeId == 12) {
-				// 12 : 관광지
+				// 관광지
 				
 				String accomCount = item.has("accomcount") ? item.getString("accomcount") : null;
 				// 수용인원. 문자열 형태로, 정보가 없는 경우가 많음
@@ -161,6 +161,7 @@ public class DetailInfoParser {
 				database.executeUpdate("INSERT INTO cultural_facility_detail_info VALUES(", contentId, ", '", accomCount, "', '", babyCarriage, "', '", creditCard, "', '", pet, "', '", infoCenter, "', '", parking, "', '", parkingFee, "', '", restDate, "', '", useFee, "', '", useTime, "', '", scale, "', '", spendTime, "')");
 			} else if(contentTypeId == 15) {
 				// 축제, 공연, 행사
+				System.out.println(item.toString());
 				
 				String ageLimit = item.has("agelimit") ? item.getString("agelimit") : null;
 				// 연령제한
@@ -183,7 +184,7 @@ public class DetailInfoParser {
 				String placeInfo = item.has("placeinfo") ? item.getString("placeinfo") : null;
 				// 행사장 위치 안내
 				
-				String festivalGrade = item.has("festivalgrade") ? item.getString("festivalgrade") : null;
+//				String festivalGrade = item.has("festivalgrade") ? item.getString("festivalgrade") : null;
 				// 축제 등급
 				
 				String spendTime = item.has("spendtimefestival") ? item.getString("spendtimefestival") : null;
@@ -209,7 +210,7 @@ public class DetailInfoParser {
 				String useFee = item.has("usetimefestival") ? item.getString("usetimefestival") : null;
 				// 이용요금
 				
-				database.executeUpdate("INSERT INTO festival_detail_info VALUES(", contentId, ", '", ageLimit, "', '", reservationPlace, "', '", startDate, "', '", endDate, "', '", homepage, "', '", place, "', '", placeInfo, "' ,'", festivalGrade, "', '", spendTime, "', '", sponsors[0], "', '", sponsors[1], "', '", subEvent, "', '", useFee, "')");
+				database.executeUpdate("INSERT INTO festival_detail_info VALUES(", contentId, ", '", ageLimit, "', '", reservationPlace, "', '", startDate, "', '", endDate, "', '", homepage, "', '", place, "', '", placeInfo, "', '", spendTime, "', '", sponsors[0], "', '", sponsors[1], "', '", subEvent, "', '", useFee, "')");
 			} else if(contentTypeId == 25) {
 				// 여행코스
 				
