@@ -12,15 +12,18 @@ public class AreaBasedTourListParser {
 	 * 지역기반 관광정보 리스트 조회
 	 * JsonArray를 순차 탐색하며 DB 저장
 	 */
-	private static String URL = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/areaBasedList" + Params.defaultAppendParams;
+	private static String defaultURL = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/areaBasedList" + Params.defaultAppendParams;
 	private static DataBase database = DataBase.getInstance();
 	
 	public static void parse() {
 		database.executeUpdate("DELETE FROM attractions_basic");
-		int totalCount = Request.getTotalCount(URL);
-		URL = URL + "&numOfRows=" + totalCount;
+		int totalCount = Request.getTotalCount(defaultURL);
+		// 요청 이전에 응답 전체 카운트를 먼저 얻어냄
 		
-		JSONArray items = Request.getItems(URL);
+		String requestURL = defaultURL + "&numOfRows=" + totalCount;
+		// 응답받을 여행지 정보 갯수를 totalCount에 맞춰서 요청
+		
+		JSONArray items = Request.getItems(requestURL);
 		for(int i = 0; i < items.length(); i++) {
 			JSONObject item = items.getJSONObject(i);
 			

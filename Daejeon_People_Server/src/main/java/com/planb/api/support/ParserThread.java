@@ -9,8 +9,8 @@ public class ParserThread extends Thread {
 	public void run() {
 		while(true) {
 			AreaBasedTourListParser.parse();
-//			DetailCommonParser.parse();
-//			DetailInfoParser.parse();
+			DetailCommonParser.parse();
+			DetailInfoParser.parse();
 			AdditionalImageParser.parse();
 			try {
 				Thread.sleep(1000 * 300);

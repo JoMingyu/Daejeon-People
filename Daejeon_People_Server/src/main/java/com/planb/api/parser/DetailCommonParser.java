@@ -48,10 +48,7 @@ public class DetailCommonParser {
 			JSONObject item = Request.getItem(URL + "&contentId=" + contentId);
 			
 			String homepage = item.has("homepage") ? item.getString("homepage").replaceAll("'", "''") : null;
-			/*
-			 * 홈페이지 주소
-			 * HTML 태그 포함되어 있음. 정규식 파싱 필요
-			 */
+			// 홈페이지 주소
 			
 			String overview = item.has("overview") ? item.getString("overview").replaceAll("'", "''") : null;
 			// 개요
