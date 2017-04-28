@@ -161,7 +161,6 @@ public class DetailInfoParser {
 				database.executeUpdate("INSERT INTO cultural_facility_detail_info VALUES(", contentId, ", '", accomCount, "', '", babyCarriage, "', '", creditCard, "', '", pet, "', '", infoCenter, "', '", parking, "', '", parkingFee, "', '", restDate, "', '", useFee, "', '", useTime, "', '", scale, "', '", spendTime, "')");
 			} else if(contentTypeId == 15) {
 				// 축제, 공연, 행사
-				System.out.println(item.toString());
 				
 				String ageLimit = item.has("agelimit") ? item.getString("agelimit") : null;
 				// 연령제한
@@ -217,28 +216,28 @@ public class DetailInfoParser {
 				String distance = item.has("distance") ? item.getString("distance") : null;
 				// 코스 총거리
 				
-				String infoCenter = item.has("infocentertourcourse") ? item.getString("infocentertourcourse") : null;
+//				String infoCenter = item.has("infocentertourcourse") ? item.getString("infocentertourcourse") : null;
 				/*
 				 * 문의 및 안내
 				 * 현재 모두 null
 				 */
 				
-				String schedule = item.has("schedule") ? item.getString("schedule") : null;
-				// 코스 일정
-				
-				String spendTime = item.has("taketime") ? item.getString("taketime") : null;
+//				String schedule = item.has("schedule") ? item.getString("schedule") : null;
 				/*
-				 * 코스 총 소요시간
+				 * 코스 일정
 				 * 현재 모두 null
 				 */
 				
-				String theme = item.has("theme") ? item.getString("theme") : null;
+				String spendTime = item.has("taketime") ? item.getString("taketime") : null;
+				// 코스 총 소요시간
+
+//				String theme = item.has("theme") ? item.getString("theme") : null;
 				/*
 				 * 코스 테마
 				 * 현재 모두 null
 				 */
 				
-				database.executeUpdate("INSERT INTO tour_course_detail_info VALUES(", contentId, ", '", distance, "', '", infoCenter, "', '", schedule, "', '", spendTime, "', '", theme, "')");
+				database.executeUpdate("INSERT INTO tour_course_detail_info VALUES(", contentId, ", '", distance, "', '", spendTime, "')");
 			} else if(contentTypeId == 28) {
 				// 레포츠
 				
@@ -451,13 +450,13 @@ public class DetailInfoParser {
 				String saleItem = item.has("saleitem") ? item.getString("saleitem") : null;
 				// 판매 품목
 				
-				String saleItemCost = item.has("saleitemcost") ? item.getString("saleitemcost") : null;
+//				String saleItemCost = item.has("saleitemcost") ? item.getString("saleitemcost") : null;
 				// 판매 품목별 가격
 				
 				String scale = item.has("scaleshopping") ? item.getString("scaleshopping") : null;
 				// 규모
 				
-				database.executeUpdate("INSERT INTO shopping_detail_info VALUES(", contentId, ", '", babyCarriage, "', '", creditCard, "', '", pet, "', '", guide, "', '", fairDay, "', '", infoCenter, "', '", openDate, "', '", openTime, "', '", parking, "', '", restDate, "', '", restroom, "', '", saleItem, "', '", saleItemCost, "', '", scale, "')");
+				database.executeUpdate("INSERT INTO shopping_detail_info VALUES(", contentId, ", '", babyCarriage, "', '", creditCard, "', '", pet, "', '", guide, "', '", fairDay, "', '", infoCenter, "', '", openDate, "', '", openTime, "', '", parking, "', '", restDate, "', '", restroom, "', '", saleItem, "', '", scale, "')");
 			} else if(contentTypeId == 39) {
 				// 음식
 				
