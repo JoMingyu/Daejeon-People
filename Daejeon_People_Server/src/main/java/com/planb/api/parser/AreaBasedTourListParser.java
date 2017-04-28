@@ -1,5 +1,8 @@
 package com.planb.api.parser;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -16,7 +19,6 @@ public class AreaBasedTourListParser {
 	private static DataBase database = DataBase.getInstance();
 	
 	public static void parse() {
-		database.executeUpdate("DELETE FROM attractions_basic");
 		int totalCount = Request.getTotalCount(defaultURL);
 		// 요청 이전에 응답 전체 카운트를 먼저 얻어냄
 		
@@ -72,7 +74,16 @@ public class AreaBasedTourListParser {
 			String imageBigUrl = item.has("firstimage") ? item.getString("firstimage") : null;
 			// 대표이미지 큰 사이즈
 			
-			database.executeUpdate("INSERT INTO attractions_basic VALUES(", contentId, ", ", contentTypeId, ", '", title, "', '", cat1, "', '", cat2, "', '", cat3, "', '", address, "', ", mapX, ", ", mapY, ", ", readCount, ", '", createdTime, "', '", lastModifiedTime, "', '", imageMiniUrl, "', '", imageBigUrl, "')");
+			ResultSet rs = database.executeQuery("SELECT * FROM attractions_basic WHERE content_id=", contentId);
+			try {
+				if(rs.next()) {
+					database.executeUpdate("UPDATE attractions_basic SET title='", title, "', cat1='", cat1, "', cat2='", cat2, "', cat3='", cat3, "', mapx=", mapX, ", mapy=", mapY, ", views_count=", readCount, ", created_time='", createdTime, "', last_modified_time='", lastModifiedTime, "', image_mini_url='", imageMiniUrl, "', image_big_url='", imageBigUrl, "' WHERE content_id=", contentId);
+				} else {
+					database.executeUpdate("INSERT INTO attractions_basic VALUES(", contentId, ", ", contentTypeId, ", 0, '", title, "', '", cat1, "', '", cat2, "', '", cat3, "', '", address, "', ", mapX, ", ", mapY, ", ", readCount, ", '", createdTime, "', '", lastModifiedTime, "', '", imageMiniUrl, "', '", imageBigUrl, "')");
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 		System.out.println("Area Based Tour List Parse Success.");
 	}
