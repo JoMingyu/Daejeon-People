@@ -6,8 +6,8 @@ import io.vertx.core.Handler;
 import io.vertx.core.http.HttpMethod;
 import io.vertx.ext.web.RoutingContext;
 
-@Route(uri = "/attractions/list/entire", method = HttpMethod.GET)
-public class EntireList implements Handler<RoutingContext> {
+@Route(uri = "/attractions/list/total", method = HttpMethod.GET)
+public class TotalList implements Handler<RoutingContext> {
 	@Override
 	public void handle(RoutingContext ctx) {
 		int sortType = Integer.parseInt(ctx.request().getParam("sort_type"));
