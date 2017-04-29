@@ -1,4 +1,4 @@
-package com.planb.support.attractions;
+package com.planb.support.restful.attractions;
 
 import java.util.ArrayList;
 import java.util.List;

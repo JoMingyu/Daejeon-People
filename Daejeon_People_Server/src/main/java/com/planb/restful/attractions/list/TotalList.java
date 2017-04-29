@@ -2,7 +2,7 @@ package com.planb.restful.attractions.list;
 
 import org.json.JSONArray;
 
-import com.planb.support.attractions.AttractionsListInquiry;
+import com.planb.support.restful.attractions.AttractionsListInquiry;
 import com.planb.support.routing.Route;
 
 import io.vertx.core.Handler;
@@ -15,9 +15,6 @@ public class TotalList implements Handler<RoutingContext> {
 	
 	@Override
 	public void handle(RoutingContext ctx) {
-		int sortType = Integer.parseInt(ctx.request().getParam("sort_type"));
-		int page = Integer.parseInt(ctx.request().getParam("page"));
-		
 		JSONArray response = AttractionsListInquiry.getTotalDatas(ctx);
 		
 		ctx.response().setStatusCode(200);
