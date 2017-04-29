@@ -18,11 +18,13 @@ import io.vertx.ext.web.RoutingContext;
 
 public class AttractionsListInquiry {
 	private static DataBase database = DataBase.getInstance();
+	private static int numOfRows = AttractionsConfig.NUM_OF_ROWS;
+	
 	public static JSONArray getDatas(RoutingContext ctx, int contentTypeId) {
 		// content type을 지정하여 정보 얻어오기
 		int sortType = Integer.parseInt(ctx.request().getParam("sort_type"));
 		int page = Integer.parseInt(ctx.request().getParam("page"));
-		int numOfRows = AttractionsConfig.NUM_OF_ROWS;
+		
 		String query = "SELECT * FROM %s ORDER BY %s LIMIT " + (page - 1) * numOfRows + ", " + numOfRows + " WHERE content_type_id=" + contentTypeId;
 		ResultSet rs = null;
 		
@@ -44,59 +46,8 @@ public class AttractionsListInquiry {
 			rs = database.executeQuery("SELECT * FROM attractions_basic WHERE content_type_id=", contentTypeId);
 			// contentTypeId에 해당하는 데이터 전체
 			
-			Map<Integer, Double> attractionDistances = new HashMap<Integer, Double>();
-			// 클라이언트와 여행지 사이의 거리를 가지고 있는 HashMap
-			
-			ValueComparator vc = new ValueComparator(attractionDistances);
-			Map<Integer, Double> sortedMap = new TreeMap<Integer, Double>(vc);
-			// 정렬을 위한 Comparator와 Map
-			
-			try {
-				while(rs.next()) {
-					// ResultSet의 한계점까지
-					
-					int contentId = rs.getInt("content_id");
-					double attractionX = rs.getDouble("mapx");
-					double attractionY = rs.getDouble("mapy");
-					// 여행지 좌표값
-					
-					double distance = Math.sqrt(Math.pow(x - attractionX, 2) + Math.pow(y - attractionY, 2));
-					// 거리
-					
-					attractionDistances.put(contentId, distance);
-					// Map에 추가
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-			
-			sortedMap.putAll(attractionDistances);
-			Set<Integer> contentIdSet = sortedMap.keySet();
-			Iterator<Integer> contentIdIterator = contentIdSet.iterator();
-			
-			for(int i = 0; i < (page - 1) * numOfRows; i++) {
-				// 조회하는 페이지 이전 데이터를 지나치기 위한 반복문
-				if(contentIdIterator.hasNext()) {
-					contentIdIterator.next();
-				} else {
-					// 반복자가 참조할 다음 값이 없을 경우(해당 페이지에 데이터가 없는 경우)
-					break;
-				}
-			}
-			
-			StringBuilder queryClone = new StringBuilder();
-			queryClone.append("SELECT * FROM attractions_basic WHERE content_id=");
-			for(int i = 0; i < numOfRows; i++) {
-				if(contentIdIterator.hasNext()) {
-					int contentId = contentIdIterator.next();
-					if(i < numOfRows - 1) {
-						queryClone.append(contentId + " OR content_id=");
-					} else {
-						queryClone.append(contentId);
-					}
-				}
-			}
-			rs = database.executeQuery(queryClone.toString());
+			rs = distanceBasedInquiry(rs, page, x, y);
+			// 거리기반 조회
 			
 			break;
 		}
@@ -111,6 +62,7 @@ public class AttractionsListInquiry {
 		int sortType = Integer.parseInt(ctx.request().getParam("sort_type"));
 		int page = Integer.parseInt(ctx.request().getParam("page"));
 		int numOfRows = AttractionsConfig.NUM_OF_ROWS;
+		
 		String query = "SELECT * FROM %s ORDER BY %s LIMIT " + (page - 1) * numOfRows + ", " + numOfRows;
 		ResultSet rs = null;
 		
@@ -132,59 +84,8 @@ public class AttractionsListInquiry {
 			rs = database.executeQuery("SELECT * FROM attractions_basic");
 			// 데이터 전체
 			
-			Map<Integer, Double> attractionDistances = new HashMap<Integer, Double>();
-			// 클라이언트와 여행지 사이의 거리를 가지고 있는 HashMap
-			
-			ValueComparator vc = new ValueComparator(attractionDistances);
-			Map<Integer, Double> sortedMap = new TreeMap<Integer, Double>(vc);
-			// 정렬을 위한 Comparator와 Map
-			
-			try {
-				while(rs.next()) {
-					// ResultSet의 한계점까지
-					
-					int contentId = rs.getInt("content_id");
-					double attractionX = rs.getDouble("mapx");
-					double attractionY = rs.getDouble("mapy");
-					// 여행지 좌표값
-					
-					double distance = Math.sqrt(Math.pow(x - attractionX, 2) + Math.pow(y - attractionY, 2));
-					// 거리
-					
-					attractionDistances.put(contentId, distance);
-					// Map에 추가
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-			
-			sortedMap.putAll(attractionDistances);
-			Set<Integer> contentIdSet = sortedMap.keySet();
-			Iterator<Integer> contentIdIterator = contentIdSet.iterator();
-			
-			for(int i = 0; i < (page - 1) * numOfRows; i++) {
-				// 조회하는 페이지 이전 데이터를 지나치기 위한 반복문
-				if(contentIdIterator.hasNext()) {
-					contentIdIterator.next();
-				} else {
-					// 반복자가 참조할 다음 값이 없을 경우(해당 페이지에 데이터가 없는 경우)
-					break;
-				}
-			}
-			
-			StringBuilder queryClone = new StringBuilder();
-			queryClone.append("SELECT * FROM attractions_basic WHERE content_id=");
-			for(int i = 0; i < numOfRows; i++) {
-				if(contentIdIterator.hasNext()) {
-					int contentId = contentIdIterator.next();
-					if(i < numOfRows - 1) {
-						queryClone.append(contentId + " OR content_id=");
-					} else {
-						queryClone.append(contentId);
-					}
-				}
-			}
-			rs = database.executeQuery(queryClone.toString());
+			rs = distanceBasedInquiry(rs, page, x, y);
+			// 거리기반 조회
 			
 			break;
 		}
@@ -194,8 +95,89 @@ public class AttractionsListInquiry {
 		return result;
 	}
 	
+	private static ResultSet distanceBasedInquiry(ResultSet rs, int page, double clientX, double clientY) {
+		/*
+		 * 거리기반 조회
+		 * 조회할 수 있는 데이터가 없는 경우 null 리턴됨
+		 */
+		
+		Map<Integer, Double> attractionDistances = new HashMap<Integer, Double>();
+		// 클라이언트와 여행지 사이의 거리를 가지고 있는 HashMap
+		
+		ValueComparator vc = new ValueComparator(attractionDistances);
+		// Map의 Value 기반 정렬을 위한 Comparator
+		
+		Map<Integer, Double> sortedMap = new TreeMap<Integer, Double>(vc);
+		// Value 기반 정렬된 Map
+		
+		try {
+			while(rs.next()) {
+				// ResultSet의 한계점까지
+				
+				int contentId = rs.getInt("content_id");
+				// 여행지의 id
+				
+				double attractionX = rs.getDouble("mapx");
+				double attractionY = rs.getDouble("mapy");
+				// 여행지의 좌표값
+				
+				double distance = Math.sqrt(Math.pow(clientX - attractionX, 2) + Math.pow(clientY - attractionY, 2));
+				// 클라이언트와의 거리
+				
+				attractionDistances.put(contentId, distance);
+				// Map에 추가
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		sortedMap.putAll(attractionDistances);
+		Set<Integer> contentIdSet = sortedMap.keySet();
+		Iterator<Integer> contentIdIterator = contentIdSet.iterator();
+		
+		for(int i = 0; i < (page - 1) * numOfRows; i++) {
+			/*
+			 * 조회하는 페이지 이전 데이터를 지나치기 위한 반복문
+			 * 조회하는 페이지가 4페이지라면, 1~3페이지 데이터를 next로 스킵
+			 */
+			if(contentIdIterator.hasNext()) {
+				contentIdIterator.next();
+			} else {
+				// 반복자가 참조할 다음 값이 없을 경우(조회할 페이지에 데이터가 없는 경우)
+				return null;
+			}
+		}
+		
+		
+		StringBuilder query = new StringBuilder();
+		// 거리순으로 조회할 새로운 쿼리
+		
+		query.append("SELECT * FROM attractions_basic WHERE content_id=");
+		for(int i = 0; i < numOfRows; i++) {
+			if(contentIdIterator.hasNext()) {
+				int contentId = contentIdIterator.next();
+				if(i < numOfRows - 1) {
+					query.append(contentId + " OR content_id=");
+				} else {
+					query.append(contentId);
+				}
+			} else {
+				query.append(0);
+				/*
+				 * 페이지 순회 중 데이터가 모두 소진된 경우
+				 * 쿼리 끝의 OR ~를 삭제할 수 있지만 0으로 채워줌
+				 */
+			}
+		}
+		
+		return database.executeQuery(query);
+	}
+	
 	private static JSONArray extractDatas(ResultSet rs) {
 		JSONArray result = new JSONArray();
+		if(rs == null) {
+			 return null;
+		}
 		try {
 			while(rs.next()) {
 				JSONObject obj = new JSONObject();

@@ -17,8 +17,13 @@ public class TotalList implements Handler<RoutingContext> {
 	public void handle(RoutingContext ctx) {
 		JSONArray response = AttractionsListInquiry.getTotalDatas(ctx);
 		
-		ctx.response().setStatusCode(200);
-		ctx.response().end(response.toString());
-		ctx.response().close();
+		if(response == null || response.length() == 0) {
+			ctx.response().setStatusCode(204).end();
+			ctx.response().close();
+		} else {
+			ctx.response().setStatusCode(200);
+			ctx.response().end(response.toString());
+			ctx.response().close();
+		}
 	}
 }
