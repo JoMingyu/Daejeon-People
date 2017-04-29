@@ -101,10 +101,10 @@ public class AttractionsListInquiry {
 		 * 조회할 수 있는 데이터가 없는 경우 null 리턴됨
 		 */
 		
-		Map<Integer, Double> attractionDistances = new HashMap<Integer, Double>();
+		Map<Integer, Double> distances = new HashMap<Integer, Double>();
 		// 클라이언트와 여행지 사이의 거리를 가지고 있는 HashMap
 		
-		ValueComparator vc = new ValueComparator(attractionDistances);
+		ValueComparator vc = new ValueComparator(distances);
 		// Map의 Value 기반 정렬을 위한 Comparator
 		
 		Map<Integer, Double> sortedMap = new TreeMap<Integer, Double>(vc);
@@ -124,16 +124,23 @@ public class AttractionsListInquiry {
 				double distance = Math.sqrt(Math.pow(clientX - attractionX, 2) + Math.pow(clientY - attractionY, 2));
 				// 클라이언트와의 거리
 				
-				attractionDistances.put(contentId, distance);
+				distances.put(contentId, distance);
 				// Map에 추가
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		
-		sortedMap.putAll(attractionDistances);
+		sortedMap.putAll(distances);
+		// 정렬된 map
+		
 		Set<Integer> contentIdSet = sortedMap.keySet();
 		Iterator<Integer> contentIdIterator = contentIdSet.iterator();
+		// 정렬된 Map의 반복자
+		
+		StringBuilder query = new StringBuilder();
+		query.append("SELECT * FROM attractions_basic WHERE content_id=");
+		// 거리순으로 조회할 새로운 쿼리
 		
 		for(int i = 0; i < (page - 1) * numOfRows; i++) {
 			/*
@@ -142,17 +149,9 @@ public class AttractionsListInquiry {
 			 */
 			if(contentIdIterator.hasNext()) {
 				contentIdIterator.next();
-			} else {
-				// 반복자가 참조할 다음 값이 없을 경우(조회할 페이지에 데이터가 없는 경우)
-				return null;
 			}
 		}
 		
-		
-		StringBuilder query = new StringBuilder();
-		// 거리순으로 조회할 새로운 쿼리
-		
-		query.append("SELECT * FROM attractions_basic WHERE content_id=");
 		for(int i = 0; i < numOfRows; i++) {
 			if(contentIdIterator.hasNext()) {
 				int contentId = contentIdIterator.next();
@@ -164,7 +163,7 @@ public class AttractionsListInquiry {
 			} else {
 				query.append(0);
 				/*
-				 * 페이지 순회 중 데이터가 모두 소진된 경우
+				 * 페이지 순회 중 데이터가 모두 소진되었거나 데이터가 없는 경우
 				 * 쿼리 끝의 OR ~를 삭제할 수 있지만 0으로 채워줌
 				 */
 			}
@@ -174,10 +173,11 @@ public class AttractionsListInquiry {
 	}
 	
 	private static JSONArray extractDatas(ResultSet rs) {
+		/*
+		 * ResultSet에 대한 데이터 추출기
+		 * 뽑을 데이터가 하나도 없다면 null 리턴
+		 */
 		JSONArray result = new JSONArray();
-		if(rs == null) {
-			 return null;
-		}
 		try {
 			while(rs.next()) {
 				JSONObject obj = new JSONObject();
