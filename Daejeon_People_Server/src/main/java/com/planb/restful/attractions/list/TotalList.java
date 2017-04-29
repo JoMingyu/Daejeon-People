@@ -18,7 +18,7 @@ public class TotalList implements Handler<RoutingContext> {
 		int sortType = Integer.parseInt(ctx.request().getParam("sort_type"));
 		int page = Integer.parseInt(ctx.request().getParam("page"));
 		
-		JSONArray response = AttractionsListInquiry.getTotalData(sortType, page);
+		JSONArray response = AttractionsListInquiry.getTotalDatas(ctx);
 		
 		ctx.response().setStatusCode(200);
 		ctx.response().end(response.toString());
