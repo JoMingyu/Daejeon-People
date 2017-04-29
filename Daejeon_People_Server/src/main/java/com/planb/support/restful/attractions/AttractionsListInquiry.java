@@ -102,13 +102,17 @@ public class AttractionsListInquiry {
 		 */
 		
 		Map<Integer, Double> distances = new HashMap<Integer, Double>();
-		// 클라이언트와 여행지 사이의 거리를 가지고 있는 HashMap
+		/*
+		 * 클라이언트와 여행지 사이의 거리를 가지고 있는 HashMap
+		 * Key : Content ID
+		 * Value : 클라이언트와 여행지 사이의 거리
+		 */
 		
 		ValueComparator vc = new ValueComparator(distances);
-		// Map의 Value 기반 정렬을 위한 Comparator
+		// Map의 Value 기반 오름차순 정렬을 위한 Comparator
 		
 		Map<Integer, Double> sortedMap = new TreeMap<Integer, Double>(vc);
-		// Value 기반 정렬된 Map
+		// ValueComparator를 생성자 파라미터로 가진 Value 기반 정렬된 TreeMap
 		
 		try {
 			while(rs.next()) {
@@ -138,10 +142,6 @@ public class AttractionsListInquiry {
 		Iterator<Integer> contentIdIterator = contentIdSet.iterator();
 		// 정렬된 Map의 반복자
 		
-		StringBuilder query = new StringBuilder();
-		query.append("SELECT * FROM attractions_basic WHERE content_id=");
-		// 거리순으로 조회할 새로운 쿼리
-		
 		for(int i = 0; i < (page - 1) * numOfRows; i++) {
 			/*
 			 * 조회하는 페이지 이전 데이터를 지나치기 위한 반복문
@@ -151,6 +151,10 @@ public class AttractionsListInquiry {
 				contentIdIterator.next();
 			}
 		}
+		
+		StringBuilder query = new StringBuilder();
+		query.append("SELECT * FROM attractions_basic WHERE content_id=");
+		// 거리순으로 조회할 새로운 쿼리
 		
 		for(int i = 0; i < numOfRows; i++) {
 			if(contentIdIterator.hasNext()) {
@@ -164,7 +168,7 @@ public class AttractionsListInquiry {
 				query.append(0);
 				/*
 				 * 페이지 순회 중 데이터가 모두 소진되었거나 데이터가 없는 경우
-				 * 쿼리 끝의 OR ~를 삭제할 수 있지만 0으로 채워줌
+				 * 쿼리 끝의 OR ~를 삭제할 수 있지만 if절 낭비를 줄이기 위해 0으로 채워줌
 				 */
 			}
 		}
