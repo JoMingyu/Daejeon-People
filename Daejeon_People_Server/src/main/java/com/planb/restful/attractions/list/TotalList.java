@@ -15,7 +15,7 @@ public class TotalList implements Handler<RoutingContext> {
 	
 	@Override
 	public void handle(RoutingContext ctx) {
-		JSONArray response = AttractionsListInquiry.getTotalDatas(ctx);
+		JSONArray response = AttractionsListInquiry.inquire(ctx);
 		
 		if(response == null || response.length() == 0) {
 			ctx.response().setStatusCode(204).end();
