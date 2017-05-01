@@ -14,7 +14,6 @@ import io.vertx.ext.web.sstore.LocalSessionStore;
 public class CoreVerticle extends AbstractVerticle {
 	public void start() throws Exception {
 		Router router = Router.router(vertx);
-		Register.route(router, "com.planb.restful");
 		
 		router.route().handler(BodyHandler.create().setUploadsDirectory("upload-files"));
 		/**
@@ -57,6 +56,8 @@ public class CoreVerticle extends AbstractVerticle {
 		 * http://vertx.io/docs/apidocs/io/vertx/ext/web/handler/SessionHandler.html
 		 */
 		
+		Register.route(router, "com.planb.restful");
+		Thread.sleep(3000);
 		new ParserThread().start();
 		
 		vertx.createHttpServer().requestHandler(router::accept).listen(80);
