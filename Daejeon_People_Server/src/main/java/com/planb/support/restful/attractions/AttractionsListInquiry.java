@@ -20,7 +20,7 @@ public class AttractionsListInquiry {
 	private static DataBase database = DataBase.getInstance();
 	private static int numOfRows = AttractionsConfig.NUM_OF_ROWS;
 	
-	public static JSONArray getDatas(RoutingContext ctx, int contentTypeId) {
+	public static JSONArray inquire(RoutingContext ctx, int contentTypeId) {
 		// content type을 지정하여 정보 얻어오기
 		int sortType = Integer.parseInt(ctx.request().getParam("sort_type"));
 		int page = Integer.parseInt(ctx.request().getParam("page"));
@@ -57,7 +57,7 @@ public class AttractionsListInquiry {
 		return result;
 	}
 	
-	public static JSONArray getTotalDatas(RoutingContext ctx) {
+	public static JSONArray inquire(RoutingContext ctx) {
 		// content type 미지정 : 모든 타입에 대해 정보 얻어오기
 		int sortType = Integer.parseInt(ctx.request().getParam("sort_type"));
 		int page = Integer.parseInt(ctx.request().getParam("page"));
@@ -179,7 +179,7 @@ public class AttractionsListInquiry {
 	private static JSONArray extractDatas(ResultSet rs) {
 		/*
 		 * ResultSet에 대한 데이터 추출기
-		 * 뽑을 데이터가 하나도 없다면 null 리턴
+		 * 뽑을 데이터가 하나도 없다면 객체 그대로(null) 리턴
 		 */
 		JSONArray result = new JSONArray();
 		try {
