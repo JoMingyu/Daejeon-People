@@ -1,5 +1,8 @@
 package com.planb.restful.attractions.list;
 
+import org.json.JSONArray;
+
+import com.planb.support.restful.attractions.AttractionsListInquiry;
 import com.planb.support.routing.Route;
 
 import io.vertx.core.Handler;
@@ -10,15 +13,15 @@ import io.vertx.ext.web.RoutingContext;
 public class ShoppingList implements Handler<RoutingContext> {
 	@Override
 	public void handle(RoutingContext ctx) {
-		int sortType = Integer.parseInt(ctx.request().getParam("sort_type"));
-		int page = Integer.parseInt(ctx.request().getParam("page"));
+		JSONArray response = AttractionsListInquiry.inquire(ctx, 38);
 		
-		switch(sortType) {
-		// sort type 협의 필요함
-		default:
+		if(response == null || response.length() == 0) {
 			ctx.response().setStatusCode(204).end();
 			ctx.response().close();
-			break;
+		} else {
+			ctx.response().setStatusCode(200);
+			ctx.response().end(response.toString());
+			ctx.response().close();
 		}
 	}
 }
