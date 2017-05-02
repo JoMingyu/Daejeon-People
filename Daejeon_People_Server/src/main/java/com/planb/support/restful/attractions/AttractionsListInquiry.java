@@ -5,7 +5,6 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
-import java.util.Set;
 import java.util.TreeMap;
 
 import org.json.JSONArray;
@@ -138,8 +137,7 @@ public class AttractionsListInquiry {
 		sortedMap.putAll(distances);
 		// 정렬된 map
 		
-		Set<Integer> contentIdSet = sortedMap.keySet();
-		Iterator<Integer> contentIdIterator = contentIdSet.iterator();
+		Iterator<Integer> contentIdIterator = sortedMap.keySet().iterator();
 		// 정렬된 Map의 반복자
 		
 		for(int i = 0; i < (page - 1) * numOfRows; i++) {
