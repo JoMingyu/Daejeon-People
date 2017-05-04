@@ -14,11 +14,11 @@ import com.sun.javafx.binding.StringFormatter;
 
 import io.vertx.ext.web.RoutingContext;
 
-public class UserManager {
+public class UserAccountManager {
 	private DataBase database = DataBase.getInstance();
 	private AES256 aes = new AES256("d.df!*&ek@s.Cde/q");
 	/*
-	 * ID : AES256
+	 * ID, Tel : AES256
 	 * PW, Email, Name, sessionId : SHA256
 	 */
 	private ResultSet rs;
@@ -105,7 +105,7 @@ public class UserManager {
 		}
 	}
 
-	public void signup(String id, String password, String email, String name) {
+	public void signup(String id, String password, String email, String tel, String name) {
 		/*
 		 * 회원가입
 		 * id와 이메일 중복 체크는 다른 URI에서 수행
@@ -113,9 +113,10 @@ public class UserManager {
 		String encryptedId = aes.encrypt(id);
 		String encryptedPassword = SHA256.encrypt(password);
 		String encryptedEmail = SHA256.encrypt(email);
+		String encryptedTel = aes.encrypt(tel);
 		String encryptedName = SHA256.encrypt(name);
 
-		database.executeUpdate("INSERT INTO account(id, password, email, name) VALUES('", encryptedId, "', '", encryptedPassword, "', '", encryptedEmail, "', '", encryptedName, "')");
+		database.executeUpdate("INSERT INTO account(id, password, email, tel, name, register_date) VALUES('", encryptedId, "', '", encryptedPassword, "', '", encryptedEmail, "', '", encryptedTel, "', '", encryptedName, "', now()", ")");
 		Mail.sendMail(email, MailSubjects.WELCOME_SUBJECT.getName(), "환영환영");
 	}
 
@@ -143,6 +144,7 @@ public class UserManager {
 	public String getEncryptedIdFromSession(RoutingContext ctx) {
 		/*
 		 * 세션으로부터 암호화된 id get
+		 * 유저의 id를 외래키로 갖는 테이블에 데이터를 저장하기 위해 사용
 		 */
 		String encryptedSessionId = SessionUtil.getClientSessionId(ctx, "UserSession");
 		String encryptedId = null;

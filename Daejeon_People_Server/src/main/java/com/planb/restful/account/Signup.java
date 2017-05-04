@@ -1,7 +1,7 @@
 package com.planb.restful.account;
 
 import com.planb.support.routing.Route;
-import com.planb.support.user.UserManager;
+import com.planb.support.user.UserAccountManager;
 
 import io.vertx.core.Handler;
 import io.vertx.core.http.HttpMethod;
@@ -9,10 +9,10 @@ import io.vertx.ext.web.RoutingContext;
 
 @Route(uri = "/signup", method = HttpMethod.POST)
 public class Signup implements Handler<RoutingContext> {
-	UserManager userManager;
+	UserAccountManager userManager;
 
 	public Signup() {
-		userManager = new UserManager();
+		userManager = new UserAccountManager();
 	}
 
 	@Override
@@ -20,9 +20,10 @@ public class Signup implements Handler<RoutingContext> {
 		String id = ctx.request().getFormAttribute("id");
 		String password = ctx.request().getFormAttribute("password");
 		String email = ctx.request().getFormAttribute("email");
+		String tel = ctx.request().getFormAttribute("tel");
 		String name = ctx.request().getFormAttribute("name");
 
-		userManager.signup(id, password, email, name);
+		userManager.signup(id, password, email, tel, name);
 
 		ctx.response().setStatusCode(201).end();
 		ctx.response().close();

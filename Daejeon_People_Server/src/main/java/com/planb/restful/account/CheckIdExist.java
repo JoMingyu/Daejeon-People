@@ -1,7 +1,7 @@
 package com.planb.restful.account;
 
 import com.planb.support.routing.Route;
-import com.planb.support.user.UserManager;
+import com.planb.support.user.UserAccountManager;
 
 import io.vertx.core.Handler;
 import io.vertx.core.http.HttpMethod;
@@ -9,10 +9,10 @@ import io.vertx.ext.web.RoutingContext;
 
 @Route(uri = "/signup/id/check", method = HttpMethod.POST)
 public class CheckIdExist implements Handler<RoutingContext> {
-	UserManager userManager;
+	UserAccountManager userManager;
 
 	public CheckIdExist() {
-		userManager = new UserManager();
+		userManager = new UserAccountManager();
 	}
 
 	@Override
