@@ -4,6 +4,8 @@ import java.util.Set;
 
 import org.reflections.Reflections;
 
+import com.planb.support.log.Log;
+
 import io.vertx.core.Handler;
 import io.vertx.ext.web.Router;
 import io.vertx.ext.web.RoutingContext;
@@ -24,7 +26,7 @@ public class Register {
 				
 				try {
 					router.route(annotation.method(), annotation.uri()).handler((Handler<RoutingContext>) c.newInstance());
-					System.out.println("Routed : " + annotation.method() + " " + annotation.uri());
+//					Log.I("Routed : " + annotation.method() + " " + annotation.uri());
 					// 생성자가 public이 아니면 리플렉션으로 접근 불가능(IllegalStateException)
 				} catch (InstantiationException | IllegalAccessException e) {
 					e.printStackTrace();

@@ -8,10 +8,10 @@ import com.planb.api.parser.DetailInfoParser;
 public class ParserThread extends Thread {
 	public void run() {
 		while(true) {
-			AreaBasedTourListParser.parse();
-			DetailCommonParser.parse();
-			DetailInfoParser.parse();
-			AdditionalImageParser.parse();
+//			AreaBasedTourListParser.parse();
+//			DetailCommonParser.parse();
+//			DetailInfoParser.parse();
+//			AdditionalImageParser.parse();
 			try {
 				Thread.sleep(1000 * 300);
 			} catch (InterruptedException e) {

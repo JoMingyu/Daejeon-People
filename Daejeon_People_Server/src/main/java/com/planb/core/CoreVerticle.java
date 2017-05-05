@@ -1,6 +1,7 @@
 package com.planb.core;
 
 import com.planb.api.support.ParserThread;
+import com.planb.support.log.Log;
 import com.planb.support.routing.Register;
 
 import io.vertx.core.AbstractVerticle;
@@ -56,6 +57,7 @@ public class CoreVerticle extends AbstractVerticle {
 		 * http://vertx.io/docs/apidocs/io/vertx/ext/web/handler/SessionHandler.html
 		 */
 		
+		Log.initialize();
 		Register.route(router, "com.planb.restful");
 		Thread.sleep(3000);
 		new ParserThread().start();
