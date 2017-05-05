@@ -30,4 +30,27 @@ public class Log {
 			e.printStackTrace();
 		}
 	}
+	
+	public static void I(String s) {
+		String ampm = cal.get(Calendar.AM_PM) == 0 ? "AM" : "PM";
+		String hour = String.format("%2d", cal.get(Calendar.HOUR));
+		String minute = String.format("%2d", cal.get(Calendar.MINUTE));
+		String second = String.format("%2d", cal.get(Calendar.SECOND));
+		
+		StringBuilder logText = new StringBuilder();
+		logText.append("[").append(hour).append(":");
+		logText.append(minute).append(":");
+		logText.append(second).append(" ");
+		logText.append(ampm).append("] ");
+		logText.append(s);
+		
+		try {
+			System.out.println(logText.toString());
+			fw.write(logText.toString());
+			fw.write("\n");
+			fw.flush();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 }
