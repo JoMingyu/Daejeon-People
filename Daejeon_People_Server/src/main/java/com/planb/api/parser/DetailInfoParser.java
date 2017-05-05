@@ -3,10 +3,7 @@ package com.planb.api.parser;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Map;
-import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -43,23 +40,18 @@ public class DetailInfoParser {
 		
 		ResultSet rs = database.executeQuery("SELECT * FROM attractions_basic");
 		Map<Integer, Integer> contentInfoMap = new HashMap<Integer, Integer>();
-		Set<Integer> contentIdSet = new HashSet<Integer>();
-		Iterator<Integer> contentIdIterator = null;
 		Pattern p = Pattern.compile("\\d+");
 		
 		try {
 			while(rs.next()) {
 				contentInfoMap.put(rs.getInt("content_id"), rs.getInt("content_type_id"));
 			}
-			contentIdSet = contentInfoMap.keySet();
-			contentIdIterator = contentIdSet.iterator();
 			// To escape SQLException : Operation not allowed after ResultSet closed
 		} catch(SQLException e) {
 			e.printStackTrace();
 		}
 		
-		while (contentIdIterator.hasNext()) {
-			int contentId = contentIdIterator.next();
+		for(int contentId : contentInfoMap.keySet()) {
 			int contentTypeId = contentInfoMap.get(contentId);
 			JSONObject item = Request.getItem(URL + "&contentId=" + contentId + "&contentTypeId=" + contentTypeId);
 			if (contentTypeId == 12) {
