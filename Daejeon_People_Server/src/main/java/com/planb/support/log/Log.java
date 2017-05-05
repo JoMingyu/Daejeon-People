@@ -33,9 +33,9 @@ public class Log {
 	
 	public static void I(String s) {
 		String ampm = cal.get(Calendar.AM_PM) == 0 ? "AM" : "PM";
-		String hour = String.format("%2d", cal.get(Calendar.HOUR));
-		String minute = String.format("%2d", cal.get(Calendar.MINUTE));
-		String second = String.format("%2d", cal.get(Calendar.SECOND));
+		String hour = String.format("%02d", cal.get(Calendar.HOUR));
+		String minute = String.format("%02d", cal.get(Calendar.MINUTE));
+		String second = String.format("%02d", cal.get(Calendar.SECOND));
 		
 		StringBuilder logText = new StringBuilder();
 		logText.append("[").append(hour).append(":");
