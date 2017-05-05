@@ -13,7 +13,7 @@ public class Log {
 	public static void initialize() {
 		cal = Calendar.getInstance();
 		String year = String.format("%4d", cal.get(Calendar.YEAR));
-		String month = String.format("%02d", cal.get(Calendar.MONTH));
+		String month = String.format("%02d", cal.get(Calendar.MONTH) + 1);
 		String date = String.format("%02d", cal.get(Calendar.DATE));
 		String logFileName = year + "-" + month + "-" + date + ".txt";
 		file = new File(logFileName);
