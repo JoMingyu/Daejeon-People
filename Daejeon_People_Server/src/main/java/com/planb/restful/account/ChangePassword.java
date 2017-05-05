@@ -1,7 +1,7 @@
 package com.planb.restful.account;
 
 import com.planb.support.routing.Route;
-import com.planb.support.user.UserAccountManager;
+import com.planb.support.user.UserManager;
 
 import io.vertx.core.Handler;
 import io.vertx.core.http.HttpMethod;
@@ -9,10 +9,10 @@ import io.vertx.ext.web.RoutingContext;
 
 @Route(uri = "/change/password", method = HttpMethod.POST)
 public class ChangePassword implements Handler<RoutingContext> {
-	UserAccountManager userManager;
+	UserManager userManager;
 	
 	public ChangePassword() {
-		userManager = new UserAccountManager();
+		userManager = new UserManager();
 	}
 
 	@Override

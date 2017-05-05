@@ -14,7 +14,7 @@ import com.sun.javafx.binding.StringFormatter;
 
 import io.vertx.ext.web.RoutingContext;
 
-public class UserAccountManager {
+public class UserManager {
 	private DataBase database = DataBase.getInstance();
 	private AES256 aes = new AES256("d.df!*&ek@s.Cde/q");
 	/*
