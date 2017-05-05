@@ -20,7 +20,10 @@ public class Signup implements Handler<RoutingContext> {
 		String id = ctx.request().getFormAttribute("id");
 		String password = ctx.request().getFormAttribute("password");
 		String email = ctx.request().getFormAttribute("email");
-		String tel = ctx.request().getFormAttribute("tel");
+		String tel = null;
+		if(ctx.request().formAttributes().contains("tel")) {
+			tel = ctx.request().getFormAttribute("tel");
+		}
 		String name = ctx.request().getFormAttribute("name");
 
 		userManager.signup(id, password, email, tel, name);

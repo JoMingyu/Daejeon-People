@@ -113,10 +113,15 @@ public class UserAccountManager {
 		String encryptedId = aes.encrypt(id);
 		String encryptedPassword = SHA256.encrypt(password);
 		String encryptedEmail = SHA256.encrypt(email);
-		String encryptedTel = aes.encrypt(tel);
+		String encryptedTel = tel == null ? null : aes.encrypt(tel);
+		// null이면 null, null이 아니면 암호화
 		String encryptedName = SHA256.encrypt(name);
-
-		database.executeUpdate("INSERT INTO account(id, password, email, tel, name, register_date) VALUES('", encryptedId, "', '", encryptedPassword, "', '", encryptedEmail, "', '", encryptedTel, "', '", encryptedName, "', now()", ")");
+		
+		if(encryptedTel == null) {
+			database.executeUpdate("INSERT INTO account(id, password, email, tel, name, register_date) VALUES('", encryptedId, "', '", encryptedPassword, "', '", encryptedEmail, "', null, '", encryptedName, "', now()", ")");
+		} else {
+			database.executeUpdate("INSERT INTO account(id, password, email, tel, name, register_date) VALUES('", encryptedId, "', '", encryptedPassword, "', '", encryptedEmail, "', '", encryptedTel, "', '", encryptedName, "', now()", ")");
+		}
 		Mail.sendMail(email, MailSubjects.WELCOME_SUBJECT.getName(), "환영환영");
 	}
 
