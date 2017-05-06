@@ -7,7 +7,7 @@ import io.vertx.core.Handler;
 import io.vertx.core.http.HttpMethod;
 import io.vertx.ext.web.RoutingContext;
 
-@Route(uri = "/mypage", method = HttpMethod.POST)
+@Route(uri = "/mypage", method = HttpMethod.GET)
 public class MyPage implements Handler<RoutingContext> {
 	UserManager userManager;
 	
@@ -17,7 +17,6 @@ public class MyPage implements Handler<RoutingContext> {
 	
 	@Override
 	public void handle(RoutingContext ctx) {
-		System.out.println("Branched");
 		if(!userManager.isLogined(ctx)) {
 			ctx.response().setStatusCode(204).end();
 			ctx.response().close();
