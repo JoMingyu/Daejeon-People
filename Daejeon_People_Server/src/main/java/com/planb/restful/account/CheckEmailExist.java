@@ -12,7 +12,6 @@ public class CheckEmailExist implements Handler<RoutingContext> {
 	@Override
 	public void handle(RoutingContext ctx) {
 		String email = ctx.request().getFormAttribute("email");
-		System.out.println(email);
 		
 		if (SignupManager.checkEmailExists(email)) {
 			ctx.response().setStatusCode(409).end();

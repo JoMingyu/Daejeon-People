@@ -56,8 +56,9 @@ public class UserManager {
 		
 		rs = database.executeQuery("SELECT * FROM account WHERE session_id='", encryptedSessionId, "'");
 		try {
-			rs.next();
-			encryptedId = rs.getString("id");
+			if(rs.next()) {
+				encryptedId = rs.getString("id");
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
