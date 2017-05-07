@@ -141,8 +141,8 @@ public class UserManager {
 	}
 	
 	public boolean findId(String email, String name) {
-		String encryptedEmail = SHA256.encrypt(email);
-		String encryptedName = SHA256.encrypt(name);
+		String encryptedEmail = aes.encrypt(email);
+		String encryptedName = aes.encrypt(name);
 		
 		rs = database.executeQuery("SELECT id FROM account WHERE email='", encryptedEmail, "' AND name='", encryptedName, "'");
 		try {
@@ -180,8 +180,8 @@ public class UserManager {
 	
 	public boolean findPassword(String id, String email, String name) {
 		String encryptedId = aes.encrypt(id);
-		String encryptedEmail = SHA256.encrypt(email);
-		String encryptedName = SHA256.encrypt(name);
+		String encryptedEmail = aes.encrypt(email);
+		String encryptedName = aes.encrypt(name);
 		
 		rs = database.executeQuery("SELECT * FROM account WHERE id='", encryptedId, "' AND email='", encryptedEmail, "' AND name='", encryptedName, "'");
 		try {
