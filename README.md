@@ -80,7 +80,7 @@
   - 이슈 트래커 : Git Issue, Asana
   - 디자인 : Adobe XD, Photoshop
   - 레이아웃 : ScalableLayout, ConstraintLayout
-  - 안드로이드 : Android Studio 2.3 / minSdk 19(4.4 Kitkat) / targetSdk 21(5.0 Lollipop)
+  - 안드로이드 : Android Studio 2.3 / minSdk 19(4.4 Kitkat) / target|compileSdk 25(7.1 Nougat)
   - 서버 : Java 1.8 / Eclipse neon.3 / Vertx-Web / REST Architecture / AWS EC2
   - DB : MySQL, SQLite, RealTime DataBase(Firebase)
   - 통신 : Retrofit(예정)
