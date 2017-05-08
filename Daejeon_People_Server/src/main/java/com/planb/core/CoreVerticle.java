@@ -47,7 +47,6 @@ public class CoreVerticle extends AbstractVerticle {
 		 * http://vertx.io/docs/apidocs/io/vertx/ext/web/handler/SessionHandler.html
 		 */
 		
-		Log.initialize();
 		Register.route(router, "com.planb.restful");
 		router.route().handler(StaticHandler.create());
 		/**
