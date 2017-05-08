@@ -136,7 +136,7 @@ public class UserManager {
 		 * 로그아웃, 세션 또는 쿠키에 있는 session id 삭제
 		 */
 		String encryptedId = getEncryptedIdFromSession(ctx);
-		SessionUtil.removeSession(ctx, "UserSession", encryptedId);
+		SessionUtil.removeSession(ctx, "UserSession");
 		database.executeUpdate("UPDATE account SET session_id=null WHERE id='", encryptedId, "'");
 	}
 	

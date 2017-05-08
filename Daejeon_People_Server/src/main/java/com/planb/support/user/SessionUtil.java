@@ -17,7 +17,7 @@ public class SessionUtil {
 		ctx.addCookie(cookie);
 	}
 	
-	public static void removeSession(RoutingContext ctx, String key, String encryptedId) {
+	public static void removeSession(RoutingContext ctx, String key) {
 		if(ctx.session().get(key) != null) {
 			ctx.session().remove(key);
 		}
