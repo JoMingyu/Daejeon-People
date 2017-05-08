@@ -4,17 +4,21 @@ import io.vertx.ext.web.Cookie;
 import io.vertx.ext.web.RoutingContext;
 
 public class SessionUtil {
-	public static void createSession(RoutingContext ctx, String key, String sessionId) {
+	public static void createSession(RoutingContext ctx, String key, String value) {
 		// context에 세션 등록
-		ctx.session().put(key, sessionId);
+		if(ctx.session().get(key) == null) {
+			ctx.session().put(key, value);
+		}
 	}
 	
-	public static void createCookie(RoutingContext ctx, String key, String sessionId) {
+	public static void createCookie(RoutingContext ctx, String key, String value) {
 		// context에 쿠키 등록
-		Cookie cookie = Cookie.cookie(key, sessionId);
-		cookie.setMaxAge(60 * 60 * 24 * 365);
-		cookie.setPath("/");
-		ctx.addCookie(cookie);
+		if(ctx.getCookie(key) == null) {
+			Cookie cookie = Cookie.cookie(key, value);
+			cookie.setPath("/");
+			cookie.setMaxAge(60 * 60 * 24 * 365);
+			ctx.addCookie(cookie);
+		}
 	}
 	
 	public static void removeSession(RoutingContext ctx, String key) {
@@ -28,13 +32,13 @@ public class SessionUtil {
 	}
 	
 	public static String getClientSessionId(RoutingContext ctx, String key) {
-		String sessionId = null;
+		String value = null;
 		if(ctx.session().get(key) != null) {
-			sessionId = ctx.session().get(key);
+			value = ctx.session().get(key);
 		} else if(ctx.getCookie(key) != null) {
-			sessionId = ctx.getCookie(key).getValue();
+			value = ctx.getCookie(key).getValue();
 		}
 		
-		return sessionId;
+		return value;
 	}
 }
