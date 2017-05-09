@@ -10,7 +10,7 @@ import org.json.JSONObject;
 
 import com.planb.api.support.Params;
 import com.planb.api.support.Request;
-import com.planb.support.database.DataBase;
+import com.planb.support.utilities.DataBase;
 
 public class AdditionalImageParser {
 	private static String defaultURL = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/detailImage" + Params.defaultAppendParams + "&imageYN=Y";

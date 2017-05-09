@@ -11,7 +11,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.planb.support.database.DataBase;
+import com.planb.support.utilities.DataBase;
 
 import io.vertx.ext.web.RoutingContext;
 

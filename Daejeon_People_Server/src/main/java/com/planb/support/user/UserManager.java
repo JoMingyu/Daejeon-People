@@ -4,11 +4,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.UUID;
 
-import com.planb.support.crypto.AES256;
-import com.planb.support.crypto.SHA256;
-import com.planb.support.database.DataBase;
-import com.planb.support.mail.Mail;
-import com.planb.support.mail.MailSubjects;
+import com.planb.support.utilities.AES256;
+import com.planb.support.utilities.DataBase;
+import com.planb.support.utilities.Mail;
+import com.planb.support.utilities.MailSubjects;
+import com.planb.support.utilities.SHA256;
+import com.planb.support.utilities.SessionUtil;
 
 import io.vertx.ext.web.RoutingContext;
 
@@ -49,7 +50,7 @@ public class UserManager {
 	public String getEncryptedIdFromSession(RoutingContext ctx) {
 		/*
 		 * 세션으로부터 암호화된 id get
-		 * 유저의 id를 외래키로 갖는 테이블에 데이터를 저장하기 위해 사용
+		 * 유저의 id를 외래키로 갖는 테이블에 접근하기 위해 사용
 		 */
 		String encryptedSessionId = SessionUtil.getClientSessionId(ctx, "UserSession");
 		String encryptedId = null;

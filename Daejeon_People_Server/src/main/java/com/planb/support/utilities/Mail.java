@@ -1,4 +1,4 @@
-package com.planb.support.mail;
+package com.planb.support.utilities;
 
 import java.util.Properties;
 

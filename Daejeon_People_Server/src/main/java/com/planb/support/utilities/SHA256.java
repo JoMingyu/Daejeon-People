@@ -1,4 +1,4 @@
-package com.planb.support.crypto;
+package com.planb.support.utilities;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

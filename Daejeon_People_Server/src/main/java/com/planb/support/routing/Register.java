@@ -4,7 +4,7 @@ import java.util.Set;
 
 import org.reflections.Reflections;
 
-import com.planb.support.log.Log;
+import com.planb.support.utilities.Log;
 
 import io.vertx.core.Handler;
 import io.vertx.ext.web.Router;

@@ -1,4 +1,4 @@
-package com.planb.support.user;
+package com.planb.support.utilities;
 
 import io.vertx.ext.web.Cookie;
 import io.vertx.ext.web.RoutingContext;

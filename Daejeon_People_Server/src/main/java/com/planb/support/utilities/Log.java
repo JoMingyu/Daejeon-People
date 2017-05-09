@@ -1,4 +1,4 @@
-package com.planb.support.log;
+package com.planb.support.utilities;
 
 import java.io.File; 
 import java.io.FileWriter;
