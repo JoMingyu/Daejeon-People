@@ -47,10 +47,11 @@ public class UserManager {
 		}
 	}
 
-	public String getEncryptedIdFromSession(RoutingContext ctx) {
+	public static String getEncryptedIdFromSession(RoutingContext ctx) {
 		/*
 		 * 세션으로부터 암호화된 id get
 		 * 유저의 id를 외래키로 갖는 테이블에 접근하기 위해 사용
+		 * 객체 생성 없이도 사용할 수 있도록 static
 		 */
 		String encryptedSessionId = SessionUtil.getClientSessionId(ctx, "UserSession");
 		String encryptedId = null;
