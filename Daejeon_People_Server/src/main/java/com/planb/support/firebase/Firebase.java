@@ -1,5 +1,6 @@
 package com.planb.support.firebase;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -33,13 +34,10 @@ public class Firebase {
 		config.setTargetAddress("https://fcm.googleapis.com/gcm/notification");
 		HttpClient client = new HttpClient(config);
 		
-		JSONArray registrationIds = new JSONArray();
-		registrationIds.put(registrationId);
-		
 		JSONObject requestObject = new JSONObject();
 		requestObject.put("operation", "create");
 		requestObject.put("notification_key_name", notificationKeyName);
-		requestObject.put("registration_ids", registrationIds);
+		requestObject.put("registration_ids", new JSONArray(Arrays.asList(registrationId)));
 		
 		Map<String, Object> headers = new HashMap<String, Object>();
 		headers.put("Authorization", "key=" + SERVER_KEY);
@@ -55,14 +53,11 @@ public class Firebase {
 		config.setTargetAddress("https://fcm.googleapis.com/gcm/notification");
 		HttpClient client = new HttpClient(config);
 		
-		JSONArray registrationIds = new JSONArray();
-		registrationIds.put(registrationId);
-		
 		JSONObject requestObject = new JSONObject();
 		requestObject.put("operation", "add");
-		requestObject.put("notification_key_name", notificationKeyName);
 		requestObject.put("notification_key", notificationKey);
-		requestObject.put("registration_ids", registrationIds);
+		requestObject.put("notification_key_name", notificationKeyName);
+		requestObject.put("registration_ids", new JSONArray(Arrays.asList(registrationId)));
 		
 		Map<String, Object> headers = new HashMap<String, Object>();
 		headers.put("Authorization", "key=" + SERVER_KEY);
@@ -71,6 +66,24 @@ public class Firebase {
 		HashMap<String, Object> response = client.post("/", headers, requestObject);
 		JSONObject responseBody = new JSONObject(response.get("response"));
 		return responseBody.getString("notification_key");
+	}
+	
+	public static void exitGroup(String notificationKey, String notificationKeyName, String registrationId) {
+		Config config = new HttpClientConfig();
+		config.setTargetAddress("https://fcm.googleapis.com/gcm/notification");
+		HttpClient client = new HttpClient(config);
+		
+		JSONObject requestObject = new JSONObject();
+		requestObject.put("operation", "remove");
+		requestObject.put("notification_key", notificationKey);
+		requestObject.put("notification_key_name", notificationKeyName);
+		requestObject.put("registration_ids", new JSONArray(Arrays.asList(registrationId)));
+		
+		Map<String, Object> headers = new HashMap<String, Object>();
+		headers.put("Authorization", "key=" + SERVER_KEY);
+		headers.put("Content-Type", "application/json");
+		
+		client.post("/", headers, requestObject);
 	}
 	
 	public static void send(String message, String target) {
