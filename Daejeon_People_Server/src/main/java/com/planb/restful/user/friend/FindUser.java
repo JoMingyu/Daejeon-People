@@ -7,9 +7,9 @@ import java.util.regex.Pattern;
 import org.json.JSONObject;
 
 import com.planb.support.crypto.AES256;
-import com.planb.support.database.DataBase;
 import com.planb.support.routing.Route;
 import com.planb.support.user.UserManager;
+import com.planb.support.utilities.DataBase;
 
 import io.vertx.core.Handler;
 import io.vertx.core.http.HttpMethod;
@@ -28,7 +28,7 @@ public class FindUser implements Handler<RoutingContext> {
 		 * 핸드폰 번호 : 010xxxxxxxx or xxxxxxxx
 		 * 이메일 : ????@???.???
 		 */
-		if(Pattern.matches("[0-9]{7, 12}", keyword)) {
+		if(Pattern.matches("[0-9]+", keyword)) {
 			/*
 			 * 모두 숫자로 이루어진 7~12자리 사이의 전화번호 형태일 때
 			 * 클라이언트 측에서 검증하겠지만 만일의 사태 대비
@@ -44,13 +44,14 @@ public class FindUser implements Handler<RoutingContext> {
 		
 		keyword = aes.encrypt(keyword);
 		
-		ResultSet rs = database.executeQuery("SELECT * FROM account WHERE email='", keyword, "' OR tel='", keyword, "'");
+		ResultSet rs = database.executeQuery("SELECT * FROM account WHERE email='", keyword, "' OR phone_number='", keyword, "'");
 		try {
 			if(rs.next()) {
 				JSONObject response = new JSONObject();
 				
-				response.put("email", rs.getString("email"));
-				response.put("name", rs.getString("name"));
+				response.put("email", aes.decrypt(rs.getString("email")));
+				response.put("name", aes.decrypt(rs.getString("name")));
+				response.put("id", rs.getString("id"));
 				
 				ctx.response().setStatusCode(200);
 				ctx.response().end(response.toString());

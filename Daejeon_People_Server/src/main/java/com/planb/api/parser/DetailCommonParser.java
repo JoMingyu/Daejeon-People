@@ -8,8 +8,8 @@ import java.util.Map;
 import org.json.JSONObject;
 
 import com.planb.api.support.Params;
-import com.planb.api.support.Request;
-import com.planb.support.database.DataBase;
+import com.planb.api.support.HttpRequestForParser;
+import com.planb.support.utilities.DataBase;
 
 public class DetailCommonParser {
 	/*
@@ -37,7 +37,7 @@ public class DetailCommonParser {
 		
 		for(int contentId : contentInfoMap.keySet()) {
 			int contentTypeId = contentInfoMap.get(contentId);
-			JSONObject item = Request.getItem(URL + "&contentId=" + contentId);
+			JSONObject item = HttpRequestForParser.getItem(URL + "&contentId=" + contentId);
 			
 			String homepage = item.has("homepage") ? item.getString("homepage").replaceAll("'", "''") : null;
 			// 홈페이지 주소

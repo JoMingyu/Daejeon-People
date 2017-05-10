@@ -1,4 +1,4 @@
-package com.planb.support.mail;
+package com.planb.support.utilities;
 
 public enum MailSubjects {
 	VERIFY_SUBJECT("[대전사람] 회원가입 인증 코드입니다."),

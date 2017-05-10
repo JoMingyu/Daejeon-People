@@ -1,7 +1,6 @@
 package com.planb.core;
 
 import com.planb.api.support.ParserThread;
-import com.planb.support.log.Log;
 import com.planb.support.routing.Register;
 
 import io.vertx.core.AbstractVerticle;
@@ -26,16 +25,6 @@ public class CoreVerticle extends AbstractVerticle {
 		 * http://vertx.io/docs/apidocs/io/vertx/ext/web/handler/BodyHandler.html
 		 */
 		
-		router.route().handler(StaticHandler.create());
-		/**
-		 * @brief
-		 * public class StaticHandler
-		 * A handler for serving static resources from the file system or classpath.
-		 * 
-		 * @see
-		 * http://vertx.io/docs/apidocs/io/vertx/rxjava/ext/web/handler/StaticHandler.html
-		 */
-		
 		router.route().handler(CookieHandler.create());
 		/**
 		 * @brief
@@ -57,10 +46,18 @@ public class CoreVerticle extends AbstractVerticle {
 		 * http://vertx.io/docs/apidocs/io/vertx/ext/web/handler/SessionHandler.html
 		 */
 		
-		Log.initialize();
 		Register.route(router, "com.planb.restful");
-		Thread.sleep(3000);
-		new ParserThread().start();
+		router.route().handler(StaticHandler.create());
+		/**
+		 * @brief
+		 * public class StaticHandler
+		 * A handler for serving static resources from the file system or classpath.
+		 * 
+		 * @see
+		 * http://vertx.io/docs/apidocs/io/vertx/rxjava/ext/web/handler/StaticHandler.html
+		 */
+		Thread.sleep(1000);
+//		new ParserThread().start();
 		
 		vertx.createHttpServer().requestHandler(router::accept).listen(80);
 		/**

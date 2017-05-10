@@ -7,8 +7,8 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import com.planb.api.support.Params;
-import com.planb.api.support.Request;
-import com.planb.support.database.DataBase;
+import com.planb.api.support.HttpRequestForParser;
+import com.planb.support.utilities.DataBase;
 
 public class AreaBasedTourListParser {
 	/*
@@ -19,13 +19,13 @@ public class AreaBasedTourListParser {
 	private static DataBase database = DataBase.getInstance();
 	
 	public static void parse() {
-		int totalCount = Request.getTotalCount(defaultURL);
+		int totalCount = HttpRequestForParser.getTotalCount(defaultURL);
 		// 요청 이전에 응답 전체 카운트를 먼저 얻어냄
 		
 		String requestURL = defaultURL + "&numOfRows=" + totalCount;
 		// 응답받을 여행지 정보 갯수를 totalCount에 맞춰서 요청
 		
-		JSONArray items = Request.getItems(requestURL);
+		JSONArray items = HttpRequestForParser.getItems(requestURL);
 		for(int i = 0; i < items.length(); i++) {
 			JSONObject item = items.getJSONObject(i);
 			
@@ -62,10 +62,10 @@ public class AreaBasedTourListParser {
 			int readCount = item.has("readcount") ? item.getInt("readcount") : 0;
 			// 조회수
 			
-			String createdTime = item.has("createdtime") ? String.valueOf(item.getLong("createdtime")) : null;
+//			String createdTime = item.has("createdtime") ? String.valueOf(item.getLong("createdtime")) : null;
 			// 생성일
 			
-			String lastModifiedTime = item.has("modifiedtime") ? String.valueOf(item.getLong("modifiedtime")) : null;
+//			String lastModifiedTime = item.has("modifiedtime") ? String.valueOf(item.getLong("modifiedtime")) : null;
 			// 최근 수정일
 			
 			String imageMiniUrl = item.has("firstimage2") ? item.getString("firstimage2") : null;
@@ -77,9 +77,9 @@ public class AreaBasedTourListParser {
 			ResultSet rs = database.executeQuery("SELECT * FROM attractions_basic WHERE content_id=", contentId);
 			try {
 				if(rs.next()) {
-					database.executeUpdate("UPDATE attractions_basic SET title='", title, "', cat1='", cat1, "', cat2='", cat2, "', cat3='", cat3, "', mapx=", mapX, ", mapy=", mapY, ", views_count=", readCount, ", created_time='", createdTime, "', last_modified_time='", lastModifiedTime, "', image_mini_url='", imageMiniUrl, "', image_big_url='", imageBigUrl, "' WHERE content_id=", contentId);
+					database.executeUpdate("UPDATE attractions_basic SET title='", title, "', cat1='", cat1, "', cat2='", cat2, "', cat3='", cat3, "', mapx=", mapX, ", mapy=", mapY, ", views_count=", readCount, ", image_mini_url='", imageMiniUrl, "', image_big_url='", imageBigUrl, "' WHERE content_id=", contentId);
 				} else {
-					database.executeUpdate("INSERT INTO attractions_basic VALUES(", contentId, ", ", contentTypeId, ", 0, '", title, "', '", cat1, "', '", cat2, "', '", cat3, "', '", address, "', ", mapX, ", ", mapY, ", ", readCount, ", '", createdTime, "', '", lastModifiedTime, "', '", imageMiniUrl, "', '", imageBigUrl, "')");
+					database.executeUpdate("INSERT INTO attractions_basic VALUES(", contentId, ", ", contentTypeId, ", 0, '", title, "', '", cat1, "', '", cat2, "', '", cat3, "', '", address, "', ", mapX, ", ", mapY, ", ", readCount, ", '", imageMiniUrl, "', '", imageBigUrl, "')");
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();

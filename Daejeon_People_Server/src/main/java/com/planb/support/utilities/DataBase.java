@@ -1,4 +1,4 @@
-package com.planb.support.database;
+package com.planb.support.utilities;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

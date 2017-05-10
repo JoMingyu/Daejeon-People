@@ -9,7 +9,7 @@ import io.vertx.ext.web.RoutingContext;
 
 @Route(uri = "/mypage", method = HttpMethod.GET)
 public class MyPage implements Handler<RoutingContext> {
-	UserManager userManager;
+	private UserManager userManager;
 	
 	public MyPage() {
 		userManager = new UserManager();
@@ -23,7 +23,9 @@ public class MyPage implements Handler<RoutingContext> {
 			return;
 		}
 		
-//		String encryptedId = userManager.getEncryptedIdFromSession(ctx);
+		ctx.response().setStatusCode(200).end();
+		ctx.response().close();
+//		String clientId = UserManager.getEncryptedIdFromSession(ctx);
 		// Id를 통해 마이페이지에 들어갈 정보들 response
 	}
 }

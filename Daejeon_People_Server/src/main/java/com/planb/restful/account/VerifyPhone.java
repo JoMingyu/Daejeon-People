@@ -7,14 +7,14 @@ import io.vertx.core.Handler;
 import io.vertx.core.http.HttpMethod;
 import io.vertx.ext.web.RoutingContext;
 
-@Route(uri = "/signup/email/verify", method = HttpMethod.POST)
-public class VerifyEmailCode implements Handler<RoutingContext> {
+@Route(uri = "/signup/phone/verify", method = HttpMethod.POST)
+public class VerifyPhone implements Handler<RoutingContext> {
 	@Override
 	public void handle(RoutingContext ctx) {
-		String email = ctx.request().getFormAttribute("email");
+		String phoneNumber = ctx.request().getFormAttribute("number");
 		String code = ctx.request().getFormAttribute("code");
-
-		if (SignupManager.verifyEmail(email, code)) {
+		
+		if(SignupManager.verifyPhone(phoneNumber, code)) {
 			ctx.response().setStatusCode(201).end();
 			ctx.response().close();
 		} else {

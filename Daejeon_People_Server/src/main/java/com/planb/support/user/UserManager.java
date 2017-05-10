@@ -6,9 +6,10 @@ import java.util.UUID;
 
 import com.planb.support.crypto.AES256;
 import com.planb.support.crypto.SHA256;
-import com.planb.support.database.DataBase;
-import com.planb.support.mail.Mail;
-import com.planb.support.mail.MailSubjects;
+import com.planb.support.utilities.DataBase;
+import com.planb.support.utilities.Mail;
+import com.planb.support.utilities.MailSubjects;
+import com.planb.support.utilities.SessionUtil;
 
 import io.vertx.ext.web.RoutingContext;
 
@@ -46,23 +47,43 @@ public class UserManager {
 		}
 	}
 
-	public String getEncryptedIdFromSession(RoutingContext ctx) {
+	public static String getEncryptedIdFromSession(RoutingContext ctx) {
 		/*
 		 * 세션으로부터 암호화된 id get
-		 * 유저의 id를 외래키로 갖는 테이블에 데이터를 저장하기 위해 사용
+		 * 유저의 id를 외래키로 갖는 테이블에 접근하기 위해 사용
+		 * 객체 생성 없이도 사용할 수 있도록 static
 		 */
 		String encryptedSessionId = SessionUtil.getClientSessionId(ctx, "UserSession");
 		String encryptedId = null;
 		
 		rs = database.executeQuery("SELECT * FROM account WHERE session_id='", encryptedSessionId, "'");
 		try {
-			rs.next();
-			encryptedId = rs.getString("id");
+			if(rs.next()) {
+				encryptedId = rs.getString("id");
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		
 		return encryptedId;
+	}
+	
+	public static String getRegistrationIdFromSession(RoutingContext ctx) {
+		/*
+		 * 세션으로부터 FireBase registration ID get
+		 */
+		String encryptedSessionId = SessionUtil.getClientSessionId(ctx, "UserSession");
+		String registrationId = null;
+		
+		rs = database.executeQuery("SELECT * FROM account WHERE session_id='", encryptedSessionId, "'");
+		try {
+			rs.next();
+			registrationId = rs.getString("registration_id");
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return registrationId;
 	}
 	
 	private String getEncryptedSessionFromId(String id) {
@@ -135,13 +156,13 @@ public class UserManager {
 		 * 로그아웃, 세션 또는 쿠키에 있는 session id 삭제
 		 */
 		String encryptedId = getEncryptedIdFromSession(ctx);
-		SessionUtil.removeSession(ctx, "UserSession", encryptedId);
+		SessionUtil.removeSession(ctx, "UserSession");
 		database.executeUpdate("UPDATE account SET session_id=null WHERE id='", encryptedId, "'");
 	}
 	
 	public boolean findId(String email, String name) {
-		String encryptedEmail = SHA256.encrypt(email);
-		String encryptedName = SHA256.encrypt(name);
+		String encryptedEmail = aes.encrypt(email);
+		String encryptedName = aes.encrypt(name);
 		
 		rs = database.executeQuery("SELECT id FROM account WHERE email='", encryptedEmail, "' AND name='", encryptedName, "'");
 		try {
@@ -179,8 +200,8 @@ public class UserManager {
 	
 	public boolean findPassword(String id, String email, String name) {
 		String encryptedId = aes.encrypt(id);
-		String encryptedEmail = SHA256.encrypt(email);
-		String encryptedName = SHA256.encrypt(name);
+		String encryptedEmail = aes.encrypt(email);
+		String encryptedName = aes.encrypt(name);
 		
 		rs = database.executeQuery("SELECT * FROM account WHERE id='", encryptedId, "' AND email='", encryptedEmail, "' AND name='", encryptedName, "'");
 		try {
