@@ -13,7 +13,7 @@ import com.planb.api.support.Params;
 import com.planb.api.support.Request;
 import com.planb.support.utilities.DataBase;
 
-public class DetailInfoParser {
+public class EnhancedDetailInfoParser {
 	private static String URL = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/detailIntro" + Params.defaultAppendParams;
 	private static DataBase database = DataBase.getInstance();
 	
