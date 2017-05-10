@@ -25,11 +25,15 @@ public class FriendList implements Handler<RoutingContext> {
 		
 		String client = UserManager.getEncryptedIdFromSession(ctx);
 		
-		ResultSet friendSet = database.executeQuery("SELECT friend_id FROM friend_list WHERE src_id='", client, "'");
+		ResultSet friendSet = database.executeQuery("SELECT friend_id FROM friend_list WHERE client_id1='", client, "' OR client_id2='", client, "'");
 		List<String> friendIdList = new ArrayList<String>();
 		try {
 			while(friendSet.next()) {
-				friendIdList.add(friendSet.getString("friend_id"));
+				if(friendSet.getString("client_id1") != client) {
+					friendIdList.add(friendSet.getString("client_id1"));
+				} else {
+					friendIdList.add(friendSet.getString("client_id2"));
+				}
 			}
 		} catch(SQLException e) {
 			e.printStackTrace();
@@ -39,18 +43,18 @@ public class FriendList implements Handler<RoutingContext> {
 			ResultSet friendInfoSet = database.executeQuery("SELECT * FROM account WHERE id='", friendId, "'");
 			try {
 				friendInfoSet.next();
-				JSONObject friendInfo = new JSONObject();
-				friendInfo.put("phone_number", friendInfoSet.getString("phone_number"));
-				friendInfo.put("email", friendInfoSet.getString("email"));
-				friendInfo.put("name", friendInfoSet.getString("name"));
-				response.put(friendInfo);
+				JSONObject friend = new JSONObject();
+				friend.put("phone_number", friendInfoSet.getString("phone_number"));
+				friend.put("email", friendInfoSet.getString("email"));
+				friend.put("name", friendInfoSet.getString("name"));
+				response.put(friend);
 			} catch(SQLException e) {
 				e.printStackTrace();
 			}
 		}
 		
 		if(response.length() == 0) {
-			// 아무 친구 요청도 없으면
+			// 아무 친구도 없으면
 			ctx.response().setStatusCode(204).end();
 			ctx.response().close();
 		} else {
