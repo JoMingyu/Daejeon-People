@@ -62,10 +62,10 @@ public class AreaBasedTourListParser {
 			int readCount = item.has("readcount") ? item.getInt("readcount") : 0;
 			// 조회수
 			
-			String createdTime = item.has("createdtime") ? String.valueOf(item.getLong("createdtime")) : null;
+//			String createdTime = item.has("createdtime") ? String.valueOf(item.getLong("createdtime")) : null;
 			// 생성일
 			
-			String lastModifiedTime = item.has("modifiedtime") ? String.valueOf(item.getLong("modifiedtime")) : null;
+//			String lastModifiedTime = item.has("modifiedtime") ? String.valueOf(item.getLong("modifiedtime")) : null;
 			// 최근 수정일
 			
 			String imageMiniUrl = item.has("firstimage2") ? item.getString("firstimage2") : null;
@@ -77,9 +77,9 @@ public class AreaBasedTourListParser {
 			ResultSet rs = database.executeQuery("SELECT * FROM attractions_basic WHERE content_id=", contentId);
 			try {
 				if(rs.next()) {
-					database.executeUpdate("UPDATE attractions_basic SET title='", title, "', cat1='", cat1, "', cat2='", cat2, "', cat3='", cat3, "', mapx=", mapX, ", mapy=", mapY, ", views_count=", readCount, ", created_time='", createdTime, "', last_modified_time='", lastModifiedTime, "', image_mini_url='", imageMiniUrl, "', image_big_url='", imageBigUrl, "' WHERE content_id=", contentId);
+					database.executeUpdate("UPDATE attractions_basic SET title='", title, "', cat1='", cat1, "', cat2='", cat2, "', cat3='", cat3, "', mapx=", mapX, ", mapy=", mapY, ", views_count=", readCount, ", image_mini_url='", imageMiniUrl, "', image_big_url='", imageBigUrl, "' WHERE content_id=", contentId);
 				} else {
-					database.executeUpdate("INSERT INTO attractions_basic VALUES(", contentId, ", ", contentTypeId, ", 0, '", title, "', '", cat1, "', '", cat2, "', '", cat3, "', '", address, "', ", mapX, ", ", mapY, ", ", readCount, ", '", createdTime, "', '", lastModifiedTime, "', '", imageMiniUrl, "', '", imageBigUrl, "')");
+					database.executeUpdate("INSERT INTO attractions_basic VALUES(", contentId, ", ", contentTypeId, ", 0, '", title, "', '", cat1, "', '", cat2, "', '", cat3, "', '", address, "', ", mapX, ", ", mapY, ", ", readCount, ", '", imageMiniUrl, "', '", imageBigUrl, "')");
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
