@@ -28,13 +28,13 @@ public class FriendRequestsInquiry implements Handler<RoutingContext> {
 		
 		String clientId = UserManager.getEncryptedIdFromSession(ctx);
 		
-		ResultSet requests = database.executeQuery("SELECT src_id, date FROM friend_requests WHERE dst_id='", clientId, "'");
+		ResultSet requestSet = database.executeQuery("SELECT src_id, date FROM friend_requests WHERE dst_id='", clientId, "'");
 		// 자신을 타겟으로 한 친구 요청 목록
 		
 		Map<String, String> requestMap = new HashMap<String, String>();
 		try {
-			while(requests.next()) {
-				requestMap.put(requests.getString("src_id"), requests.getString("date"));
+			while(requestSet.next()) {
+				requestMap.put(requestSet.getString("src_id"), requestSet.getString("date"));
 				// 요청자의 id와 요청 날짜
 			}
 		} catch(SQLException e) {
@@ -46,13 +46,13 @@ public class FriendRequestsInquiry implements Handler<RoutingContext> {
 			ResultSet requesterSet = database.executeQuery("SELECT * FROM account WHERE id='", requesterId, "'");
 			try {
 				requesterSet.next();
-				JSONObject requesterInfo = new JSONObject();
-				requesterInfo.put("requester_id", requesterId);
-				requesterInfo.put("phone_number", aes.decrypt(requesterSet.getString("phone_number")));
-				requesterInfo.put("email", aes.decrypt(requesterSet.getString("email")));
-				requesterInfo.put("name", aes.decrypt(requesterSet.getString("name")));
-				requesterInfo.put("date", requestMap.get(requesterId));
-				response.put(requesterInfo);
+				JSONObject requester = new JSONObject();
+				requester.put("requester_id", requesterId);
+				requester.put("phone_number", aes.decrypt(requesterSet.getString("phone_number")));
+				requester.put("email", aes.decrypt(requesterSet.getString("email")));
+				requester.put("name", aes.decrypt(requesterSet.getString("name")));
+				requester.put("date", requestMap.get(requesterId));
+				response.put(requester);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
