@@ -162,7 +162,7 @@ public class SignupManager {
 		}
 	}
 
-	public static void signup(String id, String password, String email, String phoneNumber, String name) {
+	public static void signup(String id, String password, String email, String phoneNumber, String name, String registrationId) {
 		/*
 		 * 회원가입
 		 * id와 이메일 중복 체크는 다른 URI에서 수행
@@ -173,11 +173,12 @@ public class SignupManager {
 		String encryptedPhoneNumber = phoneNumber == null ? null : aes.encrypt(phoneNumber);
 		// null이면 null, null이 아니면 암호화
 		String encryptedName = aes.encrypt(name);
+		String encryptedRegistrationId = aes.encrypt(registrationId);
 		
 		if(encryptedPhoneNumber == null) {
-			database.executeUpdate("INSERT INTO account(id, password, email, phone_number, name, register_date) VALUES('", encryptedId, "', '", encryptedPassword, "', '", encryptedEmail, "', null, '", encryptedName, "', now()", ")");
+			database.executeUpdate("INSERT INTO account(id, password, email, phone_number, name, register_date, registration_id) VALUES('", encryptedId, "', '", encryptedPassword, "', '", encryptedEmail, "', null, '", encryptedName, "', now(), '", encryptedRegistrationId, "')");
 		} else {
-			database.executeUpdate("INSERT INTO account(id, password, email, phone_number, name, register_date) VALUES('", encryptedId, "', '", encryptedPassword, "', '", encryptedEmail, "', '", encryptedPhoneNumber, "', '", encryptedName, "', now()", ")");
+			database.executeUpdate("INSERT INTO account(id, password, email, phone_number, name, register_date, registration_id) VALUES('", encryptedId, "', '", encryptedPassword, "', '", encryptedEmail, "', '", encryptedPhoneNumber, "', '", encryptedName, "', now(), '", encryptedRegistrationId, "')");
 		}
 		Mail.sendMail(email, MailSubjects.WELCOME_SUBJECT.getName(), "환영환영");
 	}

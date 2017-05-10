@@ -49,8 +49,8 @@ public class FindUser implements Handler<RoutingContext> {
 			if(rs.next()) {
 				JSONObject response = new JSONObject();
 				
-				response.put("email", rs.getString("email"));
-				response.put("name", rs.getString("name"));
+				response.put("email", aes.decrypt(rs.getString("email")));
+				response.put("name", aes.decrypt(rs.getString("name")));
 				response.put("id", rs.getString("id"));
 				
 				ctx.response().setStatusCode(200);

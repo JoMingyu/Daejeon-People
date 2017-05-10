@@ -10,6 +10,7 @@ import org.json.JSONObject;
 
 import com.planb.support.routing.Route;
 import com.planb.support.user.UserManager;
+import com.planb.support.utilities.AES256;
 import com.planb.support.utilities.DataBase;
 
 import io.vertx.core.Handler;
@@ -21,6 +22,7 @@ public class FriendList implements Handler<RoutingContext> {
 	@Override
 	public void handle(RoutingContext ctx) {
 		DataBase database = DataBase.getInstance();
+		AES256 aes = UserManager.getAES256Instance();
 		JSONArray response = new JSONArray();
 		
 		String clientId = UserManager.getEncryptedIdFromSession(ctx);
@@ -45,9 +47,9 @@ public class FriendList implements Handler<RoutingContext> {
 				friendInfoSet.next();
 				JSONObject friend = new JSONObject();
 				friend.put("friend_id", friendId);
-				friend.put("phone_number", friendInfoSet.getString("phone_number"));
-				friend.put("email", friendInfoSet.getString("email"));
-				friend.put("name", friendInfoSet.getString("name"));
+				friend.put("phone_number", aes.decrypt(friendInfoSet.getString("phone_number")));
+				friend.put("email", aes.decrypt(friendInfoSet.getString("email")));
+				friend.put("name", aes.decrypt(friendInfoSet.getString("name")));
 				response.put(friend);
 			} catch(SQLException e) {
 				e.printStackTrace();
