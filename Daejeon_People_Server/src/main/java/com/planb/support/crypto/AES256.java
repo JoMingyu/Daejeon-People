@@ -1,4 +1,4 @@
-package com.planb.support.utilities;
+package com.planb.support.crypto;
 
 import java.io.UnsupportedEncodingException;
 

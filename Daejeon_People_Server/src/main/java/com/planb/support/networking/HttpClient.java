@@ -1,4 +1,4 @@
-package com.planb.support.utilities;
+package com.planb.support.networking;
 
 import java.io.IOException;
 import java.io.InputStream;

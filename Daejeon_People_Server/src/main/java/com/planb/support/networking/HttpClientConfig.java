@@ -1,4 +1,4 @@
-package com.planb.support.utilities;
+package com.planb.support.networking;
 
 public class HttpClientConfig extends Config {
 	private String targetAddress = null;

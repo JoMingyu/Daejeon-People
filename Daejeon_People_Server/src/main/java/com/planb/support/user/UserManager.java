@@ -4,11 +4,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.UUID;
 
-import com.planb.support.utilities.AES256;
+import com.planb.support.crypto.AES256;
+import com.planb.support.crypto.SHA256;
 import com.planb.support.utilities.DataBase;
 import com.planb.support.utilities.Mail;
 import com.planb.support.utilities.MailSubjects;
-import com.planb.support.utilities.SHA256;
 import com.planb.support.utilities.SessionUtil;
 
 import io.vertx.ext.web.RoutingContext;

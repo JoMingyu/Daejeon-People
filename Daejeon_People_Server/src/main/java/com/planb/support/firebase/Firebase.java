@@ -1,10 +1,14 @@
-package com.planb.support.utilities;
+package com.planb.support.firebase;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+
+import com.planb.support.networking.Config;
+import com.planb.support.networking.HttpClient;
+import com.planb.support.networking.HttpClientConfig;
 
 public class Firebase {
 	private static final String SERVER_KEY = "AAAAhndBTOE:APA91bENhBImmt3bwwPvNYMcCanS5bl55zQ9W3-rpVJiCwPhSssuUyBWcbqL4FstfU8hhlMSmXS4qixQtaClDcT_0RJ5dh2q2pAVjM0pk8P8SyRPi0gC3xlRZbFXmpRE_FvaP4LjTizD";
@@ -91,6 +95,10 @@ public class Firebase {
 	
 	public static void sendByTopic() {
 		// Send by topic
+	}
+	
+	public static void sendToGroup() {
+		
 	}
 	// sendByNotificationKey
 }

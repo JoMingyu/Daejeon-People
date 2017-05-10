@@ -3,10 +3,10 @@ package com.planb.restful.travel;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import com.planb.support.firebase.Firebase;
 import com.planb.support.routing.Route;
 import com.planb.support.user.UserManager;
 import com.planb.support.utilities.DataBase;
-import com.planb.support.utilities.Firebase;
 
 import io.vertx.core.Handler;
 import io.vertx.core.http.HttpMethod;
