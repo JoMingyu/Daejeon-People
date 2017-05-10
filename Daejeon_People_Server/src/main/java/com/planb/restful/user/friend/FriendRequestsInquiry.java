@@ -24,9 +24,9 @@ public class FriendRequestsInquiry implements Handler<RoutingContext> {
 		DataBase database = DataBase.getInstance();
 		JSONArray response = new JSONArray();
 		
-		String dst = UserManager.getEncryptedIdFromSession(ctx);
+		String clientId = UserManager.getEncryptedIdFromSession(ctx);
 		
-		ResultSet requests = database.executeQuery("SELECT src_id FROM friend_requests WHERE dst_id='", dst, "'");
+		ResultSet requests = database.executeQuery("SELECT src_id FROM friend_requests WHERE dst_id='", clientId, "'");
 		// 자신을 타겟으로 한 친구 요청 목록
 		
 		Map<String, String> requestMap = new HashMap<String, String>();

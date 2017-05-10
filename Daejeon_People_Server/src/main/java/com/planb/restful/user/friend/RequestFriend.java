@@ -15,10 +15,10 @@ public class RequestFriend implements Handler<RoutingContext> {
 	public void handle(RoutingContext ctx) {
 		DataBase database = DataBase.getInstance();
 		
-		String src = UserManager.getEncryptedIdFromSession(ctx);
+		String clientId = UserManager.getEncryptedIdFromSession(ctx);
 		String dst = ctx.request().getFormAttribute("dst");
 		
-		database.executeUpdate("INSERT INTO friend_requests(src_id, dst_id, date) VALUES('", src, "', '", dst, "', CURDATE())");
+		database.executeUpdate("INSERT INTO friend_requests(src_id, dst_id, date) VALUES('", clientId, "', '", dst, "', CURDATE())");
 		
 		ctx.response().setStatusCode(201).end();
 		ctx.response().close();

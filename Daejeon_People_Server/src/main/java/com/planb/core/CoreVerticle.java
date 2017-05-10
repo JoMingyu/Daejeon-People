@@ -56,8 +56,8 @@ public class CoreVerticle extends AbstractVerticle {
 		 * @see
 		 * http://vertx.io/docs/apidocs/io/vertx/rxjava/ext/web/handler/StaticHandler.html
 		 */
-		Thread.sleep(3000);
-		new ParserThread().start();
+		Thread.sleep(1000);
+//		new ParserThread().start();
 		
 		vertx.createHttpServer().requestHandler(router::accept).listen(80);
 		/**

@@ -186,7 +186,7 @@ public class AttractionsListInquiry {
 				obj.put("address", rs.getString("address"));
 				obj.put("category", rs.getString("cat3"));
 				obj.put("content_id", rs.getInt("content_id"));
-				obj.put("image", rs.getString("image_mini_url"));
+				obj.put("image", rs.getString("image_big_url"));
 				obj.put("mapx", rs.getDouble("mapx"));
 				obj.put("mapy", rs.getDouble("mapy"));
 				obj.put("title", rs.getString("title"));

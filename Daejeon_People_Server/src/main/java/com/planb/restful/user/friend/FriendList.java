@@ -23,13 +23,13 @@ public class FriendList implements Handler<RoutingContext> {
 		DataBase database = DataBase.getInstance();
 		JSONArray response = new JSONArray();
 		
-		String client = UserManager.getEncryptedIdFromSession(ctx);
+		String clientId = UserManager.getEncryptedIdFromSession(ctx);
 		
-		ResultSet friendSet = database.executeQuery("SELECT friend_id FROM friend_list WHERE client_id1='", client, "' OR client_id2='", client, "'");
+		ResultSet friendSet = database.executeQuery("SELECT friend_id FROM friend_list WHERE client_id1='", clientId, "' OR client_id2='", clientId, "'");
 		List<String> friendIdList = new ArrayList<String>();
 		try {
 			while(friendSet.next()) {
-				if(friendSet.getString("client_id1") != client) {
+				if(friendSet.getString("client_id1") != clientId) {
 					friendIdList.add(friendSet.getString("client_id1"));
 				} else {
 					friendIdList.add(friendSet.getString("client_id2"));
