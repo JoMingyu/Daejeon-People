@@ -3,21 +3,13 @@ package com.planb.support.utilities;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class Firebase {
-	private static final String SERVER_KEY = "";
-	private static final String API_URL = "https://fcm.googleapis.com/fcm/send";
-	private static HttpClientConfig config = null;
-	private static HttpClient client = null;
+	private static final String SERVER_KEY = "AAAAhndBTOE:APA91bENhBImmt3bwwPvNYMcCanS5bl55zQ9W3-rpVJiCwPhSssuUyBWcbqL4FstfU8hhlMSmXS4qixQtaClDcT_0RJ5dh2q2pAVjM0pk8P8SyRPi0gC3xlRZbFXmpRE_FvaP4LjTizD";
 	
 	public Firebase() {
-		config = new HttpClientConfig();
-		config.setTargetAddress(API_URL);
-		config.setReadTimeout(10000);
-		config.setConnectTimeout(10000);
-		client = new HttpClient(config);
-		
 		// FireBase Read-Time DataBase를 사용하는 경우
 //		FirebaseOptions options;
 //		try {
@@ -32,8 +24,57 @@ public class Firebase {
 //		}
 	}
 	
+	public static String createGroup(String notificationKeyName, String registrationId) {
+		Config config = new HttpClientConfig();
+		config.setTargetAddress("https://fcm.googleapis.com/gcm/notification");
+		HttpClient client = new HttpClient(config);
+		
+		JSONArray registrationIds = new JSONArray();
+		registrationIds.put(registrationId);
+		
+		JSONObject requestObject = new JSONObject();
+		requestObject.put("operation", "create");
+		requestObject.put("notification_key_name", notificationKeyName);
+		requestObject.put("registration_ids", registrationIds);
+		
+		Map<String, Object> headers = new HashMap<String, Object>();
+		headers.put("Authorization", "key=" + SERVER_KEY);
+		headers.put("Content-Type", "application/json");
+		
+		HashMap<String, Object> response = client.post("/", headers, requestObject);
+		JSONObject responseBody = new JSONObject(response.get("response"));
+		return responseBody.getString("notification_key");
+	}
+	
+	public static String enterGroup(String notificationKey, String notificationKeyName, String registrationId) {
+		Config config = new HttpClientConfig();
+		config.setTargetAddress("https://fcm.googleapis.com/gcm/notification");
+		HttpClient client = new HttpClient(config);
+		
+		JSONArray registrationIds = new JSONArray();
+		registrationIds.put(registrationId);
+		
+		JSONObject requestObject = new JSONObject();
+		requestObject.put("operation", "add");
+		requestObject.put("notification_key_name", notificationKeyName);
+		requestObject.put("notification_key", notificationKey);
+		requestObject.put("registration_ids", registrationIds);
+		
+		Map<String, Object> headers = new HashMap<String, Object>();
+		headers.put("Authorization", "key=" + SERVER_KEY);
+		headers.put("Content-Type", "application/json");
+		
+		HashMap<String, Object> response = client.post("/", headers, requestObject);
+		JSONObject responseBody = new JSONObject(response.get("response"));
+		return responseBody.getString("notification_key");
+	}
+	
 	public static void send(String message, String target) {
 		// Send by registration id
+		Config config = new HttpClientConfig();
+		config.setTargetAddress("https://fcm.googleapis.com/fcm/send");
+		HttpClient client = new HttpClient(config);
+		
 		JSONObject body = new JSONObject();
 		body.put("body", message);
 		

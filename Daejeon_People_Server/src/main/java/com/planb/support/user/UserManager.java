@@ -68,6 +68,24 @@ public class UserManager {
 		return encryptedId;
 	}
 	
+	public static String getRegistrationIdFromSession(RoutingContext ctx) {
+		/*
+		 * 세션으로부터 FireBase registration ID get
+		 */
+		String encryptedSessionId = SessionUtil.getClientSessionId(ctx, "UserSession");
+		String registrationId = null;
+		
+		rs = database.executeQuery("SELECT * FROM account WHERE session_id='", encryptedSessionId, "'");
+		try {
+			rs.next();
+			registrationId = rs.getString("registration_id");
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return registrationId;
+	}
+	
 	private String getEncryptedSessionFromId(String id) {
 		/*
 		 * DB에서 id로부터 암호화된 session id get

@@ -7,6 +7,7 @@ import java.util.UUID;
 import com.planb.support.routing.Route;
 import com.planb.support.user.UserManager;
 import com.planb.support.utilities.DataBase;
+import com.planb.support.utilities.Firebase;
 
 import io.vertx.core.Handler;
 import io.vertx.core.http.HttpMethod;
@@ -20,11 +21,13 @@ public class CreateTravel implements Handler<RoutingContext> {
 		
 		String clientId = UserManager.getEncryptedIdFromSession(ctx);
 		// 여행 개설자
+		String registrationId = UserManager.getRegistrationIdFromSession(ctx);
+		String title = ctx.request().getFormAttribute("title");
 		
-		String notificationKey;
+		String notificationKeyName;
 		while(true) {
-			notificationKey = UUID.randomUUID().toString();
-			ResultSet rs = database.executeQuery("SELECT * FROM chat_list WHERE notification_key='", notificationKey, "'");
+			notificationKeyName = UUID.randomUUID().toString();
+			ResultSet rs = database.executeQuery("SELECT * FROM travels WHERE notification_key_name='", notificationKeyName, "'");
 			try {
 				if(!rs.next()) {
 					break;
@@ -33,5 +36,12 @@ public class CreateTravel implements Handler<RoutingContext> {
 				e.printStackTrace();
 			}
 		}
+		
+		String notificationKey = Firebase.createGroup(notificationKeyName, registrationId);
+			
+		database.executeUpdate("INSERT INTO travel_list VALUES('", notificationKeyName, "', '", notificationKey, "', '", title, "', '", clientId, "')");
+		
+		ctx.response().setStatusCode(201).end();
+		ctx.response().close();
 	}
 }

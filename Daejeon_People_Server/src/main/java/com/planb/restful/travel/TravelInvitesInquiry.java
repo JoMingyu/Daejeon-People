@@ -39,6 +39,7 @@ public class TravelInvitesInquiry implements Handler<RoutingContext> {
 			while(inviteSet.next()) {
 				Map<String, String> inviteInfoMap = new HashMap<String, String>();
 				inviteInfoMap.put("requester_id", inviteSet.getString("src_id"));
+				inviteInfoMap.put("notification_key_name", inviteSet.getString("notification_key_name"));
 				inviteInfoMap.put("msg", inviteSet.getString("msg"));
 				inviteInfoMap.put("date", inviteSet.getString("date"));
 				inviteList.add((HashMap<String, String>) inviteInfoMap);
