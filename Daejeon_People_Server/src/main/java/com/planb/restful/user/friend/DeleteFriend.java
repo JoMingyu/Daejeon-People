@@ -10,7 +10,7 @@ import io.vertx.ext.web.RoutingContext;
 public class DeleteFriend implements Handler<RoutingContext> {
 	/*
 	 * 친구 삭제
-	 * REST 아키텍처에 따라 메소드를 DELETE로 두어야 하지만 보안 상의 문제로 인해 POST로 결정
+	 * REST 아키텍처에 따라 DELETE /friend로 두어야 하지만 보안 상의 문제로 인해 POST로 결정
 	 */
 	@Override
 	public void handle(RoutingContext ctx) {
