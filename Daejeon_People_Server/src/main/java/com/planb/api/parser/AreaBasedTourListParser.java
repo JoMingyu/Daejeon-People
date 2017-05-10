@@ -7,7 +7,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import com.planb.api.support.Params;
-import com.planb.api.support.Request;
+import com.planb.api.support.HttpRequestForParser;
 import com.planb.support.utilities.DataBase;
 
 public class AreaBasedTourListParser {
@@ -19,13 +19,13 @@ public class AreaBasedTourListParser {
 	private static DataBase database = DataBase.getInstance();
 	
 	public static void parse() {
-		int totalCount = Request.getTotalCount(defaultURL);
+		int totalCount = HttpRequestForParser.getTotalCount(defaultURL);
 		// 요청 이전에 응답 전체 카운트를 먼저 얻어냄
 		
 		String requestURL = defaultURL + "&numOfRows=" + totalCount;
 		// 응답받을 여행지 정보 갯수를 totalCount에 맞춰서 요청
 		
-		JSONArray items = Request.getItems(requestURL);
+		JSONArray items = HttpRequestForParser.getItems(requestURL);
 		for(int i = 0; i < items.length(); i++) {
 			JSONObject item = items.getJSONObject(i);
 			

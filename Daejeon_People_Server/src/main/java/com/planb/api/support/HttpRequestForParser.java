@@ -10,7 +10,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class Request {
+public class HttpRequestForParser {
 	private static JSONObject request(String URL) {
 		/*
 		 * HttpURLConnection을 이용해 URL에 GET 요청

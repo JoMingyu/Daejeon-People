@@ -9,7 +9,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import com.planb.api.support.Params;
-import com.planb.api.support.Request;
+import com.planb.api.support.HttpRequestForParser;
 import com.planb.support.utilities.DataBase;
 
 public class AdditionalImageParser {
@@ -34,19 +34,19 @@ public class AdditionalImageParser {
 		for(int contentId : contentInfoMap.keySet()) {
 			int contentTypeId = contentInfoMap.get(contentId);
 			String requestURL = defaultURL + "&contentId=" + contentId + "&contentTypeId=" + contentTypeId;
-			int totalCount = Request.getTotalCount(requestURL);
+			int totalCount = HttpRequestForParser.getTotalCount(requestURL);
 			
 			if(totalCount == 0) {
 				continue;
 			}
 			
 			if(totalCount == 1) {
-				JSONObject item = Request.getItem(requestURL);
+				JSONObject item = HttpRequestForParser.getItem(requestURL);
 				database.executeUpdate("INSERT INTO attractions_images VALUES(", contentId, ", '", item.getString("originimgurl"), "')");
 			} else {
 				// totalCount > 1
 				
-				JSONArray items = Request.getItems(requestURL + "&numOfRows=" + totalCount);
+				JSONArray items = HttpRequestForParser.getItems(requestURL + "&numOfRows=" + totalCount);
 				// 응답받을 이미지 갯수를 totalCount에 맞춰서 요청
 				
 				for(int i = 0; i < items.length(); i++) {
