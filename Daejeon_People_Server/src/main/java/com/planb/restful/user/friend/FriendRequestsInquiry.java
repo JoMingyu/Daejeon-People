@@ -26,7 +26,7 @@ public class FriendRequestsInquiry implements Handler<RoutingContext> {
 		
 		String clientId = UserManager.getEncryptedIdFromSession(ctx);
 		
-		ResultSet requests = database.executeQuery("SELECT src_id FROM friend_requests WHERE dst_id='", clientId, "'");
+		ResultSet requests = database.executeQuery("SELECT src_id, date FROM friend_requests WHERE dst_id='", clientId, "'");
 		// 자신을 타겟으로 한 친구 요청 목록
 		
 		Map<String, String> requestMap = new HashMap<String, String>();
@@ -45,6 +45,7 @@ public class FriendRequestsInquiry implements Handler<RoutingContext> {
 			try {
 				requesterSet.next();
 				JSONObject requesterInfo = new JSONObject();
+				requesterInfo.put("requester_id", requesterId);
 				requesterInfo.put("phone_number", requesterSet.getString("phone_number"));
 				requesterInfo.put("email", requesterSet.getString("email"));
 				requesterInfo.put("name", requesterSet.getString("name"));

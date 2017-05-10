@@ -25,7 +25,7 @@ public class FriendList implements Handler<RoutingContext> {
 		
 		String clientId = UserManager.getEncryptedIdFromSession(ctx);
 		
-		ResultSet friendSet = database.executeQuery("SELECT friend_id FROM friend_list WHERE client_id1='", clientId, "' OR client_id2='", clientId, "'");
+		ResultSet friendSet = database.executeQuery("SELECT * FROM friend_list WHERE client_id1='", clientId, "' OR client_id2='", clientId, "'");
 		List<String> friendIdList = new ArrayList<String>();
 		try {
 			while(friendSet.next()) {
@@ -44,6 +44,7 @@ public class FriendList implements Handler<RoutingContext> {
 			try {
 				friendInfoSet.next();
 				JSONObject friend = new JSONObject();
+				friend.put("friend_id", friendId);
 				friend.put("phone_number", friendInfoSet.getString("phone_number"));
 				friend.put("email", friendInfoSet.getString("email"));
 				friend.put("name", friendInfoSet.getString("name"));
