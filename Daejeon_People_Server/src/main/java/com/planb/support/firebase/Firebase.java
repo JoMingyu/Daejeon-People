@@ -98,7 +98,7 @@ public class Firebase {
 	}
 	
 	public static void sendToGroup() {
-		
+		// 아마도 클라이언트에서 처리
 	}
 	// sendByNotificationKey
 }
