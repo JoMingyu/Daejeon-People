@@ -2,8 +2,10 @@ package com.planb.support.restful.attractions;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -11,6 +13,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.planb.support.user.UserManager;
 import com.planb.support.utilities.DataBase;
 
 import io.vertx.ext.web.RoutingContext;
@@ -51,7 +54,7 @@ public class AttractionsListInquiry {
 			break;
 		}
 		
-		JSONArray result = extractDatas(rs);
+		JSONArray result = extractDatas(ctx, rs);
 		
 		return result;
 	}
@@ -89,7 +92,7 @@ public class AttractionsListInquiry {
 			break;
 		}
 		
-		JSONArray result = extractDatas(rs);
+		JSONArray result = extractDatas(ctx, rs);
 		
 		return result;
 	}
@@ -174,26 +177,43 @@ public class AttractionsListInquiry {
 		return database.executeQuery(query);
 	}
 	
-	private static JSONArray extractDatas(ResultSet rs) {
+	private static JSONArray extractDatas(RoutingContext ctx, ResultSet rs) {
 		/*
 		 * ResultSet에 대한 데이터 추출기
 		 * 뽑을 데이터가 하나도 없다면 객체 그대로(null) 리턴
 		 */
 		JSONArray result = new JSONArray();
+		List<Map<String, Object>> attractionInfoList = new ArrayList<Map<String, Object>>();
 		try {
 			while(rs.next()) {
-				JSONObject obj = new JSONObject();
-				obj.put("address", rs.getString("address"));
-				obj.put("category", rs.getString("cat3"));
-				obj.put("content_id", rs.getInt("content_id"));
-				obj.put("image", rs.getString("image_big_url"));
-				obj.put("mapx", rs.getDouble("mapx"));
-				obj.put("mapy", rs.getDouble("mapy"));
-				obj.put("title", rs.getString("title"));
-				result.put(obj);
+				Map<String, Object> attractionInfo = new HashMap<String, Object>();
+				attractionInfo.put("content_id", rs.getInt("content_id"));
+				attractionInfo.put("address", rs.getString("address"));
+				attractionInfo.put("category", rs.getString("cat3"));
+				attractionInfo.put("image", rs.getString("image_big_url"));
+				attractionInfo.put("mapx", rs.getDouble("mapx"));
+				attractionInfo.put("mapy", rs.getDouble("mapy"));
+				attractionInfo.put("title", rs.getString("title"));
+				attractionInfoList.add(attractionInfo);
 			}
 		} catch (JSONException | SQLException e) {
 			e.printStackTrace();
+		}
+		
+		String clientId = UserManager.getEncryptedIdFromSession(ctx);
+		for(Map<String, Object> attractionInfo : attractionInfoList) {
+			int contentId = Integer.parseInt(attractionInfo.get("content_id").toString());
+			ResultSet wish = database.executeQuery("SELECT * FROM wish_list WHERE client_id='", clientId, "' AND content_id =", contentId);
+			try {
+				if(wish.next()) {
+					attractionInfo.put("wish", true);
+				} else {
+					attractionInfo.put("wish", false);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			result.put(new JSONObject(attractionInfo));
 		}
 		
 		return result;
