@@ -33,8 +33,8 @@ public class AttractionsListInquiry {
 			rs = database.executeQuery(String.format(query, "attractions_basic", "views_count DESC"));
 			break;
 		case 2:
-			// 좋아요순
-			rs = database.executeQuery(String.format(query, "attractions_basic", "like_count DESC"));
+			// 위시리스트 많은 순
+			rs = database.executeQuery(String.format(query, "attractions_basic", "wish_count DESC"));
 			break;
 		case 3:
 			// 거리순
@@ -71,8 +71,8 @@ public class AttractionsListInquiry {
 			rs = database.executeQuery(String.format(query, "attractions_basic", "views_count DESC"));
 			break;
 		case 2:
-			// 좋아요순
-			rs = database.executeQuery(String.format(query, "attractions_basic", "like_count DESC"));
+			// 위시리스트 많은 순
+			rs = database.executeQuery(String.format(query, "attractions_basic", "wish_count DESC"));
 			break;
 		case 3:
 			// 거리순
@@ -96,7 +96,7 @@ public class AttractionsListInquiry {
 	
 	private static ResultSet distanceBasedInquiry(ResultSet rs, int page, double clientX, double clientY) {
 		/*
-		 * 거리기반 조회
+		 * 거리기반 조회 : 전체 데이터를 가지고 재정렬
 		 * 조회할 수 있는 데이터가 없는 경우 null 리턴됨
 		 */
 		

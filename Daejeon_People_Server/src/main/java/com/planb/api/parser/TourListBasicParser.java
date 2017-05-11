@@ -10,7 +10,7 @@ import com.planb.api.support.Params;
 import com.planb.api.support.HttpRequestForParser;
 import com.planb.support.utilities.DataBase;
 
-public class AreaBasedTourListParser {
+public class TourListBasicParser {
 	/*
 	 * 지역기반 관광정보 리스트 조회
 	 * JsonArray를 순차 탐색하며 DB 저장
