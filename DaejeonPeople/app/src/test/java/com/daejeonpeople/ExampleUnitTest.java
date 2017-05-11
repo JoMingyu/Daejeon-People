@@ -1,4 +1,4 @@
-package com.example.jeongminji.daejeonpeople;
+package com.daejeonpeople;
 
 import org.junit.Test;
 

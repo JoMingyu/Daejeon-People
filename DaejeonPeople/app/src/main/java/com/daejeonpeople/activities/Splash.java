@@ -1,8 +1,10 @@
-package com.example.jeongminji.daejeonpeople;
+package com.daejeonpeople.activities;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
+
+import com.daejeonpeople.R;
 
 /**
  * Created by 10102김동규 on 2017-05-10.

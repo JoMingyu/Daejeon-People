@@ -1,9 +1,10 @@
-package com.example.jeongminji.daejeonpeople;
+package com.daejeonpeople.activities;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+
+import com.daejeonpeople.R;
 
 public class MainActivity extends Activity {
 
