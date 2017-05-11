@@ -3,8 +3,10 @@ package com.daejeonpeople.activities;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.daejeonpeople.R;
+import com.daejeonpeople.support.firebase.Firebase;
 
 public class MainActivity extends Activity {
 
