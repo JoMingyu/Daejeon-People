@@ -40,7 +40,7 @@ public class MyPage implements Handler<RoutingContext> {
 			userInfo.next();
 			response.put("email", aes.decrypt(userInfo.getString("email")));
 			response.put("phone", aes.decrypt(userInfo.getString("phone_number")));
-			response.put("email", aes.decrypt(userInfo.getString("name")));
+			response.put("name", aes.decrypt(userInfo.getString("name")));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

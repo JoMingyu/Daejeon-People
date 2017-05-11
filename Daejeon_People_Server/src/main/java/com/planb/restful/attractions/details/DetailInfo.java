@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 import org.json.JSONObject;
 
 import com.planb.support.routing.Route;
+import com.planb.support.user.UserManager;
 import com.planb.support.utilities.DataBase;
 
 import io.vertx.core.Handler;
@@ -21,6 +22,7 @@ public class DetailInfo implements Handler<RoutingContext> {
 		DataBase database = DataBase.getInstance();
 		JSONObject response = new JSONObject();
 		
+		String clientId = UserManager.getRegistrationIdFromSession(ctx);
 		int contentId = Integer.parseInt(ctx.request().getParam("contentid"));
 		
 		ResultSet contentInfo = database.executeQuery("SELECT * FROM attractions_basic WHERE content_id=", contentId);

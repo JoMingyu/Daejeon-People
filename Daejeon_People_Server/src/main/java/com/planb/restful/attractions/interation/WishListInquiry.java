@@ -26,7 +26,7 @@ public class WishListInquiry implements Handler<RoutingContext> {
 		
 		String clientId = UserManager.getEncryptedIdFromSession(ctx);
 		
-		ResultSet wishList = database.executeQuery("SELECT content_id FROM wish_list WHERE client_id=", clientId);
+		ResultSet wishList = database.executeQuery("SELECT content_id FROM wish_list WHERE client_id='", clientId, "'");
 		List<Integer> contentIdList = new ArrayList<Integer>();
 		try {
 			while(wishList.next()) {
@@ -40,6 +40,7 @@ public class WishListInquiry implements Handler<RoutingContext> {
 			ResultSet content = database.executeQuery("SELECT * FROM attractions_basic WHERE content_id=", contentId);
 			JSONObject contentInfo = new JSONObject();
 			try {
+				content.next();
 				contentInfo.put("address", content.getString("address"));
 				contentInfo.put("category", content.getString("cat3"));
 				contentInfo.put("content_id", content.getInt("content_id"));

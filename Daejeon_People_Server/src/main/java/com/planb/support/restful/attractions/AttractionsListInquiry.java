@@ -27,7 +27,7 @@ public class AttractionsListInquiry {
 		int sortType = Integer.parseInt(ctx.request().getParam("sort_type"));
 		int page = Integer.parseInt(ctx.request().getParam("page"));
 		
-		String query = "SELECT * FROM %s ORDER BY %s LIMIT " + (page - 1) * numOfRows + ", " + numOfRows + " WHERE content_type_id=" + contentTypeId;
+		String query = "SELECT * FROM %s WHERE content_type_id=" + contentTypeId + " ORDER BY %s LIMIT " + (page - 1) * numOfRows + ", " + numOfRows;
 		ResultSet rs = null;
 		
 		switch(sortType) {
