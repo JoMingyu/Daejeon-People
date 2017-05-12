@@ -29,17 +29,17 @@ public class HttpClient {
 	
 	public Response post(String uri, Map<String, Object> headers, Map<String, Object> params) {
 		/*
-		 * post ��û
-		 * status code ����
+		 * post 요청
+		 * status code 리턴
 		 */
 		String requestAddress = NetworkingHelper.createRequestAddress(config, uri);
-		// URI�� ���� ��û �ּ� ������
+		// URI를 통해 요청 주소 얻어오기
 		try {
 			url = new URL(requestAddress);
 			connection = (HttpURLConnection) url.openConnection();
 			connection.setRequestMethod("POST");
 			connection.setDoOutput(true);
-			// POST ��û �� DoOutput Ȱ��ȭ
+			// POST 요청 시 DoOutput 활성화
 			connection.setReadTimeout(config.getReadTimeout());
 			connection.setConnectTimeout(config.getConnectTimeout());
 			
@@ -52,7 +52,7 @@ public class HttpClient {
 			if(params.size() > 0) {
 				out = connection.getOutputStream();
 				out.write(NetworkingHelper.createParamBytes(params));
-				// Body �����Ͱ� ������ ����Ʈ ������ �����͸� ����
+				// Body 데이터가 있으면 바이트 형태의 데이터를 전송
 				out.flush();
 			}
 			
@@ -60,7 +60,7 @@ public class HttpClient {
 			try {
 				in = connection.getInputStream();
 				String responseBody = NetworkingHelper.getResponse(in);
-				// connection���� ���� InputStream���� ���� ������
+				// connection으로 얻은 InputStream에서 응답 얻어오기
 				response.setResponseBody(responseBody);
 			} catch(IOException e) {
 				
@@ -78,17 +78,17 @@ public class HttpClient {
 	
 	public Response post(String uri, Map<String, Object> headers, JSONObject requestObject) {
 		/*
-		 * post ��û : ���� �����Ͱ� JSON
-		 * status code ����
+		 * post 요청 : 본문 데이터가 JSON
+		 * status code 리턴
 		 */
 		String requestAddress = NetworkingHelper.createRequestAddress(config, uri);
-		// URI�� ���� ��û �ּ� ������
+		// URI를 통해 요청 주소 얻어오기
 		try {
 			url = new URL(requestAddress);
 			connection = (HttpURLConnection) url.openConnection();
 			connection.setRequestMethod("POST");
 			connection.setDoOutput(true);
-			// POST ��û �� DoOutput Ȱ��ȭ
+			// POST 요청 시 DoOutput 활성화
 			connection.setReadTimeout(config.getReadTimeout());
 			connection.setConnectTimeout(config.getConnectTimeout());
 			
@@ -106,7 +106,7 @@ public class HttpClient {
 			try {
 				in = connection.getInputStream();
 				String responseBody = NetworkingHelper.getResponse(in);
-				// connection���� ���� InputStream���� ���� ������
+				// connection으로 얻은 InputStream에서 응답 얻어오기
 				response.setResponseBody(responseBody);
 			} catch(IOException e) {
 				
@@ -124,13 +124,13 @@ public class HttpClient {
 	
 	public Response get(String uri, Map<String, Object> headers, Map<String, Object> params) {
 		/*
-		 * get ��û
-		 * status code�� ���� ������ ����
+		 * get 요청
+		 * status code와 응답 데이터 리턴
 		 */
 		String requestAddress = null;
 		if(params.size() > 0) {
 			requestAddress = NetworkingHelper.createRequestAddress(config, uri, params);
-			// URI�� �Ķ���͸� ���� ��û �ּ� ������
+			// URI와 파라미터를 통해 요청 주소 얻어오기
 		} else {
 			requestAddress = NetworkingHelper.createRequestAddress(config, uri);
 		}
@@ -151,7 +151,7 @@ public class HttpClient {
 			try {
 				in = connection.getInputStream();
 				String responseBody = NetworkingHelper.getResponse(in);
-				// connection���� ���� InputStream���� ���� ������
+				// connection으로 얻은 InputStream에서 응답 얻어오기
 				response.setResponseBody(responseBody);
 			} catch(IOException e) {
 				
@@ -169,13 +169,13 @@ public class HttpClient {
 	
 	public int delete(String uri, Map<String, Object> headers, Map<String, Object> params) {
 		/*
-		 * delete ��û
-		 * status code ����
+		 * delete 요청
+		 * status code 리턴
 		 */
 		String requestAddress = null;
 		if(params.size() > 0) {
 			requestAddress = NetworkingHelper.createRequestAddress(config, uri, params);
-			// URI�� �Ķ���͸� ���� ��û �ּ� ������
+			// URI와 파라미터를 통해 요청 주소 얻어오기
 		} else {
 			requestAddress = NetworkingHelper.createRequestAddress(config, uri);
 		}
