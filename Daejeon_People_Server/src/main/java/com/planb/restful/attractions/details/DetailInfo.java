@@ -41,6 +41,7 @@ public class DetailInfo implements Handler<RoutingContext> {
 		
 		ResultSet contentCommonInfo;
 		ResultSet contentDetailInfo;
+		ResultSet wishInfo;
 		ResultSet contentImage;
 		try {
 			switch(contentTypeId) {
@@ -121,14 +122,22 @@ public class DetailInfo implements Handler<RoutingContext> {
 			default:
 				break;
 		}
-		ResultSet wishInfo = database.executeQuery("SELECT * FROM wish_list WHERE client_id='", clientId, "' AND content_id=", contentId);
+		wishInfo = database.executeQuery("SELECT * FROM wish_list WHERE client_id='", clientId, "' AND content_id=", contentId);
 		if(wishInfo.next()) {
 			response.put("wish", true);
+		}
+		
+		contentImage = database.executeQuery("SELECT * FROM attractions_images WHERE content_id=", contentId);
+		int count = 0;
+		if(contentImage.next()) {
+			response.put("additional_image", true);
+			do {
+				response.put("additional_image_" + ++count, contentImage.getString("image"));
+			} while(contentImage.next());
 		}
 		} catch(SQLException e) {
 			e.printStackTrace();
 		}
-		// 이미지 추가
 	}
 	
 	private static String extractPhoneNumber(String phoneNumber) {
