@@ -121,10 +121,13 @@ public class DetailInfo implements Handler<RoutingContext> {
 			default:
 				break;
 		}
+		ResultSet wishInfo = database.executeQuery("SELECT * FROM wish_list WHERE client_id='", clientId, "' AND content_id=", contentId);
+		if(wishInfo.next()) {
+			response.put("wish", true);
+		}
 		} catch(SQLException e) {
 			e.printStackTrace();
 		}
-		// 위시 체크
 		// 이미지 추가
 	}
 	

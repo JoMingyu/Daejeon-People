@@ -18,7 +18,7 @@ public class AddWish implements Handler<RoutingContext> {
 		DataBase database = DataBase.getInstance();
 		
 		String clientId = UserManager.getEncryptedIdFromSession(ctx);
-		int contentId = Integer.valueOf(ctx.request().getParam("content_id"));
+		int contentId = Integer.parseInt(ctx.request().getParam("content_id"));
 		
 		ResultSet content = database.executeQuery("SELECT wish_count FROM attractions_basic WHERE content_id=", contentId);
 		try {

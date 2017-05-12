@@ -10,6 +10,7 @@ import org.json.JSONObject;
 import com.planb.api.support.Params;
 import com.planb.api.support.HttpRequestForParser;
 import com.planb.support.utilities.DataBase;
+import com.planb.support.utilities.Log;
 
 public class DetailCommonParser {
 	/*
@@ -53,6 +54,6 @@ public class DetailCommonParser {
 			
 			database.executeUpdate("INSERT INTO attractions_detail_common VALUES(", contentId, ", ", contentTypeId, ", '", homepage, "', '", overview, "', '", telName, "', '", tel, "')");
 		}
-		System.out.println("Detail Common Parse Success.");
+		Log.I("Detail Common Parse Success.");
 	}
 }

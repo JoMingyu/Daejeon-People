@@ -9,6 +9,7 @@ import org.json.JSONObject;
 import com.planb.api.support.Params;
 import com.planb.api.support.HttpRequestForParser;
 import com.planb.support.utilities.DataBase;
+import com.planb.support.utilities.Log;
 
 public class TourListBasicParser {
 	/*
@@ -85,6 +86,6 @@ public class TourListBasicParser {
 				e.printStackTrace();
 			}
 		}
-		System.out.println("Area Based Tour List Parse Success.");
+		Log.I("Area Based Tour List Parse Success.");
 	}
 }

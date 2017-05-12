@@ -12,6 +12,7 @@ import org.json.JSONObject;
 import com.planb.api.support.Params;
 import com.planb.api.support.HttpRequestForParser;
 import com.planb.support.utilities.DataBase;
+import com.planb.support.utilities.Log;
 
 public class FullDetailInfoParser {
 	private static String URL = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/detailIntro" + Params.defaultAppendParams;
@@ -504,6 +505,6 @@ public class FullDetailInfoParser {
 				database.executeUpdate("INSERT INTO restaurant_detail_info VALUES(", contentId, ", '", creditCard, "', '", repMenu, "', '", infoCenter, "', ", kidsFacility, ", '", openDate, "', '", openTime, "', '", packing, "', '", parking, "', '", reservation, "', '", restDate, "', '", scale, "', '", seat, "', '", smoking, "', '", treatMenu, "')");
 			}
 		}
-		System.out.println("Detail Info Parse Success.");
+		Log.I("Detail Info Parse Success.");
 	}
 }

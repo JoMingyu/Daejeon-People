@@ -8,9 +8,10 @@ import java.util.Map;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import com.planb.api.support.Params;
 import com.planb.api.support.HttpRequestForParser;
+import com.planb.api.support.Params;
 import com.planb.support.utilities.DataBase;
+import com.planb.support.utilities.Log;
 
 public class AdditionalImageParser {
 	private static String defaultURL = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/detailImage" + Params.defaultAppendParams + "&imageYN=Y";
@@ -56,6 +57,6 @@ public class AdditionalImageParser {
 			}
 			
 		}
-		System.out.println("Additional Image Parse Success.");
+		Log.I("Additional Image Parse Success.");
 	}
 }
