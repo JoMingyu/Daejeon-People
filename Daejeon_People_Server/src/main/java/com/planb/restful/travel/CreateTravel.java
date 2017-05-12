@@ -4,7 +4,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.UUID;
 
+import org.json.JSONObject;
+
 import com.planb.support.firebase.Firebase;
+import com.planb.support.networking.Response;
 import com.planb.support.routing.Route;
 import com.planb.support.user.UserManager;
 import com.planb.support.utilities.DataBase;
@@ -38,7 +41,8 @@ public class CreateTravel implements Handler<RoutingContext> {
 			}
 		}
 		
-		String notificationKey = Firebase.createGroup(notificationKeyName, registrationId);
+		Response response = Firebase.createGroup(notificationKeyName, registrationId);
+		String notificationKey = new JSONObject(response.getResponseBody()).getString("notification_key");
 		
 		database.executeUpdate("INSERT INTO travels VALUES('", notificationKeyName, "', '", notificationKey, "', '", title, "', '", clientId, "')");
 		

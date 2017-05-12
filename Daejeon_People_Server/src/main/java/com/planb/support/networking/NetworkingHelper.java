@@ -8,28 +8,28 @@ import java.util.Map;
 
 public class NetworkingHelper {
 	static String createRequestAddress(Config config, String uri) {
-		// POST 요청 또는 파라미터가 없는 GET 요청에서의 request address
+		// POST ��û �Ǵ� �Ķ���Ͱ� ���� GET ��û������ request address
 		if(config.getTargetAddress().endsWith("/") && uri.startsWith("/")) {
 			uri = uri.substring(1, uri.length());
 		} else if(!config.getTargetAddress().endsWith("/") && !uri.startsWith("/")) {
 			uri = "/" + uri;
 		}
-		// 비정상 URI 방지
+		// ������ URI ����
 		
 		return config.getTargetAddress() + ":" + config.getTargetPort() + uri;
 	}
 	
 	static String createRequestAddress(Config config, String uri, Map<String, Object> params) {
 		/*
-		 * 파라미터가 있는 GET 요청에서의 request address
-		 * URI?key=value&key=value 형태
+		 * �Ķ���Ͱ� �ִ� GET ��û������ request address
+		 * URI?key=value&key=value ����
 		 */
 		if(config.getTargetAddress().endsWith("/") && uri.startsWith("/")) {
 			uri = uri.substring(1, uri.length());
 		} else if(!config.getTargetAddress().endsWith("/") && !uri.startsWith("/")) {
 			uri = "/" + uri;
 		}
-		// 비정상 URI 방지
+		// ������ URI ����
 		
 		StringBuilder requestAddress = new StringBuilder();
 		requestAddress.append(config.getTargetAddress());
@@ -49,7 +49,7 @@ public class NetworkingHelper {
 	}
 	
 	static byte[] createParamBytes(Map<String, Object> params) {
-		// POST 메소드에서 사용하는 byte 타입의 body 데이터
+		// POST �޼ҵ忡�� ����ϴ� byte Ÿ���� body ������
 		StringBuilder requestData = new StringBuilder();
 		
 		for(String key : params.keySet()) {

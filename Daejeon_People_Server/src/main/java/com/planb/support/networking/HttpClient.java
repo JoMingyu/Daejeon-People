@@ -6,7 +6,6 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.HashMap;
 import java.util.Map;
 
 import org.json.JSONObject;
@@ -28,19 +27,19 @@ public class HttpClient {
 		this.config = new HttpClientDefaultConfig();
 	}
 	
-	public HashMap<String, Object> post(String uri, Map<String, Object> headers, Map<String, Object> params) {
+	public Response post(String uri, Map<String, Object> headers, Map<String, Object> params) {
 		/*
-		 * post 요청
-		 * status code 리턴
+		 * post ��û
+		 * status code ����
 		 */
 		String requestAddress = NetworkingHelper.createRequestAddress(config, uri);
-		// URI를 통해 요청 주소 얻어오기
+		// URI�� ���� ��û �ּ� ������
 		try {
 			url = new URL(requestAddress);
 			connection = (HttpURLConnection) url.openConnection();
 			connection.setRequestMethod("POST");
 			connection.setDoOutput(true);
-			// POST 요청 시 DoOutput 활성화
+			// POST ��û �� DoOutput Ȱ��ȭ
 			connection.setReadTimeout(config.getReadTimeout());
 			connection.setConnectTimeout(config.getConnectTimeout());
 			
@@ -53,42 +52,43 @@ public class HttpClient {
 			if(params.size() > 0) {
 				out = connection.getOutputStream();
 				out.write(NetworkingHelper.createParamBytes(params));
-				// Body 데이터가 있으면 바이트 형태의 데이터를 전송
+				// Body �����Ͱ� ������ ����Ʈ ������ �����͸� ����
 				out.flush();
 			}
 			
-			Map<String, Object> map = new HashMap<String, Object>(1);
+			Response response = new Response();
 			try {
 				in = connection.getInputStream();
-				String response = NetworkingHelper.getResponse(in);
-				// connection으로 얻은 InputStream에서 응답 얻어오기
-				map.put("code", connection.getResponseCode());
-				map.put("response", response);
+				String responseBody = NetworkingHelper.getResponse(in);
+				// connection���� ���� InputStream���� ���� ������
+				response.setResponseBody(responseBody);
 			} catch(IOException e) {
-				map.put("code", 500);
+				
 			}
+			response.setResponseCode(connection.getResponseCode());
+			response.setResponseHeader(connection.getHeaderFields());
 			
 			connection.disconnect();
-			return (HashMap<String, Object>) map;
+			return response;
 		} catch (IOException e) {
 			e.printStackTrace();
 			return null;
 		}
 	}
 	
-	public HashMap<String, Object> post(String uri, Map<String, Object> headers, JSONObject requestObject) {
+	public Response post(String uri, Map<String, Object> headers, JSONObject requestObject) {
 		/*
-		 * post 요청 : 본문 데이터가 JSON
-		 * status code 리턴
+		 * post ��û : ���� �����Ͱ� JSON
+		 * status code ����
 		 */
 		String requestAddress = NetworkingHelper.createRequestAddress(config, uri);
-		// URI를 통해 요청 주소 얻어오기
+		// URI�� ���� ��û �ּ� ������
 		try {
 			url = new URL(requestAddress);
 			connection = (HttpURLConnection) url.openConnection();
 			connection.setRequestMethod("POST");
 			connection.setDoOutput(true);
-			// POST 요청 시 DoOutput 활성화
+			// POST ��û �� DoOutput Ȱ��ȭ
 			connection.setReadTimeout(config.getReadTimeout());
 			connection.setConnectTimeout(config.getConnectTimeout());
 			
@@ -102,34 +102,35 @@ public class HttpClient {
 			wr.write(requestObject.toString());
 			wr.flush();
 			
-			Map<String, Object> map = new HashMap<String, Object>(1);
+			Response response = new Response();
 			try {
 				in = connection.getInputStream();
-				String response = NetworkingHelper.getResponse(in);
-				// connection으로 얻은 InputStream에서 응답 얻어오기
-				map.put("code", connection.getResponseCode());
-				map.put("response", response);
+				String responseBody = NetworkingHelper.getResponse(in);
+				// connection���� ���� InputStream���� ���� ������
+				response.setResponseBody(responseBody);
 			} catch(IOException e) {
-				map.put("code", 500);
+				
 			}
+			response.setResponseCode(connection.getResponseCode());
+			response.setResponseHeader(connection.getHeaderFields());
 			
 			connection.disconnect();
-			return (HashMap<String, Object>) map;
+			return response;
 		} catch (IOException e) {
 			e.printStackTrace();
 			return null;
 		}
 	}
 	
-	public HashMap<String, Object> get(String uri, Map<String, Object> headers, Map<String, Object> params) {
+	public Response get(String uri, Map<String, Object> headers, Map<String, Object> params) {
 		/*
-		 * get 요청
-		 * status code와 응답 데이터 리턴
+		 * get ��û
+		 * status code�� ���� ������ ����
 		 */
 		String requestAddress = null;
 		if(params.size() > 0) {
 			requestAddress = NetworkingHelper.createRequestAddress(config, uri, params);
-			// URI와 파라미터를 통해 요청 주소 얻어오기
+			// URI�� �Ķ���͸� ���� ��û �ּ� ������
 		} else {
 			requestAddress = NetworkingHelper.createRequestAddress(config, uri);
 		}
@@ -146,19 +147,20 @@ public class HttpClient {
 				}
 			}
 			
-			Map<String, Object> map = new HashMap<String, Object>(1);
+			Response response = new Response();
 			try {
 				in = connection.getInputStream();
-				String response = NetworkingHelper.getResponse(in);
-				// connection으로 얻은 InputStream에서 응답 얻어오기
-				map.put("code", connection.getResponseCode());
-				map.put("response", response);
+				String responseBody = NetworkingHelper.getResponse(in);
+				// connection���� ���� InputStream���� ���� ������
+				response.setResponseBody(responseBody);
 			} catch(IOException e) {
-				map.put("code", 500);
+				
 			}
+			response.setResponseCode(connection.getResponseCode());
+			response.setResponseHeader(connection.getHeaderFields());
 			
 			connection.disconnect();
-			return (HashMap<String, Object>) map;
+			return response;
 		} catch(IOException e) {
 			e.printStackTrace();
 			return null;
@@ -167,13 +169,13 @@ public class HttpClient {
 	
 	public int delete(String uri, Map<String, Object> headers, Map<String, Object> params) {
 		/*
-		 * delete 요청
-		 * status code 리턴
+		 * delete ��û
+		 * status code ����
 		 */
 		String requestAddress = null;
 		if(params.size() > 0) {
 			requestAddress = NetworkingHelper.createRequestAddress(config, uri, params);
-			// URI와 파라미터를 통해 요청 주소 얻어오기
+			// URI�� �Ķ���͸� ���� ��û �ּ� ������
 		} else {
 			requestAddress = NetworkingHelper.createRequestAddress(config, uri);
 		}

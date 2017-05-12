@@ -17,6 +17,6 @@ public class DeleteWish implements Handler<RoutingContext> {
 		String clientId = UserManager.getEncryptedIdFromSession(ctx);
 		int contentId = Integer.valueOf(ctx.request().getParam("content_id"));
 		
-		database.executeUpdate("DELETE FROM wish_list WHERE client_id=", clientId, " AND content_id=", contentId);
+		database.executeUpdate("DELETE FROM wish_list WHERE client_id='", clientId, "' AND content_id=", contentId);
 	}
 }
