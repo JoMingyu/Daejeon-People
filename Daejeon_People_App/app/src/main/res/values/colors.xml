@@ -4,4 +4,10 @@
     <color name="colorPrimaryDark">#004558</color>
     <color name="colorPrimaryLight">#4b9fb5</color>
     <color name="colorAccent">#4b9fb5</color>
+    <color name="Dark">#004558</color>
+    <color name="Middle">#017085</color>
+    <color name="Light">#4b9fb5</color>
+    <color name="White">#ffffff</color>
+    <color name="Yes">#6fba77</color>
+    <color name="No">#fc7150</color>
 </resources>
