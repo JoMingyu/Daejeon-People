@@ -68,21 +68,20 @@
 ### 개발 팀 구성
 
   - 김동규 : 디자이너, 안드로이드
-  - 정근철 : PM, 안드로이드, 웹 프론트엔드
+  - 정근철 : SM(Scrum Master), 안드로이드, 웹 프론트엔드
   - 정민지 : 안드로이드, 웹 프론트엔드
-  - 조민규 : 백엔드, 데이터베이스
+  - 조민규 : PO(Product Owner), 백엔드, 데이터베이스
 
 ### 프로젝트 준비
 
   - 소스코드 관리 : GitHub
-  - 디자이너/클라이언트 사이 리소스 관리 : Zeplin
   - 프로젝트 의존성 관리 : 서버 측 Maven, 안드로이드 측 Gradle
   - 이슈 트래커 : Git Issue, Asana
-  - 디자인 : Adobe XD, Photoshop
+  - 디자인 : Photoshop
   - 레이아웃 : ScalableLayout, ConstraintLayout
   - 안드로이드 : Android Studio 2.3 / minSdk 19(4.4 Kitkat) / target|compileSdk 25(7.1 Nougat)
   - 서버 : Java 1.8 / Eclipse neon.3 / Vertx-Web / REST Architecture / AWS EC2
   - DB : MySQL, SQLite, RealTime DataBase(Firebase)
   - 통신 : Retrofit(예정)
   - 데이터 통신 규격 : JSON
-  - 지속적 통합(Continuous Integration)
+  - 스크럼(Scrum)

@@ -16,7 +16,7 @@ public class Log {
 			String year = String.format("%4d", cal.get(Calendar.YEAR));
 			String month = String.format("%02d", cal.get(Calendar.MONTH) + 1);
 			String date = String.format("%02d", cal.get(Calendar.DATE));
-			String logFileName = year + "-" + month + "-" + date + ".txt";
+			String logFileName = year + "-" + month + "-" + date + ".log";
 			file = new File(logFileName);
 			if(!file.exists()) {
 				try {

@@ -6,7 +6,6 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.HashMap;
 import java.util.Map;
 
 import org.json.JSONObject;
@@ -28,7 +27,7 @@ public class HttpClient {
 		this.config = new HttpClientDefaultConfig();
 	}
 	
-	public HashMap<String, Object> post(String uri, Map<String, Object> headers, Map<String, Object> params) {
+	public Response post(String uri, Map<String, Object> headers, Map<String, Object> params) {
 		/*
 		 * post 요청
 		 * status code 리턴
@@ -57,26 +56,23 @@ public class HttpClient {
 				out.flush();
 			}
 			
-			Map<String, Object> map = new HashMap<String, Object>(1);
-			try {
-				in = connection.getInputStream();
-				String response = NetworkingHelper.getResponse(in);
-				// connection으로 얻은 InputStream에서 응답 얻어오기
-				map.put("code", connection.getResponseCode());
-				map.put("response", response);
-			} catch(IOException e) {
-				map.put("code", 500);
-			}
+			Response response = new Response();
+			in = connection.getInputStream();
+			String responseBody = NetworkingHelper.getResponse(in);
+			// connection으로 얻은 InputStream에서 응답 얻어오기
+			response.setResponseBody(responseBody);
+			response.setResponseCode(connection.getResponseCode());
+			response.setResponseHeader(connection.getHeaderFields());
 			
 			connection.disconnect();
-			return (HashMap<String, Object>) map;
+			return response;
 		} catch (IOException e) {
 			e.printStackTrace();
 			return null;
 		}
 	}
 	
-	public HashMap<String, Object> post(String uri, Map<String, Object> headers, JSONObject requestObject) {
+	public Response post(String uri, Map<String, Object> headers, JSONObject requestObject) {
 		/*
 		 * post 요청 : 본문 데이터가 JSON
 		 * status code 리턴
@@ -102,26 +98,23 @@ public class HttpClient {
 			wr.write(requestObject.toString());
 			wr.flush();
 			
-			Map<String, Object> map = new HashMap<String, Object>(1);
-			try {
-				in = connection.getInputStream();
-				String response = NetworkingHelper.getResponse(in);
-				// connection으로 얻은 InputStream에서 응답 얻어오기
-				map.put("code", connection.getResponseCode());
-				map.put("response", response);
-			} catch(IOException e) {
-				map.put("code", 500);
-			}
+			Response response = new Response();
+			in = connection.getInputStream();
+			String responseBody = NetworkingHelper.getResponse(in);
+			// connection으로 얻은 InputStream에서 응답 얻어오기
+			response.setResponseBody(responseBody);
+			response.setResponseCode(connection.getResponseCode());
+			response.setResponseHeader(connection.getHeaderFields());
 			
 			connection.disconnect();
-			return (HashMap<String, Object>) map;
+			return response;
 		} catch (IOException e) {
 			e.printStackTrace();
 			return null;
 		}
 	}
 	
-	public HashMap<String, Object> get(String uri, Map<String, Object> headers, Map<String, Object> params) {
+	public Response get(String uri, Map<String, Object> headers, Map<String, Object> params) {
 		/*
 		 * get 요청
 		 * status code와 응답 데이터 리턴
@@ -146,19 +139,16 @@ public class HttpClient {
 				}
 			}
 			
-			Map<String, Object> map = new HashMap<String, Object>(1);
-			try {
-				in = connection.getInputStream();
-				String response = NetworkingHelper.getResponse(in);
-				// connection으로 얻은 InputStream에서 응답 얻어오기
-				map.put("code", connection.getResponseCode());
-				map.put("response", response);
-			} catch(IOException e) {
-				map.put("code", 500);
-			}
+			Response response = new Response();
+			in = connection.getInputStream();
+			String responseBody = NetworkingHelper.getResponse(in);
+			// connection으로 얻은 InputStream에서 응답 얻어오기
+			response.setResponseBody(responseBody);
+			response.setResponseCode(connection.getResponseCode());
+			response.setResponseHeader(connection.getHeaderFields());
 			
 			connection.disconnect();
-			return (HashMap<String, Object>) map;
+			return response;
 		} catch(IOException e) {
 			e.printStackTrace();
 			return null;

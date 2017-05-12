@@ -1,4 +1,4 @@
-package com.planb.restful.account;
+package com.planb.restful.account.after_signup;
 
 import com.planb.support.routing.Route;
 import com.planb.support.user.UserManager;

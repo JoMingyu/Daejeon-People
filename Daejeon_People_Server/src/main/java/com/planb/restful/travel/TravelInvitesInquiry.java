@@ -39,7 +39,7 @@ public class TravelInvitesInquiry implements Handler<RoutingContext> {
 			while(inviteSet.next()) {
 				Map<String, String> inviteInfoMap = new HashMap<String, String>();
 				inviteInfoMap.put("requester_id", inviteSet.getString("src_id"));
-				inviteInfoMap.put("notification_key_name", inviteSet.getString("notification_key_name"));
+				inviteInfoMap.put("topic", inviteSet.getString("topic"));
 				inviteInfoMap.put("msg", inviteSet.getString("msg"));
 				inviteInfoMap.put("date", inviteSet.getString("date"));
 				inviteList.add((HashMap<String, String>) inviteInfoMap);
@@ -62,7 +62,7 @@ public class TravelInvitesInquiry implements Handler<RoutingContext> {
 		}
 		
 		if(response.length() == 0) {
-			// 아무 친구 요청도 없으면
+			// 아무 여행 초대도 없으면
 			ctx.response().setStatusCode(204).end();
 			ctx.response().close();
 		} else {
