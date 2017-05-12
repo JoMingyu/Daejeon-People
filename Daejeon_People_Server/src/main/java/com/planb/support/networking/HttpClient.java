@@ -102,7 +102,6 @@ public class HttpClient {
 			in = connection.getInputStream();
 			String responseBody = NetworkingHelper.getResponse(in);
 			// connection으로 얻은 InputStream에서 응답 얻어오기
-			System.out.println(responseBody);
 			response.setResponseBody(responseBody);
 			response.setResponseCode(connection.getResponseCode());
 			response.setResponseHeader(connection.getHeaderFields());

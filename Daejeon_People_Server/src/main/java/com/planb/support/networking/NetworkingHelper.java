@@ -10,15 +10,20 @@ public class NetworkingHelper {
 	static String createRequestAddress(Config config, String uri) {
 		// POST 요청 또는 파라미터가 없는 GET 요청에서의 request address
 		
-		if(uri.equals("")) {
-			
-		} else if(config.getTargetAddress().endsWith("/") && uri.startsWith("/")) {
+		if(config.getTargetAddress().endsWith("/") && uri.startsWith("/")) {
+			// Escape double slash
 			uri = uri.substring(1, uri.length());
 		} else if(!config.getTargetAddress().endsWith("/") && !uri.startsWith("/")) {
+			// Escape no slash
 			uri = "/" + uri;
 		}
 		// 비정상 URI 방지
-				
+		
+		if(uri.endsWith("/")) {
+			// Escape end with slash
+			uri.substring(0, uri.length() - 1);
+		}
+		
 		if(config.getTargetPort() == 80) {
 			return config.getTargetAddress();
 		} else {

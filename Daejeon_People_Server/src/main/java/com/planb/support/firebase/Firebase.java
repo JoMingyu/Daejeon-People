@@ -1,35 +1,21 @@
 package com.planb.support.firebase;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.json.JSONArray;
 import org.json.JSONObject;
 
 import com.planb.support.networking.Config;
 import com.planb.support.networking.HttpClient;
 import com.planb.support.networking.HttpClientConfig;
-import com.planb.support.networking.Response;
 
 public class Firebase {
 	private static final String SERVER_KEY = "AAAAhndBTOE:APA91bENhBImmt3bwwPvNYMcCanS5bl55zQ9W3-rpVJiCwPhSssuUyBWcbqL4FstfU8hhlMSmXS4qixQtaClDcT_0RJ5dh2q2pAVjM0pk8P8SyRPi0gC3xlRZbFXmpRE_FvaP4LjTizD";
 
 	public Firebase() {
-		// FireBase Read-Time DataBase를 사용하는 경우
-		// FirebaseOptions options;
-		// try {
-		// options = new FirebaseOptions.Builder()
-		// .setServiceAccount(new
-		// FileInputStream("path/to/serviceAccountCredentials.json"))
-		// .setDatabaseUrl("https://databaseName.firebaseio.com/")
-		// .build();
-		// FirebaseApp.initializeApp(options);
-		// } catch (FileNotFoundException e) {
-		// // TODO Auto-generated catch block
-		// e.printStackTrace();
-		// }
+		
 	}
+	
 	public static void send(String title, String body, String registrationId) {
 		// Send by registration id
 		Config config = new HttpClientConfig();
