@@ -53,7 +53,8 @@ public class UserManager {
 		 * 유저의 id를 외래키로 갖는 테이블에 접근하기 위해 사용
 		 * 객체 생성 없이도 사용할 수 있도록 static
 		 */
-		String encryptedSessionId = SessionUtil.getClientSessionId(ctx, "UserSession");
+		String sessionId = SessionUtil.getClientSessionId(ctx, "UserSession");
+		String encryptedSessionId = SHA256.encrypt(sessionId);
 		String encryptedId = null;
 		
 		rs = database.executeQuery("SELECT * FROM account WHERE session_id='", encryptedSessionId, "'");
@@ -87,7 +88,7 @@ public class UserManager {
 		return aes.decrypt(registrationId);
 	}
 	
-	private String getEncryptedSessionFromId(String id) {
+	private String getSessionFromId(String id) {
 		/*
 		 * DB에서 id로부터 암호화된 session id get
 		 * 로그인 시 현재 DB에 세션 키가 있는지 체크하기 위해 사용
@@ -109,15 +110,15 @@ public class UserManager {
 		return encryptedSessionId;
 	}
 
-	private String createEncryptedSessionId() {
+	private String createSessionId() {
 		/*
-		 * 다른 계정들과 중복되지 않는 암호화된 session id 생성
+		 * 다른 계정들과 중복되지 않는 session id 생성
 		 */
-		String encryptedUUID;
+		String uuid;
 		
 		while(true) {
-			encryptedUUID = SHA256.encrypt(UUID.randomUUID().toString());
-			rs = database.executeQuery("SELECT * FROM account WHERE session_id='", encryptedUUID, "'");
+			uuid = UUID.randomUUID().toString();
+			rs = database.executeQuery("SELECT * FROM account WHERE session_id='", SHA256.encrypt(uuid), "'");
 			try {
 				if(!rs.next()) {
 					break;
@@ -127,24 +128,26 @@ public class UserManager {
 			}
 		}
 		
-		return encryptedUUID;
+		return uuid;
 	}
 
 	public void registerSessionId(RoutingContext ctx, boolean keepLogin, String id) {
 		/*
 		 * keepLogin 설정에 따라 세션 혹은 쿠키 설정
 		 */
-		String encryptedSessionId = getEncryptedSessionFromId(id);
-		if(encryptedSessionId == null) {
-			encryptedSessionId = createEncryptedSessionId();
+		String sessionId = getSessionFromId(id);
+		if(sessionId == null) {
+			sessionId = createSessionId();
 		}
 		String encryptedId = aes.encrypt(id);
 		
 		if(keepLogin) {
-			SessionUtil.createCookie(ctx, "UserSession", encryptedSessionId);
+			SessionUtil.createCookie(ctx, "UserSession", sessionId);
 		} else {
-			SessionUtil.createSession(ctx, "UserSession", encryptedSessionId);
+			SessionUtil.createSession(ctx, "UserSession", sessionId);
 		}
+		
+		String encryptedSessionId = SHA256.encrypt(sessionId);
 		database.executeUpdate("UPDATE account SET session_id='", encryptedSessionId, "' WHERE id='", encryptedId, "'");
 	}
 	

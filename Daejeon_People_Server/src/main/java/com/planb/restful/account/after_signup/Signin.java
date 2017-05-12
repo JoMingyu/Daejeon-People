@@ -19,7 +19,7 @@ public class Signin implements Handler<RoutingContext> {
 	public void handle(RoutingContext ctx) {
 		String id = ctx.request().getFormAttribute("id");
 		String password = ctx.request().getFormAttribute("password");
-		boolean keepLogin = Boolean.parseBoolean(ctx.request().getFormAttribute("keepLogin"));
+		boolean keepLogin = Boolean.parseBoolean(ctx.request().getFormAttribute("keeplogin"));
 
 		if (userManager.signin(id, password)) {
 			userManager.registerSessionId(ctx, keepLogin, id);
