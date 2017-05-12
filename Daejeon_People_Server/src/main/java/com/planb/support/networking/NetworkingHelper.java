@@ -80,16 +80,11 @@ public class NetworkingHelper {
 		}
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 		
-		byte[] buf = new byte[1024 * 8];
+		byte[] buf = new byte[1024 * 16];
 		int length;
-		
 		try {
-			while((length = in.read(buf)) != 1) {
-				try {
-					out.write(buf, 0, length);
-				} catch(IndexOutOfBoundsException e) {
-					return null;
-				}
+			while((length = in.read(buf)) != -1) {
+				out.write(buf, 0, length);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();

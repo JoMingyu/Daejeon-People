@@ -1,43 +1,33 @@
 package com.planb.api.support;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
+import java.util.HashMap;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.planb.support.networking.Config;
+import com.planb.support.networking.HttpClient;
+import com.planb.support.networking.HttpClientConfig;
+
 public class HttpRequestForParser {
-	private static JSONObject request(String URL) {
+	private static JSONObject request(String url) {
 		/*
 		 * HttpURLConnection을 이용해 URL에 GET 요청
 		 * 바이트 단위로 Json 데이터 전체를 읽어들여 리턴
 		 */
 		try {
-			URL url = new URL(URL);
-			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-			conn.setReadTimeout(60000);
-			conn.setConnectTimeout(60000);
+			Config config = new HttpClientConfig();
+			config.setTargetAddress(url);
+			HttpClient client = new HttpClient(config);
 			
-			InputStream in = conn.getInputStream();
-			ByteArrayOutputStream out = new ByteArrayOutputStream();
-
-			byte[] buf = new byte[1024 * 16];
-			int length;
-			while((length = in.read(buf)) != -1) {
-				out.write(buf, 0, length);
-			}
-			
-			JSONObject responseEntire = new JSONObject(new String(out.toByteArray(), "UTF-8"));
+			JSONObject responseEntire = new JSONObject(client.get("/", new HashMap<String, Object>(), new HashMap<String, Object>()).getResponseBody());
 			/*
 			 * Response 전체 : response를 key로 header와 body가 갈라짐
 			 * response -> body -> items -> item 순서로 깊어지는 구조
 			 */
 			return responseEntire;
-		} catch (IOException | JSONException e) {
+		} catch (JSONException e) {
 			e.printStackTrace();
 			return null;
 		}
