@@ -9,14 +9,21 @@ import java.util.Map;
 public class NetworkingHelper {
 	static String createRequestAddress(Config config, String uri) {
 		// POST 요청 또는 파라미터가 없는 GET 요청에서의 request address
-		if(config.getTargetAddress().endsWith("/") && uri.startsWith("/")) {
+		
+		if(uri.equals("")) {
+					
+		} else if(config.getTargetAddress().endsWith("/") && uri.startsWith("/")) {
 			uri = uri.substring(1, uri.length());
 		} else if(!config.getTargetAddress().endsWith("/") && !uri.startsWith("/")) {
 			uri = "/" + uri;
 		}
 		// 비정상 URI 방지
-		
-		return config.getTargetAddress() + ":" + config.getTargetPort() + uri;
+				
+		if(config.getTargetPort() == 80) {
+			return config.getTargetAddress();
+		} else {
+			return config.getTargetAddress() + ":" + config.getTargetPort() + uri;
+		}
 	}
 	
 	static String createRequestAddress(Config config, String uri, Map<String, Object> params) {
@@ -68,12 +75,16 @@ public class NetworkingHelper {
 		}
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 		
-		byte[] buf = new byte[1024 * 128];
+		byte[] buf = new byte[1024 * 8];
 		int length;
 		
 		try {
 			while((length = in.read(buf)) != 1) {
-				out.write(buf, 0, length);
+				try {
+					out.write(buf, 0, length);
+				} catch(IndexOutOfBoundsException e) {
+					return null;
+				}
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
