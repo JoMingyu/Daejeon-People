@@ -1,9 +1,11 @@
-package com.example.geni.custumedittext;
+package com.daejeonpeople.activities;
 
-import android.support.v7.app.AppCompatActivity;
+import android.app.Activity;
 import android.os.Bundle;
 
-public class PhoneCertified extends AppCompatActivity {
+import com.daejeonpeople.R;
+
+public class PhoneCertified extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
