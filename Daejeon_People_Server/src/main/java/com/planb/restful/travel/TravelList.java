@@ -27,7 +27,7 @@ public class TravelList implements Handler<RoutingContext> {
 		try {
 			while(rs.next()) {
 				JSONObject travelRoom = new JSONObject();
-				travelRoom.put("notification_key_name", rs.getString("notification_key_name"));
+				travelRoom.put("topic", rs.getString("topic"));
 				travelRoom.put("title", rs.getString("title"));
 				response.put(travelRoom);
 			}

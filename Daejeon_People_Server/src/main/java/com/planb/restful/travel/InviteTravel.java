@@ -16,10 +16,11 @@ public class InviteTravel implements Handler<RoutingContext> {
 		
 		String clientId = UserManager.getEncryptedIdFromSession(ctx);
 		String dst = ctx.request().getFormAttribute("dst");
-		String notificationKeyName = ctx.request().getFormAttribute("notification_key_name");
+		String topic = ctx.request().getFormAttribute("topic");
 		String msg = ctx.request().getFormAttribute("msg");
 		
-		database.executeUpdate("INSERT INTO travel_invites VALUES('", clientId, "', '", dst, "', '", notificationKeyName, "', '", msg, "', NOW())");
+		database.executeUpdate("DELETE FROM travel_invites WHERE dst_id='", dst, "' AND topic='", "'");
+		database.executeUpdate("INSERT INTO travel_invites VALUES('", clientId, "', '", dst, "', '", topic, "', '", msg, "', NOW())");
 		
 		ctx.response().setStatusCode(201).end();
 		ctx.response().close();

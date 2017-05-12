@@ -1,9 +1,5 @@
 package com.planb.restful.travel;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
-import com.planb.support.firebase.Firebase;
 import com.planb.support.routing.Route;
 import com.planb.support.user.UserManager;
 import com.planb.support.utilities.DataBase;
@@ -19,18 +15,9 @@ public class QuitTravel implements Handler<RoutingContext> {
 		DataBase database = DataBase.getInstance();
 		
 		String clientId = UserManager.getEncryptedIdFromSession(ctx);
-		String registrationId = UserManager.getRegistrationIdFromSession(ctx);
-		String notificationKeyName = ctx.request().getFormAttribute("notification_key_name");
+		String topic = ctx.request().getFormAttribute("topic");
 		
-		ResultSet rs = database.executeQuery("SELECT * FROM travels WHERE notification_key_name='", notificationKeyName, "'");
-		String notificationKey;
-		try {
-			notificationKey = rs.getString("notificaton_key");
-			Firebase.exitGroup(notificationKey, notificationKeyName, registrationId);
-			database.executeUpdate("DELETE FROM travels WHERE client_id='", clientId, "' AND notification_key_name='", notificationKeyName, "'");
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		database.executeUpdate("DELETE FROM travels WHERE client_id='", clientId, "' AND topic='", topic, "'");
 		
 		ctx.response().setStatusCode(200).end();
 		ctx.response().close();

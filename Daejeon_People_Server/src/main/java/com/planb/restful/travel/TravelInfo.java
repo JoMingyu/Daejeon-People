@@ -26,9 +26,9 @@ public class TravelInfo implements Handler<RoutingContext> {
 		JSONArray response = new JSONArray();
 		AES256 aes = UserManager.getAES256Instance();
 		
-		String notificationKeyName = ctx.request().getParam("notification_key_name");
+		String topic = ctx.request().getParam("topic");
 		
-		ResultSet info = database.executeQuery("SELECT * FROM travels WHERE notification_key_name='", notificationKeyName, "'");
+		ResultSet info = database.executeQuery("SELECT * FROM travels WHERE topic='", topic, "'");
 		List<String> clientIdList = new ArrayList<String>();
 		try {
 			while(info.next()) {

@@ -68,6 +68,7 @@ public class UserManager {
 		return encryptedId;
 	}
 	
+	@Deprecated
 	public static String getRegistrationIdFromSession(RoutingContext ctx) {
 		/*
 		 * 세션으로부터 FireBase registration ID get
@@ -83,7 +84,7 @@ public class UserManager {
 			e.printStackTrace();
 		}
 		
-		return registrationId;
+		return aes.decrypt(registrationId);
 	}
 	
 	private String getEncryptedSessionFromId(String id) {

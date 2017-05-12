@@ -6,8 +6,6 @@ import java.util.UUID;
 
 import org.json.JSONObject;
 
-import com.planb.support.firebase.Firebase;
-import com.planb.support.networking.Response;
 import com.planb.support.routing.Route;
 import com.planb.support.user.UserManager;
 import com.planb.support.utilities.DataBase;
@@ -22,18 +20,20 @@ public class CreateTravel implements Handler<RoutingContext> {
 	@Override
 	public void handle(RoutingContext ctx) {
 		DataBase database = DataBase.getInstance();
+		JSONObject response = new JSONObject();
 		
 		String clientId = UserManager.getEncryptedIdFromSession(ctx);
 		// 여행 개설자
-		String registrationId = UserManager.getRegistrationIdFromSession(ctx);
 		String title = ctx.request().getFormAttribute("title");
 		
-		String notificationKeyName;
+		String topic;
 		while(true) {
-			notificationKeyName = UUID.randomUUID().toString();
-			ResultSet rs = database.executeQuery("SELECT * FROM travels WHERE notification_key_name='", notificationKeyName, "'");
+			topic = UUID.randomUUID().toString();
+			ResultSet rs = database.executeQuery("SELECT * FROM travels WHERE topic='", topic, "'");
 			try {
 				if(!rs.next()) {
+					response.put("topic", topic);
+					database.executeUpdate("INSERT INTO travels VALUES('", topic, "', '", title, "', '", clientId, "')");
 					break;
 				}
 			} catch (SQLException e) {
@@ -41,12 +41,8 @@ public class CreateTravel implements Handler<RoutingContext> {
 			}
 		}
 		
-		Response response = Firebase.createGroup(notificationKeyName, registrationId);
-		String notificationKey = new JSONObject(response.getResponseBody()).getString("notification_key");
-		
-		database.executeUpdate("INSERT INTO travels VALUES('", notificationKeyName, "', '", notificationKey, "', '", title, "', '", clientId, "')");
-		
-		ctx.response().setStatusCode(201).end();
+		ctx.response().setStatusCode(201);
+		ctx.response().end(response.toString());
 		ctx.response().close();
 	}
 }

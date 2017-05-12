@@ -57,14 +57,10 @@ public class HttpClient {
 			}
 			
 			Response response = new Response();
-			try {
-				in = connection.getInputStream();
-				String responseBody = NetworkingHelper.getResponse(in);
-				// connection으로 얻은 InputStream에서 응답 얻어오기
-				response.setResponseBody(responseBody);
-			} catch(IOException e) {
-				
-			}
+			in = connection.getInputStream();
+			String responseBody = NetworkingHelper.getResponse(in);
+			// connection으로 얻은 InputStream에서 응답 얻어오기
+			response.setResponseBody(responseBody);
 			response.setResponseCode(connection.getResponseCode());
 			response.setResponseHeader(connection.getHeaderFields());
 			
@@ -103,14 +99,11 @@ public class HttpClient {
 			wr.flush();
 			
 			Response response = new Response();
-			try {
-				in = connection.getInputStream();
-				String responseBody = NetworkingHelper.getResponse(in);
-				// connection으로 얻은 InputStream에서 응답 얻어오기
-				response.setResponseBody(responseBody);
-			} catch(IOException e) {
-				
-			}
+			in = connection.getInputStream();
+			String responseBody = NetworkingHelper.getResponse(in);
+			// connection으로 얻은 InputStream에서 응답 얻어오기
+			System.out.println(responseBody);
+			response.setResponseBody(responseBody);
 			response.setResponseCode(connection.getResponseCode());
 			response.setResponseHeader(connection.getHeaderFields());
 			
@@ -148,14 +141,10 @@ public class HttpClient {
 			}
 			
 			Response response = new Response();
-			try {
-				in = connection.getInputStream();
-				String responseBody = NetworkingHelper.getResponse(in);
-				// connection으로 얻은 InputStream에서 응답 얻어오기
-				response.setResponseBody(responseBody);
-			} catch(IOException e) {
-				
-			}
+			in = connection.getInputStream();
+			String responseBody = NetworkingHelper.getResponse(in);
+			// connection으로 얻은 InputStream에서 응답 얻어오기
+			response.setResponseBody(responseBody);
 			response.setResponseCode(connection.getResponseCode());
 			response.setResponseHeader(connection.getHeaderFields());
 			
