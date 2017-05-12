@@ -15,15 +15,15 @@ import io.vertx.core.Handler;
 import io.vertx.core.http.HttpMethod;
 import io.vertx.ext.web.RoutingContext;
 
-@Route(uri = "/attractions/detail/:contentid", method = HttpMethod.GET)
+@Route(uri = "/attractions/detail/:content_id", method = HttpMethod.GET)
 public class DetailInfo implements Handler<RoutingContext> {
 	@Override
 	public void handle(RoutingContext ctx) {
 		DataBase database = DataBase.getInstance();
 		JSONObject response = new JSONObject();
 		
-		String clientId = UserManager.getRegistrationIdFromSession(ctx);
-		int contentId = Integer.parseInt(ctx.request().getParam("contentid"));
+		String clientId = UserManager.getEncryptedIdFromSession(ctx);
+		int contentId = Integer.parseInt(ctx.request().getParam("content_id"));
 		
 		ResultSet contentInfo = database.executeQuery("SELECT * FROM attractions_basic WHERE content_id=", contentId);
 		int contentTypeId = 0;

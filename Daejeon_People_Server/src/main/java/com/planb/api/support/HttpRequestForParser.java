@@ -19,6 +19,8 @@ public class HttpRequestForParser {
 		try {
 			Config config = new HttpClientConfig();
 			config.setTargetAddress(url);
+			config.setReadTimeout(60000);
+			config.setConnectTimeout(60000);
 			HttpClient client = new HttpClient(config);
 			
 			JSONObject responseEntire = new JSONObject(client.get("/", new HashMap<String, Object>(), new HashMap<String, Object>()).getResponseBody());

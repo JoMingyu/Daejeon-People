@@ -9,13 +9,13 @@ import io.vertx.core.Handler;
 import io.vertx.core.http.HttpMethod;
 import io.vertx.ext.web.RoutingContext;
 
-@Route(uri = "/attractions/list/:contenttypeid", method = HttpMethod.GET)
+@Route(uri = "/attractions/list/:content_type_id", method = HttpMethod.GET)
 public class ListByType implements Handler<RoutingContext> {
 	// 전체 여행지 조회
 
 	@Override
 	public void handle(RoutingContext ctx) {
-		int contentTypeId = Integer.parseInt(ctx.request().getParam("contenttypeid"));
+		int contentTypeId = Integer.parseInt(ctx.request().getParam("content_type_id"));
 		
 		JSONArray response = AttractionsListInquiry.inquire(ctx, contentTypeId);
 
