@@ -11,18 +11,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-<<<<<<< HEAD
-        <activity android:name=".activities.Splash"/>
-        <activity android:name=".activities.PhoneCertified"/>
-        <activity android:name=".activities.MainActivity">
-=======
+
         <activity
             android:name=".activities.Splash"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
         <activity
             android:name=".activities.MainActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar">
->>>>>>> 9e54167f92d16ee4b7c840678d54e67bb18f39a3
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
