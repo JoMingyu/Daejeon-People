@@ -1,4 +1,4 @@
-package com.planb.support.firebase;
+package com.planb.support.utilities;
 
 import java.util.HashMap;
 import java.util.Map;
