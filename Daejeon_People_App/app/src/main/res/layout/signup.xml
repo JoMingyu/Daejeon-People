@@ -78,7 +78,8 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
-                android:hint="이름을 입력하세요" />
+                android:hint="이름을 입력하세요"
+                android:textSize="45px"/>
         </LinearLayout>
 
         <LinearLayout
@@ -103,7 +104,8 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
-                android:hint="아이디를 입력하세요" />
+                android:hint="아이디를 입력하세요"
+                android:textSize="45px"/>
         </LinearLayout>
 
         <LinearLayout
@@ -128,7 +130,8 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
-                android:hint="비밀번호를 입력하세요" />
+                android:hint="비밀번호를 입력하세요"
+                android:textSize="45px"/>
         </LinearLayout>
 
         <LinearLayout
@@ -153,7 +156,8 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
-                android:hint="비밀번호를 다시 입력해주세요" />
+                android:hint="비밀번호를 다시 입력해주세요"
+                android:textSize="45px"/>
         </LinearLayout>
 
         <LinearLayout
@@ -165,7 +169,7 @@
             <Button
                 android:id="@+id/button"
                 android:layout_width="0dp"
-                android:layout_height="50dp"
+                android:layout_height="40dp"
                 android:layout_margin="4dp"
                 android:layout_weight="1"
                 android:text="남자"
@@ -173,7 +177,7 @@
 
             <Button
                 android:layout_width="0dp"
-                android:layout_height="50dp"
+                android:layout_height="40dp"
                 android:layout_margin="4dp"
                 android:layout_weight="1"
                 android:text="여자"
