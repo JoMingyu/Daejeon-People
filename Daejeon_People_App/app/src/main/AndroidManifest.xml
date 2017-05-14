@@ -9,20 +9,10 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
-        android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-<<<<<<< HEAD
-        <activity android:name=".activities.Splash"/>
-        <activity android:name=".activities.PhoneCertified"/>
-        <activity android:name=".activities.MainActivity">
-=======
-        <activity
-            android:name=".activities.Splash"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+        android:supportsRtl="true">
         <activity
             android:name=".activities.MainActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar">
->>>>>>> 9e54167f92d16ee4b7c840678d54e67bb18f39a3
+            android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -30,6 +20,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".activities.SignUp"></activity>
+        <activity android:name=".activities.Splash" android:theme="@style/AppTheme"/>
+        <activity android:name=".activities.PhoneCertified" android:theme="@style/AppTheme"/>
+        <activity android:name=".activities.InvitationTrip" android:theme="@style/ActionBarTheme"/>
     </application>
 
 </manifest>
