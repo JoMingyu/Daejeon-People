@@ -47,7 +47,7 @@
             <EditText
                 android:layout_width="300dp"
                 android:layout_height="45dp"
-                android:text="아이디를 입력하세요"
+                android:hint="아이디를 입력하세요"
                 android:background="@drawable/round_corner"
                 android:gravity="center"
                 android:layout_centerHorizontal="true" />
@@ -55,7 +55,7 @@
             <EditText
                 android:layout_width="300dp"
                 android:layout_height="45dp"
-                android:text="비밀번호를 입력하세요"
+                android:hint="비밀번호를 입력하세요"
                 android:background="@drawable/round_corner"
                 android:gravity="center"
                 android:layout_centerInParent="true"/>
