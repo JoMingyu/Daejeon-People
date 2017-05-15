@@ -22,7 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="70dp"
             android:gravity="center_horizontal|center_vertical"
-            android:text="휴대폰 인증"
+            android:text="아이디 찾아보기"
             android:textColor="@color/White"
             android:textSize="25sp"
             android:textStyle="bold"
@@ -34,7 +34,7 @@
             android:layout_gravity="center_horizontal"
             android:background="@drawable/round_corner"
             android:gravity="center"
-            android:hint="휴대폰 번호를 입력하시오"
+            android:hint="이름을 입력하세요"
             android:inputType="number"
             android:layout_marginBottom="20dp"
             android:textSize="15sp"/>
@@ -48,7 +48,7 @@
             android:background="@drawable/round_corner"
             android:gravity="center"
             android:inputType="number"
-            android:hint="인증 번호를 입력하시오"
+            android:hint="이메일을 입력하세요"
             android:textSize="15sp"/>
 
         <Button
@@ -57,7 +57,7 @@
             android:layout_height="45dp"
             android:layout_gravity="center_horizontal"
             android:background="@drawable/round_corner_middle"
-            android:text="확인"
+            android:text="찾아보기"
             android:textColor="@color/White"
             android:layout_marginBottom="100dp"/>
     </LinearLayout>
