@@ -11,4 +11,5 @@
     <color name="Yes">#6fba77</color>
     <color name="No">#fc7150</color>
     <color name="Black">#000000</color>
+    <color name="BrightGray">#dfdfdf</color>
 </resources>
