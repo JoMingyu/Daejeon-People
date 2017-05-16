@@ -2,6 +2,7 @@ package com.planb.support.user;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Random;
 import java.util.UUID;
 
 import com.planb.support.crypto.AES256;
@@ -10,6 +11,7 @@ import com.planb.support.utilities.DataBase;
 import com.planb.support.utilities.Mail;
 import com.planb.support.utilities.MailSubjects;
 import com.planb.support.utilities.SessionUtil;
+import com.sun.javafx.binding.StringFormatter;
 
 import io.vertx.ext.web.RoutingContext;
 
@@ -164,19 +166,53 @@ public class UserManager {
 		database.executeUpdate("UPDATE account SET session_id=null WHERE id='", encryptedId, "'");
 	}
 	
-	public boolean findId(String email, String name) {
-		String encryptedEmail = aes.encrypt(email);
-		String encryptedName = aes.encrypt(name);
+	public boolean findIdDemand(String email, String name) {
+		String encryptedEmail = SHA256.encrypt(email);
+		String encryptedName = SHA256.encrypt(name);
 		
 		rs = database.executeQuery("SELECT id FROM account WHERE email='", encryptedEmail, "' AND name='", encryptedName, "'");
 		try {
 			if(rs.next()) {
-				String decryptedId = aes.decrypt(rs.getString("id"));
-				Mail.sendMail(email, MailSubjects.FIND_ID_SUBJECT.getName(), "ID : " + decryptedId);
+				Random random = new Random();
+				String code = StringFormatter.format("%06d", random.nextInt(1000000)).getValue();
+				// 인증코드 생성
+				
+				database.executeUpdate("DELETE FROM email_verify_codes WHERE email='", encryptedEmail, "'");
+				database.executeUpdate("INSERT INTO email_verify_codes VALUES('", encryptedEmail, "', '", code, "')");
+				// 인증코드 insert or refresh
+				
+				Mail.sendMail(email, MailSubjects.FIND_ID_DEMAND_SUBJECT.getName(), "코드 : " + code);
+				// 인증코드 전송
 				return true;
 			} else {
 				return false;
 			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+	public boolean findIdVerify(String email, String code) {
+		String encryptedEmail = SHA256.encrypt(email);
+		
+		rs = database.executeQuery("SELECT * FROM email_verify_codes WHERE email='", encryptedEmail, "' AND code='", code, "'");
+		try {
+			if (!rs.next()) {
+				return false;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+		
+		database.executeUpdate("DELETE FROM email_verify_codes WHERE email='", encryptedEmail, "' AND code='", code, "'");
+		rs = database.executeQuery("SELECT * FROM account WHERE email='", encryptedEmail, "'");
+		try {
+			rs.next();
+			String decryptedId = aes.decrypt(rs.getString("id"));
+			Mail.sendMail(email, MailSubjects.FIND_ID_RESULT_SUBJECT.getName(), "ID : " + decryptedId);
+			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return false;
@@ -202,23 +238,49 @@ public class UserManager {
 		return tempPassword;
 	}
 	
-	public boolean findPassword(String id, String email, String name) {
+	public boolean findPasswordDemand(String id, String email, String name) {
 		String encryptedId = aes.encrypt(id);
-		String encryptedEmail = aes.encrypt(email);
-		String encryptedName = aes.encrypt(name);
+		String encryptedEmail = SHA256.encrypt(email);
+		String encryptedName = SHA256.encrypt(name);
 		
-		rs = database.executeQuery("SELECT * FROM account WHERE id='", encryptedId, "' AND email='", encryptedEmail, "' AND name='", encryptedName, "'");
+		rs = database.executeQuery("SELECT * FROM email_verify_codes WHERE id='", encryptedId, "' AND email='", encryptedEmail, "' AND name='", encryptedName);
 		try {
 			if(rs.next()) {
-				String tempPassword = createTempPassword();
-				String encryptedTempPassword = SHA256.encrypt(tempPassword);
-				database.executeUpdate("UPDATE account SET password='", encryptedTempPassword, "' WHERE id='", encryptedId, "'");
-				Mail.sendMail(email, MailSubjects.FIND_PASSWORD_SUBJECT.getName(), "임시 비밀번호 : " + tempPassword);
+				Random random = new Random();
+				String code = StringFormatter.format("%06d", random.nextInt(1000000)).getValue();
+				// 인증코드 생성
+				
+				database.executeUpdate("DELETE FROM email_verify_codes WHERE email='", encryptedEmail, "'");
+				database.executeUpdate("INSERT INTO email_verify_codes VALUES('", encryptedEmail, "', '", code, "')");
+				// 인증코드 insert or refresh
+				Mail.sendMail(email, MailSubjects.FIND_PW_DEMAND_SUBJECT.getName(), "코드 : " + code);
 				return true;
 			} else {
 				return false;
 			}
 		} catch(SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+	public boolean findPasswordVerify(String email, String code) {
+		String encryptedEmail = SHA256.encrypt(email);
+		
+		rs = database.executeQuery("SELECT * FROM email_verify_codes WHERE email='", encryptedEmail, "' AND code='", code, "'");
+		try {
+			if (rs.next()) {
+				database.executeUpdate("DELETE FROM email_verify_codes WHERE email='", encryptedEmail, "' AND code='", code, "'");
+				String tempPassword = createTempPassword();
+				String encryptedTempPassword = SHA256.encrypt(tempPassword);
+				database.executeUpdate("UPDATE account SET password='", encryptedTempPassword, "' WHERE email='", encryptedEmail, "'");
+				Mail.sendMail(email, MailSubjects.FIND_PW_RESULT_SUBJECT.getName(), "임시 비밀번호 : " + tempPassword);
+				return true;
+			} else {
+				return false;
+			}
+
+		} catch (SQLException e) {
 			e.printStackTrace();
 			return false;
 		}

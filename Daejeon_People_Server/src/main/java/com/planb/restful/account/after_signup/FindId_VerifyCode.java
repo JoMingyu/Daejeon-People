@@ -7,21 +7,15 @@ import io.vertx.core.Handler;
 import io.vertx.core.http.HttpMethod;
 import io.vertx.ext.web.RoutingContext;
 
-@Route(uri = "/find/id", method = HttpMethod.POST)
-public class FindId implements Handler<RoutingContext> {
-	UserManager userManager;
-	
-	public FindId() {
-		userManager = new UserManager();
-	}
-	
+@Route(uri = "/find/id/verify", method = HttpMethod.POST)
+public class FindId_VerifyCode implements Handler<RoutingContext> {
 	@Override
 	public void handle(RoutingContext ctx) {
+		UserManager userManager = new UserManager();
 		String email = ctx.request().getFormAttribute("email");
-		String name = ctx.request().getFormAttribute("name");
+		String code = ctx.request().getFormAttribute("code");
 		
-		boolean result = userManager.findId(email, name);
-		if(result) {
+		if (userManager.findIdVerify(email, code)) {
 			ctx.response().setStatusCode(201).end();
 			ctx.response().close();
 		} else {

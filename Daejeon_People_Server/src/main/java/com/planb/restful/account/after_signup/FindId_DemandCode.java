@@ -7,22 +7,15 @@ import io.vertx.core.Handler;
 import io.vertx.core.http.HttpMethod;
 import io.vertx.ext.web.RoutingContext;
 
-@Route(uri = "/find/password", method = HttpMethod.POST)
-public class FindPassword implements Handler<RoutingContext> {
-	UserManager userManager;
-	
-	public FindPassword() {
-		userManager = new UserManager();
-	}
-	
+@Route(uri = "/find/id/demand", method = HttpMethod.POST)
+public class FindId_DemandCode implements Handler<RoutingContext> {
 	@Override
 	public void handle(RoutingContext ctx) {
-		String id = ctx.request().getFormAttribute("id");
+		UserManager userManager = new UserManager();
 		String email = ctx.request().getFormAttribute("email");
 		String name = ctx.request().getFormAttribute("name");
 		
-		boolean result = userManager.findPassword(id, email, name);
-		if(result) {
+		if(userManager.findIdDemand(email, name)) {
 			ctx.response().setStatusCode(201).end();
 			ctx.response().close();
 		} else {

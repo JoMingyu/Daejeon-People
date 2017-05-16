@@ -15,8 +15,8 @@ public class SignupManager {
 	private static DataBase database = DataBase.getInstance();
 	private static AES256 aes = new AES256("d.df!*&ek@s.Cde/q");
 	/*
-	 * ID, Email, Tel, Name : AES256
-	 * PW, sessionId : SHA256
+	 * ID, Registration ID : AES256
+	 * PW, Email, Name, Tel, sessionId : SHA256
 	 */
 	private static ResultSet rs;
 	
@@ -25,7 +25,7 @@ public class SignupManager {
 		 * 핸드폰 번호 존재 여부 체크
 		 * 존재 시 true, 실패 시 false
 		 */
-		String encryptedPhoneNumber = aes.encrypt(phoneNumber);
+		String encryptedPhoneNumber = SHA256.encrypt(phoneNumber);
 		
 		rs = database.executeQuery("SELECT * FROM account WHERE phone_number='", encryptedPhoneNumber, "'");
 		try {
@@ -44,7 +44,7 @@ public class SignupManager {
 		/*
 		 * 문자 메시지 인증코드 전송
 		 */
-		String encryptedPhoneNumber = aes.encrypt(phoneNumber);
+		String encryptedPhoneNumber = SHA256.encrypt(phoneNumber);
 		// 핸드폰 번호 암호화
 		
 		Random random = new Random();
@@ -63,7 +63,7 @@ public class SignupManager {
 		 * 인증코드 인증
 		 * 성공 시 true, 실패 시 false
 		 */
-		String encryptedPhoneNumber = aes.encrypt(phoneNumber);
+		String encryptedPhoneNumber = SHA256.encrypt(phoneNumber);
 
 		rs = database.executeQuery("SELECT * FROM phone_verify_codes WHERE phone_number='", encryptedPhoneNumber, "' AND code='", code, "'");
 		try {
@@ -85,7 +85,7 @@ public class SignupManager {
 		 *  이메일 존재 여부 체크
 		 *  존재 시 true, 실패 시 false
 		 */
-		String encryptedEmail = aes.encrypt(email);
+		String encryptedEmail = SHA256.encrypt(email);
 
 		rs = database.executeQuery("SELECT * FROM account WHERE email='", encryptedEmail, "'");
 		try {
@@ -104,7 +104,7 @@ public class SignupManager {
 		/*
 		 * 이메일 전송
 		 */
-		String encryptedEmail = aes.encrypt(email);
+		String encryptedEmail = SHA256.encrypt(email);
 		// 이메일 암호화
 
 		Random random = new Random();
@@ -124,7 +124,7 @@ public class SignupManager {
 		 * 인증코드 인증
 		 * 성공 시 true, 실패 시 false
 		 */
-		String encryptedEmail = aes.encrypt(email);
+		String encryptedEmail = SHA256.encrypt(email);
 
 		rs = database.executeQuery("SELECT * FROM email_verify_codes WHERE email='", encryptedEmail, "' AND code='", code, "'");
 		try {
@@ -134,7 +134,6 @@ public class SignupManager {
 			} else {
 				return false;
 			}
-
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return false;
@@ -169,10 +168,10 @@ public class SignupManager {
 		 */
 		String encryptedId = aes.encrypt(id);
 		String encryptedPassword = SHA256.encrypt(password);
-		String encryptedEmail = aes.encrypt(email);
-		String encryptedPhoneNumber = phoneNumber == null ? null : aes.encrypt(phoneNumber);
+		String encryptedEmail = SHA256.encrypt(email);
+		String encryptedPhoneNumber = phoneNumber == null ? null : SHA256.encrypt(phoneNumber);
 		// null이면 null, null이 아니면 암호화
-		String encryptedName = aes.encrypt(name);
+		String encryptedName = SHA256.encrypt(name);
 		String encryptedRegistrationId = aes.encrypt(registrationId);
 		
 		if(encryptedPhoneNumber == null) {
