@@ -14,7 +14,7 @@ public class CheckEmailExist implements Handler<RoutingContext> {
 		String email = ctx.request().getFormAttribute("email");
 		
 		if (SignupManager.checkEmailExists(email)) {
-			ctx.response().setStatusCode(409).end();
+			ctx.response().setStatusCode(204).end();
 			ctx.response().close();
 		} else {
 			ctx.response().setStatusCode(201).end();

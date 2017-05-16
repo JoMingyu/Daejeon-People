@@ -14,7 +14,7 @@ public class CheckPhoneExist implements Handler<RoutingContext> {
 		String phoneNumber = ctx.request().getFormAttribute("number");
 		
 		if(SignupManager.checkPhoneNumberExists(phoneNumber)) {
-			ctx.response().setStatusCode(409).end();
+			ctx.response().setStatusCode(204).end();
 			ctx.response().close();
 		} else {
 			ctx.response().setStatusCode(201).end();

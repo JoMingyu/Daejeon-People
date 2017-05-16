@@ -14,7 +14,7 @@ public class CheckIdExist implements Handler<RoutingContext> {
 		String id = ctx.request().getFormAttribute("id");
 
 		if (SignupManager.checkIdExists(id)) {
-			ctx.response().setStatusCode(409).end();
+			ctx.response().setStatusCode(204).end();
 			ctx.response().close();
 		} else {
 			ctx.response().setStatusCode(201).end();
