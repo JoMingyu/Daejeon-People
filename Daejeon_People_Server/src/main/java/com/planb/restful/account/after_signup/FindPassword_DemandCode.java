@@ -9,14 +9,9 @@ import io.vertx.ext.web.RoutingContext;
 
 @Route(uri = "/find/password/demand", method = HttpMethod.POST)
 public class FindPassword_DemandCode implements Handler<RoutingContext> {
-	UserManager userManager;
-	
-	public FindPassword_DemandCode() {
-		userManager = new UserManager();
-	}
-	
 	@Override
 	public void handle(RoutingContext ctx) {
+		UserManager userManager = new UserManager();
 		String id = ctx.request().getFormAttribute("id");
 		String email = ctx.request().getFormAttribute("email");
 		String name = ctx.request().getFormAttribute("name");

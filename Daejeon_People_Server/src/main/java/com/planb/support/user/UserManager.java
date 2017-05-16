@@ -228,7 +228,7 @@ public class UserManager {
 		while(true) {
 			tempPassword = UUID.randomUUID().toString().substring(0, 8);
 			encryptedTempPassword = SHA256.encrypt(tempPassword);
-			rs = database.executeQuery("SELECT * FROM account WHERE password='", encryptedTempPassword);
+			rs = database.executeQuery("SELECT * FROM account WHERE password='", encryptedTempPassword, "'");
 			try {
 				if(!rs.next()) {
 					break;
@@ -245,7 +245,7 @@ public class UserManager {
 		String encryptedEmail = aes.encrypt(email);
 		String encryptedName = aes.encrypt(name);
 		
-		rs = database.executeQuery("SELECT * FROM email_verify_codes WHERE id='", encryptedId, "' AND email='", encryptedEmail, "' AND name='", encryptedName);
+		rs = database.executeQuery("SELECT * FROM account WHERE id='", encryptedId, "' AND email='", encryptedEmail, "' AND name='", encryptedName, "'");
 		try {
 			if(rs.next()) {
 				Random random = new Random();

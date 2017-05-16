@@ -9,15 +9,9 @@ import io.vertx.ext.web.RoutingContext;
 
 @Route(uri = "/logout", method = HttpMethod.POST)
 public class Logout implements Handler<RoutingContext> {
-	UserManager userManager;
-	
-	public Logout() {
-		userManager = new UserManager();
-	}
-	
-
 	@Override
 	public void handle(RoutingContext ctx) {
+		UserManager userManager = new UserManager();
 		userManager.logout(ctx);
 		
 		ctx.response().setStatusCode(201).end();

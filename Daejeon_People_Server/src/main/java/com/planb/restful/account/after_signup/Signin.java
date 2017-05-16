@@ -9,14 +9,9 @@ import io.vertx.ext.web.RoutingContext;
 
 @Route(uri = "/signin", method = HttpMethod.POST)
 public class Signin implements Handler<RoutingContext> {
-	UserManager userManager;
-
-	public Signin() {
-		userManager = new UserManager();
-	}
-
 	@Override
 	public void handle(RoutingContext ctx) {
+		UserManager userManager = new UserManager();
 		String id = ctx.request().getFormAttribute("id");
 		String password = ctx.request().getFormAttribute("password");
 		boolean keepLogin = Boolean.parseBoolean(ctx.request().getFormAttribute("keeplogin"));
