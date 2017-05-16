@@ -19,8 +19,10 @@ public class UserManager {
 	private static DataBase database = DataBase.getInstance();
 	private static AES256 aes = new AES256("d.df!*&ek@s.Cde/q");
 	/*
-	 * ID, Email, Tel, Name : AES256
-	 * PW, sessionId : SHA256
+	 * ID : AES256
+	 * Registration ID : AES256
+	 * Email, Name, Tel : AES256
+	 * PW, Session ID : SHA256
 	 */
 	private static ResultSet rs;
 
@@ -167,8 +169,8 @@ public class UserManager {
 	}
 	
 	public boolean findIdDemand(String email, String name) {
-		String encryptedEmail = SHA256.encrypt(email);
-		String encryptedName = SHA256.encrypt(name);
+		String encryptedEmail = aes.encrypt(email);
+		String encryptedName = aes.encrypt(name);
 		
 		rs = database.executeQuery("SELECT id FROM account WHERE email='", encryptedEmail, "' AND name='", encryptedName, "'");
 		try {
@@ -194,7 +196,7 @@ public class UserManager {
 	}
 	
 	public boolean findIdVerify(String email, String code) {
-		String encryptedEmail = SHA256.encrypt(email);
+		String encryptedEmail = aes.encrypt(email);
 		
 		rs = database.executeQuery("SELECT * FROM email_verify_codes WHERE email='", encryptedEmail, "' AND code='", code, "'");
 		try {
@@ -240,8 +242,8 @@ public class UserManager {
 	
 	public boolean findPasswordDemand(String id, String email, String name) {
 		String encryptedId = aes.encrypt(id);
-		String encryptedEmail = SHA256.encrypt(email);
-		String encryptedName = SHA256.encrypt(name);
+		String encryptedEmail = aes.encrypt(email);
+		String encryptedName = aes.encrypt(name);
 		
 		rs = database.executeQuery("SELECT * FROM email_verify_codes WHERE id='", encryptedId, "' AND email='", encryptedEmail, "' AND name='", encryptedName);
 		try {
@@ -265,7 +267,7 @@ public class UserManager {
 	}
 	
 	public boolean findPasswordVerify(String email, String code) {
-		String encryptedEmail = SHA256.encrypt(email);
+		String encryptedEmail = aes.encrypt(email);
 		
 		rs = database.executeQuery("SELECT * FROM email_verify_codes WHERE email='", encryptedEmail, "' AND code='", code, "'");
 		try {
