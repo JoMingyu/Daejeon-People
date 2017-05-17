@@ -104,6 +104,12 @@ public class DetailInfo implements Handler<RoutingContext> {
 				// 숙박
 				contentDetailInfo = database.executeQuery("SELECT * FROM accommodation_detail_info WHERE content_id=", contentId);
 				contentDetailInfo.next();
+				response.put("info_center", extractPhoneNumber(contentDetailInfo.getString("info_center")));
+				response.put("checkin_time", contentDetailInfo.getString("checkin_time"));
+				response.put("checkout_time", contentDetailInfo.getString("checkout_time"));
+				response.put("benikia", contentDetailInfo.getBoolean("benikia"));
+				response.put("goodstay", contentDetailInfo.getBoolean("goodstay"));
+				response.put("accomcount", contentDetailInfo.getString("accomcount") == null ? "정보 없음" : contentDetailInfo.getString("accomcount"));
 				break;
 			case 38:
 				// 쇼핑
@@ -113,11 +119,18 @@ public class DetailInfo implements Handler<RoutingContext> {
 				response.put("baby_carriage", contentDetailInfo.getString("baby_carriage") == null ? "없음" : contentDetailInfo.getString("baby_carriage"));
 				response.put("pet", contentDetailInfo.getString("pet") == null ? "없음" : contentDetailInfo.getString("pet"));
 				response.put("info_center", extractPhoneNumber(contentDetailInfo.getString("info_center")));
+				response.put("use_time", contentDetailInfo.getString("use_time") == null ? "정보 없음" : contentDetailInfo.getString("use_time"));
+				response.put("rest_date", contentDetailInfo.getString("rest_date") == null ? "정보 없음" : contentDetailInfo.getString("rest_date"));
 				break;
 			case 39:
 				// 식당
 				contentDetailInfo = database.executeQuery("SELECT * FROM restaurant_detail_info WHERE content_id=", contentId);
 				contentDetailInfo.next();
+				response.put("credit_card", contentDetailInfo.getString("credit_card") == null ? "없음" : contentDetailInfo.getString("credit_card"));
+				response.put("info_center", extractPhoneNumber(contentDetailInfo.getString("info_center")));
+				response.put("use_time", contentDetailInfo.getString("use_time") == null ? "정보 없음" : contentDetailInfo.getString("use_time"));
+				response.put("rest_date", contentDetailInfo.getString("rest_date") == null ? "정보 없음" : contentDetailInfo.getString("rest_date"));
+				response.put("rep_menu", contentDetailInfo.getString("rep_menu") == null ? "정보 없음" : contentDetailInfo.getString("rep_menu"));
 				break;
 			default:
 				break;

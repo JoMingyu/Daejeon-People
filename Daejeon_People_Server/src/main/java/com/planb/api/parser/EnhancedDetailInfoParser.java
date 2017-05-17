@@ -428,7 +428,7 @@ public class EnhancedDetailInfoParser {
 				String openDate = item.has("opendateshopping") ? item.getString("opendateshopping") : null;
 				// 개장일
 				
-				String openTime = item.has("opentime") ? item.getString("opentime") : null;
+				String useTime = item.has("opentime") ? item.getString("opentime") : null;
 				// 영업시간
 				
 				String parking = item.has("parkingshopping") ? item.getString("parkingshopping") : null;
@@ -449,7 +449,7 @@ public class EnhancedDetailInfoParser {
 				String scale = item.has("scaleshopping") ? item.getString("scaleshopping") : null;
 				// 규모
 				
-				database.executeUpdate("INSERT INTO shopping_detail_info VALUES(", contentId, ", '", babyCarriage, "', '", creditCard, "', '", pet, "', '", guide, "', '", fairDay, "', '", infoCenter, "', '", openDate, "', '", openTime, "', '", parking, "', '", restDate, "', '", restroom, "', '", saleItem, "', '", scale, "')");
+				database.executeUpdate("INSERT INTO shopping_detail_info VALUES(", contentId, ", '", babyCarriage, "', '", creditCard, "', '", pet, "', '", guide, "', '", fairDay, "', '", infoCenter, "', '", openDate, "', '", useTime, "', '", parking, "', '", restDate, "', '", restroom, "', '", saleItem, "', '", scale, "')");
 			} else if(contentTypeId == 39) {
 				// 음식
 				
@@ -475,7 +475,7 @@ public class EnhancedDetailInfoParser {
 				String openDate = item.has("opendatefood") ? item.getString("opendatefood") : null;
 				// 개업일
 				
-				String openTime = item.has("opentimefood") ? item.getString("opentimefood") : null;
+				String useTime = item.has("opentimefood") ? item.getString("opentimefood") : null;
 				// 영업시간
 				
 				String packing = item.has("packing") ? item.getString("packing") : null;
@@ -502,7 +502,7 @@ public class EnhancedDetailInfoParser {
 				String treatMenu = item.has("treatmenu") ? item.getString("treatmenu") : null;
 				// 취급 메뉴
 				
-				database.executeUpdate("INSERT INTO restaurant_detail_info VALUES(", contentId, ", '", creditCard, "', '", repMenu, "', '", infoCenter, "', ", kidsFacility, ", '", openDate, "', '", openTime, "', '", packing, "', '", parking, "', '", reservation, "', '", restDate, "', '", scale, "', '", seat, "', '", smoking, "', '", treatMenu, "')");
+				database.executeUpdate("INSERT INTO restaurant_detail_info VALUES(", contentId, ", '", creditCard, "', '", repMenu, "', '", infoCenter, "', ", kidsFacility, ", '", openDate, "', '", useTime, "', '", packing, "', '", parking, "', '", reservation, "', '", restDate, "', '", scale, "', '", seat, "', '", smoking, "', '", treatMenu, "')");
 			}
 		}
 		Log.I("Detail Info Parse Success.");
