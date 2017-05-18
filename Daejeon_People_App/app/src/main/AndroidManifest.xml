@@ -25,7 +25,9 @@
         </activity>
         <activity android:name=".activities.SignUp" />
         <activity android:name=".activities.Email_Certified" />
-        <activity android:name=".activities.Introduction_CulturalFacilities"></activity>
+        <activity android:name=".activities.Introduction_CulturalFacilities" />
+        <activity android:name=".activities.Introduction_FestivalEvent" />
+        <activity android:name=".activities.Introduction_LeisureTime"></activity>
     </application>
 
 </manifest>
