@@ -1,17 +1,15 @@
 package com.daejeonpeople.activities;
 
-import android.app.Activity;
-import android.content.Intent;
+import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.daejeonpeople.R;
 
-public class MainActivity extends Activity {
+public class SignUp extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.address_book);
-        startActivity(new Intent(this,Splash.class));
+        setContentView(R.layout.signup);
     }
 }
