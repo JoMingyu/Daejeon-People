@@ -23,6 +23,7 @@
             android:padding="5dp">
 
             <ImageButton
+                android:id="@+id/btn_back"
                 android:layout_width="15dp"
                 android:layout_height="15dp"
                 android:layout_marginLeft="15dp"
@@ -42,11 +43,11 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
-                    android:id="@+id/imageView"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="10dp"
+                    android:id="@+id/star"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="10dp"
                     android:background="@drawable/ic_star_border" />
 
             </RelativeLayout>
@@ -63,7 +64,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:background="@drawable/gradation">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -71,6 +73,7 @@
                 android:layout_weight="0.2">
 
                 <TextView
+                    android:id="@+id/placename"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
@@ -87,10 +90,11 @@
                 android:layout_weight="0.3">
 
                 <TextView
+                    android:id="@+id/placekind"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
-                    android:text="행사  \u0026  축제"
+                    android:text="레포츠"
                     android:textColor="@color/White"
                     android:textSize="12sp" />
 
@@ -140,7 +144,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="7"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:background="@color/White">
 
             <TableLayout
                 android:layout_width="match_parent"
@@ -171,6 +176,7 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/call_inquiry"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="042 - 611 - 2080"
@@ -216,6 +222,7 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/usetime"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="17시 30분 입장 마감"
@@ -261,6 +268,7 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/holiday"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="5월 8일 ~ 5월 14일"
@@ -306,6 +314,7 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="charge"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="12,000원"
@@ -352,7 +361,7 @@
                         android:paddingTop="20dp">
 
                         <TextView
-                            android:id="@+id/textView2"
+                            android:id="@+id/location"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="대전광역시 대덕구 대청로 167"
@@ -360,6 +369,7 @@
                             android:textSize="18sp" />
 
                         <ImageView
+                            android:id="@+id/placemap"
                             android:layout_width="250dp"
                             android:layout_height="150dp"
                             android:layout_marginBottom="20dp"

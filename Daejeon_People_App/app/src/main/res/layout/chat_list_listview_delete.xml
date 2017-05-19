@@ -36,12 +36,11 @@
         android:layout_marginTop="5dp"/>
 
     <ImageView
+        android:id="@+id/chatdelete"
         android:layout_width="15dp"
         android:layout_height="20dp"
         android:background="@drawable/ic_delete_g"
         android:layout_alignParentRight="true"
         android:layout_marginTop="30dp"
         android:layout_marginRight="20dp"/>
-
-
 </RelativeLayout>
