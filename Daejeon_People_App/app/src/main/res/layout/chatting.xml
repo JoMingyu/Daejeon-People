@@ -3,6 +3,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/Light">
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_above="@+id/chattingBox"
+        android:id="@+id/chatLog">
+
+    </ListView>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="60dp"

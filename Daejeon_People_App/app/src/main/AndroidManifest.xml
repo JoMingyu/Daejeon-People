@@ -11,11 +11,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".activities.Splash" android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+        <activity android:name=".activities.MainActivity" android:theme="@style/AppTheme"/>
         <activity
-            android:name=".activities.Splash"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
-        <activity
-            android:name=".activities.MainActivity"
+            android:name=".activities.ActionBar"
             android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
