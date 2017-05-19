@@ -35,22 +35,13 @@
         android:layout_toRightOf="@id/profile"
         android:layout_marginTop="5dp"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="오후 9:31"
-        android:textColor="@color/Black"
-        android:textSize="12sp"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="20dp"/>
-
     <ImageView
-        android:layout_width="20dp"
-        android:layout_height="14dp"
-        android:background="@drawable/ic_group"
+        android:layout_width="15dp"
+        android:layout_height="20dp"
+        android:background="@drawable/ic_delete_g"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="45dp"
+        android:layout_marginTop="30dp"
         android:layout_marginRight="20dp"/>
+
 
 </RelativeLayout>
