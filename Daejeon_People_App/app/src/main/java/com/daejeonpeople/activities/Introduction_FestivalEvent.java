@@ -5,11 +5,11 @@ import android.os.Bundle;
 
 import com.daejeonpeople.R;
 
-public class Introduction_CulturalFacilities extends AppCompatActivity {
+public class Introduction_FestivalEvent extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.introduction_cultural_facilities);
+        setContentView(R.layout.introduction_festival_event);
     }
 }

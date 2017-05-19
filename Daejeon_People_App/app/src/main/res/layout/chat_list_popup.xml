@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_vertical|center_horizontal">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp">
+
+            <TextView
+                android:id="@+id/chatname"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="2017년 대선 토론방_B"
+                android:textColor="@color/Black"
+                android:textSize="18sp"
+                android:textStyle="bold"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            android:background="@drawable/ic_line">
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TableRow>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="20dp">
+
+                        <TextView
+                            android:id="@+id/set_chatname"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="채팅방 이름 설정"
+                            android:textStyle="bold"
+                            android:textSize="14sp"/>
+
+                    </LinearLayout>
+                </TableRow>
+
+                <View
+                    android:layout_height="2dp"
+                    android:background="#e6e6e6"/>
+
+                <TableRow>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="20dp">
+
+                        <TextView
+                            android:id="@+id/chat_alarm_off"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="채팅방 알림 끄기"
+                            android:textStyle="bold"
+                            android:textSize="14sp"/>
+
+                    </LinearLayout>
+                </TableRow>
+
+                <View
+                    android:layout_height="2dp"
+                    android:background="#e6e6e6"/>
+
+                <TableRow>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="20dp">
+
+                        <TextView
+                            android:id="@+id/out_chat"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="채팅방 나가기"
+                            android:textStyle="bold"
+                            android:textSize="14sp"/>
+
+                    </LinearLayout>
+                </TableRow>
+            </TableLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

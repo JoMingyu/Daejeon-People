@@ -35,9 +35,9 @@
             android:background="@drawable/round_corner"
             android:gravity="center"
             android:hint="이메일을 입력하시오"
-            android:inputType="number"
+            android:inputType="text"
             android:textSize="15sp"
-            android:layout_marginBottom="10dp"/>
+            android:layout_marginBottom="10dp" />
 
         <EditText
             android:id="@+id/editText"
@@ -52,7 +52,7 @@
             android:textSize="15sp"/>
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/btn_find"
             android:layout_width="300dp"
             android:layout_height="45dp"
             android:layout_gravity="center_horizontal"
