@@ -25,7 +25,7 @@
         android:id="@+id/userPhoneNumber"
         android:text="010-1234-5678"
         android:layout_below="@+id/userName"
-        android:layout_toRightOf="@+id/profile"/>
+        android:layout_toEndOf="@+id/profile" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
