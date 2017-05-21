@@ -6,9 +6,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.planb.support.networking.Config;
 import com.planb.support.networking.HttpClient;
-import com.planb.support.networking.HttpClientConfig;
 
 public class HttpRequestForParser {
 	private static JSONObject request(String url) {
@@ -17,11 +15,7 @@ public class HttpRequestForParser {
 		 * 바이트 단위로 Json 데이터 전체를 읽어들여 리턴
 		 */
 		try {
-			Config config = new HttpClientConfig();
-			config.setTargetAddress(url);
-			config.setReadTimeout(60000);
-			config.setConnectTimeout(60000);
-			HttpClient client = new HttpClient(config);
+			HttpClient client = new HttpClient(url, 80, 60000, 60000);
 			
 			JSONObject responseEntire = new JSONObject(client.get("/", new HashMap<String, Object>(), new HashMap<String, Object>()).getResponseBody());
 			/*

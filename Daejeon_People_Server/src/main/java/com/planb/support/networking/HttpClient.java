@@ -1,7 +1,6 @@
 package com.planb.support.networking;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
@@ -11,61 +10,85 @@ import java.util.Map;
 import org.json.JSONObject;
 
 public class HttpClient {
-	private Config config = null;
+	private String targetAddress;
+	private URL url;
 	
-	private URL url = null;
+	private int readTimeout = 3000;
+	private int connectTimeout = 3000;
+	
 	private HttpURLConnection connection = null;
-	private InputStream in = null;
 	private OutputStream out = null;
 	private OutputStreamWriter wr = null;
 	
-	public HttpClient(Config config) {
-		this.config = config;
+	public HttpClient(String targetAddress, int port, int readTimeout, int connectTimeout) {
+		// Constructor with address, port, timeouts
+		
+		if(targetAddress.endsWith("/")) {
+			targetAddress = targetAddress.substring(0, targetAddress.length() - 1);
+		}
+		
+		this.targetAddress = targetAddress.substring(0, targetAddress.length() - 1);
+		this.readTimeout = readTimeout;
+		this.connectTimeout = connectTimeout;
 	}
 	
-	public HttpClient() {
-		this.config = new HttpClientDefaultConfig();
+	public HttpClient(String targetAddress, int port) {
+		// Constructor with address, port
+		
+		if(targetAddress.endsWith("/")) {
+			targetAddress = targetAddress.substring(0, targetAddress.length() - 1);
+		}
+		
+		this.targetAddress = port == 80 ? targetAddress : targetAddress + ":" + port;
+	}
+	
+	public HttpClient(String targetAddress) {
+		// Constructor with address
+		
+		if(targetAddress.endsWith("/")) {
+			targetAddress = targetAddress.substring(0, targetAddress.length() - 1);
+		}
+		
+		this.targetAddress = targetAddress;
+	}
+	
+	public HttpClient(Config config) {
+		// Constructor with config
+		
+		this.targetAddress = config.getTargetAddress();
+		this.readTimeout = config.getReadTimeout();
+		this.connectTimeout = config.getConnectTimeout();
 	}
 	
 	public Response post(String uri, Map<String, Object> headers, Map<String, Object> params) {
-		/*
-		 * post 요청
-		 * status code 리턴
-		 */
-		String requestAddress = NetworkingHelper.createRequestAddress(config, uri);
-		// URI를 통해 요청 주소 얻어오기
+		// POST request with parameter map
+		
+		String requestAddress = NetworkingHelper.createRequestAddress(this.targetAddress, uri);
+		// Request address with uri
+		
 		try {
 			url = new URL(requestAddress);
 			connection = (HttpURLConnection) url.openConnection();
 			connection.setRequestMethod("POST");
 			connection.setDoOutput(true);
-			// POST 요청 시 DoOutput 활성화
-			connection.setReadTimeout(config.getReadTimeout());
-			connection.setConnectTimeout(config.getConnectTimeout());
+			// Enable do output
+			connection.setReadTimeout(this.readTimeout);
+			connection.setConnectTimeout(this.connectTimeout);
 			
-			if(headers.size() > 0) {
+			if(headers != null && headers.size() > 0) {
 				for(String key : headers.keySet()) {
 					connection.setRequestProperty(key, (String) headers.get(key));
 				}
 			}
 			
-			if(params.size() > 0) {
+			if(params != null && params.size() > 0) {
 				out = connection.getOutputStream();
 				out.write(NetworkingHelper.createParamBytes(params));
-				// Body 데이터가 있으면 바이트 형태의 데이터를 전송
+				// Send byte[] data if body data is exists
 				out.flush();
 			}
 			
-			Response response = new Response();
-			in = connection.getInputStream();
-			String responseBody = NetworkingHelper.getResponse(in);
-			// connection으로 얻은 InputStream에서 응답 얻어오기
-			response.setResponseBody(responseBody);
-			response.setResponseCode(connection.getResponseCode());
-			response.setResponseHeader(connection.getHeaderFields());
-			
-			connection.disconnect();
-			return response;
+			return NetworkingHelper.getResponse(connection);
 		} catch (IOException e) {
 			e.printStackTrace();
 			return null;
@@ -73,22 +96,21 @@ public class HttpClient {
 	}
 	
 	public Response post(String uri, Map<String, Object> headers, JSONObject requestObject) {
-		/*
-		 * post 요청 : 본문 데이터가 JSON
-		 * status code 리턴
-		 */
-		String requestAddress = NetworkingHelper.createRequestAddress(config, uri);
-		// URI를 통해 요청 주소 얻어오기
+		// POST request with JSON data
+		
+		String requestAddress = NetworkingHelper.createRequestAddress(this.targetAddress, uri);
+		// Request address with uri
+		
 		try {
 			url = new URL(requestAddress);
 			connection = (HttpURLConnection) url.openConnection();
 			connection.setRequestMethod("POST");
 			connection.setDoOutput(true);
-			// POST 요청 시 DoOutput 활성화
-			connection.setReadTimeout(config.getReadTimeout());
-			connection.setConnectTimeout(config.getConnectTimeout());
+			// Enable do output
+			connection.setReadTimeout(this.readTimeout);
+			connection.setConnectTimeout(this.connectTimeout);
 			
-			if(headers.size() > 0) {
+			if(headers != null && headers.size() > 0) {
 				for(String key : headers.keySet()) {
 					connection.setRequestProperty(key, (String) headers.get(key));
 				}
@@ -98,16 +120,7 @@ public class HttpClient {
 			wr.write(requestObject.toString());
 			wr.flush();
 			
-			Response response = new Response();
-			in = connection.getInputStream();
-			String responseBody = NetworkingHelper.getResponse(in);
-			// connection으로 얻은 InputStream에서 응답 얻어오기
-			response.setResponseBody(responseBody);
-			response.setResponseCode(connection.getResponseCode());
-			response.setResponseHeader(connection.getHeaderFields());
-			
-			connection.disconnect();
-			return response;
+			return NetworkingHelper.getResponse(connection);
 		} catch (IOException e) {
 			e.printStackTrace();
 			return null;
@@ -115,76 +128,64 @@ public class HttpClient {
 	}
 	
 	public Response get(String uri, Map<String, Object> headers, Map<String, Object> params) {
-		/*
-		 * get 요청
-		 * status code와 응답 데이터 리턴
-		 */
+		// GET request
+		
 		String requestAddress = null;
-		if(params.size() > 0) {
-			requestAddress = NetworkingHelper.createRequestAddress(config, uri, params);
-			// URI와 파라미터를 통해 요청 주소 얻어오기
+		if(params != null && params.size() > 0) {
+			requestAddress = NetworkingHelper.createRequestAddress(this.targetAddress, uri, params);
+			// Request address with uri and parameter
 		} else {
-			requestAddress = NetworkingHelper.createRequestAddress(config, uri);
+			requestAddress = NetworkingHelper.createRequestAddress(this.targetAddress, uri);
+			// Request address with uri
 		}
 		try {
 			url = new URL(requestAddress);
 			connection = (HttpURLConnection) url.openConnection();
 			connection.setRequestMethod("GET");
-			connection.setReadTimeout(config.getReadTimeout());
-			connection.setConnectTimeout(config.getConnectTimeout());
+			connection.setReadTimeout(this.readTimeout);
+			connection.setConnectTimeout(this.connectTimeout);
 			
-			if(headers.size() > 0) {
+			if(headers != null && headers.size() > 0) {
 				for(String key : headers.keySet()) {
 					connection.setRequestProperty(key, (String) headers.get(key));
 				}
 			}
 			
-			Response response = new Response();
-			in = connection.getInputStream();
-			String responseBody = NetworkingHelper.getResponse(in);
-			// connection으로 얻은 InputStream에서 응답 얻어오기
-			response.setResponseBody(responseBody);
-			response.setResponseCode(connection.getResponseCode());
-			response.setResponseHeader(connection.getHeaderFields());
-			
-			connection.disconnect();
-			return response;
+			return NetworkingHelper.getResponse(connection);
 		} catch(IOException e) {
 			e.printStackTrace();
 			return null;
 		}
 	}
 	
-	public int delete(String uri, Map<String, Object> headers, Map<String, Object> params) {
-		/*
-		 * delete 요청
-		 * status code 리턴
-		 */
+	public Response delete(String uri, Map<String, Object> headers, Map<String, Object> params) {
+		// GET request
+		
 		String requestAddress = null;
-		if(params.size() > 0) {
-			requestAddress = NetworkingHelper.createRequestAddress(config, uri, params);
-			// URI와 파라미터를 통해 요청 주소 얻어오기
+		if(params != null && params.size() > 0) {
+			requestAddress = NetworkingHelper.createRequestAddress(this.targetAddress, uri, params);
+			// Request address with uri and parameter
 		} else {
-			requestAddress = NetworkingHelper.createRequestAddress(config, uri);
+			requestAddress = NetworkingHelper.createRequestAddress(this.targetAddress, uri);
+			// Request address with uri
 		}
 		try {
 			url = new URL(requestAddress);
 			connection = (HttpURLConnection) url.openConnection();
 			connection.setRequestMethod("DELETE");
-			connection.setReadTimeout(config.getReadTimeout());
-			connection.setConnectTimeout(config.getConnectTimeout());
+			connection.setReadTimeout(this.readTimeout);
+			connection.setConnectTimeout(this.connectTimeout);
 			
-			if(headers.size() > 0) {
+			if(headers != null && headers.size() > 0) {
 				for(String key : headers.keySet()) {
 					connection.setRequestProperty(key, (String) headers.get(key));
 				}
 			}
 			
-			connection.disconnect();
-			return connection.getResponseCode();
+			return NetworkingHelper.getResponse(connection);
 		} catch(IOException e) {
 			e.printStackTrace();
-			return 0;
+			return null;
 		}
 	}
 }
