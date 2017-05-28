@@ -5,6 +5,8 @@ import java.sql.SQLException;
 import java.util.Random;
 import java.util.UUID;
 
+import org.json.JSONObject;
+
 import com.planb.support.crypto.AES256;
 import com.planb.support.crypto.SHA256;
 import com.planb.support.utilities.DataBase;
@@ -73,23 +75,21 @@ public class UserManager {
 		return encryptedId;
 	}
 	
-	@Deprecated
-	public static String getRegistrationIdFromSession(RoutingContext ctx) {
-		/*
-		 * 세션으로부터 FireBase registration ID get
-		 */
-		String encryptedSessionId = SessionUtil.getClientSessionId(ctx, "UserSession");
-		String registrationId = null;
+	public static JSONObject getUserInfo(String id) {
+		ResultSet userInfoSet = database.executeQuery("SELECT * FROM account WHERE id='", id, "'");
+		JSONObject userInfo = new JSONObject();
 		
-		rs = database.executeQuery("SELECT * FROM account WHERE session_id='", encryptedSessionId, "'");
 		try {
-			rs.next();
-			registrationId = rs.getString("registration_id");
+			userInfoSet.next();
+			userInfo.put("id", id);
+			userInfo.put("phone_number", userInfoSet.getString("phone_number") == null ? "전화번호 없음" : aes.decrypt(userInfoSet.getString("phone_number")));
+			userInfo.put("email", aes.decrypt(userInfoSet.getString("email")));
+			userInfo.put("name", aes.decrypt(userInfoSet.getString("name")));
 		} catch(SQLException e) {
 			e.printStackTrace();
 		}
 		
-		return aes.decrypt(registrationId);
+		return userInfo;
 	}
 	
 	private String getSessionFromId(String id) {

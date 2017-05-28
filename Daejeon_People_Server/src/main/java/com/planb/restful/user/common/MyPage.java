@@ -39,7 +39,7 @@ public class MyPage implements Handler<RoutingContext> {
 		try {
 			userInfo.next();
 			response.put("email", aes.decrypt(userInfo.getString("email")));
-			response.put("phone", userInfo.getString("phone_number") == null ? "전화번호 없음" : aes.decrypt(userInfo.getString("phone_number")));
+			response.put("phone_number", userInfo.getString("phone_number") == null ? "전화번호 없음" : aes.decrypt(userInfo.getString("phone_number")));
 			response.put("name", aes.decrypt(userInfo.getString("name")));
 		} catch (SQLException e) {
 			e.printStackTrace();

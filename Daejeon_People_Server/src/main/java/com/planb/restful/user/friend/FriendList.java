@@ -6,9 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.json.JSONArray;
-import org.json.JSONObject;
 
-import com.planb.support.crypto.AES256;
 import com.planb.support.routing.Route;
 import com.planb.support.user.UserManager;
 import com.planb.support.utilities.DataBase;
@@ -22,7 +20,6 @@ public class FriendList implements Handler<RoutingContext> {
 	@Override
 	public void handle(RoutingContext ctx) {
 		DataBase database = DataBase.getInstance();
-		AES256 aes = UserManager.getAES256Instance();
 		JSONArray response = new JSONArray();
 		
 		String clientId = UserManager.getEncryptedIdFromSession(ctx);
@@ -42,18 +39,7 @@ public class FriendList implements Handler<RoutingContext> {
 		}
 		
 		for(String friendId : friendIdList) {
-			ResultSet friendInfoSet = database.executeQuery("SELECT * FROM account WHERE id='", friendId, "'");
-			try {
-				friendInfoSet.next();
-				JSONObject friend = new JSONObject();
-				friend.put("friend_id", friendId);
-				friend.put("phone_number", aes.decrypt(friendInfoSet.getString("phone_number")));
-				friend.put("email", aes.decrypt(friendInfoSet.getString("email")));
-				friend.put("name", aes.decrypt(friendInfoSet.getString("name")));
-				response.put(friend);
-			} catch(SQLException e) {
-				e.printStackTrace();
-			}
+			response.put(UserManager.getUserInfo(friendId));
 		}
 		
 		if(response.length() == 0) {
