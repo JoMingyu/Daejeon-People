@@ -15,7 +15,7 @@ import io.vertx.core.Handler;
 import io.vertx.core.http.HttpMethod;
 import io.vertx.ext.web.RoutingContext;
 
-@Route(uri = "/attractions/detail/:content_id", method = HttpMethod.GET)
+@Route(uri = "/attractions/detail", method = HttpMethod.GET)
 public class DetailInfo implements Handler<RoutingContext> {
 	@Override
 	public void handle(RoutingContext ctx) {

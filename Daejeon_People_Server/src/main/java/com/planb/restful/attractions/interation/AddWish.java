@@ -11,12 +11,12 @@ import io.vertx.core.Handler;
 import io.vertx.core.http.HttpMethod;
 import io.vertx.ext.web.RoutingContext;
 
-@Route(uri = "/wish/:content_id", method = HttpMethod.POST)
+@Route(uri = "/wish", method = HttpMethod.POST)
 public class AddWish implements Handler<RoutingContext> {
 	@Override
 	public void handle(RoutingContext ctx) {
 		String clientId = UserManager.getEncryptedIdFromSession(ctx);
-		int contentId = Integer.parseInt(ctx.request().getParam("content_id"));
+		int contentId = Integer.parseInt(ctx.request().getFormAttribute("content_id"));
 		
 		ResultSet content = DataBase.executeQuery("SELECT wish_count FROM attractions_basic WHERE content_id=?", contentId);
 		try {
