@@ -19,7 +19,6 @@ import io.vertx.ext.web.RoutingContext;
 public class TravelInvitesInquiry implements Handler<RoutingContext> {
 	@Override
 	public void handle(RoutingContext ctx) {
-		AES256 aes = UserManager.getAES256Instance();
 		JSONArray response = new JSONArray();
 		
 		String clientId = UserManager.getEncryptedIdFromSession(ctx);
@@ -36,9 +35,9 @@ public class TravelInvitesInquiry implements Handler<RoutingContext> {
 				invite.put("topic", inviteSet.getString("topic"));
 				invite.put("msg", inviteSet.getString("msg"));
 				invite.put("date", inviteSet.getString("date"));
-				invite.put("phone_number", aes.decrypt(requesterInfo.getString("phone_number")));
-				invite.put("email", aes.decrypt(requesterInfo.getString("email")));
-				invite.put("name", aes.decrypt(requesterInfo.getString("name")));
+				invite.put("phone_number", AES256.decrypt(requesterInfo.getString("phone_number")));
+				invite.put("email", AES256.decrypt(requesterInfo.getString("email")));
+				invite.put("name", AES256.decrypt(requesterInfo.getString("name")));
 				response.put(invite);
 			}
 		} catch(SQLException e) {

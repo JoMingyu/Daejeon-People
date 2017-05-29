@@ -18,7 +18,6 @@ import com.sun.javafx.binding.StringFormatter;
 import io.vertx.ext.web.RoutingContext;
 
 public class UserManager {
-	private static AES256 aes = new AES256("d.df!*&ek@s.Cde/q");
 	/*
 	 * ID : AES256
 	 * Registration ID : AES256
@@ -27,16 +26,12 @@ public class UserManager {
 	 */
 	private static ResultSet rs;
 
-	public static AES256 getAES256Instance() {
-		return aes;
-	}
-
 	public boolean signin(String id, String password) {
 		/*
 		 * 로그인
 		 * 성공 시 true, 실패 시 false
 		 */
-		String encryptedId = aes.encrypt(id);
+		String encryptedId = AES256.encrypt(id);
 		String encryptedPassword = SHA256.encrypt(password);
 
 		rs = DataBase.executeQuery("SELECT * FROM account WHERE id=? AND password=?", encryptedId, encryptedPassword);
@@ -81,9 +76,9 @@ public class UserManager {
 		try {
 			userInfoSet.next();
 			userInfo.put("id", id);
-			userInfo.put("phone_number", userInfoSet.getString("phone_number") == null ? "전화번호 없음" : aes.decrypt(userInfoSet.getString("phone_number")));
-			userInfo.put("email", aes.decrypt(userInfoSet.getString("email")));
-			userInfo.put("name", aes.decrypt(userInfoSet.getString("name")));
+			userInfo.put("phone_number", userInfoSet.getString("phone_number") == null ? "전화번호 없음" : AES256.decrypt(userInfoSet.getString("phone_number")));
+			userInfo.put("email", AES256.decrypt(userInfoSet.getString("email")));
+			userInfo.put("name", AES256.decrypt(userInfoSet.getString("name")));
 		} catch(SQLException e) {
 			e.printStackTrace();
 		}
@@ -97,7 +92,7 @@ public class UserManager {
 		 * 로그인 시 현재 DB에 세션 키가 있는지 체크하기 위해 사용
 		 * 추후 하이브리드 서버로 활용 시 필요한 메소드
 		 */
-		String encryptedId = aes.encrypt(id);
+		String encryptedId = AES256.encrypt(id);
 		String encryptedSessionId = null;
 		
 		rs = DataBase.executeQuery("SELECT * FROM account WHERE id=?", encryptedId);
@@ -142,7 +137,7 @@ public class UserManager {
 		if(sessionId == null) {
 			sessionId = createSessionId();
 		}
-		String encryptedId = aes.encrypt(id);
+		String encryptedId = AES256.encrypt(id);
 		
 		if(keepLogin) {
 			SessionUtil.createCookie(ctx, "UserSession", sessionId);
@@ -168,8 +163,8 @@ public class UserManager {
 	}
 	
 	public boolean findIdDemand(String email, String name) {
-		String encryptedEmail = aes.encrypt(email);
-		String encryptedName = aes.encrypt(name);
+		String encryptedEmail = AES256.encrypt(email);
+		String encryptedName = AES256.encrypt(name);
 		
 		rs = DataBase.executeQuery("SELECT id FROM account WHERE email=? AND name=?", encryptedEmail, encryptedName);
 		try {
@@ -195,7 +190,7 @@ public class UserManager {
 	}
 	
 	public boolean findIdVerify(String email, String code) {
-		String encryptedEmail = aes.encrypt(email);
+		String encryptedEmail = AES256.encrypt(email);
 		
 		rs = DataBase.executeQuery("SELECT * FROM email_verify_codes WHERE email=? AND code=?", encryptedEmail, code);
 		try {
@@ -211,7 +206,7 @@ public class UserManager {
 		rs = DataBase.executeQuery("SELECT * FROM account WHERE email=?", encryptedEmail);
 		try {
 			rs.next();
-			String decryptedId = aes.decrypt(rs.getString("id"));
+			String decryptedId = AES256.decrypt(rs.getString("id"));
 			Mail.sendMail(email, MailSubjects.FIND_ID_RESULT_SUBJECT.getName(), "ID : " + decryptedId);
 			return true;
 		} catch (SQLException e) {
@@ -240,9 +235,9 @@ public class UserManager {
 	}
 	
 	public boolean findPasswordDemand(String id, String email, String name) {
-		String encryptedId = aes.encrypt(id);
-		String encryptedEmail = aes.encrypt(email);
-		String encryptedName = aes.encrypt(name);
+		String encryptedId = AES256.encrypt(id);
+		String encryptedEmail = AES256.encrypt(email);
+		String encryptedName = AES256.encrypt(name);
 		
 		rs = DataBase.executeQuery("SELECT * FROM account WHERE id=? AND email=? AND name=?", encryptedId, encryptedEmail, encryptedName);
 		try {
@@ -266,7 +261,7 @@ public class UserManager {
 	}
 	
 	public boolean findPasswordVerify(String email, String code) {
-		String encryptedEmail = aes.encrypt(email);
+		String encryptedEmail = AES256.encrypt(email);
 		
 		rs = DataBase.executeQuery("SELECT * FROM email_verify_codes WHERE email=? AND code=?", encryptedEmail, code);
 		try {
@@ -288,7 +283,7 @@ public class UserManager {
 	}
 	
 	public boolean changePassword(String id, String currentPassword, String newPassword) {
-		String encryptedId = aes.encrypt(id);
+		String encryptedId = AES256.encrypt(id);
 		String encryptedCurrentPassword = SHA256.encrypt(currentPassword);
 		String encryptedNewPassword = SHA256.encrypt(newPassword);
 		

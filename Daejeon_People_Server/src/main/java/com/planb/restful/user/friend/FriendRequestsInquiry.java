@@ -20,7 +20,6 @@ public class FriendRequestsInquiry implements Handler<RoutingContext> {
 	// 친구요청 목록 조회
 	@Override
 	public void handle(RoutingContext ctx) {
-		AES256 aes = UserManager.getAES256Instance();
 		JSONArray response = new JSONArray();
 		
 		String clientId = UserManager.getEncryptedIdFromSession(ctx);
@@ -35,9 +34,9 @@ public class FriendRequestsInquiry implements Handler<RoutingContext> {
 				JSONObject requester = new JSONObject();
 				requester.put("requester_id", requestSet.getString("src_id"));
 				requester.put("date", requestSet.getString("date"));
-				requester.put("phone_number", aes.decrypt(requesterSet.getString("phone_number")));
-				requester.put("email", aes.decrypt(requesterSet.getString("email")));
-				requester.put("name", aes.decrypt(requesterSet.getString("name")));
+				requester.put("phone_number", AES256.decrypt(requesterSet.getString("phone_number")));
+				requester.put("email", AES256.decrypt(requesterSet.getString("email")));
+				requester.put("name", AES256.decrypt(requesterSet.getString("name")));
 			}
 		} catch(SQLException e) {
 			e.printStackTrace();

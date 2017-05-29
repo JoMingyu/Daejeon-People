@@ -24,7 +24,6 @@ public class MyPage implements Handler<RoutingContext> {
 	
 	@Override
 	public void handle(RoutingContext ctx) {
-		AES256 aes = UserManager.getAES256Instance();
 		JSONObject response = new JSONObject();
 		
 		if(!userManager.isLogined(ctx)) {
@@ -37,9 +36,9 @@ public class MyPage implements Handler<RoutingContext> {
 		ResultSet userInfo = DataBase.executeQuery("SELECT * FROM account WHERE id=?", clientId);
 		try {
 			userInfo.next();
-			response.put("email", aes.decrypt(userInfo.getString("email")));
-			response.put("phone_number", userInfo.getString("phone_number") == null ? "전화번호 없음" : aes.decrypt(userInfo.getString("phone_number")));
-			response.put("name", aes.decrypt(userInfo.getString("name")));
+			response.put("email", AES256.decrypt(userInfo.getString("email")));
+			response.put("phone_number", userInfo.getString("phone_number") == null ? "전화번호 없음" : AES256.decrypt(userInfo.getString("phone_number")));
+			response.put("name", AES256.decrypt(userInfo.getString("name")));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

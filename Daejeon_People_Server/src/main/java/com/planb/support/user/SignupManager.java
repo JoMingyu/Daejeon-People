@@ -13,7 +13,6 @@ import com.planb.support.utilities.Thumbnail;
 import com.sun.javafx.binding.StringFormatter;
 
 public class SignupManager {
-	private static AES256 aes = new AES256("d.df!*&ek@s.Cde/q");
 	/*
 	 * ID : AES256
 	 * Registration ID : AES256
@@ -27,7 +26,7 @@ public class SignupManager {
 		 * 핸드폰 번호 존재 여부 체크
 		 * 존재 시 true, 실패 시 false
 		 */
-		String encryptedPhoneNumber = aes.encrypt(phoneNumber);
+		String encryptedPhoneNumber = AES256.encrypt(phoneNumber);
 		
 		rs = DataBase.executeQuery("SELECT * FROM account WHERE phone_number=?", encryptedPhoneNumber);
 		try {
@@ -46,7 +45,7 @@ public class SignupManager {
 		/*
 		 * 문자 메시지 인증코드 전송
 		 */
-		String encryptedPhoneNumber = aes.encrypt(phoneNumber);
+		String encryptedPhoneNumber = AES256.encrypt(phoneNumber);
 		// 핸드폰 번호 암호화
 		
 		Random random = new Random();
@@ -65,7 +64,7 @@ public class SignupManager {
 		 * 인증코드 인증
 		 * 성공 시 true, 실패 시 false
 		 */
-		String encryptedPhoneNumber = aes.encrypt(phoneNumber);
+		String encryptedPhoneNumber = AES256.encrypt(phoneNumber);
 
 		rs = DataBase.executeQuery("SELECT * FROM phone_verify_codes WHERE phone_number=? AND code=?", encryptedPhoneNumber, code);
 		try {
@@ -87,7 +86,7 @@ public class SignupManager {
 		 *  이메일 존재 여부 체크
 		 *  존재 시 true, 실패 시 false
 		 */
-		String encryptedEmail = aes.encrypt(email);
+		String encryptedEmail = AES256.encrypt(email);
 
 		rs = DataBase.executeQuery("SELECT * FROM account WHERE email=?", encryptedEmail);
 		try {
@@ -106,7 +105,7 @@ public class SignupManager {
 		/*
 		 * 이메일 전송
 		 */
-		String encryptedEmail = aes.encrypt(email);
+		String encryptedEmail = AES256.encrypt(email);
 		// 이메일 암호화
 
 		Random random = new Random();
@@ -126,7 +125,7 @@ public class SignupManager {
 		 * 인증코드 인증
 		 * 성공 시 true, 실패 시 false
 		 */
-		String encryptedEmail = aes.encrypt(email);
+		String encryptedEmail = AES256.encrypt(email);
 
 		rs = DataBase.executeQuery("SELECT * FROM email_verify_codes WHERE email=? AND code=?", encryptedEmail, code);
 		try {
@@ -147,7 +146,7 @@ public class SignupManager {
 		 *  아이디 존재 여부 체크
 		 *  존재 시 true, 실패 시 false
 		 */
-		String encryptedId = aes.encrypt(id);
+		String encryptedId = AES256.encrypt(id);
 
 		rs = DataBase.executeQuery("SELECT * FROM account WHERE id='", encryptedId, "'");
 		try {
@@ -168,13 +167,13 @@ public class SignupManager {
 		 * 회원가입
 		 * id와 이메일 중복 체크는 다른 URI에서 수행
 		 */
-		String encryptedId = aes.encrypt(id);
+		String encryptedId = AES256.encrypt(id);
 		String encryptedPassword = SHA256.encrypt(password);
-		String encryptedEmail = aes.encrypt(email);
+		String encryptedEmail = AES256.encrypt(email);
 		String encryptedPhoneNumber = phoneNumber == null ? null : SHA256.encrypt(phoneNumber);
 		// null이면 null, null이 아니면 암호화
-		String encryptedName = aes.encrypt(name);
-		String encryptedRegistrationId = aes.encrypt(registrationId);
+		String encryptedName = AES256.encrypt(name);
+		String encryptedRegistrationId = AES256.encrypt(registrationId);
 		
 		if(encryptedPhoneNumber == null) {
 			DataBase.executeUpdate("INSERT INTO account(id, password, email, phone_number, name, register_date, registration_id) VALUES(?, ?, ?, null, ?, NOW(), ?)", encryptedId, encryptedPassword, encryptedEmail, encryptedName, encryptedRegistrationId);

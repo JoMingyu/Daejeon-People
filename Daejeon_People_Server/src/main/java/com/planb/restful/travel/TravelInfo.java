@@ -11,7 +11,6 @@ import org.json.JSONObject;
 
 import com.planb.support.crypto.AES256;
 import com.planb.support.routing.Route;
-import com.planb.support.user.UserManager;
 import com.planb.support.utilities.DataBase;
 
 import io.vertx.core.Handler;
@@ -23,7 +22,6 @@ public class TravelInfo implements Handler<RoutingContext> {
 	@Override
 	public void handle(RoutingContext ctx) {
 		JSONArray response = new JSONArray();
-		AES256 aes = UserManager.getAES256Instance();
 		
 		String topic = ctx.request().getParam("topic");
 		
@@ -43,8 +41,8 @@ public class TravelInfo implements Handler<RoutingContext> {
 			try {
 				clientInfo.next();
 				client.put("id", clientId);
-				client.put("name", aes.decrypt(clientInfo.getString("name")));
-				client.put("email", aes.decrypt(clientInfo.getString("email")));
+				client.put("name", AES256.decrypt(clientInfo.getString("name")));
+				client.put("email", AES256.decrypt(clientInfo.getString("email")));
 				response.put(client);
 			} catch (JSONException | SQLException e) {
 				e.printStackTrace();

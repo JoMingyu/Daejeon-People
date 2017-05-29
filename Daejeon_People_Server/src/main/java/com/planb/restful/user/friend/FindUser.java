@@ -8,7 +8,6 @@ import org.json.JSONObject;
 
 import com.planb.support.crypto.AES256;
 import com.planb.support.routing.Route;
-import com.planb.support.user.UserManager;
 import com.planb.support.utilities.DataBase;
 
 import io.vertx.core.Handler;
@@ -19,8 +18,6 @@ import io.vertx.ext.web.RoutingContext;
 public class FindUser implements Handler<RoutingContext> {
 	@Override
 	public void handle(RoutingContext ctx) {
-		AES256 aes = UserManager.getAES256Instance();
-		
 		String keyword = ctx.request().getParam("keyword");
 		/*
 		 * 키워드는 핸드폰 번호, 또는 이메일일 수 있음
@@ -41,15 +38,15 @@ public class FindUser implements Handler<RoutingContext> {
 			
 		}
 		
-		keyword = aes.encrypt(keyword);
+		keyword = AES256.encrypt(keyword);
 		
 		ResultSet rs = DataBase.executeQuery("SELECT * FROM account WHERE email=? OR phone_number=?", keyword, keyword);
 		try {
 			if(rs.next()) {
 				JSONObject response = new JSONObject();
 				
-				response.put("email", aes.decrypt(rs.getString("email")));
-				response.put("name", aes.decrypt(rs.getString("name")));
+				response.put("email", AES256.decrypt(rs.getString("email")));
+				response.put("name", AES256.decrypt(rs.getString("name")));
 				response.put("id", rs.getString("id"));
 				
 				ctx.response().setStatusCode(200);

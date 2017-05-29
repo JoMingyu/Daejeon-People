@@ -17,23 +17,24 @@ import javax.crypto.spec.SecretKeySpec;
 import org.apache.commons.codec.binary.*;
 
 public class AES256 {
-    private String ips;
-    private Key keySpec;
-
-    public AES256(String key) {
-        try {
+    private static String ips;
+    private static Key keySpec;
+    private static String key = "d.df!*&ek@s.Cde/q";
+    
+    static {
+    	try {
             byte[] keyBytes = new byte[16];
             byte[] b = key.getBytes("UTF-8");
             System.arraycopy(b, 0, keyBytes, 0, keyBytes.length);
             SecretKeySpec keySpec = new SecretKeySpec(keyBytes, "AES");
-            this.ips = key.substring(0, 16);
-            this.keySpec = keySpec;
+            AES256.ips = key.substring(0, 16);
+            AES256.keySpec = keySpec;
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public String encrypt(String str) {
+    public static String encrypt(String str) {
         if (str == null) return null;
         Cipher cipher;
         try {
@@ -53,7 +54,7 @@ public class AES256 {
         return null;
     }
 
-    public String decrypt(String str) {
+    public static String decrypt(String str) {
         if (str == null) return null;
         Cipher cipher;
         try {
