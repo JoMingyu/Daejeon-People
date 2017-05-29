@@ -28,11 +28,11 @@ public class CreateTravel implements Handler<RoutingContext> {
 		String topic;
 		while(true) {
 			topic = UUID.randomUUID().toString();
-			ResultSet rs = DataBase.executeQuery("SELECT * FROM travels WHERE topic='", topic, "'");
+			ResultSet rs = DataBase.executeQuery("SELECT * FROM travels WHERE topic=?", topic);
 			try {
 				if(!rs.next()) {
 					response.put("topic", topic);
-					DataBase.executeUpdate("INSERT INTO travels VALUES('", topic, "', '", title, "', '", clientId, "')");
+					DataBase.executeUpdate("INSERT INTO travels VALUES(?, ?, ?)", topic, title, clientId);
 					break;
 				}
 			} catch (SQLException e) {

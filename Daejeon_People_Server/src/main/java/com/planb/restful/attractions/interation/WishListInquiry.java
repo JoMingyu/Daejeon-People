@@ -2,11 +2,8 @@ package com.planb.restful.attractions.interation;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.planb.support.routing.Route;

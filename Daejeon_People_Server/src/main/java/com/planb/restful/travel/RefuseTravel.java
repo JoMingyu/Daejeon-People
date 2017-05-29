@@ -16,7 +16,7 @@ public class RefuseTravel implements Handler<RoutingContext> {
 		// 여행 초대를 거절한 사람
 		String topic = ctx.request().getFormAttribute("topic");
 		
-		DataBase.executeUpdate("DELETE FROM travel_invites WHERE dst_id='", clientId, "' AND topic='", topic, "'");
+		DataBase.executeUpdate("DELETE FROM travel_invites WHERE dst_id=? AND topic=?", clientId, topic);
 		
 		ctx.response().setStatusCode(201).end();
 		ctx.response().close();

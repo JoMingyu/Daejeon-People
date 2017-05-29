@@ -22,7 +22,7 @@ public class TravelList implements Handler<RoutingContext> {
 		
 		String clientId = UserManager.getEncryptedIdFromSession(ctx);
 		
-		ResultSet rs = DataBase.executeQuery("SELECT * FROM travels WHERE client_id='", clientId, "'");
+		ResultSet rs = DataBase.executeQuery("SELECT * FROM travels WHERE client_id=?", clientId);
 		try {
 			while(rs.next()) {
 				JSONObject travelRoom = new JSONObject();

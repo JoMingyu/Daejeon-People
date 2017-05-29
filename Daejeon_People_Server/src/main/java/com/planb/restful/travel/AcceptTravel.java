@@ -19,13 +19,13 @@ public class AcceptTravel implements Handler<RoutingContext> {
 		// 여행 초대를 수락한 사람
 		String topic = ctx.request().getFormAttribute("topic");
 		
-		DataBase.executeUpdate("DELETE FROM travel_invites WHERE dst_id='", clientId, "' AND topic='", topic, "'");
-		ResultSet rs = DataBase.executeQuery("SELECT * FROM travels WHERE topic='", topic, "'");
+		DataBase.executeUpdate("DELETE FROM travel_invites WHERE dst_id=? AND topic=?", clientId, topic);
+		ResultSet rs = DataBase.executeQuery("SELECT * FROM travels WHERE topic=?", topic);
 		try {
 			rs.next();
 			String title = rs.getString("title");
 			
-			DataBase.executeUpdate("INSERT INTO travels VALUES('", topic, "', '", title, "', '", clientId, "')");
+			DataBase.executeUpdate("INSERT INTO travels VALUES(?, ?, ?)", topic, title, clientId);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

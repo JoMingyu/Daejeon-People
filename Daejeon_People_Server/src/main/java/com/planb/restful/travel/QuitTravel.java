@@ -15,7 +15,7 @@ public class QuitTravel implements Handler<RoutingContext> {
 		String clientId = UserManager.getEncryptedIdFromSession(ctx);
 		String topic = ctx.request().getFormAttribute("topic");
 		
-		DataBase.executeUpdate("DELETE FROM travels WHERE client_id='", clientId, "' AND topic='", topic, "'");
+		DataBase.executeUpdate("DELETE FROM travels WHERE client_id=? AND topic=?", clientId, topic);
 		
 		ctx.response().setStatusCode(200).end();
 		ctx.response().close();

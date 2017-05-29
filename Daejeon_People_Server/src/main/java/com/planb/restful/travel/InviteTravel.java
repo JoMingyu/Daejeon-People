@@ -17,8 +17,8 @@ public class InviteTravel implements Handler<RoutingContext> {
 		String topic = ctx.request().getFormAttribute("topic");
 		String msg = ctx.request().getFormAttribute("msg");
 		
-		DataBase.executeUpdate("DELETE FROM travel_invites WHERE dst_id='", dst, "' AND topic='", "'");
-		DataBase.executeUpdate("INSERT INTO travel_invites VALUES('", clientId, "', '", dst, "', '", topic, "', '", msg, "', NOW())");
+		DataBase.executeUpdate("DELETE FROM travel_invites WHERE dst_id=? AND topic=?", dst, topic);
+		DataBase.executeUpdate("INSERT INTO travel_invites VALUES(?, ?, ?, ?, NOW())", clientId, dst, topic, msg);
 		
 		ctx.response().setStatusCode(201).end();
 		ctx.response().close();

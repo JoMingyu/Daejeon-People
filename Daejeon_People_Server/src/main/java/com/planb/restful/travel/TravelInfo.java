@@ -27,7 +27,7 @@ public class TravelInfo implements Handler<RoutingContext> {
 		
 		String topic = ctx.request().getParam("topic");
 		
-		ResultSet info = DataBase.executeQuery("SELECT * FROM travels WHERE topic='", topic, "'");
+		ResultSet info = DataBase.executeQuery("SELECT * FROM travels WHERE topic=?", topic);
 		List<String> clientIdList = new ArrayList<String>();
 		try {
 			while(info.next()) {
@@ -38,7 +38,7 @@ public class TravelInfo implements Handler<RoutingContext> {
 		}
 		
 		for(String clientId : clientIdList) {
-			ResultSet clientInfo = DataBase.executeQuery("SELECT * FROM account WHERE id='", clientId, "'");
+			ResultSet clientInfo = DataBase.executeQuery("SELECT * FROM account WHERE id=?", clientId);
 			JSONObject client = new JSONObject();
 			try {
 				clientInfo.next();
