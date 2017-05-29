@@ -26,17 +26,17 @@ public class AttractionsListInquiry {
 		int sortType = Integer.parseInt(ctx.request().getParam("sort_type"));
 		int page = Integer.parseInt(ctx.request().getParam("page"));
 		
-		String query = "SELECT * FROM %s WHERE content_type_id=" + contentTypeId + " ORDER BY %s LIMIT " + (page - 1) * numOfRows + ", " + numOfRows;
+		String query = "SELECT * FROM ? WHERE content_type_id=" + contentTypeId + " ORDER BY ? LIMIT " + (page - 1) * numOfRows + ", " + numOfRows;
 		ResultSet rs = null;
 		
 		switch(sortType) {
 		case 1:
 			// 조회순
-			rs = DataBase.executeQuery(String.format(query, "attractions_basic", "views_count DESC"));
+			rs = DataBase.executeQuery(query, "attractions_basic", "views_count DESC");
 			break;
 		case 2:
 			// 위시리스트 많은 순
-			rs = DataBase.executeQuery(String.format(query, "attractions_basic", "wish_count DESC"));
+			rs = DataBase.executeQuery(query, "attractions_basic", "wish_count DESC");
 			break;
 		case 3:
 			// 거리순
@@ -44,7 +44,7 @@ public class AttractionsListInquiry {
 			double y = Double.parseDouble(ctx.request().getParam("y"));
 			// 클라이언트 좌표값
 			
-			rs = DataBase.executeQuery("SELECT * FROM attractions_basic WHERE content_type_id=", contentTypeId);
+			rs = DataBase.executeQuery("SELECT * FROM attractions_basic WHERE content_type_id=?", contentTypeId);
 			// contentTypeId에 해당하는 데이터 전체
 			
 			rs = distanceBasedInquiry(rs, page, x, y);
@@ -64,17 +64,17 @@ public class AttractionsListInquiry {
 		int page = Integer.parseInt(ctx.request().getParam("page"));
 		int numOfRows = AttractionsConfig.NUM_OF_ROWS;
 		
-		String query = "SELECT * FROM %s ORDER BY %s LIMIT " + (page - 1) * numOfRows + ", " + numOfRows;
+		String query = "SELECT * FROM ? ORDER BY ? LIMIT " + (page - 1) * numOfRows + ", " + numOfRows;
 		ResultSet rs = null;
 		
 		switch(sortType) {
 		case 1:
 			// 조회순
-			rs = DataBase.executeQuery(String.format(query, "attractions_basic", "views_count DESC"));
+			rs = DataBase.executeQuery(query, "attractions_basic", "views_count DESC");
 			break;
 		case 2:
 			// 위시리스트 많은 순
-			rs = DataBase.executeQuery(String.format(query, "attractions_basic", "wish_count DESC"));
+			rs = DataBase.executeQuery(query, "attractions_basic", "wish_count DESC");
 			break;
 		case 3:
 			// 거리순
@@ -202,7 +202,7 @@ public class AttractionsListInquiry {
 		String clientId = UserManager.getEncryptedIdFromSession(ctx);
 		for(Map<String, Object> attractionInfo : attractionInfoList) {
 			int contentId = Integer.parseInt(attractionInfo.get("content_id").toString());
-			ResultSet wish = DataBase.executeQuery("SELECT * FROM wish_list WHERE client_id='", clientId, "' AND content_id =", contentId);
+			ResultSet wish = DataBase.executeQuery("SELECT * FROM wish_list WHERE client_id=? AND content_id=?", clientId, contentId);
 			try {
 				if(wish.next()) {
 					attractionInfo.put("wish", true);
