@@ -1,6 +1,6 @@
 package com.planb.core;
 
-import com.planb.api.support.ParserThread;
+import com.planb.parser.support.ParserThread;
 import com.planb.support.routing.Register;
 
 import io.vertx.core.AbstractVerticle;
