@@ -25,20 +25,12 @@ public class WishListInquiry implements Handler<RoutingContext> {
 		
 		String clientId = UserManager.getEncryptedIdFromSession(ctx);
 		
-		ResultSet wishList = DataBase.executeQuery("SELECT content_id FROM wish_list WHERE client_id='", clientId, "'");
-		List<Integer> contentIdList = new ArrayList<Integer>();
+		ResultSet wishList = DataBase.executeQuery("SELECT content_id FROM wish_list WHERE client_id=?", clientId);
 		try {
 			while(wishList.next()) {
-				contentIdList.add(wishList.getInt("content_id"));
-			}
-		} catch(SQLException e) {
-			e.printStackTrace();
-		}
-		
-		for(int contentId : contentIdList) {
-			ResultSet content = DataBase.executeQuery("SELECT * FROM attractions_basic WHERE content_id=", contentId);
-			JSONObject contentInfo = new JSONObject();
-			try {
+				wishList.getInt("content_id");
+				ResultSet content = DataBase.executeQuery("SELECT * FROM attractions_basic WHERE content_id=?", wishList.getInt("content_id"));
+				JSONObject contentInfo = new JSONObject();
 				content.next();
 				contentInfo.put("address", content.getString("address"));
 				contentInfo.put("category", content.getString("cat3"));
@@ -48,9 +40,9 @@ public class WishListInquiry implements Handler<RoutingContext> {
 				contentInfo.put("mapy", content.getDouble("mapy"));
 				contentInfo.put("title", content.getString("title"));
 				response.put(contentInfo);
-			} catch (JSONException | SQLException e) {
-				e.printStackTrace();
 			}
+		} catch(SQLException e) {
+			e.printStackTrace();
 		}
 		
 		if(response.length() == 0) {
