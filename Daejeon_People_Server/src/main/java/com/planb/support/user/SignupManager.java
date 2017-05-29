@@ -29,7 +29,7 @@ public class SignupManager {
 		 */
 		String encryptedPhoneNumber = aes.encrypt(phoneNumber);
 		
-		rs = DataBase.executeQuery("SELECT * FROM account WHERE phone_number='", encryptedPhoneNumber, "'");
+		rs = DataBase.executeQuery("SELECT * FROM account WHERE phone_number=?", encryptedPhoneNumber);
 		try {
 			if(rs.next()) {
 				return true;
@@ -53,8 +53,8 @@ public class SignupManager {
 		String code = StringFormatter.format("%06d", random.nextInt(1000000)).getValue();
 		// 인증코드 생성
 		
-		DataBase.executeUpdate("DELETE FROM phone_verify_codes WHERE phone_number='", encryptedPhoneNumber, "'");
-		DataBase.executeUpdate("INSERT INTO phone_verify_codes VALUES('", encryptedPhoneNumber, "', '", code, "')");
+		DataBase.executeUpdate("DELETE FROM phone_verify_codes WHERE phone_number=?", encryptedPhoneNumber);
+		DataBase.executeUpdate("INSERT INTO phone_verify_codes VALUES(?, ?)", encryptedPhoneNumber, code);
 		// 인증코드 insert or refresh
 		
 		// 인증코드 전송(보류)
@@ -67,10 +67,10 @@ public class SignupManager {
 		 */
 		String encryptedPhoneNumber = aes.encrypt(phoneNumber);
 
-		rs = DataBase.executeQuery("SELECT * FROM phone_verify_codes WHERE phone_number='", encryptedPhoneNumber, "' AND code='", code, "'");
+		rs = DataBase.executeQuery("SELECT * FROM phone_verify_codes WHERE phone_number=? AND code=?", encryptedPhoneNumber, code);
 		try {
 			if (rs.next()) {
-				DataBase.executeUpdate("DELETE FROM phone_verify_codes WHERE phone_number='", encryptedPhoneNumber, "' AND code='", code, "'");
+				DataBase.executeUpdate("DELETE FROM phone_verify_codes WHERE phone_number=? AND code=?", encryptedPhoneNumber, code);
 				return true;
 			} else {
 				return false;
@@ -89,7 +89,7 @@ public class SignupManager {
 		 */
 		String encryptedEmail = aes.encrypt(email);
 
-		rs = DataBase.executeQuery("SELECT * FROM account WHERE email='", encryptedEmail, "'");
+		rs = DataBase.executeQuery("SELECT * FROM account WHERE email=?", encryptedEmail);
 		try {
 			if (rs.next()) {
 				return true;
@@ -113,8 +113,8 @@ public class SignupManager {
 		String code = StringFormatter.format("%06d", random.nextInt(1000000)).getValue();
 		// 이메일 인증코드 생성
 		
-		DataBase.executeUpdate("DELETE FROM email_verify_codes WHERE email='", encryptedEmail, "'");
-		DataBase.executeUpdate("INSERT INTO email_verify_codes VALUES('", encryptedEmail, "', '", code, "')");
+		DataBase.executeUpdate("DELETE FROM email_verify_codes WHERE email=?", encryptedEmail);
+		DataBase.executeUpdate("INSERT INTO email_verify_codes VALUES(?, ?)", encryptedEmail, code);
 		// 인증코드 insert or refresh
 		
 		Mail.sendMail(email, MailSubjects.VERIFY_SUBJECT.getName(), "코드 : " + code);
@@ -128,10 +128,10 @@ public class SignupManager {
 		 */
 		String encryptedEmail = aes.encrypt(email);
 
-		rs = DataBase.executeQuery("SELECT * FROM email_verify_codes WHERE email='", encryptedEmail, "' AND code='", code, "'");
+		rs = DataBase.executeQuery("SELECT * FROM email_verify_codes WHERE email=? AND code=?", encryptedEmail, code);
 		try {
 			if (rs.next()) {
-				DataBase.executeUpdate("DELETE FROM email_verify_codes WHERE email='", encryptedEmail, "' AND code='", code, "'");
+				DataBase.executeUpdate("DELETE FROM email_verify_codes WHERE email=? AND code=?", encryptedEmail, code);
 				return true;
 			} else {
 				return false;
@@ -177,9 +177,9 @@ public class SignupManager {
 		String encryptedRegistrationId = aes.encrypt(registrationId);
 		
 		if(encryptedPhoneNumber == null) {
-			DataBase.executeUpdate("INSERT INTO account(id, password, email, phone_number, name, register_date, registration_id) VALUES('", encryptedId, "', '", encryptedPassword, "', '", encryptedEmail, "', null, '", encryptedName, "', now(), '", encryptedRegistrationId, "')");
+			DataBase.executeUpdate("INSERT INTO account(id, password, email, phone_number, name, register_date, registration_id) VALUES(?, ?, ?, null, ?, now(), ?)", encryptedId, encryptedPassword, encryptedEmail, encryptedName, encryptedRegistrationId);
 		} else {
-			DataBase.executeUpdate("INSERT INTO account(id, password, email, phone_number, name, register_date, registration_id) VALUES('", encryptedId, "', '", encryptedPassword, "', '", encryptedEmail, "', '", encryptedPhoneNumber, "', '", encryptedName, "', now(), '", encryptedRegistrationId, "')");
+			DataBase.executeUpdate("INSERT INTO account(id, password, email, phone_number, name, register_date, registration_id) VALUES(?, ?, ?, ?, ?, now(), ?)", encryptedId, encryptedPassword, encryptedEmail, encryptedPhoneNumber, encryptedName, encryptedRegistrationId);
 		}
 		
 		Thumbnail t = new Thumbnail();

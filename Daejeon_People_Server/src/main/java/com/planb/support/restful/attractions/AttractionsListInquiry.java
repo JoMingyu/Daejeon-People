@@ -173,7 +173,7 @@ public class AttractionsListInquiry {
 			}
 		}
 		
-		return DataBase.executeQuery(query);
+		return DataBase.executeQuery(query.toString());
 	}
 	
 	private static JSONArray extractDatas(RoutingContext ctx, ResultSet rs) {
