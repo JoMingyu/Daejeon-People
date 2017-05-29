@@ -43,7 +43,7 @@ public class FindUser implements Handler<RoutingContext> {
 		
 		keyword = aes.encrypt(keyword);
 		
-		ResultSet rs = DataBase.executeQuery("SELECT * FROM account WHERE email='", keyword, "' OR phone_number='", keyword, "'");
+		ResultSet rs = DataBase.executeQuery("SELECT * FROM account WHERE email=? OR phone_number=?", keyword, keyword);
 		try {
 			if(rs.next()) {
 				JSONObject response = new JSONObject();

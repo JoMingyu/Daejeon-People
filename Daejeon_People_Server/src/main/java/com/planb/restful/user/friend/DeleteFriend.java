@@ -21,8 +21,8 @@ public class DeleteFriend implements Handler<RoutingContext> {
 		String targetId = ctx.request().getFormAttribute("id");
 		// 타겟
 		
-		DataBase.executeUpdate("DELETE FROM friend_list WHERE client_id1='", clientId, "' AND client_id2='", targetId, "'");
-		DataBase.executeUpdate("DELETE FROM friend_list WHERE client_id2='", clientId, "' AND client_id1='", targetId, "'");
+		DataBase.executeUpdate("DELETE FROM friend_list WHERE client_id1=? AND client_id2=?", clientId, targetId);
+		DataBase.executeUpdate("DELETE FROM friend_list WHERE client_id2=? AND client_id1=?", clientId, targetId);
 		
 		ctx.response().setStatusCode(201).end();
 		ctx.response().close();

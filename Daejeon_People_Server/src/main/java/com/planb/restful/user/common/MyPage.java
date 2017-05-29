@@ -34,7 +34,7 @@ public class MyPage implements Handler<RoutingContext> {
 		}
 		
 		String clientId = UserManager.getEncryptedIdFromSession(ctx);
-		ResultSet userInfo = DataBase.executeQuery("SELECT * FROM account WHERE id='", clientId, "'");
+		ResultSet userInfo = DataBase.executeQuery("SELECT * FROM account WHERE id=?", clientId);
 		try {
 			userInfo.next();
 			response.put("email", aes.decrypt(userInfo.getString("email")));

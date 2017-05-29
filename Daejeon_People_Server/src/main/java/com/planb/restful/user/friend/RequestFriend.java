@@ -16,7 +16,7 @@ public class RequestFriend implements Handler<RoutingContext> {
 		String clientId = UserManager.getEncryptedIdFromSession(ctx);
 		String dst = ctx.request().getFormAttribute("dst");
 		
-		DataBase.executeUpdate("INSERT INTO friend_requests VALUES('", clientId, "', '", dst, "', CURDATE())");
+		DataBase.executeUpdate("INSERT INTO friend_requests VALUES(?, ?, CURDATE())", clientId, dst);
 		
 		ctx.response().setStatusCode(201).end();
 		ctx.response().close();

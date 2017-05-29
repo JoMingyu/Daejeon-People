@@ -23,7 +23,7 @@ public class FriendList implements Handler<RoutingContext> {
 		
 		String clientId = UserManager.getEncryptedIdFromSession(ctx);
 		
-		ResultSet friendSet = DataBase.executeQuery("SELECT * FROM friend_list WHERE client_id1='", clientId, "' OR client_id2='", clientId, "'");
+		ResultSet friendSet = DataBase.executeQuery("SELECT * FROM friend_list WHERE client_id1=? OR client_id2=?", clientId, clientId);
 		List<String> friendIdList = new ArrayList<String>();
 		try {
 			while(friendSet.next()) {

@@ -18,8 +18,8 @@ public class AcceptFriend implements Handler<RoutingContext> {
 		String src = ctx.request().getFormAttribute("src");
 		// 친구 요청을 보낸 사람
 		
-		DataBase.executeUpdate("DELETE FROM friend_requests WHERE src_id='", src, "' AND dst_id='", clientId, "'");
-		DataBase.executeUpdate("INSERT INTO friend_list VALUES('", clientId, "', '", src, "')");
+		DataBase.executeUpdate("DELETE FROM friend_requests WHERE src_id=? AND dst_id=?", src, clientId);
+		DataBase.executeUpdate("INSERT INTO friend_list VALUES(?, ?)", clientId, src);
 		// 친구 요청 수락에 대한 푸쉬 알림도 주자
 		
 		ctx.response().setStatusCode(201).end();

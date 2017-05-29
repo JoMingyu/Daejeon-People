@@ -2,8 +2,6 @@ package com.planb.restful.user.friend;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.HashMap;
-import java.util.Map;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -27,34 +25,22 @@ public class FriendRequestsInquiry implements Handler<RoutingContext> {
 		
 		String clientId = UserManager.getEncryptedIdFromSession(ctx);
 		
-		ResultSet requestSet = DataBase.executeQuery("SELECT src_id, date FROM friend_requests WHERE dst_id='", clientId, "'");
+		ResultSet requestSet = DataBase.executeQuery("SELECT src_id, date FROM friend_requests WHERE dst_id=?", clientId);
 		// 자신을 타겟으로 한 친구 요청 목록
 		
-		Map<String, String> requestMap = new HashMap<String, String>();
 		try {
 			while(requestSet.next()) {
-				requestMap.put(requestSet.getString("src_id"), requestSet.getString("date"));
+				ResultSet requesterSet = DataBase.executeQuery("SELECT * FROM account WHERE id=?", requestSet.getString("src_id"));
 				// 요청자의 id와 요청 날짜
-			}
-		} catch(SQLException e) {
-			e.printStackTrace();
-		}
-		
-		for(String requesterId : requestMap.keySet()) {
-			// 요청자 id 순회
-			ResultSet requesterSet = DataBase.executeQuery("SELECT * FROM account WHERE id='", requesterId, "'");
-			try {
-				requesterSet.next();
 				JSONObject requester = new JSONObject();
-				requester.put("requester_id", requesterId);
+				requester.put("requester_id", requestSet.getString("src_id"));
+				requester.put("date", requestSet.getString("date"));
 				requester.put("phone_number", aes.decrypt(requesterSet.getString("phone_number")));
 				requester.put("email", aes.decrypt(requesterSet.getString("email")));
 				requester.put("name", aes.decrypt(requesterSet.getString("name")));
-				requester.put("date", requestMap.get(requesterId));
-				response.put(requester);
-			} catch (SQLException e) {
-				e.printStackTrace();
 			}
+		} catch(SQLException e) {
+			e.printStackTrace();
 		}
 		
 		if(response.length() == 0) {
