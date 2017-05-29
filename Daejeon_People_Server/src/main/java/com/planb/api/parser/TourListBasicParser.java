@@ -77,9 +77,9 @@ public class TourListBasicParser {
 			ResultSet rs = DataBase.executeQuery("SELECT * FROM attractions_basic WHERE content_id=", contentId);
 			try {
 				if(rs.next()) {
-					DataBase.executeUpdate("UPDATE attractions_basic SET title='", title, "', cat1='", cat1, "', cat2='", cat2, "', cat3='", cat3, "', mapx=", mapX, ", mapy=", mapY, ", views_count=", readCount, ", image_mini_url='", imageMiniUrl, "', image_big_url='", imageBigUrl, "' WHERE content_id=", contentId);
+					DataBase.executeUpdate("UPDATE attractions_basic SET title=?, cat1=?, cat2=?, cat3=?, mapx=?, mapy=?, views_count=?, image_mini_url=?, image_big_url WHERE content_id=?", title, cat1, cat2, cat3, mapX, mapY, readCount, imageMiniUrl, imageBigUrl, contentId);
 				} else {
-					DataBase.executeUpdate("INSERT INTO attractions_basic VALUES(", contentId, ", ", contentTypeId, ", 0, '", title, "', '", cat1, "', '", cat2, "', '", cat3, "', '", address, "', ", mapX, ", ", mapY, ", ", readCount, ", '", imageMiniUrl, "', '", imageBigUrl, "')");
+					DataBase.executeUpdate("INSERT INTO attractions_basic VALUES(?, ?, 0, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", contentId, contentTypeId, title, cat1, cat2, cat3, address, mapX, mapY, readCount, imageMiniUrl, imageBigUrl);
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
