@@ -2,8 +2,6 @@ package com.planb.restful.user.friend;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.json.JSONArray;
 
@@ -24,21 +22,20 @@ public class FriendList implements Handler<RoutingContext> {
 		String clientId = UserManager.getEncryptedIdFromSession(ctx);
 		
 		ResultSet friendSet = DataBase.executeQuery("SELECT * FROM friend_list WHERE client_id1=? OR client_id2=?", clientId, clientId);
-		List<String> friendIdList = new ArrayList<String>();
 		try {
 			while(friendSet.next()) {
+				String friendId = null;
+				
 				if(friendSet.getString("client_id1") != clientId) {
-					friendIdList.add(friendSet.getString("client_id1"));
+					friendId = friendSet.getString("client_id1");
 				} else {
-					friendIdList.add(friendSet.getString("client_id2"));
+					friendId = friendSet.getString("client_id2");
 				}
+
+				response.put(UserManager.getUserInfo(friendId));
 			}
 		} catch(SQLException e) {
 			e.printStackTrace();
-		}
-		
-		for(String friendId : friendIdList) {
-			response.put(UserManager.getUserInfo(friendId));
 		}
 		
 		if(response.length() == 0) {
