@@ -22,13 +22,12 @@ import io.vertx.ext.web.RoutingContext;
 public class TravelInfo implements Handler<RoutingContext> {
 	@Override
 	public void handle(RoutingContext ctx) {
-		DataBase database = DataBase.getInstance();
 		JSONArray response = new JSONArray();
 		AES256 aes = UserManager.getAES256Instance();
 		
 		String topic = ctx.request().getParam("topic");
 		
-		ResultSet info = database.executeQuery("SELECT * FROM travels WHERE topic='", topic, "'");
+		ResultSet info = DataBase.executeQuery("SELECT * FROM travels WHERE topic='", topic, "'");
 		List<String> clientIdList = new ArrayList<String>();
 		try {
 			while(info.next()) {
@@ -39,7 +38,7 @@ public class TravelInfo implements Handler<RoutingContext> {
 		}
 		
 		for(String clientId : clientIdList) {
-			ResultSet clientInfo = database.executeQuery("SELECT * FROM account WHERE id='", clientId, "'");
+			ResultSet clientInfo = DataBase.executeQuery("SELECT * FROM account WHERE id='", clientId, "'");
 			JSONObject client = new JSONObject();
 			try {
 				clientInfo.next();

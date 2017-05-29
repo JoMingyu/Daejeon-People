@@ -13,15 +13,13 @@ public class AcceptFriend implements Handler<RoutingContext> {
 	// 친구요청 수락
 	@Override
 	public void handle(RoutingContext ctx) {
-		DataBase database = DataBase.getInstance();
-		
 		String clientId = UserManager.getEncryptedIdFromSession(ctx);
 		// 친구 요청을 수락한 사람
 		String src = ctx.request().getFormAttribute("src");
 		// 친구 요청을 보낸 사람
 		
-		database.executeUpdate("DELETE FROM friend_requests WHERE src_id='", src, "' AND dst_id='", clientId, "'");
-		database.executeUpdate("INSERT INTO friend_list VALUES('", clientId, "', '", src, "')");
+		DataBase.executeUpdate("DELETE FROM friend_requests WHERE src_id='", src, "' AND dst_id='", clientId, "'");
+		DataBase.executeUpdate("INSERT INTO friend_list VALUES('", clientId, "', '", src, "')");
 		// 친구 요청 수락에 대한 푸쉬 알림도 주자
 		
 		ctx.response().setStatusCode(201).end();

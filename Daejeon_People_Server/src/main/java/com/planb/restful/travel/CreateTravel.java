@@ -19,7 +19,6 @@ public class CreateTravel implements Handler<RoutingContext> {
 	// 여행 개설
 	@Override
 	public void handle(RoutingContext ctx) {
-		DataBase database = DataBase.getInstance();
 		JSONObject response = new JSONObject();
 		
 		String clientId = UserManager.getEncryptedIdFromSession(ctx);
@@ -29,11 +28,11 @@ public class CreateTravel implements Handler<RoutingContext> {
 		String topic;
 		while(true) {
 			topic = UUID.randomUUID().toString();
-			ResultSet rs = database.executeQuery("SELECT * FROM travels WHERE topic='", topic, "'");
+			ResultSet rs = DataBase.executeQuery("SELECT * FROM travels WHERE topic='", topic, "'");
 			try {
 				if(!rs.next()) {
 					response.put("topic", topic);
-					database.executeUpdate("INSERT INTO travels VALUES('", topic, "', '", title, "', '", clientId, "')");
+					DataBase.executeUpdate("INSERT INTO travels VALUES('", topic, "', '", title, "', '", clientId, "')");
 					break;
 				}
 			} catch (SQLException e) {

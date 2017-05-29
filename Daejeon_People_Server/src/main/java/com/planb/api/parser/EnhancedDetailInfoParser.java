@@ -16,17 +16,16 @@ import com.planb.support.utilities.Log;
 
 public class EnhancedDetailInfoParser {
 	private static String URL = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/detailIntro" + Params.defaultAppendParams;
-	private static DataBase database = DataBase.getInstance();
 	
 	private static void clearTables() {
-		database.executeUpdate("DELETE FROM accommodation_detail_info");
-		database.executeUpdate("DELETE FROM cultural_facility_detail_info");
-		database.executeUpdate("DELETE FROM festival_detail_info");
-		database.executeUpdate("DELETE FROM leports_detail_info");
-		database.executeUpdate("DELETE FROM restaurant_detail_info");
-		database.executeUpdate("DELETE FROM shopping_detail_info");
-		database.executeUpdate("DELETE FROM tour_course_detail_info");
-		database.executeUpdate("DELETE FROM tourrism_detail_info");
+		DataBase.executeUpdate("DELETE FROM accommodation_detail_info");
+		DataBase.executeUpdate("DELETE FROM cultural_facility_detail_info");
+		DataBase.executeUpdate("DELETE FROM festival_detail_info");
+		DataBase.executeUpdate("DELETE FROM leports_detail_info");
+		DataBase.executeUpdate("DELETE FROM restaurant_detail_info");
+		DataBase.executeUpdate("DELETE FROM shopping_detail_info");
+		DataBase.executeUpdate("DELETE FROM tour_course_detail_info");
+		DataBase.executeUpdate("DELETE FROM tourrism_detail_info");
 	}
 	
 	public static void parse() {
@@ -39,7 +38,7 @@ public class EnhancedDetailInfoParser {
 		
 		clearTables();
 		
-		ResultSet rs = database.executeQuery("SELECT * FROM attractions_basic");
+		ResultSet rs = DataBase.executeQuery("SELECT * FROM attractions_basic");
 		Map<Integer, Integer> contentInfoMap = new HashMap<Integer, Integer>();
 		Pattern p = Pattern.compile("\\d+");
 		
@@ -105,7 +104,7 @@ public class EnhancedDetailInfoParser {
 //				String useSeason = item.has("useseason") ? item.getString("useseason") : null;
 				// 이용시기
 
-				database.executeUpdate("INSERT INTO tourrism_detail_info VALUES(", contentId, ", '", creditCard, "', '", babyCarriage, "', '", pet, "', '", infoCenter, "', '", useTime, "', '", restDate, "')");
+				DataBase.executeUpdate("INSERT INTO tourrism_detail_info VALUES(", contentId, ", '", creditCard, "', '", babyCarriage, "', '", pet, "', '", infoCenter, "', '", useTime, "', '", restDate, "')");
 			} else if(contentTypeId == 14) {
 				// 문화시설
 				
@@ -151,7 +150,7 @@ public class EnhancedDetailInfoParser {
 //				String scale = item.has("scale") ? item.getString("scale") : null;
 				// 규모
 				
-				database.executeUpdate("INSERT INTO cultural_facility_detail_info VALUES(", contentId, ", '", creditCard, "', '", babyCarriage, "', '", pet, "', '", infoCenter, "', '", useTime, "', '", restDate, "', '", useFee, "', '", spendTime, "')");
+				DataBase.executeUpdate("INSERT INTO cultural_facility_detail_info VALUES(", contentId, ", '", creditCard, "', '", babyCarriage, "', '", pet, "', '", infoCenter, "', '", useTime, "', '", restDate, "', '", useFee, "', '", spendTime, "')");
 			} else if(contentTypeId == 15) {
 				// 축제, 공연, 행사
 				
@@ -202,7 +201,7 @@ public class EnhancedDetailInfoParser {
 //				String subEvent = item.has("subevent") ? item.getString("subevent") : null;
 				// 부대행사
 				
-				database.executeUpdate("INSERT INTO festival_detail_info VALUES(", contentId, ", '", startDate, "', '", endDate, "', '", useFee, "', '", spendTime, "', '", place, "')");
+				DataBase.executeUpdate("INSERT INTO festival_detail_info VALUES(", contentId, ", '", startDate, "', '", endDate, "', '", useFee, "', '", spendTime, "', '", place, "')");
 			} else if(contentTypeId == 25) {
 				// 여행코스
 				
@@ -230,7 +229,7 @@ public class EnhancedDetailInfoParser {
 				 * 현재 모두 null
 				 */
 				
-				database.executeUpdate("INSERT INTO tour_course_detail_info VALUES(", contentId, ", '", spendTime, "', '", distance, "')");
+				DataBase.executeUpdate("INSERT INTO tour_course_detail_info VALUES(", contentId, ", '", spendTime, "', '", distance, "')");
 			} else if(contentTypeId == 28) {
 				// 레포츠
 				
@@ -279,7 +278,7 @@ public class EnhancedDetailInfoParser {
 //				String scale = item.has("scaleleports") ? item.getString("scaleleports") : null;
 				// 규모
 				
-				database.executeUpdate("INSERT INTO leports_detail_info VALUES(", contentId, ", '", creditCard, "', '", babyCarriage, "', '", pet, "', '", infoCenter, "', '", useTime, "', '", restDate, "', '", useFee, "')");
+				DataBase.executeUpdate("INSERT INTO leports_detail_info VALUES(", contentId, ", '", creditCard, "', '", babyCarriage, "', '", pet, "', '", infoCenter, "', '", useTime, "', '", restDate, "', '", useFee, "')");
 			} else if(contentTypeId == 32) {
 				// 숙박
 				
@@ -397,7 +396,7 @@ public class EnhancedDetailInfoParser {
 				String scale = item.has("scalelodging") ? item.getString("scalelodging") : null;
 				// 규모
 				
-				database.executeUpdate("INSERT INTO accommodation_detail_info VALUES(", contentId, ", '", accomCount, "', ", benikia, ", ", goodStay, ", ", koreanHouse, ", ", barbecue, ", ", beauty, ", ", beverage, ", ", bicycle, ", ", campfire, ", '", cookInRoom, "', ", fitness, ", ", karaoke, ", ", publicBath, ", ", publicPc, ", ", sauna, ", ", seminar, ", ", sports, ", '", subFacility, "', '", checkinTime, "', '", checkoutTime, "', '", foodPlace, "', '", infoCenter, "', '", parking, "', '", pickup, "', ", roomCount, ", '", reservation, "', '", reservationUrl, "', '", roomType, "', '", scale, "')");
+				DataBase.executeUpdate("INSERT INTO accommodation_detail_info VALUES(", contentId, ", '", accomCount, "', ", benikia, ", ", goodStay, ", ", koreanHouse, ", ", barbecue, ", ", beauty, ", ", beverage, ", ", bicycle, ", ", campfire, ", '", cookInRoom, "', ", fitness, ", ", karaoke, ", ", publicBath, ", ", publicPc, ", ", sauna, ", ", seminar, ", ", sports, ", '", subFacility, "', '", checkinTime, "', '", checkoutTime, "', '", foodPlace, "', '", infoCenter, "', '", parking, "', '", pickup, "', ", roomCount, ", '", reservation, "', '", reservationUrl, "', '", roomType, "', '", scale, "')");
 			} else if(contentTypeId == 38) {
 				// 쇼핑
 				
@@ -449,7 +448,7 @@ public class EnhancedDetailInfoParser {
 				String scale = item.has("scaleshopping") ? item.getString("scaleshopping") : null;
 				// 규모
 				
-				database.executeUpdate("INSERT INTO shopping_detail_info VALUES(", contentId, ", '", babyCarriage, "', '", creditCard, "', '", pet, "', '", guide, "', '", fairDay, "', '", infoCenter, "', '", openDate, "', '", useTime, "', '", parking, "', '", restDate, "', '", restroom, "', '", saleItem, "', '", scale, "')");
+				DataBase.executeUpdate("INSERT INTO shopping_detail_info VALUES(", contentId, ", '", babyCarriage, "', '", creditCard, "', '", pet, "', '", guide, "', '", fairDay, "', '", infoCenter, "', '", openDate, "', '", useTime, "', '", parking, "', '", restDate, "', '", restroom, "', '", saleItem, "', '", scale, "')");
 			} else if(contentTypeId == 39) {
 				// 음식
 				
@@ -502,7 +501,7 @@ public class EnhancedDetailInfoParser {
 				String treatMenu = item.has("treatmenu") ? item.getString("treatmenu") : null;
 				// 취급 메뉴
 				
-				database.executeUpdate("INSERT INTO restaurant_detail_info VALUES(", contentId, ", '", creditCard, "', '", repMenu, "', '", infoCenter, "', ", kidsFacility, ", '", openDate, "', '", useTime, "', '", packing, "', '", parking, "', '", reservation, "', '", restDate, "', '", scale, "', '", seat, "', '", smoking, "', '", treatMenu, "')");
+				DataBase.executeUpdate("INSERT INTO restaurant_detail_info VALUES(", contentId, ", '", creditCard, "', '", repMenu, "', '", infoCenter, "', ", kidsFacility, ", '", openDate, "', '", useTime, "', '", packing, "', '", parking, "', '", reservation, "', '", restDate, "', '", scale, "', '", seat, "', '", smoking, "', '", treatMenu, "')");
 			}
 		}
 		Log.I("Detail Info Parse Success.");

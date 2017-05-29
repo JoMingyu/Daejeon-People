@@ -21,12 +21,11 @@ import io.vertx.ext.web.RoutingContext;
 public class WishListInquiry implements Handler<RoutingContext> {
 	@Override
 	public void handle(RoutingContext ctx) {
-		DataBase database = DataBase.getInstance();
 		JSONArray response = new JSONArray();
 		
 		String clientId = UserManager.getEncryptedIdFromSession(ctx);
 		
-		ResultSet wishList = database.executeQuery("SELECT content_id FROM wish_list WHERE client_id='", clientId, "'");
+		ResultSet wishList = DataBase.executeQuery("SELECT content_id FROM wish_list WHERE client_id='", clientId, "'");
 		List<Integer> contentIdList = new ArrayList<Integer>();
 		try {
 			while(wishList.next()) {
@@ -37,7 +36,7 @@ public class WishListInquiry implements Handler<RoutingContext> {
 		}
 		
 		for(int contentId : contentIdList) {
-			ResultSet content = database.executeQuery("SELECT * FROM attractions_basic WHERE content_id=", contentId);
+			ResultSet content = DataBase.executeQuery("SELECT * FROM attractions_basic WHERE content_id=", contentId);
 			JSONObject contentInfo = new JSONObject();
 			try {
 				content.next();

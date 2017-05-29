@@ -13,14 +13,12 @@ public class RefuseFriend implements Handler<RoutingContext> {
 	// 친구요청 거절
 	@Override
 	public void handle(RoutingContext ctx) {
-		DataBase database = DataBase.getInstance();
-		
 		String clientId = UserManager.getEncryptedIdFromSession(ctx);
 		// 친구 요청을 거절한 사람
 		String src = ctx.request().getFormAttribute("src");
 		// 친구 요청을 보낸 사람
 		
-		database.executeUpdate("DELETE FROM friend_requests WHERE src_id='", src, "' AND dst_id='", clientId, "'");
+		DataBase.executeUpdate("DELETE FROM friend_requests WHERE src_id='", src, "' AND dst_id='", clientId, "'");
 		
 		ctx.response().setStatusCode(201).end();
 		ctx.response().close();

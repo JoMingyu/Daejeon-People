@@ -7,9 +7,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class DataBase {
-	private static DataBase database = new DataBase();
-	private Connection connection;
-	private Statement statement;
+	private static Connection connection;
+	private static Statement statement;
 	
 	private final String URL = "jdbc:mysql://localhost:3306/";
 	private final String USER = "root";
@@ -26,10 +25,6 @@ public class DataBase {
 		}
 	}
 	
-	public static DataBase getInstance() {
-		return database;
-	}
-	
 	private static String buildQuery(Object... args) {
 		StringBuilder query = new StringBuilder();
 		
@@ -40,7 +35,7 @@ public class DataBase {
 		return query.toString();
 	}
 	
-	public ResultSet executeQuery(Object... args) {
+	public static ResultSet executeQuery(Object... args) {
 		String query = buildQuery(args);
 		try {
 			return statement.executeQuery(query);
@@ -50,7 +45,7 @@ public class DataBase {
 		}
 	}
 	
-	public int executeUpdate(Object... args) {
+	public static int executeUpdate(Object... args) {
 		String query = buildQuery(args);
 		try {
 			return statement.executeUpdate(query);

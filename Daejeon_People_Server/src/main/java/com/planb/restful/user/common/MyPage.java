@@ -24,7 +24,6 @@ public class MyPage implements Handler<RoutingContext> {
 	
 	@Override
 	public void handle(RoutingContext ctx) {
-		DataBase database = DataBase.getInstance();
 		AES256 aes = UserManager.getAES256Instance();
 		JSONObject response = new JSONObject();
 		
@@ -35,7 +34,7 @@ public class MyPage implements Handler<RoutingContext> {
 		}
 		
 		String clientId = UserManager.getEncryptedIdFromSession(ctx);
-		ResultSet userInfo = database.executeQuery("SELECT * FROM account WHERE id='", clientId, "'");
+		ResultSet userInfo = DataBase.executeQuery("SELECT * FROM account WHERE id='", clientId, "'");
 		try {
 			userInfo.next();
 			response.put("email", aes.decrypt(userInfo.getString("email")));

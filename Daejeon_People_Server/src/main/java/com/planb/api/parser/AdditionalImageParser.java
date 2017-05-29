@@ -15,12 +15,11 @@ import com.planb.support.utilities.Log;
 
 public class AdditionalImageParser {
 	private static String defaultURL = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/detailImage" + Params.defaultAppendParams + "&imageYN=Y";
-	private static DataBase database = DataBase.getInstance();
 	
 	public static void parse() {
-		database.executeUpdate("DELETE FROM attractions_images");
+		DataBase.executeUpdate("DELETE FROM attractions_images");
 		
-		ResultSet rs = database.executeQuery("SELECT * FROM attractions_basic");
+		ResultSet rs = DataBase.executeQuery("SELECT * FROM attractions_basic");
 		Map<Integer, Integer> contentInfoMap = new HashMap<Integer, Integer>();
 		
 		try {
@@ -43,7 +42,7 @@ public class AdditionalImageParser {
 			
 			if(totalCount == 1) {
 				JSONObject item = HttpRequestForParser.getItem(requestURL);
-				database.executeUpdate("INSERT INTO attractions_images VALUES(", contentId, ", '", item.getString("originimgurl"), "')");
+				DataBase.executeUpdate("INSERT INTO attractions_images VALUES(", contentId, ", '", item.getString("originimgurl"), "')");
 			} else {
 				// totalCount > 1
 				
@@ -52,7 +51,7 @@ public class AdditionalImageParser {
 				
 				for(int i = 0; i < items.length(); i++) {
 					JSONObject item = items.getJSONObject(i);
-					database.executeUpdate("INSERT INTO attractions_images VALUES(", contentId, ", '", item.getString("originimgurl"), "')");
+					DataBase.executeUpdate("INSERT INTO attractions_images VALUES(", contentId, ", '", item.getString("originimgurl"), "')");
 				}
 			}
 			

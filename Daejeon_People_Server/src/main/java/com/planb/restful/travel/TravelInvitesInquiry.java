@@ -24,13 +24,12 @@ import io.vertx.ext.web.RoutingContext;
 public class TravelInvitesInquiry implements Handler<RoutingContext> {
 	@Override
 	public void handle(RoutingContext ctx) {
-		DataBase database = DataBase.getInstance();
 		AES256 aes = UserManager.getAES256Instance();
 		JSONArray response = new JSONArray();
 		
 		String clientId = UserManager.getEncryptedIdFromSession(ctx);
 		
-		ResultSet inviteSet = database.executeQuery("SELECT * FROM travel_invites WHERE dst_id='", clientId, "'");
+		ResultSet inviteSet = DataBase.executeQuery("SELECT * FROM travel_invites WHERE dst_id='", clientId, "'");
 		// 자신을 타겟으로 한 여행 초대 목록
 		
 		List<HashMap<String, String>> inviteList = new ArrayList<>();
@@ -49,7 +48,7 @@ public class TravelInvitesInquiry implements Handler<RoutingContext> {
 		}
 		
 		for(HashMap<String, String> inviteInfoMap : inviteList) {
-			ResultSet requesterInfo = database.executeQuery("SELECT * FROM account WHERE id='", inviteInfoMap.get("requester_id"), "'");
+			ResultSet requesterInfo = DataBase.executeQuery("SELECT * FROM account WHERE id='", inviteInfoMap.get("requester_id"), "'");
 			JSONObject invite = new JSONObject(inviteInfoMap);
 			try {
 				invite.put("phone_number", aes.decrypt(requesterInfo.getString("phone_number")));

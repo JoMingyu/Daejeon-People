@@ -19,12 +19,11 @@ import io.vertx.ext.web.RoutingContext;
 public class FriendList implements Handler<RoutingContext> {
 	@Override
 	public void handle(RoutingContext ctx) {
-		DataBase database = DataBase.getInstance();
 		JSONArray response = new JSONArray();
 		
 		String clientId = UserManager.getEncryptedIdFromSession(ctx);
 		
-		ResultSet friendSet = database.executeQuery("SELECT * FROM friend_list WHERE client_id1='", clientId, "' OR client_id2='", clientId, "'");
+		ResultSet friendSet = DataBase.executeQuery("SELECT * FROM friend_list WHERE client_id1='", clientId, "' OR client_id2='", clientId, "'");
 		List<String> friendIdList = new ArrayList<String>();
 		try {
 			while(friendSet.next()) {

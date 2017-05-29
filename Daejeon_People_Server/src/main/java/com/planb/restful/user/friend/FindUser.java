@@ -19,7 +19,6 @@ import io.vertx.ext.web.RoutingContext;
 public class FindUser implements Handler<RoutingContext> {
 	@Override
 	public void handle(RoutingContext ctx) {
-		DataBase database = DataBase.getInstance();
 		AES256 aes = UserManager.getAES256Instance();
 		
 		String keyword = ctx.request().getParam("keyword");
@@ -44,7 +43,7 @@ public class FindUser implements Handler<RoutingContext> {
 		
 		keyword = aes.encrypt(keyword);
 		
-		ResultSet rs = database.executeQuery("SELECT * FROM account WHERE email='", keyword, "' OR phone_number='", keyword, "'");
+		ResultSet rs = DataBase.executeQuery("SELECT * FROM account WHERE email='", keyword, "' OR phone_number='", keyword, "'");
 		try {
 			if(rs.next()) {
 				JSONObject response = new JSONObject();

@@ -13,12 +13,10 @@ public class RequestFriend implements Handler<RoutingContext> {
 	// 친구 요청
 	@Override
 	public void handle(RoutingContext ctx) {
-		DataBase database = DataBase.getInstance();
-		
 		String clientId = UserManager.getEncryptedIdFromSession(ctx);
 		String dst = ctx.request().getFormAttribute("dst");
 		
-		database.executeUpdate("INSERT INTO friend_requests VALUES('", clientId, "', '", dst, "', CURDATE())");
+		DataBase.executeUpdate("INSERT INTO friend_requests VALUES('", clientId, "', '", dst, "', CURDATE())");
 		
 		ctx.response().setStatusCode(201).end();
 		ctx.response().close();

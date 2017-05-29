@@ -19,7 +19,6 @@ import com.planb.support.utilities.DataBase;
 import io.vertx.ext.web.RoutingContext;
 
 public class AttractionsListInquiry {
-	private static DataBase database = DataBase.getInstance();
 	private static int numOfRows = AttractionsConfig.NUM_OF_ROWS;
 	
 	public static JSONArray inquire(RoutingContext ctx, int contentTypeId) {
@@ -33,11 +32,11 @@ public class AttractionsListInquiry {
 		switch(sortType) {
 		case 1:
 			// 조회순
-			rs = database.executeQuery(String.format(query, "attractions_basic", "views_count DESC"));
+			rs = DataBase.executeQuery(String.format(query, "attractions_basic", "views_count DESC"));
 			break;
 		case 2:
 			// 위시리스트 많은 순
-			rs = database.executeQuery(String.format(query, "attractions_basic", "wish_count DESC"));
+			rs = DataBase.executeQuery(String.format(query, "attractions_basic", "wish_count DESC"));
 			break;
 		case 3:
 			// 거리순
@@ -45,7 +44,7 @@ public class AttractionsListInquiry {
 			double y = Double.parseDouble(ctx.request().getParam("y"));
 			// 클라이언트 좌표값
 			
-			rs = database.executeQuery("SELECT * FROM attractions_basic WHERE content_type_id=", contentTypeId);
+			rs = DataBase.executeQuery("SELECT * FROM attractions_basic WHERE content_type_id=", contentTypeId);
 			// contentTypeId에 해당하는 데이터 전체
 			
 			rs = distanceBasedInquiry(rs, page, x, y);
@@ -71,11 +70,11 @@ public class AttractionsListInquiry {
 		switch(sortType) {
 		case 1:
 			// 조회순
-			rs = database.executeQuery(String.format(query, "attractions_basic", "views_count DESC"));
+			rs = DataBase.executeQuery(String.format(query, "attractions_basic", "views_count DESC"));
 			break;
 		case 2:
 			// 위시리스트 많은 순
-			rs = database.executeQuery(String.format(query, "attractions_basic", "wish_count DESC"));
+			rs = DataBase.executeQuery(String.format(query, "attractions_basic", "wish_count DESC"));
 			break;
 		case 3:
 			// 거리순
@@ -83,7 +82,7 @@ public class AttractionsListInquiry {
 			double y = Double.parseDouble(ctx.request().getParam("y"));
 			// 클라이언트 좌표값
 			
-			rs = database.executeQuery("SELECT * FROM attractions_basic");
+			rs = DataBase.executeQuery("SELECT * FROM attractions_basic");
 			// 데이터 전체
 			
 			rs = distanceBasedInquiry(rs, page, x, y);
@@ -174,7 +173,7 @@ public class AttractionsListInquiry {
 			}
 		}
 		
-		return database.executeQuery(query);
+		return DataBase.executeQuery(query);
 	}
 	
 	private static JSONArray extractDatas(RoutingContext ctx, ResultSet rs) {
@@ -203,7 +202,7 @@ public class AttractionsListInquiry {
 		String clientId = UserManager.getEncryptedIdFromSession(ctx);
 		for(Map<String, Object> attractionInfo : attractionInfoList) {
 			int contentId = Integer.parseInt(attractionInfo.get("content_id").toString());
-			ResultSet wish = database.executeQuery("SELECT * FROM wish_list WHERE client_id='", clientId, "' AND content_id =", contentId);
+			ResultSet wish = DataBase.executeQuery("SELECT * FROM wish_list WHERE client_id='", clientId, "' AND content_id =", contentId);
 			try {
 				if(wish.next()) {
 					attractionInfo.put("wish", true);

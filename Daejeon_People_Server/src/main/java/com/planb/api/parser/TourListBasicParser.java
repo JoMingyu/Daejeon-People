@@ -17,7 +17,6 @@ public class TourListBasicParser {
 	 * JsonArray를 순차 탐색하며 DB 저장
 	 */
 	private static String defaultURL = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/areaBasedList" + Params.defaultAppendParams;
-	private static DataBase database = DataBase.getInstance();
 	
 	public static void parse() {
 		int totalCount = HttpRequestForParser.getTotalCount(defaultURL);
@@ -75,12 +74,12 @@ public class TourListBasicParser {
 			String imageBigUrl = item.has("firstimage") ? item.getString("firstimage") : null;
 			// 대표이미지 큰 사이즈
 			
-			ResultSet rs = database.executeQuery("SELECT * FROM attractions_basic WHERE content_id=", contentId);
+			ResultSet rs = DataBase.executeQuery("SELECT * FROM attractions_basic WHERE content_id=", contentId);
 			try {
 				if(rs.next()) {
-					database.executeUpdate("UPDATE attractions_basic SET title='", title, "', cat1='", cat1, "', cat2='", cat2, "', cat3='", cat3, "', mapx=", mapX, ", mapy=", mapY, ", views_count=", readCount, ", image_mini_url='", imageMiniUrl, "', image_big_url='", imageBigUrl, "' WHERE content_id=", contentId);
+					DataBase.executeUpdate("UPDATE attractions_basic SET title='", title, "', cat1='", cat1, "', cat2='", cat2, "', cat3='", cat3, "', mapx=", mapX, ", mapy=", mapY, ", views_count=", readCount, ", image_mini_url='", imageMiniUrl, "', image_big_url='", imageBigUrl, "' WHERE content_id=", contentId);
 				} else {
-					database.executeUpdate("INSERT INTO attractions_basic VALUES(", contentId, ", ", contentTypeId, ", 0, '", title, "', '", cat1, "', '", cat2, "', '", cat3, "', '", address, "', ", mapX, ", ", mapY, ", ", readCount, ", '", imageMiniUrl, "', '", imageBigUrl, "')");
+					DataBase.executeUpdate("INSERT INTO attractions_basic VALUES(", contentId, ", ", contentTypeId, ", 0, '", title, "', '", cat1, "', '", cat2, "', '", cat3, "', '", address, "', ", mapX, ", ", mapY, ", ", readCount, ", '", imageMiniUrl, "', '", imageBigUrl, "')");
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();

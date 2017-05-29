@@ -22,13 +22,12 @@ public class FriendRequestsInquiry implements Handler<RoutingContext> {
 	// 친구요청 목록 조회
 	@Override
 	public void handle(RoutingContext ctx) {
-		DataBase database = DataBase.getInstance();
 		AES256 aes = UserManager.getAES256Instance();
 		JSONArray response = new JSONArray();
 		
 		String clientId = UserManager.getEncryptedIdFromSession(ctx);
 		
-		ResultSet requestSet = database.executeQuery("SELECT src_id, date FROM friend_requests WHERE dst_id='", clientId, "'");
+		ResultSet requestSet = DataBase.executeQuery("SELECT src_id, date FROM friend_requests WHERE dst_id='", clientId, "'");
 		// 자신을 타겟으로 한 친구 요청 목록
 		
 		Map<String, String> requestMap = new HashMap<String, String>();
@@ -43,7 +42,7 @@ public class FriendRequestsInquiry implements Handler<RoutingContext> {
 		
 		for(String requesterId : requestMap.keySet()) {
 			// 요청자 id 순회
-			ResultSet requesterSet = database.executeQuery("SELECT * FROM account WHERE id='", requesterId, "'");
+			ResultSet requesterSet = DataBase.executeQuery("SELECT * FROM account WHERE id='", requesterId, "'");
 			try {
 				requesterSet.next();
 				JSONObject requester = new JSONObject();

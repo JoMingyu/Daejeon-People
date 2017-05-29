@@ -18,13 +18,12 @@ public class DetailCommonParser {
 	 * 홈페이지와 개요 정보
 	 */
 	private static String URL = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/detailCommon" + Params.defaultAppendParams;
-	private static DataBase database = DataBase.getInstance();
 	
 	public static void parse() {
-		database.executeUpdate("DELETE FROM attractions_detail_common");
+		DataBase.executeUpdate("DELETE FROM attractions_detail_common");
 		URL = URL + "&defaultYN=Y&overviewYN=Y";
 		
-		ResultSet rs = database.executeQuery("SELECT * FROM attractions_basic");
+		ResultSet rs = DataBase.executeQuery("SELECT * FROM attractions_basic");
 		Map<Integer, Integer> contentInfoMap = new HashMap<Integer, Integer>();
 		
 		try {
@@ -52,7 +51,7 @@ public class DetailCommonParser {
 			String tel = item.has("tel") ? item.getString("tel") : null;
 			// 전화번호
 			
-			database.executeUpdate("INSERT INTO attractions_detail_common VALUES(", contentId, ", ", contentTypeId, ", '", homepage, "', '", overview, "', '", telName, "', '", tel, "')");
+			DataBase.executeUpdate("INSERT INTO attractions_detail_common VALUES(", contentId, ", ", contentTypeId, ", '", homepage, "', '", overview, "', '", telName, "', '", tel, "')");
 		}
 		Log.I("Detail Common Parse Success.");
 	}

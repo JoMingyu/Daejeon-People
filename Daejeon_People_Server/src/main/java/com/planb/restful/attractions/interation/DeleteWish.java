@@ -12,11 +12,9 @@ import io.vertx.ext.web.RoutingContext;
 public class DeleteWish implements Handler<RoutingContext> {
 	@Override
 	public void handle(RoutingContext ctx) {
-		DataBase database = DataBase.getInstance();
-		
 		String clientId = UserManager.getEncryptedIdFromSession(ctx);
 		int contentId = Integer.parseInt(ctx.request().getParam("content_id"));
 		
-		database.executeUpdate("DELETE FROM wish_list WHERE client_id='", clientId, "' AND content_id=", contentId);
+		DataBase.executeUpdate("DELETE FROM wish_list WHERE client_id='", clientId, "' AND content_id=", contentId);
 	}
 }

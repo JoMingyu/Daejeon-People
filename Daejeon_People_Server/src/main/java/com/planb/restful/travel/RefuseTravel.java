@@ -12,13 +12,11 @@ import io.vertx.ext.web.RoutingContext;
 public class RefuseTravel implements Handler<RoutingContext> {
 	@Override
 	public void handle(RoutingContext ctx) {
-		DataBase database = DataBase.getInstance();
-		
 		String clientId = UserManager.getEncryptedIdFromSession(ctx);
 		// 여행 초대를 거절한 사람
 		String topic = ctx.request().getFormAttribute("topic");
 		
-		database.executeUpdate("DELETE FROM travel_invites WHERE dst_id='", clientId, "' AND topic='", topic, "'");
+		DataBase.executeUpdate("DELETE FROM travel_invites WHERE dst_id='", clientId, "' AND topic='", topic, "'");
 		
 		ctx.response().setStatusCode(201).end();
 		ctx.response().close();

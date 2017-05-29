@@ -18,7 +18,6 @@ import com.sun.javafx.binding.StringFormatter;
 import io.vertx.ext.web.RoutingContext;
 
 public class UserManager {
-	private static DataBase database = DataBase.getInstance();
 	private static AES256 aes = new AES256("d.df!*&ek@s.Cde/q");
 	/*
 	 * ID : AES256
@@ -40,7 +39,7 @@ public class UserManager {
 		String encryptedId = aes.encrypt(id);
 		String encryptedPassword = SHA256.encrypt(password);
 
-		rs = database.executeQuery("SELECT * FROM account WHERE id='", encryptedId, "' AND password='", encryptedPassword, "'");
+		rs = DataBase.executeQuery("SELECT * FROM account WHERE id='", encryptedId, "' AND password='", encryptedPassword, "'");
 		try {
 			if (rs.next()) {
 				return true;
@@ -63,7 +62,7 @@ public class UserManager {
 		String encryptedSessionId = SHA256.encrypt(sessionId);
 		String encryptedId = null;
 		
-		rs = database.executeQuery("SELECT * FROM account WHERE session_id='", encryptedSessionId, "'");
+		rs = DataBase.executeQuery("SELECT * FROM account WHERE session_id='", encryptedSessionId, "'");
 		try {
 			if(rs.next()) {
 				encryptedId = rs.getString("id");
@@ -76,7 +75,7 @@ public class UserManager {
 	}
 	
 	public static JSONObject getUserInfo(String id) {
-		ResultSet userInfoSet = database.executeQuery("SELECT * FROM account WHERE id='", id, "'");
+		ResultSet userInfoSet = DataBase.executeQuery("SELECT * FROM account WHERE id='", id, "'");
 		JSONObject userInfo = new JSONObject();
 		
 		try {
@@ -101,7 +100,7 @@ public class UserManager {
 		String encryptedId = aes.encrypt(id);
 		String encryptedSessionId = null;
 		
-		rs = database.executeQuery("SELECT * FROM account WHERE id='", encryptedId, "'");
+		rs = DataBase.executeQuery("SELECT * FROM account WHERE id='", encryptedId, "'");
 		try {
 			rs.next();
 			if(rs.getString("session_id") != null) {
@@ -122,7 +121,7 @@ public class UserManager {
 		
 		while(true) {
 			uuid = UUID.randomUUID().toString();
-			rs = database.executeQuery("SELECT * FROM account WHERE session_id='", SHA256.encrypt(uuid), "'");
+			rs = DataBase.executeQuery("SELECT * FROM account WHERE session_id='", SHA256.encrypt(uuid), "'");
 			try {
 				if(!rs.next()) {
 					break;
@@ -152,7 +151,7 @@ public class UserManager {
 		}
 		
 		String encryptedSessionId = SHA256.encrypt(sessionId);
-		database.executeUpdate("UPDATE account SET session_id='", encryptedSessionId, "' WHERE id='", encryptedId, "'");
+		DataBase.executeUpdate("UPDATE account SET session_id='", encryptedSessionId, "' WHERE id='", encryptedId, "'");
 	}
 	
 	public boolean isLogined(RoutingContext ctx) {
@@ -165,22 +164,22 @@ public class UserManager {
 		 */
 		String encryptedId = getEncryptedIdFromSession(ctx);
 		SessionUtil.removeSession(ctx, "UserSession");
-		database.executeUpdate("UPDATE account SET session_id=null WHERE id='", encryptedId, "'");
+		DataBase.executeUpdate("UPDATE account SET session_id=null WHERE id='", encryptedId, "'");
 	}
 	
 	public boolean findIdDemand(String email, String name) {
 		String encryptedEmail = aes.encrypt(email);
 		String encryptedName = aes.encrypt(name);
 		
-		rs = database.executeQuery("SELECT id FROM account WHERE email='", encryptedEmail, "' AND name='", encryptedName, "'");
+		rs = DataBase.executeQuery("SELECT id FROM account WHERE email='", encryptedEmail, "' AND name='", encryptedName, "'");
 		try {
 			if(rs.next()) {
 				Random random = new Random();
 				String code = StringFormatter.format("%06d", random.nextInt(1000000)).getValue();
 				// 인증코드 생성
 				
-				database.executeUpdate("DELETE FROM email_verify_codes WHERE email='", encryptedEmail, "'");
-				database.executeUpdate("INSERT INTO email_verify_codes VALUES('", encryptedEmail, "', '", code, "')");
+				DataBase.executeUpdate("DELETE FROM email_verify_codes WHERE email='", encryptedEmail, "'");
+				DataBase.executeUpdate("INSERT INTO email_verify_codes VALUES('", encryptedEmail, "', '", code, "')");
 				// 인증코드 insert or refresh
 				
 				Mail.sendMail(email, MailSubjects.FIND_ID_DEMAND_SUBJECT.getName(), "코드 : " + code);
@@ -198,7 +197,7 @@ public class UserManager {
 	public boolean findIdVerify(String email, String code) {
 		String encryptedEmail = aes.encrypt(email);
 		
-		rs = database.executeQuery("SELECT * FROM email_verify_codes WHERE email='", encryptedEmail, "' AND code='", code, "'");
+		rs = DataBase.executeQuery("SELECT * FROM email_verify_codes WHERE email='", encryptedEmail, "' AND code='", code, "'");
 		try {
 			if (!rs.next()) {
 				return false;
@@ -208,8 +207,8 @@ public class UserManager {
 			return false;
 		}
 		
-		database.executeUpdate("DELETE FROM email_verify_codes WHERE email='", encryptedEmail, "' AND code='", code, "'");
-		rs = database.executeQuery("SELECT * FROM account WHERE email='", encryptedEmail, "'");
+		DataBase.executeUpdate("DELETE FROM email_verify_codes WHERE email='", encryptedEmail, "' AND code='", code, "'");
+		rs = DataBase.executeQuery("SELECT * FROM account WHERE email='", encryptedEmail, "'");
 		try {
 			rs.next();
 			String decryptedId = aes.decrypt(rs.getString("id"));
@@ -228,7 +227,7 @@ public class UserManager {
 		while(true) {
 			tempPassword = UUID.randomUUID().toString().substring(0, 8);
 			encryptedTempPassword = SHA256.encrypt(tempPassword);
-			rs = database.executeQuery("SELECT * FROM account WHERE password='", encryptedTempPassword, "'");
+			rs = DataBase.executeQuery("SELECT * FROM account WHERE password='", encryptedTempPassword, "'");
 			try {
 				if(!rs.next()) {
 					break;
@@ -245,15 +244,15 @@ public class UserManager {
 		String encryptedEmail = aes.encrypt(email);
 		String encryptedName = aes.encrypt(name);
 		
-		rs = database.executeQuery("SELECT * FROM account WHERE id='", encryptedId, "' AND email='", encryptedEmail, "' AND name='", encryptedName, "'");
+		rs = DataBase.executeQuery("SELECT * FROM account WHERE id='", encryptedId, "' AND email='", encryptedEmail, "' AND name='", encryptedName, "'");
 		try {
 			if(rs.next()) {
 				Random random = new Random();
 				String code = StringFormatter.format("%06d", random.nextInt(1000000)).getValue();
 				// 인증코드 생성
 				
-				database.executeUpdate("DELETE FROM email_verify_codes WHERE email='", encryptedEmail, "'");
-				database.executeUpdate("INSERT INTO email_verify_codes VALUES('", encryptedEmail, "', '", code, "')");
+				DataBase.executeUpdate("DELETE FROM email_verify_codes WHERE email='", encryptedEmail, "'");
+				DataBase.executeUpdate("INSERT INTO email_verify_codes VALUES('", encryptedEmail, "', '", code, "')");
 				// 인증코드 insert or refresh
 				Mail.sendMail(email, MailSubjects.FIND_PW_DEMAND_SUBJECT.getName(), "코드 : " + code);
 				return true;
@@ -269,13 +268,13 @@ public class UserManager {
 	public boolean findPasswordVerify(String email, String code) {
 		String encryptedEmail = aes.encrypt(email);
 		
-		rs = database.executeQuery("SELECT * FROM email_verify_codes WHERE email='", encryptedEmail, "' AND code='", code, "'");
+		rs = DataBase.executeQuery("SELECT * FROM email_verify_codes WHERE email='", encryptedEmail, "' AND code='", code, "'");
 		try {
 			if (rs.next()) {
-				database.executeUpdate("DELETE FROM email_verify_codes WHERE email='", encryptedEmail, "' AND code='", code, "'");
+				DataBase.executeUpdate("DELETE FROM email_verify_codes WHERE email='", encryptedEmail, "' AND code='", code, "'");
 				String tempPassword = createTempPassword();
 				String encryptedTempPassword = SHA256.encrypt(tempPassword);
-				database.executeUpdate("UPDATE account SET password='", encryptedTempPassword, "' WHERE email='", encryptedEmail, "'");
+				DataBase.executeUpdate("UPDATE account SET password='", encryptedTempPassword, "' WHERE email='", encryptedEmail, "'");
 				Mail.sendMail(email, MailSubjects.FIND_PW_RESULT_SUBJECT.getName(), "임시 비밀번호 : " + tempPassword);
 				return true;
 			} else {
@@ -293,10 +292,10 @@ public class UserManager {
 		String encryptedCurrentPassword = SHA256.encrypt(currentPassword);
 		String encryptedNewPassword = SHA256.encrypt(newPassword);
 		
-		rs = database.executeQuery("SELECT * FROM account WHERE id='", encryptedId, "' AND password='", encryptedCurrentPassword, "'");
+		rs = DataBase.executeQuery("SELECT * FROM account WHERE id='", encryptedId, "' AND password='", encryptedCurrentPassword, "'");
 		try {
 			if(rs.next()) {
-				database.executeUpdate("UPDATE account SET password='", encryptedNewPassword, "' WHERE id='", encryptedId, "'");
+				DataBase.executeUpdate("UPDATE account SET password='", encryptedNewPassword, "' WHERE id='", encryptedId, "'");
 				return true;
 			} else {
 				return false;

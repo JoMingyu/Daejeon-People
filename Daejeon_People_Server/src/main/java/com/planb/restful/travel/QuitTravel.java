@@ -12,12 +12,10 @@ import io.vertx.ext.web.RoutingContext;
 public class QuitTravel implements Handler<RoutingContext> {
 	@Override
 	public void handle(RoutingContext ctx) {
-		DataBase database = DataBase.getInstance();
-		
 		String clientId = UserManager.getEncryptedIdFromSession(ctx);
 		String topic = ctx.request().getFormAttribute("topic");
 		
-		database.executeUpdate("DELETE FROM travels WHERE client_id='", clientId, "' AND topic='", topic, "'");
+		DataBase.executeUpdate("DELETE FROM travels WHERE client_id='", clientId, "' AND topic='", topic, "'");
 		
 		ctx.response().setStatusCode(200).end();
 		ctx.response().close();

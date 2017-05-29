@@ -18,12 +18,11 @@ import io.vertx.ext.web.RoutingContext;
 public class TravelList implements Handler<RoutingContext> {
 	@Override
 	public void handle(RoutingContext ctx) {
-		DataBase database = DataBase.getInstance();
 		JSONArray response = new JSONArray();
 		
 		String clientId = UserManager.getEncryptedIdFromSession(ctx);
 		
-		ResultSet rs = database.executeQuery("SELECT * FROM travels WHERE client_id='", clientId, "'");
+		ResultSet rs = DataBase.executeQuery("SELECT * FROM travels WHERE client_id='", clientId, "'");
 		try {
 			while(rs.next()) {
 				JSONObject travelRoom = new JSONObject();

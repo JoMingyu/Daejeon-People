@@ -13,7 +13,6 @@ import com.planb.support.utilities.Thumbnail;
 import com.sun.javafx.binding.StringFormatter;
 
 public class SignupManager {
-	private static DataBase database = DataBase.getInstance();
 	private static AES256 aes = new AES256("d.df!*&ek@s.Cde/q");
 	/*
 	 * ID : AES256
@@ -30,7 +29,7 @@ public class SignupManager {
 		 */
 		String encryptedPhoneNumber = aes.encrypt(phoneNumber);
 		
-		rs = database.executeQuery("SELECT * FROM account WHERE phone_number='", encryptedPhoneNumber, "'");
+		rs = DataBase.executeQuery("SELECT * FROM account WHERE phone_number='", encryptedPhoneNumber, "'");
 		try {
 			if(rs.next()) {
 				return true;
@@ -54,8 +53,8 @@ public class SignupManager {
 		String code = StringFormatter.format("%06d", random.nextInt(1000000)).getValue();
 		// 인증코드 생성
 		
-		database.executeUpdate("DELETE FROM phone_verify_codes WHERE phone_number='", encryptedPhoneNumber, "'");
-		database.executeUpdate("INSERT INTO phone_verify_codes VALUES('", encryptedPhoneNumber, "', '", code, "')");
+		DataBase.executeUpdate("DELETE FROM phone_verify_codes WHERE phone_number='", encryptedPhoneNumber, "'");
+		DataBase.executeUpdate("INSERT INTO phone_verify_codes VALUES('", encryptedPhoneNumber, "', '", code, "')");
 		// 인증코드 insert or refresh
 		
 		// 인증코드 전송(보류)
@@ -68,10 +67,10 @@ public class SignupManager {
 		 */
 		String encryptedPhoneNumber = aes.encrypt(phoneNumber);
 
-		rs = database.executeQuery("SELECT * FROM phone_verify_codes WHERE phone_number='", encryptedPhoneNumber, "' AND code='", code, "'");
+		rs = DataBase.executeQuery("SELECT * FROM phone_verify_codes WHERE phone_number='", encryptedPhoneNumber, "' AND code='", code, "'");
 		try {
 			if (rs.next()) {
-				database.executeUpdate("DELETE FROM phone_verify_codes WHERE phone_number='", encryptedPhoneNumber, "' AND code='", code, "'");
+				DataBase.executeUpdate("DELETE FROM phone_verify_codes WHERE phone_number='", encryptedPhoneNumber, "' AND code='", code, "'");
 				return true;
 			} else {
 				return false;
@@ -90,7 +89,7 @@ public class SignupManager {
 		 */
 		String encryptedEmail = aes.encrypt(email);
 
-		rs = database.executeQuery("SELECT * FROM account WHERE email='", encryptedEmail, "'");
+		rs = DataBase.executeQuery("SELECT * FROM account WHERE email='", encryptedEmail, "'");
 		try {
 			if (rs.next()) {
 				return true;
@@ -114,8 +113,8 @@ public class SignupManager {
 		String code = StringFormatter.format("%06d", random.nextInt(1000000)).getValue();
 		// 이메일 인증코드 생성
 		
-		database.executeUpdate("DELETE FROM email_verify_codes WHERE email='", encryptedEmail, "'");
-		database.executeUpdate("INSERT INTO email_verify_codes VALUES('", encryptedEmail, "', '", code, "')");
+		DataBase.executeUpdate("DELETE FROM email_verify_codes WHERE email='", encryptedEmail, "'");
+		DataBase.executeUpdate("INSERT INTO email_verify_codes VALUES('", encryptedEmail, "', '", code, "')");
 		// 인증코드 insert or refresh
 		
 		Mail.sendMail(email, MailSubjects.VERIFY_SUBJECT.getName(), "코드 : " + code);
@@ -129,10 +128,10 @@ public class SignupManager {
 		 */
 		String encryptedEmail = aes.encrypt(email);
 
-		rs = database.executeQuery("SELECT * FROM email_verify_codes WHERE email='", encryptedEmail, "' AND code='", code, "'");
+		rs = DataBase.executeQuery("SELECT * FROM email_verify_codes WHERE email='", encryptedEmail, "' AND code='", code, "'");
 		try {
 			if (rs.next()) {
-				database.executeUpdate("DELETE FROM email_verify_codes WHERE email='", encryptedEmail, "' AND code='", code, "'");
+				DataBase.executeUpdate("DELETE FROM email_verify_codes WHERE email='", encryptedEmail, "' AND code='", code, "'");
 				return true;
 			} else {
 				return false;
@@ -150,7 +149,7 @@ public class SignupManager {
 		 */
 		String encryptedId = aes.encrypt(id);
 
-		rs = database.executeQuery("SELECT * FROM account WHERE id='", encryptedId, "'");
+		rs = DataBase.executeQuery("SELECT * FROM account WHERE id='", encryptedId, "'");
 		try {
 			if (rs.next()) {
 				return true;
@@ -178,9 +177,9 @@ public class SignupManager {
 		String encryptedRegistrationId = aes.encrypt(registrationId);
 		
 		if(encryptedPhoneNumber == null) {
-			database.executeUpdate("INSERT INTO account(id, password, email, phone_number, name, register_date, registration_id) VALUES('", encryptedId, "', '", encryptedPassword, "', '", encryptedEmail, "', null, '", encryptedName, "', now(), '", encryptedRegistrationId, "')");
+			DataBase.executeUpdate("INSERT INTO account(id, password, email, phone_number, name, register_date, registration_id) VALUES('", encryptedId, "', '", encryptedPassword, "', '", encryptedEmail, "', null, '", encryptedName, "', now(), '", encryptedRegistrationId, "')");
 		} else {
-			database.executeUpdate("INSERT INTO account(id, password, email, phone_number, name, register_date, registration_id) VALUES('", encryptedId, "', '", encryptedPassword, "', '", encryptedEmail, "', '", encryptedPhoneNumber, "', '", encryptedName, "', now(), '", encryptedRegistrationId, "')");
+			DataBase.executeUpdate("INSERT INTO account(id, password, email, phone_number, name, register_date, registration_id) VALUES('", encryptedId, "', '", encryptedPassword, "', '", encryptedEmail, "', '", encryptedPhoneNumber, "', '", encryptedName, "', now(), '", encryptedRegistrationId, "')");
 		}
 		
 		Thumbnail t = new Thumbnail();

@@ -15,19 +15,17 @@ import io.vertx.ext.web.RoutingContext;
 public class AcceptTravel implements Handler<RoutingContext> {
 	@Override
 	public void handle(RoutingContext ctx) {
-		DataBase database = DataBase.getInstance();
-		
 		String clientId = UserManager.getEncryptedIdFromSession(ctx);
 		// 여행 초대를 수락한 사람
 		String topic = ctx.request().getFormAttribute("topic");
 		
-		database.executeUpdate("DELETE FROM travel_invites WHERE dst_id='", clientId, "' AND topic='", topic, "'");
-		ResultSet rs = database.executeQuery("SELECT * FROM travels WHERE topic='", topic, "'");
+		DataBase.executeUpdate("DELETE FROM travel_invites WHERE dst_id='", clientId, "' AND topic='", topic, "'");
+		ResultSet rs = DataBase.executeQuery("SELECT * FROM travels WHERE topic='", topic, "'");
 		try {
 			rs.next();
 			String title = rs.getString("title");
 			
-			database.executeUpdate("INSERT INTO travels VALUES('", topic, "', '", title, "', '", clientId, "')");
+			DataBase.executeUpdate("INSERT INTO travels VALUES('", topic, "', '", title, "', '", clientId, "')");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
