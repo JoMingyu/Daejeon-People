@@ -2,8 +2,6 @@ package com.planb.api.parser;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import org.json.JSONObject;
 
@@ -37,7 +35,6 @@ public class EnhancedDetailInfoParser {
 		clearTables();
 		
 		ResultSet rs = DataBase.executeQuery("SELECT * FROM attractions_basic");
-		Pattern p = Pattern.compile("\\d+");
 		
 		try {
 			while(rs.next()) {
@@ -220,7 +217,7 @@ public class EnhancedDetailInfoParser {
 					 * 현재 모두 null
 					 */
 					
-					DataBase.executeUpdate("INSERT INTO tour_course_detail_info VALUES(", contentId, ", '", spendTime, "', '", distance, "')");
+					DataBase.executeUpdate("INSERT INTO tour_course_detail_info VALUES(?, ?, ?)", contentId, spendTime, distance);
 				} else if(contentTypeId == 28) {
 					// 레포츠
 					
@@ -438,7 +435,7 @@ public class EnhancedDetailInfoParser {
 //					String scale = item.has("scaleshopping") ? item.getString("scaleshopping") : null;
 					// 규모
 					
-					DataBase.executeUpdate("INSERT INTO shopping_detail_info VALUES(?, ?, ?, ?, ?, ?, ?)", creditCard, contentId, babyCarriage, pet, infoCenter, useTime, restDate);
+					DataBase.executeUpdate("INSERT INTO shopping_detail_info VALUES(?, ?, ?, ?, ?, ?, ?)", contentId, creditCard, babyCarriage, pet, infoCenter, useTime, restDate);
 				} else if(contentTypeId == 39) {
 					// 식당
 					
