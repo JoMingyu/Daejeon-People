@@ -15,7 +15,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
-        android:id="@+id/userName"
+        android:id="@+id/user_name"
         android:text="문재수"
         android:textColor="@color/White"
         android:layout_alignParentTop="true"
@@ -27,7 +27,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/userName"
+        android:layout_toRightOf="@+id/user_name"
         android:paddingTop="8dp"
         android:text="09:30"
         android:textColor="@android:color/darker_gray"/>
@@ -36,7 +36,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/userProfile"
-        android:layout_below="@+id/userName"
+        android:layout_below="@+id/user_name"
         android:background="@drawable/message_box">
         <EditText
             android:layout_width="wrap_content"

@@ -9,6 +9,8 @@ import android.widget.Button;
 
 import com.daejeonpeople.R;
 
+//민지
+
 public class Email_Certified extends AppCompatActivity {
 
     @Override

@@ -9,7 +9,6 @@
         android:layout_alignParentTop="true"
         android:layout_above="@+id/chattingBox"
         android:id="@+id/chatLog">
-
     </ListView>
     <RelativeLayout
         android:layout_width="match_parent"
@@ -21,6 +20,7 @@
             android:layout_width="280dp"
             android:layout_height="wrap_content"
             android:hint="메세지를 입력하세요"
+            android:textColorHint="@android:color/darker_gray"
             android:background="@android:color/transparent"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="20dp"

@@ -5,13 +5,16 @@ import android.os.Bundle;
 
 import com.daejeonpeople.R;
 
-//근철
+/**
+ * Created by 10102김동규 on 2017-05-11.
+ */
+//동규
 
-public class PhoneCertified extends Activity {
+public class SignIn extends Activity{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.phone_certified);
+        setContentView(R.layout.signin);
     }
 }

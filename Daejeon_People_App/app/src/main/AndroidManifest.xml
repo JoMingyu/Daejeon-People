@@ -11,17 +11,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.Splash" android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
-        <activity android:name=".activities.MainActivity" android:theme="@style/AppTheme"/>
-        <activity
-            android:name=".activities.ActionBar"
-            android:theme="@style/AppTheme">
+        <activity android:name=".activities.Chatting" android:theme="@style/ActionBarTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".activities.Splash" android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+        <activity android:name=".activities.Main" android:theme="@style/AppTheme"/>
         <activity android:name=".activities.SignUp" />
         <activity android:name=".activities.Email_Certified" />
         <activity android:name=".activities.Introduction_CulturalFacilities" />
@@ -30,6 +28,12 @@
         <activity android:name=".Introduction_TouristSpot" />
         <activity android:name=".activities.Introduction_TravelCourse" />
         <activity android:name=".activities.ChatList"></activity>
+        <activity android:name=".activities.AddressBook"></activity>
+        <activity android:name=".activities.Category"></activity>
+        <activity android:name=".activities.EntryID"></activity>
+        <activity android:name=".activities.EntryPW"></activity>
+        <activity android:name=".activities.FindID"></activity>
+        <activity android:name=".activities.FindPW"></activity>
+        <activity android:name=".activities.Search"></activity>
     </application>
-
 </manifest>

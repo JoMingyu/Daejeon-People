@@ -9,6 +9,7 @@ import com.daejeonpeople.R;
 /**
  * Created by 10102김동규 on 2017-05-10.
  */
+//둥규
 
 public class Splash extends Activity{
 
