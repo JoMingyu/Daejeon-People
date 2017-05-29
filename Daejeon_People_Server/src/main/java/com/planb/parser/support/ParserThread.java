@@ -1,9 +1,9 @@
-package com.planb.api.support;
+package com.planb.parser.support;
 
-import com.planb.api.parser.AdditionalImageParser;
-import com.planb.api.parser.TourListBasicParser;
-import com.planb.api.parser.DetailCommonParser;
-import com.planb.api.parser.EnhancedDetailInfoParser;
+import com.planb.parser.AdditionalImageParser;
+import com.planb.parser.DetailCommonParser;
+import com.planb.parser.EnhancedDetailInfoParser;
+import com.planb.parser.TourListBasicParser;
 
 public class ParserThread extends Thread {
 	public void run() {

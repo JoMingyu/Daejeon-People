@@ -1,4 +1,4 @@
-package com.planb.api.parser;
+package com.planb.parser;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,8 +9,8 @@ import java.util.regex.Pattern;
 
 import org.json.JSONObject;
 
-import com.planb.api.support.Params;
-import com.planb.api.support.HttpRequestForParser;
+import com.planb.parser.support.HttpClientForParser;
+import com.planb.parser.support.Params;
 import com.planb.support.utilities.DataBase;
 import com.planb.support.utilities.Log;
 
@@ -53,7 +53,7 @@ public class FullDetailInfoParser {
 		
 		for(int contentId : contentInfoMap.keySet()) {
 			int contentTypeId = contentInfoMap.get(contentId);
-			JSONObject item = HttpRequestForParser.getItem(URL + "&contentId=" + contentId + "&contentTypeId=" + contentTypeId);
+			JSONObject item = HttpClientForParser.getItem(URL + "&contentId=" + contentId + "&contentTypeId=" + contentTypeId);
 			if (contentTypeId == 12) {
 				// 관광지
 				

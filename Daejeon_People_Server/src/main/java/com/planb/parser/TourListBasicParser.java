@@ -1,4 +1,4 @@
-package com.planb.api.parser;
+package com.planb.parser;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -6,8 +6,8 @@ import java.sql.SQLException;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import com.planb.api.support.Params;
-import com.planb.api.support.HttpRequestForParser;
+import com.planb.parser.support.HttpClientForParser;
+import com.planb.parser.support.Params;
 import com.planb.support.utilities.DataBase;
 import com.planb.support.utilities.Log;
 
@@ -19,13 +19,13 @@ public class TourListBasicParser {
 	private static String defaultURL = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/areaBasedList" + Params.defaultAppendParams;
 	
 	public static void parse() {
-		int totalCount = HttpRequestForParser.getTotalCount(defaultURL);
+		int totalCount = HttpClientForParser.getTotalCount(defaultURL);
 		// 요청 이전에 응답 전체 카운트를 먼저 얻어냄
 		
 		String requestURL = defaultURL + "&numOfRows=" + totalCount;
 		// 응답받을 여행지 정보 갯수를 totalCount에 맞춰서 요청
 		
-		JSONArray items = HttpRequestForParser.getItems(requestURL);
+		JSONArray items = HttpClientForParser.getItems(requestURL);
 		for(int i = 0; i < items.length(); i++) {
 			JSONObject item = items.getJSONObject(i);
 			

@@ -1,4 +1,4 @@
-package com.planb.api.support;
+package com.planb.parser.support;
 
 import java.util.HashMap;
 
@@ -8,7 +8,7 @@ import org.json.JSONObject;
 
 import com.planb.support.networking.HttpClient;
 
-public class HttpRequestForParser {
+public class HttpClientForParser {
 	private static JSONObject request(String url) {
 		/*
 		 * HttpURLConnection을 이용해 URL에 GET 요청
