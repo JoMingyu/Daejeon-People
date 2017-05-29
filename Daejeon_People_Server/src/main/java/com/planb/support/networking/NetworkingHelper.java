@@ -10,11 +10,9 @@ import java.util.Map;
 
 public class NetworkingHelper {
 	private static String validateUri(String targetAddress, String uri) {
-		if(uri.endsWith("/")) {
+		if(uri.length() == 1 && uri.endsWith("/")) {
 			uri = uri.substring(0, uri.length() - 1);
-		}
-		
-		if(!uri.startsWith("/")) {
+		} else if(!uri.startsWith("/")) {
 			uri = "/" + uri;
 		}
 		

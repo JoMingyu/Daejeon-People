@@ -41,7 +41,7 @@ public class DetailCommonParser {
 				String tel = item.has("tel") ? item.getString("tel") : null;
 				// 전화번호
 				
-				DataBase.executeUpdate("INSERT INTO attractions_detail_common VALUES(", contentId, ", ", contentTypeId, ", '", homepage, "', '", overview, "', '", telName, "', '", tel, "')");
+				DataBase.executeUpdate("INSERT INTO attractions_detail_common VALUES(?, ?, ?, ?, ?, ?)", contentId, contentTypeId, homepage, overview, telName, tel);
 			}
 			
 			Log.I("Detail Common Parse Success.");

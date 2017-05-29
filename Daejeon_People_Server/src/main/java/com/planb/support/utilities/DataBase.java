@@ -26,20 +26,21 @@ public class DataBase {
 		PreparedStatement statement = null;
 		try {
 			statement = connection.prepareStatement(sql);
-			
+			System.out.println(sql);
 			int placeholderCount = 1;
 			for(Object o: args) {
-				if(o.getClass() == java.lang.String.class) {
-					statement.setString(placeholderCount++, o.toString());
-				} else if(o.getClass() == java.lang.Integer.class) {
-					statement.setInt(placeholderCount++, Integer.parseInt(o.toString()));
-				} else if(o.getClass() == java.lang.Double.class) {
-					statement.setDouble(placeholderCount++, Double.parseDouble(o.toString()));
-				} else if(o.getClass() == java.lang.Float.class) {
-					statement.setFloat(placeholderCount++, Float.parseFloat(o.toString()));
-				} else if(o.getClass() == java.lang.Boolean.class) {
-					statement.setBoolean(placeholderCount++, Boolean.parseBoolean(o.toString()));
-				}
+				statement.setObject(placeholderCount++, o);
+//				if(o.getClass() == java.lang.String.class) {
+//					statement.setString(placeholderCount++, o.toString());
+//				} else if(o.getClass() == java.lang.Integer.class) {
+//					statement.setInt(placeholderCount++, Integer.parseInt(o.toString()));
+//				} else if(o.getClass() == java.lang.Double.class) {
+//					statement.setDouble(placeholderCount++, Double.parseDouble(o.toString()));
+//				} else if(o.getClass() == java.lang.Float.class) {
+//					statement.setFloat(placeholderCount++, Float.parseFloat(o.toString()));
+//				} else if(o.getClass() == java.lang.Boolean.class) {
+//					statement.setBoolean(placeholderCount++, Boolean.parseBoolean(o.toString()));
+//				}
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
