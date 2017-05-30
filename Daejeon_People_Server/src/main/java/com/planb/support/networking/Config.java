@@ -12,7 +12,7 @@ public class Config {
 			targetAddress = targetAddress.substring(0, targetAddress.length() - 1);
 		}
 		
-		this.targetAddress = targetAddress.substring(0, targetAddress.length() - 1);
+		this.targetAddress = targetAddress;
 		this.readTimeout = readTimeout;
 		this.connectTimeout = connectTimeout;
 	}

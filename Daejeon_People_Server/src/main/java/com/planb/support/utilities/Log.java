@@ -11,7 +11,7 @@ public class Log {
 	private static Calendar cal;
 	
 	private static void check() {
-		File dir = new File("log");
+		File dir = new File("logs");
 		dir.mkdir();
 		
 		if(file == null) {
@@ -19,7 +19,7 @@ public class Log {
 			String year = String.format("%4d", cal.get(Calendar.YEAR));
 			String month = String.format("%02d", cal.get(Calendar.MONTH) + 1);
 			String date = String.format("%02d", cal.get(Calendar.DATE));
-			String logFileName = "log/" + year + "-" + month + "-" + date + ".log";
+			String logFileName = "logs/" + year + "-" + month + "-" + date + ".log";
 			file = new File(logFileName);
 			if(!file.exists()) {
 				try {

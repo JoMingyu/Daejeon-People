@@ -23,10 +23,11 @@ public class DataBase {
 	}
 	
 	private synchronized static PreparedStatement buildQuery(String sql, Object... args) {
+		Log.I(sql);
+		
 		PreparedStatement statement = null;
 		try {
 			statement = connection.prepareStatement(sql);
-			System.out.println(sql);
 			int placeholderCount = 1;
 			for(Object o: args) {
 				statement.setObject(placeholderCount++, o);
