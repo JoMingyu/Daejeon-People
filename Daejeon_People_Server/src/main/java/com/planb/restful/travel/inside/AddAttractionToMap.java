@@ -19,9 +19,9 @@ public class AddAttractionToMap implements Handler<RoutingContext> {
 		String topic = ctx.request().getFormAttribute("topic");
 		int contentId = Integer.parseInt(ctx.request().getFormAttribute("content_id"));
 
-		ResultSet travelAttractionSet = DataBase.executeQuery("SELECT * FROM travel_attractions WHERE topic=? AND content_id=?", topic, contentId);
+		ResultSet travelPinSet = DataBase.executeQuery("SELECT * FROM travel_pins WHERE topic=? AND content_id=?", topic, contentId);
 		try {
-			if(travelAttractionSet.next()) {
+			if(travelPinSet.next()) {
 				ctx.response().setStatusCode(204).end();
 				ctx.response().close();
 				return;
@@ -31,17 +31,17 @@ public class AddAttractionToMap implements Handler<RoutingContext> {
 		}
 		
 		ResultSet clientSet = DataBase.executeQuery("SELECT * FROM account WHERE id=?", clientId);
-		ResultSet contentSet = DataBase.executeQuery("SELECT * FROM attractions_basic WHERE content_id=?", contentId);
+		ResultSet attractionInfoSet = DataBase.executeQuery("SELECT * FROM attractions_basic WHERE content_id=?", contentId);
 		try {
 			clientSet.next();
-			contentSet.next();
+			attractionInfoSet.next();
 			
-			String title = contentSet.getString("title");
+			String title = attractionInfoSet.getString("title");
 			String owner = clientSet.getString("name");
-			double mapX = contentSet.getDouble("mapx");
-			double mapY = contentSet.getDouble("mapy");
+			double mapX = attractionInfoSet.getDouble("mapx");
+			double mapY = attractionInfoSet.getDouble("mapy");
 			
-			DataBase.executeUpdate("INSERT INTO travel_attractions VALUES(?, ?, ?, ?, ?, ?)", topic, contentId, title, owner, mapX, mapY);
+			DataBase.executeUpdate("INSERT INTO travel_pins VALUES(?, ?, ?, ?, ?, ?)", topic, contentId, title, owner, mapX, mapY);
 			
 			ctx.response().setStatusCode(201).end();
 			ctx.response().close();

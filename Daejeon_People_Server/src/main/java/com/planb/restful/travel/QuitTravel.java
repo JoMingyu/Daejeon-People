@@ -8,7 +8,7 @@ import io.vertx.core.Handler;
 import io.vertx.core.http.HttpMethod;
 import io.vertx.ext.web.RoutingContext;
 
-@Route(uri = "/travel", method = HttpMethod.DELETE)
+@Route(uri = "/travel/quit", method = HttpMethod.DELETE)
 public class QuitTravel implements Handler<RoutingContext> {
 	@Override
 	public void handle(RoutingContext ctx) {

@@ -21,25 +21,31 @@ public class GetMapInfo implements Handler<RoutingContext> {
 		
 		String topic = ctx.request().getFormAttribute("topic");
 		
-		ResultSet travelAttractionSet = DataBase.executeQuery("SELECT * FROM travel_attractions WHERE topic=?", topic);
+		ResultSet travelPinSet = DataBase.executeQuery("SELECT * FROM travel_pins WHERE topic=?", topic);
 		try {
-			while(travelAttractionSet.next()) {
-				JSONObject attractionInfo = new JSONObject();
+			while(travelPinSet.next()) {
+				JSONObject pinInfo = new JSONObject();
 				
-				attractionInfo.put("content_id", travelAttractionSet.getInt("content_id"));
-				attractionInfo.put("title", travelAttractionSet.getString("title"));
-				attractionInfo.put("owner", travelAttractionSet.getString("owner"));
-				attractionInfo.put("mapx", travelAttractionSet.getDouble("mapx"));
-				attractionInfo.put("mapy", travelAttractionSet.getDouble("mapy"));
+				pinInfo.put("content_id", travelPinSet.getInt("content_id"));
+				pinInfo.put("title", travelPinSet.getString("title"));
+				pinInfo.put("owner", travelPinSet.getString("owner"));
+				pinInfo.put("mapx", travelPinSet.getDouble("mapx"));
+				pinInfo.put("mapy", travelPinSet.getDouble("mapy"));
 				
-				response.put(attractionInfo);
+				response.put(pinInfo);
 			}
 		} catch(SQLException e) {
 			e.printStackTrace();
 		}
 		
-		ctx.response().setStatusCode(200);
-		ctx.response().end(response.toString());
-		ctx.response().close();
+		if(response.length() == 0) {
+			// 아무 핀도 없으면
+			ctx.response().setStatusCode(204).end();
+			ctx.response().close();
+		} else {
+			ctx.response().setStatusCode(200);
+			ctx.response().end(response.toString());
+			ctx.response().close();
+		}
 	}
 }

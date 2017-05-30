@@ -8,6 +8,7 @@ import org.json.JSONObject;
 
 import com.planb.support.crypto.AES256;
 import com.planb.support.routing.Route;
+import com.planb.support.user.UserManager;
 import com.planb.support.utilities.DataBase;
 
 import io.vertx.core.Handler;
@@ -20,6 +21,7 @@ public class TravelInfo implements Handler<RoutingContext> {
 	public void handle(RoutingContext ctx) {
 		JSONArray response = new JSONArray();
 		
+		String requesterId = UserManager.getEncryptedIdFromSession(ctx);
 		String topic = ctx.request().getParam("topic");
 		
 		ResultSet travelInfoSet = DataBase.executeQuery("SELECT * FROM travels WHERE topic=?", topic);
@@ -31,8 +33,9 @@ public class TravelInfo implements Handler<RoutingContext> {
 
 				JSONObject clientInfo = new JSONObject();
 				clientInfo.put("id", clientId);
-				clientInfo.put("name", AES256.decrypt(clientInfoSet.getString("name")));
+				clientInfo.put("phone_number", clientInfoSet.getString("phone_number") == null ? "전화번호 없음" : AES256.decrypt(clientInfoSet.getString("phone_number")));
 				clientInfo.put("email", AES256.decrypt(clientInfoSet.getString("email")));
+				clientInfo.put("name", requesterId == clientId ? "나" : AES256.decrypt(clientInfoSet.getString("name")));
 				response.put(clientInfo);
 			}
 		} catch (SQLException e) {

@@ -16,15 +16,10 @@ import io.vertx.ext.web.RoutingContext;
 
 @Route(uri = "/mypage", method = HttpMethod.GET)
 public class MyPage implements Handler<RoutingContext> {
-	private UserManager userManager;
-	
-	public MyPage() {
-		userManager = new UserManager();
-	}
-	
 	@Override
 	public void handle(RoutingContext ctx) {
 		JSONObject response = new JSONObject();
+		UserManager userManager = new UserManager();
 		
 		if(!userManager.isLogined(ctx)) {
 			ctx.response().setStatusCode(204).end();

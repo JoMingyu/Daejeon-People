@@ -13,6 +13,7 @@ public class GetProfileImage implements Handler<RoutingContext> {
 	public void handle(RoutingContext ctx) {
 		String encryptedId = UserManager.getEncryptedIdFromSession(ctx);
 		
+		ctx.response().setStatusCode(200);
 		ctx.response().sendFile("profile-images/" + encryptedId + ".png");
 		ctx.response().close();
 	}
