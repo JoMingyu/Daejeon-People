@@ -9,14 +9,14 @@ import java.sql.SQLException;
 public class DataBase {
 	private static Connection connection;
 	
-	private static final String URL = "jdbc:mysql://localhost:3306/";
+	private static final String URL = "jdbc:mysql://localhost:3306/daejeon_people";
 	private static final String USER = "root";
 	private static final String PASSWORD = "uursty199";
 	
 	static {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			connection = DriverManager.getConnection(URL + "daejeon_people", USER, PASSWORD);
+			connection = DriverManager.getConnection(URL, USER, PASSWORD);
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
