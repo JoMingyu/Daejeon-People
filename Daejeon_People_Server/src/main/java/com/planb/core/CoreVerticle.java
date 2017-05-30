@@ -3,7 +3,6 @@ package com.planb.core;
 import com.planb.support.routing.Register;
 
 import io.vertx.core.AbstractVerticle;
-import io.vertx.core.http.HttpServer;
 import io.vertx.ext.web.Router;
 import io.vertx.ext.web.handler.BodyHandler;
 import io.vertx.ext.web.handler.CookieHandler;

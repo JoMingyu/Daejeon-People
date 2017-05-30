@@ -13,7 +13,7 @@ public class CheckIdExist implements Handler<RoutingContext> {
 	public void handle(RoutingContext ctx) {
 		String id = ctx.request().getFormAttribute("id");
 
-		if (SignupManager.checkIdExists(id)) {
+		if(SignupManager.checkIdExists(id)) {
 			ctx.response().setStatusCode(204).end();
 			ctx.response().close();
 		} else {

@@ -16,7 +16,7 @@ public class ListByType implements Handler<RoutingContext> {
 	@Override
 	public void handle(RoutingContext ctx) {
 		int contentTypeId = Integer.parseInt(ctx.request().getParam("content_type_id"));
-		
+
 		JSONArray response = AttractionsListInquiry.inquire(ctx, contentTypeId);
 
 		if (response == null || response.length() == 0) {
