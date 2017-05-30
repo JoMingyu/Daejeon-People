@@ -10,9 +10,13 @@ public class Log {
 	private static FileWriter fw;
 	private static Calendar cal;
 	
-	private static void check() {
+	static {
 		File dir = new File("logs");
 		dir.mkdir();
+		/*
+		 * Create logs directory
+		 * mkdir method contains exist check
+		 */
 		
 		if(file == null) {
 			cal = Calendar.getInstance();
@@ -29,15 +33,31 @@ public class Log {
 				}
 			}
 			try {
-				fw = new FileWriter(file);
+				fw = new FileWriter(file, true);
+				// Append true
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
 	}
 	
+	public static void Q(String sql) {
+		writeToFile(getLogText("QUERY", sql));
+	}
+	
+	public static void R(String s) {
+		writeToFile(getLogText("ROUTING", s));
+	}
+	
 	public static void I(String s) {
-		check();
+		writeToFile(getLogText("INFO", s));
+	}
+	
+	public static void E(String s) {
+		writeToFile(getLogText("ERROR", s));
+	}
+	
+	private static String getLogText(String type, String msg) {
 		String ampm = cal.get(Calendar.AM_PM) == 0 ? "AM" : "PM";
 		String hour = String.format("%02d", cal.get(Calendar.HOUR));
 		String minute = String.format("%02d", cal.get(Calendar.MINUTE));
@@ -47,15 +67,21 @@ public class Log {
 		logText.append("[").append(hour).append(":");
 		logText.append(minute).append(":");
 		logText.append(second).append(" ");
-		logText.append(ampm).append("] ");
-		logText.append(s);
+		logText.append(ampm).append(" - ");
+		logText.append(type).append("] ");
+		logText.append(msg);
+		// [hh:mm:ss AM/PM - type] message
 		
+		return logText.toString();
+	}
+	
+	private static void writeToFile(String logMsg) {
 		try {
-			System.out.println(logText.toString());
-			fw.write(logText.toString());
+			System.out.println(logMsg);
+			fw.write(logMsg);
 			fw.write("\n");
 			fw.flush();
-		} catch (IOException e) {
+		} catch(IOException e) {
 			e.printStackTrace();
 		}
 	}

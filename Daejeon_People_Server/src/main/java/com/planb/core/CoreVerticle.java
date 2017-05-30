@@ -1,9 +1,9 @@
 package com.planb.core;
 
-import com.planb.parser.support.ParserThread;
 import com.planb.support.routing.Register;
 
 import io.vertx.core.AbstractVerticle;
+import io.vertx.core.http.HttpServer;
 import io.vertx.ext.web.Router;
 import io.vertx.ext.web.handler.BodyHandler;
 import io.vertx.ext.web.handler.CookieHandler;
@@ -47,6 +47,12 @@ public class CoreVerticle extends AbstractVerticle {
 		 */
 		
 		Register.route(router, "com.planb.restful");
+		router.route().handler(ctx -> {
+			// Invalid URI or method
+			ctx.response().setStatusCode(404).end();
+			ctx.response().close();
+		});
+		
 		router.route().handler(StaticHandler.create());
 		/**
 		 * @brief

@@ -23,7 +23,7 @@ public class DataBase {
 	}
 	
 	private synchronized static PreparedStatement buildQuery(String sql, Object... args) {
-		Log.I(sql);
+		Log.Q(sql);
 		
 		PreparedStatement statement = null;
 		try {
