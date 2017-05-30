@@ -7,6 +7,8 @@ import java.util.regex.Pattern;
 
 import org.json.JSONObject;
 
+import com.planb.support.routing.Function;
+import com.planb.support.routing.RESTful;
 import com.planb.support.routing.Route;
 import com.planb.support.user.UserManager;
 import com.planb.support.utilities.DataBase;
@@ -15,6 +17,8 @@ import io.vertx.core.Handler;
 import io.vertx.core.http.HttpMethod;
 import io.vertx.ext.web.RoutingContext;
 
+@Function(name = "여행지 정보", summary = "여행지 세부 정보 조회")
+@RESTful(requestBody = "content_id : int", responseBody = "content_id : int, image : String, title : String, category : String, address : String, mapx : double, mapy : double, wish : boolean, additional_image : boolean, 추가 정보는 여행지 세부 정보 기준표 참고 바람.", successCode = 201)
 @Route(uri = "/attractions/detail", method = HttpMethod.GET)
 public class DetailInfo implements Handler<RoutingContext> {
 	@Override
@@ -34,6 +38,8 @@ public class DetailInfo implements Handler<RoutingContext> {
 			response.put("title", contentInfo.getString("title"));
 			response.put("category", contentInfo.getString("cat3") == null ? "정보 없음" : contentInfo.getString("cat3"));
 			response.put("address", contentInfo.getString("address") == null ? "정보 없음" : contentInfo.getString("address"));
+			response.put("mapx", contentInfo.getDouble("mapx"));
+			response.put("mapy", contentInfo.getDouble("mapy"));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
