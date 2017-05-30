@@ -22,7 +22,7 @@ public class DataBase {
 		}
 	}
 	
-	private static PreparedStatement buildQuery(String sql, Object... args) {
+	private synchronized static PreparedStatement buildQuery(String sql, Object... args) {
 		PreparedStatement statement = null;
 		try {
 			statement = connection.prepareStatement(sql);
@@ -30,17 +30,6 @@ public class DataBase {
 			int placeholderCount = 1;
 			for(Object o: args) {
 				statement.setObject(placeholderCount++, o);
-//				if(o.getClass() == java.lang.String.class) {
-//					statement.setString(placeholderCount++, o.toString());
-//				} else if(o.getClass() == java.lang.Integer.class) {
-//					statement.setInt(placeholderCount++, Integer.parseInt(o.toString()));
-//				} else if(o.getClass() == java.lang.Double.class) {
-//					statement.setDouble(placeholderCount++, Double.parseDouble(o.toString()));
-//				} else if(o.getClass() == java.lang.Float.class) {
-//					statement.setFloat(placeholderCount++, Float.parseFloat(o.toString()));
-//				} else if(o.getClass() == java.lang.Boolean.class) {
-//					statement.setBoolean(placeholderCount++, Boolean.parseBoolean(o.toString()));
-//				}
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -49,20 +38,18 @@ public class DataBase {
 		return statement;
 	}
 	
-	public static ResultSet executeQuery(String sql, Object... args) {
-		PreparedStatement statement = buildQuery(sql, args);
+	public synchronized static ResultSet executeQuery(String sql, Object... args) {
 		try {
-			return statement.executeQuery();
+			return buildQuery(sql, args).executeQuery();
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;
 		}
 	}
 	
-	public static int executeUpdate(String sql, Object... args) {
-		PreparedStatement statement = buildQuery(sql, args);
+	public synchronized static int executeUpdate(String sql, Object... args) {
 		try {
-			return statement.executeUpdate();
+			return buildQuery(sql, args).executeUpdate();
 		} catch(SQLException e) {
 			e.printStackTrace();
 			return 0;
