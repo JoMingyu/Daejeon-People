@@ -18,7 +18,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/userName"
+                android:id="@+id/user_name"
                 android:text="문재수"
                 android:textColor="@color/Black"
                 android:textStyle="bold"
@@ -27,7 +27,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/userName"
+                android:layout_below="@+id/user_name"
                 android:text="저랑 같이 여행 안가실래요~?"
                 android:layout_marginTop="3dp"/>
             <TextView

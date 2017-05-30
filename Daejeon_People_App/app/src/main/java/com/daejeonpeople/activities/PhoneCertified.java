@@ -5,6 +5,8 @@ import android.os.Bundle;
 
 import com.daejeonpeople.R;
 
+//근철
+
 public class PhoneCertified extends Activity {
 
     @Override

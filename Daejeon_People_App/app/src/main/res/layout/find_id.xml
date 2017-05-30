@@ -35,7 +35,7 @@
             android:background="@drawable/round_corner"
             android:gravity="center"
             android:hint="이름을 입력하세요"
-            android:inputType="number"
+            android:inputType="text"
             android:layout_marginBottom="20dp"
             android:textSize="15sp"/>
 
@@ -47,7 +47,7 @@
             android:layout_marginBottom="20dp"
             android:background="@drawable/round_corner"
             android:gravity="center"
-            android:inputType="number"
+            android:inputType="text"
             android:hint="이메일을 입력하세요"
             android:textSize="15sp"/>
 

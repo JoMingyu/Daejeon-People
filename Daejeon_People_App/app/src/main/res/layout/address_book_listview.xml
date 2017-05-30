@@ -13,7 +13,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/userName"
+        android:id="@+id/user_name"
         android:text="문재수"
         android:textSize="25sp"
         android:textStyle="bold"
@@ -22,16 +22,17 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/userPhoneNumber"
+        android:id="@+id/phone_number"
         android:text="010-1234-5678"
-        android:layout_below="@+id/userName"
-        android:layout_toRightOf="@+id/profile"/>
+        android:layout_below="@+id/user_name"
+        android:layout_toEndOf="@+id/profile" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="theminjoo@naver.com"
         android:textColor="@android:color/darker_gray"
-        android:layout_below="@+id/userPhoneNumber"
+        android:id="@+id/user_email"
+        android:layout_below="@+id/phone_number"
         android:layout_toRightOf="@+id/profile"/>
     <ImageButton
         android:layout_width="30dp"

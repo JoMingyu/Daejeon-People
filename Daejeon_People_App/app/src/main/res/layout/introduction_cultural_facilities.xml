@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="3"
-        android:background="@drawable/touristspot"
+        android:background="@drawable/culturalfacilities"
         android:orientation="vertical">
 
         <LinearLayout
@@ -23,6 +23,7 @@
             android:padding="5dp">
 
             <ImageButton
+                android:id="@+id/btn_back"
                 android:layout_width="15dp"
                 android:layout_height="15dp"
                 android:layout_marginLeft="15dp"
@@ -41,8 +42,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
-                <ImageView
-                    android:id="@+id/imageView"
+                <ImageButton
+                    android:id="@+id/star"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="10dp"
                     android:layout_width="20dp"
@@ -63,7 +64,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:background="@drawable/gradation">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -71,11 +73,11 @@
                 android:layout_weight="0.2">
 
                 <TextView
-                    android:id="@+id/textView3"
+                    android:id="@+id/placename"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
-                    android:text="엑스포과학공원"
+                    android:text="문화예술의 전당"
                     android:textColor="@color/White"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -88,10 +90,11 @@
                 android:layout_weight="0.3">
 
                 <TextView
+                    android:id="@+id/placekind"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
-                    android:text="행사  \u0026  축제"
+                    android:text="문화시설"
                     android:textColor="@color/White"
                     android:textSize="12sp" />
 
@@ -122,7 +125,7 @@
                             android:layout_height="12dp"
                             android:layout_alignParentRight="true"
                             android:layout_marginRight="20dp"
-                            android:background="@drawable/ic_w_pet" />
+                            android:background="@drawable/ic_g_pet" />
                     </RelativeLayout>
                 </LinearLayout>
 
@@ -141,14 +144,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="7"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:background="@color/White">
 
             <TableLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1">
 
-                <TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -172,9 +178,10 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/call_inquiry"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="042 - 250 - 111"
+                            android:text="042 - 270 - 8333"
                             android:textColor="@color/Black"
                             android:textSize="18sp" />
 
@@ -194,20 +201,19 @@
                 android:layout_weight="1">
 
                 <TableRow>
-
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:paddingBottom="25dp"
                         android:paddingLeft="20dp"
                         android:paddingRight="20dp"
-                        android:paddingTop="25dp">
+                        android:paddingTop="25dp"
+                        android:paddingBottom="25dp"
+                        android:orientation="horizontal">
 
                         <ImageView
                             android:layout_width="25dp"
                             android:layout_height="25dp"
-                            android:background="@drawable/ic_utilization" />
+                            android:background="@drawable/ic_utilization"/>
                     </LinearLayout>
 
                     <LinearLayout
@@ -217,18 +223,18 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/usetime"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="17시 30분 입장 마감"
                             android:textColor="@color/Black"
-                            android:textSize="18sp" />
-
+                            android:textSize="18sp"/>
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:paddingTop="5dp"
                             android:text="이용시간"
-                            android:textSize="10sp" />
+                            android:textSize="10sp"
+                            android:paddingTop="5dp"/>
                     </LinearLayout>
                 </TableRow>
             </TableLayout>
@@ -239,20 +245,19 @@
                 android:layout_weight="1">
 
                 <TableRow>
-
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:paddingBottom="25dp"
                         android:paddingLeft="20dp"
                         android:paddingRight="20dp"
-                        android:paddingTop="25dp">
+                        android:paddingTop="25dp"
+                        android:paddingBottom="25dp"
+                        android:orientation="horizontal">
 
                         <ImageView
                             android:layout_width="25dp"
                             android:layout_height="25dp"
-                            android:background="@drawable/ic_event_busy" />
+                            android:background="@drawable/ic_event_busy"/>
                     </LinearLayout>
 
                     <LinearLayout
@@ -262,18 +267,18 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/holiday"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="5월 8일 ~ 5월 14일"
                             android:textColor="@color/Black"
-                            android:textSize="18sp" />
-
+                            android:textSize="18sp"/>
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:paddingTop="5dp"
                             android:text="연휴일자"
-                            android:textSize="10sp" />
+                            android:textSize="10sp"
+                            android:paddingTop="5dp"/>
                     </LinearLayout>
                 </TableRow>
             </TableLayout>
@@ -284,20 +289,107 @@
                 android:layout_weight="1">
 
                 <TableRow>
-
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:paddingBottom="25dp"
                         android:paddingLeft="20dp"
                         android:paddingRight="20dp"
-                        android:paddingTop="25dp">
+                        android:paddingTop="25dp"
+                        android:paddingBottom="25dp"
+                        android:orientation="horizontal">
 
                         <ImageView
                             android:layout_width="25dp"
                             android:layout_height="25dp"
-                            android:background="@drawable/ic_explore" />
+                            android:background="@drawable/ic_account"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/charge"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="12,000원"
+                            android:textColor="@color/Black"
+                            android:textSize="18sp"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="이용요금"
+                            android:textSize="10sp"
+                            android:paddingTop="5dp"/>
+                    </LinearLayout>
+                </TableRow>
+            </TableLayout>
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <TableRow>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp"
+                        android:paddingTop="25dp"
+                        android:paddingBottom="25dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:background="@drawable/ic_required"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/requiredtime"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="1시간 40분"
+                            android:textColor="@color/Black"
+                            android:textSize="18sp"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="소요시간"
+                            android:textSize="10sp"
+                            android:paddingTop="5dp"/>
+                    </LinearLayout>
+                </TableRow>
+            </TableLayout>
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <TableRow>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp"
+                        android:paddingTop="25dp"
+                        android:paddingBottom="25dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:background="@drawable/ic_explore"/>
                     </LinearLayout>
 
                     <LinearLayout
@@ -308,19 +400,20 @@
                         android:paddingTop="20dp">
 
                         <TextView
-                            android:id="@+id/textView2"
+                            android:id="@+id/location"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="대전광역시 유성구 대덕대로 480"
+                            android:text="대전광역시 서구 둔산대로"
                             android:textColor="@color/Black"
                             android:textSize="18sp" />
 
                         <ImageView
+                            android:id="@+id/placemap"
                             android:layout_width="250dp"
                             android:layout_height="150dp"
-                            android:layout_marginBottom="20dp"
+                            android:background="@drawable/map_culturalfacilities"
                             android:layout_marginTop="20dp"
-                            android:background="@drawable/map_culturalfacilities" />
+                            android:layout_marginBottom="20dp"/>
                     </LinearLayout>
                 </TableRow>
             </TableLayout>
