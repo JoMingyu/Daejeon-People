@@ -1,5 +1,7 @@
 package com.planb.restful.account.signup;
 
+import com.planb.support.routing.Function;
+import com.planb.support.routing.RESTful;
 import com.planb.support.routing.Route;
 import com.planb.support.user.SignupManager;
 
@@ -7,6 +9,8 @@ import io.vertx.core.Handler;
 import io.vertx.core.http.HttpMethod;
 import io.vertx.ext.web.RoutingContext;
 
+@Function(name = "이메일 인증", summary = "이메일 인증번호 발송")
+@RESTful(requestBody = "email : String", successCode = 201)
 @Route(uri = "/signup/email/demand", method = HttpMethod.POST)
 public class DemandEmail implements Handler<RoutingContext> {
 	@Override
