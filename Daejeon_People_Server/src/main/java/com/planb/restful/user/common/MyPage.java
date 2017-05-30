@@ -16,17 +16,10 @@ import io.vertx.ext.web.RoutingContext;
 
 @Route(uri = "/mypage", method = HttpMethod.GET)
 public class MyPage implements Handler<RoutingContext> {
-	private UserManager userManager;
-	
-	public MyPage() {
-		userManager = new UserManager();
-	}
-	
 	@Override
 	public void handle(RoutingContext ctx) {
-		DataBase database = DataBase.getInstance();
-		AES256 aes = UserManager.getAES256Instance();
 		JSONObject response = new JSONObject();
+		UserManager userManager = new UserManager();
 		
 		if(!userManager.isLogined(ctx)) {
 			ctx.response().setStatusCode(204).end();
@@ -35,12 +28,12 @@ public class MyPage implements Handler<RoutingContext> {
 		}
 		
 		String clientId = UserManager.getEncryptedIdFromSession(ctx);
-		ResultSet userInfo = database.executeQuery("SELECT * FROM account WHERE id='", clientId, "'");
+		ResultSet userInfo = DataBase.executeQuery("SELECT * FROM account WHERE id=?", clientId);
 		try {
 			userInfo.next();
-			response.put("email", aes.decrypt(userInfo.getString("email")));
-			response.put("phone", userInfo.getString("phone_number") == null ? "전화번호 없음" : aes.decrypt(userInfo.getString("phone_number")));
-			response.put("name", aes.decrypt(userInfo.getString("name")));
+			response.put("email", AES256.decrypt(userInfo.getString("email")));
+			response.put("phone_number", userInfo.getString("phone_number") == null ? "전화번호 없음" : AES256.decrypt(userInfo.getString("phone_number")));
+			response.put("name", AES256.decrypt(userInfo.getString("name")));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

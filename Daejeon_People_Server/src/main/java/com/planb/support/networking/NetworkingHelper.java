@@ -4,55 +4,42 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
+import java.net.HttpURLConnection;
+import java.net.URLEncoder;
 import java.util.Map;
 
 public class NetworkingHelper {
-	static String createRequestAddress(Config config, String uri) {
-		// POST 요청 또는 파라미터가 없는 GET 요청에서의 request address
-		
-		if(config.getTargetAddress().endsWith("/") && uri.startsWith("/")) {
-			// Escape double slash
-			uri = uri.substring(1, uri.length());
-		} else if(!config.getTargetAddress().endsWith("/") && !uri.startsWith("/")) {
-			// Escape no slash
+	private static String validateUri(String targetAddress, String uri) {
+		if(uri.length() == 1 && uri.endsWith("/")) {
+			uri = uri.substring(0, uri.length() - 1);
+		} else if(!uri.startsWith("/")) {
 			uri = "/" + uri;
 		}
-		// 비정상 URI 방지
 		
-		if(uri.endsWith("/")) {
-			// Escape end with slash
-			uri.substring(0, uri.length() - 1);
-		}
-		
-		if(config.getTargetPort() == 80) {
-			return config.getTargetAddress();
-		} else {
-			return config.getTargetAddress() + ":" + config.getTargetPort() + uri;
-		}
+		return targetAddress + uri;
 	}
 	
-	static String createRequestAddress(Config config, String uri, Map<String, Object> params) {
+	static String createRequestAddress(String targetAddress, String uri) {
+		// POST request or GET request with no parameter
+		
+		return validateUri(targetAddress, uri);
+	}
+	
+	static String createRequestAddress(String targetAddress, String uri, Map<String, Object> params) {
 		/*
-		 * 파라미터가 있는 GET 요청에서의 request address
-		 * URI?key=value&key=value 형태
+		 * GET request with parameter
+		 * URI?key=value&key=value
 		 */
-		if(config.getTargetAddress().endsWith("/") && uri.startsWith("/")) {
-			uri = uri.substring(1, uri.length());
-		} else if(!config.getTargetAddress().endsWith("/") && !uri.startsWith("/")) {
-			uri = "/" + uri;
-		}
-		// 비정상 URI 방지
 		
 		StringBuilder requestAddress = new StringBuilder();
-		requestAddress.append(config.getTargetAddress());
-		requestAddress.append(":");
-		requestAddress.append(config.getTargetPort());
-		requestAddress.append(uri);
-		requestAddress.append("?");
-		
+		requestAddress.append(validateUri(targetAddress, uri)).append("?");
 		for(String key : params.keySet()) {
 			String value = (String) params.get(key);
-			requestAddress.append(key).append("=").append(value).append("&");
+			try {
+				requestAddress.append(key).append("=").append(URLEncoder.encode(value, "UTF-8")).append("&");
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
 		}
 		
 		String requestAddressStr = requestAddress.toString();
@@ -61,12 +48,17 @@ public class NetworkingHelper {
 	}
 	
 	static byte[] createParamBytes(Map<String, Object> params) {
-		// POST 메소드에서 사용하는 byte 타입의 body 데이터
+		// Body data to byte[]
+		
 		StringBuilder requestData = new StringBuilder();
 		
 		for(String key : params.keySet()) {
 			String value = String.valueOf(params.get(key));
-			requestData.append(key).append("=").append(value).append("&");
+			try {
+				requestData.append(key).append("=").append(URLEncoder.encode(value, "UTF-8")).append("&");
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
 		}
 		
 		String requestAddressStr = requestData.toString();
@@ -74,7 +66,16 @@ public class NetworkingHelper {
 		return requestAddressStr.getBytes();
 	}
 	
-	static String getResponse(InputStream in) {
+	static Response getResponse(HttpURLConnection connection) {
+		// Get response from response
+		
+		InputStream in = null;
+		try {
+			in = connection.getInputStream();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		
 		if(in == null) {
 			return null;
 		}
@@ -90,11 +91,19 @@ public class NetworkingHelper {
 			e.printStackTrace();
 		}
 		
+		Response response = new Response();;
+		
 		try {
-			return new String(out.toByteArray(), "UTF-8");
-		} catch (UnsupportedEncodingException e) {
+			String responseBody = new String(out.toByteArray(), "UTF-8");
+			response.setResponseBody(responseBody);
+			response.setResponseHeader(connection.getHeaderFields());
+			response.setResponseCode(connection.getResponseCode());
+		} catch (IOException e) {
 			e.printStackTrace();
 			return null;
 		}
+		
+		connection.disconnect();
+		return response;
 	}
 }

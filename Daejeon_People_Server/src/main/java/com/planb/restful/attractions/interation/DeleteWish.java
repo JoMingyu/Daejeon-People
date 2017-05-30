@@ -8,15 +8,16 @@ import io.vertx.core.Handler;
 import io.vertx.core.http.HttpMethod;
 import io.vertx.ext.web.RoutingContext;
 
-@Route(uri = "/wish/:content_id", method = HttpMethod.DELETE)
+@Route(uri = "/wish", method = HttpMethod.DELETE)
 public class DeleteWish implements Handler<RoutingContext> {
 	@Override
 	public void handle(RoutingContext ctx) {
-		DataBase database = DataBase.getInstance();
-		
 		String clientId = UserManager.getEncryptedIdFromSession(ctx);
 		int contentId = Integer.parseInt(ctx.request().getParam("content_id"));
 		
-		database.executeUpdate("DELETE FROM wish_list WHERE client_id='", clientId, "' AND content_id=", contentId);
+		DataBase.executeUpdate("DELETE FROM wish_list WHERE client_id=? AND content_id=?", clientId, contentId);
+		
+		ctx.response().setStatusCode(200).end();
+		ctx.response().close();
 	}
 }

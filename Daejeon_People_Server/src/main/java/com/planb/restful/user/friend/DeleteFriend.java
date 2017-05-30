@@ -16,15 +16,13 @@ public class DeleteFriend implements Handler<RoutingContext> {
 	 */
 	@Override
 	public void handle(RoutingContext ctx) {
-		DataBase database = DataBase.getInstance();
-		
 		String clientId = UserManager.getEncryptedIdFromSession(ctx);
 		// 친구 삭제자
 		String targetId = ctx.request().getFormAttribute("id");
 		// 타겟
 		
-		database.executeUpdate("DELETE FROM friend_list WHERE client_id1='", clientId, "' AND client_id2='", targetId, "'");
-		database.executeUpdate("DELETE FROM friend_list WHERE client_id2='", clientId, "' AND client_id1='", targetId, "'");
+		DataBase.executeUpdate("DELETE FROM friend_list WHERE client_id1=? AND client_id2=?", clientId, targetId);
+		DataBase.executeUpdate("DELETE FROM friend_list WHERE client_id2=? AND client_id1=?", clientId, targetId);
 		
 		ctx.response().setStatusCode(201).end();
 		ctx.response().close();

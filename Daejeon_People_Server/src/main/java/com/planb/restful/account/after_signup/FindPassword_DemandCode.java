@@ -1,5 +1,7 @@
 package com.planb.restful.account.after_signup;
 
+import com.planb.support.routing.Function;
+import com.planb.support.routing.RESTful;
 import com.planb.support.routing.Route;
 import com.planb.support.user.UserManager;
 
@@ -7,6 +9,8 @@ import io.vertx.core.Handler;
 import io.vertx.core.http.HttpMethod;
 import io.vertx.ext.web.RoutingContext;
 
+@Function(name = "비밀번호 찾기", summary = "이메일 인증번호 발송")
+@RESTful(requestBody = "id : String, email : String, name : String", successCode = 201, failureCode = 204)
 @Route(uri = "/find/password/demand", method = HttpMethod.POST)
 public class FindPassword_DemandCode implements Handler<RoutingContext> {
 	@Override
