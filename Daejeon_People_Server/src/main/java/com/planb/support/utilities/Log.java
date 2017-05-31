@@ -57,7 +57,7 @@ public class Log {
 		writeToFile(getLogText("ERROR", s));
 	}
 	
-	private static String getLogText(String type, String msg) {
+	private static String getLogText(String type, String s) {
 		String ampm = cal.get(Calendar.AM_PM) == 0 ? "AM" : "PM";
 		String hour = String.format("%02d", cal.get(Calendar.HOUR));
 		String minute = String.format("%02d", cal.get(Calendar.MINUTE));
@@ -69,7 +69,7 @@ public class Log {
 		logText.append(second).append(" ");
 		logText.append(ampm).append(" - ");
 		logText.append(type).append("] ");
-		logText.append(msg);
+		logText.append(s.toString());
 		// [hh:mm:ss AM/PM - type] message
 		
 		return logText.toString();

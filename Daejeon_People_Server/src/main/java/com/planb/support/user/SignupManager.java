@@ -9,7 +9,6 @@ import com.planb.support.crypto.SHA256;
 import com.planb.support.utilities.DataBase;
 import com.planb.support.utilities.Mail;
 import com.planb.support.utilities.MailSubjects;
-import com.sun.javafx.binding.StringFormatter;
 
 public class SignupManager {
 	/*
@@ -48,7 +47,7 @@ public class SignupManager {
 		// 핸드폰 번호 암호화
 		
 		Random random = new Random();
-		String code = StringFormatter.format("%06d", random.nextInt(1000000)).getValue();
+		String code = String.format("%06d", random.nextInt(1000000));
 		// 인증코드 생성
 		
 		DataBase.executeUpdate("DELETE FROM phone_verify_codes WHERE phone_number=?", encryptedPhoneNumber);
@@ -108,7 +107,7 @@ public class SignupManager {
 		// 이메일 암호화
 
 		Random random = new Random();
-		String code = StringFormatter.format("%06d", random.nextInt(1000000)).getValue();
+		String code = String.format("%06d", random.nextInt(1000000));
 		// 이메일 인증코드 생성
 		
 		DataBase.executeUpdate("DELETE FROM email_verify_codes WHERE email=?", encryptedEmail);

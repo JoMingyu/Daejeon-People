@@ -13,7 +13,6 @@ import com.planb.support.utilities.DataBase;
 import com.planb.support.utilities.Mail;
 import com.planb.support.utilities.MailSubjects;
 import com.planb.support.utilities.SessionUtil;
-import com.sun.javafx.binding.StringFormatter;
 
 import io.vertx.ext.web.RoutingContext;
 
@@ -170,7 +169,7 @@ public class UserManager {
 		try {
 			if(rs.next()) {
 				Random random = new Random();
-				String code = StringFormatter.format("%06d", random.nextInt(1000000)).getValue();
+				String code = String.format("%06d", random.nextInt(1000000));
 				// 인증코드 생성
 				
 				DataBase.executeUpdate("DELETE FROM email_verify_codes WHERE email=?");
@@ -243,7 +242,7 @@ public class UserManager {
 		try {
 			if(rs.next()) {
 				Random random = new Random();
-				String code = StringFormatter.format("%06d", random.nextInt(1000000)).getValue();
+				String code = String.format("%06d", random.nextInt(1000000));
 				// 인증코드 생성
 				
 				DataBase.executeUpdate("DELETE FROM email_verify_codes WHERE email=?", encryptedEmail);
