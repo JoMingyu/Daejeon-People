@@ -45,7 +45,7 @@ public class CoreVerticle extends AbstractVerticle {
 		 * http://vertx.io/docs/apidocs/io/vertx/ext/web/handler/SessionHandler.html
 		 */
 		
-		Register.route(router, "com.planb.restful");
+		Register.route(router, "com.planb.restful.account", "com.planb.restful.attractions", "com.planb.restful.travel", "com.planb.restful.user");
 		router.route().handler(ctx -> {
 			// Invalid URI or method
 			ctx.response().setStatusCode(404).end();
