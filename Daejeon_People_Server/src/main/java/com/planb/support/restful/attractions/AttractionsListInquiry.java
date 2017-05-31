@@ -2,10 +2,8 @@ package com.planb.support.restful.attractions;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -181,40 +179,27 @@ public class AttractionsListInquiry {
 		 * ResultSet에 대한 데이터 추출기
 		 * 뽑을 데이터가 하나도 없다면 객체 그대로(null) 리턴
 		 */
-		JSONArray result = new JSONArray();
-		List<Map<String, Object>> attractionInfoList = new ArrayList<Map<String, Object>>();
+		JSONArray response = new JSONArray();
 		try {
 			while(rs.next()) {
-				Map<String, Object> attractionInfo = new HashMap<String, Object>();
+				JSONObject attractionInfo = new JSONObject();
+				ResultSet wish = DataBase.executeQuery("SELECT * FROM wish_list WHERE client_id=? AND content_id=?", UserManager.getEncryptedIdFromSession(ctx), rs.getInt("content_id"));
+				attractionInfo.put("wish", wish.next() ? true : false);
+				
+				attractionInfo.put("wish_count", rs.getInt("wish_count"));
 				attractionInfo.put("content_id", rs.getInt("content_id"));
+				attractionInfo.put("title", rs.getString("title"));
 				attractionInfo.put("address", rs.getString("address"));
 				attractionInfo.put("category", rs.getString("cat3"));
 				attractionInfo.put("image", rs.getString("image_big_url"));
 				attractionInfo.put("mapx", rs.getDouble("mapx"));
 				attractionInfo.put("mapy", rs.getDouble("mapy"));
-				attractionInfo.put("title", rs.getString("title"));
-				attractionInfoList.add(attractionInfo);
+				response.put(attractionInfo);
 			}
 		} catch (JSONException | SQLException e) {
 			e.printStackTrace();
 		}
 		
-		String clientId = UserManager.getEncryptedIdFromSession(ctx);
-		for(Map<String, Object> attractionInfo : attractionInfoList) {
-			int contentId = Integer.parseInt(attractionInfo.get("content_id").toString());
-			ResultSet wish = DataBase.executeQuery("SELECT * FROM wish_list WHERE client_id=? AND content_id=?", clientId, contentId);
-			try {
-				if(wish.next()) {
-					attractionInfo.put("wish", true);
-				} else {
-					attractionInfo.put("wish", false);
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-			result.put(new JSONObject(attractionInfo));
-		}
-		
-		return result;
+		return response;
 	}
 }
