@@ -1,5 +1,7 @@
 package com.planb.restful.user.friend;
 
+import com.planb.support.routing.Function;
+import com.planb.support.routing.RESTful;
 import com.planb.support.routing.Route;
 import com.planb.support.user.UserManager;
 import com.planb.support.utilities.DataBase;
@@ -8,6 +10,8 @@ import io.vertx.core.Handler;
 import io.vertx.core.http.HttpMethod;
 import io.vertx.ext.web.RoutingContext;
 
+@Function(name = "친구", summary = "친구 삭제")
+@RESTful(requestBody = "id : String", successCode = 201)
 @Route(uri = "/friend/delete", method = HttpMethod.POST)
 public class DeleteFriend implements Handler<RoutingContext> {
 	/*

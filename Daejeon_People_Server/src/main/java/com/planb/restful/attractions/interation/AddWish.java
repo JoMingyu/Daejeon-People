@@ -3,6 +3,8 @@ package com.planb.restful.attractions.interation;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import com.planb.support.routing.Function;
+import com.planb.support.routing.RESTful;
 import com.planb.support.routing.Route;
 import com.planb.support.user.UserManager;
 import com.planb.support.utilities.DataBase;
@@ -11,6 +13,8 @@ import io.vertx.core.Handler;
 import io.vertx.core.http.HttpMethod;
 import io.vertx.ext.web.RoutingContext;
 
+@Function(name = "위시리스트", summary = "위시리스트 추가")
+@RESTful(requestBody = "content_id : int", successCode = 201)
 @Route(uri = "/wish", method = HttpMethod.POST)
 public class AddWish implements Handler<RoutingContext> {
 	@Override

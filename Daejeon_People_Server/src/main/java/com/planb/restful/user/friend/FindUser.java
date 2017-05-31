@@ -7,6 +7,8 @@ import java.util.regex.Pattern;
 import org.json.JSONObject;
 
 import com.planb.support.crypto.AES256;
+import com.planb.support.routing.Function;
+import com.planb.support.routing.RESTful;
 import com.planb.support.routing.Route;
 import com.planb.support.utilities.DataBase;
 
@@ -14,6 +16,8 @@ import io.vertx.core.Handler;
 import io.vertx.core.http.HttpMethod;
 import io.vertx.ext.web.RoutingContext;
 
+@Function(name = "친구", summary = "사용자 검색")
+@RESTful(params = "keyword : String", responseBody = "email : String, name : String, id : String", successCode = 200, failureCode = 204)
 @Route(uri = "/find_user", method = HttpMethod.GET)
 public class FindUser implements Handler<RoutingContext> {
 	@Override

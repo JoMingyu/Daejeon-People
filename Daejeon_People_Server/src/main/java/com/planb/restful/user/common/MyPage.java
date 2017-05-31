@@ -6,6 +6,8 @@ import java.sql.SQLException;
 import org.json.JSONObject;
 
 import com.planb.support.crypto.AES256;
+import com.planb.support.routing.Function;
+import com.planb.support.routing.RESTful;
 import com.planb.support.routing.Route;
 import com.planb.support.user.UserManager;
 import com.planb.support.utilities.DataBase;
@@ -14,18 +16,13 @@ import io.vertx.core.Handler;
 import io.vertx.core.http.HttpMethod;
 import io.vertx.ext.web.RoutingContext;
 
+@Function(name = "일반 모드", summary = "마이페이지")
+@RESTful(responseBody = "email : String, phone_number : String, name : String", successCode = 200)
 @Route(uri = "/mypage", method = HttpMethod.GET)
 public class MyPage implements Handler<RoutingContext> {
 	@Override
 	public void handle(RoutingContext ctx) {
 		JSONObject response = new JSONObject();
-		UserManager userManager = new UserManager();
-		
-		if(!userManager.isLogined(ctx)) {
-			ctx.response().setStatusCode(204).end();
-			ctx.response().close();
-			return;
-		}
 		
 		String clientId = UserManager.getEncryptedIdFromSession(ctx);
 		ResultSet userInfo = DataBase.executeQuery("SELECT * FROM account WHERE id=?", clientId);

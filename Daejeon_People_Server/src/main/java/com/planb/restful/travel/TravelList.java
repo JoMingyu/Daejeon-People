@@ -6,6 +6,8 @@ import java.sql.SQLException;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import com.planb.support.routing.Function;
+import com.planb.support.routing.RESTful;
 import com.planb.support.routing.Route;
 import com.planb.support.user.UserManager;
 import com.planb.support.utilities.DataBase;
@@ -14,6 +16,8 @@ import io.vertx.core.Handler;
 import io.vertx.core.http.HttpMethod;
 import io.vertx.ext.web.RoutingContext;
 
+@Function(name = "여행 모드", summary = "활성화된 여행 리스트 조회")
+@RESTful(responseBody = "topic : String, title : String, (JSONArray)", successCode = 200, failureCode = 204)
 @Route(uri = "/travel", method = HttpMethod.GET)
 public class TravelList implements Handler<RoutingContext> {
 	@Override

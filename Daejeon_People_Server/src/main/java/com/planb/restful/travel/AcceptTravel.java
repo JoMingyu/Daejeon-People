@@ -3,6 +3,8 @@ package com.planb.restful.travel;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import com.planb.support.routing.Function;
+import com.planb.support.routing.RESTful;
 import com.planb.support.routing.Route;
 import com.planb.support.user.UserManager;
 import com.planb.support.utilities.DataBase;
@@ -11,6 +13,8 @@ import io.vertx.core.Handler;
 import io.vertx.core.http.HttpMethod;
 import io.vertx.ext.web.RoutingContext;
 
+@Function(name = "여행 모드", summary = "여행 초대 수락")
+@RESTful(requestBody = "topic : String", successCode = 201)
 @Route(uri = "/travel/accept", method = HttpMethod.POST)
 public class AcceptTravel implements Handler<RoutingContext> {
 	@Override

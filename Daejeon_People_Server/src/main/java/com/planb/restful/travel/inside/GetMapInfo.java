@@ -6,6 +6,8 @@ import java.sql.SQLException;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import com.planb.support.routing.Function;
+import com.planb.support.routing.RESTful;
 import com.planb.support.routing.Route;
 import com.planb.support.utilities.DataBase;
 
@@ -13,6 +15,8 @@ import io.vertx.core.Handler;
 import io.vertx.core.http.HttpMethod;
 import io.vertx.ext.web.RoutingContext;
 
+@Function(name = "여행 모드 내부", summary = "지도에 추가된 핀포인트 조회")
+@RESTful(requestBody = "topic : String", responseBody = "content_id : int, title : String, owner : String, mapx : double, mapy : double", successCode = 200, failureCode = 204)
 @Route(uri = "/map", method = HttpMethod.GET)
 public class GetMapInfo implements Handler<RoutingContext> {
 	@Override

@@ -3,6 +3,8 @@ package com.planb.restful.travel.inside;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import com.planb.support.routing.Function;
+import com.planb.support.routing.RESTful;
 import com.planb.support.routing.Route;
 import com.planb.support.user.UserManager;
 import com.planb.support.utilities.DataBase;
@@ -11,6 +13,8 @@ import io.vertx.core.Handler;
 import io.vertx.core.http.HttpMethod;
 import io.vertx.ext.web.RoutingContext;
 
+@Function(name = "여행 모드 내부", summary = "지도에 여행지 추가")
+@RESTful(requestBody = "topic : String, content_id : int", successCode = 201)
 @Route(uri = "/map", method = HttpMethod.POST)
 public class AddAttractionToMap implements Handler<RoutingContext> {
 	@Override

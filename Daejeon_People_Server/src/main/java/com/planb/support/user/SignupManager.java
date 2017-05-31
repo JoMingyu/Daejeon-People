@@ -9,7 +9,6 @@ import com.planb.support.crypto.SHA256;
 import com.planb.support.utilities.DataBase;
 import com.planb.support.utilities.Mail;
 import com.planb.support.utilities.MailSubjects;
-import com.planb.support.utilities.Thumbnail;
 import com.sun.javafx.binding.StringFormatter;
 
 public class SignupManager {
@@ -180,10 +179,6 @@ public class SignupManager {
 		} else {
 			DataBase.executeUpdate("INSERT INTO account(id, password, email, phone_number, name, register_date, registration_id) VALUES(?, ?, ?, ?, ?, now(), ?)", encryptedId, encryptedPassword, encryptedEmail, encryptedPhoneNumber, encryptedName, encryptedRegistrationId);
 		}
-		
-		Thumbnail t = new Thumbnail();
-		t.process();
-		t.saveImage("profile-images/" + encryptedId + ".png");
 		
 		Mail.sendMail(email, MailSubjects.WELCOME_SUBJECT.getName(), "환영환영");
 	}
