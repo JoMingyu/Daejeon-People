@@ -9,6 +9,6 @@ import java.lang.annotation.Target;
 @Retention(RUNTIME)
 @Target(TYPE)
 public @interface Function {
-	String name();
+	String functionCategory();
 	String summary();
 }

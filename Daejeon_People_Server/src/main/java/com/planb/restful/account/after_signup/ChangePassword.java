@@ -9,7 +9,7 @@ import io.vertx.core.Handler;
 import io.vertx.core.http.HttpMethod;
 import io.vertx.ext.web.RoutingContext;
 
-@Function(name = "비밀번호 변경", summary = "비밀번호 변경")
+@Function(functionCategory = "계정", summary = "비밀번호 변경")
 @RESTful(requestBody = "id : String, current_password : String, new_password : String", successCode = 201, failureCode = 204)
 @Route(uri = "/change/password", method = HttpMethod.POST)
 public class ChangePassword implements Handler<RoutingContext> {

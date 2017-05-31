@@ -17,7 +17,7 @@ import io.vertx.core.Handler;
 import io.vertx.core.http.HttpMethod;
 import io.vertx.ext.web.RoutingContext;
 
-@Function(name = "여행지 정보", summary = "여행지 세부 정보 조회")
+@Function(functionCategory = "여행지 정보", summary = "여행지 세부 정보 조회")
 @RESTful(requestBody = "content_id : int", responseBody = "content_id : int, image : String, title : String, category : String, address : String, mapx : double, mapy : double, wish : boolean, additional_image : boolean, 추가 정보는 여행지 세부 정보 기준표 참고 바람.", successCode = 201)
 @Route(uri = "/attractions/detail", method = HttpMethod.GET)
 public class DetailInfo implements Handler<RoutingContext> {

@@ -13,7 +13,7 @@ import io.vertx.core.Handler;
 import io.vertx.core.http.HttpMethod;
 import io.vertx.ext.web.RoutingContext;
 
-@Function(name = "여행 모드 내부", summary = "지도에 여행지 추가")
+@Function(functionCategory = "여행 모드 내부", summary = "지도에 여행지 추가")
 @RESTful(requestBody = "topic : String, content_id : int", successCode = 201)
 @Route(uri = "/map", method = HttpMethod.POST)
 public class AddAttractionToMap implements Handler<RoutingContext> {

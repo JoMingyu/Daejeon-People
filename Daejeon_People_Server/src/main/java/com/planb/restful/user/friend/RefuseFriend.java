@@ -10,7 +10,7 @@ import io.vertx.core.Handler;
 import io.vertx.core.http.HttpMethod;
 import io.vertx.ext.web.RoutingContext;
 
-@Function(name = "친구", summary = "친구 요청 거절")
+@Function(functionCategory = "친구", summary = "친구 요청 거절")
 @RESTful(requestBody = "requester_id : String", successCode = 201)
 @Route(uri = "/friend/refuse", method = HttpMethod.POST)
 public class RefuseFriend implements Handler<RoutingContext> {

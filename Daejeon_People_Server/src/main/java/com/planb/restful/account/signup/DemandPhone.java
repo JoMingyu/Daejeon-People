@@ -9,7 +9,7 @@ import io.vertx.core.Handler;
 import io.vertx.core.http.HttpMethod;
 import io.vertx.ext.web.RoutingContext;
 
-@Function(name = "회원가입", summary = "핸드폰 인증번호 발송")
+@Function(functionCategory = "회원가입", summary = "핸드폰 인증번호 발송")
 @RESTful(requestBody = "email : String", successCode = 201)
 @Route(uri = "/signup/phone/demand", method = HttpMethod.POST)
 public class DemandPhone implements Handler<RoutingContext> {

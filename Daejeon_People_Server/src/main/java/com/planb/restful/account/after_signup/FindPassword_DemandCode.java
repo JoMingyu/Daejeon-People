@@ -9,7 +9,7 @@ import io.vertx.core.Handler;
 import io.vertx.core.http.HttpMethod;
 import io.vertx.ext.web.RoutingContext;
 
-@Function(name = "비밀번호 찾기", summary = "이메일 인증번호 발송")
+@Function(functionCategory = "비밀번호 찾기", summary = "이메일 인증번호 발송")
 @RESTful(requestBody = "id : String, email : String, name : String", successCode = 201, failureCode = 204)
 @Route(uri = "/find/password/demand", method = HttpMethod.POST)
 public class FindPassword_DemandCode implements Handler<RoutingContext> {

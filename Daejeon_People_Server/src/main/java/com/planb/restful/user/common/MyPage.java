@@ -16,7 +16,7 @@ import io.vertx.core.Handler;
 import io.vertx.core.http.HttpMethod;
 import io.vertx.ext.web.RoutingContext;
 
-@Function(name = "일반 모드", summary = "마이페이지")
+@Function(functionCategory = "사용자", summary = "마이페이지")
 @RESTful(responseBody = "email : String, phone_number : String, name : String", successCode = 200)
 @Route(uri = "/mypage", method = HttpMethod.GET)
 public class MyPage implements Handler<RoutingContext> {

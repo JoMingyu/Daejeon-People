@@ -13,7 +13,7 @@ import io.vertx.core.Handler;
 import io.vertx.core.http.HttpMethod;
 import io.vertx.ext.web.RoutingContext;
 
-@Function(name = "위시리스트", summary = "위시리스트 추가")
+@Function(functionCategory = "위시리스트", summary = "위시리스트 추가")
 @RESTful(requestBody = "content_id : int", successCode = 201)
 @Route(uri = "/wish", method = HttpMethod.POST)
 public class AddWish implements Handler<RoutingContext> {

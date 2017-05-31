@@ -11,7 +11,7 @@ import io.vertx.core.Handler;
 import io.vertx.core.http.HttpMethod;
 import io.vertx.ext.web.RoutingContext;
 
-@Function(name = "일반 모드", summary = "프로필 사진 조회")
+@Function(functionCategory = "사용자", summary = "프로필 사진 조회")
 @RESTful(responseBody = "프로필 이미지 파일", successCode = 200, failureCode = 204)
 @Route(uri = "/profile-image", method = HttpMethod.GET)
 public class GetProfileImage implements Handler<RoutingContext> {

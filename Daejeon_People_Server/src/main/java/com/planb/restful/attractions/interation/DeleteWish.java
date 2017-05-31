@@ -10,7 +10,7 @@ import io.vertx.core.Handler;
 import io.vertx.core.http.HttpMethod;
 import io.vertx.ext.web.RoutingContext;
 
-@Function(name = "위시리스트", summary = "위시리스트에서 여행지 삭제")
+@Function(functionCategory = "위시리스트", summary = "위시리스트에서 여행지 삭제")
 @RESTful(params = "content_id : int", successCode = 200)
 @Route(uri = "/wish", method = HttpMethod.DELETE)
 public class DeleteWish implements Handler<RoutingContext> {

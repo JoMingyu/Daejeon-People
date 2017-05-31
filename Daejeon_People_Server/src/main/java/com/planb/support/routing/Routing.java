@@ -1,6 +1,7 @@
 package com.planb.support.routing;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
@@ -12,7 +13,7 @@ import io.vertx.core.Handler;
 import io.vertx.ext.web.Router;
 import io.vertx.ext.web.RoutingContext;
 
-public class Register {
+public class Routing {
 	private static List<RESTResource> resourceList = new ArrayList<RESTResource>();
 	
 	@SuppressWarnings("unchecked")
@@ -38,7 +39,7 @@ public class Register {
 					if(c.isAnnotationPresent(Function.class) && c.isAnnotationPresent(RESTful.class)) {
 						Function functionAnno = c.getAnnotation(Function.class);
 						RESTful restfulAnno = c.getAnnotation(RESTful.class);
-						resourceList.add(new RESTResource(functionAnno.name(), functionAnno.summary(), routeAnno.method().name(), routeAnno.uri(), restfulAnno.requestHeaders(), restfulAnno.params(), restfulAnno.requestBody(), restfulAnno.successCode(), restfulAnno.responseHeaders(), restfulAnno.responseBody(), restfulAnno.failureCode()));
+						resourceList.add(new RESTResource(functionAnno.functionCategory(), functionAnno.summary(), routeAnno.method().name(), routeAnno.uri(), restfulAnno.requestHeaders(), restfulAnno.params(), restfulAnno.requestBody(), restfulAnno.successCode(), restfulAnno.responseHeaders(), restfulAnno.responseBody(), restfulAnno.failureCode()));
 					} else {
 						resourceList.add(new RESTResource("미정", "미정", routeAnno.method().name(), routeAnno.uri(), "미정", "미정", "미정", 0, "미정", "미정", 0));
 					}
@@ -48,6 +49,8 @@ public class Register {
 			} // Inner for-each
 		} // Outer for-each
 		
+		Collections.sort(resourceList);
+//		Arrays.sort(resourceList);
 		new Document(resourceList);
 	}
 }

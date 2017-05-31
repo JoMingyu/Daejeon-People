@@ -9,7 +9,7 @@ import io.vertx.core.Handler;
 import io.vertx.core.http.HttpMethod;
 import io.vertx.ext.web.RoutingContext;
 
-@Function(name = "아이디 찾기", summary = "이메일 인증번호 발송")
+@Function(functionCategory = "아이디 찾기", summary = "이메일 인증번호 발송")
 @RESTful(requestBody = "email : String, name : String", successCode = 201, failureCode = 204)
 @Route(uri = "/find/id/demand", method = HttpMethod.POST)
 public class FindId_DemandCode implements Handler<RoutingContext> {

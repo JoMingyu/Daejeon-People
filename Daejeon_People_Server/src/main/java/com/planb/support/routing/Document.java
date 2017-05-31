@@ -17,7 +17,7 @@ public class Document {
 		XSSFSheet sheet = wb.createSheet("API");
 		
 		XSSFRow rowHead = sheet.createRow(0);
-		rowHead.createCell(0).setCellValue("Function Name");
+		rowHead.createCell(0).setCellValue("Function Category");
 		rowHead.createCell(1).setCellValue("Summary");
 		rowHead.createCell(2).setCellValue("Method");
 		rowHead.createCell(3).setCellValue("URI");
@@ -34,7 +34,7 @@ public class Document {
 		for(RESTResource resource : resourceList) {
 			XSSFRow row = sheet.createRow(rowCount++);
 			
-			row.createCell(0).setCellValue(resource.getName());
+			row.createCell(0).setCellValue(resource.getFunctionCategory());
 			row.createCell(1).setCellValue(resource.getSummary());
 			row.createCell(2).setCellValue(resource.getMethod());
 			row.createCell(3).setCellValue(resource.getUri());

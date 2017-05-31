@@ -9,7 +9,7 @@ import io.vertx.core.Handler;
 import io.vertx.core.http.HttpMethod;
 import io.vertx.ext.web.RoutingContext;
 
-@Function(name = "회원가입", summary = "회원가입")
+@Function(functionCategory = "회원가입", summary = "회원가입")
 @RESTful(requestBody = "id : String, password : String, email : String, tel : String(Optional), name : String, registration_id : String", successCode = 201)
 @Route(uri = "/signup", method = HttpMethod.POST)
 public class Signup implements Handler<RoutingContext> {

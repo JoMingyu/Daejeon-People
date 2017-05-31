@@ -1,4 +1,4 @@
-package com.planb.restful.travel;
+package com.planb.restful.travel.inside;
 
 import com.planb.support.routing.Function;
 import com.planb.support.routing.RESTful;
@@ -10,7 +10,7 @@ import io.vertx.core.Handler;
 import io.vertx.core.http.HttpMethod;
 import io.vertx.ext.web.RoutingContext;
 
-@Function(name = "여행 모드", summary = "여행에 다른 사람 초대")
+@Function(functionCategory = "여행 모드 내부", summary = "여행에 유저 초대")
 @RESTful(requestBody = "dst : String, topic : String, msg : String", successCode = 201)
 @Route(uri = "/travel/invite", method = HttpMethod.POST)
 public class InviteTravel implements Handler<RoutingContext> {

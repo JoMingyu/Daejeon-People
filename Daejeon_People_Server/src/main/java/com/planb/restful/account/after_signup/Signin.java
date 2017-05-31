@@ -9,7 +9,7 @@ import io.vertx.core.Handler;
 import io.vertx.core.http.HttpMethod;
 import io.vertx.ext.web.RoutingContext;
 
-@Function(name = "로그인", summary = "로그인")
+@Function(functionCategory = "계정", summary = "로그인")
 @RESTful(requestBody = "id : String, password : String, keep_login : boolean", successCode = 201, responseHeaders = "Set-Cookie(key=UserSession)", failureCode = 204)
 @Route(uri = "/signin", method = HttpMethod.POST)
 public class Signin implements Handler<RoutingContext> {

@@ -1,4 +1,4 @@
-package com.planb.restful.travel;
+package com.planb.restful.travel.inside;
 
 import com.planb.support.routing.Function;
 import com.planb.support.routing.RESTful;
@@ -10,7 +10,7 @@ import io.vertx.core.Handler;
 import io.vertx.core.http.HttpMethod;
 import io.vertx.ext.web.RoutingContext;
 
-@Function(name = "여행 모드", summary = "여행 나가기")
+@Function(functionCategory = "여행 모드 내부", summary = "여행 나가기")
 @RESTful(requestBody = "topic : String", successCode = 200)
 @Route(uri = "/travel/quit", method = HttpMethod.DELETE)
 public class QuitTravel implements Handler<RoutingContext> {

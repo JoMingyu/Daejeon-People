@@ -16,7 +16,7 @@ import io.vertx.core.Handler;
 import io.vertx.core.http.HttpMethod;
 import io.vertx.ext.web.RoutingContext;
 
-@Function(name = "위시리스트", summary = "위시리스트 조회")
+@Function(functionCategory = "위시리스트", summary = "위시리스트 조회")
 @RESTful(params = "content_id : int", successCode = 200, failureCode = 204)
 @Route(uri = "/wish", method = HttpMethod.GET)
 public class WishListInquiry implements Handler<RoutingContext> {

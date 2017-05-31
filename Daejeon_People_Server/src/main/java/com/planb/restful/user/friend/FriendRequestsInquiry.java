@@ -17,7 +17,7 @@ import io.vertx.core.Handler;
 import io.vertx.core.http.HttpMethod;
 import io.vertx.ext.web.RoutingContext;
 
-@Function(name = "친구", summary = "친구 요청 목록 조회")
+@Function(functionCategory = "친구", summary = "친구 요청 목록 조회")
 @RESTful(responseBody = "requester_id : String, date : String, phone_number : String, email : String, name : String", successCode = 200, failureCode = 204)
 @Route(uri = "/friend/request", method = HttpMethod.GET)
 public class FriendRequestsInquiry implements Handler<RoutingContext> {

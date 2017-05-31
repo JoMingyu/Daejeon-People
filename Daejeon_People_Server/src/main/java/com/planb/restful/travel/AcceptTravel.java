@@ -13,7 +13,7 @@ import io.vertx.core.Handler;
 import io.vertx.core.http.HttpMethod;
 import io.vertx.ext.web.RoutingContext;
 
-@Function(name = "여행 모드", summary = "여행 초대 수락")
+@Function(functionCategory = "여행 모드", summary = "여행 초대 수락")
 @RESTful(requestBody = "topic : String", successCode = 201)
 @Route(uri = "/travel/accept", method = HttpMethod.POST)
 public class AcceptTravel implements Handler<RoutingContext> {

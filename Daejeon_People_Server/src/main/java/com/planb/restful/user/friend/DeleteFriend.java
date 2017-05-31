@@ -10,7 +10,7 @@ import io.vertx.core.Handler;
 import io.vertx.core.http.HttpMethod;
 import io.vertx.ext.web.RoutingContext;
 
-@Function(name = "친구", summary = "친구 삭제")
+@Function(functionCategory = "친구", summary = "친구 삭제")
 @RESTful(requestBody = "id : String", successCode = 201)
 @Route(uri = "/friend/delete", method = HttpMethod.POST)
 public class DeleteFriend implements Handler<RoutingContext> {

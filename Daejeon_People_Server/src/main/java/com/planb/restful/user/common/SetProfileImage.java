@@ -14,7 +14,7 @@ import io.vertx.core.http.HttpMethod;
 import io.vertx.ext.web.FileUpload;
 import io.vertx.ext.web.RoutingContext;
 
-@Function(name = "일반 모드", summary = "프로필 이미지 세팅")
+@Function(functionCategory = "사용자", summary = "프로필 이미지 세팅")
 @RESTful(requestBody = "png 이미지 파일", successCode = 201)
 @Route(uri = "/profile-image", method = HttpMethod.POST)
 public class SetProfileImage implements Handler<RoutingContext> {

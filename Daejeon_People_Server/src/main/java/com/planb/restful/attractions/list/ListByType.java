@@ -11,7 +11,7 @@ import io.vertx.core.Handler;
 import io.vertx.core.http.HttpMethod;
 import io.vertx.ext.web.RoutingContext;
 
-@Function(name = "여행지 리스트", summary = "카테고리 지정된 여행지 리스트 조회")
+@Function(functionCategory = "여행지 정보", summary = "카테고리 지정된 여행지 리스트 조회")
 @RESTful(params = "content_type_id : int, sort_type : int, page : int", responseBody = "content_id : int, address : String, category : String, image : String, mapx : double, mapy : double, title : String", successCode = 200, failureCode = 204)
 @Route(uri = "/attractions/list", method = HttpMethod.GET)
 public class ListByType implements Handler<RoutingContext> {

@@ -1,7 +1,7 @@
 package com.planb.support.routing;
 
-public class RESTResource {
-	private String name;
+public class RESTResource implements Comparable<RESTResource> {
+	private String functionCategory;
 	private String summary;
 	private String method;
 	private String uri;
@@ -13,8 +13,13 @@ public class RESTResource {
 	private String responseBody;
 	private int failureCode;
 	
-	public RESTResource(String name, String summary, String method, String uri, String requestHeaders, String params, String requestBody, int successCode, String responseHeaders, String responseBody, int failureCode) {
-		this.setName(name);
+	@Override
+	public int compareTo(RESTResource o) {
+		return o.functionCategory.compareTo(this.functionCategory);
+	}
+	
+	public RESTResource(String functionCategory, String summary, String method, String uri, String requestHeaders, String params, String requestBody, int successCode, String responseHeaders, String responseBody, int failureCode) {
+		this.setFunctionCategory(functionCategory);
 		this.setSummary(summary);
 		this.setMethod(method);
 		this.setUri(uri);
@@ -27,12 +32,12 @@ public class RESTResource {
 		this.setFailureCode(failureCode);
 	}
 
-	public String getName() {
-		return name;
+	public String getFunctionCategory() {
+		return functionCategory;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setFunctionCategory(String functionCategory) {
+		this.functionCategory = functionCategory;
 	}
 
 	public String getSummary() {

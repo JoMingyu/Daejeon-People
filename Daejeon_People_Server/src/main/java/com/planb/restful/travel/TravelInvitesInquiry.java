@@ -17,7 +17,7 @@ import io.vertx.core.Handler;
 import io.vertx.core.http.HttpMethod;
 import io.vertx.ext.web.RoutingContext;
 
-@Function(name = "여행 모드", summary = "초대받은 여행 리스트 조회")
+@Function(functionCategory = "여행 모드", summary = "초대받은 여행 리스트 조회")
 @RESTful(responseBody = "topic : String, msg : String, date : String, phone_number : String, email : String, name : String, (JSONArray)", successCode = 200, failureCode = 204)
 @Route(uri = "/travel/invite", method = HttpMethod.GET)
 public class TravelInvitesInquiry implements Handler<RoutingContext> {
