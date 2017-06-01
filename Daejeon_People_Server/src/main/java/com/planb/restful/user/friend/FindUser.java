@@ -10,6 +10,7 @@ import com.planb.support.crypto.AES256;
 import com.planb.support.routing.Function;
 import com.planb.support.routing.RESTful;
 import com.planb.support.routing.Route;
+import com.planb.support.user.UserManager;
 import com.planb.support.utilities.DataBase;
 
 import io.vertx.core.Handler;
@@ -17,11 +18,12 @@ import io.vertx.core.http.HttpMethod;
 import io.vertx.ext.web.RoutingContext;
 
 @Function(functionCategory = "친구", summary = "사용자 검색")
-@RESTful(params = "keyword : String", responseBody = "email : String, name : String, id : String", successCode = 200, failureCode = 204)
+@RESTful(params = "keyword : String", responseBody = "email : String, name : String, id : String, friend_requested : boolean", successCode = 200, failureCode = 204)
 @Route(uri = "/find_user", method = HttpMethod.GET)
 public class FindUser implements Handler<RoutingContext> {
 	@Override
 	public void handle(RoutingContext ctx) {
+		String clientId = UserManager.getEncryptedIdFromSession(ctx);
 		String keyword = ctx.request().getParam("keyword");
 		/*
 		 * 키워드는 핸드폰 번호, 또는 이메일일 수 있음
@@ -52,6 +54,13 @@ public class FindUser implements Handler<RoutingContext> {
 				response.put("email", AES256.decrypt(rs.getString("email")));
 				response.put("name", AES256.decrypt(rs.getString("name")));
 				response.put("id", rs.getString("id"));
+				
+				ResultSet friendSet = DataBase.executeQuery("SELECT * FROM friend_requests WHERE src_id=? AND dst_id=?", clientId, rs.getString("id"));
+				if(friendSet.next()) {
+					response.put("friend_requested", true);
+				} else {
+					response.put("friend_requested", false);
+				}
 				
 				ctx.response().setStatusCode(200);
 				ctx.response().end(response.toString());
