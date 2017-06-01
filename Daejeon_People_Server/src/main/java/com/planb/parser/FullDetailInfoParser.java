@@ -53,7 +53,12 @@ public class FullDetailInfoParser {
 		
 		for(int contentId : contentInfoMap.keySet()) {
 			int contentTypeId = contentInfoMap.get(contentId);
+			
 			JSONObject item = HttpClientForParser.getItem(URL + "&contentId=" + contentId + "&contentTypeId=" + contentTypeId);
+			if(item == null) {
+				continue;
+			}
+			
 			if (contentTypeId == 12) {
 				// 관광지
 				

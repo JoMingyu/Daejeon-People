@@ -81,9 +81,12 @@ public class HttpClientForParser {
 		JSONObject responseEntire = request(URL);
 		JSONObject inResponse = responseEntire.getJSONObject("response");
 		JSONObject responseBody = inResponse.getJSONObject("body");
-		JSONObject items = responseBody.getJSONObject("items");
-		JSONObject item = items.getJSONObject("item");
-		
-		return item;
+		if(responseBody.getInt("totalCount") != 0) {
+			JSONObject items = responseBody.getJSONObject("items");
+			JSONObject item = items.getJSONObject("item");
+			return item;
+		} else {
+			return null;
+		}
 	}
 }

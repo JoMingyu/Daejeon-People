@@ -28,6 +28,9 @@ public class DetailCommonParser {
 				int contentTypeId = rs.getInt("content_type_id");
 				
 				JSONObject item = HttpClientForParser.getItem(URL + "&contentId=" + contentId);
+				if(item == null) {
+					continue;
+				}
 				
 				String homepage = item.has("homepage") ? item.getString("homepage").replaceAll("'", "''") : null;
 				// 홈페이지 주소

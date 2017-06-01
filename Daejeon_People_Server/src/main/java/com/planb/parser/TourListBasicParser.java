@@ -26,6 +26,7 @@ public class TourListBasicParser {
 		// 응답받을 여행지 정보 갯수를 totalCount에 맞춰서 요청
 		
 		JSONArray items = HttpClientForParser.getItems(requestURL);
+		
 		for(int i = 0; i < items.length(); i++) {
 			JSONObject item = items.getJSONObject(i);
 			

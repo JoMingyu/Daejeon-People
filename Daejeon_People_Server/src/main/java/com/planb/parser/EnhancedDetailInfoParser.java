@@ -42,6 +42,10 @@ public class EnhancedDetailInfoParser {
 				int contentTypeId = rs.getInt("content_type_id");
 				
 				JSONObject item = HttpClientForParser.getItem(URL + "&contentId=" + contentId + "&contentTypeId=" + contentTypeId);
+				if(item == null) {
+					continue;
+				}
+				
 				if (contentTypeId == 12) {
 					// 관광지
 					
