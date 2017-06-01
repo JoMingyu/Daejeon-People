@@ -12,16 +12,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".activities.Chatting" android:theme="@style/ActionBarTheme">
+        </activity>
+        <activity android:name=".activities.Splash" android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+        <activity android:name=".activities.Main" android:theme="@style/AppTheme"/>
+        <activity android:name=".activities.SignUp" />
+        <activity android:name=".activities.Email_Certified" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.Splash" android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
-        <activity android:name=".activities.Main" android:theme="@style/AppTheme"/>
-        <activity android:name=".activities.SignUp" />
-        <activity android:name=".activities.Email_Certified" />
         <activity android:name=".activities.Introduction_CulturalFacilities" />
         <activity android:name=".activities.Introduction_FestivalEvent" />
         <activity android:name=".activities.Introduction_LeisureTime" />

@@ -73,7 +73,7 @@
                 android:background="@drawable/ic_person" />
 
             <EditText
-                android:id="@+id/editName"
+                android:id="@+id/userName"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -99,7 +99,7 @@
                 android:background="@drawable/ic_work" />
 
             <EditText
-                android:id="@+id/editId"
+                android:id="@+id/userId"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -125,7 +125,7 @@
                 android:background="@drawable/ic_lock" />
 
             <EditText
-                android:id="@+id/editPw"
+                android:id="@+id/userPassword"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -151,7 +151,7 @@
                 android:background="@drawable/ic_lock" />
 
             <EditText
-                android:id="@+id/editRepw"
+                android:id="@+id/passwordConfirm"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -190,6 +190,7 @@
         android:layout_height="0dp"
         android:layout_weight="1">
         <Button
+            android:id="@+id/signupSubmit"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="10dp"

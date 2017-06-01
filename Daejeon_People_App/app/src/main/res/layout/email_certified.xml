@@ -37,7 +37,8 @@
             android:hint="이메일을 입력하시오"
             android:inputType="text"
             android:textSize="15sp"
-            android:layout_marginBottom="10dp" />
+            android:layout_marginBottom="10dp"
+            android:id="@+id/userEmail"/>
 
         <EditText
             android:id="@+id/editText"
