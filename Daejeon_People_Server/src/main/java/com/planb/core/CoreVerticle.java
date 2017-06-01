@@ -1,7 +1,5 @@
 package com.planb.core;
 
-import java.io.File;
-
 import com.planb.parser.support.ParserThread;
 import com.planb.support.routing.Routing;
 import com.planb.support.utilities.Log;
@@ -62,11 +60,6 @@ public class CoreVerticle extends AbstractVerticle {
 		 * http://vertx.io/docs/apidocs/io/vertx/rxjava/ext/web/handler/StaticHandler.html
 		 */
 		new ParserThread().start();
-		
-		File file = new File("chatting_resources");
-		if(!file.exists()) {
-			file.mkdir();
-		}
 		
 		Log.I("Server Started");
 		vertx.createHttpServer().requestHandler(router::accept).listen(80);

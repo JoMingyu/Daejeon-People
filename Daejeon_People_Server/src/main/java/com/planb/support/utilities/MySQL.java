@@ -29,7 +29,7 @@ public class MySQL {
 		try {
 			statement = connection.prepareStatement(sql);
 			int placeholderCount = 1;
-			for(Object o: args) {
+			for(Object o : args) {
 				statement.setObject(placeholderCount++, o);
 			}
 		} catch (SQLException e) {
