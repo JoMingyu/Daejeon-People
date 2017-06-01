@@ -6,7 +6,6 @@ import java.util.UUID;
 
 import org.json.JSONObject;
 
-import com.planb.support.chatting.ChatMessageSaver;
 import com.planb.support.routing.API;
 import com.planb.support.routing.REST;
 import com.planb.support.routing.Route;
@@ -38,7 +37,6 @@ public class CreateTravel implements Handler<RoutingContext> {
 				if(!rs.next()) {
 					response.put("topic", topic);
 					MySQL.executeUpdate("INSERT INTO travels VALUES(?, ?, ?)", topic, title, clientId);
-					new ChatMessageSaver(topic).createTopic();
 					break;
 				}
 			} catch (SQLException e) {

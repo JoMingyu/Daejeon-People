@@ -3,7 +3,6 @@ package com.planb.restful.travel;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.planb.support.chatting.ChatMessageSaver;
 import com.planb.support.routing.API;
 import com.planb.support.routing.REST;
 import com.planb.support.routing.Route;
@@ -30,7 +29,6 @@ public class AcceptTravel implements Handler<RoutingContext> {
 			rs.next();
 			String title = rs.getString("title");
 			MySQL.executeUpdate("INSERT INTO travels VALUES(?, ?, ?)", topic, title, clientId);
-			new ChatMessageSaver(topic).userEntered(clientId);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
