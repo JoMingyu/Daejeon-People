@@ -20,7 +20,7 @@ import io.vertx.ext.web.FileUpload;
 import io.vertx.ext.web.RoutingContext;
 
 @API(functionCategory = "여행 모드 내부", summary = "메시지 전송")
-@REST()
+@REST(requestBody = "topic : String, type : String, (text or image), content : String(type is text)", successCode = 201)
 @Route(uri = "/chat", method = HttpMethod.POST)
 public class SendMessage implements Handler<RoutingContext> {
 	@Override
@@ -39,15 +39,21 @@ public class SendMessage implements Handler<RoutingContext> {
 			} else if(type == "image") {
 				Set<FileUpload> uploads = ctx.fileUploads();
 				for(FileUpload upload : uploads) {
+					String identifier = createIdentifier(topic);
+					MySQL_Chat.executeQuery("INSERT INTO ?(remaining_views, type, name, content VALUES(?, ?, ?, ?)", topic, ChatManager.getUserCountInRoom(topic), "image", userInfoSet.getString("name"), identifier);
+					
 					File uploadedFile = new File(upload.uploadedFileName());
 					
-					uploadedFile.renameTo(new File("chatting_resources/" + topic + "/" + createIdentifier(topic)));
+					uploadedFile.renameTo(new File("chatting_resources/" + topic + "/" + identifier));
 					new File(upload.uploadedFileName()).delete();
 				}
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		
+		ctx.response().setStatusCode(201).end();
+		ctx.response().close();
 	}
 	
 	private String createIdentifier(String topic) {
