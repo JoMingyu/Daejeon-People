@@ -3,6 +3,7 @@ package com.daejeonpeople.activities;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -19,7 +20,7 @@ import java.util.Objects;
 
 public class Email_Certified extends AppCompatActivity {
     AqueryConnection connection;
-    HashMap<String, Object> params;
+    HashMap<String, Object> params = new HashMap<String, Object>();
     EditText email;
 
     @Override
@@ -33,12 +34,10 @@ public class Email_Certified extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
-                connection = new AqueryConnection();
-                if(connection.getCode() == 201){
-                    params.put("email", email.getText().toString());
-                    connection = new AqueryConnection(getApplicationContext(), params, "signup/email/demand");
-                } else if(connection.getCode() == 204){
-                    Toast.makeText(getApplicationContext(), "이미 존재하는 이메일입니다", Toast.LENGTH_SHORT).show();
+                if(connection.connection(getApplicationContext(), params, "signup/email/check") == 201){
+                    connection.connection(getApplicationContext(), params, "signup/email/demand");
+                } else if(connection.connection(getApplicationContext(), params, "signup/email/check") == 204){
+                    Toast.makeText(getApplicationContext(), "실패", Toast.LENGTH_SHORT).show();
                 }
                 ShowDialog();
             }

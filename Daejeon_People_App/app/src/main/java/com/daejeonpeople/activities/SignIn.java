@@ -44,7 +44,7 @@ public class SignIn extends Activity{
                 params.put("keep_login", false);
 
                 if(id.getText() != null && password.getText() != null){
-                    connection = new AqueryConnection(getApplicationContext(), params, "signin");
+//                    connection = new AqueryConnection(getApplicationContext(), params, "signin");
                 } else if(id.getText() == null){
                     Toast.makeText(getApplicationContext(), "아이디를 입력해주세요", Toast.LENGTH_SHORT).show();
                 } else if(password.getText() == null){

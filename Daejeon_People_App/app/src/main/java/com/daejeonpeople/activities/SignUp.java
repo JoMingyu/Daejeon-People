@@ -28,7 +28,7 @@ public class SignUp extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                connection = new AqueryConnection(getApplicationContext(), params, "signup");
+//                connection = new AqueryConnection(getApplicationContext(), params, "signup");
             }
         });
     }
