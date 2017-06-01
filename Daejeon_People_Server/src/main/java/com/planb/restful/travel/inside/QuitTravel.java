@@ -1,5 +1,10 @@
 package com.planb.restful.travel.inside;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import com.planb.support.chatting.ChatManager;
+import com.planb.support.chatting.MySQL_Chat;
 import com.planb.support.routing.API;
 import com.planb.support.routing.REST;
 import com.planb.support.routing.Route;
@@ -20,6 +25,15 @@ public class QuitTravel implements Handler<RoutingContext> {
 		String topic = ctx.request().getFormAttribute("topic");
 		
 		MySQL.executeUpdate("DELETE FROM travels WHERE client_id=? AND topic=?", clientId, topic);
+		
+		ResultSet userInfoSet = MySQL.executeQuery("SELECT * FROM account WHERE id=?", clientId);
+		try {
+			userInfoSet.next();
+			MySQL_Chat.executeUpdate("INSERT INTO ?(remaining_views, type, name) VALUES(?, ?, ?)", topic, ChatManager.getUserCountInRoom(topic), "quit", userInfoSet.getString("name"));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		ctx.response().setStatusCode(200).end();
 		ctx.response().close();
