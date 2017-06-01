@@ -27,6 +27,7 @@
             android:paddingBottom="20dp"
             android:id="@+id/inputMessage"/>
         <Button
+            android:id="@+id/sendBtn"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:background="@drawable/ic_send"
