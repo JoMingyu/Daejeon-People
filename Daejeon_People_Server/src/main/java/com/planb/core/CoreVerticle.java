@@ -1,5 +1,8 @@
 package com.planb.core;
 
+import java.io.File;
+
+import com.planb.parser.support.ParserThread;
 import com.planb.support.routing.Routing;
 import com.planb.support.utilities.Log;
 
@@ -48,11 +51,6 @@ public class CoreVerticle extends AbstractVerticle {
 		
 		Routing.route(router, "com.planb.restful");
 		
-		router.route().handler(ctx -> {
-			// Invalid URI or method
-			ctx.response().setStatusCode(404).end();
-			ctx.response().close();
-		});
 		
 		router.route().handler(StaticHandler.create());
 		/**
@@ -63,8 +61,12 @@ public class CoreVerticle extends AbstractVerticle {
 		 * @see
 		 * http://vertx.io/docs/apidocs/io/vertx/rxjava/ext/web/handler/StaticHandler.html
 		 */
-		Thread.sleep(1000);
-//		new ParserThread().start();
+		new ParserThread().start();
+		
+		File file = new File("chatting_resources");
+		if(!file.exists()) {
+			file.mkdir();
+		}
 		
 		Log.I("Server Started");
 		vertx.createHttpServer().requestHandler(router::accept).listen(80);
