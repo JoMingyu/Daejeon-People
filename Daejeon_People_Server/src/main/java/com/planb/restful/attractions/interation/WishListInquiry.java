@@ -6,18 +6,18 @@ import java.sql.SQLException;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import com.planb.support.routing.Function;
-import com.planb.support.routing.RESTful;
+import com.planb.support.routing.API;
+import com.planb.support.routing.REST;
 import com.planb.support.routing.Route;
 import com.planb.support.user.UserManager;
-import com.planb.support.utilities.DataBase;
+import com.planb.support.utilities.MySQL;
 
 import io.vertx.core.Handler;
 import io.vertx.core.http.HttpMethod;
 import io.vertx.ext.web.RoutingContext;
 
-@Function(functionCategory = "위시리스트", summary = "위시리스트 조회")
-@RESTful(params = "content_id : int", successCode = 200, failureCode = 204)
+@API(functionCategory = "위시리스트", summary = "위시리스트 조회")
+@REST(params = "content_id : int", successCode = 200, failureCode = 204)
 @Route(uri = "/wish", method = HttpMethod.GET)
 public class WishListInquiry implements Handler<RoutingContext> {
 	@Override
@@ -26,11 +26,11 @@ public class WishListInquiry implements Handler<RoutingContext> {
 		
 		String clientId = UserManager.getEncryptedIdFromSession(ctx);
 		
-		ResultSet wishList = DataBase.executeQuery("SELECT content_id FROM wish_list WHERE client_id=?", clientId);
+		ResultSet wishList = MySQL.executeQuery("SELECT content_id FROM wish_list WHERE client_id=?", clientId);
 		try {
 			while(wishList.next()) {
 				wishList.getInt("content_id");
-				ResultSet content = DataBase.executeQuery("SELECT * FROM attractions_basic WHERE content_id=?", wishList.getInt("content_id"));
+				ResultSet content = MySQL.executeQuery("SELECT * FROM attractions_basic WHERE content_id=?", wishList.getInt("content_id"));
 				JSONObject contentInfo = new JSONObject();
 				content.next();
 				contentInfo.put("address", content.getString("address"));

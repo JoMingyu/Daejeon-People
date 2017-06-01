@@ -7,18 +7,18 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import com.planb.support.crypto.AES256;
-import com.planb.support.routing.Function;
-import com.planb.support.routing.RESTful;
+import com.planb.support.routing.API;
+import com.planb.support.routing.REST;
 import com.planb.support.routing.Route;
 import com.planb.support.user.UserManager;
-import com.planb.support.utilities.DataBase;
+import com.planb.support.utilities.MySQL;
 
 import io.vertx.core.Handler;
 import io.vertx.core.http.HttpMethod;
 import io.vertx.ext.web.RoutingContext;
 
-@Function(functionCategory = "친구", summary = "친구 요청 목록 조회")
-@RESTful(responseBody = "requester_id : String, date : String, phone_number : String, email : String, name : String", successCode = 200, failureCode = 204)
+@API(functionCategory = "친구", summary = "친구 요청 목록 조회")
+@REST(responseBody = "requester_id : String, date : String, phone_number : String, email : String, name : String", successCode = 200, failureCode = 204)
 @Route(uri = "/friend/request", method = HttpMethod.GET)
 public class FriendRequestsInquiry implements Handler<RoutingContext> {
 	// 친구요청 목록 조회
@@ -28,12 +28,12 @@ public class FriendRequestsInquiry implements Handler<RoutingContext> {
 		
 		String clientId = UserManager.getEncryptedIdFromSession(ctx);
 		
-		ResultSet requestSet = DataBase.executeQuery("SELECT src_id, date FROM friend_requests WHERE dst_id=?", clientId);
+		ResultSet requestSet = MySQL.executeQuery("SELECT src_id, date FROM friend_requests WHERE dst_id=?", clientId);
 		// 자신을 타겟으로 한 친구 요청 목록
 		
 		try {
 			while(requestSet.next()) {
-				ResultSet requesterSet = DataBase.executeQuery("SELECT * FROM account WHERE id=?", requestSet.getString("src_id"));
+				ResultSet requesterSet = MySQL.executeQuery("SELECT * FROM account WHERE id=?", requestSet.getString("src_id"));
 				// 요청자의 id와 요청 날짜
 				JSONObject requester = new JSONObject();
 				requester.put("requester_id", requestSet.getString("src_id"));

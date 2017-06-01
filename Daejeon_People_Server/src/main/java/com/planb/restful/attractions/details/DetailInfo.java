@@ -7,18 +7,18 @@ import java.util.regex.Pattern;
 
 import org.json.JSONObject;
 
-import com.planb.support.routing.Function;
-import com.planb.support.routing.RESTful;
+import com.planb.support.routing.API;
+import com.planb.support.routing.REST;
 import com.planb.support.routing.Route;
 import com.planb.support.user.UserManager;
-import com.planb.support.utilities.DataBase;
+import com.planb.support.utilities.MySQL;
 
 import io.vertx.core.Handler;
 import io.vertx.core.http.HttpMethod;
 import io.vertx.ext.web.RoutingContext;
 
-@Function(functionCategory = "여행지 정보", summary = "여행지 세부 정보 조회")
-@RESTful(requestBody = "content_id : int", responseBody = "content_id : int, image : String, title : String, category : String, address : String, mapx : double, mapy : double, wish : boolean, additional_image : boolean, 추가 정보는 여행지 세부 정보 기준표 참고 바람.", successCode = 201)
+@API(functionCategory = "여행지 정보", summary = "여행지 세부 정보 조회")
+@REST(requestBody = "content_id : int", responseBody = "content_id : int, image : String, title : String, category : String, address : String, mapx : double, mapy : double, wish : boolean, additional_image : boolean, 추가 정보는 여행지 세부 정보 기준표 참고 바람.", successCode = 201)
 @Route(uri = "/attractions/detail", method = HttpMethod.GET)
 public class DetailInfo implements Handler<RoutingContext> {
 	@Override
@@ -28,7 +28,7 @@ public class DetailInfo implements Handler<RoutingContext> {
 		String clientId = UserManager.getEncryptedIdFromSession(ctx);
 		int contentId = Integer.parseInt(ctx.request().getParam("content_id"));
 		
-		ResultSet contentInfo = DataBase.executeQuery("SELECT * FROM attractions_basic WHERE content_id=?", contentId);
+		ResultSet contentInfo = MySQL.executeQuery("SELECT * FROM attractions_basic WHERE content_id=?", contentId);
 		int contentTypeId = 0;
 		try {
 			contentInfo.next();
@@ -53,7 +53,7 @@ public class DetailInfo implements Handler<RoutingContext> {
 			switch(contentTypeId) {
 			case 12:
 				// 관광지
-				contentDetailInfo = DataBase.executeQuery(baseQuery, "tourrism_detail_info", contentId);
+				contentDetailInfo = MySQL.executeQuery(baseQuery, "tourrism_detail_info", contentId);
 				contentDetailInfo.next();
 				response.put("credit_card", contentDetailInfo.getString("credit_card") == null ? "없음" : contentDetailInfo.getString("credit_card"));
 				response.put("baby_carriage", contentDetailInfo.getString("baby_carriage") == null ? "없음" : contentDetailInfo.getString("baby_carriage"));
@@ -64,7 +64,7 @@ public class DetailInfo implements Handler<RoutingContext> {
 				break;
 			case 14:
 				// 문화시설
-				contentDetailInfo = DataBase.executeQuery(baseQuery, "cultural_facility_detail_info", contentId);
+				contentDetailInfo = MySQL.executeQuery(baseQuery, "cultural_facility_detail_info", contentId);
 				contentDetailInfo.next();
 				response.put("credit_card", contentDetailInfo.getString("credit_card") == null ? "없음" : contentDetailInfo.getString("credit_card"));
 				response.put("baby_carriage", contentDetailInfo.getString("baby_carriage") == null ? "없음" : contentDetailInfo.getString("baby_carriage"));
@@ -77,11 +77,11 @@ public class DetailInfo implements Handler<RoutingContext> {
 				break;
 			case 15:
 				// 축제, 공연, 행사
-				contentCommonInfo = DataBase.executeQuery(baseQuery, "attractions_detail_common", contentId);
+				contentCommonInfo = MySQL.executeQuery(baseQuery, "attractions_detail_common", contentId);
 				contentCommonInfo.next();
 				response.put("info_center", extractPhoneNumber(contentCommonInfo.getString("tel")));
 
-				contentDetailInfo = DataBase.executeQuery(baseQuery, "festival_detail_info", contentId);
+				contentDetailInfo = MySQL.executeQuery(baseQuery, "festival_detail_info", contentId);
 				contentDetailInfo.next();
 				response.put("start_date", contentDetailInfo.getString("start_date"));
 				response.put("end_date", contentDetailInfo.getString("end_date"));
@@ -90,14 +90,14 @@ public class DetailInfo implements Handler<RoutingContext> {
 				break;
 			case 25:
 				// 여행코스
-				contentDetailInfo = DataBase.executeQuery(baseQuery, "tour_course_detail_info", contentId);
+				contentDetailInfo = MySQL.executeQuery(baseQuery, "tour_course_detail_info", contentId);
 				contentDetailInfo.next();
 				response.put("spend_time", contentDetailInfo.getString("spend_time"));
 				response.put("distance", contentDetailInfo.getString("distance"));
 				break;
 			case 28:
 				// 레포츠
-				contentDetailInfo = DataBase.executeQuery(baseQuery, "leports_detail_info", contentId);
+				contentDetailInfo = MySQL.executeQuery(baseQuery, "leports_detail_info", contentId);
 				contentDetailInfo.next();
 				response.put("credit_card", contentDetailInfo.getString("credit_card") == null ? "없음" : contentDetailInfo.getString("credit_card"));
 				response.put("baby_carriage", contentDetailInfo.getString("baby_carriage") == null ? "없음" : contentDetailInfo.getString("baby_carriage"));
@@ -109,7 +109,7 @@ public class DetailInfo implements Handler<RoutingContext> {
 				break;
 			case 32:
 				// 숙박
-				contentDetailInfo = DataBase.executeQuery(baseQuery, "accommodation_detail_info", contentId);
+				contentDetailInfo = MySQL.executeQuery(baseQuery, "accommodation_detail_info", contentId);
 				contentDetailInfo.next();
 				response.put("info_center", extractPhoneNumber(contentDetailInfo.getString("info_center")));
 				response.put("checkin_time", contentDetailInfo.getString("checkin_time"));
@@ -120,7 +120,7 @@ public class DetailInfo implements Handler<RoutingContext> {
 				break;
 			case 38:
 				// 쇼핑
-				contentDetailInfo = DataBase.executeQuery("SELECT * FROM shopping_detail_info WHERE content_id=", contentId);
+				contentDetailInfo = MySQL.executeQuery("SELECT * FROM shopping_detail_info WHERE content_id=", contentId);
 				contentDetailInfo.next();
 				response.put("credit_card", contentDetailInfo.getString("credit_card") == null ? "없음" : contentDetailInfo.getString("credit_card"));
 				response.put("baby_carriage", contentDetailInfo.getString("baby_carriage") == null ? "없음" : contentDetailInfo.getString("baby_carriage"));
@@ -131,7 +131,7 @@ public class DetailInfo implements Handler<RoutingContext> {
 				break;
 			case 39:
 				// 식당
-				contentDetailInfo = DataBase.executeQuery(baseQuery, "restaurant_detail_info", contentId);
+				contentDetailInfo = MySQL.executeQuery(baseQuery, "restaurant_detail_info", contentId);
 				contentDetailInfo.next();
 				response.put("credit_card", contentDetailInfo.getString("credit_card") == null ? "없음" : contentDetailInfo.getString("credit_card"));
 				response.put("info_center", extractPhoneNumber(contentDetailInfo.getString("info_center")));
@@ -142,12 +142,12 @@ public class DetailInfo implements Handler<RoutingContext> {
 			default:
 				break;
 		}
-		wishInfo = DataBase.executeQuery("SELECT * FROM wish_list WHERE client_id=? AND content_id=?", clientId, contentId);
+		wishInfo = MySQL.executeQuery("SELECT * FROM wish_list WHERE client_id=? AND content_id=?", clientId, contentId);
 		if(wishInfo.next()) {
 			response.put("wish", true);
 		}
 		
-		contentImage = DataBase.executeQuery("SELECT * FROM attractions_images WHERE content_id=?", contentId);
+		contentImage = MySQL.executeQuery("SELECT * FROM attractions_images WHERE content_id=?", contentId);
 		int count = 0;
 		if(contentImage.next()) {
 			response.put("additional_image", true);

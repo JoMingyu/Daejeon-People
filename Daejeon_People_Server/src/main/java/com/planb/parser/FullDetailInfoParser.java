@@ -11,21 +11,21 @@ import org.json.JSONObject;
 
 import com.planb.parser.support.HttpClientForParser;
 import com.planb.parser.support.Params;
-import com.planb.support.utilities.DataBase;
+import com.planb.support.utilities.MySQL;
 import com.planb.support.utilities.Log;
 
 public class FullDetailInfoParser {
 	private static String URL = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/detailIntro" + Params.defaultAppendParams;
 	
 	private static void clearTables() {
-		DataBase.executeUpdate("DELETE FROM accommodation_detail_info");
-		DataBase.executeUpdate("DELETE FROM cultural_facility_detail_info");
-		DataBase.executeUpdate("DELETE FROM festival_detail_info");
-		DataBase.executeUpdate("DELETE FROM leports_detail_info");
-		DataBase.executeUpdate("DELETE FROM restaurant_detail_info");
-		DataBase.executeUpdate("DELETE FROM shopping_detail_info");
-		DataBase.executeUpdate("DELETE FROM tour_course_detail_info");
-		DataBase.executeUpdate("DELETE FROM tourrism_detail_info");
+		MySQL.executeUpdate("DELETE FROM accommodation_detail_info");
+		MySQL.executeUpdate("DELETE FROM cultural_facility_detail_info");
+		MySQL.executeUpdate("DELETE FROM festival_detail_info");
+		MySQL.executeUpdate("DELETE FROM leports_detail_info");
+		MySQL.executeUpdate("DELETE FROM restaurant_detail_info");
+		MySQL.executeUpdate("DELETE FROM shopping_detail_info");
+		MySQL.executeUpdate("DELETE FROM tour_course_detail_info");
+		MySQL.executeUpdate("DELETE FROM tourrism_detail_info");
 	}
 	
 	public static void parse() {
@@ -38,7 +38,7 @@ public class FullDetailInfoParser {
 		
 		clearTables();
 		
-		ResultSet rs = DataBase.executeQuery("SELECT * FROM attractions_basic");
+		ResultSet rs = MySQL.executeQuery("SELECT * FROM attractions_basic");
 		Map<Integer, Integer> contentInfoMap = new HashMap<Integer, Integer>();
 		Pattern p = Pattern.compile("\\d+");
 		
@@ -104,7 +104,7 @@ public class FullDetailInfoParser {
 				String useTime = item.has("usetime") ? item.getString("usetime") : null;
 				// 이용시간
 
-				DataBase.executeUpdate("INSERT INTO tourrism_detail_info VALUES(", contentId, ", '", accomCount, "', '", babyCarriage, "', '", creditCard, "', '", pet, "', '", ageRange, "', '", guide, "', ", culturalHeritage, ", ", naturalHeritage, ", ", archivalHeritage, ", '", infoCenter, "', '", openDate, "', '", restDate, "', '", parking, "', '", useSeason, "', '", useTime, "')");
+				MySQL.executeUpdate("INSERT INTO tourrism_detail_info VALUES(", contentId, ", '", accomCount, "', '", babyCarriage, "', '", creditCard, "', '", pet, "', '", ageRange, "', '", guide, "', ", culturalHeritage, ", ", naturalHeritage, ", ", archivalHeritage, ", '", infoCenter, "', '", openDate, "', '", restDate, "', '", parking, "', '", useSeason, "', '", useTime, "')");
 			} else if(contentTypeId == 14) {
 				// 문화시설
 				
@@ -150,7 +150,7 @@ public class FullDetailInfoParser {
 				String spendTime = item.has("spendtime") ? item.getString("spendtime") : null;
 				// 관람 소요시간
 				
-				DataBase.executeUpdate("INSERT INTO cultural_facility_detail_info VALUES(", contentId, ", '", accomCount, "', '", babyCarriage, "', '", creditCard, "', '", pet, "', '", infoCenter, "', '", parking, "', '", parkingFee, "', '", restDate, "', '", useFee, "', '", useTime, "', '", scale, "', '", spendTime, "')");
+				MySQL.executeUpdate("INSERT INTO cultural_facility_detail_info VALUES(", contentId, ", '", accomCount, "', '", babyCarriage, "', '", creditCard, "', '", pet, "', '", infoCenter, "', '", parking, "', '", parkingFee, "', '", restDate, "', '", useFee, "', '", useTime, "', '", scale, "', '", spendTime, "')");
 			} else if(contentTypeId == 15) {
 				// 축제, 공연, 행사
 				
@@ -201,7 +201,7 @@ public class FullDetailInfoParser {
 				String useFee = item.has("usetimefestival") ? item.getString("usetimefestival") : null;
 				// 이용요금
 				
-				DataBase.executeUpdate("INSERT INTO festival_detail_info VALUES(", contentId, ", '", ageLimit, "', '", reservationPlace, "', '", startDate, "', '", endDate, "', '", homepage, "', '", place, "', '", placeInfo, "', '", spendTime, "', '", sponsors[0], "', '", sponsors[1], "', '", subEvent, "', '", useFee, "')");
+				MySQL.executeUpdate("INSERT INTO festival_detail_info VALUES(", contentId, ", '", ageLimit, "', '", reservationPlace, "', '", startDate, "', '", endDate, "', '", homepage, "', '", place, "', '", placeInfo, "', '", spendTime, "', '", sponsors[0], "', '", sponsors[1], "', '", subEvent, "', '", useFee, "')");
 			} else if(contentTypeId == 25) {
 				// 여행코스
 				
@@ -229,7 +229,7 @@ public class FullDetailInfoParser {
 				 * 현재 모두 null
 				 */
 				
-				DataBase.executeUpdate("INSERT INTO tour_course_detail_info VALUES(", contentId, ", '", distance, "', '", spendTime, "')");
+				MySQL.executeUpdate("INSERT INTO tour_course_detail_info VALUES(", contentId, ", '", distance, "', '", spendTime, "')");
 			} else if(contentTypeId == 28) {
 				// 레포츠
 				
@@ -278,7 +278,7 @@ public class FullDetailInfoParser {
 				String useTime = item.has("usetimeleports") ? item.getString("usetimeleports") : null;
 				// 이용시간
 				
-				DataBase.executeUpdate("INSERT INTO leports_detail_info VALUES(", contentId, ", '", accomCount, "', '", babyCarriage, "', '", creditCard, "', '", pet, "', '", ageRange, "', '", infoCenter, "', '", parking, "', '", parkingFee, "', '", reservation, "', '", restDate, "', '", scale, "', '", useFee, "', '", useTime, "')");
+				MySQL.executeUpdate("INSERT INTO leports_detail_info VALUES(", contentId, ", '", accomCount, "', '", babyCarriage, "', '", creditCard, "', '", pet, "', '", ageRange, "', '", infoCenter, "', '", parking, "', '", parkingFee, "', '", reservation, "', '", restDate, "', '", scale, "', '", useFee, "', '", useTime, "')");
 			} else if(contentTypeId == 32) {
 				// 숙박
 				
@@ -396,7 +396,7 @@ public class FullDetailInfoParser {
 				String scale = item.has("scalelodging") ? item.getString("scalelodging") : null;
 				// 규모
 				
-				DataBase.executeUpdate("INSERT INTO accommodation_detail_info VALUES(", contentId, ", '", accomCount, "', ", benikia, ", ", goodStay, ", ", koreanHouse, ", ", barbecue, ", ", beauty, ", ", beverage, ", ", bicycle, ", ", campfire, ", '", cookInRoom, "', ", fitness, ", ", karaoke, ", ", publicBath, ", ", publicPc, ", ", sauna, ", ", seminar, ", ", sports, ", '", subFacility, "', '", checkinTime, "', '", checkoutTime, "', '", foodPlace, "', '", infoCenter, "', '", parking, "', '", pickup, "', ", roomCount, ", '", reservation, "', '", reservationUrl, "', '", roomType, "', '", scale, "')");
+				MySQL.executeUpdate("INSERT INTO accommodation_detail_info VALUES(", contentId, ", '", accomCount, "', ", benikia, ", ", goodStay, ", ", koreanHouse, ", ", barbecue, ", ", beauty, ", ", beverage, ", ", bicycle, ", ", campfire, ", '", cookInRoom, "', ", fitness, ", ", karaoke, ", ", publicBath, ", ", publicPc, ", ", sauna, ", ", seminar, ", ", sports, ", '", subFacility, "', '", checkinTime, "', '", checkoutTime, "', '", foodPlace, "', '", infoCenter, "', '", parking, "', '", pickup, "', ", roomCount, ", '", reservation, "', '", reservationUrl, "', '", roomType, "', '", scale, "')");
 			} else if(contentTypeId == 38) {
 				// 쇼핑
 				
@@ -448,7 +448,7 @@ public class FullDetailInfoParser {
 				String scale = item.has("scaleshopping") ? item.getString("scaleshopping") : null;
 				// 규모
 				
-				DataBase.executeUpdate("INSERT INTO shopping_detail_info VALUES(", contentId, ", '", babyCarriage, "', '", creditCard, "', '", pet, "', '", guide, "', '", fairDay, "', '", infoCenter, "', '", openDate, "', '", useTime, "', '", parking, "', '", restDate, "', '", restroom, "', '", saleItem, "', '", scale, "')");
+				MySQL.executeUpdate("INSERT INTO shopping_detail_info VALUES(", contentId, ", '", babyCarriage, "', '", creditCard, "', '", pet, "', '", guide, "', '", fairDay, "', '", infoCenter, "', '", openDate, "', '", useTime, "', '", parking, "', '", restDate, "', '", restroom, "', '", saleItem, "', '", scale, "')");
 			} else if(contentTypeId == 39) {
 				// 음식
 				
@@ -501,7 +501,7 @@ public class FullDetailInfoParser {
 				String treatMenu = item.has("treatmenu") ? item.getString("treatmenu") : null;
 				// 취급 메뉴
 				
-				DataBase.executeUpdate("INSERT INTO restaurant_detail_info VALUES(", contentId, ", '", creditCard, "', '", repMenu, "', '", infoCenter, "', ", kidsFacility, ", '", openDate, "', '", useTime, "', '", packing, "', '", parking, "', '", reservation, "', '", restDate, "', '", scale, "', '", seat, "', '", smoking, "', '", treatMenu, "')");
+				MySQL.executeUpdate("INSERT INTO restaurant_detail_info VALUES(", contentId, ", '", creditCard, "', '", repMenu, "', '", infoCenter, "', ", kidsFacility, ", '", openDate, "', '", useTime, "', '", packing, "', '", parking, "', '", reservation, "', '", restDate, "', '", scale, "', '", seat, "', '", smoking, "', '", treatMenu, "')");
 			}
 		}
 		Log.I("Detail Info Parse Success.");

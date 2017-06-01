@@ -8,7 +8,7 @@ import java.lang.annotation.Target;
 
 @Retention(RUNTIME)
 @Target(TYPE)
-public @interface Function {
+public @interface API {
 	String functionCategory();
 	String summary();
 }

@@ -7,7 +7,7 @@ import org.json.JSONObject;
 
 import com.planb.parser.support.HttpClientForParser;
 import com.planb.parser.support.Params;
-import com.planb.support.utilities.DataBase;
+import com.planb.support.utilities.MySQL;
 import com.planb.support.utilities.Log;
 
 public class DetailCommonParser {
@@ -18,9 +18,9 @@ public class DetailCommonParser {
 	private static String URL = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/detailCommon" + Params.defaultAppendParams + "&defaultYN=Y&overviewYN=Y";
 	
 	public static void parse() {
-		DataBase.executeUpdate("DELETE FROM attractions_detail_common");
+		MySQL.executeUpdate("DELETE FROM attractions_detail_common");
 		
-		ResultSet rs = DataBase.executeQuery("SELECT * FROM attractions_basic");
+		ResultSet rs = MySQL.executeQuery("SELECT * FROM attractions_basic");
 		
 		try {
 			while(rs.next()) {
@@ -41,7 +41,7 @@ public class DetailCommonParser {
 				String tel = item.has("tel") ? item.getString("tel") : null;
 				// 전화번호
 				
-				DataBase.executeUpdate("INSERT INTO attractions_detail_common VALUES(?, ?, ?, ?, ?, ?)", contentId, contentTypeId, homepage, overview, telName, tel);
+				MySQL.executeUpdate("INSERT INTO attractions_detail_common VALUES(?, ?, ?, ?, ?, ?)", contentId, contentTypeId, homepage, overview, telName, tel);
 			}
 			
 			Log.I("Detail Common Parse Success.");

@@ -8,7 +8,7 @@ import org.json.JSONObject;
 
 import com.planb.parser.support.HttpClientForParser;
 import com.planb.parser.support.Params;
-import com.planb.support.utilities.DataBase;
+import com.planb.support.utilities.MySQL;
 import com.planb.support.utilities.Log;
 
 public class TourListBasicParser {
@@ -74,12 +74,12 @@ public class TourListBasicParser {
 			String imageBigUrl = item.has("firstimage") ? item.getString("firstimage") : null;
 			// 대표이미지 큰 사이즈
 			
-			ResultSet rs = DataBase.executeQuery("SELECT * FROM attractions_basic WHERE content_id=?", contentId);
+			ResultSet rs = MySQL.executeQuery("SELECT * FROM attractions_basic WHERE content_id=?", contentId);
 			try {
 				if(rs.next()) {
-					DataBase.executeUpdate("UPDATE attractions_basic SET title=?, cat1=?, cat2=?, cat3=?, mapx=?, mapy=?, views_count=?, image_mini_url=?, image_big_url=? WHERE content_id=?", title, cat1, cat2, cat3, mapX, mapY, readCount, imageMiniUrl, imageBigUrl, contentId);
+					MySQL.executeUpdate("UPDATE attractions_basic SET title=?, cat1=?, cat2=?, cat3=?, mapx=?, mapy=?, views_count=?, image_mini_url=?, image_big_url=? WHERE content_id=?", title, cat1, cat2, cat3, mapX, mapY, readCount, imageMiniUrl, imageBigUrl, contentId);
 				} else {
-					DataBase.executeUpdate("INSERT INTO attractions_basic VALUES(?, ?, 0, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", contentId, contentTypeId, title, cat1, cat2, cat3, address, mapX, mapY, readCount, imageMiniUrl, imageBigUrl);
+					MySQL.executeUpdate("INSERT INTO attractions_basic VALUES(?, ?, 0, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", contentId, contentTypeId, title, cat1, cat2, cat3, address, mapX, mapY, readCount, imageMiniUrl, imageBigUrl);
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();

@@ -6,18 +6,18 @@ import java.util.UUID;
 
 import org.json.JSONObject;
 
-import com.planb.support.routing.Function;
-import com.planb.support.routing.RESTful;
+import com.planb.support.routing.API;
+import com.planb.support.routing.REST;
 import com.planb.support.routing.Route;
 import com.planb.support.user.UserManager;
-import com.planb.support.utilities.DataBase;
+import com.planb.support.utilities.MySQL;
 
 import io.vertx.core.Handler;
 import io.vertx.core.http.HttpMethod;
 import io.vertx.ext.web.RoutingContext;
 
-@Function(functionCategory = "여행 모드", summary = "여행 모드(채팅방) 생성 - 채팅방 참가 포함")
-@RESTful(requestBody = "title : String", responseBody = "topic : String", successCode = 201)
+@API(functionCategory = "여행 모드", summary = "여행 모드(채팅방) 생성 - 채팅방 참가 포함")
+@REST(requestBody = "title : String", responseBody = "topic : String", successCode = 201)
 @Route(uri = "/travel", method = HttpMethod.POST)
 public class CreateTravel implements Handler<RoutingContext> {
 	// 여행 개설
@@ -32,11 +32,11 @@ public class CreateTravel implements Handler<RoutingContext> {
 		String topic;
 		while(true) {
 			topic = UUID.randomUUID().toString();
-			ResultSet rs = DataBase.executeQuery("SELECT * FROM travels WHERE topic=?", topic);
+			ResultSet rs = MySQL.executeQuery("SELECT * FROM travels WHERE topic=?", topic);
 			try {
 				if(!rs.next()) {
 					response.put("topic", topic);
-					DataBase.executeUpdate("INSERT INTO travels VALUES(?, ?, ?)", topic, title, clientId);
+					MySQL.executeUpdate("INSERT INTO travels VALUES(?, ?, ?)", topic, title, clientId);
 					break;
 				}
 			} catch (SQLException e) {

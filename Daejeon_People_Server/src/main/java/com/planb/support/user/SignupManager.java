@@ -6,7 +6,7 @@ import java.util.Random;
 
 import com.planb.support.crypto.AES256;
 import com.planb.support.crypto.SHA256;
-import com.planb.support.utilities.DataBase;
+import com.planb.support.utilities.MySQL;
 import com.planb.support.utilities.Mail;
 import com.planb.support.utilities.MailSubjects;
 
@@ -26,7 +26,7 @@ public class SignupManager {
 		 */
 		String encryptedPhoneNumber = AES256.encrypt(phoneNumber);
 		
-		rs = DataBase.executeQuery("SELECT * FROM account WHERE phone_number=?", encryptedPhoneNumber);
+		rs = MySQL.executeQuery("SELECT * FROM account WHERE phone_number=?", encryptedPhoneNumber);
 		try {
 			if(rs.next()) {
 				return true;
@@ -50,8 +50,8 @@ public class SignupManager {
 		String code = String.format("%06d", random.nextInt(1000000));
 		// 인증코드 생성
 		
-		DataBase.executeUpdate("DELETE FROM phone_verify_codes WHERE phone_number=?", encryptedPhoneNumber);
-		DataBase.executeUpdate("INSERT INTO phone_verify_codes VALUES(?, ?)", encryptedPhoneNumber, code);
+		MySQL.executeUpdate("DELETE FROM phone_verify_codes WHERE phone_number=?", encryptedPhoneNumber);
+		MySQL.executeUpdate("INSERT INTO phone_verify_codes VALUES(?, ?)", encryptedPhoneNumber, code);
 		// 인증코드 insert or refresh
 		
 		// 인증코드 전송(보류)
@@ -64,10 +64,10 @@ public class SignupManager {
 		 */
 		String encryptedPhoneNumber = AES256.encrypt(phoneNumber);
 
-		rs = DataBase.executeQuery("SELECT * FROM phone_verify_codes WHERE phone_number=? AND code=?", encryptedPhoneNumber, code);
+		rs = MySQL.executeQuery("SELECT * FROM phone_verify_codes WHERE phone_number=? AND code=?", encryptedPhoneNumber, code);
 		try {
 			if (rs.next()) {
-				DataBase.executeUpdate("DELETE FROM phone_verify_codes WHERE phone_number=? AND code=?", encryptedPhoneNumber, code);
+				MySQL.executeUpdate("DELETE FROM phone_verify_codes WHERE phone_number=? AND code=?", encryptedPhoneNumber, code);
 				return true;
 			} else {
 				return false;
@@ -86,7 +86,7 @@ public class SignupManager {
 		 */
 		String encryptedEmail = AES256.encrypt(email);
 
-		rs = DataBase.executeQuery("SELECT * FROM account WHERE email=?", encryptedEmail);
+		rs = MySQL.executeQuery("SELECT * FROM account WHERE email=?", encryptedEmail);
 		try {
 			if (rs.next()) {
 				return true;
@@ -110,8 +110,8 @@ public class SignupManager {
 		String code = String.format("%06d", random.nextInt(1000000));
 		// 이메일 인증코드 생성
 		
-		DataBase.executeUpdate("DELETE FROM email_verify_codes WHERE email=?", encryptedEmail);
-		DataBase.executeUpdate("INSERT INTO email_verify_codes VALUES(?, ?)", encryptedEmail, code);
+		MySQL.executeUpdate("DELETE FROM email_verify_codes WHERE email=?", encryptedEmail);
+		MySQL.executeUpdate("INSERT INTO email_verify_codes VALUES(?, ?)", encryptedEmail, code);
 		// 인증코드 insert or refresh
 		
 		Mail.sendMail(email, MailSubjects.VERIFY_SUBJECT.getName(), "코드 : " + code);
@@ -125,10 +125,10 @@ public class SignupManager {
 		 */
 		String encryptedEmail = AES256.encrypt(email);
 
-		rs = DataBase.executeQuery("SELECT * FROM email_verify_codes WHERE email=? AND code=?", encryptedEmail, code);
+		rs = MySQL.executeQuery("SELECT * FROM email_verify_codes WHERE email=? AND code=?", encryptedEmail, code);
 		try {
 			if (rs.next()) {
-				DataBase.executeUpdate("DELETE FROM email_verify_codes WHERE email=? AND code=?", encryptedEmail, code);
+				MySQL.executeUpdate("DELETE FROM email_verify_codes WHERE email=? AND code=?", encryptedEmail, code);
 				return true;
 			} else {
 				return false;
@@ -146,7 +146,7 @@ public class SignupManager {
 		 */
 		String encryptedId = AES256.encrypt(id);
 
-		rs = DataBase.executeQuery("SELECT * FROM account WHERE id='", encryptedId, "'");
+		rs = MySQL.executeQuery("SELECT * FROM account WHERE id='", encryptedId, "'");
 		try {
 			if (rs.next()) {
 				return true;
@@ -174,9 +174,9 @@ public class SignupManager {
 		String encryptedRegistrationId = AES256.encrypt(registrationId);
 		
 		if(encryptedPhoneNumber == null) {
-			DataBase.executeUpdate("INSERT INTO account(id, password, email, phone_number, name, register_date, registration_id) VALUES(?, ?, ?, null, ?, NOW(), ?)", encryptedId, encryptedPassword, encryptedEmail, encryptedName, encryptedRegistrationId);
+			MySQL.executeUpdate("INSERT INTO account(id, password, email, phone_number, name, register_date, registration_id) VALUES(?, ?, ?, null, ?, NOW(), ?)", encryptedId, encryptedPassword, encryptedEmail, encryptedName, encryptedRegistrationId);
 		} else {
-			DataBase.executeUpdate("INSERT INTO account(id, password, email, phone_number, name, register_date, registration_id) VALUES(?, ?, ?, ?, ?, now(), ?)", encryptedId, encryptedPassword, encryptedEmail, encryptedPhoneNumber, encryptedName, encryptedRegistrationId);
+			MySQL.executeUpdate("INSERT INTO account(id, password, email, phone_number, name, register_date, registration_id) VALUES(?, ?, ?, ?, ?, now(), ?)", encryptedId, encryptedPassword, encryptedEmail, encryptedPhoneNumber, encryptedName, encryptedRegistrationId);
 		}
 		
 		Mail.sendMail(email, MailSubjects.WELCOME_SUBJECT.getName(), "환영환영");

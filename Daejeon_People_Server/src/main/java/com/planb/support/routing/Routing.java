@@ -36,10 +36,19 @@ public class Routing {
 					Log.R(routeAnno.method() + " " + routeAnno.uri());
 					// 생성자가 public이 아니면 리플렉션으로 접근 불가능(IllegalStateException)
 					
-					if(c.isAnnotationPresent(Function.class) && c.isAnnotationPresent(RESTful.class)) {
-						Function functionAnno = c.getAnnotation(Function.class);
-						RESTful restfulAnno = c.getAnnotation(RESTful.class);
-						resourceList.add(new RESTResource(functionAnno.functionCategory(), functionAnno.summary(), routeAnno.method().name(), routeAnno.uri(), restfulAnno.requestHeaders(), restfulAnno.params(), restfulAnno.requestBody(), restfulAnno.successCode(), restfulAnno.responseHeaders(), restfulAnno.responseBody(), restfulAnno.failureCode()));
+					if(c.isAnnotationPresent(API.class) && c.isAnnotationPresent(REST.class)) {
+						// 두 어노테이션이 모두 있는 경우
+						API api = c.getAnnotation(API.class);
+						REST rest = c.getAnnotation(REST.class);
+						resourceList.add(new RESTResource(api.functionCategory(), api.summary(), routeAnno.method().name(), routeAnno.uri(), rest.requestHeaders(), rest.params(), rest.requestBody(), rest.successCode(), rest.responseHeaders(), rest.responseBody(), rest.failureCode()));
+					} else if(c.isAnnotationPresent(API.class) && !c.isAnnotationPresent(REST.class)) {
+						// API 어노테이션만 있는 경우
+						API api = c.getAnnotation(API.class);
+						resourceList.add(new RESTResource(api.functionCategory(), api.summary(), routeAnno.method().name(), routeAnno.uri(), "미정", "미정", "미정", 0, "미정", "미정", 0));
+					} else if(!c.isAnnotationPresent(API.class) && c.isAnnotationPresent(REST.class)) {
+						// REST 어노테이션만 있는 경우
+						REST rest = c.getAnnotation(REST.class);
+						resourceList.add(new RESTResource("미정", "미정", routeAnno.method().name(), routeAnno.uri(), rest.requestHeaders(), rest.params(), rest.requestBody(), rest.successCode(), rest.responseHeaders(), rest.responseBody(), rest.failureCode()));
 					} else {
 						resourceList.add(new RESTResource("미정", "미정", routeAnno.method().name(), routeAnno.uri(), "미정", "미정", "미정", 0, "미정", "미정", 0));
 					}

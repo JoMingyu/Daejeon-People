@@ -6,18 +6,18 @@ import java.sql.SQLException;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import com.planb.support.routing.Function;
-import com.planb.support.routing.RESTful;
+import com.planb.support.routing.API;
+import com.planb.support.routing.REST;
 import com.planb.support.routing.Route;
 import com.planb.support.user.UserManager;
-import com.planb.support.utilities.DataBase;
+import com.planb.support.utilities.MySQL;
 
 import io.vertx.core.Handler;
 import io.vertx.core.http.HttpMethod;
 import io.vertx.ext.web.RoutingContext;
 
-@Function(functionCategory = "여행 모드", summary = "활성화된 여행 리스트 조회")
-@RESTful(responseBody = "topic : String, title : String, (JSONArray)", successCode = 200, failureCode = 204)
+@API(functionCategory = "여행 모드", summary = "활성화된 여행 리스트 조회")
+@REST(responseBody = "topic : String, title : String, (JSONArray)", successCode = 200, failureCode = 204)
 @Route(uri = "/travel", method = HttpMethod.GET)
 public class TravelList implements Handler<RoutingContext> {
 	@Override
@@ -26,7 +26,7 @@ public class TravelList implements Handler<RoutingContext> {
 		
 		String clientId = UserManager.getEncryptedIdFromSession(ctx);
 		
-		ResultSet rs = DataBase.executeQuery("SELECT * FROM travels WHERE client_id=?", clientId);
+		ResultSet rs = MySQL.executeQuery("SELECT * FROM travels WHERE client_id=?", clientId);
 		try {
 			while(rs.next()) {
 				JSONObject travelRoom = new JSONObject();

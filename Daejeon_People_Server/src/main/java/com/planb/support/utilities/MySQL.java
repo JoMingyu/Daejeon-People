@@ -6,7 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class DataBase {
+public class MySQL {
 	private static Connection connection;
 	
 	private static final String URL = "jdbc:mysql://localhost:3306/daejeon_people";

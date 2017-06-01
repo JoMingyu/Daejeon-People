@@ -1,7 +1,7 @@
 package com.planb.restful.account.signup;
 
-import com.planb.support.routing.Function;
-import com.planb.support.routing.RESTful;
+import com.planb.support.routing.API;
+import com.planb.support.routing.REST;
 import com.planb.support.routing.Route;
 import com.planb.support.user.SignupManager;
 
@@ -9,8 +9,8 @@ import io.vertx.core.Handler;
 import io.vertx.core.http.HttpMethod;
 import io.vertx.ext.web.RoutingContext;
 
-@Function(functionCategory = "회원가입", summary = "이메일 중복 체크")
-@RESTful(requestBody = "email : String", successCode = 201, failureCode = 204)
+@API(functionCategory = "회원가입", summary = "이메일 중복 체크")
+@REST(requestBody = "email : String", successCode = 201, failureCode = 204)
 @Route(uri = "/signup/email/check", method = HttpMethod.POST)
 public class CheckEmailExist implements Handler<RoutingContext> {
 	@Override

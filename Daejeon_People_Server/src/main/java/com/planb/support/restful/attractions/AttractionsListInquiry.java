@@ -12,7 +12,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.planb.support.user.UserManager;
-import com.planb.support.utilities.DataBase;
+import com.planb.support.utilities.MySQL;
 
 import io.vertx.ext.web.RoutingContext;
 
@@ -30,11 +30,11 @@ public class AttractionsListInquiry {
 		switch(sortType) {
 		case 1:
 			// 조회순
-			rs = DataBase.executeQuery(query, "attractions_basic", "views_count DESC");
+			rs = MySQL.executeQuery(query, "attractions_basic", "views_count DESC");
 			break;
 		case 2:
 			// 위시리스트 많은 순
-			rs = DataBase.executeQuery(query, "attractions_basic", "wish_count DESC");
+			rs = MySQL.executeQuery(query, "attractions_basic", "wish_count DESC");
 			break;
 		case 3:
 			// 거리순
@@ -42,7 +42,7 @@ public class AttractionsListInquiry {
 			double y = Double.parseDouble(ctx.request().getParam("y"));
 			// 클라이언트 좌표값
 			
-			rs = DataBase.executeQuery("SELECT * FROM attractions_basic WHERE content_type_id=?", contentTypeId);
+			rs = MySQL.executeQuery("SELECT * FROM attractions_basic WHERE content_type_id=?", contentTypeId);
 			// contentTypeId에 해당하는 데이터 전체
 			
 			rs = distanceBasedInquiry(rs, page, x, y);
@@ -68,11 +68,11 @@ public class AttractionsListInquiry {
 		switch(sortType) {
 		case 1:
 			// 조회순
-			rs = DataBase.executeQuery(query, "attractions_basic", "views_count DESC");
+			rs = MySQL.executeQuery(query, "attractions_basic", "views_count DESC");
 			break;
 		case 2:
 			// 위시리스트 많은 순
-			rs = DataBase.executeQuery(query, "attractions_basic", "wish_count DESC");
+			rs = MySQL.executeQuery(query, "attractions_basic", "wish_count DESC");
 			break;
 		case 3:
 			// 거리순
@@ -80,7 +80,7 @@ public class AttractionsListInquiry {
 			double y = Double.parseDouble(ctx.request().getParam("y"));
 			// 클라이언트 좌표값
 			
-			rs = DataBase.executeQuery("SELECT * FROM attractions_basic");
+			rs = MySQL.executeQuery("SELECT * FROM attractions_basic");
 			// 데이터 전체
 			
 			rs = distanceBasedInquiry(rs, page, x, y);
@@ -171,7 +171,7 @@ public class AttractionsListInquiry {
 			}
 		}
 		
-		return DataBase.executeQuery(query.toString());
+		return MySQL.executeQuery(query.toString());
 	}
 	
 	private static JSONArray extractDatas(RoutingContext ctx, ResultSet rs) {
@@ -183,7 +183,7 @@ public class AttractionsListInquiry {
 		try {
 			while(rs.next()) {
 				JSONObject attractionInfo = new JSONObject();
-				ResultSet wish = DataBase.executeQuery("SELECT * FROM wish_list WHERE client_id=? AND content_id=?", UserManager.getEncryptedIdFromSession(ctx), rs.getInt("content_id"));
+				ResultSet wish = MySQL.executeQuery("SELECT * FROM wish_list WHERE client_id=? AND content_id=?", UserManager.getEncryptedIdFromSession(ctx), rs.getInt("content_id"));
 				attractionInfo.put("wish", wish.next() ? true : false);
 				
 				attractionInfo.put("wish_count", rs.getInt("wish_count"));

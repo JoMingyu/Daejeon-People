@@ -7,18 +7,18 @@ import java.util.regex.Pattern;
 import org.json.JSONObject;
 
 import com.planb.support.crypto.AES256;
-import com.planb.support.routing.Function;
-import com.planb.support.routing.RESTful;
+import com.planb.support.routing.API;
+import com.planb.support.routing.REST;
 import com.planb.support.routing.Route;
 import com.planb.support.user.UserManager;
-import com.planb.support.utilities.DataBase;
+import com.planb.support.utilities.MySQL;
 
 import io.vertx.core.Handler;
 import io.vertx.core.http.HttpMethod;
 import io.vertx.ext.web.RoutingContext;
 
-@Function(functionCategory = "친구", summary = "사용자 검색")
-@RESTful(params = "keyword : String", responseBody = "email : String, name : String, id : String, friend_requested : boolean", successCode = 200, failureCode = 204)
+@API(functionCategory = "친구", summary = "사용자 검색")
+@REST(params = "keyword : String", responseBody = "email : String, name : String, id : String, friend_requested : boolean", successCode = 200, failureCode = 204)
 @Route(uri = "/find_user", method = HttpMethod.GET)
 public class FindUser implements Handler<RoutingContext> {
 	@Override
@@ -46,7 +46,7 @@ public class FindUser implements Handler<RoutingContext> {
 		
 		keyword = AES256.encrypt(keyword);
 		
-		ResultSet rs = DataBase.executeQuery("SELECT * FROM account WHERE email=? OR phone_number=?", keyword, keyword);
+		ResultSet rs = MySQL.executeQuery("SELECT * FROM account WHERE email=? OR phone_number=?", keyword, keyword);
 		try {
 			if(rs.next()) {
 				JSONObject response = new JSONObject();
@@ -55,7 +55,7 @@ public class FindUser implements Handler<RoutingContext> {
 				response.put("name", AES256.decrypt(rs.getString("name")));
 				response.put("id", rs.getString("id"));
 				
-				ResultSet friendSet = DataBase.executeQuery("SELECT * FROM friend_requests WHERE src_id=? AND dst_id=?", clientId, rs.getString("id"));
+				ResultSet friendSet = MySQL.executeQuery("SELECT * FROM friend_requests WHERE src_id=? AND dst_id=?", clientId, rs.getString("id"));
 				if(friendSet.next()) {
 					response.put("friend_requested", true);
 				} else {

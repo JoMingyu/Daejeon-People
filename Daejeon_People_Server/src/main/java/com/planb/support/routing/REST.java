@@ -8,7 +8,7 @@ import java.lang.annotation.Target;
 
 @Retention(RUNTIME)
 @Target(TYPE)
-public @interface RESTful {
+public @interface REST {
 	String requestHeaders() default "X";
 	String params() default "X";
 	String requestBody() default "X";
