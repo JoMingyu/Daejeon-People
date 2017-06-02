@@ -19,4 +19,19 @@ public class ChatManager {
 			return 0;
 		}
 	}
+	
+	public static int getLastIndexInRoom(String topic) {
+		ResultSet room = MySQL_Chat.executeQuery("SELECT idx FROM " + topic + " ORDER BY idx DESC limit 1");
+		
+		try {
+			if(room.next()) {
+				return room.getInt(1);
+			} else {
+				return 0;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return 0;
+		}
+	}
 }
