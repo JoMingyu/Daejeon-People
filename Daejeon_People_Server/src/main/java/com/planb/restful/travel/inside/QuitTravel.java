@@ -29,7 +29,7 @@ public class QuitTravel implements Handler<RoutingContext> {
 		ResultSet userInfoSet = MySQL.executeQuery("SELECT * FROM account WHERE id=?", clientId);
 		try {
 			userInfoSet.next();
-			MySQL_Chat.executeUpdate("INSERT INTO ?(remaining_views, type, name) VALUES(?, ?, ?)", topic, ChatManager.getUserCountInRoom(topic), "quit", userInfoSet.getString("name"));
+			MySQL_Chat.executeUpdate("INSERT INTO " + topic + "(remaining_views, type, name) VALUES(?, ?, ?)", ChatManager.getUserCountInRoom(topic), "quit", userInfoSet.getString("name"));
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

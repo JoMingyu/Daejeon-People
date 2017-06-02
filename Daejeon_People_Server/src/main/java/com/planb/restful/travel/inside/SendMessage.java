@@ -35,12 +35,12 @@ public class SendMessage implements Handler<RoutingContext> {
 			
 			if(type == "text") {
 				String content = ctx.request().getFormAttribute("content");
-				MySQL_Chat.executeQuery("INSERT INTO ?(remaining_views, type, name, content VALUES(?, ?, ?, ?)", topic, ChatManager.getUserCountInRoom(topic), "text", userInfoSet.getString("name"), content);
+				MySQL_Chat.executeQuery("INSERT INTO " + topic + "(remaining_views, type, name, content VALUES(?, ?, ?, ?)", ChatManager.getUserCountInRoom(topic), "text", userInfoSet.getString("name"), content);
 			} else if(type == "image") {
 				Set<FileUpload> uploads = ctx.fileUploads();
 				for(FileUpload upload : uploads) {
 					String identifier = createIdentifier(topic);
-					MySQL_Chat.executeQuery("INSERT INTO ?(remaining_views, type, name, content VALUES(?, ?, ?, ?)", topic, ChatManager.getUserCountInRoom(topic), "image", userInfoSet.getString("name"), identifier);
+					MySQL_Chat.executeQuery("INSERT INTO " + topic + "(remaining_views, type, name, content VALUES(?, ?, ?, ?)", topic, ChatManager.getUserCountInRoom(topic), "image", userInfoSet.getString("name"), identifier);
 					
 					File uploadedFile = new File(upload.uploadedFileName());
 					
@@ -61,7 +61,7 @@ public class SendMessage implements Handler<RoutingContext> {
 		
 		while(true) {
 			identifier = UUID.randomUUID().toString();
-			ResultSet rs = MySQL_Chat.executeQuery("SELECT * FROM ? WHERE content=?", identifier);
+			ResultSet rs = MySQL_Chat.executeQuery("SELECT * FROM " + topic + " WHERE content=?", identifier);
 			
 			try {
 				if(!rs.next()) {

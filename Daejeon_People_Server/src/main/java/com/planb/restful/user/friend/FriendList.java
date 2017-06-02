@@ -30,7 +30,7 @@ public class FriendList implements Handler<RoutingContext> {
 			while(friendSet.next()) {
 				String friendId = null;
 				
-				if(friendSet.getString("client_id1") != clientId) {
+				if(!friendSet.getString("client_id1").equals(clientId)) {
 					friendId = friendSet.getString("client_id1");
 				} else {
 					friendId = friendSet.getString("client_id2");

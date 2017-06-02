@@ -33,14 +33,18 @@ public class FriendRequestsInquiry implements Handler<RoutingContext> {
 		
 		try {
 			while(requestSet.next()) {
-				ResultSet requesterSet = MySQL.executeQuery("SELECT * FROM account WHERE id=?", requestSet.getString("src_id"));
+				ResultSet userInfoSet = MySQL.executeQuery("SELECT * FROM account WHERE id=?", requestSet.getString("src_id"));
 				// 요청자의 id와 요청 날짜
-				JSONObject requester = new JSONObject();
-				requester.put("requester_id", requestSet.getString("src_id"));
-				requester.put("date", requestSet.getString("date"));
-				requester.put("phone_number", AES256.decrypt(requesterSet.getString("phone_number")));
-				requester.put("email", AES256.decrypt(requesterSet.getString("email")));
-				requester.put("name", AES256.decrypt(requesterSet.getString("name")));
+				userInfoSet.next();
+				
+				JSONObject requesterInfo = new JSONObject();
+				requesterInfo.put("requester_id", requestSet.getString("src_id"));
+				requesterInfo.put("date", requestSet.getString("date"));
+				requesterInfo.put("phone_number", AES256.decrypt(userInfoSet.getString("phone_number")));
+				requesterInfo.put("email", AES256.decrypt(userInfoSet.getString("email")));
+				requesterInfo.put("name", AES256.decrypt(userInfoSet.getString("name")));
+				
+				response.put(requesterInfo);
 			}
 		} catch(SQLException e) {
 			e.printStackTrace();

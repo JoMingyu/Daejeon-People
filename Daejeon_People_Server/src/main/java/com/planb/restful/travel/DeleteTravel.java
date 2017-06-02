@@ -19,7 +19,7 @@ public class DeleteTravel implements Handler<RoutingContext> {
 		String topic = ctx.request().getParam("topic");
 		
 		MySQL.executeUpdate("DELETE * FROM travels WHERE topic=?", topic);
-		MySQL_Chat.executeUpdate("DROP TABLE ?", topic);
+		MySQL_Chat.executeUpdate("DROP TABLE " + topic);
 		
 		ctx.response().setStatusCode(200).end();
 		ctx.response().close();

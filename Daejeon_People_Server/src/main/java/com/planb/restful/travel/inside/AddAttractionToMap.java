@@ -48,7 +48,7 @@ public class AddAttractionToMap implements Handler<RoutingContext> {
 			double mapY = attractionInfoSet.getDouble("mapy");
 			
 			MySQL.executeUpdate("INSERT INTO travel_pins VALUES(?, ?, ?, ?, ?, ?)", topic, contentId, title, owner, mapX, mapY);
-			MySQL_Chat.executeUpdate("INSERT INTO ?(remaning_views, type, name, content) VALUES(?, ?, ?, ?)", topic, ChatManager.getUserCountInRoom(topic), "add_att", owner, title);
+			MySQL_Chat.executeUpdate("INSERT INTO" + topic + "(remaning_views, type, name, content) VALUES(?, ?, ?, ?)", ChatManager.getUserCountInRoom(topic), "add_att", owner, title);
 			
 			ctx.response().setStatusCode(201).end();
 			ctx.response().close();

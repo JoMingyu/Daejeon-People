@@ -22,7 +22,7 @@ public class RefuseFriend implements Handler<RoutingContext> {
 		String requesterId = ctx.request().getFormAttribute("requester_id");
 		// 친구 요청을 보낸 사람
 		
-		MySQL.executeUpdate("DELETE FROM friend_requests WHERE requesterId_id=? AND dst_id=?", requesterId, clientId);
+		MySQL.executeUpdate("DELETE FROM friend_requests WHERE src_id=? AND dst_id=?", requesterId, clientId);
 		
 		ctx.response().setStatusCode(201).end();
 		ctx.response().close();

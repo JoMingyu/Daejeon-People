@@ -22,7 +22,7 @@ public class AcceptFriend implements Handler<RoutingContext> {
 		String requesterId = ctx.request().getFormAttribute("requester_id");
 		// 친구 요청을 보낸 사람
 		
-		MySQL.executeUpdate("DELETE FROM friend_requests WHERE requesterId_id=? AND dst_id=?", requesterId, clientId);
+		MySQL.executeUpdate("DELETE FROM friend_requests WHERE src_id=? AND dst_id=?", requesterId, clientId);
 		MySQL.executeUpdate("INSERT INTO friend_list VALUES(?, ?)", clientId, requesterId);
 		// 친구 요청 수락에 대한 푸쉬 알림도 주자
 		

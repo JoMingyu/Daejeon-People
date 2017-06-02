@@ -18,7 +18,7 @@ import io.vertx.core.http.HttpMethod;
 import io.vertx.ext.web.RoutingContext;
 
 @API(functionCategory = "여행 모드", summary = "활성화된 여행 리스트 조회")
-@REST(responseBody = "topic : String, title : String, idx : int(새로운 메시지), (JSONArray)", successCode = 200, failureCode = 204)
+@REST(responseBody = "topic : String, title : String, idx : int(최종 메시지 인덱스), (JSONArray)", successCode = 200, failureCode = 204)
 @Route(uri = "/travel", method = HttpMethod.GET)
 public class TravelList implements Handler<RoutingContext> {
 	@Override
@@ -34,8 +34,12 @@ public class TravelList implements Handler<RoutingContext> {
 				travelRoom.put("topic", rs.getString("topic"));
 				travelRoom.put("title", rs.getString("title"));
 				
-				ResultSet chat = MySQL_Chat.executeQuery("SELECT idx FROM ? ORDER BY idx DESC limit 1", rs.getString("topic"));
-				travelRoom.put("idx", chat.getInt("idx"));
+				ResultSet chat = MySQL_Chat.executeQuery("SELECT idx FROM " + rs.getString("topic") + " ORDER BY idx DESC limit 1");
+				if(chat.next()) {
+					travelRoom.put("idx", chat.getInt("idx"));
+				} else {
+					travelRoom.put("idx", 0);
+				}
 				
 				response.put(travelRoom);
 			}

@@ -18,7 +18,7 @@ import io.vertx.core.http.HttpMethod;
 import io.vertx.ext.web.RoutingContext;
 
 @API(functionCategory = "친구", summary = "사용자 검색")
-@REST(params = "keyword : String", responseBody = "email : String, name : String, id : String, friend_requested : boolean", successCode = 200, failureCode = 204)
+@REST(params = "keyword : String", responseBody = "email : String, name : String, id : String, friend_requested : boolean, friend_recieved : boolean", successCode = 200, failureCode = 204)
 @Route(uri = "/find_user", method = HttpMethod.GET)
 public class FindUser implements Handler<RoutingContext> {
 	@Override
@@ -50,8 +50,8 @@ public class FindUser implements Handler<RoutingContext> {
 		try {
 			if(rs.next()) {
 				JSONObject response = new JSONObject();
-
-				if(rs.getString("id") == clientId) {
+				
+				if(rs.getString("id").equals(clientId)) {
 					ctx.response().setStatusCode(205).end();
 					ctx.response().close();
 					return;
@@ -66,6 +66,13 @@ public class FindUser implements Handler<RoutingContext> {
 					response.put("friend_requested", true);
 				} else {
 					response.put("friend_requested", false);
+				}
+				
+				friendSet = MySQL.executeQuery("SELECT * FROM friend_requests WHERE src_id=? AND dst_id=?", rs.getString("id"), clientId);
+				if(friendSet.next()) {
+					response.put("friend_recieved", true);
+				} else {
+					response.put("friend_recieved", false);
 				}
 				
 				ctx.response().setStatusCode(200);
