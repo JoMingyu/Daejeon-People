@@ -18,10 +18,7 @@ public class Signup implements Handler<RoutingContext> {
 		String id = ctx.request().getFormAttribute("id");
 		String password = ctx.request().getFormAttribute("password");
 		String email = ctx.request().getFormAttribute("email");
-		String tel = null;
-		if(ctx.request().formAttributes().contains("tel")) {
-			tel = ctx.request().getFormAttribute("tel");
-		}
+		String tel = ctx.request().formAttributes().contains("tel") ? ctx.request().getFormAttribute("tel") : null;
 		String name = ctx.request().getFormAttribute("name");
 		String registrationId = ctx.request().getFormAttribute("registration_id");
 

@@ -86,31 +86,21 @@ public class UserManager {
 	}
 	
 	private String getSessionFromId(String id) {
-		/*
-		 * DB에서 id로부터 암호화된 session id get
-		 * 로그인 시 현재 DB에 세션 키가 있는지 체크하기 위해 사용
-		 * 추후 하이브리드 서버로 활용 시 필요한 메소드
-		 */
-		String encryptedId = AES256.encrypt(id);
-		String encryptedSessionId = null;
-		
-		rs = MySQL.executeQuery("SELECT * FROM account WHERE id=?", encryptedId);
+		rs = MySQL.executeQuery("SELECT * FROM account WHERE id=?", AES256.encrypt(id));
 		try {
 			rs.next();
 			if(rs.getString("session_id") != null) {
-				encryptedSessionId = rs.getString("session_id");
+				return rs.getString("session_id");
+			} else {
+				return null;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+			return null;
 		}
-		
-		return encryptedSessionId;
 	}
 
 	private String createSessionId() {
-		/*
-		 * 다른 계정들과 중복되지 않는 session id 생성
-		 */
 		String uuid;
 		
 		while(true) {
@@ -118,34 +108,36 @@ public class UserManager {
 			rs = MySQL.executeQuery("SELECT * FROM account WHERE session_id=?", SHA256.encrypt(uuid));
 			try {
 				if(!rs.next()) {
-					break;
+					// 다른 계정과 중복되지 않는 session id
+					return uuid;
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 		}
-		
-		return uuid;
 	}
 
 	public void registerSessionId(RoutingContext ctx, boolean keepLogin, String id) {
 		/*
 		 * keepLogin 설정에 따라 세션 혹은 쿠키 설정
 		 */
+		
 		String sessionId = getSessionFromId(id);
+		// 이미 할당된 session id가 있는지 확인
+		
 		if(sessionId == null) {
+			// 할당된 session id가 없는 경우 create
 			sessionId = createSessionId();
 		}
-		String encryptedId = AES256.encrypt(id);
 		
+		// keep_login 설정에 따라 쿠키 또는 세션 put
 		if(keepLogin) {
 			SessionUtil.createCookie(ctx, "UserSession", sessionId);
 		} else {
 			SessionUtil.createSession(ctx, "UserSession", sessionId);
 		}
 		
-		String encryptedSessionId = SHA256.encrypt(sessionId);
-		MySQL.executeUpdate("UPDATE account SET session_id=? WHERE id=?", encryptedSessionId, encryptedId);
+		MySQL.executeUpdate("UPDATE account SET session_id=? WHERE id=?", SHA256.encrypt(sessionId), AES256.encrypt(id));
 	}
 	
 	public boolean isLogined(RoutingContext ctx) {
@@ -156,9 +148,8 @@ public class UserManager {
 		/*
 		 * 로그아웃, 세션 또는 쿠키에 있는 session id 삭제
 		 */
-		String encryptedId = getEncryptedIdFromSession(ctx);
+		MySQL.executeUpdate("UPDATE account SET session_id=null WHERE id=?", getEncryptedIdFromSession(ctx));
 		SessionUtil.removeSession(ctx, "UserSession");
-		MySQL.executeUpdate("UPDATE account SET session_id=null WHERE id=?", encryptedId);
 	}
 	
 	public boolean findIdDemand(String email, String name) {
@@ -216,12 +207,10 @@ public class UserManager {
 	
 	private String createTempPassword() {
 		String tempPassword;
-		String encryptedTempPassword;
 		
 		while(true) {
 			tempPassword = UUID.randomUUID().toString().substring(0, 8);
-			encryptedTempPassword = SHA256.encrypt(tempPassword);
-			rs = MySQL.executeQuery("SELECT * FROM account WHERE password=?", encryptedTempPassword);
+			rs = MySQL.executeQuery("SELECT * FROM account WHERE password=?", SHA256.encrypt(tempPassword));
 			try {
 				if(!rs.next()) {
 					break;
@@ -230,6 +219,7 @@ public class UserManager {
 				e.printStackTrace();
 			}
 		}
+		
 		return tempPassword;
 	}
 	
@@ -248,6 +238,7 @@ public class UserManager {
 				MySQL.executeUpdate("DELETE FROM email_verify_codes WHERE email=?", encryptedEmail);
 				MySQL.executeUpdate("INSERT INTO email_verify_codes VALUES(?, ?)", encryptedEmail, code);
 				// 인증코드 insert or refresh
+				
 				Mail.sendMail(email, MailSubjects.FIND_PW_DEMAND_SUBJECT.getName(), "코드 : " + code);
 				return true;
 			} else {
@@ -267,8 +258,7 @@ public class UserManager {
 			if (rs.next()) {
 				MySQL.executeUpdate("DELETE FROM email_verify_codes WHERE email=? AND code=?", encryptedEmail, code);
 				String tempPassword = createTempPassword();
-				String encryptedTempPassword = SHA256.encrypt(tempPassword);
-				MySQL.executeUpdate("UPDATE account SET password=? WHERE email=?", encryptedTempPassword, encryptedEmail);
+				MySQL.executeUpdate("UPDATE account SET password=? WHERE email=?", SHA256.encrypt(tempPassword), encryptedEmail);
 				Mail.sendMail(email, MailSubjects.FIND_PW_RESULT_SUBJECT.getName(), "임시 비밀번호 : " + tempPassword);
 				return true;
 			} else {
@@ -282,14 +272,10 @@ public class UserManager {
 	}
 	
 	public boolean changePassword(String id, String currentPassword, String newPassword) {
-		String encryptedId = AES256.encrypt(id);
-		String encryptedCurrentPassword = SHA256.encrypt(currentPassword);
-		String encryptedNewPassword = SHA256.encrypt(newPassword);
-		
-		rs = MySQL.executeQuery("SELECT * FROM account WHERE id=? AND password=?", encryptedId, encryptedCurrentPassword);
+		rs = MySQL.executeQuery("SELECT * FROM account WHERE id=? AND password=?", AES256.encrypt(id), SHA256.encrypt(currentPassword));
 		try {
 			if(rs.next()) {
-				MySQL.executeUpdate("UPDATE account SET password=? WHERE id=?", encryptedNewPassword, encryptedId);
+				MySQL.executeUpdate("UPDATE account SET password=? WHERE id=?", SHA256.encrypt(newPassword), AES256.encrypt(id));
 				return true;
 			} else {
 				return false;

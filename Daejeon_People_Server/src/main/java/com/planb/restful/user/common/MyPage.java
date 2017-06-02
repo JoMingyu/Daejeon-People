@@ -17,11 +17,17 @@ import io.vertx.core.http.HttpMethod;
 import io.vertx.ext.web.RoutingContext;
 
 @API(functionCategory = "사용자", summary = "마이페이지")
-@REST(responseBody = "email : String, phone_number : String, name : String", successCode = 200)
+@REST(responseBody = "email : String, phone_number : String, name : String", successCode = 200, failureCode = 204)
 @Route(uri = "/mypage", method = HttpMethod.GET)
 public class MyPage implements Handler<RoutingContext> {
 	@Override
 	public void handle(RoutingContext ctx) {
+		if(!new UserManager().isLogined(ctx)) {
+			ctx.response().setStatusCode(204).end();
+			ctx.response().close();
+			return;
+		}
+		
 		JSONObject response = new JSONObject();
 		
 		String clientId = UserManager.getEncryptedIdFromSession(ctx);

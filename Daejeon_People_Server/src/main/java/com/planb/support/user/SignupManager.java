@@ -24,9 +24,7 @@ public class SignupManager {
 		 * 핸드폰 번호 존재 여부 체크
 		 * 존재 시 true, 실패 시 false
 		 */
-		String encryptedPhoneNumber = AES256.encrypt(phoneNumber);
-		
-		rs = MySQL.executeQuery("SELECT * FROM account WHERE phone_number=?", encryptedPhoneNumber);
+		rs = MySQL.executeQuery("SELECT * FROM account WHERE phone_number=?", AES256.encrypt(phoneNumber));
 		try {
 			if(rs.next()) {
 				return true;
@@ -84,9 +82,7 @@ public class SignupManager {
 		 *  이메일 존재 여부 체크
 		 *  존재 시 true, 실패 시 false
 		 */
-		String encryptedEmail = AES256.encrypt(email);
-
-		rs = MySQL.executeQuery("SELECT * FROM account WHERE email=?", encryptedEmail);
+		rs = MySQL.executeQuery("SELECT * FROM account WHERE email=?", AES256.encrypt(email));
 		try {
 			if (rs.next()) {
 				return true;
@@ -112,7 +108,7 @@ public class SignupManager {
 		
 		MySQL.executeUpdate("DELETE FROM email_verify_codes WHERE email=?", encryptedEmail);
 		MySQL.executeUpdate("INSERT INTO email_verify_codes VALUES(?, ?)", encryptedEmail, code);
-		// 인증코드 insert or refresh
+		// Refresh
 		
 		Mail.sendMail(email, MailSubjects.VERIFY_SUBJECT.getName(), "코드 : " + code);
 		// 인증코드 전송
@@ -144,9 +140,7 @@ public class SignupManager {
 		 *  아이디 존재 여부 체크
 		 *  존재 시 true, 실패 시 false
 		 */
-		String encryptedId = AES256.encrypt(id);
-
-		rs = MySQL.executeQuery("SELECT * FROM account WHERE id='", encryptedId, "'");
+		rs = MySQL.executeQuery("SELECT * FROM account WHERE id=?", AES256.encrypt(id));
 		try {
 			if (rs.next()) {
 				return true;
