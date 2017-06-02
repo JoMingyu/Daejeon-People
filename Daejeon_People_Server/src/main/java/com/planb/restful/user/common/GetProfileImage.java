@@ -15,13 +15,12 @@ import io.vertx.ext.web.RoutingContext;
 @REST(responseBody = "프로필 이미지 파일", successCode = 200, failureCode = 204)
 @Route(uri = "/profile-image", method = HttpMethod.GET)
 public class GetProfileImage implements Handler<RoutingContext> {
-	@SuppressWarnings("unused")
 	@Override
 	public void handle(RoutingContext ctx) {
 		String encryptedId = UserManager.getEncryptedIdFromSession(ctx);
 		
 		File file = new File("profile-images/" + encryptedId + ".png");
-		if(file == null) {
+		if(!file.exists()) {
 			ctx.response().setStatusCode(204).end();
 			ctx.response().close();
 			return;

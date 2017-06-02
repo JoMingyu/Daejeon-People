@@ -50,6 +50,12 @@ public class FindUser implements Handler<RoutingContext> {
 		try {
 			if(rs.next()) {
 				JSONObject response = new JSONObject();
+
+				if(rs.getString("id") == clientId) {
+					ctx.response().setStatusCode(205).end();
+					ctx.response().close();
+					return;
+				}
 				
 				response.put("email", AES256.decrypt(rs.getString("email")));
 				response.put("name", AES256.decrypt(rs.getString("name")));
@@ -65,11 +71,13 @@ public class FindUser implements Handler<RoutingContext> {
 				ctx.response().setStatusCode(200);
 				ctx.response().end(response.toString());
 				ctx.response().close();
+			} else {
+				// Can't find user
+				ctx.response().setStatusCode(204).end();
+				ctx.response().close();
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-			ctx.response().setStatusCode(204).end();
-			ctx.response().close();
 		}
 	}
 }
