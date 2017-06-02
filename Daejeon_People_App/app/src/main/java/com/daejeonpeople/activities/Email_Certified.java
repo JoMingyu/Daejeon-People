@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.androidquery.AQuery;
 import com.daejeonpeople.R;
 import com.daejeonpeople.connection.AqueryConnection;
 
@@ -34,10 +35,13 @@ public class Email_Certified extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
+                connection = new AqueryConnection();
                 if(connection.connection(getApplicationContext(), params, "signup/email/check") == 201){
                     connection.connection(getApplicationContext(), params, "signup/email/demand");
                 } else if(connection.connection(getApplicationContext(), params, "signup/email/check") == 204){
                     Toast.makeText(getApplicationContext(), "실패", Toast.LENGTH_SHORT).show();
+                } else {
+                    System.out.println("실패");
                 }
                 ShowDialog();
             }
@@ -62,7 +66,7 @@ public class Email_Certified extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
-                //OK 누르면 할거
+                myDialog.cancel();
             }
         });
 

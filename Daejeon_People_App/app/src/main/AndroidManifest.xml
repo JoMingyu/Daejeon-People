@@ -11,11 +11,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.Chatting" android:theme="@style/ActionBarTheme">
-        </activity>
+        <activity android:name=".activities.Chatting" android:theme="@style/ActionBarTheme"/>
         <activity android:name=".activities.Splash" android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
         <activity android:name=".activities.Main" android:theme="@style/AppTheme"/>
-        <activity android:name=".activities.SignUp" />
+        <activity android:name=".activities.SignUp" android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
         <activity android:name=".activities.Email_Certified" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,13 +27,13 @@
         <activity android:name=".activities.Introduction_LeisureTime" />
         <activity android:name=".Introduction_TouristSpot" />
         <activity android:name=".activities.Introduction_TravelCourse" />
-        <activity android:name=".activities.ChatList"></activity>
-        <activity android:name=".activities.AddressBook"></activity>
-        <activity android:name=".activities.Category"></activity>
-        <activity android:name=".activities.EntryID"></activity>
-        <activity android:name=".activities.EntryPW"></activity>
-        <activity android:name=".activities.FindID"></activity>
-        <activity android:name=".activities.FindPW"></activity>
-        <activity android:name=".activities.Search"></activity>
+        <activity android:name=".activities.ChatList"/>
+        <activity android:name=".activities.AddressBook"/>
+        <activity android:name=".activities.Category"/>
+        <activity android:name=".activities.EntryID"/>
+        <activity android:name=".activities.EntryPW"/>
+        <activity android:name=".activities.FindID"/>
+        <activity android:name=".activities.FindPW"/>
+        <activity android:name=".activities.Search"/>
     </application>
 </manifest>
