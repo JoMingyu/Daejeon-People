@@ -25,12 +25,12 @@ public class MyPage implements Handler<RoutingContext> {
 		JSONObject response = new JSONObject();
 		
 		String clientId = UserManager.getEncryptedIdFromSession(ctx);
-		ResultSet userInfo = MySQL.executeQuery("SELECT * FROM account WHERE id=?", clientId);
+		ResultSet userInfoSet = MySQL.executeQuery("SELECT * FROM account WHERE id=?", clientId);
 		try {
-			userInfo.next();
-			response.put("email", AES256.decrypt(userInfo.getString("email")));
-			response.put("phone_number", userInfo.getString("phone_number") == null ? "전화번호 없음" : AES256.decrypt(userInfo.getString("phone_number")));
-			response.put("name", AES256.decrypt(userInfo.getString("name")));
+			userInfoSet.next();
+			response.put("email", AES256.decrypt(userInfoSet.getString("email")));
+			response.put("phone_number", userInfoSet.getString("phone_number") == null ? "전화번호 없음" : AES256.decrypt(userInfoSet.getString("phone_number")));
+			response.put("name", AES256.decrypt(userInfoSet.getString("name")));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

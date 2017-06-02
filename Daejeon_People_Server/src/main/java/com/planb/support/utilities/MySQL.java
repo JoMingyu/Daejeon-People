@@ -22,7 +22,7 @@ public class MySQL {
 		}
 	}
 	
-	private synchronized static PreparedStatement buildQuery(String sql, Object... args) {
+	private static PreparedStatement buildQuery(String sql, Object... args) {
 		Log.Q(sql);
 		
 		PreparedStatement statement = null;
@@ -39,7 +39,7 @@ public class MySQL {
 		return statement;
 	}
 	
-	public synchronized static ResultSet executeQuery(String sql, Object... args) {
+	public static ResultSet executeQuery(String sql, Object... args) {
 		try {
 			return buildQuery(sql, args).executeQuery();
 		} catch (SQLException e) {
@@ -48,7 +48,7 @@ public class MySQL {
 		}
 	}
 	
-	public synchronized static int executeUpdate(String sql, Object... args) {
+	public static int executeUpdate(String sql, Object... args) {
 		try {
 			return buildQuery(sql, args).executeUpdate();
 		} catch(SQLException e) {

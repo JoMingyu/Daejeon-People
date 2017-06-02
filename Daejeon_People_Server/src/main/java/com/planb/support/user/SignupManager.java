@@ -168,7 +168,7 @@ public class SignupManager {
 		String encryptedId = AES256.encrypt(id);
 		String encryptedPassword = SHA256.encrypt(password);
 		String encryptedEmail = AES256.encrypt(email);
-		String encryptedPhoneNumber = phoneNumber == null ? null : SHA256.encrypt(phoneNumber);
+		String encryptedPhoneNumber = phoneNumber == null ? null : AES256.encrypt(phoneNumber);
 		// null이면 null, null이 아니면 암호화
 		String encryptedName = AES256.encrypt(name);
 		String encryptedRegistrationId = AES256.encrypt(registrationId);
