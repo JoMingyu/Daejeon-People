@@ -33,18 +33,18 @@ public class SendMessage implements Handler<RoutingContext> {
 		try {
 			userInfoSet.next();
 			
-			if(type == "text") {
+			if(type.equals("text")) {
 				String content = ctx.request().getFormAttribute("content");
-				MySQL_Chat.executeQuery("INSERT INTO " + topic + "(remaining_views, type, name, content VALUES(?, ?, ?, ?)", ChatManager.getUserCountInRoom(topic), "text", userInfoSet.getString("name"), content);
-			} else if(type == "image") {
+				MySQL_Chat.executeUpdate("INSERT INTO " + topic + "(remaining_views, type, name, content) VALUES(?, ?, ?, ?)", ChatManager.getUserCountInRoom(topic), "text", userInfoSet.getString("name"), content);
+			} else if(type.equals("image")) {
 				Set<FileUpload> uploads = ctx.fileUploads();
 				for(FileUpload upload : uploads) {
 					String identifier = createIdentifier(topic);
-					MySQL_Chat.executeQuery("INSERT INTO " + topic + "(remaining_views, type, name, content VALUES(?, ?, ?, ?)", topic, ChatManager.getUserCountInRoom(topic), "image", userInfoSet.getString("name"), identifier);
+					MySQL_Chat.executeUpdate("INSERT INTO " + topic + "(remaining_views, type, name, content) VALUES(?, ?, ?, ?)", ChatManager.getUserCountInRoom(topic), "image", userInfoSet.getString("name"), identifier);
 					
 					File uploadedFile = new File(upload.uploadedFileName());
 					
-					uploadedFile.renameTo(new File("chatting_resources/" + topic + "/" + identifier));
+					uploadedFile.renameTo(new File("chatting_resources/" + topic + "/" + identifier + ".png"));
 					new File(upload.uploadedFileName()).delete();
 				}
 			}
