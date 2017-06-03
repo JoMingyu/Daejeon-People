@@ -11,14 +11,15 @@ import com.planb.parser.support.HttpClientForParser;
 import com.planb.support.utilities.Log;
 import com.planb.support.utilities.MySQL;
 
-public class TourListParser {
+public class TourListParser implements Parser {
 	/*
 	 * 지역기반 관광정보 리스트 조회
 	 * JsonArray를 순차 탐색하며 DB 저장
 	 */
 	private static String defaultURL = BaseURLs.TOUR_LIST.getName();
 	
-	public static void parse() {
+	@Override
+	public void parse() {
 		int totalCount = HttpClientForParser.getTotalCount(defaultURL);
 		// 요청 이전에 응답 전체 카운트를 먼저 얻어냄
 		

@@ -11,10 +11,11 @@ import com.planb.parser.support.HttpClientForParser;
 import com.planb.support.utilities.Log;
 import com.planb.support.utilities.MySQL;
 
-public class AdditionalImageParser {
+public class AdditionalImageParser implements Parser {
 	private static String defaultURL = BaseURLs.ADDITIONAL_IMAGE.getName();
 	
-	public static void parse() {
+	@Override
+	public void parse() {
 		MySQL.executeUpdate("DELETE FROM attractions_images");
 		
 		ResultSet rs = MySQL.executeQuery("SELECT * FROM attractions_basic");

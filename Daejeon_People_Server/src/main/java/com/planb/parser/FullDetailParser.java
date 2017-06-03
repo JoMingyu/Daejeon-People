@@ -14,7 +14,7 @@ import com.planb.parser.support.HttpClientForParser;
 import com.planb.support.utilities.Log;
 import com.planb.support.utilities.MySQL;
 
-public class FullDetailInfoParser {
+public class FullDetailParser implements Parser {
 	private static String URL = BaseURLs.DETAIL.getName();
 	
 	private static void clearTables() {
@@ -28,7 +28,8 @@ public class FullDetailInfoParser {
 		MySQL.executeUpdate("DELETE FROM tourrism_detail_info");
 	}
 	
-	public static void parse() {
+	@Override
+	public void parse() {
 		/*
 		 *  파싱 한 번에 over 336 트래픽 발생, 주의 필요
 		 *  연속 200트래픽 이후 잠시동안 응답을 하지 않음

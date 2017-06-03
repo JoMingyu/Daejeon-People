@@ -10,7 +10,7 @@ import com.planb.parser.support.HttpClientForParser;
 import com.planb.support.utilities.Log;
 import com.planb.support.utilities.MySQL;
 
-public class EnhancedDetailInfoParser {
+public class EnhancedDetailParser implements Parser {
 	private static String URL = BaseURLs.DETAIL.getName();
 	
 	private static void clearTables() {
@@ -24,14 +24,8 @@ public class EnhancedDetailInfoParser {
 		MySQL.executeUpdate("DELETE FROM tourrism_detail_info");
 	}
 	
-	public static void parse() {
-		/*
-		 *  파싱 한 번에 over 336 트래픽 발생, 주의 필요
-		 *  연속 200트래픽 이후 잠시동안 응답을 하지 않음
-		 *  데이터가 확실히 존재할 것이라는 보장이 없음
-		 *  -> 데이터 존재 여부에 대한 확인 필요
-		 */
-		
+	@Override
+	public void parse() {
 		clearTables();
 		
 		ResultSet rs = MySQL.executeQuery("SELECT * FROM attractions_basic");
