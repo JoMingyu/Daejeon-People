@@ -31,6 +31,7 @@ public class MyPage implements Handler<RoutingContext> {
 		JSONObject response = new JSONObject();
 		
 		String clientId = UserManager.getEncryptedIdFromSession(ctx);
+		
 		ResultSet userInfoSet = MySQL.executeQuery("SELECT * FROM account WHERE id=?", clientId);
 		try {
 			userInfoSet.next();

@@ -23,10 +23,9 @@ public class CreateTravel implements Handler<RoutingContext> {
 		JSONObject response = new JSONObject();
 		
 		String clientId = UserManager.getEncryptedIdFromSession(ctx);
-		// 여행 개설자
 		String title = ctx.request().getFormAttribute("title");
 		
-		ChatRoomManager.createRoom(clientId, title);
+		response.put("topic", ChatRoomManager.createRoom(clientId, title));
 		
 		ctx.response().setStatusCode(201);
 		ctx.response().end(response.toString());

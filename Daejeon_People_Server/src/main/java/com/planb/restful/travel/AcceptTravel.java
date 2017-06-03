@@ -17,7 +17,6 @@ public class AcceptTravel implements Handler<RoutingContext> {
 	@Override
 	public void handle(RoutingContext ctx) {
 		String clientId = UserManager.getEncryptedIdFromSession(ctx);
-		// 여행 초대를 수락한 사람
 		String topic = ctx.request().getFormAttribute("topic");
 		
 		ChatRoomManager.enterRoom(clientId, topic);

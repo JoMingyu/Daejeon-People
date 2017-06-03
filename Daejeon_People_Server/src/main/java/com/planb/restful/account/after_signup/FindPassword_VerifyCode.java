@@ -19,12 +19,7 @@ public class FindPassword_VerifyCode implements Handler<RoutingContext> {
 		String email = ctx.request().getFormAttribute("email");
 		String code = ctx.request().getFormAttribute("code");
 		
-		if (userManager.findPasswordVerify(email, code)) {
-			ctx.response().setStatusCode(201).end();
-			ctx.response().close();
-		} else {
-			ctx.response().setStatusCode(204).end();
-			ctx.response().close();
-		}
+		ctx.response().setStatusCode(userManager.findPasswordVerify(email, code)).end();
+		ctx.response().close();
 	}
 }

@@ -56,7 +56,6 @@ public class ChatRoomManager {
 				e.printStackTrace();
 				return null;
 			}
-			
 		}
 	}
 	

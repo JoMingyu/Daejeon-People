@@ -146,7 +146,7 @@ public class SignupManager {
 		}
 	}
 
-	public static int signup(String id, String password, String email, String phoneNumber, String name, String registrationId) {
+	public static void signup(String id, String password, String email, String phoneNumber, String name, String registrationId) {
 		/*
 		 * 회원가입
 		 * 중복 체크와 인증은 다른 URI에서 수행
@@ -166,7 +166,5 @@ public class SignupManager {
 		}
 		
 		Mail.sendMail(email, MailSubjects.WELCOME_SUBJECT.getName(), "환영환영");
-		
-		return 201;
 	}
 }

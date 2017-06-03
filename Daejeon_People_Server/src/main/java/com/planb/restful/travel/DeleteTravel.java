@@ -15,9 +15,7 @@ import io.vertx.ext.web.RoutingContext;
 public class DeleteTravel implements Handler<RoutingContext> {
 	@Override
 	public void handle(RoutingContext ctx) {
-		String topic = ctx.request().getParam("topic");
-		
-		ChatRoomManager.deleteRoom(topic);
+		ChatRoomManager.deleteRoom(ctx.request().getParam("topic"));
 		
 		ctx.response().setStatusCode(200).end();
 		ctx.response().close();

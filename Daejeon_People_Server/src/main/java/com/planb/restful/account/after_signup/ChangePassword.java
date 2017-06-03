@@ -20,12 +20,7 @@ public class ChangePassword implements Handler<RoutingContext> {
 		String currentPassword = ctx.request().getFormAttribute("current_password");
 		String newPassword = ctx.request().getFormAttribute("new_password");
 		
-		if(userManager.changePassword(id, currentPassword, newPassword)) {
-			ctx.response().setStatusCode(201).end();
-			ctx.response().close();
-		} else {
-			ctx.response().setStatusCode(204).end();
-			ctx.response().close();
-		}
+		ctx.response().setStatusCode(userManager.changePassword(id, currentPassword, newPassword)).end();
+		ctx.response().close();
 	}
 }

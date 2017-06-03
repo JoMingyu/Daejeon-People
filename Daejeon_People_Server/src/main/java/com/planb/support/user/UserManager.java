@@ -152,7 +152,7 @@ public class UserManager {
 		SessionUtil.removeSession(ctx, "UserSession");
 	}
 	
-	public boolean findIdDemand(String email, String name) {
+	public int findIdDemand(String email, String name) {
 		String encryptedEmail = AES256.encrypt(email);
 		String encryptedName = AES256.encrypt(name);
 		
@@ -169,39 +169,34 @@ public class UserManager {
 				
 				Mail.sendMail(email, MailSubjects.FIND_ID_DEMAND_SUBJECT.getName(), "코드 : " + code);
 				// 인증코드 전송
-				return true;
+				return 201;
 			} else {
-				return false;
+				return 204;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-			return false;
+			return 204;
 		}
 	}
 	
-	public boolean findIdVerify(String email, String code) {
+	public int findIdVerify(String email, String code) {
 		String encryptedEmail = AES256.encrypt(email);
 		
 		rs = MySQL.executeQuery("SELECT * FROM email_verify_codes WHERE email=? AND code=?", encryptedEmail, code);
 		try {
-			if (!rs.next()) {
-				return false;
+			if(rs.next()) {
+				MySQL.executeUpdate("DELETE FROM email_verify_codes WHERE email=? AND code=?", encryptedEmail, code);
+				rs = MySQL.executeQuery("SELECT * FROM account WHERE email=?", encryptedEmail);
+				rs.next();
+				String decryptedId = AES256.decrypt(rs.getString("id"));
+				Mail.sendMail(email, MailSubjects.FIND_ID_RESULT_SUBJECT.getName(), "ID : " + decryptedId);
+				return 201;
+			} else {
+				return 204;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-			return false;
-		}
-		
-		MySQL.executeUpdate("DELETE FROM email_verify_codes WHERE email=? AND code=?", encryptedEmail, code);
-		rs = MySQL.executeQuery("SELECT * FROM account WHERE email=?", encryptedEmail);
-		try {
-			rs.next();
-			String decryptedId = AES256.decrypt(rs.getString("id"));
-			Mail.sendMail(email, MailSubjects.FIND_ID_RESULT_SUBJECT.getName(), "ID : " + decryptedId);
-			return true;
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return false;
+			return 204;
 		}
 	}
 	
@@ -223,7 +218,7 @@ public class UserManager {
 		return tempPassword;
 	}
 	
-	public boolean findPasswordDemand(String id, String email, String name) {
+	public int findPasswordDemand(String id, String email, String name) {
 		String encryptedId = AES256.encrypt(id);
 		String encryptedEmail = AES256.encrypt(email);
 		String encryptedName = AES256.encrypt(name);
@@ -240,17 +235,17 @@ public class UserManager {
 				// 인증코드 insert or refresh
 				
 				Mail.sendMail(email, MailSubjects.FIND_PW_DEMAND_SUBJECT.getName(), "코드 : " + code);
-				return true;
+				return 201;
 			} else {
-				return false;
+				return 204;
 			}
 		} catch(SQLException e) {
 			e.printStackTrace();
-			return false;
+			return 204;
 		}
 	}
 	
-	public boolean findPasswordVerify(String email, String code) {
+	public int findPasswordVerify(String email, String code) {
 		String encryptedEmail = AES256.encrypt(email);
 		
 		rs = MySQL.executeQuery("SELECT * FROM email_verify_codes WHERE email=? AND code=?", encryptedEmail, code);
@@ -260,29 +255,29 @@ public class UserManager {
 				String tempPassword = createTempPassword();
 				MySQL.executeUpdate("UPDATE account SET password=? WHERE email=?", SHA256.encrypt(tempPassword), encryptedEmail);
 				Mail.sendMail(email, MailSubjects.FIND_PW_RESULT_SUBJECT.getName(), "임시 비밀번호 : " + tempPassword);
-				return true;
+				return 201;
 			} else {
-				return false;
+				return 204;
 			}
 
 		} catch (SQLException e) {
 			e.printStackTrace();
-			return false;
+			return 204;
 		}
 	}
 	
-	public boolean changePassword(String id, String currentPassword, String newPassword) {
+	public int changePassword(String id, String currentPassword, String newPassword) {
 		rs = MySQL.executeQuery("SELECT * FROM account WHERE id=? AND password=?", AES256.encrypt(id), SHA256.encrypt(currentPassword));
 		try {
 			if(rs.next()) {
 				MySQL.executeUpdate("UPDATE account SET password=? WHERE id=?", SHA256.encrypt(newPassword), AES256.encrypt(id));
-				return true;
+				return 201;
 			} else {
-				return false;
+				return 204;
 			}
 		} catch(SQLException e) {
 			e.printStackTrace();
-			return false;
+			return 204;
 		}
 	}
 }

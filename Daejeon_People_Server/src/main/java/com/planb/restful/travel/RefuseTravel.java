@@ -17,7 +17,6 @@ public class RefuseTravel implements Handler<RoutingContext> {
 	@Override
 	public void handle(RoutingContext ctx) {
 		String clientId = UserManager.getEncryptedIdFromSession(ctx);
-		// 여행 초대를 거절한 사람
 		String topic = ctx.request().getFormAttribute("topic");
 		
 		MySQL.executeUpdate("DELETE FROM travel_invites WHERE dst_id=? AND topic=?", clientId, topic);

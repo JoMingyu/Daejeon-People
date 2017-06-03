@@ -24,7 +24,7 @@ public class TravelList implements Handler<RoutingContext> {
 	@Override
 	public void handle(RoutingContext ctx) {
 		JSONArray response = new JSONArray();
-		
+
 		String clientId = UserManager.getEncryptedIdFromSession(ctx);
 		
 		ResultSet rs = MySQL.executeQuery("SELECT * FROM travels WHERE client_id=?", clientId);
