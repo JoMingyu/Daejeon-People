@@ -19,11 +19,7 @@ public class SignupManager {
 	 */
 	private static ResultSet rs;
 	
-	public static boolean checkPhoneNumberExists(String phoneNumber) {
-		/*
-		 * 핸드폰 번호 존재 여부 체크
-		 * 존재 시 true, 실패 시 false
-		 */
+	private static boolean checkPhoneNumberExists(String phoneNumber) {
 		rs = MySQL.executeQuery("SELECT * FROM account WHERE phone_number=?", AES256.encrypt(phoneNumber));
 		try {
 			if(rs.next()) {
@@ -37,10 +33,14 @@ public class SignupManager {
 		}
 	}
 	
-	public static void demandPhone(String phoneNumber) {
+	public static int demandPhone(String phoneNumber) {
 		/*
 		 * 문자 메시지 인증코드 전송
 		 */
+		if(checkPhoneNumberExists(phoneNumber)) {
+			return 204;
+		}
+		
 		String encryptedPhoneNumber = AES256.encrypt(phoneNumber);
 		// 핸드폰 번호 암호화
 		
@@ -53,35 +53,29 @@ public class SignupManager {
 		// 인증코드 insert or refresh
 		
 		// 인증코드 전송(보류)
+		
+		return 201;
 	}
 	
-	public static boolean verifyPhone(String phoneNumber, String code) {
-		/*
-		 * 인증코드 인증
-		 * 성공 시 true, 실패 시 false
-		 */
+	public static int verifyPhone(String phoneNumber, String code) {
 		String encryptedPhoneNumber = AES256.encrypt(phoneNumber);
 
 		rs = MySQL.executeQuery("SELECT * FROM phone_verify_codes WHERE phone_number=? AND code=?", encryptedPhoneNumber, code);
 		try {
 			if (rs.next()) {
 				MySQL.executeUpdate("DELETE FROM phone_verify_codes WHERE phone_number=? AND code=?", encryptedPhoneNumber, code);
-				return true;
+				return 201;
 			} else {
-				return false;
+				return 204;
 			}
 
 		} catch (SQLException e) {
 			e.printStackTrace();
-			return false;
+			return 204;
 		}
 	}
 	
-	public static boolean checkEmailExists(String email) {
-		/*
-		 *  이메일 존재 여부 체크
-		 *  존재 시 true, 실패 시 false
-		 */
+	private static boolean checkEmailExists(String email) {
 		rs = MySQL.executeQuery("SELECT * FROM account WHERE email=?", AES256.encrypt(email));
 		try {
 			if (rs.next()) {
@@ -95,10 +89,14 @@ public class SignupManager {
 		}
 	}
 
-	public static void demandEmail(String email) {
+	public static int demandEmail(String email) {
 		/*
 		 * 이메일 전송
 		 */
+		if(checkEmailExists(email)) {
+			return 204;
+		}
+		
 		String encryptedEmail = AES256.encrypt(email);
 		// 이메일 암호화
 
@@ -112,52 +110,46 @@ public class SignupManager {
 		
 		Mail.sendMail(email, MailSubjects.VERIFY_SUBJECT.getName(), "코드 : " + code);
 		// 인증코드 전송
+		
+		return 201;
 	}
 
-	public static boolean verifyEmail(String email, String code) {
-		/*
-		 * 인증코드 인증
-		 * 성공 시 true, 실패 시 false
-		 */
+	public static int verifyEmail(String email, String code) {
 		String encryptedEmail = AES256.encrypt(email);
 
 		rs = MySQL.executeQuery("SELECT * FROM email_verify_codes WHERE email=? AND code=?", encryptedEmail, code);
 		try {
 			if (rs.next()) {
 				MySQL.executeUpdate("DELETE FROM email_verify_codes WHERE email=? AND code=?", encryptedEmail, code);
-				return true;
+				return 201;
 			} else {
-				return false;
+				return 204;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-			return false;
+			return 204;
 		}
 	}
 
-	public static boolean checkIdExists(String id) {
-		/*
-		 *  아이디 존재 여부 체크
-		 *  존재 시 true, 실패 시 false
-		 */
+	public static int checkIdExists(String id) {
 		rs = MySQL.executeQuery("SELECT * FROM account WHERE id=?", AES256.encrypt(id));
 		try {
 			if (rs.next()) {
-				return true;
+				return 204;
 			} else {
-				return false;
+				return 201;
 			}
 
 		} catch (SQLException e) {
 			e.printStackTrace();
-			return false;
+			return 204;
 		}
 	}
 
-	public static void signup(String id, String password, String email, String phoneNumber, String name, String registrationId) {
+	public static int signup(String id, String password, String email, String phoneNumber, String name, String registrationId) {
 		/*
 		 * 회원가입
-		 * id와 이메일 중복 체크는 다른 URI에서 수행
+		 * 중복 체크와 인증은 다른 URI에서 수행
 		 */
 		String encryptedId = AES256.encrypt(id);
 		String encryptedPassword = SHA256.encrypt(password);
@@ -174,5 +166,7 @@ public class SignupManager {
 		}
 		
 		Mail.sendMail(email, MailSubjects.WELCOME_SUBJECT.getName(), "환영환영");
+		
+		return 201;
 	}
 }

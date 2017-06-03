@@ -22,9 +22,7 @@ public class Signup implements Handler<RoutingContext> {
 		String name = ctx.request().getFormAttribute("name");
 		String registrationId = ctx.request().getFormAttribute("registration_id");
 
-		SignupManager.signup(id, password, email, tel, name, registrationId);
-
-		ctx.response().setStatusCode(201).end();
+		ctx.response().setStatusCode(SignupManager.signup(id, password, email, tel, name, registrationId)).end();
 		ctx.response().close();
 	}
 }

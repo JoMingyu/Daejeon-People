@@ -15,15 +15,7 @@ import io.vertx.ext.web.RoutingContext;
 public class VerifyPhone implements Handler<RoutingContext> {
 	@Override
 	public void handle(RoutingContext ctx) {
-		String phoneNumber = ctx.request().getFormAttribute("number");
-		String code = ctx.request().getFormAttribute("code");
-		
-		if(SignupManager.verifyPhone(phoneNumber, code)) {
-			ctx.response().setStatusCode(201).end();
-			ctx.response().close();
-		} else {
-			ctx.response().setStatusCode(204).end();
-			ctx.response().close();
-		}
+		ctx.response().setStatusCode(SignupManager.verifyPhone(ctx.request().getFormAttribute("number"), ctx.request().getFormAttribute("code"))).end();
+		ctx.response().close();
 	}
 }

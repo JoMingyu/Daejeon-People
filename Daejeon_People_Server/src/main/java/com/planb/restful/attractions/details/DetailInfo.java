@@ -158,6 +158,10 @@ public class DetailInfo implements Handler<RoutingContext> {
 		} catch(SQLException e) {
 			e.printStackTrace();
 		}
+		
+		ctx.response().setStatusCode(200);
+		ctx.response().end(response.toString());
+		ctx.response().close();
 	}
 	
 	private static String extractPhoneNumber(String phoneNumber) {
