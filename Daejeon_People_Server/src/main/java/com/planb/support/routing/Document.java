@@ -28,6 +28,7 @@ public class Document {
 		rowHead.createCell(8).setCellValue("Response Header");
 		rowHead.createCell(9).setCellValue("Response Body");
 		rowHead.createCell(10).setCellValue("Failure Code");
+		rowHead.createCell(11).setCellValue("ETC");
 		
 		int rowCount = 1;
 		
@@ -45,6 +46,7 @@ public class Document {
 			row.createCell(8).setCellValue(getKeyValueStr(resource.getResponseHeaders()));
 			row.createCell(9).setCellValue(getKeyValueStr(resource.getResponseBody()));
 			row.createCell(10).setCellValue(resource.getFailureCode());
+			row.createCell(11).setCellValue(resource.getEtc());
 		}
 		
 		try {

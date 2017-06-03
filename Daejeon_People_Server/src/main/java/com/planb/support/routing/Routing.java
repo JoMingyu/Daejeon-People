@@ -40,17 +40,17 @@ public class Routing {
 						// 두 어노테이션이 모두 있는 경우
 						API api = c.getAnnotation(API.class);
 						REST rest = c.getAnnotation(REST.class);
-						resourceList.add(new RESTResource(api.functionCategory(), api.summary(), routeAnno.method().name(), routeAnno.uri(), rest.requestHeaders(), rest.params(), rest.requestBody(), rest.successCode(), rest.responseHeaders(), rest.responseBody(), rest.failureCode()));
+						resourceList.add(new RESTResource(api.functionCategory(), api.summary(), routeAnno.method().name(), routeAnno.uri(), rest.requestHeaders(), rest.params(), rest.requestBody(), rest.successCode(), rest.responseHeaders(), rest.responseBody(), rest.failureCode(), rest.etc()));
 					} else if(c.isAnnotationPresent(API.class) && !c.isAnnotationPresent(REST.class)) {
 						// API 어노테이션만 있는 경우
 						API api = c.getAnnotation(API.class);
-						resourceList.add(new RESTResource(api.functionCategory(), api.summary(), routeAnno.method().name(), routeAnno.uri(), "미정", "미정", "미정", 0, "미정", "미정", 0));
+						resourceList.add(new RESTResource(api.functionCategory(), api.summary(), routeAnno.method().name(), routeAnno.uri(), "미정", "미정", "미정", 0, "미정", "미정", 0, "미정"));
 					} else if(!c.isAnnotationPresent(API.class) && c.isAnnotationPresent(REST.class)) {
 						// REST 어노테이션만 있는 경우
 						REST rest = c.getAnnotation(REST.class);
-						resourceList.add(new RESTResource("미정", "미정", routeAnno.method().name(), routeAnno.uri(), rest.requestHeaders(), rest.params(), rest.requestBody(), rest.successCode(), rest.responseHeaders(), rest.responseBody(), rest.failureCode()));
+						resourceList.add(new RESTResource("미정", "미정", routeAnno.method().name(), routeAnno.uri(), rest.requestHeaders(), rest.params(), rest.requestBody(), rest.successCode(), rest.responseHeaders(), rest.responseBody(), rest.failureCode(),  rest.etc()));
 					} else {
-						resourceList.add(new RESTResource("미정", "미정", routeAnno.method().name(), routeAnno.uri(), "미정", "미정", "미정", 0, "미정", "미정", 0));
+						resourceList.add(new RESTResource("미정", "미정", routeAnno.method().name(), routeAnno.uri(), "미정", "미정", "미정", 0, "미정", "미정", 0, "미정"));
 					}
 				} catch (InstantiationException | IllegalAccessException e) {
 					e.printStackTrace();

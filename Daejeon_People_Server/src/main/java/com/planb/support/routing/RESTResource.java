@@ -12,13 +12,14 @@ public class RESTResource implements Comparable<RESTResource> {
 	private String responseHeaders;
 	private String responseBody;
 	private int failureCode;
+	private String etc;
 	
 	@Override
 	public int compareTo(RESTResource o) {
 		return o.functionCategory.compareTo(this.functionCategory);
 	}
 	
-	public RESTResource(String functionCategory, String summary, String method, String uri, String requestHeaders, String params, String requestBody, int successCode, String responseHeaders, String responseBody, int failureCode) {
+	public RESTResource(String functionCategory, String summary, String method, String uri, String requestHeaders, String params, String requestBody, int successCode, String responseHeaders, String responseBody, int failureCode, String etc) {
 		this.setFunctionCategory(functionCategory);
 		this.setSummary(summary);
 		this.setMethod(method);
@@ -30,6 +31,7 @@ public class RESTResource implements Comparable<RESTResource> {
 		this.setResponseHeaders(responseHeaders);
 		this.setResponseBody(responseBody);
 		this.setFailureCode(failureCode);
+		this.setEtc(etc);
 	}
 
 	public String getFunctionCategory() {
@@ -118,5 +120,13 @@ public class RESTResource implements Comparable<RESTResource> {
 
 	public void setFailureCode(int failureCode) {
 		this.failureCode = failureCode;
+	}
+
+	public String getEtc() {
+		return etc;
+	}
+
+	public void setEtc(String etc) {
+		this.etc = etc;
 	}
 }

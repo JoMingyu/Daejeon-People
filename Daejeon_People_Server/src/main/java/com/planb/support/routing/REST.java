@@ -16,4 +16,5 @@ public @interface REST {
 	String responseHeaders() default "X";
 	String responseBody() default "X";
 	int failureCode() default 0;
+	String etc() default "X";
 }
