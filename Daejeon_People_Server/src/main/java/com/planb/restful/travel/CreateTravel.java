@@ -1,18 +1,12 @@
 package com.planb.restful.travel;
 
-import java.io.File;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.UUID;
-
 import org.json.JSONObject;
 
-import com.planb.support.chatting.MySQL_Chat;
+import com.planb.support.chatting.ChatRoomManager;
 import com.planb.support.routing.API;
 import com.planb.support.routing.REST;
 import com.planb.support.routing.Route;
 import com.planb.support.user.UserManager;
-import com.planb.support.utilities.MySQL;
 
 import io.vertx.core.Handler;
 import io.vertx.core.http.HttpMethod;
@@ -32,22 +26,7 @@ public class CreateTravel implements Handler<RoutingContext> {
 		// 여행 개설자
 		String title = ctx.request().getFormAttribute("title");
 		
-		String topic;
-		while(true) {
-			topic = UUID.randomUUID().toString().replaceAll("-", "");
-			ResultSet rs = MySQL.executeQuery("SELECT * FROM travels WHERE topic=?", topic);
-			try {
-				if(!rs.next()) {
-					response.put("topic", topic);
-					MySQL.executeUpdate("INSERT INTO travels VALUES(?, ?, ?)", topic, title, clientId);
-					MySQL_Chat.executeUpdate("CREATE TABLE " + topic + "(idx INT(11) PRIMARY KEY NOT NULL AUTO_INCREMENT, remaining_views INT(3) NOT NULL, type VARCHAR(20) NOT NULL, name VARCHAR(256), content VARCHAR(1024))");
-					new File("chatting_resources/" + topic).mkdirs();
-					break;
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
+		ChatRoomManager.createRoom(clientId, title);
 		
 		ctx.response().setStatusCode(201);
 		ctx.response().end(response.toString());

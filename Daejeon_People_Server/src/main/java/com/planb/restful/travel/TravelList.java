@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import com.planb.support.chatting.ChatManager;
+import com.planb.support.chatting.ChatRoomManager;
 import com.planb.support.routing.API;
 import com.planb.support.routing.REST;
 import com.planb.support.routing.Route;
@@ -33,7 +33,7 @@ public class TravelList implements Handler<RoutingContext> {
 				JSONObject travelRoom = new JSONObject();
 				travelRoom.put("topic", rs.getString("topic"));
 				travelRoom.put("title", rs.getString("title"));
-				travelRoom.put("last_idx", ChatManager.getLastIndexInRoom(rs.getString("topic")));
+				travelRoom.put("last_idx", ChatRoomManager.getLastIndexInRoom(rs.getString("topic")));
 				
 				response.put(travelRoom);
 			}

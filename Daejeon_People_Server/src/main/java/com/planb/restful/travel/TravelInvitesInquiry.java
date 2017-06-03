@@ -33,15 +33,15 @@ public class TravelInvitesInquiry implements Handler<RoutingContext> {
 		try {
 			while(inviteSet.next()) {
 				JSONObject invite = new JSONObject();
-				ResultSet requesterInfo = MySQL.executeQuery("SELECT * FROM account WHERE id=?", inviteSet.getString("src_id"));
-				requesterInfo.next();
+				ResultSet userInfoSet = MySQL.executeQuery("SELECT * FROM account WHERE id=?", inviteSet.getString("src_id"));
+				userInfoSet.next();
 				
 				invite.put("topic", inviteSet.getString("topic"));
 				invite.put("msg", inviteSet.getString("msg"));
 				invite.put("date", inviteSet.getString("date"));
-				invite.put("phone_number", AES256.decrypt(requesterInfo.getString("phone_number")));
-				invite.put("email", AES256.decrypt(requesterInfo.getString("email")));
-				invite.put("name", AES256.decrypt(requesterInfo.getString("name")));
+				invite.put("phone_number", AES256.decrypt(userInfoSet.getString("phone_number")));
+				invite.put("email", AES256.decrypt(userInfoSet.getString("email")));
+				invite.put("name", AES256.decrypt(userInfoSet.getString("name")));
 				response.put(invite);
 			}
 		} catch(SQLException e) {

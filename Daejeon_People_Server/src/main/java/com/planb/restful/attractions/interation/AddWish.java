@@ -22,11 +22,10 @@ public class AddWish implements Handler<RoutingContext> {
 		String clientId = UserManager.getEncryptedIdFromSession(ctx);
 		int contentId = Integer.parseInt(ctx.request().getFormAttribute("content_id"));
 		
-		ResultSet content = MySQL.executeQuery("SELECT wish_count FROM attractions_basic WHERE content_id=?", contentId);
+		ResultSet contentSet = MySQL.executeQuery("SELECT wish_count FROM attractions_basic WHERE content_id=?", contentId);
 		try {
-			content.next();
-			int wishCount = content.getInt("wish_count");
-			MySQL.executeUpdate("UPDATE attractions_basic SET wish_count=? WHERE content_id=?", wishCount + 1, contentId);
+			contentSet.next();
+			MySQL.executeUpdate("UPDATE attractions_basic SET wish_count=? WHERE content_id=?", contentSet.getInt("wish_count") + 1, contentId);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

@@ -33,7 +33,7 @@ public class DetailInfo implements Handler<RoutingContext> {
 		try {
 			contentInfo.next();
 			contentTypeId = contentInfo.getInt("contentTypeId");
-			response.put("content_id", contentInfo.getInt("content_id"));
+			response.put("content_id", contentId);
 			response.put("image", contentInfo.getString("image_big_url") == null ? "정보 없음" : contentInfo.getString("image_big_url"));
 			response.put("title", contentInfo.getString("title"));
 			response.put("category", contentInfo.getString("cat3") == null ? "정보 없음" : contentInfo.getString("cat3"));

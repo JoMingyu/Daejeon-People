@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.util.Set;
 import java.util.UUID;
 
-import com.planb.support.chatting.ChatManager;
+import com.planb.support.chatting.ChatRoomManager;
 import com.planb.support.chatting.MySQL_Chat;
 import com.planb.support.routing.API;
 import com.planb.support.routing.REST;
@@ -35,12 +35,12 @@ public class SendMessage implements Handler<RoutingContext> {
 			
 			if(type.equals("text")) {
 				String content = ctx.request().getFormAttribute("content");
-				MySQL_Chat.executeUpdate("INSERT INTO " + topic + "(remaining_views, type, name, content) VALUES(?, ?, ?, ?)", ChatManager.getUserCountInRoom(topic), "text", userInfoSet.getString("name"), content);
+				MySQL_Chat.executeUpdate("INSERT INTO " + topic + "(remaining_views, type, name, content) VALUES(?, ?, ?, ?)", ChatRoomManager.getUserCountInRoom(topic), "text", userInfoSet.getString("name"), content);
 			} else if(type.equals("image")) {
 				Set<FileUpload> uploads = ctx.fileUploads();
 				for(FileUpload upload : uploads) {
 					String identifier = createIdentifier(topic);
-					MySQL_Chat.executeUpdate("INSERT INTO " + topic + "(remaining_views, type, name, content) VALUES(?, ?, ?, ?)", ChatManager.getUserCountInRoom(topic), "image", userInfoSet.getString("name"), identifier);
+					MySQL_Chat.executeUpdate("INSERT INTO " + topic + "(remaining_views, type, name, content) VALUES(?, ?, ?, ?)", ChatRoomManager.getUserCountInRoom(topic), "image", userInfoSet.getString("name"), identifier);
 					
 					File uploadedFile = new File(upload.uploadedFileName());
 					

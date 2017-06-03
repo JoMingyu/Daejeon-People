@@ -3,7 +3,7 @@ package com.planb.restful.travel.inside;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.planb.support.chatting.ChatManager;
+import com.planb.support.chatting.ChatRoomManager;
 import com.planb.support.chatting.MySQL_Chat;
 import com.planb.support.routing.API;
 import com.planb.support.routing.REST;
@@ -29,7 +29,7 @@ public class QuitTravel implements Handler<RoutingContext> {
 		ResultSet userInfoSet = MySQL.executeQuery("SELECT * FROM account WHERE id=?", clientId);
 		try {
 			userInfoSet.next();
-			MySQL_Chat.executeUpdate("INSERT INTO " + topic + "(remaining_views, type, name) VALUES(?, ?, ?)", ChatManager.getUserCountInRoom(topic), "quit", userInfoSet.getString("name"));
+			MySQL_Chat.executeUpdate("INSERT INTO " + topic + "(remaining_views, type, name) VALUES(?, ?, ?)", ChatRoomManager.getUserCountInRoom(topic), "quit", userInfoSet.getString("name"));
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

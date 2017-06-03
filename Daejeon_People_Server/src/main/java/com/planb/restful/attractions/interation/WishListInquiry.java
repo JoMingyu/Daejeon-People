@@ -30,16 +30,16 @@ public class WishListInquiry implements Handler<RoutingContext> {
 		try {
 			while(wishList.next()) {
 				wishList.getInt("content_id");
-				ResultSet content = MySQL.executeQuery("SELECT * FROM attractions_basic WHERE content_id=?", wishList.getInt("content_id"));
+				ResultSet contentSet = MySQL.executeQuery("SELECT * FROM attractions_basic WHERE content_id=?", wishList.getInt("content_id"));
 				JSONObject contentInfo = new JSONObject();
-				content.next();
-				contentInfo.put("address", content.getString("address"));
-				contentInfo.put("category", content.getString("cat3"));
-				contentInfo.put("content_id", content.getInt("content_id"));
-				contentInfo.put("image", content.getString("image_big_url"));
-				contentInfo.put("mapx", content.getDouble("mapx"));
-				contentInfo.put("mapy", content.getDouble("mapy"));
-				contentInfo.put("title", content.getString("title"));
+				contentSet.next();
+				contentInfo.put("address", contentSet.getString("address"));
+				contentInfo.put("category", contentSet.getString("cat3"));
+				contentInfo.put("content_id", contentSet.getInt("content_id"));
+				contentInfo.put("image", contentSet.getString("image_big_url"));
+				contentInfo.put("mapx", contentSet.getDouble("mapx"));
+				contentInfo.put("mapy", contentSet.getDouble("mapy"));
+				contentInfo.put("title", contentSet.getString("title"));
 				response.put(contentInfo);
 			}
 		} catch(SQLException e) {

@@ -30,11 +30,11 @@ public class AttractionsListInquiry {
 		switch(sortType) {
 		case 1:
 			// 조회순
-			rs = MySQL.executeQuery(query, "attractions_basic", "views_count DESC");
+			rs = MySQL.executeQuery(query.replaceFirst("\\?", "attractions_basic").replaceFirst("\\?", "views_count DESC"));
 			break;
 		case 2:
 			// 위시리스트 많은 순
-			rs = MySQL.executeQuery(query, "attractions_basic", "wish_count DESC");
+			rs = MySQL.executeQuery(query.replaceFirst("\\?", "attractions_basic").replaceFirst("\\?", "wish_count DESC"));
 			break;
 		case 3:
 			// 거리순
@@ -68,11 +68,11 @@ public class AttractionsListInquiry {
 		switch(sortType) {
 		case 1:
 			// 조회순
-			rs = MySQL.executeQuery(query, "attractions_basic", "views_count DESC");
+			rs = MySQL.executeQuery(query.replaceFirst("\\?", "attractions_basic").replaceFirst("\\?", "views_count DESC"));
 			break;
 		case 2:
 			// 위시리스트 많은 순
-			rs = MySQL.executeQuery(query, "attractions_basic", "wish_count DESC");
+			rs = MySQL.executeQuery(query.replaceFirst("\\?", "attractions_basic").replaceFirst("\\?", "wish_count DESC"));
 			break;
 		case 3:
 			// 거리순
