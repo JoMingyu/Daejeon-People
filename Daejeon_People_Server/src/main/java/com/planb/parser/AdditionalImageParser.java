@@ -6,13 +6,13 @@ import java.sql.SQLException;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import com.planb.parser.support.BaseURLs;
 import com.planb.parser.support.HttpClientForParser;
-import com.planb.parser.support.Params;
-import com.planb.support.utilities.MySQL;
 import com.planb.support.utilities.Log;
+import com.planb.support.utilities.MySQL;
 
 public class AdditionalImageParser {
-	private static String defaultURL = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/detailImage" + Params.defaultAppendParams + "&imageYN=Y";
+	private static String defaultURL = BaseURLs.ADDITIONAL_IMAGE.getName();
 	
 	public static void parse() {
 		MySQL.executeUpdate("DELETE FROM attractions_images");

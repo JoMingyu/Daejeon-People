@@ -6,17 +6,17 @@ import java.sql.SQLException;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import com.planb.parser.support.BaseURLs;
 import com.planb.parser.support.HttpClientForParser;
-import com.planb.parser.support.Params;
-import com.planb.support.utilities.MySQL;
 import com.planb.support.utilities.Log;
+import com.planb.support.utilities.MySQL;
 
-public class TourListBasicParser {
+public class TourListParser {
 	/*
 	 * 지역기반 관광정보 리스트 조회
 	 * JsonArray를 순차 탐색하며 DB 저장
 	 */
-	private static String defaultURL = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/areaBasedList" + Params.defaultAppendParams;
+	private static String defaultURL = BaseURLs.TOUR_LIST.getName();
 	
 	public static void parse() {
 		int totalCount = HttpClientForParser.getTotalCount(defaultURL);

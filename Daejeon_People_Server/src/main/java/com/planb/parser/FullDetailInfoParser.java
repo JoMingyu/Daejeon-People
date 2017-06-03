@@ -9,13 +9,13 @@ import java.util.regex.Pattern;
 
 import org.json.JSONObject;
 
+import com.planb.parser.support.BaseURLs;
 import com.planb.parser.support.HttpClientForParser;
-import com.planb.parser.support.Params;
-import com.planb.support.utilities.MySQL;
 import com.planb.support.utilities.Log;
+import com.planb.support.utilities.MySQL;
 
 public class FullDetailInfoParser {
-	private static String URL = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/detailIntro" + Params.defaultAppendParams;
+	private static String URL = BaseURLs.DETAIL.getName();
 	
 	private static void clearTables() {
 		MySQL.executeUpdate("DELETE FROM accommodation_detail_info");

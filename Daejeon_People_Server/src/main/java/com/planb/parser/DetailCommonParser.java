@@ -5,17 +5,17 @@ import java.sql.SQLException;
 
 import org.json.JSONObject;
 
+import com.planb.parser.support.BaseURLs;
 import com.planb.parser.support.HttpClientForParser;
-import com.planb.parser.support.Params;
-import com.planb.support.utilities.MySQL;
 import com.planb.support.utilities.Log;
+import com.planb.support.utilities.MySQL;
 
 public class DetailCommonParser {
 	/*
 	 * 공통정보 조회
 	 * 홈페이지와 개요 정보
 	 */
-	private static String URL = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/detailCommon" + Params.defaultAppendParams + "&defaultYN=Y&overviewYN=Y";
+	private static String URL = BaseURLs.DETAIL_COMMON.getName();
 	
 	public static void parse() {
 		MySQL.executeUpdate("DELETE FROM attractions_detail_common");

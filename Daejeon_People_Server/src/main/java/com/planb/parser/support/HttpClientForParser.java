@@ -10,10 +10,6 @@ import com.planb.support.networking.HttpClient;
 
 public class HttpClientForParser {
 	private static JSONObject request(String url) {
-		/*
-		 * HttpURLConnection을 이용해 URL에 GET 요청
-		 * 바이트 단위로 Json 데이터 전체를 읽어들여 리턴
-		 */
 		try {
 			HttpClient client = new HttpClient(url, 80, 60000, 60000);
 			

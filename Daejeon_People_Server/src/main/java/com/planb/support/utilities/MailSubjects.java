@@ -15,6 +15,6 @@ public enum MailSubjects {
 	}
 	
 	public String getName() {
-		return name;
+		return this.name;
 	}
 }
