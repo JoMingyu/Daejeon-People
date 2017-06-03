@@ -16,20 +16,23 @@ public class Log {
 			dir.mkdir();
 		}
 		
+		cal = Calendar.getInstance();
 		String year = String.format("%4d", cal.get(Calendar.YEAR));
 		String month = String.format("%02d", cal.get(Calendar.MONTH) + 1);
 		String date = String.format("%02d", cal.get(Calendar.DATE));
 		String logFileName = "logs/" + year + "-" + month + "-" + date + ".log";
 		logFile = new File(logFileName);
-		if(!logFile.exists()) {
-			try {
+		try {
+			if(!logFile.exists()) {
 				logFile.createNewFile();
 				fw = new FileWriter(logFile, true);
 				// Append
-			} catch (IOException e) {
+			} else {
+				fw = new FileWriter(logFile, true);
+			}
+			} catch(IOException e) {
 				e.printStackTrace();
 			}
-		}
 	}
 	
 	public static void Q(String sql) {
@@ -49,6 +52,7 @@ public class Log {
 	}
 	
 	private static String getLogText(String type, String msg) {
+		cal = Calendar.getInstance();
 		String ampm = cal.get(Calendar.AM_PM) == 0 ? "AM" : "PM";
 		String hour = String.format("%02d", cal.get(Calendar.HOUR));
 		String minute = String.format("%02d", cal.get(Calendar.MINUTE));
