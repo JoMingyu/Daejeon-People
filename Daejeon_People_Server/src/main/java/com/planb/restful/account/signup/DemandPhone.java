@@ -10,12 +10,14 @@ import io.vertx.core.http.HttpMethod;
 import io.vertx.ext.web.RoutingContext;
 
 @API(functionCategory = "회원가입", summary = "핸드폰 인증번호 발송")
-@REST(requestBody = "email : String", successCode = 201, etc = "핸드폰 번호 중복 시 fail")
+@REST(requestBody = "number : String", successCode = 201, etc = "핸드폰 번호 중복 시 fail")
 @Route(uri = "/signup/phone/demand", method = HttpMethod.POST)
 public class DemandPhone implements Handler<RoutingContext> {
 	@Override
 	public void handle(RoutingContext ctx) {
-		ctx.response().setStatusCode(SignupManager.demandPhone(ctx.request().getFormAttribute("number"))).end();
+		String phoneNumber = ctx.request().getFormAttribute("number");
+		
+		ctx.response().setStatusCode(SignupManager.demandPhone(phoneNumber)).end();
 		ctx.response().close();
 	}
 }

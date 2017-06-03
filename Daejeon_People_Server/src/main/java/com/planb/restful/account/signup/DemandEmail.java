@@ -15,7 +15,9 @@ import io.vertx.ext.web.RoutingContext;
 public class DemandEmail implements Handler<RoutingContext> {
 	@Override
 	public void handle(RoutingContext ctx) {
-		ctx.response().setStatusCode(SignupManager.demandEmail(ctx.request().getFormAttribute("email"))).end();
+		String email = ctx.request().getFormAttribute("email");
+		
+		ctx.response().setStatusCode(SignupManager.demandEmail(email)).end();
 		ctx.response().close();
 	}
 }

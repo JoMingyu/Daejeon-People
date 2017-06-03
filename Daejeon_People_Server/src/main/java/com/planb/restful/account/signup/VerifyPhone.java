@@ -10,12 +10,15 @@ import io.vertx.core.http.HttpMethod;
 import io.vertx.ext.web.RoutingContext;
 
 @API(functionCategory = "회원가입", summary = "핸드폰 인증번호 확인")
-@REST(requestBody = "email : String, code : String", successCode = 201, failureCode = 204)
+@REST(requestBody = "number : String, code : String", successCode = 201, failureCode = 204)
 @Route(uri = "/signup/phone/verify", method = HttpMethod.POST)
 public class VerifyPhone implements Handler<RoutingContext> {
 	@Override
 	public void handle(RoutingContext ctx) {
-		ctx.response().setStatusCode(SignupManager.verifyPhone(ctx.request().getFormAttribute("number"), ctx.request().getFormAttribute("code"))).end();
+		String phoneNumber = ctx.request().getFormAttribute("number");
+		String code = ctx.request().getFormAttribute("code");
+		
+		ctx.response().setStatusCode(SignupManager.verifyPhone(phoneNumber, code)).end();
 		ctx.response().close();
 	}
 }

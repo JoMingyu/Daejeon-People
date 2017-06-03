@@ -15,7 +15,10 @@ import io.vertx.ext.web.RoutingContext;
 public class VerifyEmail implements Handler<RoutingContext> {
 	@Override
 	public void handle(RoutingContext ctx) {
-		ctx.response().setStatusCode(SignupManager.verifyEmail(ctx.request().getFormAttribute("email"), ctx.request().getFormAttribute("code")));
+		String email = ctx.request().getFormAttribute("email");
+		String code = ctx.request().getFormAttribute("code");
+		
+		ctx.response().setStatusCode(SignupManager.verifyEmail(email, code));
 		ctx.response().close();
 	}
 }

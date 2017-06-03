@@ -10,12 +10,14 @@ import io.vertx.core.http.HttpMethod;
 import io.vertx.ext.web.RoutingContext;
 
 @API(functionCategory = "여행 모드", summary = "여행 삭제")
-@REST(requestBody = "topic : String", successCode = 200)
+@REST(params = "topic : String", successCode = 200)
 @Route(uri = "/travel", method = HttpMethod.DELETE)
 public class DeleteTravel implements Handler<RoutingContext> {
 	@Override
 	public void handle(RoutingContext ctx) {
-		ChatRoomManager.deleteRoom(ctx.request().getParam("topic"));
+		String topic = ctx.request().getParam("topic");
+		
+		ChatRoomManager.deleteRoom(topic);
 		
 		ctx.response().setStatusCode(200).end();
 		ctx.response().close();

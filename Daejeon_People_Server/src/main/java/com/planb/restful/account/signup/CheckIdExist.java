@@ -15,7 +15,9 @@ import io.vertx.ext.web.RoutingContext;
 public class CheckIdExist implements Handler<RoutingContext> {
 	@Override
 	public void handle(RoutingContext ctx) {
-		ctx.response().setStatusCode(SignupManager.checkIdExists(ctx.request().getFormAttribute("id"))).end();
+		String id = ctx.request().getFormAttribute("id");
+		
+		ctx.response().setStatusCode(SignupManager.checkIdExists(id)).end();
 		ctx.response().close();
 	}
 }
