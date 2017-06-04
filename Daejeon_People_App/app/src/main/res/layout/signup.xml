@@ -32,7 +32,7 @@
         android:layout_gravity="center">
 
         <Button
-            android:id="@+id/email"
+            android:id="@+id/emailCertified"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_weight="1"
