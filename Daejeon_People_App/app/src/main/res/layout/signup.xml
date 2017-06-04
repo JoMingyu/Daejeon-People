@@ -25,7 +25,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_weight="0.8"
         android:layout_marginTop="10dp"
         android:padding="10dp"
         android:orientation="horizontal"
@@ -53,7 +53,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="4"
+        android:layout_weight="3"
         android:orientation="vertical"
         android:padding="10dp">
 
@@ -61,7 +61,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:layout_marginBottom="6dp"
+            android:layout_marginBottom="10dp"
             android:background="@drawable/round_corner"
             android:gravity="center"
             android:orientation="horizontal">
@@ -88,7 +88,7 @@
             android:layout_weight="1"
             android:background="@drawable/round_corner"
             android:layout_marginTop="6dp"
-            android:layout_marginBottom="6dp"
+            android:layout_marginBottom="10dp"
             android:gravity="center"
             android:orientation="horizontal">
 
@@ -114,7 +114,7 @@
             android:layout_weight="1"
             android:background="@drawable/round_corner"
             android:layout_marginTop="6dp"
-            android:layout_marginBottom="6dp"
+            android:layout_marginBottom="10dp"
             android:gravity="center"
             android:orientation="horizontal">
 
@@ -140,7 +140,7 @@
             android:layout_weight="1"
             android:background="@drawable/round_corner"
             android:layout_marginTop="6dp"
-            android:layout_marginBottom="6dp"
+            android:layout_marginBottom="10dp"
             android:gravity="center"
             android:orientation="horizontal">
 
@@ -159,41 +159,18 @@
                 android:hint="비밀번호를 다시 입력해주세요"
                 android:textSize="12sp"/>
         </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/button"
-                android:layout_width="0dp"
-                android:layout_height="40dp"
-                android:layout_margin="4dp"
-                android:layout_weight="1"
-                android:text="남자"
-                android:background="@drawable/round_corner_blue" />
-
-            <Button
-                android:layout_width="0dp"
-                android:layout_height="40dp"
-                android:layout_margin="4dp"
-                android:layout_weight="1"
-                android:text="여자"
-                android:background="@drawable/round_corner_red" />
-        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_weight="0.8">
         <Button
             android:id="@+id/signupSubmit"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="10dp"
+            android:textColor="@color/White"
             android:background="@drawable/round_corner_middle"
             android:text="확인"/>
     </LinearLayout>
