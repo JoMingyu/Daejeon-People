@@ -25,7 +25,7 @@
         <activity android:name=".activities.Introduction_CulturalFacilities" />
         <activity android:name=".activities.Introduction_FestivalEvent" />
         <activity android:name=".activities.Introduction_LeisureTime" />
-        <activity android:name=".Introduction_TouristSpot" />
+        <activity android:name=".activities.Introduction_TouristSpot" />
         <activity android:name=".activities.Introduction_TravelCourse" />
         <activity android:name=".activities.ChatList"/>
         <activity android:name=".activities.AddressBook"/>
