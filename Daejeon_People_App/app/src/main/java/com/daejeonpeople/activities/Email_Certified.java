@@ -57,7 +57,7 @@ public class Email_Certified extends AppCompatActivity {
                     int statusCode = connection.getStatusCode();
                     if(statusCode == 201){
                         Intent intent = new Intent(getApplicationContext(), SignUp.class);
-                        intent.putExtra("success", 1);
+                        intent.putExtra("email", email.getText().toString());
                         startActivity(intent);
                     }
                 }

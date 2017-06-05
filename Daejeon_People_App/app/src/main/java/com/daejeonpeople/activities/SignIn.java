@@ -24,7 +24,7 @@ import java.util.HashMap;
 
 public class SignIn extends Activity{
     AqueryConnection connection;
-    HashMap<String, Object> params;
+    HashMap<String, Object> params = new HashMap<String, Object>();
     Button submit;
     EditText id;
     EditText password;
@@ -40,28 +40,28 @@ public class SignIn extends Activity{
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                connection = new AqueryConnection(getApplicationContext());
-//                params.put("id", id.getText().toString());
-//                params.put("password", password.getText().toString());
-//                params.put("keep_login", false);
-//
-//                if(id.getText() != null && password.getText() != null){
-//                    connection.connection(getApplicationContext(), params, "signin");
-//                    int statusCode = connection.getStatusCode();
-//                    if(statusCode == 201){
-//                        Toast.makeText(getApplicationContext(), "로그인 성공", Toast.LENGTH_SHORT).show();
-//                        Intent intent = new Intent(getApplicationContext(), Main.class);
-//                        startActivity(intent);
-//                    } else if(statusCode == 204){
-//                        Toast.makeText(getApplicationContext(), "로그인 실패", Toast.LENGTH_SHORT).show();
-//                    }
-//                } else if(id.getText() == null){
-//                    Toast.makeText(getApplicationContext(), "아이디를 입력해주세요", Toast.LENGTH_SHORT).show();
-//                } else if(password.getText() == null){
-//                    Toast.makeText(getApplicationContext(), "비밀번호를 입력해주세요", Toast.LENGTH_SHORT).show();
-//                } else {
-//                    Toast.makeText(getApplicationContext(), "아이디, 비밀번호를 입력해주세요", Toast.LENGTH_SHORT).show();
-//                }
+                connection = new AqueryConnection(getApplicationContext());
+                params.put("id", id.getText().toString());
+                params.put("password", password.getText().toString());
+                params.put("keep_login", false);
+
+                if(id.getText() != null && password.getText() != null){
+                    connection.connection(params, "signin");
+                    int statusCode = connection.getStatusCode();
+                    if(statusCode == 201){
+                        Toast.makeText(getApplicationContext(), "로그인 성공", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(getApplicationContext(), Main.class);
+                        startActivity(intent);
+                    } else if(statusCode == 204){
+                        Toast.makeText(getApplicationContext(), "로그인 실패", Toast.LENGTH_SHORT).show();
+                    }
+                } else if(id.getText() == null){
+                    Toast.makeText(getApplicationContext(), "아이디를 입력해주세요", Toast.LENGTH_SHORT).show();
+                } else if(password.getText() == null){
+                    Toast.makeText(getApplicationContext(), "비밀번호를 입력해주세요", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getApplicationContext(), "아이디, 비밀번호를 입력해주세요", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
