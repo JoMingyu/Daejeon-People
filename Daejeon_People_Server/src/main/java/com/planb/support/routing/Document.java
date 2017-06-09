@@ -8,6 +8,8 @@ import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+import com.planb.support.utilities.Log;
+
 public class Document {
 	private XSSFWorkbook wb;
 
@@ -51,7 +53,7 @@ public class Document {
 		
 		try {
 			wb.write(new FileOutputStream(fileName));
-			
+			Log.I("REST Resource Documentation Complete");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

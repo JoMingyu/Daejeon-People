@@ -49,7 +49,6 @@ public class CoreVerticle extends AbstractVerticle {
 		
 		Routing.route(router, "com.planb.restful");
 		
-		
 		router.route().handler(StaticHandler.create());
 		/**
 		 * @brief

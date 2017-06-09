@@ -13,7 +13,7 @@ public class ParserThread extends Thread {
 			new EnhancedDetailParser().parse();
 			new AdditionalImageParser().parse();
 			try {
-				Thread.sleep(1000 * 3600 * 60 * 12);
+				Thread.sleep(1000 * 3600 * 12);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
