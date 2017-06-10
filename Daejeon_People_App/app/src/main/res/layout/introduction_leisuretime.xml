@@ -5,13 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.daejeonpeople.activities.Introduction_CulturalFacilities">
+    tools:context="com.daejeonpeople.activities.Introduction">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="3"
-        android:background="@drawable/festivalevent"
+        android:background="@drawable/bg_leisure"
         android:orientation="vertical">
 
         <LinearLayout
@@ -44,10 +44,10 @@
 
                 <ImageView
                     android:id="@+id/star"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="10dp"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="10dp"
                     android:background="@drawable/ic_star_border" />
 
             </RelativeLayout>
@@ -77,7 +77,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
-                    android:text="유성온천문화축제"
+                    android:text="대청수상레포츠센터"
                     android:textColor="@color/White"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -94,7 +94,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
-                    android:text="행사  \u0026  축제"
+                    android:text="레포츠"
                     android:textColor="@color/White"
                     android:textSize="12sp" />
 
@@ -118,7 +118,7 @@
                             android:layout_height="12dp"
                             android:layout_alignParentRight="true"
                             android:layout_marginRight="50dp"
-                            android:background="@drawable/ic_w_carriage" />
+                            android:background="@drawable/ic_g_carriage" />
 
                         <ImageButton
                             android:layout_width="13dp"
@@ -176,7 +176,7 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@id/call_inquiry"
+                            android:id="@+id/call_inquiry"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="042 - 611 - 2080"
@@ -210,9 +210,9 @@
                         android:paddingTop="25dp">
 
                         <ImageView
-                            android:layout_width="22dp"
+                            android:layout_width="25dp"
                             android:layout_height="25dp"
-                            android:background="@drawable/ic_start_timer" />
+                            android:background="@drawable/ic_utilization" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -222,10 +222,10 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/startevent"
+                            android:id="@+id/usetime"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="5월 8일"
+                            android:text="17시 30분 입장 마감"
                             android:textColor="@color/Black"
                             android:textSize="18sp" />
 
@@ -233,7 +233,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:paddingTop="5dp"
-                            android:text="행사 시작일"
+                            android:text="이용시간"
                             android:textSize="10sp" />
                     </LinearLayout>
                 </TableRow>
@@ -256,9 +256,9 @@
                         android:paddingTop="25dp">
 
                         <ImageView
-                            android:layout_width="22dp"
+                            android:layout_width="25dp"
                             android:layout_height="25dp"
-                            android:background="@drawable/ic_finsh_timer" />
+                            android:background="@drawable/ic_event_busy" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -268,10 +268,10 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/endevent"
+                            android:id="@+id/holiday"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="5월 14일"
+                            android:text="5월 8일 ~ 5월 14일"
                             android:textColor="@color/Black"
                             android:textSize="18sp" />
 
@@ -279,7 +279,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:paddingTop="5dp"
-                            android:text="행사 종료일"
+                            android:text="연휴일자"
                             android:textSize="10sp" />
                     </LinearLayout>
                 </TableRow>
@@ -350,52 +350,6 @@
                         <ImageView
                             android:layout_width="25dp"
                             android:layout_height="25dp"
-                            android:background="@drawable/ic_required" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/requiredtime"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="1시간 40분"
-                            android:textColor="@color/Black"
-                            android:textSize="18sp" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:paddingTop="5dp"
-                            android:text="관람 소요시간"
-                            android:textSize="10sp" />
-                    </LinearLayout>
-                </TableRow>
-            </TableLayout>
-
-            <TableLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1">
-
-                <TableRow>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:paddingBottom="25dp"
-                        android:paddingLeft="20dp"
-                        android:paddingRight="20dp"
-                        android:paddingTop="25dp">
-
-                        <ImageView
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
                             android:background="@drawable/ic_explore" />
                     </LinearLayout>
 
@@ -410,7 +364,7 @@
                             android:id="@+id/location"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="대전광역시 유성구 온천로 81"
+                            android:text="대전광역시 대덕구 대청로 167"
                             android:textColor="@color/Black"
                             android:textSize="18sp" />
 

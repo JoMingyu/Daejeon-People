@@ -12,7 +12,7 @@
 
     <item
         android:id="@+id/viewMap"
-        android:title="지도보기"
         android:icon="@drawable/ic_map_white"
+        android:title="지도보기"
         app:showAsAction="always" />
 </menu>

@@ -20,20 +20,17 @@
             </intent-filter>
         </activity>
         <activity android:name=".activities.Email_Certified" />
-        <activity android:name=".activities.Chatting" android:theme="@style/ActionBarTheme"/>
+        <activity android:name=".activities.Chatting" />
         <activity android:name=".activities.Main" />
-        <activity android:name=".activities.Introduction_CulturalFacilities" />
-        <activity android:name=".activities.Introduction_FestivalEvent" />
-        <activity android:name=".activities.Introduction_LeisureTime" />
-        <activity android:name=".activities.Introduction_TouristSpot" />
-        <activity android:name=".activities.Introduction_TravelCourse" />
-        <activity android:name=".activities.ChatList"/>
-        <activity android:name=".activities.AddressBook"/>
-        <activity android:name=".activities.Category"/>
-        <activity android:name=".activities.EntryID"/>
-        <activity android:name=".activities.EntryPW"/>
-        <activity android:name=".activities.FindID"/>
-        <activity android:name=".activities.FindPW"/>
-        <activity android:name=".activities.Search"/>
+        <activity android:name=".activities.ChatList" />
+        <activity android:name=".activities.AddressBook" />
+        <activity android:name=".activities.Category" />
+        <activity android:name=".activities.EntryID" />
+        <activity android:name=".activities.EntryPW" />
+        <activity android:name=".activities.FindID" />
+        <activity android:name=".activities.FindPW" />
+        <activity android:name=".activities.Search" />
+        <activity android:name=".activities.Introduction"></activity>
     </application>
+
 </manifest>

@@ -5,13 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.daejeonpeople.activities.Introduction_CulturalFacilities">
+    tools:context="com.daejeonpeople.activities.Introduction">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="3"
-        android:background="@drawable/leisuretime"
+        android:background="@drawable/bg_food"
         android:orientation="vertical">
 
         <LinearLayout
@@ -77,7 +77,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
-                    android:text="대청수상레포츠센터"
+                    android:text="대전정육식당"
                     android:textColor="@color/White"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -94,7 +94,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
-                    android:text="레포츠"
+                    android:text="식당"
                     android:textColor="@color/White"
                     android:textSize="12sp" />
 
@@ -110,22 +110,9 @@
                             android:layout_width="13dp"
                             android:layout_height="10dp"
                             android:layout_alignParentRight="true"
-                            android:layout_marginRight="80dp"
+                            android:layout_marginRight="20dp"
                             android:background="@drawable/ic_w_card" />
 
-                        <ImageButton
-                            android:layout_width="13dp"
-                            android:layout_height="12dp"
-                            android:layout_alignParentRight="true"
-                            android:layout_marginRight="50dp"
-                            android:background="@drawable/ic_g_carriage" />
-
-                        <ImageButton
-                            android:layout_width="13dp"
-                            android:layout_height="12dp"
-                            android:layout_alignParentRight="true"
-                            android:layout_marginRight="20dp"
-                            android:background="@drawable/ic_g_pet" />
                     </RelativeLayout>
                 </LinearLayout>
 
@@ -317,7 +304,7 @@
                             android:id="@+id/charge"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="12,000원"
+                            android:text="간장게장"
                             android:textColor="@color/Black"
                             android:textSize="18sp" />
 
@@ -325,7 +312,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:paddingTop="5dp"
-                            android:text="이용요금"
+                            android:text="대표메뉴"
                             android:textSize="10sp" />
                     </LinearLayout>
                 </TableRow>
