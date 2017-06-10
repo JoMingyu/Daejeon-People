@@ -156,7 +156,7 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@id/call_inquiry"
+                            android:id="@+id/call_inquiry"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="042 - 611 - 2080"
