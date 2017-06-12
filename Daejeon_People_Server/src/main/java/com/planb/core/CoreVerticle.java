@@ -61,7 +61,7 @@ public class CoreVerticle extends AbstractVerticle {
 //		new ParserThread().start();
 		
 		Log.I("Server Started");
-		vertx.createHttpServer().requestHandler(router::accept).listen(80);
+		vertx.createHttpServer().requestHandler(router::accept).listen(8080);
 		/**
 		 * @brief
 		 * public interface HttpServer
