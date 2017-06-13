@@ -22,7 +22,7 @@ import io.vertx.ext.web.RoutingContext;
 public class MyPage implements Handler<RoutingContext> {
 	@Override
 	public void handle(RoutingContext ctx) {
-		if(!new UserManager().isLogined(ctx)) {
+		if(UserManager.isLogined(ctx)) {
 			ctx.response().setStatusCode(204).end();
 			ctx.response().close();
 			return;
