@@ -115,11 +115,11 @@
 
         <com.melnykov.fab.FloatingActionButton
             android:id="@+id/btn_plus"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:layout_marginRight="50dp"
             android:layout_gravity="bottom|right"
-            android:layout_margin="16dp"
-            android:src="@drawable/ic_explore"/>
+            android:background="@drawable/ic_plus" />
     </FrameLayout>
 
     <LinearLayout
