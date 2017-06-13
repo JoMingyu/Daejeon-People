@@ -8,8 +8,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/addressInfo"
-        android:layout_alignParentTop="true"
         android:padding="15dp"
+        android:layout_alignParentTop="true"
         android:layout_alignParentStart="true">
 
         <TextView
@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:text="나"
             android:textSize="20sp"
-            android:textColor="@color/Dark"
+            android:textColor="@color/colorAccent"
             android:layout_alignParentTop="true" />
         <TextView
             android:layout_width="wrap_content"
@@ -75,22 +75,31 @@
             android:layout_below="@+id/phone_number"
             android:layout_toRightOf="@+id/profile"
             />
-        <ImageButton
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:background="@drawable/ic_call_green"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="30dp"
-            android:layout_marginTop="20dp"/>
 
     </RelativeLayout>
 
     <LinearLayout
+        android:id="@+id/startlist"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/myinfo">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:textSize="20sp"
+            android:textColor="@color/colorAccent"
+            android:text="#"/>
+
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/myinfo"
-        android:layout_toLeftOf="@+id/consonantBtn">
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@id/startlist">
 
         <ListView
             android:id="@+id/addressList"
@@ -99,6 +108,19 @@
 
         </ListView>
     </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.melnykov.fab.FloatingActionButton
+            android:id="@+id/btn_plus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|right"
+            android:layout_margin="16dp"
+            android:src="@drawable/ic_explore"/>
+    </FrameLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -429,4 +451,5 @@
             android:textSize="15sp"
             android:textColor="@android:color/darker_gray"/>
     </LinearLayout>
+
 </RelativeLayout>
