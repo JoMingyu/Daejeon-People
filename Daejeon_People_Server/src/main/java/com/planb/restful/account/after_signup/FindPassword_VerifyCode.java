@@ -1,9 +1,17 @@
 package com.planb.restful.account.after_signup;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.UUID;
+
+import com.planb.support.crypto.AES256;
+import com.planb.support.crypto.SHA256;
 import com.planb.support.routing.API;
 import com.planb.support.routing.REST;
 import com.planb.support.routing.Route;
-import com.planb.support.user.UserManager;
+import com.planb.support.utilities.Mail;
+import com.planb.support.utilities.MailSubjects;
+import com.planb.support.utilities.MySQL;
 
 import io.vertx.core.Handler;
 import io.vertx.core.http.HttpMethod;
@@ -15,11 +23,49 @@ import io.vertx.ext.web.RoutingContext;
 public class FindPassword_VerifyCode implements Handler<RoutingContext> {
 	@Override
 	public void handle(RoutingContext ctx) {
-		UserManager userManager = new UserManager();
 		String email = ctx.request().getFormAttribute("email");
 		String code = ctx.request().getFormAttribute("code");
 		
-		ctx.response().setStatusCode(userManager.findPasswordVerify(email, code)).end();
+		ctx.response().setStatusCode(findPasswordVerify(email, code)).end();
 		ctx.response().close();
+	}
+	
+	private int findPasswordVerify(String email, String code) {
+		String encryptedEmail = AES256.encrypt(email);
+		
+		ResultSet rs = MySQL.executeQuery("SELECT * FROM email_verify_codes WHERE email=? AND code=?", encryptedEmail, code);
+		try {
+			if (rs.next()) {
+				MySQL.executeUpdate("DELETE FROM email_verify_codes WHERE email=? AND code=?", encryptedEmail, code);
+				String tempPassword = createTempPassword();
+				MySQL.executeUpdate("UPDATE account SET password=? WHERE email=?", SHA256.encrypt(tempPassword), encryptedEmail);
+				Mail.sendMail(email, MailSubjects.FIND_PW_RESULT_SUBJECT.getName(), "임시 비밀번호 : " + tempPassword);
+				return 201;
+			} else {
+				return 204;
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return 204;
+		}
+	}
+	
+	private String createTempPassword() {
+		String tempPassword;
+		
+		while(true) {
+			tempPassword = UUID.randomUUID().toString().substring(0, 8);
+			ResultSet rs = MySQL.executeQuery("SELECT * FROM account WHERE password=?", SHA256.encrypt(tempPassword));
+			try {
+				if(!rs.next()) {
+					break;
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return tempPassword;
 	}
 }
