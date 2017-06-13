@@ -37,7 +37,8 @@
             android:hint="휴대폰 번호를 입력하시오"
             android:inputType="number"
             android:layout_marginBottom="10dp"
-            android:textSize="15sp"/>
+            android:textSize="15sp"
+            android:id="@+id/userPhoneNum"/>
 
         <EditText
             android:id="@+id/editText"

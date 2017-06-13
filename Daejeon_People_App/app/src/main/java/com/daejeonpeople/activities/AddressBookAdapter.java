@@ -27,27 +27,6 @@ public class AddressBookAdapter extends BaseAdapter {
 
     private ArrayList<AddressBookListItem> addressBookListItems = new ArrayList<AddressBookListItem>() ;
 
-    public void URLConnection() throws IOException {
-            String url = "http://127.0.0.1:3000";
-            String charset = "UTF-8";
-
-            HttpURLConnection conn = (HttpURLConnection) new URL(url).openConnection();
-            conn.setRequestMethod("POST");
-            conn.setDoOutput(true);
-
-            BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-            String inputLine;
-            StringBuffer response = new StringBuffer();
-
-            while ((inputLine = br.readLine()) != null) {
-                response.append(inputLine);
-            }
-            br.close();
-
-            //print result
-            System.out.println(response.toString());
-    }
-
     @Override
     public int getCount() {
         return addressBookListItems.size();

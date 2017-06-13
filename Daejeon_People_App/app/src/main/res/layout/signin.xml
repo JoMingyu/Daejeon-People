@@ -50,7 +50,8 @@
                 android:hint="아이디를 입력하세요"
                 android:background="@drawable/round_corner"
                 android:gravity="center"
-                android:layout_centerHorizontal="true" />
+                android:layout_centerHorizontal="true"
+                android:id="@+id/userId"/>
 
             <EditText
                 android:layout_width="300dp"
@@ -58,7 +59,8 @@
                 android:hint="비밀번호를 입력하세요"
                 android:background="@drawable/round_corner"
                 android:gravity="center"
-                android:layout_centerInParent="true"/>
+                android:layout_centerInParent="true"
+                android:id="@+id/userPassword"/>
 
             <Button
                 android:layout_width="300dp"
@@ -67,7 +69,8 @@
                 android:background="@drawable/round_corner"
                 android:gravity="center"
                 android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"/>
+                android:layout_centerHorizontal="true"
+                android:id="@+id/signinSubmit"/>
 
         </RelativeLayout>
 
