@@ -1,9 +1,13 @@
 package com.planb.restful.account.signup;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import com.planb.support.crypto.AES256;
 import com.planb.support.routing.API;
 import com.planb.support.routing.REST;
 import com.planb.support.routing.Route;
-import com.planb.support.user.SignupManager;
+import com.planb.support.utilities.MySQL;
 
 import io.vertx.core.Handler;
 import io.vertx.core.http.HttpMethod;
@@ -18,7 +22,25 @@ public class VerifyPhone implements Handler<RoutingContext> {
 		String phoneNumber = ctx.request().getFormAttribute("number");
 		String code = ctx.request().getFormAttribute("code");
 		
-		ctx.response().setStatusCode(SignupManager.verifyPhone(phoneNumber, code)).end();
+		ctx.response().setStatusCode(verifyPhone(phoneNumber, code)).end();
 		ctx.response().close();
+	}
+	
+	private int verifyPhone(String phoneNumber, String code) {
+		String encryptedPhoneNumber = AES256.encrypt(phoneNumber);
+
+		ResultSet rs = MySQL.executeQuery("SELECT * FROM phone_verify_codes WHERE phone_number=? AND code=?", encryptedPhoneNumber, code);
+		try {
+			if (rs.next()) {
+				MySQL.executeUpdate("DELETE FROM phone_verify_codes WHERE phone_number=? AND code=?", encryptedPhoneNumber, code);
+				return 201;
+			} else {
+				return 204;
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return 204;
+		}
 	}
 }

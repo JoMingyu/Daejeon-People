@@ -1,9 +1,13 @@
 package com.planb.restful.account.signup;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import com.planb.support.crypto.AES256;
 import com.planb.support.routing.API;
 import com.planb.support.routing.REST;
 import com.planb.support.routing.Route;
-import com.planb.support.user.SignupManager;
+import com.planb.support.utilities.MySQL;
 
 import io.vertx.core.Handler;
 import io.vertx.core.http.HttpMethod;
@@ -17,7 +21,22 @@ public class CheckIdExist implements Handler<RoutingContext> {
 	public void handle(RoutingContext ctx) {
 		String id = ctx.request().getFormAttribute("id");
 		
-		ctx.response().setStatusCode(SignupManager.checkIdExists(id)).end();
+		ctx.response().setStatusCode(checkIdExists(id)).end();
 		ctx.response().close();
+	}
+	
+	private int checkIdExists(String id) {
+		ResultSet rs = MySQL.executeQuery("SELECT * FROM account WHERE id=?", AES256.encrypt(id));
+		try {
+			if (rs.next()) {
+				return 204;
+			} else {
+				return 201;
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return 204;
+		}
 	}
 }

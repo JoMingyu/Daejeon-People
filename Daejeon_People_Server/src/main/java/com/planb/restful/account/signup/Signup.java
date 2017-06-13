@@ -1,9 +1,13 @@
 package com.planb.restful.account.signup;
 
+import com.planb.support.crypto.AES256;
+import com.planb.support.crypto.SHA256;
 import com.planb.support.routing.API;
 import com.planb.support.routing.REST;
 import com.planb.support.routing.Route;
-import com.planb.support.user.SignupManager;
+import com.planb.support.utilities.Mail;
+import com.planb.support.utilities.MailSubjects;
+import com.planb.support.utilities.MySQL;
 
 import io.vertx.core.Handler;
 import io.vertx.core.http.HttpMethod;
@@ -22,9 +26,31 @@ public class Signup implements Handler<RoutingContext> {
 		String name = ctx.request().getFormAttribute("name");
 		String registrationId = ctx.request().getFormAttribute("registration_id");
 
-		SignupManager.signup(id, password, email, tel, name, registrationId);
+		signup(id, password, email, tel, name, registrationId);
 		
 		ctx.response().setStatusCode(201).end();
 		ctx.response().close();
+	}
+	
+	private void signup(String id, String password, String email, String phoneNumber, String name, String registrationId) {
+		/*
+		 * 회원가입
+		 * 중복 체크와 인증은 다른 URI에서 수행
+		 */
+		String encryptedId = AES256.encrypt(id);
+		String encryptedPassword = SHA256.encrypt(password);
+		String encryptedEmail = AES256.encrypt(email);
+		String encryptedPhoneNumber = phoneNumber == null ? null : AES256.encrypt(phoneNumber);
+		// null이면 null, null이 아니면 암호화
+		String encryptedName = AES256.encrypt(name);
+		String encryptedRegistrationId = AES256.encrypt(registrationId);
+		
+		if(encryptedPhoneNumber == null) {
+			MySQL.executeUpdate("INSERT INTO account(id, password, email, phone_number, name, register_date, registration_id) VALUES(?, ?, ?, null, ?, NOW(), ?)", encryptedId, encryptedPassword, encryptedEmail, encryptedName, encryptedRegistrationId);
+		} else {
+			MySQL.executeUpdate("INSERT INTO account(id, password, email, phone_number, name, register_date, registration_id) VALUES(?, ?, ?, ?, ?, now(), ?)", encryptedId, encryptedPassword, encryptedEmail, encryptedPhoneNumber, encryptedName, encryptedRegistrationId);
+		}
+		
+		Mail.sendMail(email, MailSubjects.WELCOME_SUBJECT.getName(), "환영환영");
 	}
 }
