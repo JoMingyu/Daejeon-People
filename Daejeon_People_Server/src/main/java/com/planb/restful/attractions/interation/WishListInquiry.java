@@ -6,14 +6,18 @@ import java.sql.SQLException;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import com.planb.support.routing.API;
+import com.planb.support.routing.REST;
 import com.planb.support.routing.Route;
 import com.planb.support.user.UserManager;
-import com.planb.support.utilities.DataBase;
+import com.planb.support.utilities.MySQL;
 
 import io.vertx.core.Handler;
 import io.vertx.core.http.HttpMethod;
 import io.vertx.ext.web.RoutingContext;
 
+@API(functionCategory = "위시리스트", summary = "위시리스트 조회")
+@REST(params = "content_id : int", successCode = 200, failureCode = 204)
 @Route(uri = "/wish", method = HttpMethod.GET)
 public class WishListInquiry implements Handler<RoutingContext> {
 	@Override
@@ -22,20 +26,20 @@ public class WishListInquiry implements Handler<RoutingContext> {
 		
 		String clientId = UserManager.getEncryptedIdFromSession(ctx);
 		
-		ResultSet wishList = DataBase.executeQuery("SELECT content_id FROM wish_list WHERE client_id=?", clientId);
+		ResultSet wishList = MySQL.executeQuery("SELECT content_id FROM wish_list WHERE client_id=?", clientId);
 		try {
 			while(wishList.next()) {
 				wishList.getInt("content_id");
-				ResultSet content = DataBase.executeQuery("SELECT * FROM attractions_basic WHERE content_id=?", wishList.getInt("content_id"));
+				ResultSet contentSet = MySQL.executeQuery("SELECT * FROM attractions_basic WHERE content_id=?", wishList.getInt("content_id"));
 				JSONObject contentInfo = new JSONObject();
-				content.next();
-				contentInfo.put("address", content.getString("address"));
-				contentInfo.put("category", content.getString("cat3"));
-				contentInfo.put("content_id", content.getInt("content_id"));
-				contentInfo.put("image", content.getString("image_big_url"));
-				contentInfo.put("mapx", content.getDouble("mapx"));
-				contentInfo.put("mapy", content.getDouble("mapy"));
-				contentInfo.put("title", content.getString("title"));
+				contentSet.next();
+				contentInfo.put("address", contentSet.getString("address"));
+				contentInfo.put("category", contentSet.getString("cat3"));
+				contentInfo.put("content_id", contentSet.getInt("content_id"));
+				contentInfo.put("image", contentSet.getString("image_big_url"));
+				contentInfo.put("mapx", contentSet.getDouble("mapx"));
+				contentInfo.put("mapy", contentSet.getDouble("mapy"));
+				contentInfo.put("title", contentSet.getString("title"));
 				response.put(contentInfo);
 			}
 		} catch(SQLException e) {

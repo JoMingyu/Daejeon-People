@@ -5,22 +5,23 @@ import java.sql.SQLException;
 
 import org.json.JSONObject;
 
+import com.planb.parser.support.BaseURLs;
 import com.planb.parser.support.HttpClientForParser;
-import com.planb.parser.support.Params;
-import com.planb.support.utilities.DataBase;
 import com.planb.support.utilities.Log;
+import com.planb.support.utilities.MySQL;
 
-public class DetailCommonParser {
+public class DetailCommonParser implements Parser {
 	/*
 	 * 공통정보 조회
 	 * 홈페이지와 개요 정보
 	 */
-	private static String URL = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/detailCommon" + Params.defaultAppendParams + "&defaultYN=Y&overviewYN=Y";
+	private static String URL = BaseURLs.DETAIL_COMMON.getName();
 	
-	public static void parse() {
-		DataBase.executeUpdate("DELETE FROM attractions_detail_common");
+	@Override
+	public void parse() {
+		MySQL.executeUpdate("DELETE FROM attractions_detail_common");
 		
-		ResultSet rs = DataBase.executeQuery("SELECT * FROM attractions_basic");
+		ResultSet rs = MySQL.executeQuery("SELECT * FROM attractions_basic");
 		
 		try {
 			while(rs.next()) {
@@ -28,6 +29,9 @@ public class DetailCommonParser {
 				int contentTypeId = rs.getInt("content_type_id");
 				
 				JSONObject item = HttpClientForParser.getItem(URL + "&contentId=" + contentId);
+				if(item == null) {
+					continue;
+				}
 				
 				String homepage = item.has("homepage") ? item.getString("homepage").replaceAll("'", "''") : null;
 				// 홈페이지 주소
@@ -41,7 +45,7 @@ public class DetailCommonParser {
 				String tel = item.has("tel") ? item.getString("tel") : null;
 				// 전화번호
 				
-				DataBase.executeUpdate("INSERT INTO attractions_detail_common VALUES(?, ?, ?, ?, ?, ?)", contentId, contentTypeId, homepage, overview, telName, tel);
+				MySQL.executeUpdate("INSERT INTO attractions_detail_common VALUES(?, ?, ?, ?, ?, ?)", contentId, contentTypeId, homepage, overview, telName, tel);
 			}
 			
 			Log.I("Detail Common Parse Success.");

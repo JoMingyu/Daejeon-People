@@ -6,18 +6,19 @@ import java.sql.SQLException;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import com.planb.parser.support.BaseURLs;
 import com.planb.parser.support.HttpClientForParser;
-import com.planb.parser.support.Params;
-import com.planb.support.utilities.DataBase;
 import com.planb.support.utilities.Log;
+import com.planb.support.utilities.MySQL;
 
-public class AdditionalImageParser {
-	private static String defaultURL = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/detailImage" + Params.defaultAppendParams + "&imageYN=Y";
+public class AdditionalImageParser implements Parser {
+	private static String defaultURL = BaseURLs.ADDITIONAL_IMAGE.getName();
 	
-	public static void parse() {
-		DataBase.executeUpdate("DELETE FROM attractions_images");
+	@Override
+	public void parse() {
+		MySQL.executeUpdate("DELETE FROM attractions_images");
 		
-		ResultSet rs = DataBase.executeQuery("SELECT * FROM attractions_basic");
+		ResultSet rs = MySQL.executeQuery("SELECT * FROM attractions_basic");
 		
 		try {
 			while(rs.next()) {
@@ -33,7 +34,7 @@ public class AdditionalImageParser {
 				
 				if(totalCount == 1) {
 					JSONObject item = HttpClientForParser.getItem(requestURL);
-					DataBase.executeUpdate("INSERT INTO attractions_images VALUES(?, ?)", contentId, item.getString("originimgurl"));
+					MySQL.executeUpdate("INSERT INTO attractions_images VALUES(?, ?)", contentId, item.getString("originimgurl"));
 				} else {
 					// totalCount > 1
 					
@@ -42,7 +43,7 @@ public class AdditionalImageParser {
 					
 					for(int i = 0; i < items.length(); i++) {
 						JSONObject item = items.getJSONObject(i);
-						DataBase.executeUpdate("INSERT INTO attractions_images VALUES(?, ?)", contentId, item.getString("originimgurl"));
+						MySQL.executeUpdate("INSERT INTO attractions_images VALUES(?, ?)", contentId, item.getString("originimgurl"));
 					}
 				}
 			}

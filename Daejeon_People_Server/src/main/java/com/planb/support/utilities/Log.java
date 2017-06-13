@@ -1,44 +1,38 @@
 package com.planb.support.utilities;
 
-import java.io.File; 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Calendar;
 
 public class Log {
-	private static File file = null;
+	private static File logFile = null;
 	private static FileWriter fw;
 	private static Calendar cal;
 	
-	static {
+	private static void check() {
 		File dir = new File("logs");
-		dir.mkdir();
-		/*
-		 * Create logs directory
-		 * mkdir method contains exist check
-		 */
+		if(!dir.exists()) {
+			dir.mkdir();
+		}
 		
-		if(file == null) {
-			cal = Calendar.getInstance();
-			String year = String.format("%4d", cal.get(Calendar.YEAR));
-			String month = String.format("%02d", cal.get(Calendar.MONTH) + 1);
-			String date = String.format("%02d", cal.get(Calendar.DATE));
-			String logFileName = "logs/" + year + "-" + month + "-" + date + ".log";
-			file = new File(logFileName);
-			if(!file.exists()) {
-				try {
-					file.createNewFile();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
+		cal = Calendar.getInstance();
+		String year = String.format("%4d", cal.get(Calendar.YEAR));
+		String month = String.format("%02d", cal.get(Calendar.MONTH) + 1);
+		String date = String.format("%02d", cal.get(Calendar.DATE));
+		String logFileName = "logs/" + year + "-" + month + "-" + date + ".log";
+		logFile = new File(logFileName);
+		try {
+			if(!logFile.exists()) {
+				logFile.createNewFile();
+				fw = new FileWriter(logFile, true);
+				// Append
+			} else {
+				fw = new FileWriter(logFile, true);
 			}
-			try {
-				fw = new FileWriter(file, true);
-				// Append true
-			} catch (IOException e) {
+			} catch(IOException e) {
 				e.printStackTrace();
 			}
-		}
 	}
 	
 	public static void Q(String sql) {
@@ -58,6 +52,7 @@ public class Log {
 	}
 	
 	private static String getLogText(String type, String msg) {
+		cal = Calendar.getInstance();
 		String ampm = cal.get(Calendar.AM_PM) == 0 ? "AM" : "PM";
 		String hour = String.format("%02d", cal.get(Calendar.HOUR));
 		String minute = String.format("%02d", cal.get(Calendar.MINUTE));
@@ -76,11 +71,14 @@ public class Log {
 	}
 	
 	private static void writeToFile(String logMsg) {
+		check();
+		
 		try {
 			System.out.println(logMsg);
 			fw.write(logMsg);
 			fw.write("\n");
 			fw.flush();
+			fw.close();
 		} catch(IOException e) {
 			e.printStackTrace();
 		}

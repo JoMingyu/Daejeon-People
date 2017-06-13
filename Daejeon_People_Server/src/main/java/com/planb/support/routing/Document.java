@@ -8,6 +8,8 @@ import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+import com.planb.support.utilities.Log;
+
 public class Document {
 	private XSSFWorkbook wb;
 
@@ -17,7 +19,7 @@ public class Document {
 		XSSFSheet sheet = wb.createSheet("API");
 		
 		XSSFRow rowHead = sheet.createRow(0);
-		rowHead.createCell(0).setCellValue("Function Name");
+		rowHead.createCell(0).setCellValue("Function Category");
 		rowHead.createCell(1).setCellValue("Summary");
 		rowHead.createCell(2).setCellValue("Method");
 		rowHead.createCell(3).setCellValue("URI");
@@ -28,13 +30,14 @@ public class Document {
 		rowHead.createCell(8).setCellValue("Response Header");
 		rowHead.createCell(9).setCellValue("Response Body");
 		rowHead.createCell(10).setCellValue("Failure Code");
+		rowHead.createCell(11).setCellValue("ETC");
 		
 		int rowCount = 1;
 		
 		for(RESTResource resource : resourceList) {
 			XSSFRow row = sheet.createRow(rowCount++);
 			
-			row.createCell(0).setCellValue(resource.getName());
+			row.createCell(0).setCellValue(resource.getFunctionCategory());
 			row.createCell(1).setCellValue(resource.getSummary());
 			row.createCell(2).setCellValue(resource.getMethod());
 			row.createCell(3).setCellValue(resource.getUri());
@@ -45,11 +48,12 @@ public class Document {
 			row.createCell(8).setCellValue(getKeyValueStr(resource.getResponseHeaders()));
 			row.createCell(9).setCellValue(getKeyValueStr(resource.getResponseBody()));
 			row.createCell(10).setCellValue(resource.getFailureCode());
+			row.createCell(11).setCellValue(resource.getEtc());
 		}
 		
 		try {
 			wb.write(new FileOutputStream(fileName));
-			
+			Log.I("REST Resource Documentation Complete");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

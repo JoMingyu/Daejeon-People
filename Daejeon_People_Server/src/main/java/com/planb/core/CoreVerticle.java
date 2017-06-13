@@ -1,6 +1,8 @@
 package com.planb.core;
 
-import com.planb.support.routing.Register;
+import com.planb.parser.support.ParserThread;
+import com.planb.support.routing.Routing;
+import com.planb.support.utilities.Log;
 
 import io.vertx.core.AbstractVerticle;
 import io.vertx.ext.web.Router;
@@ -45,12 +47,7 @@ public class CoreVerticle extends AbstractVerticle {
 		 * http://vertx.io/docs/apidocs/io/vertx/ext/web/handler/SessionHandler.html
 		 */
 		
-		Register.route(router, "com.planb.restful");
-		router.route().handler(ctx -> {
-			// Invalid URI or method
-			ctx.response().setStatusCode(404).end();
-			ctx.response().close();
-		});
+		Routing.route(router, "com.planb.restful");
 		
 		router.route().handler(StaticHandler.create());
 		/**
@@ -61,9 +58,9 @@ public class CoreVerticle extends AbstractVerticle {
 		 * @see
 		 * http://vertx.io/docs/apidocs/io/vertx/rxjava/ext/web/handler/StaticHandler.html
 		 */
-		Thread.sleep(1000);
 //		new ParserThread().start();
 		
+		Log.I("Server Started");
 		vertx.createHttpServer().requestHandler(router::accept).listen(80);
 		/**
 		 * @brief

@@ -5,14 +5,18 @@ import java.sql.SQLException;
 
 import org.json.JSONArray;
 
+import com.planb.support.routing.API;
+import com.planb.support.routing.REST;
 import com.planb.support.routing.Route;
 import com.planb.support.user.UserManager;
-import com.planb.support.utilities.DataBase;
+import com.planb.support.utilities.MySQL;
 
 import io.vertx.core.Handler;
 import io.vertx.core.http.HttpMethod;
 import io.vertx.ext.web.RoutingContext;
 
+@API(functionCategory = "친구", summary = "친구 목록")
+@REST(responseBody = "id : String, phone_number : String, email : String, name : String, (JSONArray)", successCode = 200, failureCode = 204)
 @Route(uri = "/friend", method = HttpMethod.GET)
 public class FriendList implements Handler<RoutingContext> {
 	@Override
@@ -21,12 +25,12 @@ public class FriendList implements Handler<RoutingContext> {
 		
 		String clientId = UserManager.getEncryptedIdFromSession(ctx);
 		
-		ResultSet friendSet = DataBase.executeQuery("SELECT * FROM friend_list WHERE client_id1=? OR client_id2=?", clientId, clientId);
+		ResultSet friendSet = MySQL.executeQuery("SELECT * FROM friend_list WHERE client_id1=? OR client_id2=?", clientId, clientId);
 		try {
 			while(friendSet.next()) {
 				String friendId = null;
 				
-				if(friendSet.getString("client_id1") != clientId) {
+				if(!friendSet.getString("client_id1").equals(clientId)) {
 					friendId = friendSet.getString("client_id1");
 				} else {
 					friendId = friendSet.getString("client_id2");

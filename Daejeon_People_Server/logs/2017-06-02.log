@@ -1,0 +1,2041 @@
+[10:42:41 AM - ROUTING] POST /signup/phone/check
+[10:42:41 AM - ROUTING] GET /travel/invite
+[10:42:41 AM - ROUTING] DELETE /wish
+[10:42:41 AM - ROUTING] GET /friend/request
+[10:42:41 AM - ROUTING] POST /logout
+[10:42:41 AM - ROUTING] POST /friend/delete
+[10:42:41 AM - ROUTING] GET /wish
+[10:42:41 AM - ROUTING] GET /user
+[10:42:41 AM - ROUTING] POST /signup/phone/demand
+[10:42:41 AM - ROUTING] POST /profile-image
+[10:42:41 AM - ROUTING] DELETE /travel/quit
+[10:42:41 AM - ROUTING] POST /travel/refuse
+[10:42:41 AM - ROUTING] GET /travel
+[10:42:41 AM - ROUTING] POST /signup/email/verify
+[10:42:41 AM - ROUTING] POST /find/id/demand
+[10:42:41 AM - ROUTING] GET /mypage
+[10:42:41 AM - ROUTING] POST /friend/accept
+[10:42:41 AM - ROUTING] POST /friend/refuse
+[10:42:41 AM - ROUTING] POST /signin
+[10:42:41 AM - ROUTING] POST /signup/phone/verify
+[10:42:41 AM - ROUTING] POST /find/password/demand
+[10:42:41 AM - ROUTING] POST /chat
+[10:42:41 AM - ROUTING] GET /attractions/list
+[10:42:41 AM - ROUTING] POST /signup
+[10:42:41 AM - ROUTING] POST /signup/email/check
+[10:42:41 AM - ROUTING] GET /travel/info
+[10:42:41 AM - ROUTING] POST /travel/invite
+[10:42:41 AM - ROUTING] POST /find/id/verify
+[10:42:41 AM - ROUTING] POST /friend/request
+[10:42:41 AM - ROUTING] POST /user
+[10:42:41 AM - ROUTING] GET /profile-image
+[10:42:41 AM - ROUTING] GET /attractions/list/total
+[10:42:41 AM - ROUTING] GET /friend
+[10:42:41 AM - ROUTING] POST /map
+[10:42:41 AM - ROUTING] POST /travel
+[10:42:41 AM - ROUTING] POST /signup/id/check
+[10:42:41 AM - ROUTING] POST /travel/accept
+[10:42:41 AM - ROUTING] POST /signup/email/demand
+[10:42:41 AM - ROUTING] POST /find/password/verify
+[10:42:41 AM - ROUTING] DELETE /travel
+[10:42:41 AM - ROUTING] GET /find_user
+[10:42:41 AM - ROUTING] POST /wish
+[10:42:41 AM - ROUTING] POST /change/password
+[10:42:41 AM - ROUTING] GET /map
+[10:42:41 AM - ROUTING] GET /attractions/detail
+[10:42:41 AM - INFO] Server Started
+[10:42:41 AM - QUERY] SELECT * FROM account WHERE session_id=?
+[10:42:41 AM - QUERY] SELECT * FROM account WHERE id=?
+[10:42:41 AM - QUERY] SELECT * FROM account WHERE session_id=?
+[10:42:41 AM - QUERY] SELECT * FROM account WHERE id=?
+[10:43:08 AM - ROUTING] POST /find/password/verify
+[10:43:08 AM - ROUTING] GET /profile-image
+[10:43:08 AM - ROUTING] POST /travel/accept
+[10:43:08 AM - ROUTING] POST /signup/email/demand
+[10:43:08 AM - ROUTING] POST /signup/email/check
+[10:43:08 AM - ROUTING] POST /profile-image
+[10:43:08 AM - ROUTING] DELETE /travel
+[10:43:08 AM - ROUTING] POST /signup/phone/verify
+[10:43:08 AM - ROUTING] GET /attractions/list
+[10:43:08 AM - ROUTING] POST /signup/email/verify
+[10:43:08 AM - ROUTING] POST /travel
+[10:43:08 AM - ROUTING] POST /friend/delete
+[10:43:08 AM - ROUTING] GET /wish
+[10:43:08 AM - ROUTING] POST /find/id/verify
+[10:43:08 AM - ROUTING] POST /map
+[10:43:08 AM - ROUTING] POST /change/password
+[10:43:08 AM - ROUTING] GET /mypage
+[10:43:08 AM - ROUTING] GET /travel/info
+[10:43:08 AM - ROUTING] GET /friend/request
+[10:43:08 AM - ROUTING] GET /user
+[10:43:08 AM - ROUTING] GET /travel/invite
+[10:43:08 AM - ROUTING] GET /attractions/list/total
+[10:43:08 AM - ROUTING] POST /wish
+[10:43:08 AM - ROUTING] GET /travel
+[10:43:08 AM - ROUTING] POST /chat
+[10:43:08 AM - ROUTING] GET /attractions/detail
+[10:43:08 AM - ROUTING] POST /signup/phone/demand
+[10:43:08 AM - ROUTING] GET /map
+[10:43:08 AM - ROUTING] DELETE /travel/quit
+[10:43:08 AM - ROUTING] POST /signup
+[10:43:08 AM - ROUTING] POST /user
+[10:43:08 AM - ROUTING] POST /signup/phone/check
+[10:43:08 AM - ROUTING] POST /find/password/demand
+[10:43:08 AM - ROUTING] GET /friend
+[10:43:08 AM - ROUTING] POST /friend/accept
+[10:43:08 AM - ROUTING] POST /signin
+[10:43:08 AM - ROUTING] POST /travel/invite
+[10:43:08 AM - ROUTING] POST /friend/refuse
+[10:43:08 AM - ROUTING] GET /find_user
+[10:43:08 AM - ROUTING] POST /travel/refuse
+[10:43:08 AM - ROUTING] POST /signup/id/check
+[10:43:08 AM - ROUTING] POST /friend/request
+[10:43:08 AM - ROUTING] POST /logout
+[10:43:08 AM - ROUTING] DELETE /wish
+[10:43:08 AM - ROUTING] POST /find/id/demand
+[10:43:08 AM - INFO] Server Started
+[10:43:08 AM - QUERY] SELECT * FROM account WHERE session_id=?
+[10:43:08 AM - QUERY] SELECT * FROM account WHERE id=?
+[10:43:42 AM - ROUTING] POST /map
+[10:43:42 AM - ROUTING] GET /attractions/detail
+[10:43:42 AM - ROUTING] GET /attractions/list/total
+[10:43:42 AM - ROUTING] GET /friend
+[10:43:42 AM - ROUTING] POST /friend/delete
+[10:43:42 AM - ROUTING] GET /travel/info
+[10:43:42 AM - ROUTING] POST /travel
+[10:43:42 AM - ROUTING] POST /friend/request
+[10:43:42 AM - ROUTING] GET /find_user
+[10:43:42 AM - ROUTING] POST /user
+[10:43:42 AM - ROUTING] GET /mypage
+[10:43:42 AM - ROUTING] POST /signup/id/check
+[10:43:42 AM - ROUTING] POST /wish
+[10:43:42 AM - ROUTING] GET /map
+[10:43:42 AM - ROUTING] POST /signup/email/check
+[10:43:42 AM - ROUTING] GET /travel
+[10:43:42 AM - ROUTING] POST /friend/accept
+[10:43:42 AM - ROUTING] POST /signup/email/demand
+[10:43:42 AM - ROUTING] POST /find/password/demand
+[10:43:42 AM - ROUTING] DELETE /wish
+[10:43:42 AM - ROUTING] POST /signup
+[10:43:42 AM - ROUTING] POST /logout
+[10:43:42 AM - ROUTING] POST /friend/refuse
+[10:43:42 AM - ROUTING] POST /travel/invite
+[10:43:42 AM - ROUTING] POST /find/id/verify
+[10:43:42 AM - ROUTING] POST /signin
+[10:43:42 AM - ROUTING] GET /user
+[10:43:42 AM - ROUTING] POST /find/password/verify
+[10:43:42 AM - ROUTING] POST /profile-image
+[10:43:42 AM - ROUTING] POST /travel/refuse
+[10:43:42 AM - ROUTING] GET /friend/request
+[10:43:42 AM - ROUTING] POST /chat
+[10:43:42 AM - ROUTING] GET /attractions/list
+[10:43:42 AM - ROUTING] POST /change/password
+[10:43:42 AM - ROUTING] DELETE /travel/quit
+[10:43:42 AM - ROUTING] POST /travel/accept
+[10:43:42 AM - ROUTING] GET /wish
+[10:43:42 AM - ROUTING] POST /signup/phone/check
+[10:43:42 AM - ROUTING] GET /travel/invite
+[10:43:42 AM - ROUTING] POST /signup/phone/demand
+[10:43:42 AM - ROUTING] POST /find/id/demand
+[10:43:42 AM - ROUTING] GET /profile-image
+[10:43:42 AM - ROUTING] POST /signup/email/verify
+[10:43:42 AM - ROUTING] DELETE /travel
+[10:43:42 AM - ROUTING] POST /signup/phone/verify
+[10:43:42 AM - INFO] Server Started
+[10:43:42 AM - QUERY] SELECT * FROM account WHERE session_id=?
+[10:43:42 AM - QUERY] SELECT * FROM account WHERE id=?
+[10:43:42 AM - QUERY] SELECT * FROM account WHERE session_id=?
+[10:43:42 AM - QUERY] UPDATE account SET session_id=null WHERE id=?
+[10:43:42 AM - QUERY] SELECT * FROM account WHERE id=? AND password=?
+[10:44:19 AM - ROUTING] POST /map
+[10:44:19 AM - ROUTING] GET /attractions/detail
+[10:44:19 AM - ROUTING] GET /attractions/list/total
+[10:44:19 AM - ROUTING] GET /friend
+[10:44:19 AM - ROUTING] POST /friend/delete
+[10:44:19 AM - ROUTING] GET /travel/info
+[10:44:19 AM - ROUTING] POST /travel
+[10:44:19 AM - ROUTING] POST /friend/request
+[10:44:19 AM - ROUTING] GET /find_user
+[10:44:19 AM - ROUTING] POST /user
+[10:44:19 AM - ROUTING] GET /mypage
+[10:44:19 AM - ROUTING] POST /signup/id/check
+[10:44:19 AM - ROUTING] POST /wish
+[10:44:19 AM - ROUTING] GET /map
+[10:44:19 AM - ROUTING] POST /signup/email/check
+[10:44:19 AM - ROUTING] GET /travel
+[10:44:19 AM - ROUTING] POST /friend/accept
+[10:44:19 AM - ROUTING] POST /signup/email/demand
+[10:44:19 AM - ROUTING] POST /find/password/demand
+[10:44:19 AM - ROUTING] DELETE /wish
+[10:44:19 AM - ROUTING] POST /signup
+[10:44:19 AM - ROUTING] POST /logout
+[10:44:19 AM - ROUTING] POST /friend/refuse
+[10:44:19 AM - ROUTING] POST /travel/invite
+[10:44:19 AM - ROUTING] POST /find/id/verify
+[10:44:19 AM - ROUTING] POST /signin
+[10:44:19 AM - ROUTING] GET /user
+[10:44:19 AM - ROUTING] POST /find/password/verify
+[10:44:19 AM - ROUTING] POST /profile-image
+[10:44:19 AM - ROUTING] POST /travel/refuse
+[10:44:19 AM - ROUTING] GET /friend/request
+[10:44:19 AM - ROUTING] POST /chat
+[10:44:19 AM - ROUTING] GET /attractions/list
+[10:44:19 AM - ROUTING] POST /change/password
+[10:44:19 AM - ROUTING] DELETE /travel/quit
+[10:44:19 AM - ROUTING] POST /travel/accept
+[10:44:19 AM - ROUTING] GET /wish
+[10:44:19 AM - ROUTING] POST /signup/phone/check
+[10:44:19 AM - ROUTING] GET /travel/invite
+[10:44:19 AM - ROUTING] POST /signup/phone/demand
+[10:44:19 AM - ROUTING] POST /find/id/demand
+[10:44:19 AM - ROUTING] GET /profile-image
+[10:44:19 AM - ROUTING] POST /signup/email/verify
+[10:44:19 AM - ROUTING] DELETE /travel
+[10:44:19 AM - ROUTING] POST /signup/phone/verify
+[10:44:19 AM - INFO] Server Started
+[10:44:19 AM - QUERY] INSERT INTO account(id, password, email, phone_number, name, register_date, registration_id) VALUES(?, ?, ?, null, ?, NOW(), ?)
+[10:44:19 AM - QUERY] INSERT INTO account(id, password, email, phone_number, name, register_date, registration_id) VALUES(?, ?, ?, null, ?, NOW(), ?)
+[10:44:19 AM - QUERY] SELECT * FROM account WHERE id=? AND password=?
+[10:44:19 AM - QUERY] SELECT * FROM account WHERE id=?
+[10:44:19 AM - QUERY] SELECT * FROM account WHERE session_id=?
+[10:44:19 AM - QUERY] UPDATE account SET session_id=? WHERE id=?
+[10:44:19 AM - QUERY] SELECT * FROM account WHERE session_id=?
+[10:44:19 AM - QUERY] SELECT * FROM account WHERE id=?
+[10:44:19 AM - QUERY] SELECT * FROM account WHERE session_id=?
+[10:44:19 AM - QUERY] UPDATE account SET session_id=null WHERE id=?
+[10:44:19 AM - QUERY] SELECT * FROM account WHERE id=? AND password=?
+[10:44:19 AM - QUERY] SELECT * FROM account WHERE id=?
+[10:44:19 AM - QUERY] SELECT * FROM account WHERE session_id=?
+[10:44:19 AM - QUERY] UPDATE account SET session_id=? WHERE id=?
+[10:44:19 AM - QUERY] SELECT * FROM account WHERE session_id=?
+[10:44:19 AM - QUERY] SELECT * FROM account WHERE id=?
+[10:44:19 AM - QUERY] SELECT * FROM account WHERE session_id=?
+[10:44:19 AM - QUERY] SELECT * FROM account WHERE session_id=?
+[10:46:18 AM - ROUTING] POST /find/password/verify
+[10:46:18 AM - ROUTING] GET /profile-image
+[10:46:18 AM - ROUTING] POST /travel/accept
+[10:46:18 AM - ROUTING] POST /signup/email/demand
+[10:46:18 AM - ROUTING] POST /signup/email/check
+[10:46:18 AM - ROUTING] POST /profile-image
+[10:46:18 AM - ROUTING] DELETE /travel
+[10:46:18 AM - ROUTING] POST /signup/phone/verify
+[10:46:18 AM - ROUTING] GET /attractions/list
+[10:46:18 AM - ROUTING] POST /signup/email/verify
+[10:46:18 AM - ROUTING] POST /travel
+[10:46:18 AM - ROUTING] POST /friend/delete
+[10:46:18 AM - ROUTING] GET /wish
+[10:46:18 AM - ROUTING] POST /find/id/verify
+[10:46:18 AM - ROUTING] POST /map
+[10:46:18 AM - ROUTING] POST /change/password
+[10:46:18 AM - ROUTING] GET /mypage
+[10:46:18 AM - ROUTING] GET /travel/info
+[10:46:18 AM - ROUTING] GET /friend/request
+[10:46:18 AM - ROUTING] GET /user
+[10:46:18 AM - ROUTING] GET /travel/invite
+[10:46:18 AM - ROUTING] GET /attractions/list/total
+[10:46:18 AM - ROUTING] POST /wish
+[10:46:18 AM - ROUTING] GET /travel
+[10:46:18 AM - ROUTING] POST /chat
+[10:46:18 AM - ROUTING] GET /attractions/detail
+[10:46:18 AM - ROUTING] POST /signup/phone/demand
+[10:46:18 AM - ROUTING] GET /map
+[10:46:18 AM - ROUTING] DELETE /travel/quit
+[10:46:18 AM - ROUTING] POST /signup
+[10:46:18 AM - ROUTING] POST /user
+[10:46:18 AM - ROUTING] POST /signup/phone/check
+[10:46:18 AM - ROUTING] POST /find/password/demand
+[10:46:18 AM - ROUTING] GET /friend
+[10:46:18 AM - ROUTING] POST /friend/accept
+[10:46:18 AM - ROUTING] POST /signin
+[10:46:18 AM - ROUTING] POST /travel/invite
+[10:46:18 AM - ROUTING] POST /friend/refuse
+[10:46:18 AM - ROUTING] GET /find_user
+[10:46:18 AM - ROUTING] POST /travel/refuse
+[10:46:18 AM - ROUTING] POST /signup/id/check
+[10:46:18 AM - ROUTING] POST /friend/request
+[10:46:18 AM - ROUTING] POST /logout
+[10:46:18 AM - ROUTING] DELETE /wish
+[10:46:18 AM - ROUTING] POST /find/id/demand
+[10:46:18 AM - INFO] Server Started
+[10:46:18 AM - QUERY] SELECT * FROM account WHERE session_id=?
+[10:46:44 AM - ROUTING] POST /signup/phone/check
+[10:46:44 AM - ROUTING] GET /travel/invite
+[10:46:44 AM - ROUTING] DELETE /wish
+[10:46:44 AM - ROUTING] GET /friend/request
+[10:46:44 AM - ROUTING] POST /logout
+[10:46:44 AM - ROUTING] POST /friend/delete
+[10:46:44 AM - ROUTING] GET /wish
+[10:46:44 AM - ROUTING] GET /user
+[10:46:44 AM - ROUTING] POST /signup/phone/demand
+[10:46:44 AM - ROUTING] POST /profile-image
+[10:46:44 AM - ROUTING] DELETE /travel/quit
+[10:46:44 AM - ROUTING] POST /travel/refuse
+[10:46:44 AM - ROUTING] GET /travel
+[10:46:44 AM - ROUTING] POST /signup/email/verify
+[10:46:44 AM - ROUTING] POST /find/id/demand
+[10:46:44 AM - ROUTING] GET /mypage
+[10:46:44 AM - ROUTING] POST /friend/accept
+[10:46:44 AM - ROUTING] POST /friend/refuse
+[10:46:44 AM - ROUTING] POST /signin
+[10:46:44 AM - ROUTING] POST /signup/phone/verify
+[10:46:44 AM - ROUTING] POST /find/password/demand
+[10:46:44 AM - ROUTING] POST /chat
+[10:46:44 AM - ROUTING] GET /attractions/list
+[10:46:44 AM - ROUTING] POST /signup
+[10:46:44 AM - ROUTING] POST /signup/email/check
+[10:46:44 AM - ROUTING] GET /travel/info
+[10:46:44 AM - ROUTING] POST /travel/invite
+[10:46:44 AM - ROUTING] POST /find/id/verify
+[10:46:44 AM - ROUTING] POST /friend/request
+[10:46:44 AM - ROUTING] POST /user
+[10:46:44 AM - ROUTING] GET /profile-image
+[10:46:44 AM - ROUTING] GET /attractions/list/total
+[10:46:44 AM - ROUTING] GET /friend
+[10:46:44 AM - ROUTING] POST /map
+[10:46:44 AM - ROUTING] POST /travel
+[10:46:44 AM - ROUTING] POST /signup/id/check
+[10:46:44 AM - ROUTING] POST /travel/accept
+[10:46:44 AM - ROUTING] POST /signup/email/demand
+[10:46:44 AM - ROUTING] POST /find/password/verify
+[10:46:44 AM - ROUTING] DELETE /travel
+[10:46:44 AM - ROUTING] GET /find_user
+[10:46:44 AM - ROUTING] POST /wish
+[10:46:44 AM - ROUTING] POST /change/password
+[10:46:44 AM - ROUTING] GET /map
+[10:46:44 AM - ROUTING] GET /attractions/detail
+[10:46:44 AM - INFO] Server Started
+[10:46:44 AM - QUERY] SELECT * FROM account WHERE session_id=?
+[10:46:44 AM - QUERY] SELECT * FROM account WHERE session_id=?
+[10:46:44 AM - QUERY] SELECT * FROM account WHERE id=?
+[10:46:44 AM - QUERY] SELECT COUNT(*) FROM friend_requests WHERE dst_id=?
+[10:46:44 AM - QUERY] SELECT COUNT(*) FROM travel_invites WHERE dst_id=?
+[10:47:51 AM - ROUTING] POST /signup/phone/check
+[10:47:51 AM - ROUTING] GET /travel/invite
+[10:47:51 AM - ROUTING] DELETE /wish
+[10:47:51 AM - ROUTING] GET /friend/request
+[10:47:51 AM - ROUTING] POST /logout
+[10:47:51 AM - ROUTING] POST /friend/delete
+[10:47:51 AM - ROUTING] GET /wish
+[10:47:51 AM - ROUTING] GET /user
+[10:47:51 AM - ROUTING] POST /signup/phone/demand
+[10:47:51 AM - ROUTING] POST /profile-image
+[10:47:51 AM - ROUTING] DELETE /travel/quit
+[10:47:51 AM - ROUTING] POST /travel/refuse
+[10:47:51 AM - ROUTING] GET /travel
+[10:47:51 AM - ROUTING] POST /signup/email/verify
+[10:47:51 AM - ROUTING] POST /find/id/demand
+[10:47:51 AM - ROUTING] GET /mypage
+[10:47:51 AM - ROUTING] POST /friend/accept
+[10:47:51 AM - ROUTING] POST /friend/refuse
+[10:47:51 AM - ROUTING] POST /signin
+[10:47:51 AM - ROUTING] POST /signup/phone/verify
+[10:47:51 AM - ROUTING] POST /find/password/demand
+[10:47:51 AM - ROUTING] POST /chat
+[10:47:51 AM - ROUTING] GET /attractions/list
+[10:47:51 AM - ROUTING] POST /signup
+[10:47:51 AM - ROUTING] POST /signup/email/check
+[10:47:51 AM - ROUTING] GET /travel/info
+[10:47:51 AM - ROUTING] POST /travel/invite
+[10:47:51 AM - ROUTING] POST /find/id/verify
+[10:47:51 AM - ROUTING] POST /friend/request
+[10:47:51 AM - ROUTING] POST /user
+[10:47:51 AM - ROUTING] GET /profile-image
+[10:47:51 AM - ROUTING] GET /attractions/list/total
+[10:47:51 AM - ROUTING] GET /friend
+[10:47:51 AM - ROUTING] POST /map
+[10:47:51 AM - ROUTING] POST /travel
+[10:47:51 AM - ROUTING] POST /signup/id/check
+[10:47:51 AM - ROUTING] POST /travel/accept
+[10:47:51 AM - ROUTING] POST /signup/email/demand
+[10:47:51 AM - ROUTING] POST /find/password/verify
+[10:47:51 AM - ROUTING] DELETE /travel
+[10:47:51 AM - ROUTING] GET /find_user
+[10:47:51 AM - ROUTING] POST /wish
+[10:47:51 AM - ROUTING] POST /change/password
+[10:47:51 AM - ROUTING] GET /map
+[10:47:51 AM - ROUTING] GET /attractions/detail
+[10:47:51 AM - INFO] Server Started
+[10:47:51 AM - QUERY] SELECT * FROM account WHERE session_id=?
+[10:47:51 AM - QUERY] SELECT * FROM account WHERE id=?
+[10:47:51 AM - QUERY] SELECT COUNT(*) FROM friend_requests WHERE dst_id=?
+[10:47:51 AM - QUERY] SELECT COUNT(*) FROM travel_invites WHERE dst_id=?
+[10:47:51 AM - QUERY] SELECT * FROM account WHERE session_id=?
+[10:47:51 AM - QUERY] SELECT * FROM account WHERE session_id=?
+[10:47:51 AM - QUERY] SELECT * FROM account WHERE id=?
+[10:47:51 AM - QUERY] SELECT * FROM account WHERE session_id=?
+[10:47:51 AM - QUERY] SELECT * FROM account WHERE email=? OR phone_number=?
+[10:47:51 AM - QUERY] SELECT * FROM friend_requests WHERE src_id=? AND dst_id=?
+[10:47:51 AM - QUERY] SELECT * FROM account WHERE session_id=?
+[10:47:51 AM - QUERY] SELECT * FROM account WHERE email=? OR phone_number=?
+[10:47:51 AM - QUERY] SELECT * FROM friend_requests WHERE src_id=? AND dst_id=?
+[10:47:51 AM - QUERY] SELECT * FROM account WHERE session_id=?
+[10:47:51 AM - QUERY] SELECT * FROM account WHERE email=? OR phone_number=?
+[10:47:51 AM - QUERY] SELECT * FROM friend_requests WHERE src_id=? AND dst_id=?
+[10:54:26 AM - ROUTING] GET /travel/info
+[10:54:26 AM - ROUTING] POST /signup/email/check
+[10:54:26 AM - ROUTING] POST /user
+[10:54:26 AM - ROUTING] POST /travel
+[10:54:26 AM - ROUTING] GET /user
+[10:54:26 AM - ROUTING] POST /signup/email/demand
+[10:54:26 AM - ROUTING] POST /signup/phone/demand
+[10:54:26 AM - ROUTING] POST /signup/email/verify
+[10:54:26 AM - ROUTING] POST /chat
+[10:54:26 AM - ROUTING] POST /profile-image
+[10:54:26 AM - ROUTING] GET /attractions/list/total
+[10:54:26 AM - ROUTING] POST /map
+[10:54:26 AM - ROUTING] DELETE /travel
+[10:54:26 AM - ROUTING] GET /mypage
+[10:54:26 AM - ROUTING] POST /logout
+[10:54:26 AM - ROUTING] GET /travel
+[10:54:26 AM - ROUTING] POST /travel/accept
+[10:54:26 AM - ROUTING] POST /signup
+[10:54:26 AM - ROUTING] GET /wish
+[10:54:26 AM - ROUTING] GET /friend
+[10:54:26 AM - ROUTING] POST /signup/phone/check
+[10:54:26 AM - ROUTING] GET /travel/invite
+[10:54:26 AM - ROUTING] POST /signin
+[10:54:26 AM - ROUTING] DELETE /travel/quit
+[10:54:26 AM - ROUTING] POST /friend/refuse
+[10:54:26 AM - ROUTING] POST /friend/request
+[10:54:26 AM - ROUTING] DELETE /wish
+[10:54:26 AM - ROUTING] POST /friend/accept
+[10:54:26 AM - ROUTING] GET /attractions/detail
+[10:54:26 AM - ROUTING] GET /map
+[10:54:26 AM - ROUTING] POST /signup/phone/verify
+[10:54:26 AM - ROUTING] POST /travel/invite
+[10:54:26 AM - ROUTING] GET /friend/request
+[10:54:26 AM - ROUTING] POST /find/id/verify
+[10:54:26 AM - ROUTING] POST /friend/delete
+[10:54:26 AM - ROUTING] GET /find_user
+[10:54:26 AM - ROUTING] POST /find/password/demand
+[10:54:26 AM - ROUTING] POST /change/password
+[10:54:26 AM - ROUTING] GET /attractions/list
+[10:54:26 AM - ROUTING] POST /signup/id/check
+[10:54:26 AM - ROUTING] POST /find/id/demand
+[10:54:26 AM - ROUTING] GET /profile-image
+[10:54:26 AM - ROUTING] POST /travel/refuse
+[10:54:26 AM - ROUTING] POST /wish
+[10:54:26 AM - ROUTING] POST /find/password/verify
+[10:54:26 AM - INFO] Server Started
+[10:54:26 AM - QUERY] SELECT * FROM account WHERE session_id=?
+[10:54:26 AM - QUERY] SELECT * FROM account WHERE email=? OR phone_number=?
+[10:54:26 AM - QUERY] SELECT * FROM friend_requests WHERE src_id=? AND dst_id=?
+[10:54:26 AM - QUERY] SELECT * FROM account WHERE session_id=?
+[10:54:26 AM - QUERY] SELECT * FROM account WHERE email=? OR phone_number=?
+[10:54:26 AM - QUERY] SELECT * FROM friend_requests WHERE src_id=? AND dst_id=?
+[10:54:57 AM - ROUTING] GET /attractions/list
+[10:54:57 AM - ROUTING] POST /signup/email/check
+[10:54:57 AM - ROUTING] POST /map
+[10:54:57 AM - ROUTING] POST /signup/phone/check
+[10:54:57 AM - ROUTING] GET /wish
+[10:54:57 AM - ROUTING] POST /logout
+[10:54:57 AM - ROUTING] POST /travel/invite
+[10:54:57 AM - ROUTING] POST /wish
+[10:54:57 AM - ROUTING] POST /friend/delete
+[10:54:57 AM - ROUTING] POST /friend/request
+[10:54:57 AM - ROUTING] POST /signup/id/check
+[10:54:57 AM - ROUTING] POST /signup/phone/demand
+[10:54:57 AM - ROUTING] POST /signin
+[10:54:57 AM - ROUTING] POST /signup/email/verify
+[10:54:57 AM - ROUTING] GET /friend/request
+[10:54:57 AM - ROUTING] GET /travel
+[10:54:57 AM - ROUTING] POST /travel
+[10:54:57 AM - ROUTING] POST /find/id/verify
+[10:54:57 AM - ROUTING] GET /friend
+[10:54:57 AM - ROUTING] GET /travel/invite
+[10:54:57 AM - ROUTING] POST /change/password
+[10:54:57 AM - ROUTING] POST /signup/email/demand
+[10:54:57 AM - ROUTING] POST /friend/refuse
+[10:54:57 AM - ROUTING] DELETE /wish
+[10:54:57 AM - ROUTING] POST /find/id/demand
+[10:54:57 AM - ROUTING] POST /find/password/demand
+[10:54:57 AM - ROUTING] GET /map
+[10:54:57 AM - ROUTING] POST /friend/accept
+[10:54:57 AM - ROUTING] GET /attractions/list/total
+[10:54:57 AM - ROUTING] POST /travel/refuse
+[10:54:57 AM - ROUTING] POST /travel/accept
+[10:54:57 AM - ROUTING] GET /user
+[10:54:57 AM - ROUTING] GET /attractions/detail
+[10:54:57 AM - ROUTING] DELETE /travel
+[10:54:57 AM - ROUTING] POST /chat
+[10:54:57 AM - ROUTING] POST /signup
+[10:54:57 AM - ROUTING] POST /profile-image
+[10:54:57 AM - ROUTING] GET /mypage
+[10:54:57 AM - ROUTING] DELETE /travel/quit
+[10:54:57 AM - ROUTING] POST /find/password/verify
+[10:54:57 AM - ROUTING] GET /travel/info
+[10:54:57 AM - ROUTING] GET /profile-image
+[10:54:57 AM - ROUTING] GET /find_user
+[10:54:57 AM - ROUTING] POST /signup/phone/verify
+[10:54:57 AM - ROUTING] POST /user
+[10:54:57 AM - INFO] Server Started
+[10:54:57 AM - QUERY] SELECT * FROM account WHERE session_id=?
+[10:54:57 AM - QUERY] SELECT * FROM account WHERE email=? OR phone_number=?
+[10:54:57 AM - QUERY] SELECT * FROM friend_requests WHERE src_id=? AND dst_id=?
+[10:55:28 AM - ROUTING] POST /map
+[10:55:28 AM - ROUTING] GET /attractions/detail
+[10:55:28 AM - ROUTING] GET /attractions/list/total
+[10:55:28 AM - ROUTING] GET /friend
+[10:55:28 AM - ROUTING] POST /friend/delete
+[10:55:28 AM - ROUTING] GET /travel/info
+[10:55:28 AM - ROUTING] POST /travel
+[10:55:28 AM - ROUTING] POST /friend/request
+[10:55:28 AM - ROUTING] GET /find_user
+[10:55:28 AM - ROUTING] POST /user
+[10:55:28 AM - ROUTING] GET /mypage
+[10:55:28 AM - ROUTING] POST /signup/id/check
+[10:55:28 AM - ROUTING] POST /wish
+[10:55:28 AM - ROUTING] GET /map
+[10:55:28 AM - ROUTING] POST /signup/email/check
+[10:55:28 AM - ROUTING] GET /travel
+[10:55:28 AM - ROUTING] POST /friend/accept
+[10:55:28 AM - ROUTING] POST /signup/email/demand
+[10:55:28 AM - ROUTING] POST /find/password/demand
+[10:55:28 AM - ROUTING] DELETE /wish
+[10:55:28 AM - ROUTING] POST /signup
+[10:55:28 AM - ROUTING] POST /logout
+[10:55:28 AM - ROUTING] POST /friend/refuse
+[10:55:28 AM - ROUTING] POST /travel/invite
+[10:55:28 AM - ROUTING] POST /find/id/verify
+[10:55:28 AM - ROUTING] POST /signin
+[10:55:28 AM - ROUTING] GET /user
+[10:55:28 AM - ROUTING] POST /find/password/verify
+[10:55:28 AM - ROUTING] POST /profile-image
+[10:55:28 AM - ROUTING] POST /travel/refuse
+[10:55:28 AM - ROUTING] GET /friend/request
+[10:55:28 AM - ROUTING] POST /chat
+[10:55:28 AM - ROUTING] GET /attractions/list
+[10:55:28 AM - ROUTING] POST /change/password
+[10:55:28 AM - ROUTING] DELETE /travel/quit
+[10:55:28 AM - ROUTING] POST /travel/accept
+[10:55:28 AM - ROUTING] GET /wish
+[10:55:28 AM - ROUTING] POST /signup/phone/check
+[10:55:28 AM - ROUTING] GET /travel/invite
+[10:55:28 AM - ROUTING] POST /signup/phone/demand
+[10:55:28 AM - ROUTING] POST /find/id/demand
+[10:55:28 AM - ROUTING] GET /profile-image
+[10:55:28 AM - ROUTING] POST /signup/email/verify
+[10:55:28 AM - ROUTING] DELETE /travel
+[10:55:28 AM - ROUTING] POST /signup/phone/verify
+[10:55:28 AM - INFO] Server Started
+[10:55:28 AM - QUERY] SELECT * FROM account WHERE session_id=?
+[10:55:28 AM - QUERY] SELECT * FROM account WHERE email=? OR phone_number=?
+[10:55:28 AM - QUERY] SELECT * FROM friend_requests WHERE src_id=? AND dst_id=?
+[10:55:43 AM - ROUTING] POST /map
+[10:55:43 AM - ROUTING] GET /attractions/detail
+[10:55:43 AM - ROUTING] GET /attractions/list/total
+[10:55:43 AM - ROUTING] GET /friend
+[10:55:43 AM - ROUTING] POST /friend/delete
+[10:55:43 AM - ROUTING] GET /travel/info
+[10:55:43 AM - ROUTING] POST /travel
+[10:55:43 AM - ROUTING] POST /friend/request
+[10:55:43 AM - ROUTING] GET /find_user
+[10:55:43 AM - ROUTING] POST /user
+[10:55:43 AM - ROUTING] GET /mypage
+[10:55:43 AM - ROUTING] POST /signup/id/check
+[10:55:43 AM - ROUTING] POST /wish
+[10:55:43 AM - ROUTING] GET /map
+[10:55:43 AM - ROUTING] POST /signup/email/check
+[10:55:43 AM - ROUTING] GET /travel
+[10:55:43 AM - ROUTING] POST /friend/accept
+[10:55:43 AM - ROUTING] POST /signup/email/demand
+[10:55:43 AM - ROUTING] POST /find/password/demand
+[10:55:43 AM - ROUTING] DELETE /wish
+[10:55:43 AM - ROUTING] POST /signup
+[10:55:43 AM - ROUTING] POST /logout
+[10:55:43 AM - ROUTING] POST /friend/refuse
+[10:55:43 AM - ROUTING] POST /travel/invite
+[10:55:43 AM - ROUTING] POST /find/id/verify
+[10:55:43 AM - ROUTING] POST /signin
+[10:55:43 AM - ROUTING] GET /user
+[10:55:43 AM - ROUTING] POST /find/password/verify
+[10:55:43 AM - ROUTING] POST /profile-image
+[10:55:43 AM - ROUTING] POST /travel/refuse
+[10:55:43 AM - ROUTING] GET /friend/request
+[10:55:43 AM - ROUTING] POST /chat
+[10:55:43 AM - ROUTING] GET /attractions/list
+[10:55:43 AM - ROUTING] POST /change/password
+[10:55:43 AM - ROUTING] DELETE /travel/quit
+[10:55:43 AM - ROUTING] POST /travel/accept
+[10:55:43 AM - ROUTING] GET /wish
+[10:55:43 AM - ROUTING] POST /signup/phone/check
+[10:55:43 AM - ROUTING] GET /travel/invite
+[10:55:43 AM - ROUTING] POST /signup/phone/demand
+[10:55:43 AM - ROUTING] POST /find/id/demand
+[10:55:43 AM - ROUTING] GET /profile-image
+[10:55:43 AM - ROUTING] POST /signup/email/verify
+[10:55:43 AM - ROUTING] DELETE /travel
+[10:55:43 AM - ROUTING] POST /signup/phone/verify
+[10:55:43 AM - INFO] Server Started
+[10:55:43 AM - QUERY] SELECT * FROM account WHERE session_id=?
+[10:55:43 AM - QUERY] SELECT * FROM account WHERE email=? OR phone_number=?
+[10:55:43 AM - QUERY] SELECT * FROM account WHERE session_id=?
+[10:55:43 AM - QUERY] SELECT * FROM account WHERE email=? OR phone_number=?
+[10:55:43 AM - QUERY] SELECT * FROM friend_requests WHERE src_id=? AND dst_id=?
+[10:55:43 AM - QUERY] SELECT * FROM account WHERE session_id=?
+[10:55:43 AM - QUERY] INSERT INTO friend_requests VALUES(?, ?, CURDATE())
+[10:55:43 AM - QUERY] SELECT * FROM account WHERE session_id=?
+[10:55:43 AM - QUERY] INSERT INTO friend_requests VALUES(?, ?, CURDATE())
+[10:55:43 AM - QUERY] SELECT * FROM account WHERE session_id=?
+[10:55:43 AM - QUERY] UPDATE account SET session_id=null WHERE id=?
+[10:55:43 AM - QUERY] SELECT * FROM account WHERE id=? AND password=?
+[10:55:43 AM - QUERY] SELECT * FROM account WHERE id=?
+[10:55:43 AM - QUERY] SELECT * FROM account WHERE session_id=?
+[10:55:43 AM - QUERY] UPDATE account SET session_id=? WHERE id=?
+[10:55:43 AM - QUERY] SELECT * FROM account WHERE session_id=?
+[10:55:43 AM - QUERY] SELECT * FROM account WHERE id=?
+[10:55:43 AM - QUERY] SELECT * FROM account WHERE session_id=?
+[10:55:43 AM - QUERY] SELECT src_id, date FROM friend_requests WHERE dst_id=?
+[10:55:43 AM - QUERY] SELECT * FROM account WHERE id=?
+[10:58:44 AM - ROUTING] GET /travel/info
+[10:58:44 AM - ROUTING] POST /signup/email/check
+[10:58:44 AM - ROUTING] POST /user
+[10:58:44 AM - ROUTING] POST /travel
+[10:58:44 AM - ROUTING] GET /user
+[10:58:44 AM - ROUTING] POST /signup/email/demand
+[10:58:44 AM - ROUTING] POST /signup/phone/demand
+[10:58:44 AM - ROUTING] POST /signup/email/verify
+[10:58:44 AM - ROUTING] POST /chat
+[10:58:44 AM - ROUTING] POST /profile-image
+[10:58:44 AM - ROUTING] GET /attractions/list/total
+[10:58:44 AM - ROUTING] POST /map
+[10:58:44 AM - ROUTING] DELETE /travel
+[10:58:44 AM - ROUTING] GET /mypage
+[10:58:44 AM - ROUTING] POST /logout
+[10:58:44 AM - ROUTING] GET /travel
+[10:58:44 AM - ROUTING] POST /travel/accept
+[10:58:44 AM - ROUTING] POST /signup
+[10:58:44 AM - ROUTING] GET /wish
+[10:58:44 AM - ROUTING] GET /friend
+[10:58:44 AM - ROUTING] POST /signup/phone/check
+[10:58:44 AM - ROUTING] GET /travel/invite
+[10:58:44 AM - ROUTING] POST /signin
+[10:58:44 AM - ROUTING] DELETE /travel/quit
+[10:58:44 AM - ROUTING] POST /friend/refuse
+[10:58:44 AM - ROUTING] POST /friend/request
+[10:58:44 AM - ROUTING] DELETE /wish
+[10:58:44 AM - ROUTING] POST /friend/accept
+[10:58:44 AM - ROUTING] GET /attractions/detail
+[10:58:44 AM - ROUTING] GET /map
+[10:58:44 AM - ROUTING] POST /signup/phone/verify
+[10:58:44 AM - ROUTING] POST /travel/invite
+[10:58:44 AM - ROUTING] GET /friend/request
+[10:58:44 AM - ROUTING] POST /find/id/verify
+[10:58:44 AM - ROUTING] POST /friend/delete
+[10:58:44 AM - ROUTING] GET /find_user
+[10:58:44 AM - ROUTING] POST /find/password/demand
+[10:58:44 AM - ROUTING] POST /change/password
+[10:58:44 AM - ROUTING] GET /attractions/list
+[10:58:44 AM - ROUTING] POST /signup/id/check
+[10:58:44 AM - ROUTING] POST /find/id/demand
+[10:58:44 AM - ROUTING] GET /profile-image
+[10:58:44 AM - ROUTING] POST /travel/refuse
+[10:58:44 AM - ROUTING] POST /wish
+[10:58:44 AM - ROUTING] POST /find/password/verify
+[10:58:44 AM - INFO] Server Started
+[10:58:44 AM - QUERY] SELECT * FROM account WHERE session_id=?
+[10:58:44 AM - QUERY] SELECT src_id, date FROM friend_requests WHERE dst_id=?
+[10:58:44 AM - QUERY] SELECT * FROM account WHERE id=?
+[10:59:36 AM - ROUTING] GET /profile-image
+[10:59:36 AM - ROUTING] GET /map
+[10:59:36 AM - ROUTING] POST /signup/email/demand
+[10:59:36 AM - ROUTING] POST /friend/request
+[10:59:36 AM - ROUTING] POST /friend/accept
+[10:59:36 AM - ROUTING] GET /friend
+[10:59:36 AM - ROUTING] GET /travel/invite
+[10:59:36 AM - ROUTING] GET /wish
+[10:59:36 AM - ROUTING] GET /travel/info
+[10:59:36 AM - ROUTING] GET /attractions/detail
+[10:59:36 AM - ROUTING] POST /user
+[10:59:36 AM - ROUTING] POST /friend/refuse
+[10:59:36 AM - ROUTING] POST /signup/email/check
+[10:59:36 AM - ROUTING] POST /chat
+[10:59:36 AM - ROUTING] POST /friend/delete
+[10:59:36 AM - ROUTING] POST /find/id/verify
+[10:59:36 AM - ROUTING] POST /signup/phone/check
+[10:59:36 AM - ROUTING] DELETE /travel/quit
+[10:59:36 AM - ROUTING] POST /signup
+[10:59:36 AM - ROUTING] POST /find/password/verify
+[10:59:36 AM - ROUTING] POST /find/id/demand
+[10:59:36 AM - ROUTING] POST /map
+[10:59:36 AM - ROUTING] POST /logout
+[10:59:36 AM - ROUTING] POST /signup/id/check
+[10:59:36 AM - ROUTING] GET /attractions/list/total
+[10:59:36 AM - ROUTING] POST /change/password
+[10:59:36 AM - ROUTING] POST /travel/refuse
+[10:59:36 AM - ROUTING] DELETE /wish
+[10:59:36 AM - ROUTING] POST /find/password/demand
+[10:59:36 AM - ROUTING] POST /travel/invite
+[10:59:36 AM - ROUTING] POST /travel
+[10:59:36 AM - ROUTING] POST /signup/phone/verify
+[10:59:36 AM - ROUTING] GET /attractions/list
+[10:59:36 AM - ROUTING] DELETE /travel
+[10:59:36 AM - ROUTING] POST /signup/email/verify
+[10:59:36 AM - ROUTING] GET /user
+[10:59:36 AM - ROUTING] POST /signin
+[10:59:36 AM - ROUTING] POST /profile-image
+[10:59:36 AM - ROUTING] GET /friend/request
+[10:59:36 AM - ROUTING] GET /mypage
+[10:59:36 AM - ROUTING] POST /travel/accept
+[10:59:36 AM - ROUTING] GET /travel
+[10:59:36 AM - ROUTING] POST /signup/phone/demand
+[10:59:36 AM - ROUTING] POST /wish
+[10:59:36 AM - ROUTING] GET /find_user
+[10:59:36 AM - INFO] Server Started
+[10:59:36 AM - QUERY] SELECT * FROM account WHERE session_id=?
+[10:59:36 AM - QUERY] SELECT src_id, date FROM friend_requests WHERE dst_id=?
+[10:59:36 AM - QUERY] SELECT * FROM account WHERE id=?
+[11:01:01 AM - ROUTING] POST /find/password/verify
+[11:01:01 AM - ROUTING] GET /profile-image
+[11:01:01 AM - ROUTING] POST /travel/accept
+[11:01:01 AM - ROUTING] POST /signup/email/demand
+[11:01:01 AM - ROUTING] POST /signup/email/check
+[11:01:01 AM - ROUTING] POST /profile-image
+[11:01:01 AM - ROUTING] DELETE /travel
+[11:01:01 AM - ROUTING] POST /signup/phone/verify
+[11:01:01 AM - ROUTING] GET /attractions/list
+[11:01:01 AM - ROUTING] POST /signup/email/verify
+[11:01:01 AM - ROUTING] POST /travel
+[11:01:01 AM - ROUTING] POST /friend/delete
+[11:01:01 AM - ROUTING] GET /wish
+[11:01:01 AM - ROUTING] POST /find/id/verify
+[11:01:01 AM - ROUTING] POST /map
+[11:01:01 AM - ROUTING] POST /change/password
+[11:01:01 AM - ROUTING] GET /mypage
+[11:01:01 AM - ROUTING] GET /travel/info
+[11:01:01 AM - ROUTING] GET /friend/request
+[11:01:01 AM - ROUTING] GET /user
+[11:01:01 AM - ROUTING] GET /travel/invite
+[11:01:01 AM - ROUTING] GET /attractions/list/total
+[11:01:01 AM - ROUTING] POST /wish
+[11:01:01 AM - ROUTING] GET /travel
+[11:01:01 AM - ROUTING] POST /chat
+[11:01:01 AM - ROUTING] GET /attractions/detail
+[11:01:01 AM - ROUTING] POST /signup/phone/demand
+[11:01:01 AM - ROUTING] GET /map
+[11:01:01 AM - ROUTING] DELETE /travel/quit
+[11:01:01 AM - ROUTING] POST /signup
+[11:01:01 AM - ROUTING] POST /user
+[11:01:01 AM - ROUTING] POST /signup/phone/check
+[11:01:01 AM - ROUTING] POST /find/password/demand
+[11:01:01 AM - ROUTING] GET /friend
+[11:01:01 AM - ROUTING] POST /friend/accept
+[11:01:01 AM - ROUTING] POST /signin
+[11:01:01 AM - ROUTING] POST /travel/invite
+[11:01:01 AM - ROUTING] POST /friend/refuse
+[11:01:01 AM - ROUTING] GET /find_user
+[11:01:01 AM - ROUTING] POST /travel/refuse
+[11:01:01 AM - ROUTING] POST /signup/id/check
+[11:01:01 AM - ROUTING] POST /friend/request
+[11:01:01 AM - ROUTING] POST /logout
+[11:01:01 AM - ROUTING] DELETE /wish
+[11:01:01 AM - ROUTING] POST /find/id/demand
+[11:01:01 AM - INFO] Server Started
+[11:01:01 AM - QUERY] SELECT * FROM account WHERE session_id=?
+[11:01:01 AM - QUERY] SELECT src_id, date FROM friend_requests WHERE dst_id=?
+[11:01:01 AM - QUERY] SELECT * FROM account WHERE id=?
+[11:01:01 AM - QUERY] SELECT * FROM account WHERE session_id=?
+[11:01:01 AM - QUERY] SELECT * FROM account WHERE session_id=?
+[11:01:01 AM - QUERY] SELECT * FROM account WHERE email=? OR phone_number=?
+[11:01:01 AM - QUERY] SELECT * FROM friend_requests WHERE src_id=? AND dst_id=?
+[11:03:21 AM - ROUTING] POST /map
+[11:03:21 AM - ROUTING] GET /attractions/detail
+[11:03:21 AM - ROUTING] GET /attractions/list/total
+[11:03:21 AM - ROUTING] GET /friend
+[11:03:21 AM - ROUTING] POST /friend/delete
+[11:03:21 AM - ROUTING] GET /travel/info
+[11:03:21 AM - ROUTING] POST /travel
+[11:03:21 AM - ROUTING] POST /friend/request
+[11:03:21 AM - ROUTING] GET /find_user
+[11:03:21 AM - ROUTING] POST /user
+[11:03:21 AM - ROUTING] GET /mypage
+[11:03:21 AM - ROUTING] POST /signup/id/check
+[11:03:21 AM - ROUTING] POST /wish
+[11:03:21 AM - ROUTING] GET /map
+[11:03:21 AM - ROUTING] POST /signup/email/check
+[11:03:21 AM - ROUTING] GET /travel
+[11:03:21 AM - ROUTING] POST /friend/accept
+[11:03:21 AM - ROUTING] POST /signup/email/demand
+[11:03:21 AM - ROUTING] POST /find/password/demand
+[11:03:21 AM - ROUTING] DELETE /wish
+[11:03:21 AM - ROUTING] POST /signup
+[11:03:21 AM - ROUTING] POST /logout
+[11:03:21 AM - ROUTING] POST /friend/refuse
+[11:03:21 AM - ROUTING] POST /travel/invite
+[11:03:21 AM - ROUTING] POST /find/id/verify
+[11:03:21 AM - ROUTING] POST /signin
+[11:03:21 AM - ROUTING] GET /user
+[11:03:21 AM - ROUTING] POST /find/password/verify
+[11:03:21 AM - ROUTING] POST /profile-image
+[11:03:21 AM - ROUTING] POST /travel/refuse
+[11:03:21 AM - ROUTING] GET /friend/request
+[11:03:21 AM - ROUTING] POST /chat
+[11:03:21 AM - ROUTING] GET /attractions/list
+[11:03:21 AM - ROUTING] POST /change/password
+[11:03:21 AM - ROUTING] DELETE /travel/quit
+[11:03:21 AM - ROUTING] POST /travel/accept
+[11:03:21 AM - ROUTING] GET /wish
+[11:03:21 AM - ROUTING] POST /signup/phone/check
+[11:03:21 AM - ROUTING] GET /travel/invite
+[11:03:21 AM - ROUTING] POST /signup/phone/demand
+[11:03:21 AM - ROUTING] POST /find/id/demand
+[11:03:21 AM - ROUTING] GET /profile-image
+[11:03:21 AM - ROUTING] POST /signup/email/verify
+[11:03:21 AM - ROUTING] DELETE /travel
+[11:03:21 AM - ROUTING] POST /signup/phone/verify
+[11:03:21 AM - INFO] Server Started
+[11:03:21 AM - QUERY] SELECT * FROM account WHERE session_id=?
+[11:03:21 AM - QUERY] SELECT * FROM account WHERE email=? OR phone_number=?
+[11:03:21 AM - QUERY] SELECT * FROM friend_requests WHERE src_id=? AND dst_id=?
+[11:03:21 AM - QUERY] SELECT * FROM friend_requests WHERE src_id=? AND dst_id=?
+[11:03:21 AM - QUERY] SELECT * FROM account WHERE session_id=?
+[11:03:21 AM - QUERY] SELECT src_id, date FROM friend_requests WHERE dst_id=?
+[11:03:21 AM - QUERY] SELECT * FROM account WHERE id=?
+[11:03:21 AM - QUERY] SELECT * FROM account WHERE session_id=?
+[11:03:21 AM - QUERY] DELETE FROM friend_requests WHERE requesterId_id=? AND dst_id=?
+[11:03:21 AM - QUERY] INSERT INTO friend_list VALUES(?, ?)
+[11:04:26 AM - ROUTING] GET /travel/info
+[11:04:26 AM - ROUTING] POST /signup/email/check
+[11:04:26 AM - ROUTING] POST /user
+[11:04:26 AM - ROUTING] POST /travel
+[11:04:26 AM - ROUTING] GET /user
+[11:04:26 AM - ROUTING] POST /signup/email/demand
+[11:04:26 AM - ROUTING] POST /signup/phone/demand
+[11:04:26 AM - ROUTING] POST /signup/email/verify
+[11:04:26 AM - ROUTING] POST /chat
+[11:04:26 AM - ROUTING] POST /profile-image
+[11:04:26 AM - ROUTING] GET /attractions/list/total
+[11:04:26 AM - ROUTING] POST /map
+[11:04:26 AM - ROUTING] DELETE /travel
+[11:04:26 AM - ROUTING] GET /mypage
+[11:04:26 AM - ROUTING] POST /logout
+[11:04:26 AM - ROUTING] GET /travel
+[11:04:26 AM - ROUTING] POST /travel/accept
+[11:04:26 AM - ROUTING] POST /signup
+[11:04:26 AM - ROUTING] GET /wish
+[11:04:26 AM - ROUTING] GET /friend
+[11:04:26 AM - ROUTING] POST /signup/phone/check
+[11:04:26 AM - ROUTING] GET /travel/invite
+[11:04:26 AM - ROUTING] POST /signin
+[11:04:26 AM - ROUTING] DELETE /travel/quit
+[11:04:26 AM - ROUTING] POST /friend/refuse
+[11:04:26 AM - ROUTING] POST /friend/request
+[11:04:26 AM - ROUTING] DELETE /wish
+[11:04:26 AM - ROUTING] POST /friend/accept
+[11:04:26 AM - ROUTING] GET /attractions/detail
+[11:04:26 AM - ROUTING] GET /map
+[11:04:26 AM - ROUTING] POST /signup/phone/verify
+[11:04:26 AM - ROUTING] POST /travel/invite
+[11:04:26 AM - ROUTING] GET /friend/request
+[11:04:26 AM - ROUTING] POST /find/id/verify
+[11:04:26 AM - ROUTING] POST /friend/delete
+[11:04:26 AM - ROUTING] GET /find_user
+[11:04:26 AM - ROUTING] POST /find/password/demand
+[11:04:26 AM - ROUTING] POST /change/password
+[11:04:26 AM - ROUTING] GET /attractions/list
+[11:04:26 AM - ROUTING] POST /signup/id/check
+[11:04:26 AM - ROUTING] POST /find/id/demand
+[11:04:26 AM - ROUTING] GET /profile-image
+[11:04:26 AM - ROUTING] POST /travel/refuse
+[11:04:26 AM - ROUTING] POST /wish
+[11:04:26 AM - ROUTING] POST /find/password/verify
+[11:04:26 AM - INFO] Server Started
+[11:04:26 AM - QUERY] SELECT * FROM account WHERE session_id=?
+[11:04:26 AM - QUERY] DELETE FROM friend_requests WHERE requester_id=? AND dst_id=?
+[11:04:26 AM - QUERY] INSERT INTO friend_list VALUES(?, ?)
+[11:05:01 AM - ROUTING] POST /map
+[11:05:01 AM - ROUTING] GET /attractions/detail
+[11:05:01 AM - ROUTING] GET /attractions/list/total
+[11:05:01 AM - ROUTING] GET /friend
+[11:05:01 AM - ROUTING] POST /friend/delete
+[11:05:01 AM - ROUTING] GET /travel/info
+[11:05:01 AM - ROUTING] POST /travel
+[11:05:01 AM - ROUTING] POST /friend/request
+[11:05:01 AM - ROUTING] GET /find_user
+[11:05:01 AM - ROUTING] POST /user
+[11:05:01 AM - ROUTING] GET /mypage
+[11:05:01 AM - ROUTING] POST /signup/id/check
+[11:05:01 AM - ROUTING] POST /wish
+[11:05:01 AM - ROUTING] GET /map
+[11:05:01 AM - ROUTING] POST /signup/email/check
+[11:05:01 AM - ROUTING] GET /travel
+[11:05:01 AM - ROUTING] POST /friend/accept
+[11:05:01 AM - ROUTING] POST /signup/email/demand
+[11:05:01 AM - ROUTING] POST /find/password/demand
+[11:05:01 AM - ROUTING] DELETE /wish
+[11:05:01 AM - ROUTING] POST /signup
+[11:05:01 AM - ROUTING] POST /logout
+[11:05:01 AM - ROUTING] POST /friend/refuse
+[11:05:01 AM - ROUTING] POST /travel/invite
+[11:05:01 AM - ROUTING] POST /find/id/verify
+[11:05:01 AM - ROUTING] POST /signin
+[11:05:01 AM - ROUTING] GET /user
+[11:05:01 AM - ROUTING] POST /find/password/verify
+[11:05:01 AM - ROUTING] POST /profile-image
+[11:05:01 AM - ROUTING] POST /travel/refuse
+[11:05:01 AM - ROUTING] GET /friend/request
+[11:05:01 AM - ROUTING] POST /chat
+[11:05:01 AM - ROUTING] GET /attractions/list
+[11:05:01 AM - ROUTING] POST /change/password
+[11:05:01 AM - ROUTING] DELETE /travel/quit
+[11:05:01 AM - ROUTING] POST /travel/accept
+[11:05:01 AM - ROUTING] GET /wish
+[11:05:01 AM - ROUTING] POST /signup/phone/check
+[11:05:01 AM - ROUTING] GET /travel/invite
+[11:05:01 AM - ROUTING] POST /signup/phone/demand
+[11:05:01 AM - ROUTING] POST /find/id/demand
+[11:05:01 AM - ROUTING] GET /profile-image
+[11:05:01 AM - ROUTING] POST /signup/email/verify
+[11:05:01 AM - ROUTING] DELETE /travel
+[11:05:01 AM - ROUTING] POST /signup/phone/verify
+[11:05:01 AM - INFO] Server Started
+[11:05:01 AM - QUERY] SELECT * FROM account WHERE session_id=?
+[11:05:01 AM - QUERY] DELETE FROM friend_requests WHERE src_id=? AND dst_id=?
+[11:05:01 AM - QUERY] INSERT INTO friend_list VALUES(?, ?)
+[11:05:01 AM - QUERY] SELECT * FROM account WHERE session_id=?
+[11:05:01 AM - QUERY] SELECT * FROM friend_list WHERE client_id1=? OR client_id2=?
+[11:05:01 AM - QUERY] SELECT * FROM account WHERE id=?
+[11:05:01 AM - QUERY] SELECT * FROM account WHERE session_id=?
+[11:05:01 AM - QUERY] UPDATE account SET session_id=null WHERE id=?
+[11:05:01 AM - QUERY] SELECT * FROM account WHERE id=? AND password=?
+[11:05:01 AM - QUERY] SELECT * FROM account WHERE id=?
+[11:05:01 AM - QUERY] SELECT * FROM account WHERE session_id=?
+[11:05:01 AM - QUERY] UPDATE account SET session_id=? WHERE id=?
+[11:05:01 AM - QUERY] SELECT * FROM account WHERE session_id=?
+[11:05:01 AM - QUERY] SELECT * FROM friend_list WHERE client_id1=? OR client_id2=?
+[11:05:01 AM - QUERY] SELECT * FROM account WHERE id=?
+[11:06:12 AM - ROUTING] GET /profile-image
+[11:06:12 AM - ROUTING] GET /map
+[11:06:12 AM - ROUTING] POST /signup/email/demand
+[11:06:12 AM - ROUTING] POST /friend/request
+[11:06:12 AM - ROUTING] POST /friend/accept
+[11:06:12 AM - ROUTING] GET /friend
+[11:06:12 AM - ROUTING] GET /travel/invite
+[11:06:12 AM - ROUTING] GET /wish
+[11:06:12 AM - ROUTING] GET /travel/info
+[11:06:12 AM - ROUTING] GET /attractions/detail
+[11:06:12 AM - ROUTING] POST /user
+[11:06:12 AM - ROUTING] POST /friend/refuse
+[11:06:12 AM - ROUTING] POST /signup/email/check
+[11:06:12 AM - ROUTING] POST /chat
+[11:06:12 AM - ROUTING] POST /friend/delete
+[11:06:12 AM - ROUTING] POST /find/id/verify
+[11:06:12 AM - ROUTING] POST /signup/phone/check
+[11:06:12 AM - ROUTING] DELETE /travel/quit
+[11:06:12 AM - ROUTING] POST /signup
+[11:06:12 AM - ROUTING] POST /find/password/verify
+[11:06:12 AM - ROUTING] POST /find/id/demand
+[11:06:12 AM - ROUTING] POST /map
+[11:06:12 AM - ROUTING] POST /logout
+[11:06:12 AM - ROUTING] POST /signup/id/check
+[11:06:12 AM - ROUTING] GET /attractions/list/total
+[11:06:12 AM - ROUTING] POST /change/password
+[11:06:12 AM - ROUTING] POST /travel/refuse
+[11:06:12 AM - ROUTING] DELETE /wish
+[11:06:12 AM - ROUTING] POST /find/password/demand
+[11:06:12 AM - ROUTING] POST /travel/invite
+[11:06:12 AM - ROUTING] POST /travel
+[11:06:12 AM - ROUTING] POST /signup/phone/verify
+[11:06:12 AM - ROUTING] GET /attractions/list
+[11:06:12 AM - ROUTING] DELETE /travel
+[11:06:12 AM - ROUTING] POST /signup/email/verify
+[11:06:12 AM - ROUTING] GET /user
+[11:06:12 AM - ROUTING] POST /signin
+[11:06:12 AM - ROUTING] POST /profile-image
+[11:06:12 AM - ROUTING] GET /friend/request
+[11:06:12 AM - ROUTING] GET /mypage
+[11:06:12 AM - ROUTING] POST /travel/accept
+[11:06:12 AM - ROUTING] GET /travel
+[11:06:12 AM - ROUTING] POST /signup/phone/demand
+[11:06:12 AM - ROUTING] POST /wish
+[11:06:12 AM - ROUTING] GET /find_user
+[11:06:12 AM - INFO] Server Started
+[11:06:12 AM - QUERY] SELECT * FROM account WHERE session_id=?
+[11:06:12 AM - QUERY] SELECT * FROM friend_list WHERE client_id1=? OR client_id2=?
+[11:07:00 AM - ROUTING] POST /map
+[11:07:00 AM - ROUTING] GET /attractions/detail
+[11:07:00 AM - ROUTING] GET /attractions/list/total
+[11:07:00 AM - ROUTING] GET /friend
+[11:07:00 AM - ROUTING] POST /friend/delete
+[11:07:00 AM - ROUTING] GET /travel/info
+[11:07:00 AM - ROUTING] POST /travel
+[11:07:00 AM - ROUTING] POST /friend/request
+[11:07:00 AM - ROUTING] GET /find_user
+[11:07:00 AM - ROUTING] POST /user
+[11:07:00 AM - ROUTING] GET /mypage
+[11:07:00 AM - ROUTING] POST /signup/id/check
+[11:07:00 AM - ROUTING] POST /wish
+[11:07:00 AM - ROUTING] GET /map
+[11:07:00 AM - ROUTING] POST /signup/email/check
+[11:07:00 AM - ROUTING] GET /travel
+[11:07:00 AM - ROUTING] POST /friend/accept
+[11:07:00 AM - ROUTING] POST /signup/email/demand
+[11:07:00 AM - ROUTING] POST /find/password/demand
+[11:07:00 AM - ROUTING] DELETE /wish
+[11:07:00 AM - ROUTING] POST /signup
+[11:07:00 AM - ROUTING] POST /logout
+[11:07:00 AM - ROUTING] POST /friend/refuse
+[11:07:00 AM - ROUTING] POST /travel/invite
+[11:07:00 AM - ROUTING] POST /find/id/verify
+[11:07:00 AM - ROUTING] POST /signin
+[11:07:00 AM - ROUTING] GET /user
+[11:07:00 AM - ROUTING] POST /find/password/verify
+[11:07:00 AM - ROUTING] POST /profile-image
+[11:07:00 AM - ROUTING] POST /travel/refuse
+[11:07:00 AM - ROUTING] GET /friend/request
+[11:07:00 AM - ROUTING] POST /chat
+[11:07:00 AM - ROUTING] GET /attractions/list
+[11:07:00 AM - ROUTING] POST /change/password
+[11:07:00 AM - ROUTING] DELETE /travel/quit
+[11:07:00 AM - ROUTING] POST /travel/accept
+[11:07:00 AM - ROUTING] GET /wish
+[11:07:00 AM - ROUTING] POST /signup/phone/check
+[11:07:00 AM - ROUTING] GET /travel/invite
+[11:07:00 AM - ROUTING] POST /signup/phone/demand
+[11:07:00 AM - ROUTING] POST /find/id/demand
+[11:07:00 AM - ROUTING] GET /profile-image
+[11:07:00 AM - ROUTING] POST /signup/email/verify
+[11:07:00 AM - ROUTING] DELETE /travel
+[11:07:00 AM - ROUTING] POST /signup/phone/verify
+[11:07:00 AM - INFO] Server Started
+[11:07:00 AM - QUERY] SELECT * FROM account WHERE session_id=?
+[11:07:00 AM - QUERY] SELECT * FROM friend_list WHERE client_id1=? OR client_id2=?
+[11:07:36 AM - ROUTING] POST /map
+[11:07:36 AM - ROUTING] GET /attractions/detail
+[11:07:36 AM - ROUTING] GET /attractions/list/total
+[11:07:36 AM - ROUTING] GET /friend
+[11:07:36 AM - ROUTING] POST /friend/delete
+[11:07:36 AM - ROUTING] GET /travel/info
+[11:07:36 AM - ROUTING] POST /travel
+[11:07:36 AM - ROUTING] POST /friend/request
+[11:07:36 AM - ROUTING] GET /find_user
+[11:07:36 AM - ROUTING] POST /user
+[11:07:36 AM - ROUTING] GET /mypage
+[11:07:36 AM - ROUTING] POST /signup/id/check
+[11:07:36 AM - ROUTING] POST /wish
+[11:07:36 AM - ROUTING] GET /map
+[11:07:36 AM - ROUTING] POST /signup/email/check
+[11:07:36 AM - ROUTING] GET /travel
+[11:07:36 AM - ROUTING] POST /friend/accept
+[11:07:36 AM - ROUTING] POST /signup/email/demand
+[11:07:36 AM - ROUTING] POST /find/password/demand
+[11:07:36 AM - ROUTING] DELETE /wish
+[11:07:36 AM - ROUTING] POST /signup
+[11:07:36 AM - ROUTING] POST /logout
+[11:07:36 AM - ROUTING] POST /friend/refuse
+[11:07:36 AM - ROUTING] POST /travel/invite
+[11:07:36 AM - ROUTING] POST /find/id/verify
+[11:07:36 AM - ROUTING] POST /signin
+[11:07:36 AM - ROUTING] GET /user
+[11:07:36 AM - ROUTING] POST /find/password/verify
+[11:07:36 AM - ROUTING] POST /profile-image
+[11:07:36 AM - ROUTING] POST /travel/refuse
+[11:07:36 AM - ROUTING] GET /friend/request
+[11:07:36 AM - ROUTING] POST /chat
+[11:07:36 AM - ROUTING] GET /attractions/list
+[11:07:36 AM - ROUTING] POST /change/password
+[11:07:36 AM - ROUTING] DELETE /travel/quit
+[11:07:36 AM - ROUTING] POST /travel/accept
+[11:07:36 AM - ROUTING] GET /wish
+[11:07:36 AM - ROUTING] POST /signup/phone/check
+[11:07:36 AM - ROUTING] GET /travel/invite
+[11:07:36 AM - ROUTING] POST /signup/phone/demand
+[11:07:36 AM - ROUTING] POST /find/id/demand
+[11:07:36 AM - ROUTING] GET /profile-image
+[11:07:36 AM - ROUTING] POST /signup/email/verify
+[11:07:36 AM - ROUTING] DELETE /travel
+[11:07:36 AM - ROUTING] POST /signup/phone/verify
+[11:07:36 AM - INFO] Server Started
+[11:07:36 AM - QUERY] SELECT * FROM account WHERE session_id=?
+[11:07:36 AM - QUERY] SELECT * FROM friend_list WHERE client_id1=? OR client_id2=?
+[11:07:36 AM - QUERY] SELECT * FROM account WHERE id=? AND password=?
+[11:07:36 AM - QUERY] SELECT * FROM account WHERE id=?
+[11:07:36 AM - QUERY] UPDATE account SET session_id=? WHERE id=?
+[11:07:36 AM - QUERY] SELECT * FROM account WHERE session_id=?
+[11:07:36 AM - QUERY] SELECT * FROM friend_list WHERE client_id1=? OR client_id2=?
+[11:07:36 AM - QUERY] SELECT * FROM account WHERE id=?
+[11:08:35 AM - ROUTING] POST /signup/phone/check
+[11:08:35 AM - ROUTING] GET /travel/invite
+[11:08:35 AM - ROUTING] DELETE /wish
+[11:08:35 AM - ROUTING] GET /friend/request
+[11:08:35 AM - ROUTING] POST /logout
+[11:08:35 AM - ROUTING] POST /friend/delete
+[11:08:35 AM - ROUTING] GET /wish
+[11:08:35 AM - ROUTING] GET /user
+[11:08:35 AM - ROUTING] POST /signup/phone/demand
+[11:08:35 AM - ROUTING] POST /profile-image
+[11:08:35 AM - ROUTING] DELETE /travel/quit
+[11:08:35 AM - ROUTING] POST /travel/refuse
+[11:08:35 AM - ROUTING] GET /travel
+[11:08:35 AM - ROUTING] POST /signup/email/verify
+[11:08:35 AM - ROUTING] POST /find/id/demand
+[11:08:35 AM - ROUTING] GET /mypage
+[11:08:35 AM - ROUTING] POST /friend/accept
+[11:08:35 AM - ROUTING] POST /friend/refuse
+[11:08:35 AM - ROUTING] POST /signin
+[11:08:35 AM - ROUTING] POST /signup/phone/verify
+[11:08:35 AM - ROUTING] POST /find/password/demand
+[11:08:35 AM - ROUTING] POST /chat
+[11:08:35 AM - ROUTING] GET /attractions/list
+[11:08:35 AM - ROUTING] POST /signup
+[11:08:35 AM - ROUTING] POST /signup/email/check
+[11:08:35 AM - ROUTING] GET /travel/info
+[11:08:35 AM - ROUTING] POST /travel/invite
+[11:08:35 AM - ROUTING] POST /find/id/verify
+[11:08:35 AM - ROUTING] POST /friend/request
+[11:08:35 AM - ROUTING] POST /user
+[11:08:35 AM - ROUTING] GET /profile-image
+[11:08:35 AM - ROUTING] GET /attractions/list/total
+[11:08:35 AM - ROUTING] GET /friend
+[11:08:35 AM - ROUTING] POST /map
+[11:08:35 AM - ROUTING] POST /travel
+[11:08:35 AM - ROUTING] POST /signup/id/check
+[11:08:35 AM - ROUTING] POST /travel/accept
+[11:08:35 AM - ROUTING] POST /signup/email/demand
+[11:08:35 AM - ROUTING] POST /find/password/verify
+[11:08:35 AM - ROUTING] DELETE /travel
+[11:08:35 AM - ROUTING] GET /find_user
+[11:08:35 AM - ROUTING] POST /wish
+[11:08:35 AM - ROUTING] POST /change/password
+[11:08:35 AM - ROUTING] GET /map
+[11:08:35 AM - ROUTING] GET /attractions/detail
+[11:08:35 AM - INFO] Server Started
+[11:08:35 AM - QUERY] SELECT * FROM account WHERE id=? AND password=?
+[11:08:35 AM - QUERY] SELECT * FROM account WHERE id=? AND password=?
+[11:08:35 AM - QUERY] SELECT * FROM account WHERE id=?
+[11:08:35 AM - QUERY] SELECT * FROM account WHERE session_id=?
+[11:08:35 AM - QUERY] UPDATE account SET session_id=? WHERE id=?
+[11:09:00 AM - ROUTING] POST /map
+[11:09:00 AM - ROUTING] GET /attractions/detail
+[11:09:00 AM - ROUTING] GET /attractions/list/total
+[11:09:00 AM - ROUTING] GET /friend
+[11:09:00 AM - ROUTING] POST /friend/delete
+[11:09:00 AM - ROUTING] GET /travel/info
+[11:09:00 AM - ROUTING] POST /travel
+[11:09:00 AM - ROUTING] POST /friend/request
+[11:09:00 AM - ROUTING] GET /find_user
+[11:09:00 AM - ROUTING] POST /user
+[11:09:00 AM - ROUTING] GET /mypage
+[11:09:00 AM - ROUTING] POST /signup/id/check
+[11:09:00 AM - ROUTING] POST /wish
+[11:09:00 AM - ROUTING] GET /map
+[11:09:00 AM - ROUTING] POST /signup/email/check
+[11:09:00 AM - ROUTING] GET /travel
+[11:09:00 AM - ROUTING] POST /friend/accept
+[11:09:00 AM - ROUTING] POST /signup/email/demand
+[11:09:00 AM - ROUTING] POST /find/password/demand
+[11:09:00 AM - ROUTING] DELETE /wish
+[11:09:00 AM - ROUTING] POST /signup
+[11:09:00 AM - ROUTING] POST /logout
+[11:09:00 AM - ROUTING] POST /friend/refuse
+[11:09:00 AM - ROUTING] POST /travel/invite
+[11:09:00 AM - ROUTING] POST /find/id/verify
+[11:09:00 AM - ROUTING] POST /signin
+[11:09:00 AM - ROUTING] GET /user
+[11:09:00 AM - ROUTING] POST /find/password/verify
+[11:09:00 AM - ROUTING] POST /profile-image
+[11:09:00 AM - ROUTING] POST /travel/refuse
+[11:09:00 AM - ROUTING] GET /friend/request
+[11:09:00 AM - ROUTING] POST /chat
+[11:09:00 AM - ROUTING] GET /attractions/list
+[11:09:00 AM - ROUTING] POST /change/password
+[11:09:00 AM - ROUTING] DELETE /travel/quit
+[11:09:00 AM - ROUTING] POST /travel/accept
+[11:09:00 AM - ROUTING] GET /wish
+[11:09:00 AM - ROUTING] POST /signup/phone/check
+[11:09:00 AM - ROUTING] GET /travel/invite
+[11:09:00 AM - ROUTING] POST /signup/phone/demand
+[11:09:00 AM - ROUTING] POST /find/id/demand
+[11:09:00 AM - ROUTING] GET /profile-image
+[11:09:00 AM - ROUTING] POST /signup/email/verify
+[11:09:00 AM - ROUTING] DELETE /travel
+[11:09:00 AM - ROUTING] POST /signup/phone/verify
+[11:09:00 AM - INFO] Server Started
+[11:09:00 AM - QUERY] SELECT * FROM account WHERE session_id=?
+[11:09:00 AM - QUERY] SELECT * FROM account WHERE id=?
+[11:09:00 AM - QUERY] SELECT * FROM account WHERE session_id=?
+[11:09:00 AM - QUERY] SELECT * FROM travels WHERE topic=?
+[11:09:00 AM - QUERY] INSERT INTO travels VALUES(?, ?, ?)
+[11:09:00 AM - QUERY] CREATE TABLE ?(idx INT(11) PRIMARY KEY NOT NULL AUTO_INCREMENT, remaining_views INT(3) NOT NULL, type VARCHAR(20) NOT NULL, name VARCHAR(256), content VARCHAR(1024))
+[11:14:12 AM - ROUTING] POST /find/password/verify
+[11:14:12 AM - ROUTING] GET /profile-image
+[11:14:12 AM - ROUTING] POST /travel/accept
+[11:14:12 AM - ROUTING] POST /signup/email/demand
+[11:14:12 AM - ROUTING] POST /signup/email/check
+[11:14:12 AM - ROUTING] POST /profile-image
+[11:14:12 AM - ROUTING] DELETE /travel
+[11:14:12 AM - ROUTING] POST /signup/phone/verify
+[11:14:12 AM - ROUTING] GET /attractions/list
+[11:14:12 AM - ROUTING] POST /signup/email/verify
+[11:14:12 AM - ROUTING] POST /travel
+[11:14:12 AM - ROUTING] POST /friend/delete
+[11:14:12 AM - ROUTING] GET /wish
+[11:14:12 AM - ROUTING] POST /find/id/verify
+[11:14:12 AM - ROUTING] POST /map
+[11:14:12 AM - ROUTING] POST /change/password
+[11:14:12 AM - ROUTING] GET /mypage
+[11:14:12 AM - ROUTING] GET /travel/info
+[11:14:12 AM - ROUTING] GET /friend/request
+[11:14:12 AM - ROUTING] GET /user
+[11:14:12 AM - ROUTING] GET /travel/invite
+[11:14:12 AM - ROUTING] GET /attractions/list/total
+[11:14:12 AM - ROUTING] POST /wish
+[11:14:12 AM - ROUTING] GET /travel
+[11:14:12 AM - ROUTING] POST /chat
+[11:14:12 AM - ROUTING] GET /attractions/detail
+[11:14:12 AM - ROUTING] POST /signup/phone/demand
+[11:14:12 AM - ROUTING] GET /map
+[11:14:12 AM - ROUTING] DELETE /travel/quit
+[11:14:12 AM - ROUTING] POST /signup
+[11:14:12 AM - ROUTING] POST /user
+[11:14:12 AM - ROUTING] POST /signup/phone/check
+[11:14:12 AM - ROUTING] POST /find/password/demand
+[11:14:12 AM - ROUTING] GET /friend
+[11:14:12 AM - ROUTING] POST /friend/accept
+[11:14:12 AM - ROUTING] POST /signin
+[11:14:12 AM - ROUTING] POST /travel/invite
+[11:14:12 AM - ROUTING] POST /friend/refuse
+[11:14:12 AM - ROUTING] GET /find_user
+[11:14:12 AM - ROUTING] POST /travel/refuse
+[11:14:12 AM - ROUTING] POST /signup/id/check
+[11:14:12 AM - ROUTING] POST /friend/request
+[11:14:12 AM - ROUTING] POST /logout
+[11:14:12 AM - ROUTING] DELETE /wish
+[11:14:12 AM - ROUTING] POST /find/id/demand
+[11:14:12 AM - INFO] Server Started
+[11:14:12 AM - QUERY] SELECT * FROM account WHERE session_id=?
+[11:14:12 AM - QUERY] SELECT * FROM travels WHERE topic=?
+[11:14:12 AM - QUERY] INSERT INTO travels VALUES(?, ?, ?)
+[11:14:12 AM - QUERY] CREATE TABLE 31ab391a-a9d3-4a4b-9780-e6c576753ab5(idx INT(11) PRIMARY KEY NOT NULL AUTO_INCREMENT, remaining_views INT(3) NOT NULL, type VARCHAR(20) NOT NULL, name VARCHAR(256), content VARCHAR(1024))
+[11:14:59 AM - ROUTING] POST /map
+[11:14:59 AM - ROUTING] GET /attractions/detail
+[11:14:59 AM - ROUTING] GET /attractions/list/total
+[11:14:59 AM - ROUTING] GET /friend
+[11:14:59 AM - ROUTING] POST /friend/delete
+[11:14:59 AM - ROUTING] GET /travel/info
+[11:14:59 AM - ROUTING] POST /travel
+[11:14:59 AM - ROUTING] POST /friend/request
+[11:14:59 AM - ROUTING] GET /find_user
+[11:14:59 AM - ROUTING] POST /user
+[11:14:59 AM - ROUTING] GET /mypage
+[11:14:59 AM - ROUTING] POST /signup/id/check
+[11:14:59 AM - ROUTING] POST /wish
+[11:14:59 AM - ROUTING] GET /map
+[11:14:59 AM - ROUTING] POST /signup/email/check
+[11:14:59 AM - ROUTING] GET /travel
+[11:14:59 AM - ROUTING] POST /friend/accept
+[11:14:59 AM - ROUTING] POST /signup/email/demand
+[11:14:59 AM - ROUTING] POST /find/password/demand
+[11:14:59 AM - ROUTING] DELETE /wish
+[11:14:59 AM - ROUTING] POST /signup
+[11:14:59 AM - ROUTING] POST /logout
+[11:14:59 AM - ROUTING] POST /friend/refuse
+[11:14:59 AM - ROUTING] POST /travel/invite
+[11:14:59 AM - ROUTING] POST /find/id/verify
+[11:14:59 AM - ROUTING] POST /signin
+[11:14:59 AM - ROUTING] GET /user
+[11:14:59 AM - ROUTING] POST /find/password/verify
+[11:14:59 AM - ROUTING] POST /profile-image
+[11:14:59 AM - ROUTING] POST /travel/refuse
+[11:14:59 AM - ROUTING] GET /friend/request
+[11:14:59 AM - ROUTING] POST /chat
+[11:14:59 AM - ROUTING] GET /attractions/list
+[11:14:59 AM - ROUTING] POST /change/password
+[11:14:59 AM - ROUTING] DELETE /travel/quit
+[11:14:59 AM - ROUTING] POST /travel/accept
+[11:14:59 AM - ROUTING] GET /wish
+[11:14:59 AM - ROUTING] POST /signup/phone/check
+[11:14:59 AM - ROUTING] GET /travel/invite
+[11:14:59 AM - ROUTING] POST /signup/phone/demand
+[11:14:59 AM - ROUTING] POST /find/id/demand
+[11:14:59 AM - ROUTING] GET /profile-image
+[11:14:59 AM - ROUTING] POST /signup/email/verify
+[11:14:59 AM - ROUTING] DELETE /travel
+[11:14:59 AM - ROUTING] POST /signup/phone/verify
+[11:14:59 AM - INFO] Server Started
+[11:14:59 AM - QUERY] SELECT * FROM account WHERE session_id=?
+[11:14:59 AM - QUERY] SELECT * FROM travels WHERE topic=?
+[11:14:59 AM - QUERY] INSERT INTO travels VALUES(?, ?, ?)
+[11:14:59 AM - QUERY] CREATE TABLE fbe95c99-3fdf-4db8-a74c-70f01040de22(idx INT(11) PRIMARY KEY NOT NULL AUTO_INCREMENT, remaining_views INT(3) NOT NULL, type VARCHAR(20) NOT NULL, name VARCHAR(256), content VARCHAR(1024))
+[11:16:06 AM - ROUTING] POST /map
+[11:16:06 AM - ROUTING] GET /attractions/detail
+[11:16:06 AM - ROUTING] GET /attractions/list/total
+[11:16:06 AM - ROUTING] GET /friend
+[11:16:06 AM - ROUTING] POST /friend/delete
+[11:16:06 AM - ROUTING] GET /travel/info
+[11:16:06 AM - ROUTING] POST /travel
+[11:16:06 AM - ROUTING] POST /friend/request
+[11:16:06 AM - ROUTING] GET /find_user
+[11:16:06 AM - ROUTING] POST /user
+[11:16:06 AM - ROUTING] GET /mypage
+[11:16:06 AM - ROUTING] POST /signup/id/check
+[11:16:06 AM - ROUTING] POST /wish
+[11:16:06 AM - ROUTING] GET /map
+[11:16:06 AM - ROUTING] POST /signup/email/check
+[11:16:06 AM - ROUTING] GET /travel
+[11:16:06 AM - ROUTING] POST /friend/accept
+[11:16:06 AM - ROUTING] POST /signup/email/demand
+[11:16:06 AM - ROUTING] POST /find/password/demand
+[11:16:06 AM - ROUTING] DELETE /wish
+[11:16:06 AM - ROUTING] POST /signup
+[11:16:06 AM - ROUTING] POST /logout
+[11:16:06 AM - ROUTING] POST /friend/refuse
+[11:16:06 AM - ROUTING] POST /travel/invite
+[11:16:06 AM - ROUTING] POST /find/id/verify
+[11:16:06 AM - ROUTING] POST /signin
+[11:16:06 AM - ROUTING] GET /user
+[11:16:06 AM - ROUTING] POST /find/password/verify
+[11:16:06 AM - ROUTING] POST /profile-image
+[11:16:06 AM - ROUTING] POST /travel/refuse
+[11:16:06 AM - ROUTING] GET /friend/request
+[11:16:06 AM - ROUTING] POST /chat
+[11:16:06 AM - ROUTING] GET /attractions/list
+[11:16:06 AM - ROUTING] POST /change/password
+[11:16:06 AM - ROUTING] DELETE /travel/quit
+[11:16:06 AM - ROUTING] POST /travel/accept
+[11:16:06 AM - ROUTING] GET /wish
+[11:16:06 AM - ROUTING] POST /signup/phone/check
+[11:16:06 AM - ROUTING] GET /travel/invite
+[11:16:06 AM - ROUTING] POST /signup/phone/demand
+[11:16:06 AM - ROUTING] POST /find/id/demand
+[11:16:06 AM - ROUTING] GET /profile-image
+[11:16:06 AM - ROUTING] POST /signup/email/verify
+[11:16:06 AM - ROUTING] DELETE /travel
+[11:16:06 AM - ROUTING] POST /signup/phone/verify
+[11:16:06 AM - INFO] Server Started
+[11:16:06 AM - QUERY] SELECT * FROM account WHERE session_id=?
+[11:16:06 AM - QUERY] SELECT * FROM travels WHERE topic=?
+[11:16:06 AM - QUERY] INSERT INTO travels VALUES(?, ?, ?)
+[11:16:06 AM - QUERY] CREATE TABLE 5a7686c23c1a48c7bc1fb96da24ac278(idx INT(11) PRIMARY KEY NOT NULL AUTO_INCREMENT, remaining_views INT(3) NOT NULL, type VARCHAR(20) NOT NULL, name VARCHAR(256), content VARCHAR(1024))
+[11:16:06 AM - QUERY] SELECT * FROM account WHERE session_id=?
+[11:16:06 AM - QUERY] SELECT * FROM travels WHERE client_id=?
+[11:16:06 AM - QUERY] SELECT idx FROM ? ORDER BY idx DESC limit 1
+[11:17:32 AM - ROUTING] POST /map
+[11:17:32 AM - ROUTING] GET /attractions/detail
+[11:17:32 AM - ROUTING] GET /attractions/list/total
+[11:17:32 AM - ROUTING] GET /friend
+[11:17:32 AM - ROUTING] POST /friend/delete
+[11:17:32 AM - ROUTING] GET /travel/info
+[11:17:32 AM - ROUTING] POST /travel
+[11:17:32 AM - ROUTING] POST /friend/request
+[11:17:32 AM - ROUTING] GET /find_user
+[11:17:32 AM - ROUTING] POST /user
+[11:17:32 AM - ROUTING] GET /mypage
+[11:17:32 AM - ROUTING] POST /signup/id/check
+[11:17:32 AM - ROUTING] POST /wish
+[11:17:32 AM - ROUTING] GET /map
+[11:17:32 AM - ROUTING] POST /signup/email/check
+[11:17:32 AM - ROUTING] GET /travel
+[11:17:32 AM - ROUTING] POST /friend/accept
+[11:17:32 AM - ROUTING] POST /signup/email/demand
+[11:17:32 AM - ROUTING] POST /find/password/demand
+[11:17:32 AM - ROUTING] DELETE /wish
+[11:17:32 AM - ROUTING] POST /signup
+[11:17:32 AM - ROUTING] POST /logout
+[11:17:32 AM - ROUTING] POST /friend/refuse
+[11:17:32 AM - ROUTING] POST /travel/invite
+[11:17:32 AM - ROUTING] POST /find/id/verify
+[11:17:32 AM - ROUTING] POST /signin
+[11:17:32 AM - ROUTING] GET /user
+[11:17:32 AM - ROUTING] POST /find/password/verify
+[11:17:32 AM - ROUTING] POST /profile-image
+[11:17:32 AM - ROUTING] POST /travel/refuse
+[11:17:32 AM - ROUTING] GET /friend/request
+[11:17:32 AM - ROUTING] POST /chat
+[11:17:32 AM - ROUTING] GET /attractions/list
+[11:17:32 AM - ROUTING] POST /change/password
+[11:17:32 AM - ROUTING] DELETE /travel/quit
+[11:17:32 AM - ROUTING] POST /travel/accept
+[11:17:32 AM - ROUTING] GET /wish
+[11:17:32 AM - ROUTING] POST /signup/phone/check
+[11:17:32 AM - ROUTING] GET /travel/invite
+[11:17:32 AM - ROUTING] POST /signup/phone/demand
+[11:17:32 AM - ROUTING] POST /find/id/demand
+[11:17:32 AM - ROUTING] GET /profile-image
+[11:17:32 AM - ROUTING] POST /signup/email/verify
+[11:17:32 AM - ROUTING] DELETE /travel
+[11:17:32 AM - ROUTING] POST /signup/phone/verify
+[11:17:32 AM - INFO] Server Started
+[11:17:32 AM - QUERY] SELECT * FROM account WHERE session_id=?
+[11:17:32 AM - QUERY] SELECT * FROM travels WHERE client_id=?
+[11:17:32 AM - QUERY] SELECT idx FROM 5a7686c23c1a48c7bc1fb96da24ac278 ORDER BY idx DESC limit 1
+[11:21:35 AM - ROUTING] POST /map
+[11:21:35 AM - ROUTING] GET /attractions/detail
+[11:21:35 AM - ROUTING] GET /attractions/list/total
+[11:21:35 AM - ROUTING] GET /friend
+[11:21:35 AM - ROUTING] POST /friend/delete
+[11:21:35 AM - ROUTING] GET /travel/info
+[11:21:35 AM - ROUTING] POST /travel
+[11:21:35 AM - ROUTING] POST /friend/request
+[11:21:35 AM - ROUTING] GET /find_user
+[11:21:35 AM - ROUTING] POST /user
+[11:21:35 AM - ROUTING] GET /mypage
+[11:21:35 AM - ROUTING] POST /signup/id/check
+[11:21:35 AM - ROUTING] POST /wish
+[11:21:35 AM - ROUTING] GET /map
+[11:21:35 AM - ROUTING] POST /signup/email/check
+[11:21:35 AM - ROUTING] GET /travel
+[11:21:35 AM - ROUTING] POST /friend/accept
+[11:21:35 AM - ROUTING] POST /signup/email/demand
+[11:21:35 AM - ROUTING] POST /find/password/demand
+[11:21:35 AM - ROUTING] DELETE /wish
+[11:21:35 AM - ROUTING] POST /signup
+[11:21:35 AM - ROUTING] POST /logout
+[11:21:35 AM - ROUTING] POST /friend/refuse
+[11:21:35 AM - ROUTING] POST /travel/invite
+[11:21:35 AM - ROUTING] POST /find/id/verify
+[11:21:35 AM - ROUTING] POST /signin
+[11:21:35 AM - ROUTING] GET /user
+[11:21:35 AM - ROUTING] POST /find/password/verify
+[11:21:35 AM - ROUTING] POST /profile-image
+[11:21:35 AM - ROUTING] POST /travel/refuse
+[11:21:35 AM - ROUTING] GET /friend/request
+[11:21:35 AM - ROUTING] POST /chat
+[11:21:35 AM - ROUTING] GET /attractions/list
+[11:21:35 AM - ROUTING] POST /change/password
+[11:21:35 AM - ROUTING] DELETE /travel/quit
+[11:21:35 AM - ROUTING] POST /travel/accept
+[11:21:35 AM - ROUTING] GET /wish
+[11:21:35 AM - ROUTING] POST /signup/phone/check
+[11:21:35 AM - ROUTING] GET /travel/invite
+[11:21:35 AM - ROUTING] POST /signup/phone/demand
+[11:21:35 AM - ROUTING] POST /find/id/demand
+[11:21:35 AM - ROUTING] GET /profile-image
+[11:21:35 AM - ROUTING] POST /signup/email/verify
+[11:21:35 AM - ROUTING] DELETE /travel
+[11:21:35 AM - ROUTING] POST /signup/phone/verify
+[11:21:35 AM - INFO] Server Started
+[11:21:35 AM - QUERY] SELECT * FROM account WHERE session_id=?
+[11:21:35 AM - QUERY] SELECT * FROM travels WHERE client_id=?
+[11:21:35 AM - QUERY] SELECT idx FROM 5a7686c23c1a48c7bc1fb96da24ac278 ORDER BY idx DESC limit 1
+[11:22:47 AM - ROUTING] GET /attractions/list
+[11:22:47 AM - ROUTING] POST /signup/email/check
+[11:22:47 AM - ROUTING] POST /map
+[11:22:47 AM - ROUTING] POST /signup/phone/check
+[11:22:47 AM - ROUTING] GET /wish
+[11:22:47 AM - ROUTING] POST /logout
+[11:22:47 AM - ROUTING] POST /travel/invite
+[11:22:47 AM - ROUTING] POST /wish
+[11:22:47 AM - ROUTING] POST /friend/delete
+[11:22:47 AM - ROUTING] POST /friend/request
+[11:22:47 AM - ROUTING] POST /signup/id/check
+[11:22:47 AM - ROUTING] POST /signup/phone/demand
+[11:22:47 AM - ROUTING] POST /signin
+[11:22:47 AM - ROUTING] POST /signup/email/verify
+[11:22:47 AM - ROUTING] GET /friend/request
+[11:22:47 AM - ROUTING] GET /travel
+[11:22:47 AM - ROUTING] POST /travel
+[11:22:47 AM - ROUTING] POST /find/id/verify
+[11:22:47 AM - ROUTING] GET /friend
+[11:22:47 AM - ROUTING] GET /travel/invite
+[11:22:47 AM - ROUTING] POST /change/password
+[11:22:47 AM - ROUTING] POST /signup/email/demand
+[11:22:47 AM - ROUTING] POST /friend/refuse
+[11:22:47 AM - ROUTING] DELETE /wish
+[11:22:47 AM - ROUTING] POST /find/id/demand
+[11:22:47 AM - ROUTING] POST /find/password/demand
+[11:22:47 AM - ROUTING] GET /map
+[11:22:47 AM - ROUTING] POST /friend/accept
+[11:22:47 AM - ROUTING] GET /attractions/list/total
+[11:22:47 AM - ROUTING] POST /travel/refuse
+[11:22:47 AM - ROUTING] POST /travel/accept
+[11:22:47 AM - ROUTING] GET /user
+[11:22:47 AM - ROUTING] GET /attractions/detail
+[11:22:47 AM - ROUTING] DELETE /travel
+[11:22:47 AM - ROUTING] POST /chat
+[11:22:47 AM - ROUTING] POST /signup
+[11:22:47 AM - ROUTING] POST /profile-image
+[11:22:47 AM - ROUTING] GET /mypage
+[11:22:47 AM - ROUTING] DELETE /travel/quit
+[11:22:47 AM - ROUTING] POST /find/password/verify
+[11:22:47 AM - ROUTING] GET /travel/info
+[11:22:47 AM - ROUTING] GET /profile-image
+[11:22:47 AM - ROUTING] GET /find_user
+[11:22:47 AM - ROUTING] POST /signup/phone/verify
+[11:22:47 AM - ROUTING] POST /user
+[11:22:47 AM - INFO] Server Started
+[11:22:47 AM - QUERY] SELECT * FROM account WHERE session_id=?
+[11:22:47 AM - QUERY] SELECT * FROM travels WHERE client_id=?
+[11:22:47 AM - QUERY] SELECT idx FROM 5a7686c23c1a48c7bc1fb96da24ac278 ORDER BY idx DESC limit 1
+[00:27:06 PM - ROUTING] POST /find/password/verify
+[00:27:06 PM - ROUTING] GET /profile-image
+[00:27:06 PM - ROUTING] POST /travel/accept
+[00:27:06 PM - ROUTING] POST /signup/email/demand
+[00:27:06 PM - ROUTING] POST /signup/email/check
+[00:27:06 PM - ROUTING] POST /profile-image
+[00:27:06 PM - ROUTING] DELETE /travel
+[00:27:06 PM - ROUTING] POST /signup/phone/verify
+[00:27:06 PM - ROUTING] GET /attractions/list
+[00:27:06 PM - ROUTING] POST /signup/email/verify
+[00:27:06 PM - ROUTING] POST /travel
+[00:27:06 PM - ROUTING] POST /friend/delete
+[00:27:06 PM - ROUTING] GET /wish
+[00:27:06 PM - ROUTING] POST /find/id/verify
+[00:27:06 PM - ROUTING] POST /map
+[00:27:06 PM - ROUTING] POST /change/password
+[00:27:06 PM - ROUTING] GET /mypage
+[00:27:06 PM - ROUTING] GET /travel/info
+[00:27:06 PM - ROUTING] GET /friend/request
+[00:27:06 PM - ROUTING] GET /user
+[00:27:06 PM - ROUTING] GET /travel/invite
+[00:27:06 PM - ROUTING] GET /attractions/list/total
+[00:27:06 PM - ROUTING] POST /wish
+[00:27:06 PM - ROUTING] GET /travel
+[00:27:06 PM - ROUTING] POST /chat
+[00:27:06 PM - ROUTING] GET /attractions/detail
+[00:27:06 PM - ROUTING] POST /signup/phone/demand
+[00:27:06 PM - ROUTING] GET /map
+[00:27:06 PM - ROUTING] DELETE /travel/quit
+[00:27:06 PM - ROUTING] POST /signup
+[00:27:06 PM - ROUTING] POST /user
+[00:27:06 PM - ROUTING] POST /signup/phone/check
+[00:27:06 PM - ROUTING] POST /find/password/demand
+[00:27:06 PM - ROUTING] GET /friend
+[00:27:06 PM - ROUTING] POST /friend/accept
+[00:27:06 PM - ROUTING] POST /signin
+[00:27:06 PM - ROUTING] POST /travel/invite
+[00:27:06 PM - ROUTING] POST /friend/refuse
+[00:27:06 PM - ROUTING] GET /find_user
+[00:27:06 PM - ROUTING] POST /travel/refuse
+[00:27:06 PM - ROUTING] POST /signup/id/check
+[00:27:06 PM - ROUTING] POST /friend/request
+[00:27:06 PM - ROUTING] POST /logout
+[00:27:06 PM - ROUTING] DELETE /wish
+[00:27:06 PM - ROUTING] POST /find/id/demand
+[00:27:06 PM - INFO] Server Started
+[00:27:06 PM - QUERY] SELECT * FROM account WHERE session_id=?
+[00:27:06 PM - QUERY] SELECT * FROM travels WHERE client_id=?
+[00:27:06 PM - QUERY] SELECT idx FROM 5a7686c23c1a48c7bc1fb96da24ac278 ORDER BY idx DESC limit 1
+[00:27:06 PM - QUERY] SELECT * FROM account WHERE session_id=?
+[00:27:06 PM - QUERY] SELECT * FROM friend_list WHERE client_id1=? OR client_id2=?
+[00:27:06 PM - QUERY] SELECT * FROM account WHERE id=?
+[00:27:06 PM - QUERY] SELECT * FROM account WHERE session_id=?
+[00:27:06 PM - QUERY] DELETE FROM travel_invites WHERE dst_id=? AND topic=?
+[00:27:06 PM - QUERY] INSERT INTO travel_invites VALUES(?, ?, ?, ?, NOW())
+[00:27:06 PM - QUERY] SELECT * FROM account WHERE session_id=?
+[00:27:06 PM - QUERY] UPDATE account SET session_id=null WHERE id=?
+[00:27:06 PM - QUERY] SELECT * FROM account WHERE id=? AND password=?
+[00:27:06 PM - QUERY] SELECT * FROM account WHERE id=?
+[00:27:06 PM - QUERY] UPDATE account SET session_id=? WHERE id=?
+[00:27:06 PM - QUERY] SELECT * FROM account WHERE session_id=?
+[00:27:06 PM - QUERY] SELECT * FROM travel_invites WHERE dst_id=?
+[00:27:06 PM - QUERY] SELECT * FROM account WHERE id=?
+[00:27:06 PM - QUERY] SELECT * FROM account WHERE session_id=?
+[00:27:06 PM - QUERY] DELETE FROM travel_invites WHERE dst_id=? AND topic=?
+[00:27:06 PM - QUERY] SELECT * FROM travels WHERE topic=?
+[00:27:06 PM - QUERY] INSERT INTO travels VALUES(?, ?, ?)
+[00:27:06 PM - QUERY] SELECT * FROM account WHERE id='
+[00:27:06 PM - QUERY] SELECT COUNT(*) FROM travels WHERE topic=?
+[00:30:20 PM - ROUTING] POST /map
+[00:30:20 PM - ROUTING] GET /attractions/detail
+[00:30:20 PM - ROUTING] GET /attractions/list/total
+[00:30:20 PM - ROUTING] GET /friend
+[00:30:20 PM - ROUTING] POST /friend/delete
+[00:30:20 PM - ROUTING] GET /travel/info
+[00:30:20 PM - ROUTING] POST /travel
+[00:30:20 PM - ROUTING] POST /friend/request
+[00:30:20 PM - ROUTING] GET /find_user
+[00:30:20 PM - ROUTING] POST /user
+[00:30:20 PM - ROUTING] GET /mypage
+[00:30:20 PM - ROUTING] POST /signup/id/check
+[00:30:20 PM - ROUTING] POST /wish
+[00:30:20 PM - ROUTING] GET /map
+[00:30:20 PM - ROUTING] POST /signup/email/check
+[00:30:20 PM - ROUTING] GET /travel
+[00:30:20 PM - ROUTING] POST /friend/accept
+[00:30:20 PM - ROUTING] POST /signup/email/demand
+[00:30:20 PM - ROUTING] POST /find/password/demand
+[00:30:20 PM - ROUTING] DELETE /wish
+[00:30:20 PM - ROUTING] POST /signup
+[00:30:20 PM - ROUTING] POST /logout
+[00:30:20 PM - ROUTING] POST /friend/refuse
+[00:30:20 PM - ROUTING] POST /travel/invite
+[00:30:20 PM - ROUTING] POST /find/id/verify
+[00:30:20 PM - ROUTING] POST /signin
+[00:30:20 PM - ROUTING] GET /user
+[00:30:20 PM - ROUTING] POST /find/password/verify
+[00:30:20 PM - ROUTING] POST /profile-image
+[00:30:20 PM - ROUTING] POST /travel/refuse
+[00:30:20 PM - ROUTING] GET /friend/request
+[00:30:20 PM - ROUTING] POST /chat
+[00:30:20 PM - ROUTING] GET /attractions/list
+[00:30:20 PM - ROUTING] POST /change/password
+[00:30:20 PM - ROUTING] DELETE /travel/quit
+[00:30:20 PM - ROUTING] POST /travel/accept
+[00:30:20 PM - ROUTING] GET /wish
+[00:30:20 PM - ROUTING] POST /signup/phone/check
+[00:30:20 PM - ROUTING] GET /travel/invite
+[00:30:20 PM - ROUTING] POST /signup/phone/demand
+[00:30:20 PM - ROUTING] POST /find/id/demand
+[00:30:20 PM - ROUTING] GET /profile-image
+[00:30:20 PM - ROUTING] POST /signup/email/verify
+[00:30:20 PM - ROUTING] DELETE /travel
+[00:30:20 PM - ROUTING] POST /signup/phone/verify
+[00:30:20 PM - INFO] Server Started
+[00:30:20 PM - QUERY] SELECT * FROM account WHERE session_id=?
+[00:30:20 PM - QUERY] DELETE FROM travel_invites WHERE dst_id=? AND topic=?
+[00:30:20 PM - QUERY] SELECT * FROM travels WHERE topic=?
+[00:30:20 PM - QUERY] INSERT INTO travels VALUES(?, ?, ?)
+[00:30:20 PM - QUERY] SELECT * FROM account WHERE id=?
+[00:30:20 PM - QUERY] SELECT COUNT(*) FROM travels WHERE topic=?
+[00:53:22 PM - ROUTING] POST /map
+[00:53:22 PM - ROUTING] GET /attractions/detail
+[00:53:22 PM - ROUTING] GET /attractions/list/total
+[00:53:22 PM - ROUTING] GET /friend
+[00:53:22 PM - ROUTING] POST /friend/delete
+[00:53:22 PM - ROUTING] GET /travel/info
+[00:53:22 PM - ROUTING] POST /travel
+[00:53:22 PM - ROUTING] POST /friend/request
+[00:53:22 PM - ROUTING] GET /find_user
+[00:53:22 PM - ROUTING] POST /user
+[00:53:22 PM - ROUTING] GET /mypage
+[00:53:22 PM - ROUTING] POST /signup/id/check
+[00:53:22 PM - ROUTING] POST /wish
+[00:53:22 PM - ROUTING] GET /map
+[00:53:22 PM - ROUTING] POST /signup/email/check
+[00:53:22 PM - ROUTING] GET /travel
+[00:53:22 PM - ROUTING] POST /friend/accept
+[00:53:22 PM - ROUTING] POST /signup/email/demand
+[00:53:22 PM - ROUTING] POST /find/password/demand
+[00:53:22 PM - ROUTING] DELETE /wish
+[00:53:22 PM - ROUTING] POST /signup
+[00:53:22 PM - ROUTING] POST /logout
+[00:53:22 PM - ROUTING] POST /friend/refuse
+[00:53:22 PM - ROUTING] POST /travel/invite
+[00:53:22 PM - ROUTING] POST /find/id/verify
+[00:53:22 PM - ROUTING] POST /signin
+[00:53:22 PM - ROUTING] GET /user
+[00:53:22 PM - ROUTING] POST /find/password/verify
+[00:53:22 PM - ROUTING] POST /profile-image
+[00:53:22 PM - ROUTING] POST /travel/refuse
+[00:53:22 PM - ROUTING] GET /friend/request
+[00:53:22 PM - ROUTING] POST /chat
+[00:53:22 PM - ROUTING] GET /attractions/list
+[00:53:22 PM - ROUTING] POST /change/password
+[00:53:22 PM - ROUTING] DELETE /travel/quit
+[00:53:22 PM - ROUTING] POST /travel/accept
+[00:53:22 PM - ROUTING] GET /wish
+[00:53:22 PM - ROUTING] POST /signup/phone/check
+[00:53:22 PM - ROUTING] GET /travel/invite
+[00:53:22 PM - ROUTING] POST /signup/phone/demand
+[00:53:22 PM - ROUTING] POST /find/id/demand
+[00:53:22 PM - ROUTING] GET /profile-image
+[00:53:22 PM - ROUTING] POST /signup/email/verify
+[00:53:22 PM - ROUTING] DELETE /travel
+[00:53:22 PM - ROUTING] POST /signup/phone/verify
+[00:53:22 PM - INFO] Server Started
+[00:53:22 PM - QUERY] SELECT * FROM account WHERE session_id=?
+[00:53:22 PM - QUERY] SELECT * FROM account WHERE id=?
+[00:53:22 PM - QUERY] SELECT * FROM account WHERE session_id=?
+[00:53:22 PM - QUERY] SELECT * FROM travels WHERE topic=?
+[00:53:22 PM - QUERY] INSERT INTO travels VALUES(?, ?, ?)
+[00:53:22 PM - QUERY] CREATE TABLE e8b1832357a44ec2b138fb676e2bc6cd(idx INT(11) PRIMARY KEY NOT NULL AUTO_INCREMENT, remaining_views INT(3) NOT NULL, type VARCHAR(20) NOT NULL, name VARCHAR(256), content VARCHAR(1024))
+[00:53:22 PM - QUERY] SELECT * FROM account WHERE session_id=?
+[00:53:22 PM - QUERY] SELECT * FROM travels WHERE client_id=?
+[00:53:22 PM - QUERY] SELECT * FROM account WHERE session_id=?
+[00:53:22 PM - QUERY] UPDATE account SET session_id=null WHERE id=?
+[00:53:22 PM - QUERY] SELECT * FROM account WHERE id=? AND password=?
+[00:53:22 PM - QUERY] SELECT * FROM account WHERE id=?
+[00:53:22 PM - QUERY] SELECT * FROM account WHERE session_id=?
+[00:53:22 PM - QUERY] UPDATE account SET session_id=? WHERE id=?
+[00:53:22 PM - QUERY] SELECT * FROM account WHERE session_id=?
+[00:53:22 PM - QUERY] SELECT * FROM friend_list WHERE client_id1=? OR client_id2=?
+[00:53:22 PM - QUERY] SELECT * FROM account WHERE id=?
+[00:53:22 PM - QUERY] SELECT * FROM account WHERE session_id=?
+[00:53:22 PM - QUERY] SELECT * FROM travels WHERE client_id=?
+[00:53:22 PM - QUERY] SELECT idx FROM 5a7686c23c1a48c7bc1fb96da24ac278 ORDER BY idx DESC limit 1
+[00:53:22 PM - QUERY] SELECT * FROM account WHERE session_id=?
+[00:53:22 PM - QUERY] DELETE FROM travel_invites WHERE dst_id=? AND topic=?
+[00:53:22 PM - QUERY] INSERT INTO travel_invites VALUES(?, ?, ?, ?, NOW())
+[00:53:22 PM - QUERY] SELECT * FROM account WHERE session_id=?
+[00:53:22 PM - QUERY] UPDATE account SET session_id=null WHERE id=?
+[00:53:22 PM - QUERY] SELECT * FROM account WHERE id=? AND password=?
+[00:53:22 PM - QUERY] SELECT * FROM account WHERE id=?
+[00:53:22 PM - QUERY] SELECT * FROM account WHERE session_id=?
+[00:53:22 PM - QUERY] UPDATE account SET session_id=? WHERE id=?
+[00:53:22 PM - QUERY] SELECT * FROM account WHERE session_id=?
+[00:53:22 PM - QUERY] SELECT * FROM travel_invites WHERE dst_id=?
+[00:53:22 PM - QUERY] SELECT * FROM account WHERE id=?
+[00:53:22 PM - QUERY] SELECT * FROM account WHERE session_id=?
+[00:53:22 PM - QUERY] DELETE FROM travel_invites WHERE dst_id=? AND topic=?
+[00:53:22 PM - QUERY] SELECT * FROM travels WHERE topic=?
+[00:53:22 PM - QUERY] INSERT INTO travels VALUES(?, ?, ?)
+[00:53:22 PM - QUERY] SELECT * FROM account WHERE id=?
+[00:53:22 PM - QUERY] SELECT COUNT(*) FROM travels WHERE topic=?
+[00:53:22 PM - QUERY] INSERT INTO 5a7686c23c1a48c7bc1fb96da24ac278(remaining_views, type, name) VALUES(?, ?, ?)
+[00:53:22 PM - QUERY] SELECT * FROM account WHERE session_id=?
+[00:53:22 PM - QUERY] SELECT * FROM travels WHERE client_id=?
+[00:53:22 PM - QUERY] SELECT idx FROM 5a7686c23c1a48c7bc1fb96da24ac278 ORDER BY idx DESC limit 1
+[00:53:22 PM - QUERY] SELECT * FROM account WHERE session_id=?
+[00:53:22 PM - QUERY] SELECT * FROM travels WHERE topic=?
+[00:53:22 PM - QUERY] SELECT * FROM account WHERE id=?
+[00:53:22 PM - QUERY] SELECT * FROM account WHERE id=?
+[00:59:34 PM - ROUTING] GET /travel/info
+[00:59:34 PM - ROUTING] POST /signup/email/check
+[00:59:34 PM - ROUTING] POST /user
+[00:59:34 PM - ROUTING] POST /travel
+[00:59:34 PM - ROUTING] GET /user
+[00:59:34 PM - ROUTING] POST /signup/email/demand
+[00:59:34 PM - ROUTING] POST /signup/phone/demand
+[00:59:34 PM - ROUTING] POST /signup/email/verify
+[00:59:34 PM - ROUTING] POST /chat
+[00:59:34 PM - ROUTING] POST /profile-image
+[00:59:34 PM - ROUTING] GET /attractions/list/total
+[00:59:34 PM - ROUTING] POST /map
+[00:59:34 PM - ROUTING] DELETE /travel
+[00:59:34 PM - ROUTING] GET /mypage
+[00:59:34 PM - ROUTING] POST /logout
+[00:59:34 PM - ROUTING] GET /travel
+[00:59:34 PM - ROUTING] POST /travel/accept
+[00:59:34 PM - ROUTING] POST /signup
+[00:59:34 PM - ROUTING] GET /wish
+[00:59:34 PM - ROUTING] GET /friend
+[00:59:34 PM - ROUTING] POST /signup/phone/check
+[00:59:34 PM - ROUTING] GET /travel/invite
+[00:59:34 PM - ROUTING] POST /signin
+[00:59:34 PM - ROUTING] DELETE /travel/quit
+[00:59:34 PM - ROUTING] POST /friend/refuse
+[00:59:34 PM - ROUTING] POST /friend/request
+[00:59:34 PM - ROUTING] DELETE /wish
+[00:59:34 PM - ROUTING] POST /friend/accept
+[00:59:34 PM - ROUTING] GET /attractions/detail
+[00:59:34 PM - ROUTING] GET /map
+[00:59:34 PM - ROUTING] POST /signup/phone/verify
+[00:59:34 PM - ROUTING] POST /travel/invite
+[00:59:34 PM - ROUTING] GET /friend/request
+[00:59:34 PM - ROUTING] POST /find/id/verify
+[00:59:34 PM - ROUTING] POST /friend/delete
+[00:59:34 PM - ROUTING] GET /find_user
+[00:59:34 PM - ROUTING] POST /find/password/demand
+[00:59:34 PM - ROUTING] POST /change/password
+[00:59:34 PM - ROUTING] GET /attractions/list
+[00:59:34 PM - ROUTING] POST /signup/id/check
+[00:59:34 PM - ROUTING] POST /find/id/demand
+[00:59:34 PM - ROUTING] GET /profile-image
+[00:59:34 PM - ROUTING] POST /travel/refuse
+[00:59:34 PM - ROUTING] POST /wish
+[00:59:34 PM - ROUTING] POST /find/password/verify
+[00:59:34 PM - INFO] Server Started
+[00:59:34 PM - QUERY] SELECT * FROM account WHERE session_id=?
+[00:59:34 PM - QUERY] SELECT * FROM account WHERE id=?
+[00:59:34 PM - QUERY] SELECT * FROM account WHERE session_id=?
+[00:59:34 PM - QUERY] SELECT * FROM account WHERE id=?
+[00:59:34 PM - QUERY] SELECT * FROM account WHERE session_id=?
+[00:59:34 PM - QUERY] SELECT * FROM account WHERE id=?
+[00:59:34 PM - QUERY] SELECT * FROM account WHERE session_id=?
+[00:59:34 PM - QUERY] SELECT * FROM account WHERE id=?
+[01:05:30 PM - ROUTING] POST /map
+[01:05:30 PM - ROUTING] GET /attractions/detail
+[01:05:30 PM - ROUTING] GET /attractions/list/total
+[01:05:30 PM - ROUTING] GET /friend
+[01:05:30 PM - ROUTING] POST /friend/delete
+[01:05:30 PM - ROUTING] GET /travel/info
+[01:05:30 PM - ROUTING] POST /travel
+[01:05:30 PM - ROUTING] POST /friend/request
+[01:05:30 PM - ROUTING] GET /find_user
+[01:05:30 PM - ROUTING] POST /user
+[01:05:30 PM - ROUTING] GET /mypage
+[01:05:30 PM - ROUTING] POST /signup/id/check
+[01:05:30 PM - ROUTING] POST /wish
+[01:05:30 PM - ROUTING] GET /map
+[01:05:30 PM - ROUTING] POST /signup/email/check
+[01:05:30 PM - ROUTING] GET /travel
+[01:05:30 PM - ROUTING] POST /friend/accept
+[01:05:30 PM - ROUTING] POST /signup/email/demand
+[01:05:30 PM - ROUTING] POST /find/password/demand
+[01:05:30 PM - ROUTING] DELETE /wish
+[01:05:30 PM - ROUTING] POST /signup
+[01:05:30 PM - ROUTING] POST /logout
+[01:05:30 PM - ROUTING] POST /friend/refuse
+[01:05:30 PM - ROUTING] POST /travel/invite
+[01:05:30 PM - ROUTING] POST /find/id/verify
+[01:05:30 PM - ROUTING] POST /signin
+[01:05:30 PM - ROUTING] GET /user
+[01:05:30 PM - ROUTING] POST /find/password/verify
+[01:05:30 PM - ROUTING] POST /profile-image
+[01:05:30 PM - ROUTING] POST /travel/refuse
+[01:05:30 PM - ROUTING] GET /friend/request
+[01:05:30 PM - ROUTING] POST /chat
+[01:05:30 PM - ROUTING] GET /attractions/list
+[01:05:30 PM - ROUTING] POST /change/password
+[01:05:30 PM - ROUTING] DELETE /travel/quit
+[01:05:30 PM - ROUTING] POST /travel/accept
+[01:05:30 PM - ROUTING] GET /wish
+[01:05:30 PM - ROUTING] POST /signup/phone/check
+[01:05:30 PM - ROUTING] GET /travel/invite
+[01:05:30 PM - ROUTING] POST /signup/phone/demand
+[01:05:30 PM - ROUTING] POST /find/id/demand
+[01:05:30 PM - ROUTING] GET /profile-image
+[01:05:30 PM - ROUTING] POST /signup/email/verify
+[01:05:30 PM - ROUTING] DELETE /travel
+[01:05:30 PM - ROUTING] POST /signup/phone/verify
+[01:05:30 PM - INFO] Server Started
+[01:05:30 PM - QUERY] SELECT * FROM account WHERE session_id=?
+[01:05:30 PM - QUERY] SELECT * FROM account WHERE id=?
+[01:05:30 PM - QUERY] SELECT COUNT(*) FROM travels WHERE topic=?
+[01:05:30 PM - QUERY] INSERT INTO 5a7686c23c1a48c7bc1fb96da24ac278(remaining_views, type, name, content VALUES(?, ?, ?, ?)
+[01:06:31 PM - ROUTING] GET /travel/info
+[01:06:31 PM - ROUTING] POST /signup/email/check
+[01:06:31 PM - ROUTING] POST /user
+[01:06:31 PM - ROUTING] POST /travel
+[01:06:31 PM - ROUTING] GET /user
+[01:06:31 PM - ROUTING] POST /signup/email/demand
+[01:06:31 PM - ROUTING] POST /signup/phone/demand
+[01:06:31 PM - ROUTING] POST /signup/email/verify
+[01:06:31 PM - ROUTING] POST /chat
+[01:06:31 PM - ROUTING] POST /profile-image
+[01:06:31 PM - ROUTING] GET /attractions/list/total
+[01:06:31 PM - ROUTING] POST /map
+[01:06:31 PM - ROUTING] DELETE /travel
+[01:06:31 PM - ROUTING] GET /mypage
+[01:06:31 PM - ROUTING] POST /logout
+[01:06:31 PM - ROUTING] GET /travel
+[01:06:31 PM - ROUTING] POST /travel/accept
+[01:06:31 PM - ROUTING] POST /signup
+[01:06:31 PM - ROUTING] GET /wish
+[01:06:31 PM - ROUTING] GET /friend
+[01:06:31 PM - ROUTING] POST /signup/phone/check
+[01:06:31 PM - ROUTING] GET /travel/invite
+[01:06:31 PM - ROUTING] POST /signin
+[01:06:31 PM - ROUTING] DELETE /travel/quit
+[01:06:31 PM - ROUTING] POST /friend/refuse
+[01:06:31 PM - ROUTING] POST /friend/request
+[01:06:31 PM - ROUTING] DELETE /wish
+[01:06:31 PM - ROUTING] POST /friend/accept
+[01:06:31 PM - ROUTING] GET /attractions/detail
+[01:06:31 PM - ROUTING] GET /map
+[01:06:31 PM - ROUTING] POST /signup/phone/verify
+[01:06:31 PM - ROUTING] POST /travel/invite
+[01:06:31 PM - ROUTING] GET /friend/request
+[01:06:31 PM - ROUTING] POST /find/id/verify
+[01:06:31 PM - ROUTING] POST /friend/delete
+[01:06:31 PM - ROUTING] GET /find_user
+[01:06:31 PM - ROUTING] POST /find/password/demand
+[01:06:31 PM - ROUTING] POST /change/password
+[01:06:31 PM - ROUTING] GET /attractions/list
+[01:06:31 PM - ROUTING] POST /signup/id/check
+[01:06:31 PM - ROUTING] POST /find/id/demand
+[01:06:31 PM - ROUTING] GET /profile-image
+[01:06:31 PM - ROUTING] POST /travel/refuse
+[01:06:31 PM - ROUTING] POST /wish
+[01:06:31 PM - ROUTING] POST /find/password/verify
+[01:06:31 PM - INFO] Server Started
+[01:06:31 PM - QUERY] SELECT * FROM account WHERE session_id=?
+[01:06:31 PM - QUERY] SELECT * FROM account WHERE id=?
+[01:06:31 PM - QUERY] SELECT COUNT(*) FROM travels WHERE topic=?
+[01:06:31 PM - QUERY] INSERT INTO 5a7686c23c1a48c7bc1fb96da24ac278(remaining_views, type, name, content VALUES(?, ?, ?, ?)
+[01:06:58 PM - ROUTING] POST /signup/phone/check
+[01:06:58 PM - ROUTING] GET /travel/invite
+[01:06:58 PM - ROUTING] DELETE /wish
+[01:06:58 PM - ROUTING] GET /friend/request
+[01:06:58 PM - ROUTING] POST /logout
+[01:06:58 PM - ROUTING] POST /friend/delete
+[01:06:58 PM - ROUTING] GET /wish
+[01:06:58 PM - ROUTING] GET /user
+[01:06:58 PM - ROUTING] POST /signup/phone/demand
+[01:06:58 PM - ROUTING] POST /profile-image
+[01:06:58 PM - ROUTING] DELETE /travel/quit
+[01:06:58 PM - ROUTING] POST /travel/refuse
+[01:06:58 PM - ROUTING] GET /travel
+[01:06:58 PM - ROUTING] POST /signup/email/verify
+[01:06:58 PM - ROUTING] POST /find/id/demand
+[01:06:58 PM - ROUTING] GET /mypage
+[01:06:58 PM - ROUTING] POST /friend/accept
+[01:06:58 PM - ROUTING] POST /friend/refuse
+[01:06:58 PM - ROUTING] POST /signin
+[01:06:58 PM - ROUTING] POST /signup/phone/verify
+[01:06:58 PM - ROUTING] POST /find/password/demand
+[01:06:58 PM - ROUTING] POST /chat
+[01:06:58 PM - ROUTING] GET /attractions/list
+[01:06:58 PM - ROUTING] POST /signup
+[01:06:58 PM - ROUTING] POST /signup/email/check
+[01:06:58 PM - ROUTING] GET /travel/info
+[01:06:58 PM - ROUTING] POST /travel/invite
+[01:06:58 PM - ROUTING] POST /find/id/verify
+[01:06:58 PM - ROUTING] POST /friend/request
+[01:06:58 PM - ROUTING] POST /user
+[01:06:58 PM - ROUTING] GET /profile-image
+[01:06:58 PM - ROUTING] GET /attractions/list/total
+[01:06:58 PM - ROUTING] GET /friend
+[01:06:58 PM - ROUTING] POST /map
+[01:06:58 PM - ROUTING] POST /travel
+[01:06:58 PM - ROUTING] POST /signup/id/check
+[01:06:58 PM - ROUTING] POST /travel/accept
+[01:06:58 PM - ROUTING] POST /signup/email/demand
+[01:06:58 PM - ROUTING] POST /find/password/verify
+[01:06:58 PM - ROUTING] DELETE /travel
+[01:06:58 PM - ROUTING] GET /find_user
+[01:06:58 PM - ROUTING] POST /wish
+[01:06:58 PM - ROUTING] POST /change/password
+[01:06:58 PM - ROUTING] GET /map
+[01:06:58 PM - ROUTING] GET /attractions/detail
+[01:06:58 PM - INFO] Server Started
+[01:06:58 PM - QUERY] SELECT * FROM account WHERE session_id=?
+[01:06:58 PM - QUERY] SELECT * FROM account WHERE id=?
+[01:06:58 PM - QUERY] SELECT COUNT(*) FROM travels WHERE topic=?
+[01:06:58 PM - QUERY] INSERT INTO 5a7686c23c1a48c7bc1fb96da24ac278(remaining_views, type, name, content VALUES(?, ?, ?, ?)
+[01:07:27 PM - ROUTING] POST /map
+[01:07:27 PM - ROUTING] GET /attractions/detail
+[01:07:27 PM - ROUTING] GET /attractions/list/total
+[01:07:27 PM - ROUTING] GET /friend
+[01:07:27 PM - ROUTING] POST /friend/delete
+[01:07:27 PM - ROUTING] GET /travel/info
+[01:07:27 PM - ROUTING] POST /travel
+[01:07:27 PM - ROUTING] POST /friend/request
+[01:07:27 PM - ROUTING] GET /find_user
+[01:07:27 PM - ROUTING] POST /user
+[01:07:27 PM - ROUTING] GET /mypage
+[01:07:27 PM - ROUTING] POST /signup/id/check
+[01:07:27 PM - ROUTING] POST /wish
+[01:07:27 PM - ROUTING] GET /map
+[01:07:27 PM - ROUTING] POST /signup/email/check
+[01:07:27 PM - ROUTING] GET /travel
+[01:07:27 PM - ROUTING] POST /friend/accept
+[01:07:27 PM - ROUTING] POST /signup/email/demand
+[01:07:27 PM - ROUTING] POST /find/password/demand
+[01:07:27 PM - ROUTING] DELETE /wish
+[01:07:27 PM - ROUTING] POST /signup
+[01:07:27 PM - ROUTING] POST /logout
+[01:07:27 PM - ROUTING] POST /friend/refuse
+[01:07:27 PM - ROUTING] POST /travel/invite
+[01:07:27 PM - ROUTING] POST /find/id/verify
+[01:07:27 PM - ROUTING] POST /signin
+[01:07:27 PM - ROUTING] GET /user
+[01:07:27 PM - ROUTING] POST /find/password/verify
+[01:07:27 PM - ROUTING] POST /profile-image
+[01:07:27 PM - ROUTING] POST /travel/refuse
+[01:07:27 PM - ROUTING] GET /friend/request
+[01:07:27 PM - ROUTING] POST /chat
+[01:07:27 PM - ROUTING] GET /attractions/list
+[01:07:27 PM - ROUTING] POST /change/password
+[01:07:27 PM - ROUTING] DELETE /travel/quit
+[01:07:27 PM - ROUTING] POST /travel/accept
+[01:07:27 PM - ROUTING] GET /wish
+[01:07:27 PM - ROUTING] POST /signup/phone/check
+[01:07:27 PM - ROUTING] GET /travel/invite
+[01:07:27 PM - ROUTING] POST /signup/phone/demand
+[01:07:27 PM - ROUTING] POST /find/id/demand
+[01:07:27 PM - ROUTING] GET /profile-image
+[01:07:27 PM - ROUTING] POST /signup/email/verify
+[01:07:27 PM - ROUTING] DELETE /travel
+[01:07:27 PM - ROUTING] POST /signup/phone/verify
+[01:07:27 PM - INFO] Server Started
+[01:07:27 PM - QUERY] SELECT * FROM account WHERE session_id=?
+[01:07:27 PM - QUERY] SELECT * FROM account WHERE id=?
+[01:07:27 PM - QUERY] SELECT COUNT(*) FROM travels WHERE topic=?
+[01:07:27 PM - QUERY] INSERT INTO 5a7686c23c1a48c7bc1fb96da24ac278(remaining_views, type, name, content) VALUES(?, ?, ?, ?)
+[01:07:27 PM - QUERY] SELECT * FROM account WHERE session_id=?
+[01:07:27 PM - QUERY] SELECT * FROM account WHERE id=?
+[01:07:27 PM - QUERY] SELECT COUNT(*) FROM travels WHERE topic=?
+[01:07:27 PM - QUERY] INSERT INTO 5a7686c23c1a48c7bc1fb96da24ac278(remaining_views, type, name, content) VALUES(?, ?, ?, ?)
+[01:07:27 PM - QUERY] SELECT * FROM account WHERE session_id=?
+[01:07:27 PM - QUERY] SELECT * FROM account WHERE id=?
+[01:07:27 PM - QUERY] SELECT COUNT(*) FROM travels WHERE topic=?
+[01:07:27 PM - QUERY] INSERT INTO 5a7686c23c1a48c7bc1fb96da24ac278(remaining_views, type, name, content) VALUES(?, ?, ?, ?)
+[01:07:27 PM - QUERY] SELECT * FROM account WHERE session_id=?
+[01:07:27 PM - QUERY] SELECT * FROM account WHERE id=?
+[01:07:27 PM - QUERY] SELECT * FROM 5a7686c23c1a48c7bc1fb96da24ac278 WHERE content=?
+[01:07:27 PM - QUERY] SELECT COUNT(*) FROM travels WHERE topic=?
+[01:07:27 PM - QUERY] INSERT INTO 5a7686c23c1a48c7bc1fb96da24ac278(remaining_views, type, name, content) VALUES(?, ?, ?, ?)
+[01:08:55 PM - ROUTING] POST /map
+[01:08:55 PM - ROUTING] GET /attractions/detail
+[01:08:55 PM - ROUTING] GET /attractions/list/total
+[01:08:55 PM - ROUTING] GET /friend
+[01:08:55 PM - ROUTING] POST /friend/delete
+[01:08:55 PM - ROUTING] GET /travel/info
+[01:08:55 PM - ROUTING] POST /travel
+[01:08:55 PM - ROUTING] POST /friend/request
+[01:08:55 PM - ROUTING] GET /find_user
+[01:08:55 PM - ROUTING] POST /user
+[01:08:55 PM - ROUTING] GET /mypage
+[01:08:55 PM - ROUTING] POST /signup/id/check
+[01:08:55 PM - ROUTING] POST /wish
+[01:08:55 PM - ROUTING] GET /map
+[01:08:55 PM - ROUTING] POST /signup/email/check
+[01:08:55 PM - ROUTING] GET /travel
+[01:08:55 PM - ROUTING] POST /friend/accept
+[01:08:55 PM - ROUTING] POST /signup/email/demand
+[01:08:55 PM - ROUTING] POST /find/password/demand
+[01:08:55 PM - ROUTING] DELETE /wish
+[01:08:55 PM - ROUTING] POST /signup
+[01:08:55 PM - ROUTING] POST /logout
+[01:08:55 PM - ROUTING] POST /friend/refuse
+[01:08:55 PM - ROUTING] POST /travel/invite
+[01:08:55 PM - ROUTING] POST /find/id/verify
+[01:08:55 PM - ROUTING] POST /signin
+[01:08:55 PM - ROUTING] GET /user
+[01:08:55 PM - ROUTING] POST /find/password/verify
+[01:08:55 PM - ROUTING] POST /profile-image
+[01:08:55 PM - ROUTING] POST /travel/refuse
+[01:08:55 PM - ROUTING] GET /friend/request
+[01:08:55 PM - ROUTING] POST /chat
+[01:08:55 PM - ROUTING] GET /attractions/list
+[01:08:55 PM - ROUTING] POST /change/password
+[01:08:55 PM - ROUTING] DELETE /travel/quit
+[01:08:55 PM - ROUTING] POST /travel/accept
+[01:08:55 PM - ROUTING] GET /wish
+[01:08:55 PM - ROUTING] POST /signup/phone/check
+[01:08:55 PM - ROUTING] GET /travel/invite
+[01:08:55 PM - ROUTING] POST /signup/phone/demand
+[01:08:55 PM - ROUTING] POST /find/id/demand
+[01:08:55 PM - ROUTING] GET /profile-image
+[01:08:55 PM - ROUTING] POST /signup/email/verify
+[01:08:55 PM - ROUTING] DELETE /travel
+[01:08:55 PM - ROUTING] POST /signup/phone/verify
+[01:08:55 PM - INFO] Server Started
+[01:08:55 PM - QUERY] SELECT * FROM account WHERE session_id=?
+[01:08:55 PM - QUERY] SELECT * FROM account WHERE id=?
+[01:08:55 PM - QUERY] SELECT * FROM 5a7686c23c1a48c7bc1fb96da24ac278 WHERE content=?
+[01:08:55 PM - QUERY] SELECT COUNT(*) FROM travels WHERE topic=?
+[01:08:55 PM - QUERY] INSERT INTO 5a7686c23c1a48c7bc1fb96da24ac278(remaining_views, type, name, content) VALUES(?, ?, ?, ?)
+[01:09:50 PM - ROUTING] POST /map
+[01:09:50 PM - ROUTING] GET /attractions/detail
+[01:09:50 PM - ROUTING] GET /attractions/list/total
+[01:09:50 PM - ROUTING] GET /friend
+[01:09:50 PM - ROUTING] POST /friend/delete
+[01:09:50 PM - ROUTING] GET /travel/info
+[01:09:50 PM - ROUTING] POST /travel
+[01:09:50 PM - ROUTING] POST /friend/request
+[01:09:50 PM - ROUTING] GET /find_user
+[01:09:50 PM - ROUTING] POST /user
+[01:09:50 PM - ROUTING] GET /mypage
+[01:09:50 PM - ROUTING] POST /signup/id/check
+[01:09:50 PM - ROUTING] POST /wish
+[01:09:50 PM - ROUTING] GET /map
+[01:09:50 PM - ROUTING] POST /signup/email/check
+[01:09:50 PM - ROUTING] GET /travel
+[01:09:50 PM - ROUTING] POST /friend/accept
+[01:09:50 PM - ROUTING] POST /signup/email/demand
+[01:09:50 PM - ROUTING] POST /find/password/demand
+[01:09:50 PM - ROUTING] DELETE /wish
+[01:09:50 PM - ROUTING] POST /signup
+[01:09:50 PM - ROUTING] POST /logout
+[01:09:50 PM - ROUTING] POST /friend/refuse
+[01:09:50 PM - ROUTING] POST /travel/invite
+[01:09:50 PM - ROUTING] POST /find/id/verify
+[01:09:50 PM - ROUTING] POST /signin
+[01:09:50 PM - ROUTING] GET /user
+[01:09:50 PM - ROUTING] POST /find/password/verify
+[01:09:50 PM - ROUTING] POST /profile-image
+[01:09:50 PM - ROUTING] POST /travel/refuse
+[01:09:50 PM - ROUTING] GET /friend/request
+[01:09:50 PM - ROUTING] POST /chat
+[01:09:50 PM - ROUTING] GET /attractions/list
+[01:09:50 PM - ROUTING] POST /change/password
+[01:09:50 PM - ROUTING] DELETE /travel/quit
+[01:09:50 PM - ROUTING] POST /travel/accept
+[01:09:50 PM - ROUTING] GET /wish
+[01:09:50 PM - ROUTING] POST /signup/phone/check
+[01:09:50 PM - ROUTING] GET /travel/invite
+[01:09:50 PM - ROUTING] POST /signup/phone/demand
+[01:09:50 PM - ROUTING] POST /find/id/demand
+[01:09:50 PM - ROUTING] GET /profile-image
+[01:09:50 PM - ROUTING] POST /signup/email/verify
+[01:09:50 PM - ROUTING] DELETE /travel
+[01:09:50 PM - ROUTING] POST /signup/phone/verify
+[01:09:50 PM - INFO] Server Started
+[01:09:50 PM - QUERY] SELECT * FROM account WHERE session_id=?
+[01:09:50 PM - QUERY] SELECT * FROM account WHERE id=?
+[01:09:50 PM - QUERY] SELECT * FROM 5a7686c23c1a48c7bc1fb96da24ac278 WHERE content=?
+[01:09:50 PM - QUERY] SELECT COUNT(*) FROM travels WHERE topic=?
+[01:09:50 PM - QUERY] INSERT INTO 5a7686c23c1a48c7bc1fb96da24ac278(remaining_views, type, name, content) VALUES(?, ?, ?, ?)
