@@ -10,7 +10,6 @@ import com.planb.support.routing.API;
 import com.planb.support.routing.REST;
 import com.planb.support.routing.Route;
 import com.planb.support.utilities.Mail;
-import com.planb.support.utilities.MailSubjects;
 import com.planb.support.utilities.MySQL;
 
 import io.vertx.core.Handler;
@@ -39,7 +38,7 @@ public class FindPassword_VerifyCode implements Handler<RoutingContext> {
 				MySQL.executeUpdate("DELETE FROM email_verify_codes WHERE email=? AND code=?", encryptedEmail, code);
 				String tempPassword = createTempPassword();
 				MySQL.executeUpdate("UPDATE account SET password=? WHERE email=?", SHA256.encrypt(tempPassword), encryptedEmail);
-				Mail.sendMail(email, MailSubjects.FIND_PW_RESULT_SUBJECT.getName(), "임시 비밀번호 : " + tempPassword);
+				Mail.sendMail(email, "[대전사람] 비밀번호 찾기 결과입니다.", "임시 비밀번호 : " + tempPassword);
 				return 201;
 			} else {
 				return 204;

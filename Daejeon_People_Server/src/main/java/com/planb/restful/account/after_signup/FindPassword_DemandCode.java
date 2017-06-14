@@ -9,7 +9,6 @@ import com.planb.support.routing.API;
 import com.planb.support.routing.REST;
 import com.planb.support.routing.Route;
 import com.planb.support.utilities.Mail;
-import com.planb.support.utilities.MailSubjects;
 import com.planb.support.utilities.MySQL;
 
 import io.vertx.core.Handler;
@@ -46,7 +45,7 @@ public class FindPassword_DemandCode implements Handler<RoutingContext> {
 				MySQL.executeUpdate("INSERT INTO email_verify_codes VALUES(?, ?)", encryptedEmail, code);
 				// 인증코드 insert or refresh
 				
-				Mail.sendMail(email, MailSubjects.FIND_PW_DEMAND_SUBJECT.getName(), "코드 : " + code);
+				Mail.sendMail(email, "[대전사람] 비밀번호 찾기 인증 코드입니다.", "코드 : " + code);
 				return 201;
 			} else {
 				return 204;

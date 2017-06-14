@@ -8,7 +8,6 @@ import com.planb.support.routing.API;
 import com.planb.support.routing.REST;
 import com.planb.support.routing.Route;
 import com.planb.support.utilities.Mail;
-import com.planb.support.utilities.MailSubjects;
 import com.planb.support.utilities.MySQL;
 
 import io.vertx.core.Handler;
@@ -38,7 +37,7 @@ public class FindId_VerifyCode implements Handler<RoutingContext> {
 				rs = MySQL.executeQuery("SELECT * FROM account WHERE email=?", encryptedEmail);
 				rs.next();
 				String decryptedId = AES256.decrypt(rs.getString("id"));
-				Mail.sendMail(email, MailSubjects.FIND_ID_RESULT_SUBJECT.getName(), "ID : " + decryptedId);
+				Mail.sendMail(email, "[대전사람] 아이디 찾기 결과입니다.", "ID : " + decryptedId);
 				return 201;
 			} else {
 				return 204;

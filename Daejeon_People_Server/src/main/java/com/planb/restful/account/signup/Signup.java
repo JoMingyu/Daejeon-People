@@ -6,7 +6,6 @@ import com.planb.support.routing.API;
 import com.planb.support.routing.REST;
 import com.planb.support.routing.Route;
 import com.planb.support.utilities.Mail;
-import com.planb.support.utilities.MailSubjects;
 import com.planb.support.utilities.MySQL;
 
 import io.vertx.core.Handler;
@@ -51,6 +50,6 @@ public class Signup implements Handler<RoutingContext> {
 			MySQL.executeUpdate("INSERT INTO account(id, password, email, phone_number, name, register_date, registration_id) VALUES(?, ?, ?, ?, ?, now(), ?)", encryptedId, encryptedPassword, encryptedEmail, encryptedPhoneNumber, encryptedName, encryptedRegistrationId);
 		}
 		
-		Mail.sendMail(email, MailSubjects.WELCOME_SUBJECT.getName(), "환영환영");
+		Mail.sendMail(email, "[대전사람] 회원가입을 환영합니다.", "환영환영");
 	}
 }
