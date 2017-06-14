@@ -12,7 +12,6 @@ C:\Users\dsm2016\Desktop\1. Project\Daejeon-People\Daejeon_People_Server\src\mai
 C:\Users\dsm2016\Desktop\1. Project\Daejeon-People\Daejeon_People_Server\src\main\java\com\planb\support\restful\attractions\AttractionsListInquiry.java
 C:\Users\dsm2016\Desktop\1. Project\Daejeon-People\Daejeon_People_Server\src\main\java\com\planb\restful\account\signup\CheckIdExist.java
 C:\Users\dsm2016\Desktop\1. Project\Daejeon-People\Daejeon_People_Server\src\main\java\com\planb\restful\user\friend\AcceptFriend.java
-C:\Users\dsm2016\Desktop\1. Project\Daejeon-People\Daejeon_People_Server\src\main\java\com\planb\support\utilities\MailSubjects.java
 C:\Users\dsm2016\Desktop\1. Project\Daejeon-People\Daejeon_People_Server\src\main\java\com\planb\restful\user\friend\DeleteFriend.java
 C:\Users\dsm2016\Desktop\1. Project\Daejeon-People\Daejeon_People_Server\src\main\java\com\planb\parser\EnhancedDetailParser.java
 C:\Users\dsm2016\Desktop\1. Project\Daejeon-People\Daejeon_People_Server\src\main\java\com\planb\restful\user\friend\RefuseFriend.java
@@ -56,6 +55,7 @@ C:\Users\dsm2016\Desktop\1. Project\Daejeon-People\Daejeon_People_Server\src\mai
 C:\Users\dsm2016\Desktop\1. Project\Daejeon-People\Daejeon_People_Server\src\main\java\com\planb\restful\account\signup\Signup.java
 C:\Users\dsm2016\Desktop\1. Project\Daejeon-People\Daejeon_People_Server\src\main\java\com\planb\restful\account\after_signup\FindPassword_VerifyCode.java
 C:\Users\dsm2016\Desktop\1. Project\Daejeon-People\Daejeon_People_Server\src\main\java\com\planb\restful\attractions\interation\DeleteWish.java
+C:\Users\dsm2016\Desktop\1. Project\Daejeon-People\Daejeon_People_Server\src\main\java\com\planb\restful\test\Test.java
 C:\Users\dsm2016\Desktop\1. Project\Daejeon-People\Daejeon_People_Server\src\main\java\com\planb\support\routing\Routing.java
 C:\Users\dsm2016\Desktop\1. Project\Daejeon-People\Daejeon_People_Server\src\main\java\com\planb\support\utilities\Mail.java
 C:\Users\dsm2016\Desktop\1. Project\Daejeon-People\Daejeon_People_Server\src\main\java\com\planb\restful\user\friend\FindUser.java
