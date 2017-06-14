@@ -71,7 +71,5 @@ public class CoreVerticle extends AbstractVerticle {
 		 * @see
 		 * http://vertx.io/docs/apidocs/io/vertx/core/http/HttpServer.html
 		 */
-		
-		// Doxygen comment end.
 	}
 }
