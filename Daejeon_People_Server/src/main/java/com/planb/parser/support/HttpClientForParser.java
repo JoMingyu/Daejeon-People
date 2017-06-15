@@ -9,6 +9,8 @@ import org.json.JSONObject;
 import com.planb.support.networking.HttpClient;
 
 public class HttpClientForParser {
+	// 파싱을 위한 HTTP Client
+	
 	private static JSONObject request(String url) {
 		try {
 			HttpClient client = new HttpClient(url, 80, 60000, 60000);

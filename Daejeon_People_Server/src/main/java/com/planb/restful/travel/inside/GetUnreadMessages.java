@@ -17,7 +17,7 @@ import io.vertx.core.http.HttpMethod;
 import io.vertx.ext.web.RoutingContext;
 
 @API(functionCategory = "여행 모드 내부", summary = "읽지 않은 채팅 기록 조회")
-@REST(requestBody = "topic : String, idx : int", responseBody = "idx : int, type : String, name : String, content : String, (JSONArray)", successCode = 201, failureCode = 204)
+@REST(requestBody = "topic : String, idx : int", responseBody = "idx : int, type : String, name : String, content : String, remaining_views : int, (JSONArray)", successCode = 201, failureCode = 204)
 @Route(uri = "/chat/read", method = HttpMethod.POST)
 public class GetUnreadMessages implements Handler<RoutingContext> {
 	@Override
@@ -51,10 +51,11 @@ public class GetUnreadMessages implements Handler<RoutingContext> {
 				if(chatLogSet.getString("content") != null) {
 					msg.put("content", chatLogSet.getString("content"));
 				}
+				msg.put("remaining_views", chatLogSet.getInt("remaining_views") - 1);
 				
 				MySQL_Chat.executeUpdate("UPDATE " + topic + " SET remaining_views=? WHERE idx=?", chatLogSet.getInt("remaining_views") - 1, chatLogSet.getInt("idx"));
 				
-				messages.put("chatLogSet");
+				messages.put(msg);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

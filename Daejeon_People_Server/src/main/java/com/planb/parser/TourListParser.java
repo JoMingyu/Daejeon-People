@@ -12,10 +12,8 @@ import com.planb.support.utilities.Log;
 import com.planb.support.utilities.MySQL;
 
 public class TourListParser implements Parser {
-	/*
-	 * 지역기반 관광정보 리스트 조회
-	 * JsonArray를 순차 탐색하며 DB 저장
-	 */
+	// 지역기반 관광정보 리스트 파서
+	
 	private static String defaultURL = BaseURLs.TOUR_LIST.getName();
 	
 	@Override

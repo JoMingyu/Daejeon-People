@@ -11,9 +11,11 @@ import com.planb.support.utilities.Log;
 import com.planb.support.utilities.MySQL;
 
 public class EnhancedDetailParser implements Parser {
+	// API 상황에 맞춰 향상된 세부정보 파서
+	
 	private static String URL = BaseURLs.DETAIL.getName();
 	
-	private static void clearTables() {
+	private void clearTables() {
 		MySQL.executeUpdate("DELETE FROM accommodation_detail_info");
 		MySQL.executeUpdate("DELETE FROM cultural_facility_detail_info");
 		MySQL.executeUpdate("DELETE FROM festival_detail_info");

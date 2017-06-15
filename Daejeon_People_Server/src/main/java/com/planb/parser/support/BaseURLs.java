@@ -1,6 +1,8 @@
 package com.planb.parser.support;
 
 public enum BaseURLs {
+	// 요청을 위한 base URL
+	
 	TOUR_LIST("http://api.visitkorea.or.kr/openapi/service/rest/KorService/areaBasedList" + ParserBase.DEF_PARAM.getName()),
 	DETAIL_COMMON("http://api.visitkorea.or.kr/openapi/service/rest/KorService/detailCommon" + ParserBase.DEF_PARAM.getName() + "&defaultYN=Y&overviewYN=Y"),
 	DETAIL("http://api.visitkorea.or.kr/openapi/service/rest/KorService/detailIntro" + ParserBase.DEF_PARAM.getName()),

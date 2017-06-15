@@ -27,10 +27,10 @@ public class DemandPhone implements Handler<RoutingContext> {
 	}
 	
 	private int demandPhone(String phoneNumber) {
-		/*
-		 * 문자 메시지 인증코드 전송
-		 */
+		// 핸드폰 인증번호 전송
+		
 		if(checkPhoneNumberExists(phoneNumber)) {
+			// 핸드폰 번호 중복 체크
 			return 204;
 		}
 		

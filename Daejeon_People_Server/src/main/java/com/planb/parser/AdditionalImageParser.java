@@ -12,11 +12,17 @@ import com.planb.support.utilities.Log;
 import com.planb.support.utilities.MySQL;
 
 public class AdditionalImageParser implements Parser {
+	// 추가 이미지 파서
+	
 	private static String defaultURL = BaseURLs.ADDITIONAL_IMAGE.getName();
+	
+	private void clearTables() {
+		MySQL.executeUpdate("DELETE FROM attractions_images");
+	}
 	
 	@Override
 	public void parse() {
-		MySQL.executeUpdate("DELETE FROM attractions_images");
+		clearTables();
 		
 		ResultSet rs = MySQL.executeQuery("SELECT * FROM attractions_basic");
 		

@@ -26,13 +26,16 @@ public class DetailInfo implements Handler<RoutingContext> {
 		JSONObject response = new JSONObject();
 		
 		String clientId = UserManager.getEncryptedIdFromSession(ctx);
+		// 위시리스트 여부를 판단하기 위해
+		
 		int contentId = Integer.parseInt(ctx.request().getParam("content_id"));
+		// 세부 정보를 확인할 content id
 		
 		ResultSet contentInfo = MySQL.executeQuery("SELECT * FROM attractions_basic WHERE content_id=?", contentId);
 		int contentTypeId = 0;
 		try {
 			contentInfo.next();
-			contentTypeId = contentInfo.getInt("contentTypeId");
+			contentTypeId = contentInfo.getInt("content_type_id");
 			response.put("content_id", contentId);
 			response.put("image", contentInfo.getString("image_big_url") == null ? "정보 없음" : contentInfo.getString("image_big_url"));
 			response.put("title", contentInfo.getString("title"));
@@ -40,15 +43,26 @@ public class DetailInfo implements Handler<RoutingContext> {
 			response.put("address", contentInfo.getString("address") == null ? "정보 없음" : contentInfo.getString("address"));
 			response.put("mapx", contentInfo.getDouble("mapx"));
 			response.put("mapy", contentInfo.getDouble("mapy"));
+			// 기본 정보
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		
 		ResultSet contentCommonInfo;
+		// 공통 세부 정보
+		
 		ResultSet contentDetailInfo;
+		// 카테고리별 세부 정보
+		
 		ResultSet wishInfo;
+		// 위시리스트 여부
+		
 		ResultSet contentImage;
+		// 추가 이미지
+		
 		String baseQuery = "SELECT * FROM ? WHERE content_id=?";
+		// 기본 쿼리
+		
 		try {
 			switch(contentTypeId) {
 			case 12:
@@ -142,6 +156,7 @@ public class DetailInfo implements Handler<RoutingContext> {
 			default:
 				break;
 		}
+		
 		wishInfo = MySQL.executeQuery("SELECT * FROM wish_list WHERE client_id=? AND content_id=?", clientId, contentId);
 		if(wishInfo.next()) {
 			response.put("wish", true);
@@ -153,6 +168,7 @@ public class DetailInfo implements Handler<RoutingContext> {
 			response.put("additional_image", true);
 			do {
 				response.put("additional_image_" + ++count, contentImage.getString("image"));
+				// additional_image_1, additional_image_2, ...
 			} while(contentImage.next());
 		}
 		} catch(SQLException e) {
@@ -165,6 +181,8 @@ public class DetailInfo implements Handler<RoutingContext> {
 	}
 	
 	private static String extractPhoneNumber(String phoneNumber) {
+		// RegEx를 통해 xxx-xxxx-xxxx 형식의 전화번호만 추출
+		
 		if(phoneNumber == null) {
 			return "정보 없음";
 		}

@@ -14,7 +14,7 @@ import io.vertx.core.http.HttpMethod;
 import io.vertx.ext.web.RoutingContext;
 
 @API(functionCategory = "회원가입", summary = "핸드폰 인증번호 확인")
-@REST(requestBody = "number : String, code : String", successCode = 201, failureCode = 204)
+@REST(requestBody = "number : String, code : String", successCode = 201, failureCode = 204, etc = "전송한 이메일 인증 코드가 없을 경우 fail")
 @Route(uri = "/signup/phone/verify", method = HttpMethod.POST)
 public class VerifyPhone implements Handler<RoutingContext> {
 	@Override
@@ -32,12 +32,13 @@ public class VerifyPhone implements Handler<RoutingContext> {
 		ResultSet rs = MySQL.executeQuery("SELECT * FROM phone_verify_codes WHERE phone_number=? AND code=?", encryptedPhoneNumber, code);
 		try {
 			if (rs.next()) {
+				// 전송한 인증 코드가 있을 경우
+				
 				MySQL.executeUpdate("DELETE FROM phone_verify_codes WHERE phone_number=? AND code=?", encryptedPhoneNumber, code);
 				return 201;
 			} else {
 				return 204;
 			}
-
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return 204;

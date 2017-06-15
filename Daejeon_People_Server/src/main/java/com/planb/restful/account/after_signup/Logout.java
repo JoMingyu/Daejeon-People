@@ -28,9 +28,8 @@ public class Logout implements Handler<RoutingContext> {
 	}
 	
 	public void logout(RoutingContext ctx) {
-		/*
-		 * 로그아웃, 세션 또는 쿠키에 있는 session id 삭제
-		 */
+		// 로그아웃, 세션 또는 쿠키에 있는 session id 삭제
+		
 		MySQL.executeUpdate("UPDATE account SET session_id=null WHERE id=?", UserManager.getEncryptedIdFromSession(ctx));
 		SessionUtil.removeSession(ctx, "UserSession");
 	}

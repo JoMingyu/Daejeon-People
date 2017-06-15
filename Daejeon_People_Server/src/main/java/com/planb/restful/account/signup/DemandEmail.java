@@ -28,10 +28,10 @@ public class DemandEmail implements Handler<RoutingContext> {
 	}
 
 	private int demandEmail(String email) {
-		/*
-		 * 이메일 전송
-		 */
+		// 이메일 인증번호 전송
+		
 		if(checkEmailExists(email)) {
+			// 이메일 중복 체크
 			return 204;
 		}
 		

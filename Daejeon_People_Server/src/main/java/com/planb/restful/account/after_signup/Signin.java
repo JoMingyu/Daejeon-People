@@ -38,10 +38,8 @@ public class Signin implements Handler<RoutingContext> {
 	}
 	
 	private boolean signin(String id, String password) {
-		/*
-		 * 로그인
-		 * 성공 시 true, 실패 시 false
-		 */
+		// 로그인
+		
 		String encryptedId = AES256.encrypt(id);
 		String encryptedPassword = SHA256.encrypt(password);
 

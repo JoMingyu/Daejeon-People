@@ -48,6 +48,10 @@ public class CoreVerticle extends AbstractVerticle {
 		 */
 		
 		Routing.route(router, "com.planb.restful");
+		/**
+		 * @brief
+		 * Using reflection, routing 'Route' annotated classes
+		 */
 		
 		router.route().handler(StaticHandler.create());
 		/**
@@ -58,7 +62,12 @@ public class CoreVerticle extends AbstractVerticle {
 		 * @see
 		 * http://vertx.io/docs/apidocs/io/vertx/rxjava/ext/web/handler/StaticHandler.html
 		 */
+		
 		new ParserThread().start();
+		/**
+		 * @brief
+		 * Parse TourAPI to local database
+		 */
 		
 		Log.I("Server Started");
 		vertx.createHttpServer().requestHandler(router::accept).listen(80);

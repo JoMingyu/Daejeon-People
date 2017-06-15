@@ -11,15 +11,17 @@ import com.planb.support.utilities.Log;
 import com.planb.support.utilities.MySQL;
 
 public class DetailCommonParser implements Parser {
-	/*
-	 * 공통정보 조회
-	 * 홈페이지와 개요 정보
-	 */
+	// 공통 세부 정보 파서
+	
 	private static String URL = BaseURLs.DETAIL_COMMON.getName();
+	
+	private void clearTables() {
+		MySQL.executeUpdate("DELETE FROM attractions_detail_common");
+	}
 	
 	@Override
 	public void parse() {
-		MySQL.executeUpdate("DELETE FROM attractions_detail_common");
+		clearTables();
 		
 		ResultSet rs = MySQL.executeQuery("SELECT * FROM attractions_basic");
 		
