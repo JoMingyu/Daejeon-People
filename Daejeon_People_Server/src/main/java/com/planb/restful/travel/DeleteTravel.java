@@ -1,9 +1,10 @@
 package com.planb.restful.travel;
 
-import com.planb.support.chatting.ChatRoomManager;
+import com.planb.support.chatting.MySQL_Chat;
 import com.planb.support.routing.API;
 import com.planb.support.routing.REST;
 import com.planb.support.routing.Route;
+import com.planb.support.utilities.MySQL;
 
 import io.vertx.core.Handler;
 import io.vertx.core.http.HttpMethod;
@@ -17,9 +18,14 @@ public class DeleteTravel implements Handler<RoutingContext> {
 	public void handle(RoutingContext ctx) {
 		String topic = ctx.request().getParam("topic");
 		
-		ChatRoomManager.deleteRoom(topic);
+		deleteRoom(topic);
 		
 		ctx.response().setStatusCode(200).end();
 		ctx.response().close();
+	}
+	
+	private void deleteRoom(String topic) {
+		MySQL.executeUpdate("DELETE * FROM travels WHERE topic=?", topic);
+		MySQL_Chat.executeUpdate("DROP TABLE " + topic);
 	}
 }

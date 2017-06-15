@@ -1,10 +1,17 @@
 package com.planb.restful.travel.inside;
 
-import com.planb.support.chatting.ChatInsideManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import com.planb.support.crypto.AES256;
 import com.planb.support.routing.API;
 import com.planb.support.routing.REST;
 import com.planb.support.routing.Route;
 import com.planb.support.user.UserManager;
+import com.planb.support.utilities.MySQL;
 
 import io.vertx.core.Handler;
 import io.vertx.core.http.HttpMethod;
@@ -20,7 +27,31 @@ public class TravelInfo implements Handler<RoutingContext> {
 		String topic = ctx.request().getParam("topic");
 		
 		ctx.response().setStatusCode(200);
-		ctx.response().end(ChatInsideManager.getRoomInsideInfo(clientId, topic).toString());
+		ctx.response().end(getRoomInsideInfo(clientId, topic).toString());
 		ctx.response().close();
+	}
+	
+	private JSONArray getRoomInsideInfo(String requesterId, String topic) {
+		JSONArray response = new JSONArray();
+		ResultSet travelInfoSet = MySQL.executeQuery("SELECT * FROM travels WHERE topic=?", topic);
+		
+		try {
+			while(travelInfoSet.next()) {
+				String clientId = travelInfoSet.getString("client_id");
+				ResultSet clientInfoSet = MySQL.executeQuery("SELECT * FROM account WHERE id=?", clientId);
+				clientInfoSet.next();
+
+				JSONObject clientInfo = new JSONObject();
+				clientInfo.put("id", clientId);
+				clientInfo.put("phone_number", clientInfoSet.getString("phone_number") == null ? "전화번호 없음" : AES256.decrypt(clientInfoSet.getString("phone_number")));
+				clientInfo.put("email", AES256.decrypt(clientInfoSet.getString("email")));
+				clientInfo.put("name", requesterId == clientId ? "나" : AES256.decrypt(clientInfoSet.getString("name")));
+				response.put(clientInfo);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return response;
 	}
 }

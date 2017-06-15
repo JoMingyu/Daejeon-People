@@ -1,8 +1,13 @@
 package com.planb.restful.travel.inside;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 import org.json.JSONArray;
+import org.json.JSONObject;
 
 import com.planb.support.chatting.ChatRoomManager;
+import com.planb.support.chatting.MySQL_Chat;
 import com.planb.support.routing.API;
 import com.planb.support.routing.REST;
 import com.planb.support.routing.Route;
@@ -20,7 +25,7 @@ public class GetUnreadMessages implements Handler<RoutingContext> {
 		String topic = ctx.request().getFormAttribute("topic");
 		int startIndex = Integer.parseInt(ctx.request().getFormAttribute("idx"));
 		
-		JSONArray messages = ChatRoomManager.getUnreadMessages(topic, startIndex);
+		JSONArray messages = getUnreadMessages(topic, startIndex);
 		
 		if(messages.length() == 0) {
 			ctx.response().setStatusCode(204).end();
@@ -30,5 +35,31 @@ public class GetUnreadMessages implements Handler<RoutingContext> {
 			ctx.response().end(messages.toString());
 			ctx.response().close();
 		}
+	}
+	
+	private JSONArray getUnreadMessages(String topic, int startIndex) {
+		ResultSet chatLogSet = MySQL_Chat.executeQuery("SELECT * FROM " + topic + " WHERE idx BETWEEN ? AND ?", startIndex, ChatRoomManager.getLastIndexInRoom(topic));
+		
+		JSONArray messages = new JSONArray();
+		try {
+			while(chatLogSet.next()) {
+				JSONObject msg = new JSONObject();
+				
+				msg.put("idx", chatLogSet.getInt("idx"));
+				msg.put("type", chatLogSet.getString("type"));
+				msg.put("name", chatLogSet.getString("name"));
+				if(chatLogSet.getString("content") != null) {
+					msg.put("content", chatLogSet.getString("content"));
+				}
+				
+				MySQL_Chat.executeUpdate("UPDATE " + topic + " SET remaining_views=? WHERE idx=?", chatLogSet.getInt("remaining_views") - 1, chatLogSet.getInt("idx"));
+				
+				messages.put("chatLogSet");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return messages;
 	}
 }
