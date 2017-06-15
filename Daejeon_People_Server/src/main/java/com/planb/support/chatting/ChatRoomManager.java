@@ -7,7 +7,7 @@ import com.planb.support.utilities.MySQL;
 
 public class ChatRoomManager {
 	public static int getUserCountInRoom(String topic) {
-		ResultSet room = MySQL.executeQuery("SELECT COUNT(*) FROM travels WHERE topic=?", topic);
+		ResultSet room = MySQL.executeQuery("SELECT COUNT(*) FROM travel_clients WHERE topic=?", topic);
 		try {
 			if(room.next()) {
 				return room.getInt(1);

@@ -25,7 +25,7 @@ public class DeleteTravel implements Handler<RoutingContext> {
 	}
 	
 	private void deleteRoom(String topic) {
-		MySQL.executeUpdate("DELETE * FROM travels WHERE topic=?", topic);
+		MySQL.executeUpdate("DELETE * FROM travel_list WHERE topic=?", topic);
 		MySQL_Chat.executeUpdate("DROP TABLE " + topic);
 	}
 }

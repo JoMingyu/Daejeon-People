@@ -33,13 +33,13 @@ public class AcceptTravel implements Handler<RoutingContext> {
 	private void enterRoom(String clientId, String topic) {
 		MySQL.executeUpdate("DELETE FROM travel_invites WHERE dst_id=? AND topic=?", clientId, topic);
 		
-		ResultSet rs = MySQL.executeQuery("SELECT * FROM travels WHERE topic=?", topic);
+		ResultSet rs = MySQL.executeQuery("SELECT * FROM travel_list WHERE topic=?", topic);
 		ResultSet userInfoSet = MySQL.executeQuery("SELECT * FROM account WHERE id=?", clientId);
 		try {
 			rs.next();
 			userInfoSet.next();
 			
-			MySQL.executeUpdate("INSERT INTO travels VALUES(?, ?, ?)", topic, rs.getString("title"), clientId);
+			MySQL.executeUpdate("INSERT INTO travel_clients VALUES(?, ?, ?)", topic, clientId);
 			MySQL_Chat.executeUpdate("INSERT INTO " + topic +"(remaining_views, type, name) VALUES(?, ?, ?)", ChatRoomManager.getUserCountInRoom(topic), "enter", userInfoSet.getString("name"));
 		} catch (SQLException e) {
 			e.printStackTrace();

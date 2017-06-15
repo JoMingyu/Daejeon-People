@@ -31,7 +31,7 @@ public class QuitTravel implements Handler<RoutingContext> {
 	}
 	
 	private void quitTravel(String clientId, String topic) {
-		MySQL.executeUpdate("DELETE FROM travels WHERE client_id=? AND topic=?", clientId, topic);
+		MySQL.executeUpdate("DELETE FROM travel_clients WHERE client_id=? AND topic=?", clientId, topic);
 		
 		ResultSet userInfoSet = MySQL.executeQuery("SELECT * FROM account WHERE id=?", clientId);
 		try {

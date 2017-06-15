@@ -15,7 +15,7 @@ import io.vertx.ext.web.RoutingContext;
 @REST(params = "content_type_id : int, sort_type : int, page : int", responseBody = "content_id : int, title : String, wish : boolean, wish_count : int, address : String, category : String, image : String, mapx : double, mapy : double", successCode = 200, failureCode = 204)
 @Route(uri = "/attractions/list", method = HttpMethod.GET)
 public class ListByType implements Handler<RoutingContext> {
-	// 전체 여행지 조회
+	// 카테고리로 나뉜 여행지 리스트 조회
 
 	@Override
 	public void handle(RoutingContext ctx) {

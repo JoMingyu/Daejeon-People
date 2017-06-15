@@ -17,7 +17,7 @@ import io.vertx.core.Handler;
 import io.vertx.core.http.HttpMethod;
 import io.vertx.ext.web.RoutingContext;
 
-@API(functionCategory = "여행 모드 내부", summary = "여행(채팅방) 정보 조회")
+@API(functionCategory = "여행 모드 내부", summary = "여행(채팅방) 내부 정보 조회")
 @REST(requestBody = "topic : String", responseBody = "id : String, phone_number : String, email : String, name : String, (JSONArray)", successCode = 200)
 @Route(uri = "/travel/info", method = HttpMethod.GET)
 public class TravelInfo implements Handler<RoutingContext> {
@@ -33,7 +33,7 @@ public class TravelInfo implements Handler<RoutingContext> {
 	
 	private JSONArray getRoomInsideInfo(String requesterId, String topic) {
 		JSONArray response = new JSONArray();
-		ResultSet travelInfoSet = MySQL.executeQuery("SELECT * FROM travels WHERE topic=?", topic);
+		ResultSet travelInfoSet = MySQL.executeQuery("SELECT * FROM travel_clients WHERE topic=?", topic);
 		
 		try {
 			while(travelInfoSet.next()) {
