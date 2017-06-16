@@ -50,9 +50,9 @@ public class UserManager {
 		try {
 			userInfoSet.next();
 			userInfo.put("id", id);
-			userInfo.put("phone_number", userInfoSet.getString("phone_number") == null ? "전화번호 없음" : AES256.decrypt(userInfoSet.getString("phone_number")));
-			userInfo.put("email", AES256.decrypt(userInfoSet.getString("email")));
-			userInfo.put("name", AES256.decrypt(userInfoSet.getString("name")));
+			userInfo.put("phone_number", userInfoSet.getString("phone_number") == null ? "전화번호 없음" : userInfoSet.getString("phone_number"));
+			userInfo.put("email", userInfoSet.getString("email"));
+			userInfo.put("name", userInfoSet.getString("name"));
 		} catch(SQLException e) {
 			e.printStackTrace();
 		}

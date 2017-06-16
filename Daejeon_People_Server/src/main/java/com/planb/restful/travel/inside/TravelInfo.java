@@ -38,14 +38,8 @@ public class TravelInfo implements Handler<RoutingContext> {
 		try {
 			while(travelInfoSet.next()) {
 				String clientId = travelInfoSet.getString("client_id");
-				ResultSet clientInfoSet = MySQL.executeQuery("SELECT * FROM account WHERE id=?", clientId);
-				clientInfoSet.next();
 
-				JSONObject clientInfo = new JSONObject();
-				clientInfo.put("id", clientId);
-				clientInfo.put("phone_number", clientInfoSet.getString("phone_number") == null ? "전화번호 없음" : AES256.decrypt(clientInfoSet.getString("phone_number")));
-				clientInfo.put("email", AES256.decrypt(clientInfoSet.getString("email")));
-				clientInfo.put("name", requesterId == clientId ? "나" : AES256.decrypt(clientInfoSet.getString("name")));
+				JSONObject clientInfo = UserManager.getUserInfo(clientId);
 				response.put(clientInfo);
 			}
 		} catch (SQLException e) {

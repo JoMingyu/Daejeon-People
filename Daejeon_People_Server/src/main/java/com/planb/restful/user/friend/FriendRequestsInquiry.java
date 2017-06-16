@@ -40,9 +40,9 @@ public class FriendRequestsInquiry implements Handler<RoutingContext> {
 				JSONObject requesterInfo = new JSONObject();
 				requesterInfo.put("requester_id", requestSet.getString("src_id"));
 				requesterInfo.put("date", requestSet.getString("date"));
-				requesterInfo.put("phone_number", AES256.decrypt(userInfoSet.getString("phone_number")));
-				requesterInfo.put("email", AES256.decrypt(userInfoSet.getString("email")));
-				requesterInfo.put("name", AES256.decrypt(userInfoSet.getString("name")));
+				requesterInfo.put("phone_number", userInfoSet.getString("phone_number"));
+				requesterInfo.put("email", userInfoSet.getString("email"));
+				requesterInfo.put("name", userInfoSet.getString("name"));
 				
 				response.put(requesterInfo);
 			}

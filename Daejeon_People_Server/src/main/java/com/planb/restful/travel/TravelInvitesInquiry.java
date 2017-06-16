@@ -39,9 +39,9 @@ public class TravelInvitesInquiry implements Handler<RoutingContext> {
 				invite.put("topic", inviteSet.getString("topic"));
 				invite.put("msg", inviteSet.getString("msg"));
 				invite.put("date", inviteSet.getString("date"));
-				invite.put("phone_number", AES256.decrypt(userInfoSet.getString("phone_number")));
-				invite.put("email", AES256.decrypt(userInfoSet.getString("email")));
-				invite.put("name", AES256.decrypt(userInfoSet.getString("name")));
+				invite.put("phone_number", userInfoSet.getString("phone_number"));
+				invite.put("email", userInfoSet.getString("email"));
+				invite.put("name", userInfoSet.getString("name"));
 				response.put(invite);
 			}
 		} catch(SQLException e) {

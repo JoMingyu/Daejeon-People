@@ -57,8 +57,8 @@ public class FindUser implements Handler<RoutingContext> {
 					return;
 				}
 				
-				response.put("email", AES256.decrypt(rs.getString("email")));
-				response.put("name", AES256.decrypt(rs.getString("name")));
+				response.put("email", rs.getString("email"));
+				response.put("name", rs.getString("name"));
 				response.put("id", rs.getString("id"));
 				
 				ResultSet friendSet = MySQL.executeQuery("SELECT * FROM friend_requests WHERE src_id=? AND dst_id=?", clientId, rs.getString("id"));

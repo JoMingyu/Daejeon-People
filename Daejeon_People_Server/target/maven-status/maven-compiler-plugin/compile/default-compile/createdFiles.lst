@@ -55,7 +55,6 @@ com\planb\restful\user\common\AnotherUser.class
 com\planb\parser\support\BaseURLs.class
 com\planb\restful\account\signup\DemandPhone.class
 com\planb\restful\attractions\details\DetailInfo.class
-com\planb\support\chatting\ChatInsideManager.class
 com\planb\support\utilities\MySQL.class
 com\planb\restful\account\signup\Signup.class
 com\planb\restful\travel\AcceptTravel.class
@@ -67,7 +66,6 @@ com\planb\restful\account\signup\VerifyPhone.class
 com\planb\support\routing\RESTResource.class
 com\planb\support\chatting\ChatRoomManager.class
 com\planb\restful\account\signup\VerifyEmail.class
-com\planb\restful\test\Test.class
 com\planb\restful\travel\RefuseTravel.class
 com\planb\restful\user\friend\FriendList.class
 com\planb\support\utilities\SessionUtil.class
