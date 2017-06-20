@@ -5,5 +5,5 @@ package com.daejeonpeople.connection;
  */
 
 public class connectionValues {
-    public static final String URL = "ttp://52.79.134.200:80";
+    public static final String URL = "http://52.79.134.200:80";
 }
