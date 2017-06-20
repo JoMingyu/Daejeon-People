@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".activities.Splash" />
-        <activity android:name=".activities.SignUp">
+        <activity android:name=".activities.AddressBook">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -28,7 +28,7 @@
         <activity android:name=".Introduction_TouristSpot" />
         <activity android:name=".activities.Introduction_TravelCourse" />
         <activity android:name=".activities.ChatList"/>
-        <activity android:name=".activities.AddressBook"/>
+        <activity android:name=".activities.SignUp"/>
         <activity android:name=".activities.Category"/>
         <activity android:name=".activities.EntryID"/>
         <activity android:name=".activities.EntryPW"/>

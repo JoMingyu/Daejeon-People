@@ -1,4 +1,4 @@
-package com.daejeonpeople.activities;
+package com.daejeonpeople.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,24 +8,25 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.daejeonpeople.R;
+import com.daejeonpeople.ValueObjects.AddressBookListItem;
+import com.daejeonpeople.connection.AqueryConnection;
 
-import java.io.BufferedReader;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLConnection;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
- * Created by geni on 2017. 5. 29..
+ * Created by geni on 2017. 6. 8..
  */
 
 public class AddressBookAdapter extends BaseAdapter {
+//    HashMap <String, Object> params = new HashMap<>();
+//    AqueryConnection connection;
 
-    private ArrayList<AddressBookListItem> addressBookListItems = new ArrayList<AddressBookListItem>() ;
+    private ArrayList<AddressBookListItem> addressBookListItems = new ArrayList<>() ;
 
     @Override
     public int getCount() {
@@ -44,7 +45,9 @@ public class AddressBookAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+        AddressBookListItem addressBookListItem = new AddressBookListItem();
         final Context context = parent.getContext();
+
 
         if(convertView == null){
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -56,7 +59,7 @@ public class AddressBookAdapter extends BaseAdapter {
         TextView phoneNumberTextView = (TextView) convertView.findViewById(R.id.phone_number);
         TextView userEmailTextView = (TextView) convertView.findViewById(R.id.user_email);
 
-        AddressBookListItem addressBookListItem = addressBookListItems.get(position);
+        addressBookListItem = addressBookListItems.get(position);
 
         userNameTextView.setText(addressBookListItem.getUser_name());
         phoneNumberTextView.setText(addressBookListItem.getPhone_number());
@@ -65,10 +68,9 @@ public class AddressBookAdapter extends BaseAdapter {
         return convertView;
     }
 
-    public void addItem(int count, String user_name, String phone_number, String user_email) {
+    public void addItem(String user_name, String phone_number, String user_email) {
         AddressBookListItem item = new AddressBookListItem();
 
-        item.setCount(count);
         item.setPhone_number(user_name);
         item.setPhone_number(phone_number);
         item.setUser_email(user_email);

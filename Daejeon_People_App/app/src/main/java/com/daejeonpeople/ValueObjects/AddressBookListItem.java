@@ -1,4 +1,4 @@
-package com.daejeonpeople.activities;
+package com.daejeonpeople.ValueObjects;
 
 /**
  * Created by geni on 2017. 5. 29..

@@ -3,7 +3,6 @@ package com.daejeonpeople.activities;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,7 +12,7 @@ import com.androidquery.AQuery;
 import com.androidquery.callback.AjaxCallback;
 import com.androidquery.callback.AjaxStatus;
 import com.daejeonpeople.R;
-import com.daejeonpeople.connection.AqueryConnection;
+import com.daejeonpeople.connection.connectionValues;
 
 import java.util.HashMap;
 
@@ -23,8 +22,8 @@ import java.util.HashMap;
 //동규
 
 public class SignIn extends Activity{
-    AqueryConnection connection;
-    HashMap<String, Object> params = new HashMap<String, Object>();
+    AQuery aQuery;
+    HashMap<String, Object> params = new HashMap<>();
     Button submit;
     EditText id;
     EditText password;
@@ -40,21 +39,25 @@ public class SignIn extends Activity{
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                connection = new AqueryConnection(getApplicationContext());
+                aQuery = new AQuery(getApplicationContext());
                 params.put("id", id.getText().toString());
                 params.put("password", password.getText().toString());
                 params.put("keep_login", false);
 
                 if(id.getText() != null && password.getText() != null){
-                    connection.connection(params, "signin");
-                    int statusCode = connection.getStatusCode();
-                    if(statusCode == 201){
-                        Toast.makeText(getApplicationContext(), "로그인 성공", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(getApplicationContext(), Main.class);
-                        startActivity(intent);
-                    } else if(statusCode == 204){
-                        Toast.makeText(getApplicationContext(), "로그인 실패", Toast.LENGTH_SHORT).show();
-                    }
+                    aQuery.ajax(connectionValues.URL + "/signin", params, String.class, new AjaxCallback<String>(){
+                        @Override
+                        public void callback(String url, String response, AjaxStatus status){
+                            int statusCode = status.getCode();
+                            if(statusCode == 201){
+                                Toast.makeText(getApplicationContext(), "로그인 성공", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(getApplicationContext(), Main.class);
+                                startActivity(intent);
+                            } else if(statusCode == 204){
+                                Toast.makeText(getApplicationContext(), "로그인 실패", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
                 } else if(id.getText() == null){
                     Toast.makeText(getApplicationContext(), "아이디를 입력해주세요", Toast.LENGTH_SHORT).show();
                 } else if(password.getText() == null){

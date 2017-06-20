@@ -6,20 +6,21 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.androidquery.AQuery;
 import com.androidquery.callback.AjaxCallback;
 import com.androidquery.callback.AjaxStatus;
 import com.daejeonpeople.R;
-import com.daejeonpeople.connection.AqueryConnection;
+import com.daejeonpeople.connection.connectionValues;
 import com.daejeonpeople.support.firebase.Firebase;
 
 import java.util.HashMap;
 //민지
 
 public class SignUp extends AppCompatActivity {
-    AqueryConnection connection;
-    HashMap<String, Object> params = new HashMap<String, Object>();
+    AQuery aQuery;
+    HashMap<String, Object> params = new HashMap<>();
     Button submit;
     Button emailCertifiedBtn;
     EditText userId;
@@ -33,9 +34,9 @@ public class SignUp extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.signup);
         firebase = new Firebase();
+        aQuery = new AQuery(getApplicationContext());
         submit = (Button)findViewById(R.id.signupSubmit);
         emailCertifiedBtn = (Button)findViewById(R.id.emailCertified);
-        connection = new AqueryConnection(getApplicationContext());
         emailCertifiedBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
@@ -57,27 +58,19 @@ public class SignUp extends AppCompatActivity {
                 params.put("email", email);
                 params.put("name", userName.getText().toString());
                 params.put("registration_id", firebase.getFirebaseToken());
-                connection.connection(params, "signup");
+                aQuery.ajax(connectionValues.URL + "/signup", params, String.class, new AjaxCallback<String>(){
+                    @Override
+                    public void callback(String url, String response, AjaxStatus status){
+                        int statusCode = status.getCode();
+                        if(statusCode == 201){
+                            Intent intent = new Intent(getApplicationContext(), SignIn.class);
+                            startActivity(intent);
+                        } else {
+                            Toast.makeText(getApplicationContext(), "회원가입 실패", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
             }
         });
-
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                while(true){
-                    if(connection.isResponse == true){
-                        int serverStatus = connection.getStatusCode();
-                        System.out.println(serverStatus);
-                        if(serverStatus == 201){
-                            if(email != null){
-                                Intent intent = new Intent(getApplicationContext(), SignIn.class);
-                                startActivity(intent);
-                            }
-                        }
-                        break;
-                    }
-                }
-            }
-        }).start();
     }
 }
