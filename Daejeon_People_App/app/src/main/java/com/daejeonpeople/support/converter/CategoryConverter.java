@@ -11,6 +11,7 @@ public class CategoryConverter {
     private static Map<String, String> categoryMap = new HashMap<>();
 
     static {
+        // 관광지
         categoryMap.put("A01010100", "국립공원");
         categoryMap.put("A01010200", "도립공원");
         categoryMap.put("A01010300", "군립공원");
@@ -72,5 +73,46 @@ public class CategoryConverter {
         categoryMap.put("A02050400", "동상");
         categoryMap.put("A02050500", "터널");
         categoryMap.put("A02050600", "유명건물");
+
+        // 문화시설
+        categoryMap.put("A02060100", "박물관");
+        categoryMap.put("A02060200", "기념관");
+        categoryMap.put("A02060300", "전시관");
+        categoryMap.put("A02060400", "컨벤션센터");
+        categoryMap.put("A02060500", "미술관/화랑");
+        categoryMap.put("A02060600", "공연장");
+        categoryMap.put("A02060700", "문화원");
+        categoryMap.put("A02060800", "외국문화원");
+        categoryMap.put("A02060900", "도서관");
+        categoryMap.put("A02061000", "대형서점");
+        categoryMap.put("A02061100", "문화전수시설");
+        categoryMap.put("A02061200", "영화관");
+        categoryMap.put("A02061300", "어학당");
+        categoryMap.put("A02061400", "학교");
+
+        // 축제/공연/행사
+        categoryMap.put("A02070100", "문화관광축제");
+        categoryMap.put("A02070200", "일반축제");
+        categoryMap.put("A02080100", "전통공연");
+        categoryMap.put("A02080200", "연극");
+        categoryMap.put("A02080300", "뮤지컬");
+        categoryMap.put("A02080400", "오페라");
+        categoryMap.put("A02080500", "전시회");
+        categoryMap.put("A02080600", "박람회");
+        categoryMap.put("A02080700", "컨벤션");
+        categoryMap.put("A02080800", "무용");
+        categoryMap.put("A02080900", "클래식음악회");
+        categoryMap.put("A02081000", "대중콘서트");
+        categoryMap.put("A02081100", "영화");
+        categoryMap.put("A02081200", "스포츠경기");
+        categoryMap.put("A02081300", "기타행사");
+
+        // 여행코스
+        categoryMap.put("C01120001", "가족코스");
+        categoryMap.put("C01130001", "나홀로코스");
+        categoryMap.put("C01140001", "힐링코스");
+        categoryMap.put("C01150001", "도보코스");
+        categoryMap.put("C01160001", "캠핑코스");
+        categoryMap.put("C01170001", "맛코스");
     }
 }
