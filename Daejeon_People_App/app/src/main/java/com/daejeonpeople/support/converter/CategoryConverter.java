@@ -114,5 +114,91 @@ public class CategoryConverter {
         categoryMap.put("C01150001", "도보코스");
         categoryMap.put("C01160001", "캠핑코스");
         categoryMap.put("C01170001", "맛코스");
-    }
+
+        // 레포츠
+        categoryMap.put("A03010100", "육상레포츠");
+        categoryMap.put("A03010200", "수상레포츠");
+        categoryMap.put("A03010300", "항공레포츠");
+        categoryMap.put("A03020100", "스포츠센터");
+        categoryMap.put("A03020200", "수련시설");
+        categoryMap.put("A03020300", "경기장");
+        categoryMap.put("A03020400", "인라인");
+        categoryMap.put("A03020500", "자전거하이킹");
+        categoryMap.put("A03020600", "카트");
+        categoryMap.put("A03020700", "골프");
+        categoryMap.put("A03020800", "경마");
+        categoryMap.put("A03020900", "경륜");
+        categoryMap.put("A03021000", "카지노");
+        categoryMap.put("A03021100", "승마");
+        categoryMap.put("A03021200", "스키/스노보드");
+        categoryMap.put("A03021300", "스케이트");
+        categoryMap.put("A03021400", "썰매장");
+        categoryMap.put("A03021500", "수렵장");
+        categoryMap.put("A03021600", "사격장");
+        categoryMap.put("A03021700", "야영장/오토캠핑장");
+        categoryMap.put("A03021800", "암벽등반");
+        categoryMap.put("A03021900", "빙벽등반");
+        categoryMap.put("A03022000", "서바이벌게임");
+        categoryMap.put("A03022100", "ATV");
+        categoryMap.put("A03022200", "MTB");
+        categoryMap.put("A03022300", "오프로드");
+        categoryMap.put("A03022400", "번지점프");
+        categoryMap.put("A03022500", "자동차경주");
+        categoryMap.put("A03022600", "스키(보드) 렌탈샵");
+        categoryMap.put("A03022700", "트래킹");
+        categoryMap.put("A03030100", "윈드서핑/제트스키");
+        categoryMap.put("A03030200", "카약/카누");
+        categoryMap.put("A03030300", "요트");
+        categoryMap.put("A03030400", "스노쿨링/스킨스쿠버 다이빙");
+        categoryMap.put("A03030500", "민물낚시");
+        categoryMap.put("A03030600", "바다낚시");
+        categoryMap.put("A03030700", "수영");
+        categoryMap.put("A03030800", "래프팅");
+        categoryMap.put("A03040100", "스카이다이빙");
+        categoryMap.put("A03040200", "초경량비행");
+        categoryMap.put("A03040300", "행글라이딩/패러글라이딩");
+        categoryMap.put("A03040400", "열기구");
+        categoryMap.put("A03050100", "복합 레포츠");
+
+        // 숙박
+        categoryMap.put("B02010100", "관광호텔");
+        categoryMap.put("B02010200", "수상관광호텔");
+        categoryMap.put("B02010300", "전통호텔");
+        categoryMap.put("B02010400", "가족호텔");
+        categoryMap.put("B02010500", "콘도미니엄");
+        categoryMap.put("B02010600", "유스호스텔");
+        categoryMap.put("B02010700", "펜션");
+        categoryMap.put("B02010800", "여관");
+        categoryMap.put("B02010900", "모텔");
+        categoryMap.put("B02011000", "민박");
+        categoryMap.put("B02011100", "게스트하우스");
+        categoryMap.put("B02011200", "홈스테이");
+        categoryMap.put("B02011300", "서비스드레지던스");
+        categoryMap.put("B02011400", "의료관광호텔");
+        categoryMap.put("B02011500", "소형호텔");
+        categoryMap.put("B02011600", "한옥스테이");
+
+        // 쇼핑
+        categoryMap.put("A04010100", "5일장");
+        categoryMap.put("A04010200", "상설시장");
+        categoryMap.put("A04010300", "백화점");
+        categoryMap.put("A04010400", "면세점");
+        categoryMap.put("A04010500", "할인매장");
+        categoryMap.put("A04010600", "전문상가");
+        categoryMap.put("A04010700", "공예/공방");
+        categoryMap.put("A04010800", "관광기념품점");
+        categoryMap.put("A04010900", "특산물판매점");
+
+        // 음식
+        categoryMap.put("A05020100", "한식");
+        categoryMap.put("A05020200", "서양식");
+        categoryMap.put("A05020300", "일식");
+        categoryMap.put("A05020400", "중식");
+        categoryMap.put("A05020500", "아시아식");
+        categoryMap.put("A05020600", "패밀리레스토랑");
+        categoryMap.put("A05020700", "이색음식점");
+        categoryMap.put("A05020800", "채식전문점");
+        categoryMap.put("A05020900", "바/카페");
+        categoryMap.put("A05021000", "클럽럽");
+   }
 }
