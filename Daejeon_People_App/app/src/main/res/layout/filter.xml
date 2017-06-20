@@ -71,18 +71,18 @@
                                     android:layout_height="match_parent"
                                     android:orientation="horizontal">
 
-                                    <CheckBox
+                                    <RadioButton
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:text="없음" />
 
-                                    <CheckBox
+                                    <RadioButton
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_marginLeft="10dp"
                                         android:text="자연" />
 
-                                    <CheckBox
+                                    <RadioButton
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_marginLeft="10dp"
@@ -166,31 +166,31 @@
                                     android:layout_height="match_parent"
                                     android:orientation="horizontal">
 
-                                    <CheckBox
+                                    <RadioButton
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:text="없음" />
 
-                                    <CheckBox
+                                    <RadioButton
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_marginLeft="10dp"
                                         android:text="전시관" />
 
-                                    <CheckBox
+                                    <RadioButton
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_marginLeft="10dp"
                                         android:text="컨벤션센터" />
 
-                                    <CheckBox
+                                    <RadioButton
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_marginLeft="10dp"
                                         android:text="미술관 &#183; 화랑" />
 
-                                    <CheckBox
-                                        android:id="@+id/checkBox2"
+                                    <RadioButton
+                                        android:id="@+id/RadioButton2"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_marginLeft="10dp"
@@ -274,12 +274,12 @@
                                     android:layout_height="match_parent"
                                     android:orientation="horizontal">
 
-                                    <CheckBox
+                                    <RadioButton
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:text="축제" />
 
-                                    <CheckBox
+                                    <RadioButton
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_marginLeft="10dp"
@@ -363,30 +363,30 @@
                                     android:layout_height="match_parent"
                                     android:orientation="horizontal">
 
-                                    <CheckBox
+                                    <RadioButton
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:text="가족코스" />
 
-                                    <CheckBox
+                                    <RadioButton
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_marginLeft="10dp"
                                         android:text="나홀로코스" />
 
-                                    <CheckBox
+                                    <RadioButton
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_marginLeft="10dp"
                                         android:text="힐링코스" />
 
-                                    <CheckBox
+                                    <RadioButton
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_marginLeft="10dp"
                                         android:text="도보코스" />
 
-                                    <CheckBox
+                                    <RadioButton
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_marginLeft="10dp"
@@ -470,36 +470,36 @@
                                     android:layout_height="match_parent"
                                     android:orientation="horizontal">
 
-                                    <CheckBox
+                                    <RadioButton
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:text="없음" />
 
-                                    <CheckBox
+                                    <RadioButton
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_marginLeft="10dp"
                                         android:text="피트니스센터" />
 
-                                    <CheckBox
+                                    <RadioButton
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_marginLeft="10dp"
                                         android:text="헬스장" />
 
-                                    <CheckBox
+                                    <RadioButton
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_marginLeft="10dp"
                                         android:text="수영장" />
 
-                                    <CheckBox
+                                    <RadioButton
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_marginLeft="10dp"
                                         android:text="농구장" />
 
-                                    <CheckBox
+                                    <RadioButton
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_marginLeft="10dp"

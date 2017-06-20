@@ -13,38 +13,21 @@
             android:gravity="center_horizontal"
             android:orientation="vertical">
 
-            <HorizontalScrollView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:layout_weight="1">
 
-                <LinearLayout
+
+                <Slid
+
+                <ImageView
+                    android:id="@+id/main1"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_main1" />
 
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:id="@+id/imageView3"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:scaleType="fitXY"
-                                android:src="@drawable/ic_test" />
-
-                        </LinearLayout>
-                    </LinearLayout>
-                </LinearLayout>
-            </HorizontalScrollView>
+            </LinearLayout>
 
 
             <LinearLayout
@@ -74,10 +57,7 @@
                 android:layout_height="200dp"
                 android:layout_weight="1">
 
-                <android.support.v4.view.ViewPager
-                    android:id="@+id/vp1"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"></android.support.v4.view.ViewPager>
+
             </LinearLayout>
 
 
@@ -106,11 +86,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:layout_weight="1">
-                <android.support.v4.view.ViewPager
-                    android:id="@+id/vp2"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-                </android.support.v4.view.ViewPager>
+
             </LinearLayout>
 
         </LinearLayout>
