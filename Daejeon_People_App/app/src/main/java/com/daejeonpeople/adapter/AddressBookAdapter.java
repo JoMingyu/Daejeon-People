@@ -9,15 +9,8 @@ import android.widget.TextView;
 
 import com.daejeonpeople.R;
 import com.daejeonpeople.ValueObjects.AddressBookListItem;
-import com.daejeonpeople.connection.AqueryConnection;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-
 /**
  * Created by geni on 2017. 6. 8..
  */
