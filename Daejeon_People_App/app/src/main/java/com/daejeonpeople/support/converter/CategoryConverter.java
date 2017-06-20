@@ -10,6 +10,14 @@ import java.util.Map;
 public class CategoryConverter {
     private static Map<String, String> categoryMap = new HashMap<>();
 
+    public String convert(String categoryCode) {
+        if(categoryMap.containsKey(categoryCode)) {
+            return categoryMap.get(categoryCode);
+        } else {
+            return "분류 없음";
+        }
+    }
+
     static {
         // 관광지
         categoryMap.put("A01010100", "국립공원");
