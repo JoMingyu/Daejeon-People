@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:background="@mipmap/background">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <ImageView
+            android:layout_width="200px"
+            android:layout_height="200px"
+            android:src="@mipmap/ic_logo"
+            android:id="@+id/logo_login"
+            android:layout_centerInParent="true" />
+
+        <TextView
+            android:layout_width="200px"
+            android:layout_height="50px"
+            android:text="대전사람"
+            android:id="@+id/text1"
+            android:layout_below="@+id/logo_login"
+            android:layout_centerInParent="true"
+            android:gravity="center" />
+
+        <TextView
+            android:layout_width="300px"
+            android:layout_height="50px"
+            android:text="대전광역시 정보 알림 서비스"
+            android:layout_below="@id/text1"
+            android:layout_centerInParent="true"
+            android:gravity="center"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <EditText
+                android:layout_width="300dp"
+                android:layout_height="45dp"
+                android:hint="아이디를 입력하세요"
+                android:background="@drawable/round_corner"
+                android:gravity="center"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/userId"/>
+
+            <EditText
+                android:layout_width="300dp"
+                android:layout_height="45dp"
+                android:hint="비밀번호를 입력하세요"
+                android:background="@drawable/round_corner"
+                android:gravity="center"
+                android:layout_centerInParent="true"
+                android:id="@+id/userPassword"/>
+
+            <Button
+                android:layout_width="300dp"
+                android:layout_height="45dp"
+                android:text="확인"
+                android:background="@drawable/round_corner"
+                android:gravity="center"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/signinSubmit"/>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center">
+
+                    <TextView
+                        android:id="@+id/signUpPlease"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="계정이 없으면 등록해주세요 " />
+
+                    <TextView
+                        android:id="@+id/signUp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=" 회원가입"
+                        android:layout_toRightOf="@id/signUpPlease"/>
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_centerInParent="true"
+                            android:gravity="center"
+                            android:text="아이디 찾기" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_centerInParent="true"
+                            android:gravity="center"
+                            android:text="비밀번호 찾기" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>
