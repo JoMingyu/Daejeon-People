@@ -5,7 +5,6 @@ import java.sql.SQLException;
 
 import org.json.JSONObject;
 
-import com.planb.support.crypto.AES256;
 import com.planb.support.crypto.SHA256;
 import com.planb.support.utilities.MySQL;
 import com.planb.support.utilities.SessionUtil;

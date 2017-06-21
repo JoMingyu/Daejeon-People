@@ -2,6 +2,7 @@ package com.planb.core;
 
 import com.planb.parser.support.ParserThread;
 import com.planb.support.routing.Routing;
+import com.planb.support.utilities.Config;
 import com.planb.support.utilities.Log;
 
 import io.vertx.core.AbstractVerticle;
@@ -15,6 +16,7 @@ import io.vertx.ext.web.sstore.LocalSessionStore;
 public class CoreVerticle extends AbstractVerticle {
 	public void start() throws Exception {
 		Router router = Router.router(vertx);
+		int serverPort = Config.getIntValue("serverPort");
 		
 		router.route().handler(BodyHandler.create().setUploadsDirectory("upload-files"));
 		/**
@@ -70,7 +72,7 @@ public class CoreVerticle extends AbstractVerticle {
 		 */
 		
 		Log.I("Server Started");
-		vertx.createHttpServer().requestHandler(router::accept).listen(80);
+		vertx.createHttpServer().requestHandler(router::accept).listen(serverPort);
 		/**
 		 * @brief
 		 * public interface HttpServer

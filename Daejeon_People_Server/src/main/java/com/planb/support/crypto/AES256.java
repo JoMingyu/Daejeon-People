@@ -1,7 +1,6 @@
 package com.planb.support.crypto;
 
 import java.io.UnsupportedEncodingException;
-
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.Key;
@@ -14,12 +13,14 @@ import javax.crypto.NoSuchPaddingException;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
-import org.apache.commons.codec.binary.*;
+import org.apache.commons.codec.binary.Base64;
+
+import com.planb.support.utilities.Config;
 
 public class AES256 {
     private static String ips;
     private static Key keySpec;
-    private static String key = "d.df!*&ek@s.Cde/q";
+    private static String key = Config.getValue("aesKey");
     
     static {
     	try {

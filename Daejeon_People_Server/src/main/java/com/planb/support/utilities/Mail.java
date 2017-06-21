@@ -12,10 +12,10 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 public class Mail {
-	private static final String SMTP_HOST = "smtp.naver.com";
-	private static final String SENDER_ID = "city7312";
-	private static final String SENDER_PW = "uursty199";
-	private static final int PORT = 587;
+	private static final String SMTP_HOST = Config.getValue("smtpHost");
+	private static final String SENDER_ID = Config.getValue("smtpId");
+	private static final String SENDER_PW = Config.getValue("smtpPw");
+	private static final int PORT = Config.getIntValue("smtpPort");
 	
 	private static Properties props;
 	private static Session session;
