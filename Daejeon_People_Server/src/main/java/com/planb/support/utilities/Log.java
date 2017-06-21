@@ -35,6 +35,10 @@ public class Log {
 			}
 	}
 	
+	public static void Req(String s) {
+		writeToFile(getLogText("REQUEST", s));
+	}
+	
 	public static void Q(String sql) {
 		writeToFile(getLogText("QUERY", sql));
 	}
@@ -71,6 +75,8 @@ public class Log {
 	}
 	
 	private static void writeToFile(String logMsg) {
+		// This method is called every logging
+		
 		check();
 		
 		try {

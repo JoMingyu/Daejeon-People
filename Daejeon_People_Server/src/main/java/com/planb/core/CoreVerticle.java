@@ -1,6 +1,7 @@
 package com.planb.core;
 
-import com.planb.parser.support.ParserThread;
+import com.planb.core.handlers.CORSHandler;
+import com.planb.core.handlers.LogHandler;
 import com.planb.support.routing.Routing;
 import com.planb.support.utilities.Config;
 import com.planb.support.utilities.Log;
@@ -48,6 +49,9 @@ public class CoreVerticle extends AbstractVerticle {
 		 * @see
 		 * http://vertx.io/docs/apidocs/io/vertx/ext/web/handler/SessionHandler.html
 		 */
+
+		router.route().handler(CORSHandler.create());
+		router.route().handler(LogHandler.create());
 		
 		Routing.route(router, "com.planb.restful");
 		/**
@@ -65,7 +69,7 @@ public class CoreVerticle extends AbstractVerticle {
 		 * http://vertx.io/docs/apidocs/io/vertx/rxjava/ext/web/handler/StaticHandler.html
 		 */
 		
-		new ParserThread().start();
+//		new ParserThread().start();
 		/**
 		 * @brief
 		 * Parse TourAPI to local database
