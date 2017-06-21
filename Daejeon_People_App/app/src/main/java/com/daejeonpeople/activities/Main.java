@@ -8,8 +8,6 @@ import android.widget.Button;
 import android.content.Intent;
 
 
-import com.daejeonpeople.R;
-
 //동규
 
 public class Main extends AppCompatActivity implements View.OnClickListener{
