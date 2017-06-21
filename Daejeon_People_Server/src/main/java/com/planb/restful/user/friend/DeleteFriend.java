@@ -12,12 +12,8 @@ import io.vertx.ext.web.RoutingContext;
 
 @API(functionCategory = "친구", summary = "친구 삭제")
 @REST(requestBody = "id : String", successCode = 201)
-@Route(uri = "/friend/delete", method = HttpMethod.POST)
+@Route(uri = "/friend/delete", method = HttpMethod.DELETE)
 public class DeleteFriend implements Handler<RoutingContext> {
-	/*
-	 * 친구 삭제
-	 * REST 아키텍처에 따라 DELETE /friend로 두어야 하지만 보안 상의 문제로 인해 POST로 결정
-	 */
 	@Override
 	public void handle(RoutingContext ctx) {
 		String clientId = UserManager.getEncryptedIdFromSession(ctx);
