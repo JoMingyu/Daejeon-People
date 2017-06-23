@@ -22,7 +22,7 @@ public class VerifyEmail implements Handler<RoutingContext> {
 		String email = ctx.request().getFormAttribute("email");
 		String code = ctx.request().getFormAttribute("code");
 		
-		ctx.response().setStatusCode(verifyEmail(email, code));
+		ctx.response().setStatusCode(verifyEmail(email, code)).end();
 		ctx.response().close();
 	}
 	

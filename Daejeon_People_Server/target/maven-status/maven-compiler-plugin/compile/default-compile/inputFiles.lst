@@ -9,6 +9,7 @@ C:\Users\dsm2016\Desktop\1. Project\Daejeon-People\Daejeon_People_Server\src\mai
 C:\Users\dsm2016\Desktop\1. Project\Daejeon-People\Daejeon_People_Server\src\main\java\com\planb\support\routing\REST.java
 C:\Users\dsm2016\Desktop\1. Project\Daejeon-People\Daejeon_People_Server\src\main\java\com\planb\restful\travel\inside\TravelInfo.java
 C:\Users\dsm2016\Desktop\1. Project\Daejeon-People\Daejeon_People_Server\src\main\java\com\planb\restful\account\signup\VerifyPhone.java
+C:\Users\dsm2016\Desktop\1. Project\Daejeon-People\Daejeon_People_Server\src\main\java\com\planb\support\utilities\Config.java
 C:\Users\dsm2016\Desktop\1. Project\Daejeon-People\Daejeon_People_Server\src\main\java\com\planb\support\restful\attractions\AttractionsListInquiry.java
 C:\Users\dsm2016\Desktop\1. Project\Daejeon-People\Daejeon_People_Server\src\main\java\com\planb\restful\account\signup\CheckIdExist.java
 C:\Users\dsm2016\Desktop\1. Project\Daejeon-People\Daejeon_People_Server\src\main\java\com\planb\restful\user\friend\AcceptFriend.java
@@ -49,7 +50,6 @@ C:\Users\dsm2016\Desktop\1. Project\Daejeon-People\Daejeon_People_Server\src\mai
 C:\Users\dsm2016\Desktop\1. Project\Daejeon-People\Daejeon_People_Server\src\main\java\com\planb\restful\account\signup\VerifyEmail.java
 C:\Users\dsm2016\Desktop\1. Project\Daejeon-People\Daejeon_People_Server\src\main\java\com\planb\restful\travel\inside\AddAttractionToMap.java
 C:\Users\dsm2016\Desktop\1. Project\Daejeon-People\Daejeon_People_Server\src\main\java\com\planb\restful\account\after_signup\FindId_DemandCode.java
-C:\Users\dsm2016\Desktop\1. Project\Daejeon-People\Daejeon_People_Server\src\main\java\com\planb\support\utilities\Thumbnail.java
 C:\Users\dsm2016\Desktop\1. Project\Daejeon-People\Daejeon_People_Server\src\main\java\com\planb\support\chatting\MySQL_Chat.java
 C:\Users\dsm2016\Desktop\1. Project\Daejeon-People\Daejeon_People_Server\src\main\java\com\planb\restful\account\signup\Signup.java
 C:\Users\dsm2016\Desktop\1. Project\Daejeon-People\Daejeon_People_Server\src\main\java\com\planb\restful\account\after_signup\FindPassword_VerifyCode.java
@@ -62,17 +62,20 @@ C:\Users\dsm2016\Desktop\1. Project\Daejeon-People\Daejeon_People_Server\src\mai
 C:\Users\dsm2016\Desktop\1. Project\Daejeon-People\Daejeon_People_Server\src\main\java\com\planb\parser\support\ParserThread.java
 C:\Users\dsm2016\Desktop\1. Project\Daejeon-People\Daejeon_People_Server\src\main\java\com\planb\restful\user\common\SetProfileImage.java
 C:\Users\dsm2016\Desktop\1. Project\Daejeon-People\Daejeon_People_Server\src\main\java\com\planb\core\CoreVerticle.java
+C:\Users\dsm2016\Desktop\1. Project\Daejeon-People\Daejeon_People_Server\src\main\java\com\planb\core\handlers\CORSHandler.java
 C:\Users\dsm2016\Desktop\1. Project\Daejeon-People\Daejeon_People_Server\src\main\java\com\planb\restful\account\signup\DemandPhone.java
 C:\Users\dsm2016\Desktop\1. Project\Daejeon-People\Daejeon_People_Server\src\main\java\com\planb\support\utilities\Firebase.java
 C:\Users\dsm2016\Desktop\1. Project\Daejeon-People\Daejeon_People_Server\src\main\java\com\planb\support\restful\attractions\AttractionsConfig.java
 C:\Users\dsm2016\Desktop\1. Project\Daejeon-People\Daejeon_People_Server\src\main\java\com\planb\restful\account\after_signup\ChangePassword.java
 C:\Users\dsm2016\Desktop\1. Project\Daejeon-People\Daejeon_People_Server\src\main\java\com\planb\restful\attractions\list\ListByType.java
 C:\Users\dsm2016\Desktop\1. Project\Daejeon-People\Daejeon_People_Server\src\main\java\com\planb\restful\user\friend\FriendRequestsInquiry.java
+C:\Users\dsm2016\Desktop\1. Project\Daejeon-People\Daejeon_People_Server\src\main\java\com\planb\core\handlers\LogHandler.java
 C:\Users\dsm2016\Desktop\1. Project\Daejeon-People\Daejeon_People_Server\src\main\java\com\planb\restful\travel\inside\GetMapInfo.java
 C:\Users\dsm2016\Desktop\1. Project\Daejeon-People\Daejeon_People_Server\src\main\java\com\planb\support\routing\API.java
 C:\Users\dsm2016\Desktop\1. Project\Daejeon-People\Daejeon_People_Server\src\main\java\com\planb\support\routing\Route.java
 C:\Users\dsm2016\Desktop\1. Project\Daejeon-People\Daejeon_People_Server\src\main\java\com\planb\parser\AdditionalImageParser.java
 C:\Users\dsm2016\Desktop\1. Project\Daejeon-People\Daejeon_People_Server\src\main\java\com\planb\restful\account\after_signup\FindId_VerifyCode.java
+C:\Users\dsm2016\Desktop\1. Project\Daejeon-People\Daejeon_People_Server\src\main\java\com\planb\core\handlers\LogHandlerImpl.java
 C:\Users\dsm2016\Desktop\1. Project\Daejeon-People\Daejeon_People_Server\src\main\java\com\planb\parser\Parser.java
 C:\Users\dsm2016\Desktop\1. Project\Daejeon-People\Daejeon_People_Server\src\main\java\com\planb\restful\user\common\MyInfo.java
 C:\Users\dsm2016\Desktop\1. Project\Daejeon-People\Daejeon_People_Server\src\main\java\com\planb\restful\travel\inside\SendMessage.java

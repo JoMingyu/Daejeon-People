@@ -16,10 +16,10 @@ com\planb\support\crypto\AES256.class
 com\planb\support\utilities\Mail$1.class
 com\planb\parser\TourListParser.class
 com\planb\support\networking\HttpClient.class
+com\planb\core\handlers\LogHandlerImpl.class
 com\planb\parser\EnhancedDetailParser.class
 com\planb\parser\FullDetailParser.class
 com\planb\restful\user\friend\AcceptFriend.class
-com\planb\support\utilities\Thumbnail.class
 com\planb\restful\account\signup\DemandEmail.class
 com\planb\restful\attractions\interation\AddWish.class
 com\planb\restful\account\after_signup\Signin.class
@@ -39,12 +39,15 @@ com\planb\support\networking\Config.class
 com\planb\restful\account\after_signup\FindPassword_DemandCode.class
 com\planb\support\utilities\Mail.class
 com\planb\restful\travel\inside\TravelInfo.class
+com\planb\core\handlers\CORSHandler$1.class
 com\planb\restful\account\signup\CheckIdExist.class
 com\planb\restful\travel\TravelInvitesInquiry.class
 com\planb\support\networking\Response.class
 com\planb\support\chatting\MySQL_Chat.class
 com\planb\support\user\UserManager.class
+com\planb\core\handlers\CORSHandler.class
 com\planb\restful\user\common\MyPage.class
+com\planb\core\handlers\LogHandler.class
 com\planb\parser\support\ParserThread.class
 com\planb\restful\travel\inside\AddAttractionToMap.class
 com\planb\support\restful\attractions\AttractionsListInquiry.class
@@ -59,7 +62,9 @@ com\planb\support\utilities\MySQL.class
 com\planb\restful\account\signup\Signup.class
 com\planb\restful\travel\AcceptTravel.class
 com\planb\core\Main.class
+com\planb\support\utilities\Config.class
 com\planb\parser\Parser.class
+com\planb\core\handlers\CORSHandler$CORS.class
 com\planb\parser\support\HttpClientForParser.class
 com\planb\support\routing\Document.class
 com\planb\restful\account\signup\VerifyPhone.class
