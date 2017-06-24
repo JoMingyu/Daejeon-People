@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -43,7 +44,8 @@ public class Email_Certified extends AppCompatActivity {
                 if(emailDemandCheck == false){
                     params.put("email", email.getText().toString());
                     aQuery = new AQuery(getApplicationContext());
-                    aQuery.ajax(connectionValues.URL + "/signup/email/demand", params, String.class, new AjaxCallback<String>(){
+                    System.out.println(connectionValues.URL);
+                    aQuery.ajax("http://52.79.134.200/signup/email/demand", params, String.class, new AjaxCallback<String>(){
                         @Override
                         public void callback(String url, String response, AjaxStatus status) {
                             System.out.println(status.getCode());
@@ -57,9 +59,11 @@ public class Email_Certified extends AppCompatActivity {
                         }
                     });
                 } else if(emailDemandCheck == true){
+                    Log.d("emailDemandCheck", "true");
                     checkCode = (EditText)findViewById(R.id.checkCode);
                     params.put("code",checkCode.getText().toString());
-                    aQuery.ajax(connectionValues.URL + "/signup/email/verify", params, String.class, new AjaxCallback<String>(){
+                    System.out.println(params);
+                    aQuery.ajax("http://52.79.134.200:80/signup/email/verify", params, String.class, new AjaxCallback<String>(){
                        @Override
                         public void callback(String url, String response, AjaxStatus status){
                             if(status.getCode() == 201){

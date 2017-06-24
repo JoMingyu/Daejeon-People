@@ -9,12 +9,6 @@ import android.widget.TextView;
 
 import com.daejeonpeople.R;
 import com.daejeonpeople.ValueObjects.AddressBookListItem;
-import com.daejeonpeople.connection.AqueryConnection;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -23,8 +17,7 @@ import java.util.HashMap;
  */
 
 public class AddressBookAdapter extends BaseAdapter {
-//    HashMap <String, Object> params = new HashMap<>();
-//    AqueryConnection connection;
+    HashMap <String, Object> params = new HashMap<>();
 
     private ArrayList<AddressBookListItem> addressBookListItems = new ArrayList<>() ;
 
