@@ -75,7 +75,7 @@ public class CoreVerticle extends AbstractVerticle {
 		 * Parse TourAPI to local database
 		 */
 		
-		Log.I("Server Started");
+		Log.info("Server Started");
 		vertx.createHttpServer().requestHandler(router::accept).listen(serverPort);
 		/**
 		 * @brief

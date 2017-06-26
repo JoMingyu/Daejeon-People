@@ -19,7 +19,7 @@ public class LogHandlerImpl implements LogHandler {
 			logStrBuilder.append("Body - ").append(ctx.request().formAttributes());
 		}
 		
-		Log.Req(logStrBuilder.toString());
+		Log.request(logStrBuilder.toString());
 		
 		ctx.next();
 	}

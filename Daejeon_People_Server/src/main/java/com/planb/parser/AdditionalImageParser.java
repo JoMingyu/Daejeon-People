@@ -54,7 +54,7 @@ public class AdditionalImageParser implements Parser {
 				}
 			}
 			
-			Log.I("Additional Image Parse Success.");
+			Log.info("Additional Image Parse Success.");
 		} catch(SQLException e) {
 			e.printStackTrace();
 		}

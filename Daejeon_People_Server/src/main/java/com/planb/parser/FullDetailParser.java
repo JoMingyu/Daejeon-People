@@ -510,6 +510,6 @@ public class FullDetailParser implements Parser {
 				MySQL.executeUpdate("INSERT INTO restaurant_detail_info VALUES(", contentId, ", '", creditCard, "', '", repMenu, "', '", infoCenter, "', ", kidsFacility, ", '", openDate, "', '", useTime, "', '", packing, "', '", parking, "', '", reservation, "', '", restDate, "', '", scale, "', '", seat, "', '", smoking, "', '", treatMenu, "')");
 			}
 		}
-		Log.I("Detail Info Parse Success.");
+		Log.info("Detail Info Parse Success.");
 	}
 }

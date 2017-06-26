@@ -492,7 +492,7 @@ public class EnhancedDetailParser implements Parser {
 				}
 			}
 			
-			Log.I("Detail Info Parse Success.");
+			Log.info("Detail Info Parse Success.");
 		} catch(SQLException e) {
 			e.printStackTrace();
 		}

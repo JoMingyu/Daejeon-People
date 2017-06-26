@@ -85,6 +85,6 @@ public class TourListParser implements Parser {
 				e.printStackTrace();
 			}
 		}
-		Log.I("Area Based Tour List Parse Success.");
+		Log.info("Area Based Tour List Parse Success.");
 	}
 }

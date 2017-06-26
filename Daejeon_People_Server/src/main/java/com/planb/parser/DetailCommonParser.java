@@ -50,7 +50,7 @@ public class DetailCommonParser implements Parser {
 				MySQL.executeUpdate("INSERT INTO attractions_detail_common VALUES(?, ?, ?, ?, ?, ?)", contentId, contentTypeId, homepage, overview, telName, tel);
 			}
 			
-			Log.I("Detail Common Parse Success.");
+			Log.info("Detail Common Parse Success.");
 		} catch(SQLException e) {
 			e.printStackTrace();
 		}

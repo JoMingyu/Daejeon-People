@@ -35,23 +35,23 @@ public class Log {
 			}
 	}
 	
-	public static void Req(String s) {
+	public static void request(String s) {
 		writeToFile(getLogText("REQUEST", s));
 	}
 	
-	public static void Q(String sql) {
+	public static void query(String sql) {
 		writeToFile(getLogText("QUERY", sql));
 	}
 	
-	public static void R(String s) {
+	public static void routing(String s) {
 		writeToFile(getLogText("ROUTING", s));
 	}
 	
-	public static void I(String s) {
+	public static void info(String s) {
 		writeToFile(getLogText("INFO", s));
 	}
 	
-	public static void E(String s) {
+	public static void error(String s) {
 		writeToFile(getLogText("ERROR", s));
 	}
 	
