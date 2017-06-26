@@ -33,7 +33,7 @@ public class Routing {
 					router.route(routeAnno.method(), routeAnno.uri()).handler((Handler<RoutingContext>) c.newInstance());
 					// Routing
 					
-					Log.R(routeAnno.method() + " " + routeAnno.uri());
+					Log.routing(routeAnno.method() + " " + routeAnno.uri());
 					// 생성자가 public이 아니면 리플렉션으로 접근 불가능(IllegalStateException)
 					
 					if(c.isAnnotationPresent(API.class) && c.isAnnotationPresent(REST.class)) {

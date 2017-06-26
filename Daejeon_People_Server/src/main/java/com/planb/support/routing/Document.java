@@ -53,7 +53,7 @@ public class Document {
 		
 		try {
 			wb.write(new FileOutputStream(fileName));
-			Log.I("REST Resource Documentation Complete");
+			Log.info("REST Resource Documentation Complete");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
