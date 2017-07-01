@@ -30,7 +30,6 @@
         <activity android:name=".activities.FindID" />
         <activity android:name=".activities.FindPW" />
         <activity android:name=".activities.Search" />
-        <activity android:name=".activities.Introduction"/>
     </application>
 
 </manifest>

@@ -1,43 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="80dp">
-
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal">
-        <ImageView
-            android:layout_width="90dp"
-            android:layout_height="match_parent"
-            android:src="@drawable/ic_profile"/>
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+        <LinearLayout
+            android:id="@+id/profilearea"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:background="@drawable/ic_profile"
+                android:layout_marginTop="6dp"/>
+        </LinearLayout>
+
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="3dp">
-            <TextView
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+            
+            <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/user_name"
-                android:text="문재수"
-                android:textColor="@color/Black"
-                android:textStyle="bold"
-                android:textSize="20dp"
-                android:layout_marginTop="15dp"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/user_name"
-                android:text="저랑 같이 여행 안가실래요~?"
-                android:layout_marginTop="3dp"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_marginTop="20dp"
-                android:layout_marginRight="15dp"
-                android:text="오후 9:31"
-                android:textColor="@color/Black"/>
+                android:padding="7dp">
+                
+                <TextView
+                    android:id="@+id/userName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="문재수"
+                    android:textSize="18dp"
+                    android:textColor="@color/Black"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="2dp"/>
+                
+                <TextView
+                    android:id="@+id/userPhoneNum"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="010-9945-7580"
+                    android:textSize="11dp"
+                    android:textColor="@color/Black"
+                    android:layout_below="@id/userName"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="2dp"/>
+                
+                <TextView
+                    android:id="@+id/userEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/userPhoneNum"
+                    android:text="alswl4152@naver.com"
+                    android:textSize="15dp"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="2dp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/userEmail"
+                    android:layout_marginTop="4dp">
+
+                    <Button
+                        android:id="@+id/btn_accept"
+                        android:layout_width="0dp"
+                        android:layout_height="30dp"
+                        android:layout_weight="1"
+                        android:text="수락"
+                        android:textColor="@color/Green"
+                        android:background="@drawable/btn_accept_design"/>
+
+                    <Button
+                        android:id="@+id/btn_reject"
+                        android:layout_width="0dp"
+                        android:layout_height="30dp"
+                        android:layout_weight="1"
+                        android:text="거절"
+                        android:textColor="@color/Orange"
+                        android:layout_marginLeft="10dp"
+                        android:background="@drawable/btn_reject_design"/>
+                </LinearLayout>
+
+            </RelativeLayout>
+            
         </RelativeLayout>
     </LinearLayout>
 </LinearLayout>
