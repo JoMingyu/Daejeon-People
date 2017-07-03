@@ -41,6 +41,8 @@ public class Email_Certified extends AppCompatActivity {
 
         confirmButton = (Button)findViewById(R.id.confirmBtn);
         email = (EditText)findViewById(R.id.userEmail);
+        emailDemanded = false;
+        // 액티비티 로드마다 false
 
         confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,7 +56,6 @@ public class Email_Certified extends AppCompatActivity {
                         public void callback(String url, String response, AjaxStatus status) {
                             statusCode = status.getCode();
                             if(statusCode == 201){
-                                emailDemanded = true;
                                 confirmButton.setText("인증");
                                 ShowDialog();
                             } else {
@@ -69,6 +70,7 @@ public class Email_Certified extends AppCompatActivity {
                        @Override
                         public void callback(String url, String response, AjaxStatus status){
                             if(status.getCode() == 201){
+                                emailDemanded = true;
                                 Intent intent = new Intent(getApplicationContext(), SignUp.class);
                                 intent.putExtra("email", email.getText().toString());
                                 startActivity(intent);
@@ -88,7 +90,7 @@ public class Email_Certified extends AppCompatActivity {
         final View dialogLayout = dialog.inflate(R.layout.email_certified2, null);
         final Dialog myDialog = new Dialog(this);
 
-        myDialog.setTitle("EmailCertified2");
+        myDialog.setTitle("이메일 인증");
         myDialog.setContentView(dialogLayout);
         myDialog.show();
 

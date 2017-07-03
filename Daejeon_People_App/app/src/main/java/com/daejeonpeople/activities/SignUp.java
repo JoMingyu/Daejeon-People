@@ -26,7 +26,7 @@ import java.util.Map;
 public class SignUp extends AppCompatActivity {
     private AQuery aQuery;
     private Button submit;
-    private static Button emailCertifiedBtn;
+    private Button emailCertifiedBtn;
 
     private EditText userName;
     private boolean userNameChecked = false;
@@ -57,6 +57,7 @@ public class SignUp extends AppCompatActivity {
         passwordConfirm = (EditText) findViewById(R.id.passwordConfirm);
 
         if(Email_Certified.emailDemanded) {
+            // 이메일 인증이 완료됐다면 버튼 컬러 변경
             emailCertifiedBtn.setTextColor(Color.rgb(111, 186, 119));
         }
 
