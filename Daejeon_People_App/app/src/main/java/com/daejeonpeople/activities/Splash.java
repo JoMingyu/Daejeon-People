@@ -28,6 +28,6 @@ public class Splash extends Activity{
     }
 
     private void judge() {
-        
+
     }
 }
