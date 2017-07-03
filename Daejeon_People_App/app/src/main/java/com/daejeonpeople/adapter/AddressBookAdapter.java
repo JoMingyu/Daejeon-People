@@ -9,15 +9,15 @@ import android.widget.TextView;
 
 import com.daejeonpeople.R;
 import com.daejeonpeople.ValueObjects.AddressBookListItem;
-import java.util.ArrayList;
-import java.util.HashMap;
 
+import java.util.ArrayList;
 /**
  * Created by geni on 2017. 6. 8..
  */
 
 public class AddressBookAdapter extends BaseAdapter {
-    HashMap <String, Object> params = new HashMap<>();
+//    HashMap <String, Object> params = new HashMap<>();
+//    AqueryConnection connection;
 
     private ArrayList<AddressBookListItem> addressBookListItems = new ArrayList<>() ;
 

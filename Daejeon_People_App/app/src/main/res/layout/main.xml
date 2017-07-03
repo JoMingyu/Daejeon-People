@@ -5,11 +5,12 @@
     <TabHost
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@android:id/tabhost">
+        android:id="@+id/tabHost1">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
+
             <FrameLayout
                 android:id="@android:id/tabcontent"
                 android:layout_weight="1"
