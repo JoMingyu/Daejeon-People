@@ -15,7 +15,6 @@ public class Splash extends Activity{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        //// TODO Auto-generated method stub
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash);
 
@@ -26,5 +25,9 @@ public class Splash extends Activity{
                 finish();
             }
         }, 3000);
+    }
+
+    private void judge() {
+        
     }
 }
