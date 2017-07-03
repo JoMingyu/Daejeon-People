@@ -45,7 +45,7 @@ public class SignIn extends Activity{
                 params.put("keep_login", false);
 
                 if(id.getText() != null && password.getText() != null){
-                    aQuery.ajax(connectionValues.URL + "/signin", params, String.class, new AjaxCallback<String>(){
+                    aQuery.ajax("http://52.79.134.200:80/signin", params, String.class, new AjaxCallback<String>(){
                         @Override
                         public void callback(String url, String response, AjaxStatus status){
                             int statusCode = status.getCode();

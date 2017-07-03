@@ -58,7 +58,7 @@ public class SignUp extends AppCompatActivity {
                 params.put("email", email);
                 params.put("name", userName.getText().toString());
                 params.put("registration_id", firebase.getFirebaseToken());
-                aQuery.ajax(connectionValues.URL + "/signup", params, String.class, new AjaxCallback<String>(){
+                aQuery.ajax("http://52.79.134.200:80/signup", params, String.class, new AjaxCallback<String>(){
                     @Override
                     public void callback(String url, String response, AjaxStatus status){
                         int statusCode = status.getCode();
