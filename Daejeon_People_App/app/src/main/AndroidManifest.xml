@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.Signup" />
+        <activity android:name=".activities.SignUp" />
+        <activity android:name=".activities.SignIn" />
         <activity android:name=".activities.Main"/>
         <activity android:name=".activities.Email_Certified" />
         <activity android:name=".activities.Chatting" />
