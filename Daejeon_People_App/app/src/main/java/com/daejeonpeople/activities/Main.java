@@ -12,7 +12,6 @@ import com.daejeonpeople.R;
 //동규
 
 public class Main extends Activity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,29 +21,15 @@ public class Main extends Activity {
         tabHost.setup();
 
         TabHost.TabSpec ts1 = tabHost.newTabSpec("Tab1");
-        ts1.setIndicator("TAB 1");
+        ts1.setIndicator("TAB 1", getResources().getDrawable(R.drawable.ic_home));
         ts1.setContent(R.id.tab1);
         tabHost.addTab(ts1);
 
         TabHost.TabSpec ts2 = tabHost.newTabSpec("Tab2");
-        ts2.setIndicator("TAB 2");
+        ts2.setIndicator("TAB 1", getResources().getDrawable(R.drawable.ic_category));
         ts2.setContent(R.id.tab2);
         tabHost.addTab(ts2);
 
         tabHost.setCurrentTab(0);
-
-
-
-//        TabHost tabHost = getTabHost();
-//
-//        TabHost.TabSpec tabSpecTab1 = tabHost.newTabSpec("TAB1").setIndicator("메인으로");
-//        tabSpecTab1.setContent(R.id.tab1);
-//        tabHost.addTab(tabSpecTab1);
-//
-//        TabHost.TabSpec tabSpecTab2 = tabHost.newTabSpec("TAB2").setIndicator("카테고리");
-//        tabSpecTab2.setContent(R.id.tab2);
-//        tabHost.addTab(tabSpecTab2);
-
-
     }
 }
