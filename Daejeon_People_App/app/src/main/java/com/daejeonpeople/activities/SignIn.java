@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.androidquery.AQuery;
@@ -13,6 +14,8 @@ import com.androidquery.callback.AjaxCallback;
 import com.androidquery.callback.AjaxStatus;
 import com.daejeonpeople.R;
 import com.daejeonpeople.connection.connectionValues;
+
+import org.w3c.dom.Text;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -28,6 +31,10 @@ public class SignIn extends Activity{
     private EditText userId;
     private EditText userPassword;
 
+    private TextView signUp;
+    private TextView findId;
+    private TextView findPassword;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +43,10 @@ public class SignIn extends Activity{
         submit = (Button) findViewById(R.id.signinSubmit);
         userId = (EditText) findViewById(R.id.userId);
         userPassword = (EditText) findViewById(R.id.userPassword);
+
+        signUp = (TextView) findViewById(R.id.signUp);
+        findId = (TextView) findViewById(R.id.findId);
+        findPassword = (TextView) findViewById(R.id.findPassword);
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override

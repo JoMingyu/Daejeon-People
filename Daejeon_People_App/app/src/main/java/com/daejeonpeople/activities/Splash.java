@@ -28,7 +28,7 @@ public class Splash extends Activity{
     }
 
     private void judge() {
-        
+
 
         finish();
         Intent intent = new Intent(getApplicationContext(), SignUp.class);

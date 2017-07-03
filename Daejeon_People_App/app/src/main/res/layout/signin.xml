@@ -99,7 +99,6 @@
                     android:gravity="center">
 
                     <TextView
-                        android:id="@+id/signUpPlease"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="계정이 없으면 등록해주세요 " />
@@ -133,6 +132,7 @@
                             android:layout_height="match_parent"
                             android:layout_centerInParent="true"
                             android:gravity="center"
+                            android:id="@+id/findId"
                             android:text="아이디 찾기" />
 
                     </RelativeLayout>
@@ -147,6 +147,7 @@
                             android:layout_height="match_parent"
                             android:layout_centerInParent="true"
                             android:gravity="center"
+                            android:id="@+id/findPassword"
                             android:text="비밀번호 찾기" />
 
                     </RelativeLayout>
