@@ -2,6 +2,7 @@ package com.daejeonpeople.activities;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -25,7 +26,7 @@ import java.util.Map;
 public class SignUp extends AppCompatActivity {
     private AQuery aQuery;
     private Button submit;
-    public static Button emailCertifiedBtn;
+    private static Button emailCertifiedBtn;
 
     private EditText userName;
     private boolean userNameChecked = false;
@@ -55,6 +56,10 @@ public class SignUp extends AppCompatActivity {
         userPassword = (EditText) findViewById(R.id.userPassword);
         passwordConfirm = (EditText) findViewById(R.id.passwordConfirm);
 
+        if(Email_Certified.emailDemanded) {
+            emailCertifiedBtn.setTextColor(Color.rgb(111, 186, 119));
+        }
+
         emailCertifiedBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -67,7 +72,7 @@ public class SignUp extends AppCompatActivity {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus && !userName.getText().toString().isEmpty()) {
-                    // 이름이 1글자 이상일 때
+                    // 이름이 1글자 이상일 때. 명시적
                     userName.setTextColor(Color.rgb(111, 186, 119));
                     userNameChecked = true;
                 } else {
@@ -131,7 +136,7 @@ public class SignUp extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (Email_Certified.emailCertified && userNameChecked && idChecked && passwordConfirmed) {
+                if (Email_Certified.emailDemanded && userNameChecked && idChecked && passwordConfirmed) {
                     Map<String, String> params = new HashMap<>();
                     Intent emailCertifiedIntent = getIntent();
 
