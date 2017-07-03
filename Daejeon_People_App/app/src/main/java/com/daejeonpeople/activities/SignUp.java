@@ -3,6 +3,7 @@ package com.daejeonpeople.activities;
 import android.content.Intent;
 import android.graphics.Color;
 import android.provider.ContactsContract;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -56,9 +57,10 @@ public class SignUp extends AppCompatActivity {
         userPassword = (EditText) findViewById(R.id.userPassword);
         passwordConfirm = (EditText) findViewById(R.id.passwordConfirm);
 
-        if(Email_Certified.emailDemanded) {
+        if(Email_Certified.emailCertified) {
             // 이메일 인증이 완료됐다면 버튼 컬러 변경
             emailCertifiedBtn.setTextColor(Color.rgb(111, 186, 119));
+            Snackbar.make(getWindow().getDecorView().getRootView(), "이메일 인증 완료", 1000).show();
         }
 
         emailCertifiedBtn.setOnClickListener(new View.OnClickListener() {
@@ -140,7 +142,7 @@ public class SignUp extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (Email_Certified.emailDemanded && userNameChecked && idChecked && passwordConfirmed) {
+                if (Email_Certified.emailCertified && userNameChecked && idChecked && passwordConfirmed) {
                     Map<String, String> params = new HashMap<>();
                     Intent emailCertifiedIntent = getIntent();
 

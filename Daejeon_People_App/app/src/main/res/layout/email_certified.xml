@@ -30,7 +30,7 @@
             android:textStyle="bold" />
 
         <EditText
-            android:id="@+id/userEmail"
+            android:id="@+id/email"
             android:layout_width="300dp"
             android:layout_height="45dp"
             android:layout_gravity="center_horizontal"

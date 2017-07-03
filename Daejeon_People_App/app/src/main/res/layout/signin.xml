@@ -99,6 +99,7 @@
                     android:gravity="center">
 
                     <TextView
+                        android:id="@+id/signUpText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="계정이 없으면 등록해주세요 " />
@@ -108,7 +109,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text=" 회원가입"
-                        android:layout_toRightOf="@id/signUpPlease"/>
+                        android:layout_toRightOf="@id/signUpText"/>
                 </RelativeLayout>
 
             </RelativeLayout>
