@@ -2,6 +2,7 @@ package com.daejeonpeople.activities;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -18,58 +19,63 @@ import com.daejeonpeople.R;
 import com.daejeonpeople.connection.connectionValues;
 
 import java.util.HashMap;
+import java.util.Map;
 
 //민지
 
 public class Email_Certified extends AppCompatActivity {
-    AQuery aQuery;
-    HashMap<String, Object> params = new HashMap<>();
-    EditText email;
-    EditText checkCode;
-    Button confirmBtn;
-    int statusCode;
-    boolean emailDemandCheck = false;
+    private AQuery aQuery;
+    private Map<String, Object> params = new HashMap<>();
+
+    private EditText email;
+    private EditText checkCode;
+    private Button confirmButton;
+
+    private int statusCode;
+    public static boolean emailDemanded = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.email_certified);
-        confirmBtn = (Button)findViewById(R.id.confirmBtn);
-        email = (EditText)findViewById(R.id.userEmail);
 
-        confirmBtn.setOnClickListener(new View.OnClickListener() {
+        confirmButton = (Button)findViewById(R.id.confirmBtn);
+        email = (EditText)findViewById(R.id.userEmail);
+        emailDemanded = false;
+        // 액티비티 로드마다 false
+
+        confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
             {
-                if(emailDemandCheck == false){
+                if(!emailDemanded){
                     params.put("email", email.getText().toString());
                     aQuery = new AQuery(getApplicationContext());
-                    System.out.println(connectionValues.URL);
                     aQuery.ajax("http://52.79.134.200/signup/email/demand", params, String.class, new AjaxCallback<String>(){
                         @Override
                         public void callback(String url, String response, AjaxStatus status) {
-                            System.out.println(status.getCode());
                             statusCode = status.getCode();
                             if(statusCode == 201){
-                                emailDemandCheck = true;
+                                confirmButton.setText("인증");
                                 ShowDialog();
-                            } else if(statusCode == 204){
+                            } else {
                                 Toast.makeText(getApplicationContext(), "이미 존재하는 이메일입니다.", Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
-                } else if(emailDemandCheck == true){
-                    Log.d("emailDemandCheck", "true");
+                } else if(emailDemanded){
                     checkCode = (EditText)findViewById(R.id.checkCode);
                     params.put("code",checkCode.getText().toString());
-                    System.out.println(params);
-                    aQuery.ajax("http://52.79.134.200:80/signup/email/verify", params, String.class, new AjaxCallback<String>(){
+                    aQuery.ajax("http://52.79.134.200/signup/email/verify", params, String.class, new AjaxCallback<String>(){
                        @Override
                         public void callback(String url, String response, AjaxStatus status){
                             if(status.getCode() == 201){
+                                emailDemanded = true;
                                 Intent intent = new Intent(getApplicationContext(), SignUp.class);
                                 intent.putExtra("email", email.getText().toString());
                                 startActivity(intent);
+                            } else {
+                                Toast.makeText(getApplicationContext(), "인증번호가 맞지 않습니다.", Toast.LENGTH_SHORT).show();
                             }
                        }
                     });
@@ -84,7 +90,7 @@ public class Email_Certified extends AppCompatActivity {
         final View dialogLayout = dialog.inflate(R.layout.email_certified2, null);
         final Dialog myDialog = new Dialog(this);
 
-        myDialog.setTitle("EmailCertified2");
+        myDialog.setTitle("이메일 인증");
         myDialog.setContentView(dialogLayout);
         myDialog.show();
 

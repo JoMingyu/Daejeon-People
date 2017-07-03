@@ -2,18 +2,19 @@ package com.daejeonpeople.activities;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.os.Handler;
 
 import com.daejeonpeople.R;
+import com.daejeonpeople.support.database.SQLiteManager;
 
 /**
  * Created by 10102김동규 on 2017-05-10.
  */
-//둥규
 
 public class Splash extends Activity{
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
