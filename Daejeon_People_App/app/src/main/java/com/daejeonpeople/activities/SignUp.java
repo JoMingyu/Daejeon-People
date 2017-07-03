@@ -123,9 +123,12 @@ public class SignUp extends AppCompatActivity {
                 String confirm = s.toString();
 
                 if (password.equals(confirm)) {
+                    userPassword.setTextColor(Color.rgb(111, 186, 119));
                     passwordConfirm.setTextColor(Color.rgb(111, 186, 119));
+                    passwordConfirmed = true;
                 } else {
                     passwordConfirm.setTextColor(Color.rgb(252, 113, 80));
+                    passwordConfirmed = false;
                 }
             }
 
@@ -146,12 +149,12 @@ public class SignUp extends AppCompatActivity {
                     String password = userPassword.getText().toString();
 
                     params.put("email", email);
-                    params.put("name", userName.getText().toString());
-                    params.put("id", userId.getText().toString());
-                    params.put("password", userPassword.getText().toString());
+                    params.put("name", name);
+                    params.put("id", id);
+                    params.put("password", password);
                     params.put("registration_id", firebase.getFirebaseToken());
 
-                    aQuery.ajax("http://52.79.134.200:80/signup", params, String.class, new AjaxCallback<String>() {
+                    aQuery.ajax("http://52.79.134.200/signup", params, String.class, new AjaxCallback<String>() {
                         @Override
                         public void callback(String url, String response, AjaxStatus status) {
                             int statusCode = status.getCode();
