@@ -15,7 +15,8 @@
         <activity android:name=".activities.SignUp"/>
         <activity android:name=".activities.Email_Certified" />
         <activity android:name=".activities.Chatting" />
-        <activity android:name=".activities.AddressBook">
+        <activity android:name=".activities.AddressBook"/>
+        <activity android:name=".activities.Main">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -23,7 +24,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".activities.ChatList" />
-        <activity android:name=".activities.Main"/>
         <activity android:name=".activities.Category" />
         <activity android:name=".activities.EntryID" />
         <activity android:name=".activities.EntryPW" />
