@@ -16,7 +16,7 @@ public class Main extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-        startActivity(new Intent(this,Splash.class));
+        startActivity(new Intent(this, Splash.class));
 
         TabHost tabHost1 = (TabHost) findViewById(R.id.tabHost1);
         tabHost1.setup();
