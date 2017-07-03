@@ -3,7 +3,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
-    
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -17,7 +17,6 @@
             <ImageView
                 android:layout_width="70dp"
                 android:layout_height="70dp"
-                android:background="@drawable/ic_profile"
                 android:layout_marginTop="6dp"/>
         </LinearLayout>
 
@@ -25,71 +24,59 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1">
-            
+
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="7dp">
-                
+                android:padding="7dp"
+                android:id="@+id/infoarea">
+
                 <TextView
                     android:id="@+id/userName"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="문재수"
                     android:textSize="18dp"
                     android:textColor="@color/Black"
                     android:paddingTop="2dp"
                     android:paddingBottom="2dp"/>
-                
+
                 <TextView
                     android:id="@+id/userPhoneNum"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="010-9945-7580"
                     android:textSize="11dp"
                     android:textColor="@color/Black"
                     android:layout_below="@id/userName"
                     android:paddingTop="2dp"
                     android:paddingBottom="2dp"/>
-                
+
                 <TextView
                     android:id="@+id/userEmail"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/userPhoneNum"
-                    android:text="alswl4152@naver.com"
                     android:textSize="15dp"
                     android:paddingTop="2dp"
                     android:paddingBottom="2dp"/>
+            </RelativeLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/userEmail"
-                    android:layout_marginTop="4dp">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/infoarea"
+                android:gravity="right"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="20dp">
 
-                    <Button
-                        android:id="@+id/btn_accept"
-                        android:layout_width="0dp"
-                        android:layout_height="30dp"
-                        android:layout_weight="1"
-                        android:text="수락"
-                        android:textColor="@color/Green"
-                        android:background="@drawable/btn_accept_design"/>
-
-                    <Button
-                        android:id="@+id/btn_reject"
-                        android:layout_width="0dp"
-                        android:layout_height="30dp"
-                        android:layout_weight="1"
-                        android:text="거절"
-                        android:textColor="@color/Orange"
-                        android:layout_marginLeft="10dp"
-                        android:background="@drawable/btn_reject_design"/>
-                </LinearLayout>
+                <Button
+                    android:id="@+id/btn_call"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/ic_call_green"
+                    />
 
             </RelativeLayout>
-            
+
         </RelativeLayout>
     </LinearLayout>
 </LinearLayout>

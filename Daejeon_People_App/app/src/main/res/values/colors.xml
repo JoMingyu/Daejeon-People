@@ -12,4 +12,6 @@
     <color name="No">#fc7150</color>
     <color name="Black">#000000</color>
     <color name="BrightGray">#dfdfdf</color>
+    <color name="Green">#55b268</color>
+    <color name="Orange">#ed6a07</color>
 </resources>
