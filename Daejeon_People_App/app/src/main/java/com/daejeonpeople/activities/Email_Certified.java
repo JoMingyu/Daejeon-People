@@ -30,10 +30,9 @@ public class Email_Certified extends AppCompatActivity {
     private EditText email;
     private EditText checkCode;
     private Button confirmButton;
-    public static boolean emailCertified = false;
 
     private int statusCode;
-    private boolean emailDemanded = false;
+    public static boolean emailDemanded = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +46,7 @@ public class Email_Certified extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
-                if(emailDemanded == false){
+                if(!emailDemanded){
                     params.put("email", email.getText().toString());
                     aQuery = new AQuery(getApplicationContext());
                     aQuery.ajax("http://52.79.134.200/signup/email/demand", params, String.class, new AjaxCallback<String>(){
@@ -55,25 +54,26 @@ public class Email_Certified extends AppCompatActivity {
                         public void callback(String url, String response, AjaxStatus status) {
                             statusCode = status.getCode();
                             if(statusCode == 201){
-                                SignUp.emailCertifiedBtn.setTextColor(Color.rgb(111, 186, 119));
                                 emailDemanded = true;
+                                confirmButton.setText("인증");
                                 ShowDialog();
-                            } else if(statusCode == 204){
+                            } else {
                                 Toast.makeText(getApplicationContext(), "이미 존재하는 이메일입니다.", Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
-                } else if(emailDemanded == true){
+                } else if(emailDemanded){
                     checkCode = (EditText)findViewById(R.id.checkCode);
                     params.put("code",checkCode.getText().toString());
-                    System.out.println(params);
-                    aQuery.ajax("http://52.79.134.200:80/signup/email/verify", params, String.class, new AjaxCallback<String>(){
+                    aQuery.ajax("http://52.79.134.200/signup/email/verify", params, String.class, new AjaxCallback<String>(){
                        @Override
                         public void callback(String url, String response, AjaxStatus status){
                             if(status.getCode() == 201){
                                 Intent intent = new Intent(getApplicationContext(), SignUp.class);
                                 intent.putExtra("email", email.getText().toString());
                                 startActivity(intent);
+                            } else {
+                                Toast.makeText(getApplicationContext(), "인증번호가 맞지 않습니다.", Toast.LENGTH_SHORT).show();
                             }
                        }
                     });
