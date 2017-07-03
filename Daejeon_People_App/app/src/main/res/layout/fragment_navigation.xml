@@ -40,7 +40,7 @@
                 android:layout_width="match_parent"
                 android:layout_margin="10dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/txtUsername"
+                android:id="@+id/userName"
                 android:layout_weight="1"
                 android:text="밀라 커빈스"
                 android:textSize="20sp"

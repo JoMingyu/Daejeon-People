@@ -1,6 +1,7 @@
 package com.daejeonpeople.activities;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
@@ -22,12 +23,13 @@ public class Splash extends Activity{
         hd.postDelayed(new Runnable() {
             @Override
             public void run() {
-                finish();
+                judge();
             }
         }, 3000);
     }
 
     private void judge() {
-
+        Intent intent = new Intent(getApplicationContext(), SignUp.class);
+        startActivity(intent);
     }
 }

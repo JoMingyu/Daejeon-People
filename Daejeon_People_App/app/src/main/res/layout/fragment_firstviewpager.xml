@@ -64,6 +64,7 @@
                     android:layout_height="match_parent">
 
                     <Button
+                        android:id="@+id/detailBtn"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_alignParentRight="true"
