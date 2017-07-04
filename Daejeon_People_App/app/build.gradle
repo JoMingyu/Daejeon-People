@@ -34,4 +34,5 @@ dependencies {
     compile 'com.google.firebase:firebase-messaging:9.4.0'
     testCompile 'junit:junit:4.12'
     compile 'com.ssomai:android.scalablelayout:2.0.0'
+    provided 'org.jbundle.util.osgi.wrapped:org.jbundle.util.osgi.wrapped.org.apache.http.client:4.1.2'
 }

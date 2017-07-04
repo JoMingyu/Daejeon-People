@@ -16,7 +16,7 @@
         <activity android:name=".activities.Email_Certified" />
         <activity android:name=".activities.Chatting"/>
         <activity android:name=".activities.AddressBook" android:theme="@style/CustomActionBarTheme"/>
-        <activity android:name=".activities.ChatList">
+        <activity android:name=".activities.SignIn">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -16,12 +16,10 @@ public class ChatList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.chat_list_listview);
 
-
         final ActionBar chatting = getActionBar();
         chatting.setCustomView(R.layout.custom_chatlist);
         chatting.setDisplayShowTitleEnabled(false);
         chatting.setDisplayShowCustomEnabled(true);
         chatting.setDisplayShowHomeEnabled(false);
-
     }
 }

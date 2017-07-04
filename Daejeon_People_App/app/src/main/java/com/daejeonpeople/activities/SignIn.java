@@ -18,6 +18,7 @@ import com.androidquery.callback.AjaxStatus;
 import com.daejeonpeople.R;
 import com.daejeonpeople.connection.connectionValues;
 
+import org.apache.http.cookie.Cookie;
 import org.w3c.dom.Text;
 
 import java.util.HashMap;
@@ -46,53 +47,81 @@ public class SignIn extends Activity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.signin);
 
-        submitBtn = (Button) findViewById(R.id.signinSubmit);
-        userId = (EditText) findViewById(R.id.userId);
-        userPassword = (EditText) findViewById(R.id.userPassword);
+        Map<String, Object> params = new HashMap<>();
 
-        signUpView = (TextView) findViewById(R.id.signUp);
-        findIdView = (TextView) findViewById(R.id.findId);
-        findPasswordView = (TextView) findViewById(R.id.findPassword);
+        params.put("id", "city7312");
+        params.put("password", "uursty199");
+        params.put("keep_login", true);
 
-        submitBtn.setOnClickListener(new View.OnClickListener() {
+        aQuery = new AQuery(getApplicationContext());
+        aQuery.ajax("http://52.79.134.200/signin", params, String.class, new AjaxCallback<String>(){
             @Override
-            public void onClick(View v) {
-                aQuery = new AQuery(getApplicationContext());
-
-                String id = userId.getText().toString();
-                String password = userPassword.getText().toString();
-//                boolean keepLogin = keepLoginBox.isChecked();
-                boolean keepLogin = true;
-
-                if(!id.isEmpty() && !password.isEmpty()) {
-                    Map<String, Object> params = new HashMap<>();
-
-                    params.put("id", id);
-                    params.put("password", password);
-                    params.put("keep_login", keepLogin);
-
-                    aQuery.ajax("http://52.79.134.200/signin", params, String.class, new AjaxCallback<String>(){
-                        @Override
-                        public void callback(String url, String response, AjaxStatus status){
-                            String cookie = detectCookie(status);
-                            int statusCode = status.getCode();
-                            if(statusCode == 201) {
-                                finish();
-                                Intent intent = new Intent(getApplicationContext(), Main.class);
-                                startActivity(intent);
-                            } else {
-                                Snackbar.make(getWindow().getDecorView().getRootView(), "아이디나 비밀번호를 확인하세요.", 3000).show();
-                            }
-                        }
-                    });
+            public void callback(String url, String response, AjaxStatus status){
+                String cookie = detectCookie(status);
+                int statusCode = status.getCode();
+                if(statusCode == 201) {
+                    finish();
+                    Intent intent = new Intent(getApplicationContext(), Main.class);
+                    startActivity(intent);
                 } else {
-                    Snackbar.make(getWindow().getDecorView().getRootView(), "로그인 성공", 3000).show();
+                    Snackbar.make(getWindow().getDecorView().getRootView(), "아이디나 비밀번호를 확인하세요.", 3000).show();
                 }
             }
         });
+
+//        submitBtn = (Button) findViewById(R.id.signinSubmit);
+//        userId = (EditText) findViewById(R.id.userId);
+//        userPassword = (EditText) findViewById(R.id.userPassword);
+
+//        signUpView = (TextView) findViewById(R.id.signUp);
+//        findIdView = (TextView) findViewById(R.id.findId);
+//        findPasswordView = (TextView) findViewById(R.id.findPassword);
+
+//        submitBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                aQuery = new AQuery(getApplicationContext());
+//
+//                String id = userId.getText().toString();
+//                String password = userPassword.getText().toString();
+////                boolean keepLogin = keepLoginBox.isChecked();
+//                boolean keepLogin = true;
+//
+//                if(!id.isEmpty() && !password.isEmpty()) {
+//                    Map<String, Object> params = new HashMap<>();
+//
+//                    params.put("id", id);
+//                    params.put("password", password);
+//                    params.put("keep_login", keepLogin);
+//
+//                    aQuery.ajax("http://52.79.134.200/signin", params, String.class, new AjaxCallback<String>(){
+//                        @Override
+//                        public void callback(String url, String response, AjaxStatus status){
+//                            int statusCode = status.getCode();
+//                            if(statusCode == 201) {
+//                                finish();
+//                                Intent intent = new Intent(getApplicationContext(), Main.class);
+//                                startActivity(intent);
+//                            } else {
+//                                Snackbar.make(getWindow().getDecorView().getRootView(), "아이디나 비밀번호를 확인하세요.", 3000).show();
+//                            }
+//                        }
+//                    });
+//                } else {
+//                    Snackbar.make(getWindow().getDecorView().getRootView(), "로그인 성공", 3000).show();
+//                }
+//            }
+//        });
     }
 
     private String detectCookie(AjaxStatus status) {
-        List<Header> headers = status.getHeaders();
+        List<Cookie> cookies = status.getCookies();
+        for(Cookie cookie : cookies) {
+            if(cookie.getName().equals("UserSession")) {
+                return cookie.getValue();
+            }
+        }
+
+        return null;
     }
 }
