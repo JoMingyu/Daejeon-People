@@ -43,6 +43,7 @@
                     sl:scale_base_width="400">
 
                     <Button
+                        android:id="@+id/emailButton"
                         android:layout_width="156dp"
                         android:layout_height="0dp"
                         sl:scale_height="100"
@@ -97,6 +98,7 @@
                 sl:scale_base_height="70">
 
                 <EditText
+                    android:id="@+id/inputName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     sl:scale_width="350"
@@ -133,6 +135,7 @@
                 sl:scale_base_height="70">
 
                 <EditText
+                    android:id="@+id/inputId"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     sl:scale_width="350"
@@ -169,6 +172,7 @@
                 sl:scale_base_height="70">
 
                 <EditText
+                    android:id="@+id/inputPassword"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     sl:scale_width="350"
@@ -206,6 +210,7 @@
                 sl:scale_base_height="70">
 
                 <EditText
+                    android:id="@+id/inputPasswordConfirm"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     sl:scale_width="350"
@@ -242,7 +247,8 @@
                 sl:scale_base_width="400"
                 sl:scale_base_height="150">
 
-                <EditText
+                <Button
+                    android:id="@+id/submitButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     sl:scale_width="350"
@@ -251,10 +257,8 @@
                     android:gravity="center"
                     android:background="@drawable/round_corner_middle"
                     sl:scale_left="25"
-                    android:textColor="@color/White"
                     android:textStyle="bold"
-                    android:text="확인"
-                    android:textColorHint="@color/Gray"
+                    android:text="가입"
                     sl:scale_textsize="15"/>
 
             </com.ssomai.android.scalablelayout.ScalableLayout>

@@ -44,13 +44,13 @@ public class SignUp extends Activity {
         aQuery = new AQuery(getApplicationContext());
         firebase = new Firebase();
 
-        submitBtn = (Button) findViewById(R.id.signupSubmit);
-        emailCertifiedBtn = (Button) findViewById(R.id.emailCertified);
+        submitBtn = (Button) findViewById(R.id.submitButton);
+        emailCertifiedBtn = (Button) findViewById(R.id.emailButton);
 
-        userName = (EditText) findViewById(R.id.userName);
-        userId = (EditText) findViewById(R.id.userId);
-        userPassword = (EditText) findViewById(R.id.userPassword);
-        passwordConfirm = (EditText) findViewById(R.id.passwordConfirm);
+        userName = (EditText) findViewById(R.id.inputName);
+        userId = (EditText) findViewById(R.id.inputId);
+        userPassword = (EditText) findViewById(R.id.inputPassword);
+        passwordConfirm = (EditText) findViewById(R.id.inputPasswordConfirm);
 
         if(UserInSignup.emailCertified) {
             // 이메일 인증이 완료됐다면 버튼 컬러 변경
