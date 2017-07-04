@@ -45,6 +45,12 @@ public class FindID extends Activity {
     private boolean emailDemanded = false;
 
     @Override
+    protected void onPause() {
+        super.onPause();
+        finish();
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.find_id);

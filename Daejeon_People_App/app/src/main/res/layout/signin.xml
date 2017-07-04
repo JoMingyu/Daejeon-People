@@ -235,6 +235,7 @@
                     sl:scale_base_width="400">
 
                     <TextView
+                        android:id="@+id/signUpView"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
                         android:gravity="center_vertical"
@@ -268,6 +269,7 @@
                     sl:scale_base_width="400">
 
                     <TextView
+                        android:id="@+id/findIdView"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
                         android:text="아이디 찾기"
@@ -294,6 +296,7 @@
                     sl:scale_base_width="400">
 
                     <TextView
+                        android:id="@+id/findPasswordView"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
                         android:gravity="center"

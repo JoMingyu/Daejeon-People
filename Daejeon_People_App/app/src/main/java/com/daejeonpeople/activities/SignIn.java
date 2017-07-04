@@ -40,15 +40,46 @@ public class SignIn extends Activity{
     private TextView findPasswordView;
 
     @Override
+    protected void onPause() {
+        super.onPause();
+        finish();
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.signin);
 
         Map<String, Object> params = new HashMap<>();
 
+        signUpView = (TextView) findViewById(R.id.signUpView);
+        findIdView = (TextView) findViewById(R.id.findIdView);
+        findPasswordView = (TextView) findViewById(R.id.findPasswordView);
+
         submitBtn = (Button) findViewById(R.id.okBtn);
         userId = (EditText) findViewById(R.id.inputId);
         userPassword = (EditText) findViewById(R.id.inputPw);
+
+        signUpView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        findIdView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        findPasswordView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
 
         submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override

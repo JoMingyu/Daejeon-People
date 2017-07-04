@@ -9,6 +9,7 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.androidquery.AQuery;
 import com.androidquery.callback.AjaxCallback;
@@ -37,6 +38,12 @@ public class SignUp extends Activity {
     private EditText passwordConfirm;
 
     @Override
+    protected void onPause() {
+        super.onPause();
+        finish();
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.signup);
@@ -51,6 +58,8 @@ public class SignUp extends Activity {
         userId = (EditText) findViewById(R.id.inputId);
         userPassword = (EditText) findViewById(R.id.inputPassword);
         passwordConfirm = (EditText) findViewById(R.id.inputPasswordConfirm);
+
+
 
         if(UserInSignup.emailCertified) {
             // 이메일 인증이 완료됐다면 버튼 컬러 변경
@@ -171,7 +180,6 @@ public class SignUp extends Activity {
                             int statusCode = status.getCode();
                             if (statusCode == 201) {
                                 SnackbarManager.createCancelableSnackbar(getWindow().getDecorView().getRootView(), "회원가입 성공!").show();
-                                finish();
                                 Intent intent = new Intent(getApplicationContext(), SignIn.class);
                                 startActivity(intent);
                             } else {
