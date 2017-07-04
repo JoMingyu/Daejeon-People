@@ -52,9 +52,6 @@ public class FindPW extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.find_password);
 
-        SnackbarManager.createCancelableSnackbar(getWindow().getDecorView().getRootView(), "Manager").show();
-        Snackbar.make(getWindow().getDecorView().getRootView(), "Native", 3000).show();
-
         aQuery = new AQuery(getApplicationContext());
 
         findBtn = (Button) findViewById(R.id.findBtn);
@@ -104,9 +101,9 @@ public class FindPW extends Activity {
                     });
                 } else {
                     params.put("code", inputCode.getText().toString());
-                    aQuery.ajax("http://52.79.134.200/find/password/verify", params, String.class, new AjaxCallback<String>(){
+                    aQuery.ajax("http://52.79.134.200/find/password/verify", params, String.class, new AjaxCallback<String>() {
                        @Override
-                        public void callback(String url, String response, AjaxStatus status){
+                        public void callback(String url, String response, AjaxStatus status) {
                            if(status.getCode() == 201){
                                inputCode.setTextColor(ColorManager.successColor);
 

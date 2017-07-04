@@ -2,10 +2,8 @@ package com.daejeonpeople.activities;
 
 import android.app.Activity;
 import android.app.Dialog;
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -20,7 +18,6 @@ import com.daejeonpeople.R;
 import com.daejeonpeople.support.security.AES;
 import com.daejeonpeople.support.views.ColorManager;
 import com.daejeonpeople.support.views.SnackbarManager;
-import com.daejeonpeople.valueobject.UserInSignup;
 
 import org.json.JSONException;
 import org.json.JSONObject;

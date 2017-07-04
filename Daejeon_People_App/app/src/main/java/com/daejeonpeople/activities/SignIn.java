@@ -39,10 +39,14 @@ public class SignIn extends Activity{
     private TextView findIdView;
     private TextView findPasswordView;
 
+    private boolean needFinish;
+
     @Override
     protected void onPause() {
         super.onPause();
-        finish();
+        if(needFinish) {
+            finish();
+        }
     }
 
     @Override
@@ -50,6 +54,7 @@ public class SignIn extends Activity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.signin);
 
+        needFinish = false;
         Map<String, Object> params = new HashMap<>();
 
         signUpView = (TextView) findViewById(R.id.signUpView);
@@ -63,21 +68,24 @@ public class SignIn extends Activity{
         signUpView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(getApplicationContext(), SignUp.class);
+                startActivity(intent);
             }
         });
 
         findIdView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(getApplicationContext(), FindID.class);
+                startActivity(intent);
             }
         });
 
         findPasswordView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(getApplicationContext(), FindPW.class);
+                startActivity(intent);
             }
         });
 
@@ -104,8 +112,8 @@ public class SignIn extends Activity{
                             String cookie = new SessionManager(status).detectCookie("UserSession");
                             int statusCode = status.getCode();
                             if(statusCode == 201) {
-                                finish();
                                 Intent intent = new Intent(getApplicationContext(), Main.class);
+                                needFinish = true;
                                 startActivity(intent);
                             } else {
                                 SnackbarManager.createCancelableSnackbar(getWindow().getDecorView().getRootView(), "아이디나 비밀번호를 확인하세요.").show();
