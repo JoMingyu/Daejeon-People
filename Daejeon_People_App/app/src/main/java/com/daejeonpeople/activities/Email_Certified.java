@@ -35,12 +35,12 @@ public class Email_Certified extends AppCompatActivity {
     private EditText checkCode;
     private Button confirmButton;
 
-    private int statusCode;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.email_certified);
+
+        aQuery = new AQuery(getApplicationContext());
 
         confirmButton = (Button) findViewById(R.id.confirmBtn);
         email = (EditText) findViewById(R.id.email);
@@ -73,12 +73,10 @@ public class Email_Certified extends AppCompatActivity {
                     // 버튼이 눌렸을 때 이메일 인증번호가 전송되지 않은 상태라면
 
                     params.put("email", email.getText().toString());
-                    aQuery = new AQuery(getApplicationContext());
                     aQuery.ajax("http://52.79.134.200/signup/email/demand", params, String.class, new AjaxCallback<String>(){
                         @Override
                         public void callback(String url, String response, AjaxStatus status) {
-                            statusCode = status.getCode();
-                            if(statusCode == 201){
+                            if(status.getCode() == 201){
                                 UserInSignup.emailDemanded = true;
                                 // 이메일 인증 번호가 전송되었음을 표시
 
@@ -88,15 +86,15 @@ public class Email_Certified extends AppCompatActivity {
                                 confirmButton.setText("인증");
                                 ShowDialog();
                             } else {
-                                UserInSignup.emailDemanded = false;
                                 email.setTextColor(ColorManager.failureColor);
+
                                 SnackbarManager.createCancelableSnackbar(v, "이미 존재하는 이메일입니다.", 3000).show();
                             }
                         }
                     });
                 } else {
                     // 전송된 상태라면
-                    params.put("code",checkCode.getText().toString());
+                    params.put("code", checkCode.getText().toString());
                     aQuery.ajax("http://52.79.134.200/signup/email/verify", params, String.class, new AjaxCallback<String>(){
                        @Override
                         public void callback(String url, String response, AjaxStatus status){

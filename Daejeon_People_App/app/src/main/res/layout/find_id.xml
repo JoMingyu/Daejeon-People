@@ -57,7 +57,7 @@
             android:layout_height="45dp"
             android:layout_gravity="center_horizontal"
             android:background="@drawable/round_corner_middle"
-            android:text="찾아보기"
+            android:text="발급"
             android:textColor="@color/White"
             android:layout_marginBottom="100dp"/>
     </LinearLayout>
