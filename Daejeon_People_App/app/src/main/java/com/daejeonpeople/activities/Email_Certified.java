@@ -56,6 +56,7 @@ public class Email_Certified extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+                email.setTextColor(Color.rgb(0, 0, 0));
                 emailDemanded = false;
                 confirmButton.setText("발급");
             }
@@ -103,10 +104,12 @@ public class Email_Certified extends AppCompatActivity {
                                 emailCertified = true;
                                 // 인증 완료되었음을 표시
 
+                                checkCode.setTextColor(Color.rgb(111, 186, 119));
                                 Intent intent = new Intent(getApplicationContext(), SignUp.class);
                                 intent.putExtra("email", email.getText().toString());
                                 startActivity(intent);
                             } else {
+                                checkCode.setTextColor(Color.rgb(252, 113, 80));
                                 emailCertified = false;
                                 Snackbar.make(getWindow().getDecorView().getRootView(), "인증번호가 맞지 않습니다.", 3000).show();
                             }
