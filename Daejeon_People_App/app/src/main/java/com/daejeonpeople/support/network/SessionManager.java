@@ -9,7 +9,7 @@ import org.apache.http.cookie.Cookie;
 import java.util.List;
 
 /**
- * Created by dsm2016 on 2017-07-04.
+ * Created JoMingyu on 2017-07-04.
  */
 
 public class SessionManager {

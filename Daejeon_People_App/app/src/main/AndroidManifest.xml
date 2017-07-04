@@ -11,14 +11,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.Splash" />
         <activity android:name=".activities.SignUp"/>
         <activity android:name=".activities.Email_Certified" />
         <activity android:name=".activities.Chatting"/>
         <activity android:name=".activities.AddressBook" android:theme="@style/CustomActionBarTheme"/>
         <activity android:name=".activities.SignIn"/>
-        <activity android:name=".activities.FindID"/>
-        <activity android:name=".activities.Main" android:theme="@style/CustomActionBarTheme">
+        <activity android:name=".activities.Main"/>
+        <activity android:name=".activities.Splash" android:theme="@style/CustomActionBarTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -28,6 +27,7 @@
         <activity android:name=".activities.Category" />
         <activity android:name=".activities.EntryID" />
         <activity android:name=".activities.EntryPW" />
+        <activity android:name=".activities.FindID" />
         <activity android:name=".activities.FindPW" />
         <activity android:name=".activities.Search" />
     </application>

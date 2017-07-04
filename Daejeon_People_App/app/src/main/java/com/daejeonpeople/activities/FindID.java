@@ -16,6 +16,7 @@ import com.androidquery.AQuery;
 import com.androidquery.callback.AjaxCallback;
 import com.androidquery.callback.AjaxStatus;
 import com.daejeonpeople.R;
+import com.daejeonpeople.support.security.AES;
 import com.daejeonpeople.support.views.ColorManager;
 import com.daejeonpeople.support.views.SnackbarManager;
 import com.daejeonpeople.valueobject.UserInSignup;
@@ -30,6 +31,7 @@ import java.util.Map;
  * Created by geni on 2017. 5. 28..
  */
 // 근철
+// Modified by JoMingyu
 
 public class FindID extends Activity {
     private AQuery aQuery;
@@ -100,7 +102,7 @@ public class FindID extends Activity {
                                 try {
                                     JSONObject resp = new JSONObject(response);
 
-                                    System.out.println(resp.getString("id"));
+                                    String id = AES.decrypt(resp.getString("id"));
                                 } catch(JSONException e) {
                                     e.printStackTrace();
                                 }
