@@ -6,36 +6,189 @@
     android:layout_height="match_parent"
     android:background="@mipmap/background">
 
-    <com.ssomai.android.scalablelayout.ScalableLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        sl:scale_base_height="200"
-        sl:scale_base_width="350">
+        android:gravity="center"
+        android:orientation="vertical">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/ic_logo"
-            android:text="버튼1"
-            sl:scale_height="100"
-            sl:scale_width="100"
-            sl:scale_left="120"
-            sl:scale_textsize="50"
-            sl:scale_top="20"/>
-
-        <TextView
+        <com.ssomai.android.scalablelayout.ScalableLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="대전사람"
-            android:textColor="@color/White"
-            android:textStyle="bold"
-            sl:scale_textsize="20"
-            sl:scale_height="50"
-            sl:scale_width="100"
-            sl:scale_left="130"
-            sl:scale_top="130"/>
+            sl:scale_base_height="140"
+            sl:scale_base_width="400">
 
-    </com.ssomai.android.scalablelayout.ScalableLayout>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_logo"
+                sl:scale_left="150"
+                sl:scale_top="20" />
+        </com.ssomai.android.scalablelayout.ScalableLayout>
+
+        <com.ssomai.android.scalablelayout.ScalableLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            sl:scale_base_height="30"
+            sl:scale_base_width="400">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="대전사람"
+                android:textStyle="bold"
+                sl:scale_left="150"
+                sl:scale_textsize="25" />
+
+        </com.ssomai.android.scalablelayout.ScalableLayout>
+
+        <com.ssomai.android.scalablelayout.ScalableLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            sl:scale_base_height="30"
+            sl:scale_base_width="400">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:text="대전광역시 정보 알림 서비스"
+                android:textStyle="bold"
+                sl:scale_bottom="5"
+                sl:scale_textsize="17.5"
+                sl:scale_top="5"
+                sl:scale_width="400"
+                sl:sclae_height="20"
+                android:gravity="center_horizontal"/>
+
+        </com.ssomai.android.scalablelayout.ScalableLayout>
+
+        <com.ssomai.android.scalablelayout.ScalableLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            sl:scale_base_height="90"
+            sl:scale_base_width="400"
+            android:paddingTop="20dp">
+
+            <ImageView
+                android:background="@drawable/round_corner"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                sl:scale_width="370"
+                sl:scale_height="60"
+                sl:scale_left="15"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                sl:scale_width="370"
+                sl:scale_height="60"
+                android:text="아이디를 입력하세요"
+                android:textStyle="bold"
+                sl:scale_textsize="18"
+                android:textColor="@color/Gray"
+                sl:scale_left="15"
+                android:gravity="center"/>
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="transform"
+                android:textStyle="bold"
+                sl:scale_bottom="5"
+                sl:scale_left="15"
+                sl:scale_textsize="17.5"
+                sl:scale_width="370"
+                sl:scale_height="60"/>
+
+        </com.ssomai.android.scalablelayout.ScalableLayout>
+
+        <com.ssomai.android.scalablelayout.ScalableLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            sl:scale_base_height="90"
+            sl:scale_base_width="400"
+            android:paddingTop="10dp">
+
+            <ImageView
+                android:background="@drawable/round_corner"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                sl:scale_width="370"
+                sl:scale_height="60"
+                sl:scale_left="15"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                sl:scale_width="370"
+                sl:scale_height="60"
+                android:text="비밀번호를 입력하세요"
+                android:textStyle="bold"
+                sl:scale_textsize="18"
+                android:textColor="@color/Gray"
+                sl:scale_left="15"
+                android:gravity="center"/>
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="transform"
+                android:textStyle="bold"
+                sl:scale_bottom="5"
+                sl:scale_left="15"
+                sl:scale_textsize="17.5"
+                sl:scale_width="370"
+                sl:scale_height="60"/>
+
+        </com.ssomai.android.scalablelayout.ScalableLayout>
+
+        <com.ssomai.android.scalablelayout.ScalableLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            sl:scale_base_height="60"
+            sl:scale_base_width="400">
+
+            <Button
+                android:background="@drawable/round_corner_middle"
+                android:text="확인"
+                sl:scale_textsize="20"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                sl:scale_width="370"
+                sl:scale_height="60"
+                sl:scale_left="15"/>
+
+        </com.ssomai.android.scalablelayout.ScalableLayout>
+
+        <com.ssomai.android.scalablelayout.ScalableLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            sl:scale_base_height="60"
+            sl:scale_base_width="400">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                sl:scale_width="150"
+                sl:scale_height="60"
+                sl:scale_left="250">
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                sl:scale_height="60"
+                sl:scale_width="250">
+
+
+
+            </LinearLayout>
+
+        </com.ssomai.android.scalablelayout.ScalableLayout>
+
+
+    </LinearLayout>
 
 
 </LinearLayout>
