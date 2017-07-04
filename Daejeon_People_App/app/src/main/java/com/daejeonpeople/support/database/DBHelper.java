@@ -6,7 +6,6 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 public class DBHelper extends SQLiteOpenHelper {
-
     private DBHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
     }
@@ -65,15 +64,27 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL("UPDATE CHECK SET CHECK.first = 0");
     }
 
-    public int getAutoCheck(){
+    public boolean isAutoLogined(){
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.rawQuery("select autologin from CHECK", null);
-        return cursor.getInt(0);
+
+        if(cursor.getInt(0) == 1) {
+            // 자동로그인 활성화
+            return true;
+        } else {
+            return false;
+        }
     }
 
-    public int getFirstCheck(){
+    public boolean isFirstExecution(){
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.rawQuery("select first from CHECK", null);
-        return cursor.getInt(0);
+
+        if(cursor.getInt(0) == 1) {
+            // 첫 실행
+            return true;
+        } else {
+            return false;
+        }
     }
 }
