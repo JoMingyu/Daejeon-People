@@ -1,5 +1,6 @@
 package com.daejeonpeople.activities;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
@@ -54,5 +55,15 @@ public class AddressBook extends Activity {
                 }
             }
         });
+
+        final ActionBar addressbook = getActionBar();
+        addressbook.setCustomView(R.layout.custom_addresslist);
+        addressbook.setDisplayShowTitleEnabled(false);
+        addressbook.setDisplayShowCustomEnabled(true);
+        addressbook.setDisplayShowHomeEnabled(false);
+
+        final AddressBookAdapter adapter = new AddressBookAdapter();
+        final ListView listView = (ListView)findViewById(R.id.addressList);
+        listView.setAdapter(adapter);
     }
 }
