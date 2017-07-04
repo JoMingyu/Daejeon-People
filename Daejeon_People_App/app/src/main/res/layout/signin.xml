@@ -53,11 +53,10 @@
                 android:layout_height="0dp"
                 android:text="대전광역시 정보 알림 서비스"
                 android:textStyle="bold"
-                sl:scale_bottom="5"
                 sl:scale_textsize="17.5"
                 sl:scale_top="5"
                 sl:scale_width="400"
-                sl:sclae_height="20"
+                sl:scale_height="20"
                 android:gravity="center_horizontal"/>
 
         </com.ssomai.android.scalablelayout.ScalableLayout>
@@ -93,9 +92,7 @@
                 android:id="@+id/inputId"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:background="transform"
                 android:textStyle="bold"
-                sl:scale_bottom="5"
                 sl:scale_left="15"
                 sl:scale_textsize="17.5"
                 sl:scale_width="370"
@@ -134,9 +131,7 @@
                 android:id="@+id/inputPw"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:background="transform"
                 android:textStyle="bold"
-                sl:scale_bottom="5"
                 sl:scale_left="15"
                 sl:scale_textsize="17.5"
                 sl:scale_width="370"
@@ -165,29 +160,77 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="10dp">
 
-            <com.ssomai.android.scalablelayout.ScalableLayout
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                sl:scale_base_height="60"
-                sl:scale_base_width="400">
+                android:layout_weight="1">
 
+                <com.ssomai.android.scalablelayout.ScalableLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    sl:scale_base_height="70"
+                    sl:scale_base_width="400">
 
-            </com.ssomai.android.scalablelayout.ScalableLayout>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:text="계정이 없으면 등록해주세요."
+                        sl:scale_textsize="26"
+                        sl:scale_width="400"
+                        sl:scale_height="70"
+                        android:gravity="center_vertical|right"/>
 
-            <com.ssomai.android.scalablelayout.ScalableLayout
-                android:layout_width="wrap_content"
+                </com.ssomai.android.scalablelayout.ScalableLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                sl:scale_base_height="60"
-                sl:scale_base_width="400">
+                android:layout_weight="2">
 
+                <com.ssomai.android.scalablelayout.ScalableLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    sl:scale_base_height="140"
+                    sl:scale_base_width="400">
 
-            </com.ssomai.android.scalablelayout.ScalableLayout>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:text="회원가입"
+                        android:textStyle="bold"
+                        sl:scale_textsize="50"
+                        sl:scale_width="400"
+                        sl:scale_height="140"
+                        android:gravity="center_vertical"
+                        sl:scale_left="20"/>
+
+                </com.ssomai.android.scalablelayout.ScalableLayout>
+
+            </LinearLayout>
         </LinearLayout>
+
+        <com.ssomai.android.scalablelayout.ScalableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            sl:scale_base_height="70"
+            sl:scale_base_width="400">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                sl:scale_width="200"
+                sl:scale_height="140"/>
+
+
+        </com.ssomai.android.scalablelayout.ScalableLayout>
 
 
     </LinearLayout>
-
 
 </LinearLayout>
