@@ -20,6 +20,7 @@ import com.androidquery.callback.AjaxCallback;
 import com.androidquery.callback.AjaxStatus;
 import com.daejeonpeople.R;
 import com.daejeonpeople.connection.connectionValues;
+import com.daejeonpeople.valueobject.User;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -35,8 +36,6 @@ public class Email_Certified extends AppCompatActivity {
     private Button confirmButton;
 
     private int statusCode;
-    private boolean emailDemanded = false;
-    public static boolean emailCertified = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +46,7 @@ public class Email_Certified extends AppCompatActivity {
         email = (EditText) findViewById(R.id.email);
         checkCode = (EditText) findViewById (R.id.checkCode);
 
-        emailDemanded = false;
+        User.emailDemanded = false;
         // 액티비티 로드마다 false
 
         email.addTextChangedListener(new TextWatcher() {
@@ -56,8 +55,9 @@ public class Email_Certified extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+                // 이메일 EditText가 수정되면 발급으로 다시 되도록
                 email.setTextColor(Color.rgb(0, 0, 0));
-                emailDemanded = false;
+                User.emailDemanded = false;
                 confirmButton.setText("발급");
             }
 
@@ -69,7 +69,7 @@ public class Email_Certified extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
-                if(!emailDemanded){
+                if(!User.emailDemanded){
                     // 버튼이 눌렸을 때 이메일 인증번호가 전송되지 않은 상태라면
 
                     params.put("email", email.getText().toString());
@@ -79,7 +79,7 @@ public class Email_Certified extends AppCompatActivity {
                         public void callback(String url, String response, AjaxStatus status) {
                             statusCode = status.getCode();
                             if(statusCode == 201){
-                                emailDemanded = true;
+                                User.emailDemanded = true;
                                 // 이메일 인증 번호가 전송되었음을 표시
 
                                 email.setTextColor(Color.rgb(111, 186, 119));
@@ -88,7 +88,7 @@ public class Email_Certified extends AppCompatActivity {
                                 confirmButton.setText("인증");
                                 ShowDialog();
                             } else {
-                                emailDemanded = false;
+                                User.emailDemanded = false;
                                 email.setTextColor(Color.rgb(252, 113, 80));
                                 Snackbar.make(getWindow().getDecorView().getRootView(), "이미 존재하는 이메일입니다.", 3000).show();
                             }
@@ -101,7 +101,7 @@ public class Email_Certified extends AppCompatActivity {
                        @Override
                         public void callback(String url, String response, AjaxStatus status){
                             if(status.getCode() == 201){
-                                emailCertified = true;
+                                User.emailCertified = true;
                                 // 인증 완료되었음을 표시
 
                                 checkCode.setTextColor(Color.rgb(111, 186, 119));
@@ -110,7 +110,7 @@ public class Email_Certified extends AppCompatActivity {
                                 startActivity(intent);
                             } else {
                                 checkCode.setTextColor(Color.rgb(252, 113, 80));
-                                emailCertified = false;
+                                User.emailCertified = false;
                                 Snackbar.make(getWindow().getDecorView().getRootView(), "인증번호가 맞지 않습니다.", 3000).show();
                             }
                        }

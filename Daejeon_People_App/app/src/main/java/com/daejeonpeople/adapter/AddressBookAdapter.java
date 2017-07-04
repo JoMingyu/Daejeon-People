@@ -8,7 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.daejeonpeople.R;
-import com.daejeonpeople.ValueObjects.AddressBookListItem;
+import com.daejeonpeople.valueobject.AddressBookListItem;
 
 import java.util.ArrayList;
 /**
