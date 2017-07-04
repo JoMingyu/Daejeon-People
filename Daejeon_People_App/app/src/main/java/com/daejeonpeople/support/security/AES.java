@@ -1,13 +1,28 @@
 package com.daejeonpeople.support.security;
 
+import org.apache.commons.codec.binary.Base64;
+
+import java.io.UnsupportedEncodingException;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
+import java.security.Key;
+import java.security.NoSuchAlgorithmException;
+
+import javax.crypto.BadPaddingException;
+import javax.crypto.Cipher;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
+import javax.crypto.spec.IvParameterSpec;
+import javax.crypto.spec.SecretKeySpec;
+
 /**
- * Created by dsm2016 on 2017-07-04.
+ * Created by JoMingyu on 2017-07-04.
  */
 
 public class AES {
     private static String ips;
     private static Key keySpec;
-    private static String key = Config.getValue("aesKey");
+    private static String key = "d.df!*&ek@s.Cde/q";
 
     static {
         try {
@@ -15,8 +30,8 @@ public class AES {
             byte[] b = key.getBytes("UTF-8");
             System.arraycopy(b, 0, keyBytes, 0, keyBytes.length);
             SecretKeySpec keySpec = new SecretKeySpec(keyBytes, "AES");
-            AES256.ips = key.substring(0, 16);
-            AES256.keySpec = keySpec;
+            AES.ips = key.substring(0, 16);
+            AES.keySpec = keySpec;
         } catch (Exception e) {
             e.printStackTrace();
         }
