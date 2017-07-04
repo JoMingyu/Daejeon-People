@@ -2,10 +2,13 @@ package com.daejeonpeople.activities;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.os.Handler;
 
 import com.daejeonpeople.R;
+import com.daejeonpeople.support.database.DBHelper;
 
 /**
  * Created by 10102김동규 on 2017-05-10.
@@ -27,9 +30,8 @@ public class Splash extends Activity{
     }
 
     private void judge() {
+        DBHelper dbHelper = DBHelper.getInstance(getApplicationContext(), "CEHCK.db", null, 1);
 
-
-        finish();
         Intent intent = new Intent(getApplicationContext(), SignUp.class);
         startActivity(intent);
     }
