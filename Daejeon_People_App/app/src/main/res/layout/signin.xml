@@ -66,7 +66,8 @@
             android:layout_height="wrap_content"
             sl:scale_base_height="90"
             sl:scale_base_width="400"
-            android:paddingTop="20dp">
+            android:paddingTop="20dp"
+            android:layout_gravity="center_horizontal">
 
             <ImageView
                 android:background="@drawable/round_corner"
@@ -93,10 +94,13 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:textStyle="bold"
-                sl:scale_left="15"
+                sl:scale_left="40"
                 sl:scale_textsize="17.5"
-                sl:scale_width="370"
-                sl:scale_height="60"/>
+                sl:scale_width="320"
+                sl:scale_height="60"
+                android:background="@android:color/transparent"
+                android:gravity="center"
+                android:textColor="@color/Black"/>
 
         </com.ssomai.android.scalablelayout.ScalableLayout>
 
@@ -132,10 +136,14 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:textStyle="bold"
-                sl:scale_left="15"
+                sl:scale_left="40"
                 sl:scale_textsize="17.5"
-                sl:scale_width="370"
-                sl:scale_height="60"/>
+                sl:scale_width="320"
+                sl:scale_height="60"
+                android:background="@android:color/transparent"
+                android:gravity="center"
+                android:textColor="@color/Black"
+                android:inputType="textPassword"/>
 
         </com.ssomai.android.scalablelayout.ScalableLayout>
 

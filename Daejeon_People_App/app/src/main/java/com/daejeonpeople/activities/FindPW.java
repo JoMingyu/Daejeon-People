@@ -78,8 +78,8 @@ public class FindPW extends Activity {
         myDialog.setContentView(dialogLayout);
         myDialog.show();
 
-        Button okBtn = (Button)dialogLayout.findViewById(R.id.btn_ok);
-        Button cancelBtn = (Button)dialogLayout.findViewById(R.id.btn_cancel);
+        Button okBtn = (Button)dialogLayout.findViewById(R.id.okBtn);
+        Button cancelBtn = (Button)dialogLayout.findViewById(R.id.cancelBtn);
 
         okBtn.setOnClickListener(new View.OnClickListener()
         {

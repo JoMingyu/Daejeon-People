@@ -132,8 +132,8 @@ public class Email_Certified extends AppCompatActivity {
         myDialog.setContentView(dialogLayout);
         myDialog.show();
 
-        Button btn_ok = (Button)dialogLayout.findViewById(R.id.btn_ok);
-        Button btn_cancel = (Button)dialogLayout.findViewById(R.id.btn_cancel);
+        Button btn_ok = (Button)dialogLayout.findViewById(R.id.okBtn);
+        Button btn_cancel = (Button)dialogLayout.findViewById(R.id.cancelBtn);
 
         btn_ok.setOnClickListener(new View.OnClickListener()
         {
