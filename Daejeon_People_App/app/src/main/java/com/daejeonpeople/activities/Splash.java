@@ -16,6 +16,12 @@ import com.daejeonpeople.support.database.DBHelper;
 
 public class Splash extends Activity{
     @Override
+    protected void onPause(){
+        super.onPause();
+        finish();
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash);
@@ -32,10 +38,11 @@ public class Splash extends Activity{
     private void judge() {
         DBHelper dbHelper = DBHelper.getInstance(getApplicationContext(), "CHECK.db", null, 1);
         Intent SignIn = new Intent(getApplicationContext(), SignIn.class);
+        Intent SignUp = new Intent(getApplicationContext(), SignUp.class);
         Intent Main = new Intent(getApplicationContext(), Main.class);
 
         if(dbHelper.isFirstExecution()){
-            //Start Step
+            startActivity(SignUp);
         } else {
             if(dbHelper.isAutoLogined()) {
                 startActivity(SignIn);

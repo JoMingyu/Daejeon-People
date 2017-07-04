@@ -49,7 +49,7 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     public void insert(SQLiteDatabase db){
-        db.execSQL("INSERT INTO `CHECK`(first, autologin) VALUES(0, 1);");
+        db.execSQL("INSERT INTO `CHECK`(first, autologin) VALUES(1, 0);");
     }
 
     public void autoLogin(){
@@ -64,7 +64,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public boolean isAutoLogined(){
         SQLiteDatabase db = getReadableDatabase();
-        Cursor cursor = db.rawQuery("select * from `CHECK`", null);
+        Cursor cursor = db.rawQuery("select autologin from `CHECK`", null);
         cursor.moveToFirst();
         if(cursor.getInt(0) == 1) {
             // 자동로그인 활성화
@@ -78,6 +78,7 @@ public class DBHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.rawQuery("select first from `CHECK`", null);
         cursor.moveToFirst();
+        System.out.println(cursor.getInt(0));
         if(cursor.getInt(0) == 1) {
             // 첫 실행
             return true;
