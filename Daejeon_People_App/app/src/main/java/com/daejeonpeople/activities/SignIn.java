@@ -3,27 +3,20 @@ package com.daejeonpeople.activities;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.preference.PreferenceActivity;
 import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.androidquery.AQuery;
 import com.androidquery.callback.AjaxCallback;
 import com.androidquery.callback.AjaxStatus;
 import com.daejeonpeople.R;
-import com.daejeonpeople.connection.connectionValues;
 import com.daejeonpeople.support.network.SessionManager;
 
-import org.apache.http.cookie.Cookie;
-import org.w3c.dom.Text;
-
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -37,7 +30,8 @@ public class SignIn extends Activity{
     private Button submitBtn;
     private EditText userId;
     private EditText userPassword;
-//    private CheckBox keepLoginBox;
+
+    private CheckBox keepLoginBox;
 
     private TextView signUpView;
     private TextView findIdView;
@@ -50,13 +44,9 @@ public class SignIn extends Activity{
 
         Map<String, Object> params = new HashMap<>();
 
-        submitBtn = (Button) findViewById(R.id.signinSubmit);
-        userId = (EditText) findViewById(R.id.userId);
-        userPassword = (EditText) findViewById(R.id.userPassword);
-
-        signUpView = (TextView) findViewById(R.id.signUp);
-        findIdView = (TextView) findViewById(R.id.findId);
-        findPasswordView = (TextView) findViewById(R.id.findPassword);
+        submitBtn = (Button) findViewById(R.id.okBtn);
+        userId = (EditText) findViewById(R.id.inputId);
+        userPassword = (EditText) findViewById(R.id.inputPw);
 
         submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
