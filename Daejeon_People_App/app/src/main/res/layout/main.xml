@@ -156,20 +156,6 @@
 
                                 </com.ssomai.android.scalablelayout.ScalableLayout>
 
-
-                                <!--<TextView-->
-                                    <!--android:layout_width="wrap_content"-->
-                                    <!--android:layout_height="wrap_content"-->
-                                    <!--android:text="이달의 가볼만한 곳"-->
-                                    <!--android:textColor="@color/colorPrimary"-->
-                                    <!--android:textSize="20dp" />-->
-
-                                <!--<TextView-->
-                                    <!--android:layout_width="wrap_content"-->
-                                    <!--android:layout_height="wrap_content"-->
-                                    <!--android:text="이달의 대전에서 가볼만한 곳을 추천해드립니다."-->
-                                    <!--android:textSize="10dp"/>-->
-
                             </LinearLayout>
 
                             <LinearLayout
