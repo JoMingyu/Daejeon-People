@@ -4,7 +4,7 @@ package com.daejeonpeople.valueobject;
  * Created by dsm2016 on 2017-07-04.
  */
 
-public class User {
+public class UserInSignup {
     public static String email;
     public static boolean emailDemanded;
     public static boolean emailCertified;

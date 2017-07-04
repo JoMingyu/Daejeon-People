@@ -2,7 +2,6 @@ package com.daejeonpeople.activities;
 
 import android.content.Intent;
 import android.graphics.Color;
-import android.provider.ContactsContract;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,13 +16,13 @@ import com.androidquery.AQuery;
 import com.androidquery.callback.AjaxCallback;
 import com.androidquery.callback.AjaxStatus;
 import com.daejeonpeople.R;
-import com.daejeonpeople.connection.connectionValues;
 import com.daejeonpeople.support.firebase.Firebase;
-import com.daejeonpeople.valueobject.User;
+import com.daejeonpeople.valueobject.UserInSignup;
 
 import java.util.HashMap;
 import java.util.Map;
-//민지
+// 민지
+// Modified by JoMingyu
 
 public class SignUp extends AppCompatActivity {
     private AQuery aQuery;
@@ -55,7 +54,7 @@ public class SignUp extends AppCompatActivity {
         userPassword = (EditText) findViewById(R.id.userPassword);
         passwordConfirm = (EditText) findViewById(R.id.passwordConfirm);
 
-        if(User.emailCertified) {
+        if(UserInSignup.emailCertified) {
             // 이메일 인증이 완료됐다면 버튼 컬러 변경
             emailCertifiedBtn.setTextColor(Color.rgb(111, 186, 119));
             Snackbar.make(getWindow().getDecorView().getRootView(), "이메일 인증 완료", 3000).show();
@@ -75,11 +74,11 @@ public class SignUp extends AppCompatActivity {
                 if (!hasFocus && !userName.getText().toString().isEmpty()) {
                     // 이름이 1글자 이상일 때. 명시적
                     userName.setTextColor(Color.rgb(111, 186, 119));
-                    User.name = userName.getText().toString();
-                    User.nameChecked = true;
+                    UserInSignup.name = userName.getText().toString();
+                    UserInSignup.nameChecked = true;
                 } else {
                     // 포커스가 다시 바뀌는 경우, 이름이 비어있는 경우를 방지
-                    User.nameChecked = false;
+                    UserInSignup.nameChecked = false;
                 }
             }
         });
@@ -87,14 +86,14 @@ public class SignUp extends AppCompatActivity {
         userId.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                User.id = userId.getText().toString();
+                UserInSignup.id = userId.getText().toString();
                 if (!hasFocus) {
                     // Focus가 넘어갈 때
-                    if(!User.id.isEmpty()) {
+                    if(!UserInSignup.id.isEmpty()) {
                         // EditText가 비어있지 않을 때
 
                         Map<String, String> params = new HashMap<>();
-                        params.put("id", User.id);
+                        params.put("id", UserInSignup.id);
 
                         aQuery.ajax("http://52.79.134.200/signup/id/check", params, String.class, new AjaxCallback<String>() {
                             @Override
@@ -103,7 +102,7 @@ public class SignUp extends AppCompatActivity {
                                 if (statusCode == 201) {
                                     // 미중복
                                     userId.setTextColor(Color.rgb(111, 186, 119));
-                                    User.idChecked = true;
+                                    UserInSignup.idChecked = true;
                                 } else {
                                     // 중복
                                     userId.setTextColor(Color.rgb(252, 113, 80));
@@ -112,7 +111,7 @@ public class SignUp extends AppCompatActivity {
                         });
                     } else {
                         // EditText가 비어있을 때
-                        User.idChecked = false;
+                        UserInSignup.idChecked = false;
                     }
                 } else {
                     // Focus가 넘어올 때
@@ -126,16 +125,16 @@ public class SignUp extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                User.password = userPassword.getText().toString();
+                UserInSignup.password = userPassword.getText().toString();
                 String confirm = s.toString();
 
-                if (User.password.equals(confirm)) {
+                if (UserInSignup.password.equals(confirm)) {
                     userPassword.setTextColor(Color.rgb(111, 186, 119));
                     passwordConfirm.setTextColor(Color.rgb(111, 186, 119));
-                    User.passwordConfirmed = true;
+                    UserInSignup.passwordConfirmed = true;
                 } else {
                     passwordConfirm.setTextColor(Color.rgb(252, 113, 80));
-                    User.passwordConfirmed = false;
+                    UserInSignup.passwordConfirmed = false;
                 }
             }
 
@@ -146,13 +145,13 @@ public class SignUp extends AppCompatActivity {
         submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (User.emailCertified && User.nameChecked && User.idChecked && User.passwordConfirmed) {
+                if (UserInSignup.emailCertified && UserInSignup.nameChecked && UserInSignup.idChecked && UserInSignup.passwordConfirmed) {
                     Map<String, String> params = new HashMap<>();
 
-                    params.put("email", User.email);
-                    params.put("name", User.name);
-                    params.put("id", User.id);
-                    params.put("password", User.password);
+                    params.put("email", UserInSignup.email);
+                    params.put("name", UserInSignup.name);
+                    params.put("id", UserInSignup.id);
+                    params.put("password", UserInSignup.password);
                     params.put("registration_id", firebase.getFirebaseToken());
 
                     aQuery.ajax("http://52.79.134.200/signup", params, String.class, new AjaxCallback<String>() {
@@ -160,6 +159,7 @@ public class SignUp extends AppCompatActivity {
                         public void callback(String url, String response, AjaxStatus status) {
                             int statusCode = status.getCode();
                             if (statusCode == 201) {
+                                Snackbar.make(getWindow().getDecorView().getRootView(), "회원가입 성공!", 3000).show();
                                 finish();
                                 Intent intent = new Intent(getApplicationContext(), SignIn.class);
                                 startActivity(intent);

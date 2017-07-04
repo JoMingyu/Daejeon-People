@@ -8,24 +8,22 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.androidquery.AQuery;
 import com.androidquery.callback.AjaxCallback;
 import com.androidquery.callback.AjaxStatus;
 import com.daejeonpeople.R;
-import com.daejeonpeople.connection.connectionValues;
-import com.daejeonpeople.valueobject.User;
+import com.daejeonpeople.valueobject.UserInSignup;
 
 import java.util.HashMap;
 import java.util.Map;
 
 //민지
+// Modified by JoMingyu
 
 public class Email_Certified extends AppCompatActivity {
     private AQuery aQuery;
@@ -46,7 +44,7 @@ public class Email_Certified extends AppCompatActivity {
         email = (EditText) findViewById(R.id.email);
         checkCode = (EditText) findViewById (R.id.checkCode);
 
-        User.emailDemanded = false;
+        UserInSignup.emailDemanded = false;
         // 액티비티 로드마다 false
 
         email.addTextChangedListener(new TextWatcher() {
@@ -57,7 +55,7 @@ public class Email_Certified extends AppCompatActivity {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 // 이메일 EditText가 수정되면 발급으로 다시 되도록
                 email.setTextColor(Color.rgb(0, 0, 0));
-                User.emailDemanded = false;
+                UserInSignup.emailDemanded = false;
                 confirmButton.setText("발급");
             }
 
@@ -69,7 +67,7 @@ public class Email_Certified extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
-                if(!User.emailDemanded){
+                if(!UserInSignup.emailDemanded){
                     // 버튼이 눌렸을 때 이메일 인증번호가 전송되지 않은 상태라면
 
                     params.put("email", email.getText().toString());
@@ -79,7 +77,7 @@ public class Email_Certified extends AppCompatActivity {
                         public void callback(String url, String response, AjaxStatus status) {
                             statusCode = status.getCode();
                             if(statusCode == 201){
-                                User.emailDemanded = true;
+                                UserInSignup.emailDemanded = true;
                                 // 이메일 인증 번호가 전송되었음을 표시
 
                                 email.setTextColor(Color.rgb(111, 186, 119));
@@ -88,7 +86,7 @@ public class Email_Certified extends AppCompatActivity {
                                 confirmButton.setText("인증");
                                 ShowDialog();
                             } else {
-                                User.emailDemanded = false;
+                                UserInSignup.emailDemanded = false;
                                 email.setTextColor(Color.rgb(252, 113, 80));
                                 Snackbar.make(getWindow().getDecorView().getRootView(), "이미 존재하는 이메일입니다.", 3000).show();
                             }
@@ -101,8 +99,8 @@ public class Email_Certified extends AppCompatActivity {
                        @Override
                         public void callback(String url, String response, AjaxStatus status){
                             if(status.getCode() == 201){
-                                User.email = email.getText().toString();
-                                User.emailCertified = true;
+                                UserInSignup.email = email.getText().toString();
+                                UserInSignup.emailCertified = true;
                                 // 인증 완료되었음을 표시
 
                                 checkCode.setTextColor(Color.rgb(111, 186, 119));
@@ -110,7 +108,7 @@ public class Email_Certified extends AppCompatActivity {
                                 Intent intent = new Intent(getApplicationContext(), SignUp.class);
                                 startActivity(intent);
                             } else {
-                                User.emailCertified = false;
+                                UserInSignup.emailCertified = false;
 
                                 checkCode.setTextColor(Color.rgb(252, 113, 80));
                                 Snackbar.make(getWindow().getDecorView().getRootView(), "인증번호가 맞지 않습니다.", 3000).show();

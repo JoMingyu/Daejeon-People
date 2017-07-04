@@ -23,11 +23,12 @@ import java.util.Map;
 /**
  * Created by 10102김동규 on 2017-05-11.
  */
+// Modified by JoMingyu
 
 public class SignIn extends Activity{
     private AQuery aQuery;
 
-    private Button submit;
+    private Button submitBtn;
     private EditText userId;
     private EditText userPassword;
 
@@ -40,7 +41,7 @@ public class SignIn extends Activity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.signin);
 
-        submit = (Button) findViewById(R.id.signinSubmit);
+        submitBtn = (Button) findViewById(R.id.signinSubmit);
         userId = (EditText) findViewById(R.id.userId);
         userPassword = (EditText) findViewById(R.id.userPassword);
 
@@ -48,7 +49,7 @@ public class SignIn extends Activity{
         findId = (TextView) findViewById(R.id.findId);
         findPassword = (TextView) findViewById(R.id.findPassword);
 
-        submit.setOnClickListener(new View.OnClickListener() {
+        submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 aQuery = new AQuery(getApplicationContext());
