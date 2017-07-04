@@ -65,7 +65,7 @@ public class Email_Certified extends AppCompatActivity {
 
         confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
+            public void onClick(final View v)
             {
                 if(!UserInSignup.emailDemanded){
                     // 버튼이 눌렸을 때 이메일 인증번호가 전송되지 않은 상태라면
@@ -88,7 +88,7 @@ public class Email_Certified extends AppCompatActivity {
                             } else {
                                 UserInSignup.emailDemanded = false;
                                 email.setTextColor(Color.rgb(252, 113, 80));
-                                Snackbar.make(getWindow().getDecorView().getRootView(), "이미 존재하는 이메일입니다.", 3000).show();
+                                Snackbar.make(v, "이미 존재하는 이메일입니다.", 3000).show();
                             }
                         }
                     });
@@ -111,7 +111,7 @@ public class Email_Certified extends AppCompatActivity {
                                 UserInSignup.emailCertified = false;
 
                                 checkCode.setTextColor(Color.rgb(252, 113, 80));
-                                Snackbar.make(getWindow().getDecorView().getRootView(), "인증번호가 맞지 않습니다.", 3000).show();
+                                Snackbar.make(v, "인증번호가 맞지 않습니다.", 3000).show();
                             }
                        }
                     });
