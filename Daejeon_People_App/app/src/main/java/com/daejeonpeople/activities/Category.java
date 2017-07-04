@@ -1,5 +1,6 @@
 package com.daejeonpeople.activities;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.os.Bundle;
 
@@ -15,5 +16,11 @@ public class Category extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.category);
+
+        final ActionBar category = getActionBar();
+        category.setCustomView(R.layout.custom_category);
+        category.setDisplayShowTitleEnabled(false);
+        category.setDisplayShowCustomEnabled(true);
+        category.setDisplayShowHomeEnabled(false);
     }
 }

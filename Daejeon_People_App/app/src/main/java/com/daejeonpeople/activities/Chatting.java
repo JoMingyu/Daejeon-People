@@ -23,6 +23,12 @@ public class Chatting extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.chatting);
+
+        final ActionBar chatting = getActionBar();
+        chatting.setCustomView(R.layout.custom_chatting);
+        chatting.setDisplayShowTitleEnabled(false);
+        chatting.setDisplayShowCustomEnabled(true);
+        chatting.setDisplayShowHomeEnabled(false);
     }
 
     @Override
