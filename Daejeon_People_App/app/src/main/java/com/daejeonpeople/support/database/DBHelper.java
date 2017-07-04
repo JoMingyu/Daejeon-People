@@ -71,7 +71,7 @@ public class DBHelper extends SQLiteOpenHelper {
         if(cursor.getInt(0) == 1) {
             // 자동로그인 활성화
             return true;
-        } else {
+        } else if(cursor.getInt(0) == 0) {
             return false;
         }
     }
@@ -83,7 +83,7 @@ public class DBHelper extends SQLiteOpenHelper {
         if(cursor.getInt(0) == 1) {
             // 첫 실행
             return true;
-        } else {
+        } else if(cursor.getInt(0) == 0) {
             return false;
         }
     }
