@@ -1,5 +1,6 @@
 package com.daejeonpeople.activities;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.support.design.widget.Snackbar;
@@ -26,7 +27,7 @@ import java.util.Map;
 // 민지
 // Modified by JoMingyu
 
-public class SignUp extends AppCompatActivity {
+public class SignUp extends Activity {
     private AQuery aQuery;
     private Firebase firebase;
 
@@ -57,7 +58,7 @@ public class SignUp extends AppCompatActivity {
         if(UserInSignup.emailCertified) {
             // 이메일 인증이 완료됐다면 버튼 컬러 변경
             emailCertifiedBtn.setTextColor(ColorManager.successColor);
-            SnackbarManager.createCancelableSnackbar(getWindow().getDecorView().getRootView(), "이메일 인증 완료", 3000).show();
+            SnackbarManager.createCancelableSnackbar(getWindow().getDecorView().getRootView(), "이메일 인증 완료").show();
         }
 
         emailCertifiedBtn.setOnClickListener(new View.OnClickListener() {
@@ -172,12 +173,12 @@ public class SignUp extends AppCompatActivity {
                         public void callback(String url, String response, AjaxStatus status) {
                             int statusCode = status.getCode();
                             if (statusCode == 201) {
-                                SnackbarManager.createCancelableSnackbar(getWindow().getDecorView().getRootView(), "회원가입 성공!", 3000).show();
+                                SnackbarManager.createCancelableSnackbar(getWindow().getDecorView().getRootView(), "회원가입 성공!").show();
                                 finish();
                                 Intent intent = new Intent(getApplicationContext(), SignIn.class);
                                 startActivity(intent);
                             } else {
-                                SnackbarManager.createCancelableSnackbar(getWindow().getDecorView().getRootView(), "회원가입 실패", 3000).show();
+                                SnackbarManager.createCancelableSnackbar(getWindow().getDecorView().getRootView(), "회원가입 실패").show();
                             }
                         }
                     });

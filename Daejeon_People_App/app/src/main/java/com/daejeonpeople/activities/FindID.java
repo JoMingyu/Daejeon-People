@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -36,9 +37,9 @@ import java.util.Map;
 public class FindID extends Activity {
     private AQuery aQuery;
 
+    private Button findBtn;
     private EditText inputEmail;
     private EditText inputCode;
-    private Button findBtn;
 
     private Map<String, String> params = new HashMap<>();
     private boolean emailDemanded = false;
@@ -50,9 +51,9 @@ public class FindID extends Activity {
 
         aQuery = new AQuery(getApplicationContext());
 
+        findBtn = (Button)findViewById(R.id.findBtn);
         inputEmail = (EditText) findViewById(R.id.inputEmail);
         inputCode = (EditText) findViewById(R.id.inputCode);
-        findBtn = (Button)findViewById(R.id.findBtn);
 
         inputEmail.addTextChangedListener(new TextWatcher() {
             @Override
@@ -87,7 +88,7 @@ public class FindID extends Activity {
                             } else {
                                 inputEmail.setTextColor(ColorManager.failureColor);
 
-                                SnackbarManager.createCancelableSnackbar(v, "일치하는 계정 정보가 없습니다.", 3000).show();
+                                SnackbarManager.createCancelableSnackbar(v, "일치하는 계정 정보가 없습니다.").show();
                             }
                         }
                     });

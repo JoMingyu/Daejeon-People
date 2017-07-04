@@ -35,4 +35,15 @@ public class SnackbarManager {
 
         return snackbar;
     }
+
+    public static Snackbar createCancelableSnackbar(View v, String text) {
+        Snackbar snackbar = Snackbar.make(v, text, Snackbar.LENGTH_LONG).setActionTextColor(ColorManager.successColor).setAction("확인", new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                v.setVisibility(View.GONE);
+            }
+        });
+
+        return snackbar;
+    }
 }

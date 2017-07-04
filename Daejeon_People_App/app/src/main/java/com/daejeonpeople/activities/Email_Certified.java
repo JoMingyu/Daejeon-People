@@ -1,11 +1,11 @@
 package com.daejeonpeople.activities;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -27,7 +27,7 @@ import java.util.Map;
 // 민지
 // Modified by JoMingyu
 
-public class Email_Certified extends AppCompatActivity {
+public class Email_Certified extends Activity {
     private AQuery aQuery;
     private Map<String, Object> params = new HashMap<>();
 
@@ -88,7 +88,7 @@ public class Email_Certified extends AppCompatActivity {
                             } else {
                                 email.setTextColor(ColorManager.failureColor);
 
-                                SnackbarManager.createCancelableSnackbar(v, "이미 존재하는 이메일입니다.", 3000).show();
+                                SnackbarManager.createCancelableSnackbar(v, "이미 존재하는 이메일입니다.").show();
                             }
                         }
                     });
@@ -111,7 +111,7 @@ public class Email_Certified extends AppCompatActivity {
                                 UserInSignup.emailCertified = false;
 
                                 checkCode.setTextColor(ColorManager.failureColor);
-                                SnackbarManager.createCancelableSnackbar(v, "인증번호가 맞지 않습니다.", 3000).show();
+                                SnackbarManager.createCancelableSnackbar(v, "인증번호가 맞지 않습니다.").show();
                             }
                        }
                     });

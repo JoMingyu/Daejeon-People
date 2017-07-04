@@ -77,12 +77,12 @@ public class SignIn extends Activity{
                                 Intent intent = new Intent(getApplicationContext(), Main.class);
                                 startActivity(intent);
                             } else {
-                                SnackbarManager.createCancelableSnackbar(getWindow().getDecorView().getRootView(), "아이디나 비밀번호를 확인하세요.", 3000).show();
+                                SnackbarManager.createCancelableSnackbar(getWindow().getDecorView().getRootView(), "아이디나 비밀번호를 확인하세요.").show();
                             }
                         }
                     });
                 } else {
-                    SnackbarManager.createCancelableSnackbar(v, "로그인 성공", 3000).show();
+                    SnackbarManager.createCancelableSnackbar(v, "로그인 성공").show();
                 }
             }
         });
