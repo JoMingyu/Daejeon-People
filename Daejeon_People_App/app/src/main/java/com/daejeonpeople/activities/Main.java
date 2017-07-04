@@ -2,10 +2,7 @@ package com.daejeonpeople.activities;
 
 import android.app.ActionBar;
 import android.app.Activity;
-import android.content.res.Resources;
 import android.os.Bundle;
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.widget.TabHost;
 
 import com.daejeonpeople.R;
