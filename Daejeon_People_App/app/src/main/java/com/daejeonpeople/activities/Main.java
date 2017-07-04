@@ -1,5 +1,6 @@
 package com.daejeonpeople.activities;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.os.Bundle;
 import android.content.Intent;
@@ -30,5 +31,11 @@ public class Main extends Activity {
         tabHost.addTab(ts2);
 
         tabHost.setCurrentTab(0);
+
+        final ActionBar main = getActionBar();
+        main.setCustomView(R.layout.custom_main);
+        main.setDisplayShowTitleEnabled(false);
+        main.setDisplayShowCustomEnabled(true);
+        main.setDisplayShowHomeEnabled(false);
     }
 }

@@ -16,14 +16,14 @@
         <activity android:name=".activities.Email_Certified" />
         <activity android:name=".activities.Chatting"/>
         <activity android:name=".activities.AddressBook" android:theme="@style/CustomActionBarTheme"/>
-        <activity android:name=".activities.SignIn">
+        <activity android:name=".activities.SignIn"/>
+        <activity android:name=".activities.Main" android:theme="@style/CustomActionBarTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.Main"/>
         <activity android:name=".activities.Category" />
         <activity android:name=".activities.EntryID" />
         <activity android:name=".activities.EntryPW" />
