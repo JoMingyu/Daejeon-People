@@ -27,21 +27,18 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         if(!createTable){
-            db.execSQL("CREATE TABLE CHECK(" +
-                    "autologin Integer," +
+            db.execSQL("CREATE TABLE IF NOT EXISTS \"CHECK\"(" +
+                    "autologin Integer PRIMARY KEY," +
                     "first Integer" +
-                    ");");
-            Insert();
+                    ")");
             createTable = true;
         } else if(createTable){
             Log.d("Database/createTable", "Already created");
         }
-
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
     }
 
     @Override
@@ -51,7 +48,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public void Insert(){
         SQLiteDatabase db = getWritableDatabase();
-        db.execSQL("INSERT INTO CHECK VALUES(0, 1);");
+        db.execSQL("INSERT INTO \"CHECK\" VALUES(0, 1);");
     }
 
     public void AutoLogin(){
@@ -66,7 +63,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public boolean isAutoLogined(){
         SQLiteDatabase db = getReadableDatabase();
-        Cursor cursor = db.rawQuery("select autologin from CHECK", null);
+        Cursor cursor = db.rawQuery("select autologin from \"CHECK\"", null);
 
         if(cursor.getInt(0) == 1) {
             // 자동로그인 활성화
@@ -78,7 +75,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public boolean isFirstExecution(){
         SQLiteDatabase db = getReadableDatabase();
-        Cursor cursor = db.rawQuery("select first from CHECK", null);
+        Cursor cursor = db.rawQuery("select first from \"CHECK\"", null);
 
         if(cursor.getInt(0) == 1) {
             // 첫 실행
