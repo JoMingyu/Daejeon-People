@@ -31,8 +31,17 @@ public class Splash extends Activity{
 
     private void judge() {
         DBHelper dbHelper = DBHelper.getInstance(getApplicationContext(), "CEHCK.db", null, 1);
+        Intent SignIn = new Intent(getApplicationContext(), SignIn.class);
+        Intent Main = new Intent(getApplicationContext(), Main.class);
 
-        Intent intent = new Intent(getApplicationContext(), SignUp.class);
-        startActivity(intent);
+        if(dbHelper.getFirstCheck() == 1){
+            //Start Step
+        } else if(dbHelper.getFirstCheck() == 0) {
+            if(dbHelper.getAutoCheck() == 0) {
+                startActivity(SignIn);
+            } else if(dbHelper.getAutoCheck() == 1){
+                startActivity(Main);
+            }
+        }
     }
 }
