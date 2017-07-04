@@ -12,4 +12,7 @@
     <color name="No">#fc7150</color>
     <color name="Black">#000000</color>
     <color name="BrightGray">#dfdfdf</color>
+    <color name="Green">#55b268</color>
+    <color name="Orange">#ed6a07</color>
+    <color name="Gray">#b2b8c1</color>
 </resources>

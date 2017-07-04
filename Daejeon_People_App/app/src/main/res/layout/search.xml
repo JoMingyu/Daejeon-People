@@ -23,7 +23,7 @@
         android:layout_below="@+id/backBtn"
         android:background="@drawable/round_corner_border_dark">
         <EditText
-            android:id="@+id/search"
+            android:id="@+id/searchContent"
             android:layout_width="315dp"
             android:layout_height="match_parent"
             android:hint="텍스트를 입력하세요"
@@ -33,7 +33,7 @@
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:background="@drawable/ic_serach"
-            android:layout_toRightOf="@+id/search"
+            android:layout_toRightOf="@+id/searchContent"
             android:layout_marginTop="13dp"/>
     </RelativeLayout>
 </RelativeLayout>

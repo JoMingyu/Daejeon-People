@@ -1,162 +1,214 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:background="@mipmap/background">
+    xmlns:sl="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/background">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1">
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
 
-        <ImageView
-            android:layout_width="200px"
-            android:layout_height="200px"
-            android:src="@mipmap/ic_logo"
-            android:id="@+id/logo_login"
-            android:layout_centerInParent="true" />
-
-        <TextView
-            android:layout_width="200px"
-            android:layout_height="50px"
-            android:text="대전사람"
-            android:id="@+id/text1"
-            android:layout_below="@+id/logo_login"
-            android:layout_centerInParent="true"
-            android:gravity="center" />
-
-        <TextView
-            android:layout_width="300px"
-            android:layout_height="50px"
-            android:text="대전광역시 정보 알림 서비스"
-            android:layout_below="@id/text1"
-            android:layout_centerInParent="true"
-            android:gravity="center"/>
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1">
-
-        <RelativeLayout
+        <com.ssomai.android.scalablelayout.ScalableLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            sl:scale_base_height="140"
+            sl:scale_base_width="400">
 
-            <EditText
-                android:layout_width="300dp"
-                android:layout_height="45dp"
-                android:hint="아이디를 입력하세요"
-                android:background="@drawable/round_corner"
-                android:gravity="center"
-                android:layout_centerHorizontal="true"
-                android:id="@+id/userId"/>
-
-            <EditText
-                android:layout_width="300dp"
-                android:layout_height="45dp"
-                android:hint="비밀번호를 입력하세요"
-                android:background="@drawable/round_corner"
-                android:gravity="center"
-                android:layout_centerInParent="true"
-                android:id="@+id/userPassword"/>
-
-            <Button
-                android:layout_width="300dp"
-                android:layout_height="45dp"
-                android:text="확인"
-                android:background="@drawable/round_corner"
-                android:gravity="center"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:id="@+id/signinSubmit"/>
-
-        </RelativeLayout>
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_logo"
+                sl:scale_left="150"
+                sl:scale_top="20" />
+        </com.ssomai.android.scalablelayout.ScalableLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="wrap_content">
 
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="horizontal">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center">
-
-                    <TextView
-                        android:id="@+id/signUpPlease"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="계정이 없으면 등록해주세요 " />
-
-                    <TextView
-                        android:id="@+id/signUp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text=" 회원가입"
-                        android:layout_toRightOf="@id/signUpPlease"/>
-                </RelativeLayout>
-
-            </RelativeLayout>
-
-            <RelativeLayout
+            <TextView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1">
+                android:layout_height="wrap_content"
+                android:text="대전사람"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:gravity="center"/>
+        </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="대전광역시 정보 알림 서비스"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:layout_marginTop="10dp"/>
+        </LinearLayout>
 
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_centerInParent="true"
-                            android:gravity="center"
-                            android:text="아이디 찾기" />
+        <com.ssomai.android.scalablelayout.ScalableLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            sl:scale_base_height="90"
+            sl:scale_base_width="400"
+            android:paddingTop="20dp"
+            android:layout_gravity="center_horizontal">
 
-                    </RelativeLayout>
+            <ImageView
+                android:background="@drawable/round_corner"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                sl:scale_width="370"
+                sl:scale_height="60"
+                sl:scale_left="15"/>
 
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                sl:scale_width="370"
+                sl:scale_height="60"
+                android:text="아이디를 입력하세요"
+                android:textStyle="bold"
+                sl:scale_textsize="18"
+                android:textColor="@color/Gray"
+                sl:scale_left="15"
+                android:gravity="center"/>
 
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_centerInParent="true"
-                            android:gravity="center"
-                            android:text="비밀번호 찾기" />
+            <EditText
+                android:id="@+id/inputId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                sl:scale_width="370"
+                sl:scale_height="60"
+                android:background="@drawable/round_corner"
+                sl:scale_left="15"
+                android:hint="아이디를 입력하세요"
+                android:textColorHint="@color/Gray"
+                sl:scale_textsize="18"
+                android:gravity="center"
+                android:textColor="@color/Black"/>
 
-                    </RelativeLayout>
+        </com.ssomai.android.scalablelayout.ScalableLayout>
 
-                </LinearLayout>
+        <com.ssomai.android.scalablelayout.ScalableLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            sl:scale_base_height="90"
+            sl:scale_base_width="400"
+            android:paddingTop="10dp">
 
-            </RelativeLayout>
+            <EditText
+                android:id="@+id/inputPw"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                sl:scale_width="370"
+                sl:scale_height="60"
+                android:background="@drawable/round_corner"
+                sl:scale_left="15"
+                android:hint="비밀번호를 입력하세요"
+                android:textColorHint="@color/Gray"
+                sl:scale_textsize="18"
+                android:gravity="center"
+                android:inputType="textPassword"
+                android:textColor="@color/Black"/>
+
+        </com.ssomai.android.scalablelayout.ScalableLayout>
+        
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="로그인 유지" />
+            
 
         </LinearLayout>
 
-    </RelativeLayout>
+        <com.ssomai.android.scalablelayout.ScalableLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            sl:scale_base_height="60"
+            sl:scale_base_width="400">
+
+            <Button
+                android:id="@+id/okBtn"
+                android:background="@drawable/round_corner_middle"
+                android:text="확인"
+                sl:scale_textsize="20"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                sl:scale_width="370"
+                sl:scale_height="60"
+                sl:scale_left="15"/>
+
+        </com.ssomai.android.scalablelayout.ScalableLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="10dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <com.ssomai.android.scalablelayout.ScalableLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    sl:scale_base_height="70"
+                    sl:scale_base_width="400">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:text="계정이 없으면 등록해주세요."
+                        sl:scale_textsize="26"
+                        sl:scale_width="400"
+                        sl:scale_height="70"
+                        android:gravity="center_vertical|right"/>
+
+                </com.ssomai.android.scalablelayout.ScalableLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2">
+
+                <com.ssomai.android.scalablelayout.ScalableLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    sl:scale_base_height="140"
+                    sl:scale_base_width="400">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:text="회원가입"
+                        android:textStyle="bold"
+                        sl:scale_textsize="50"
+                        sl:scale_width="400"
+                        sl:scale_height="140"
+                        android:gravity="center_vertical"
+                        sl:scale_left="20"/>
+
+                </com.ssomai.android.scalablelayout.ScalableLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
 
 </LinearLayout>

@@ -2,68 +2,87 @@ package com.daejeonpeople.activities;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import com.androidquery.AQuery;
 import com.androidquery.callback.AjaxCallback;
 import com.androidquery.callback.AjaxStatus;
 import com.daejeonpeople.R;
-import com.daejeonpeople.connection.connectionValues;
+import com.daejeonpeople.support.network.SessionManager;
+import com.daejeonpeople.support.views.SnackbarManager;
 
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by 10102김동규 on 2017-05-11.
  */
-//동규
+// Modified by JoMingyu
 
 public class SignIn extends Activity{
-    AQuery aQuery;
-    HashMap<String, Object> params = new HashMap<>();
-    Button submit;
-    EditText id;
-    EditText password;
+    private AQuery aQuery;
+
+    private Button submitBtn;
+    private EditText userId;
+    private EditText userPassword;
+
+    private CheckBox keepLoginBox;
+
+    private TextView signUpView;
+    private TextView findIdView;
+    private TextView findPasswordView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.signin);
-        submit = (Button)findViewById(R.id.signinSubmit);
-        id = (EditText)findViewById(R.id.userId);
-        password = (EditText)findViewById(R.id.userPassword);
 
-        submit.setOnClickListener(new View.OnClickListener() {
+        Map<String, Object> params = new HashMap<>();
+
+        submitBtn = (Button) findViewById(R.id.okBtn);
+        userId = (EditText) findViewById(R.id.inputId);
+        userPassword = (EditText) findViewById(R.id.inputPw);
+
+        submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 aQuery = new AQuery(getApplicationContext());
-                params.put("id", id.getText().toString());
-                params.put("password", password.getText().toString());
-                params.put("keep_login", false);
 
-                if(id.getText() != null && password.getText() != null){
-                    aQuery.ajax(connectionValues.URL + "/signin", params, String.class, new AjaxCallback<String>(){
+                String id = userId.getText().toString();
+                String password = userPassword.getText().toString();
+//                boolean keepLogin = keepLoginBox.isChecked();
+                boolean keepLogin = true;
+
+                if(!id.isEmpty() && !password.isEmpty()) {
+                    Map<String, Object> params = new HashMap<>();
+
+                    params.put("id", id);
+                    params.put("password", password);
+                    params.put("keep_login", keepLogin);
+
+                    aQuery.ajax("http://52.79.134.200/signin", params, String.class, new AjaxCallback<String>(){
                         @Override
                         public void callback(String url, String response, AjaxStatus status){
+                            String cookie = new SessionManager(status).detectCookie("UserSession");
                             int statusCode = status.getCode();
-                            if(statusCode == 201){
-                                Toast.makeText(getApplicationContext(), "로그인 성공", Toast.LENGTH_SHORT).show();
+                            if(statusCode == 201) {
+                                finish();
                                 Intent intent = new Intent(getApplicationContext(), Main.class);
                                 startActivity(intent);
-                            } else if(statusCode == 204){
-                                Toast.makeText(getApplicationContext(), "로그인 실패", Toast.LENGTH_SHORT).show();
+                            } else {
+                                SnackbarManager.createCancelableSnackbar(getWindow().getDecorView().getRootView(), "아이디나 비밀번호를 확인하세요.", 3000).show();
                             }
                         }
                     });
-                } else if(id.getText() == null){
-                    Toast.makeText(getApplicationContext(), "아이디를 입력해주세요", Toast.LENGTH_SHORT).show();
-                } else if(password.getText() == null){
-                    Toast.makeText(getApplicationContext(), "비밀번호를 입력해주세요", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(getApplicationContext(), "아이디, 비밀번호를 입력해주세요", Toast.LENGTH_SHORT).show();
+                    SnackbarManager.createCancelableSnackbar(v, "로그인 성공", 3000).show();
                 }
             }
         });

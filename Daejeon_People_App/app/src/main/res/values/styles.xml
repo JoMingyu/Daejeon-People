@@ -1,15 +1,10 @@
 <resources>
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:actionBarStyle">@style/ActionBarTheme</item>
     </style>
-    <style name="ActionBarTheme" parent="Theme.AppCompat">
-        <item name="android:actionBarStyle">@style/ActionBarTheme2</item>
-    </style>
-    <style name="ActionBarTheme2" parent="Theme.AppCompat">
-        <item name="android:background">@color/Middle</item>
+    <style name="ActionBarTheme" parent="@android:style/Widget.Holo.Light.ActionBar.Solid.Inverse">
+        <item name="android:background">@color/colorPrimary</item>
     </style>
 </resources>
