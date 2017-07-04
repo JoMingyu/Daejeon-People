@@ -23,18 +23,16 @@ public class FindPassword_DemandCode implements Handler<RoutingContext> {
 	public void handle(RoutingContext ctx) {
 		String id = ctx.request().getFormAttribute("id");
 		String email = ctx.request().getFormAttribute("email");
-		String name = ctx.request().getFormAttribute("name");
 		
-		ctx.response().setStatusCode(findPasswordDemand(id, email, name)).end();
+		ctx.response().setStatusCode(findPasswordDemand(id, email)).end();
 		ctx.response().close();
 	}
 	
-	private int findPasswordDemand(String id, String email, String name) {
+	private int findPasswordDemand(String id, String email) {
 		String encryptedId = AES256.encrypt(id);
 		String encryptedEmail = AES256.encrypt(email);
-		String encryptedName = AES256.encrypt(name);
 		
-		ResultSet rs = MySQL.executeQuery("SELECT * FROM account WHERE id=? AND email=? AND name=?", encryptedId, encryptedEmail, encryptedName);
+		ResultSet rs = MySQL.executeQuery("SELECT * FROM account WHERE id=? AND email=?", encryptedId, encryptedEmail);
 		try {
 			if(rs.next()) {
 				// 계정 정보가 존재할 경우
