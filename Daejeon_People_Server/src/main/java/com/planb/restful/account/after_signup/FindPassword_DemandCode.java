@@ -16,7 +16,7 @@ import io.vertx.core.http.HttpMethod;
 import io.vertx.ext.web.RoutingContext;
 
 @API(functionCategory = "비밀번호 찾기", summary = "이메일 인증번호 발송")
-@REST(requestBody = "id : String, email : String, name : String", successCode = 201, failureCode = 204, etc = "계정 정보가 존재하지 않을 경우 fail")
+@REST(requestBody = "id : String, email : String", successCode = 201, failureCode = 204, etc = "계정 정보가 존재하지 않을 경우 fail")
 @Route(uri = "/find/password/demand", method = HttpMethod.POST)
 public class FindPassword_DemandCode implements Handler<RoutingContext> {
 	@Override

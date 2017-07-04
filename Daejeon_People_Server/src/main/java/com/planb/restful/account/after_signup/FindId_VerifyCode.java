@@ -7,7 +7,6 @@ import com.planb.support.crypto.AES256;
 import com.planb.support.routing.API;
 import com.planb.support.routing.REST;
 import com.planb.support.routing.Route;
-import com.planb.support.utilities.Mail;
 import com.planb.support.utilities.MySQL;
 
 import io.vertx.core.Handler;
@@ -23,11 +22,6 @@ public class FindId_VerifyCode implements Handler<RoutingContext> {
 		String email = ctx.request().getFormAttribute("email");
 		String code = ctx.request().getFormAttribute("code");
 		
-		ctx.response().setStatusCode(findIdVerify(email, code)).end();
-		ctx.response().close();
-	}
-	
-	private int findIdVerify(String email, String code) {
 		String encryptedEmail = AES256.encrypt(email);
 		
 		ResultSet rs = MySQL.executeQuery("SELECT * FROM email_verify_codes WHERE email=? AND code=?", encryptedEmail, code);
@@ -38,15 +32,15 @@ public class FindId_VerifyCode implements Handler<RoutingContext> {
 				MySQL.executeUpdate("DELETE FROM email_verify_codes WHERE email=? AND code=?", encryptedEmail, code);
 				rs = MySQL.executeQuery("SELECT * FROM account WHERE email=?", encryptedEmail);
 				rs.next();
-				String decryptedId = AES256.decrypt(rs.getString("id"));
-				Mail.sendMail(email, "[대전사람] 아이디 찾기 결과입니다.", "ID : " + decryptedId);
-				return 201;
+				
+				ctx.response().setStatusCode(201);
+				ctx.response().end(rs.getString("id"));
 			} else {
-				return 204;
+				ctx.response().setStatusCode(204).end();
+				ctx.response().close();
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-			return 204;
 		}
 	}
 }

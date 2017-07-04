@@ -69,7 +69,7 @@ public class CoreVerticle extends AbstractVerticle {
 		 * http://vertx.io/docs/apidocs/io/vertx/rxjava/ext/web/handler/StaticHandler.html
 		 */
 		
-//		new ParserThread().start();
+//		new ParserThread().start();s
 		/**
 		 * @brief
 		 * Parse TourAPI to local database
