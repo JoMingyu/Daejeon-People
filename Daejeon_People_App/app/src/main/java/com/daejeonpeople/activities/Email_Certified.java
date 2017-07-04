@@ -123,7 +123,7 @@ public class Email_Certified extends AppCompatActivity {
     private void ShowDialog()
     {
         LayoutInflater dialog = LayoutInflater.from(this);
-        final View dialogLayout = dialog.inflate(R.layout.email_certified2, null);
+        final View dialogLayout = dialog.inflate(R.layout.email_certified_dialog, null);
         final Dialog myDialog = new Dialog(this);
 
         myDialog.setTitle("이메일 인증");

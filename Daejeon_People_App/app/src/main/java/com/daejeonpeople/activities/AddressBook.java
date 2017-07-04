@@ -3,8 +3,6 @@ package com.daejeonpeople.activities;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.widget.ListView;
 
 import com.androidquery.AQuery;
@@ -12,7 +10,6 @@ import com.androidquery.callback.AjaxCallback;
 import com.androidquery.callback.AjaxStatus;
 import com.daejeonpeople.R;
 import com.daejeonpeople.adapter.AddressBookAdapter;
-import com.daejeonpeople.connection.connectionValues;
 
 import org.json.JSONArray;
 import org.json.JSONException;
