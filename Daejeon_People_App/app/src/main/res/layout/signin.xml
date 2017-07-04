@@ -90,6 +90,7 @@
                 android:gravity="center"/>
 
             <EditText
+                android:id="@+id/inputId"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:background="transform"
@@ -130,6 +131,7 @@
                 android:gravity="center"/>
 
             <EditText
+                android:id="@+id/inputPw"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:background="transform"
@@ -149,6 +151,7 @@
             sl:scale_base_width="400">
 
             <Button
+                android:id="@+id/okBtn"
                 android:background="@drawable/round_corner_middle"
                 android:text="확인"
                 sl:scale_textsize="20"
@@ -160,32 +163,28 @@
 
         </com.ssomai.android.scalablelayout.ScalableLayout>
 
-        <com.ssomai.android.scalablelayout.ScalableLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            sl:scale_base_height="60"
-            sl:scale_base_width="400">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                sl:scale_width="150"
-                sl:scale_height="60"
-                sl:scale_left="250">
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                sl:scale_height="60"
-                sl:scale_width="250">
+            <com.ssomai.android.scalablelayout.ScalableLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                sl:scale_base_height="60"
+                sl:scale_base_width="400">
 
 
+            </com.ssomai.android.scalablelayout.ScalableLayout>
 
-            </LinearLayout>
+            <com.ssomai.android.scalablelayout.ScalableLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                sl:scale_base_height="60"
+                sl:scale_base_width="400">
 
-        </com.ssomai.android.scalablelayout.ScalableLayout>
+
+            </com.ssomai.android.scalablelayout.ScalableLayout>
+        </LinearLayout>
 
 
     </LinearLayout>
