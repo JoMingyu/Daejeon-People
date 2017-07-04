@@ -27,18 +27,15 @@ import java.util.Map;
 
 public class SignUp extends AppCompatActivity {
     private AQuery aQuery;
-    private Button submit;
+    private Button submitBtn;
     private Button emailCertifiedBtn;
 
     private EditText userName;
-    private boolean userNameChecked = false;
 
     private EditText userId;
-    private boolean idChecked = false;
 
     private EditText userPassword;
     private EditText passwordConfirm;
-    private boolean passwordConfirmed = false;
 
     private Firebase firebase;
 
@@ -50,7 +47,7 @@ public class SignUp extends AppCompatActivity {
         firebase = new Firebase();
         aQuery = new AQuery(getApplicationContext());
 
-        submit = (Button) findViewById(R.id.signupSubmit);
+        submitBtn = (Button) findViewById(R.id.signupSubmit);
         emailCertifiedBtn = (Button) findViewById(R.id.emailCertified);
 
         userName = (EditText) findViewById(R.id.userName);
@@ -78,10 +75,11 @@ public class SignUp extends AppCompatActivity {
                 if (!hasFocus && !userName.getText().toString().isEmpty()) {
                     // 이름이 1글자 이상일 때. 명시적
                     userName.setTextColor(Color.rgb(111, 186, 119));
-                    userNameChecked = true;
+                    User.name = userName.getText().toString();
+                    User.nameChecked = true;
                 } else {
                     // 포커스가 다시 바뀌는 경우, 이름이 비어있는 경우를 방지
-                    userNameChecked = false;
+                    User.nameChecked = false;
                 }
             }
         });
@@ -89,30 +87,35 @@ public class SignUp extends AppCompatActivity {
         userId.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                String id = userId.getText().toString();
-                if (!hasFocus && !id.isEmpty()) {
-                    // EditText가 비어있지 않을 때
+                User.id = userId.getText().toString();
+                if (!hasFocus) {
+                    // Focus가 넘어갈 때
+                    if(!User.id.isEmpty()) {
+                        // EditText가 비어있지 않을 때
 
-                    Map<String, String> params = new HashMap<>();
-                    params.put("id", id);
+                        Map<String, String> params = new HashMap<>();
+                        params.put("id", User.id);
 
-                    aQuery.ajax("http://52.79.134.200/signup/id/check", params, String.class, new AjaxCallback<String>() {
-                        @Override
-                        public void callback(String url, String response, AjaxStatus status) {
-                            int statusCode = status.getCode();
-                            if (statusCode == 201) {
-                                // 미중복
-                                userId.setTextColor(Color.rgb(111, 186, 119));
-                                idChecked = true;
-                            } else {
-                                // 중복
-                                userId.setTextColor(Color.rgb(252, 113, 80));
+                        aQuery.ajax("http://52.79.134.200/signup/id/check", params, String.class, new AjaxCallback<String>() {
+                            @Override
+                            public void callback(String url, String response, AjaxStatus status) {
+                                int statusCode = status.getCode();
+                                if (statusCode == 201) {
+                                    // 미중복
+                                    userId.setTextColor(Color.rgb(111, 186, 119));
+                                    User.idChecked = true;
+                                } else {
+                                    // 중복
+                                    userId.setTextColor(Color.rgb(252, 113, 80));
+                                }
                             }
-                        }
-                    });
+                        });
+                    } else {
+                        // EditText가 비어있을 때
+                        User.idChecked = false;
+                    }
                 } else {
-                    // 포커스가 다시 바뀌는 경우, ID가 비어있는 경우를 방지
-                    idChecked = false;
+                    // Focus가 넘어올 때
                 }
             }
         });
@@ -123,16 +126,16 @@ public class SignUp extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                String password = userPassword.getText().toString();
+                User.password = userPassword.getText().toString();
                 String confirm = s.toString();
 
-                if (password.equals(confirm)) {
+                if (User.password.equals(confirm)) {
                     userPassword.setTextColor(Color.rgb(111, 186, 119));
                     passwordConfirm.setTextColor(Color.rgb(111, 186, 119));
-                    passwordConfirmed = true;
+                    User.passwordConfirmed = true;
                 } else {
                     passwordConfirm.setTextColor(Color.rgb(252, 113, 80));
-                    passwordConfirmed = false;
+                    User.passwordConfirmed = false;
                 }
             }
 
@@ -140,22 +143,16 @@ public class SignUp extends AppCompatActivity {
             public void afterTextChanged(Editable s) { }
         });
 
-        submit.setOnClickListener(new View.OnClickListener() {
+        submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (User.emailCertified && userNameChecked && idChecked && passwordConfirmed) {
+                if (User.emailCertified && User.nameChecked && User.idChecked && User.passwordConfirmed) {
                     Map<String, String> params = new HashMap<>();
-                    Intent emailCertifiedIntent = getIntent();
 
-                    String email = emailCertifiedIntent.getExtras().getString("email");
-                    String name = userName.getText().toString();
-                    String id = userId.getText().toString();
-                    String password = userPassword.getText().toString();
-
-                    params.put("email", email);
-                    params.put("name", name);
-                    params.put("id", id);
-                    params.put("password", password);
+                    params.put("email", User.email);
+                    params.put("name", User.name);
+                    params.put("id", User.id);
+                    params.put("password", User.password);
                     params.put("registration_id", firebase.getFirebaseToken());
 
                     aQuery.ajax("http://52.79.134.200/signup", params, String.class, new AjaxCallback<String>() {
@@ -163,6 +160,7 @@ public class SignUp extends AppCompatActivity {
                         public void callback(String url, String response, AjaxStatus status) {
                             int statusCode = status.getCode();
                             if (statusCode == 201) {
+                                finish();
                                 Intent intent = new Intent(getApplicationContext(), SignIn.class);
                                 startActivity(intent);
                             } else {

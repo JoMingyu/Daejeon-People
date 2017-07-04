@@ -101,16 +101,18 @@ public class Email_Certified extends AppCompatActivity {
                        @Override
                         public void callback(String url, String response, AjaxStatus status){
                             if(status.getCode() == 201){
+                                User.email = email.getText().toString();
                                 User.emailCertified = true;
                                 // 인증 완료되었음을 표시
 
                                 checkCode.setTextColor(Color.rgb(111, 186, 119));
+                                finish();
                                 Intent intent = new Intent(getApplicationContext(), SignUp.class);
-                                intent.putExtra("email", email.getText().toString());
                                 startActivity(intent);
                             } else {
-                                checkCode.setTextColor(Color.rgb(252, 113, 80));
                                 User.emailCertified = false;
+
+                                checkCode.setTextColor(Color.rgb(252, 113, 80));
                                 Snackbar.make(getWindow().getDecorView().getRootView(), "인증번호가 맞지 않습니다.", 3000).show();
                             }
                        }
