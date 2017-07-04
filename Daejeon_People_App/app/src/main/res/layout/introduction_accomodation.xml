@@ -23,7 +23,7 @@
             android:padding="5dp">
 
             <ImageButton
-                android:id="@+id/btn_back"
+                android:id="@+id/backBtn"
                 android:layout_width="15dp"
                 android:layout_height="15dp"
                 android:layout_marginLeft="15dp"
@@ -73,7 +73,7 @@
                 android:layout_weight="0.2">
 
                 <TextView
-                    android:id="@+id/placename"
+                    android:id="@+id/placeName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"

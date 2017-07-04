@@ -41,13 +41,17 @@ public class AddressBook extends Activity {
         listView.setVerticalScrollBarEnabled(true);
         aQuery = new AQuery(getApplicationContext());
 
-        aQuery.ajax(connectionValues.URL + "friend", params, String.class, new AjaxCallback<String>(){
+        aQuery.ajax("http://52.79.134.200:80/friend", JSONArray.class, new AjaxCallback<JSONArray>(){
             @Override
-            public void callback(String url, String response, AjaxStatus status) {
+            public void callback(String url, JSONArray response, AjaxStatus status) {
+                System.out.println(status.getCode());
+                System.out.println(url);
                 try {
+                    System.out.println("connect success");
                     JSONArray jsonArray = new JSONArray();
                     for(int i=0; i<jsonArray.length(); i++){
                         JSONObject friendInfo = jsonArray.getJSONObject(i);
+                        System.out.println(friendInfo.getString("name") + friendInfo.getString("phone_number") + friendInfo.getString("email"));
                         adapter.addItem(friendInfo.getString("name"), friendInfo.getString("phone_number"), friendInfo.getString("email"));
                     }
                 } catch (JSONException e) {

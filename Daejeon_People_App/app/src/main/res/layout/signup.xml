@@ -78,6 +78,7 @@
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:hint="이름을 입력하세요"
+                android:textColor="@color/Black"
                 android:textSize="12sp"/>
         </LinearLayout>
 
@@ -104,6 +105,7 @@
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:hint="아이디를 입력하세요"
+                android:textColor="@color/Black"
                 android:textSize="12sp"/>
         </LinearLayout>
 
@@ -130,6 +132,7 @@
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:hint="비밀번호를 입력하세요"
+                android:textColor="@color/Black"
                 android:textSize="12sp"/>
         </LinearLayout>
 
@@ -156,6 +159,7 @@
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:hint="비밀번호를 다시 입력해주세요"
+                android:textColor="@color/Black"
                 android:textSize="12sp"/>
         </LinearLayout>
     </LinearLayout>

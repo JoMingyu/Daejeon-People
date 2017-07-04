@@ -18,7 +18,6 @@
         android:orientation="vertical"
         android:layout_weight="2">
         <TextView
-            android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="70dp"
             android:gravity="center_horizontal|center_vertical"
@@ -41,7 +40,7 @@
             android:id="@+id/userPhoneNum"/>
 
         <EditText
-            android:id="@+id/editText"
+            android:id="@+id/inputCode"
             android:layout_width="300dp"
             android:layout_height="45dp"
             android:layout_gravity="center_horizontal"
@@ -53,7 +52,7 @@
             android:textSize="15sp"/>
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/submitBtn"
             android:layout_width="300dp"
             android:layout_height="45dp"
             android:layout_gravity="center_horizontal"

@@ -44,8 +44,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            <!-- 확인, 취소 자간 넓히는 방법으로 개선 (띄어쓰기로 한거를 고쳐야함) -->
             <Button
-                android:id="@+id/btn_ok"
+                android:id="@+id/okBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -55,7 +56,7 @@
                 android:background="@color/colorPrimary"/>
 
             <Button
-                android:id="@+id/btn_cancel"
+                android:id="@+id/cancelBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
