@@ -48,6 +48,8 @@ public class SignUp extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.signup);
 
+        UserInSignup.initializeAll();
+
         aQuery = new AQuery(getApplicationContext());
         firebase = new Firebase();
 
@@ -58,8 +60,6 @@ public class SignUp extends Activity {
         userId = (EditText) findViewById(R.id.inputId);
         userPassword = (EditText) findViewById(R.id.inputPassword);
         passwordConfirm = (EditText) findViewById(R.id.inputPasswordConfirm);
-
-
 
         if(UserInSignup.emailCertified) {
             // 이메일 인증이 완료됐다면 버튼 컬러 변경
