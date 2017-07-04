@@ -2,6 +2,7 @@ package com.daejeonpeople.activities;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.view.View;
@@ -15,6 +16,7 @@ import com.androidquery.callback.AjaxCallback;
 import com.androidquery.callback.AjaxStatus;
 import com.daejeonpeople.R;
 import com.daejeonpeople.support.network.SessionManager;
+import com.daejeonpeople.support.views.SnackbarManager;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -75,12 +77,12 @@ public class SignIn extends Activity{
                                 Intent intent = new Intent(getApplicationContext(), Main.class);
                                 startActivity(intent);
                             } else {
-                                Snackbar.make(getWindow().getDecorView().getRootView(), "아이디나 비밀번호를 확인하세요.", 3000).show();
+                                SnackbarManager.createCancelableSnackbar(getWindow().getDecorView().getRootView(), "아이디나 비밀번호를 확인하세요.", 3000).show();
                             }
                         }
                     });
                 } else {
-                    Snackbar.make(v, "로그인 성공", 3000).show();
+                    SnackbarManager.createCancelableSnackbar(v, "로그인 성공", 3000).show();
                 }
             }
         });

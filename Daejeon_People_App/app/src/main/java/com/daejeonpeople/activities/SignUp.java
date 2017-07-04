@@ -17,6 +17,8 @@ import com.androidquery.callback.AjaxCallback;
 import com.androidquery.callback.AjaxStatus;
 import com.daejeonpeople.R;
 import com.daejeonpeople.support.firebase.Firebase;
+import com.daejeonpeople.support.views.ColorManager;
+import com.daejeonpeople.support.views.SnackbarManager;
 import com.daejeonpeople.valueobject.UserInSignup;
 
 import java.util.HashMap;
@@ -26,25 +28,23 @@ import java.util.Map;
 
 public class SignUp extends AppCompatActivity {
     private AQuery aQuery;
+    private Firebase firebase;
+
     private Button submitBtn;
     private Button emailCertifiedBtn;
 
     private EditText userName;
-
     private EditText userId;
-
     private EditText userPassword;
     private EditText passwordConfirm;
-
-    private Firebase firebase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.signup);
 
-        firebase = new Firebase();
         aQuery = new AQuery(getApplicationContext());
+        firebase = new Firebase();
 
         submitBtn = (Button) findViewById(R.id.signupSubmit);
         emailCertifiedBtn = (Button) findViewById(R.id.emailCertified);
@@ -56,8 +56,8 @@ public class SignUp extends AppCompatActivity {
 
         if(UserInSignup.emailCertified) {
             // 이메일 인증이 완료됐다면 버튼 컬러 변경
-            emailCertifiedBtn.setTextColor(Color.rgb(111, 186, 119));
-            Snackbar.make(getWindow().getDecorView().getRootView(), "이메일 인증 완료", 3000).show();
+            emailCertifiedBtn.setTextColor(ColorManager.successColor);
+            SnackbarManager.createCancelableSnackbar(getWindow().getDecorView().getRootView(), "이메일 인증 완료", 3000).show();
         }
 
         emailCertifiedBtn.setOnClickListener(new View.OnClickListener() {
@@ -73,7 +73,7 @@ public class SignUp extends AppCompatActivity {
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus && !userName.getText().toString().isEmpty()) {
                     // 이름이 1글자 이상일 때. 명시적
-                    userName.setTextColor(Color.rgb(111, 186, 119));
+                    userName.setTextColor(ColorManager.successColor);
                     UserInSignup.name = userName.getText().toString();
                     UserInSignup.nameChecked = true;
                 } else {
@@ -81,6 +81,19 @@ public class SignUp extends AppCompatActivity {
                     UserInSignup.nameChecked = false;
                 }
             }
+        });
+
+        userName.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                userName.setTextColor(Color.BLACK);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) { }
         });
 
         userId.setOnFocusChangeListener(new View.OnFocusChangeListener() {
@@ -101,11 +114,11 @@ public class SignUp extends AppCompatActivity {
                                 int statusCode = status.getCode();
                                 if (statusCode == 201) {
                                     // 미중복
-                                    userId.setTextColor(Color.rgb(111, 186, 119));
+                                    userId.setTextColor(ColorManager.successColor);
                                     UserInSignup.idChecked = true;
                                 } else {
                                     // 중복
-                                    userId.setTextColor(Color.rgb(252, 113, 80));
+                                    userId.setTextColor(ColorManager.failureColor);
                                 }
                             }
                         });
@@ -129,11 +142,11 @@ public class SignUp extends AppCompatActivity {
                 String confirm = s.toString();
 
                 if (UserInSignup.password.equals(confirm)) {
-                    userPassword.setTextColor(Color.rgb(111, 186, 119));
-                    passwordConfirm.setTextColor(Color.rgb(111, 186, 119));
+                    userPassword.setTextColor(ColorManager.successColor);
+                    passwordConfirm.setTextColor(ColorManager.successColor);
                     UserInSignup.passwordConfirmed = true;
                 } else {
-                    passwordConfirm.setTextColor(Color.rgb(252, 113, 80));
+                    passwordConfirm.setTextColor(ColorManager.failureColor);
                     UserInSignup.passwordConfirmed = false;
                 }
             }
@@ -159,12 +172,12 @@ public class SignUp extends AppCompatActivity {
                         public void callback(String url, String response, AjaxStatus status) {
                             int statusCode = status.getCode();
                             if (statusCode == 201) {
-                                Snackbar.make(getWindow().getDecorView().getRootView(), "회원가입 성공!", 3000).show();
+                                SnackbarManager.createCancelableSnackbar(getWindow().getDecorView().getRootView(), "회원가입 성공!", 3000).show();
                                 finish();
                                 Intent intent = new Intent(getApplicationContext(), SignIn.class);
                                 startActivity(intent);
                             } else {
-                                Snackbar.make(getWindow().getDecorView().getRootView(), "회원가입 실패", 3000).show();
+                                SnackbarManager.createCancelableSnackbar(getWindow().getDecorView().getRootView(), "회원가입 실패", 3000).show();
                             }
                         }
                     });
