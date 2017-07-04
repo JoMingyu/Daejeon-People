@@ -3,8 +3,11 @@ package com.daejeonpeople.activities;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.preference.PreferenceActivity;
+import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,6 +21,7 @@ import com.daejeonpeople.connection.connectionValues;
 import org.w3c.dom.Text;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -31,10 +35,11 @@ public class SignIn extends Activity{
     private Button submitBtn;
     private EditText userId;
     private EditText userPassword;
+//    private CheckBox keepLoginBox;
 
-    private TextView signUp;
-    private TextView findId;
-    private TextView findPassword;
+    private TextView signUpView;
+    private TextView findIdView;
+    private TextView findPasswordView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,9 +50,9 @@ public class SignIn extends Activity{
         userId = (EditText) findViewById(R.id.userId);
         userPassword = (EditText) findViewById(R.id.userPassword);
 
-        signUp = (TextView) findViewById(R.id.signUp);
-        findId = (TextView) findViewById(R.id.findId);
-        findPassword = (TextView) findViewById(R.id.findPassword);
+        signUpView = (TextView) findViewById(R.id.signUp);
+        findIdView = (TextView) findViewById(R.id.findId);
+        findPasswordView = (TextView) findViewById(R.id.findPassword);
 
         submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,30 +61,38 @@ public class SignIn extends Activity{
 
                 String id = userId.getText().toString();
                 String password = userPassword.getText().toString();
+//                boolean keepLogin = keepLoginBox.isChecked();
+                boolean keepLogin = true;
 
                 if(!id.isEmpty() && !password.isEmpty()) {
                     Map<String, Object> params = new HashMap<>();
 
                     params.put("id", id);
                     params.put("password", password);
-                    params.put("keep_login", false);
+                    params.put("keep_login", keepLogin);
 
                     aQuery.ajax("http://52.79.134.200/signin", params, String.class, new AjaxCallback<String>(){
                         @Override
                         public void callback(String url, String response, AjaxStatus status){
+                            String cookie = detectCookie(status);
                             int statusCode = status.getCode();
                             if(statusCode == 201) {
+                                finish();
                                 Intent intent = new Intent(getApplicationContext(), Main.class);
                                 startActivity(intent);
                             } else {
-                                Toast.makeText(getApplicationContext(), "ID나 비밀번호를 확인하세요.", Toast.LENGTH_SHORT).show();
+                                Snackbar.make(getWindow().getDecorView().getRootView(), "아이디나 비밀번호를 확인하세요.", 3000).show();
                             }
                         }
                     });
                 } else {
-                    Toast.makeText(getApplicationContext(), "", Toast.LENGTH_SHORT).show();
+                    Snackbar.make(getWindow().getDecorView().getRootView(), "로그인 성공", 3000).show();
                 }
             }
         });
+    }
+
+    private String detectCookie(AjaxStatus status) {
+        List<Header> headers = status.getHeaders();
     }
 }

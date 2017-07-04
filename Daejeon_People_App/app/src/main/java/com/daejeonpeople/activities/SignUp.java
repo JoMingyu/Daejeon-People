@@ -164,7 +164,7 @@ public class SignUp extends AppCompatActivity {
                                 Intent intent = new Intent(getApplicationContext(), SignIn.class);
                                 startActivity(intent);
                             } else {
-                                Toast.makeText(getApplicationContext(), "회원가입 실패", Toast.LENGTH_SHORT).show();
+                                Snackbar.make(getWindow().getDecorView().getRootView(), "회원가입 실패", 3000).show();
                             }
                         }
                     });
