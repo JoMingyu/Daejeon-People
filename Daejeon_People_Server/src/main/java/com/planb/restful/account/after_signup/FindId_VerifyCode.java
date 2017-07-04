@@ -3,6 +3,8 @@ package com.planb.restful.account.after_signup;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import org.json.JSONObject;
+
 import com.planb.support.crypto.AES256;
 import com.planb.support.routing.API;
 import com.planb.support.routing.REST;
@@ -13,8 +15,8 @@ import io.vertx.core.Handler;
 import io.vertx.core.http.HttpMethod;
 import io.vertx.ext.web.RoutingContext;
 
-@API(functionCategory = "아이디 찾기", summary = "인증번호 확인 후 이메일로 아이디 전송")
-@REST(requestBody = "email : String, code : String", successCode = 201, failureCode = 204, etc = "전송한 이메일 인증 코드가 없을 경우 fail")
+@API(functionCategory = "아이디 찾기", summary = "인증번호 확인 후 아이디 응답")
+@REST(requestBody = "email : String, code : String", responseBody = "id: String", successCode = 201, failureCode = 204, etc = "전송한 이메일 인증 코드가 없을 경우 fail")
 @Route(uri = "/find/id/verify", method = HttpMethod.POST)
 public class FindId_VerifyCode implements Handler<RoutingContext> {
 	@Override
@@ -33,8 +35,13 @@ public class FindId_VerifyCode implements Handler<RoutingContext> {
 				rs = MySQL.executeQuery("SELECT * FROM account WHERE email=?", encryptedEmail);
 				rs.next();
 				
+				String id = rs.getString("id");
+				
+				JSONObject response = new JSONObject();
+				response.put("id", id);
+				
 				ctx.response().setStatusCode(201);
-				ctx.response().end(rs.getString("id"));
+				ctx.response().end(response.toString());
 			} else {
 				ctx.response().setStatusCode(204).end();
 				ctx.response().close();
