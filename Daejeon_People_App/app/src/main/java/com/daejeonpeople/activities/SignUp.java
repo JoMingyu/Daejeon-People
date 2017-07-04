@@ -19,6 +19,7 @@ import com.androidquery.callback.AjaxStatus;
 import com.daejeonpeople.R;
 import com.daejeonpeople.connection.connectionValues;
 import com.daejeonpeople.support.firebase.Firebase;
+import com.daejeonpeople.valueobject.User;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -57,7 +58,7 @@ public class SignUp extends AppCompatActivity {
         userPassword = (EditText) findViewById(R.id.userPassword);
         passwordConfirm = (EditText) findViewById(R.id.passwordConfirm);
 
-        if(Email_Certified.emailCertified) {
+        if(User.emailCertified) {
             // 이메일 인증이 완료됐다면 버튼 컬러 변경
             emailCertifiedBtn.setTextColor(Color.rgb(111, 186, 119));
             Snackbar.make(getWindow().getDecorView().getRootView(), "이메일 인증 완료", 3000).show();
@@ -142,7 +143,7 @@ public class SignUp extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (Email_Certified.emailCertified && userNameChecked && idChecked && passwordConfirmed) {
+                if (User.emailCertified && userNameChecked && idChecked && passwordConfirmed) {
                     Map<String, String> params = new HashMap<>();
                     Intent emailCertifiedIntent = getIntent();
 
