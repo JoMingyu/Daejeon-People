@@ -17,12 +17,14 @@ import com.androidquery.AQuery;
 import com.androidquery.callback.AjaxCallback;
 import com.androidquery.callback.AjaxStatus;
 import com.daejeonpeople.R;
+import com.daejeonpeople.support.views.ColorManager;
+import com.daejeonpeople.support.views.SnackbarManager;
 import com.daejeonpeople.valueobject.UserInSignup;
 
 import java.util.HashMap;
 import java.util.Map;
 
-//민지
+// 민지
 // Modified by JoMingyu
 
 public class Email_Certified extends AppCompatActivity {
@@ -54,7 +56,7 @@ public class Email_Certified extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 // 이메일 EditText가 수정되면 발급으로 다시 되도록
-                email.setTextColor(Color.rgb(0, 0, 0));
+                email.setTextColor(Color.BLACK);
                 UserInSignup.emailDemanded = false;
                 confirmButton.setText("발급");
             }
@@ -80,15 +82,15 @@ public class Email_Certified extends AppCompatActivity {
                                 UserInSignup.emailDemanded = true;
                                 // 이메일 인증 번호가 전송되었음을 표시
 
-                                email.setTextColor(Color.rgb(111, 186, 119));
+                                email.setTextColor(ColorManager.successColor);
                                 // 이메일 텍스트 컬러를 바꿈
 
                                 confirmButton.setText("인증");
                                 ShowDialog();
                             } else {
                                 UserInSignup.emailDemanded = false;
-                                email.setTextColor(Color.rgb(252, 113, 80));
-                                Snackbar.make(v, "이미 존재하는 이메일입니다.", 3000).show();
+                                email.setTextColor(ColorManager.failureColor);
+                                SnackbarManager.createCancelableSnackbar(v, "이미 존재하는 이메일입니다.", 3000).show();
                             }
                         }
                     });
@@ -103,15 +105,15 @@ public class Email_Certified extends AppCompatActivity {
                                 UserInSignup.emailCertified = true;
                                 // 인증 완료되었음을 표시
 
-                                checkCode.setTextColor(Color.rgb(111, 186, 119));
+                                checkCode.setTextColor(ColorManager.successColor);
                                 finish();
                                 Intent intent = new Intent(getApplicationContext(), SignUp.class);
                                 startActivity(intent);
                             } else {
                                 UserInSignup.emailCertified = false;
 
-                                checkCode.setTextColor(Color.rgb(252, 113, 80));
-                                Snackbar.make(v, "인증번호가 맞지 않습니다.", 3000).show();
+                                checkCode.setTextColor(ColorManager.failureColor);
+                                SnackbarManager.createCancelableSnackbar(v, "인증번호가 맞지 않습니다.", 3000).show();
                             }
                        }
                     });

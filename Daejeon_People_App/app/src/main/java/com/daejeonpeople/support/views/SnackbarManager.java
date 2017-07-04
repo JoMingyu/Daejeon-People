@@ -8,14 +8,25 @@ import android.view.View;
  */
 
 public class SnackbarManager {
-    public static Snackbar createDefaultSnackbar(View v, String text, int duration, int color) {
+    public static Snackbar createDefaultSnackbar(View v, String text, int duration) {
         Snackbar snackbar = Snackbar.make(v, text, duration);
 
         return snackbar;
     }
 
     public static Snackbar createCancelableSnackbar(View v, String text, int duration, int color) {
-        Snackbar snackbar = Snackbar.make(v, text, duration).setActionTextColor(color).setAction("취소", new View.OnClickListener() {
+        Snackbar snackbar = Snackbar.make(v, text, duration).setActionTextColor(color).setAction("확인", new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                v.setVisibility(View.GONE);
+            }
+        });
+
+        return snackbar;
+    }
+
+    public static Snackbar createCancelableSnackbar(View v, String text, int duration) {
+        Snackbar snackbar = Snackbar.make(v, text, duration).setActionTextColor(ColorManager.successColor).setAction("확인", new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 v.setVisibility(View.GONE);
