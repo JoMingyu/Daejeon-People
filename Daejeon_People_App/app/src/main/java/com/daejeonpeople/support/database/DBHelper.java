@@ -31,7 +31,6 @@ public class DBHelper extends SQLiteOpenHelper {
                     "autologin Integer," +
                     "first Integer" +
                     ");");
-            Insert();
             createTable = true;
         } else if(createTable){
             Log.d("Database/createTable", "Already created");
@@ -46,20 +45,21 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onOpen(SQLiteDatabase db) {
+        insert();
         Log.d("openDB", "db opened");
     }
 
-    public void Insert(){
+    public void insert(){
         SQLiteDatabase db = getWritableDatabase();
         db.execSQL("INSERT INTO CHECK VALUES(0, 1);");
     }
 
-    public void AutoLogin(){
+    public void autoLogin(){
         SQLiteDatabase db = getWritableDatabase();
         db.execSQL("UPDATE CHECK SET CHECK.autologin = 1");
     }
 
-    public void First(){
+    public void first(){
         SQLiteDatabase db = getWritableDatabase();
         db.execSQL("UPDATE CHECK SET CHECK.first = 0");
     }
