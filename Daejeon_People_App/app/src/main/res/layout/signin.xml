@@ -162,6 +162,7 @@
                     sl:scale_base_width="400">
 
                     <CheckBox
+                        android:id="@+id/keepLoginBox"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
                         sl:scale_height="350"

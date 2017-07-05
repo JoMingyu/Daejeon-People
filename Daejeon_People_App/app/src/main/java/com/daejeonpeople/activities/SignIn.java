@@ -2,9 +2,7 @@ package com.daejeonpeople.activities;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -55,11 +53,12 @@ public class SignIn extends Activity{
         setContentView(R.layout.signin);
 
         needFinish = false;
-        Map<String, Object> params = new HashMap<>();
 
         signUpView = (TextView) findViewById(R.id.signUpView);
         findIdView = (TextView) findViewById(R.id.findIdView);
         findPasswordView = (TextView) findViewById(R.id.findPasswordView);
+
+        keepLoginBox = (CheckBox) findViewById(R.id.keepLoginBox);
 
         submitBtn = (Button) findViewById(R.id.okBtn);
         userId = (EditText) findViewById(R.id.inputId);
@@ -91,13 +90,12 @@ public class SignIn extends Activity{
 
         submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(final View v) {
                 aQuery = new AQuery(getApplicationContext());
 
                 String id = userId.getText().toString();
                 String password = userPassword.getText().toString();
-//                boolean keepLogin = keepLoginBox.isChecked();
-                boolean keepLogin = true;
+                final boolean keepLogin = keepLoginBox.isChecked();
 
                 if(!id.isEmpty() && !password.isEmpty()) {
                     Map<String, Object> params = new HashMap<>();
@@ -109,19 +107,24 @@ public class SignIn extends Activity{
                     aQuery.ajax("http://52.79.134.200/signin", params, String.class, new AjaxCallback<String>(){
                         @Override
                         public void callback(String url, String response, AjaxStatus status){
-                            String cookie = new SessionManager(status).detectCookie("UserSession");
                             int statusCode = status.getCode();
                             if(statusCode == 201) {
+                                if(keepLogin) {
+                                    String cookie = new SessionManager(status).detectCookie("UserSession");
+                                    SessionManager.setCookieToDB(getApplicationContext(), cookie);
+                                }
+
+                                SnackbarManager.createCancelableSnackbar(v, "로그인 성공").show();
                                 Intent intent = new Intent(getApplicationContext(), Main.class);
                                 needFinish = true;
                                 startActivity(intent);
                             } else {
-                                SnackbarManager.createCancelableSnackbar(getWindow().getDecorView().getRootView(), "아이디나 비밀번호를 확인하세요.").show();
+                                SnackbarManager.createCancelableSnackbar(v, "아이디나 비밀번호를 확인하세요.").show();
                             }
                         }
                     });
                 } else {
-                    SnackbarManager.createCancelableSnackbar(v, "로그인 성공").show();
+                    SnackbarManager.createCancelableSnackbar(v, "아이디나 비밀번호를 확인하세요.").show();
                 }
             }
         });

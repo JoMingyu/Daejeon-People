@@ -1,8 +1,10 @@
 package com.daejeonpeople.support.network;
 
+import android.content.Context;
 import android.content.pm.PackageInstaller;
 
 import com.androidquery.callback.AjaxStatus;
+import com.daejeonpeople.support.database.DBHelper;
 
 import org.apache.http.cookie.Cookie;
 
@@ -36,5 +38,15 @@ public class SessionManager {
         }
 
         return null;
+    }
+
+    public static String getCookieFromDB(Context ctx) {
+        DBHelper helper = DBHelper.getInstance(ctx, "CHECK.db", null, 1);
+        return helper.getCookie();
+    }
+
+    public static void setCookieToDB(Context ctx, String cookie) {
+        DBHelper helper = DBHelper.getInstance(ctx, "CHECK.db", null, 1);
+        helper.setCookie(cookie);
     }
 }
