@@ -6,10 +6,11 @@ import android.os.Bundle;
 import android.widget.ListView;
 
 import com.daejeonpeople.R;
+import com.daejeonpeople.activities.base.BaseActivity;
 import com.daejeonpeople.adapter.AddressBookAdapter;
 //민지
 
-public class ChatList extends AppCompatActivity {
+public class ChatList extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

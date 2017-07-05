@@ -17,6 +17,7 @@ import com.androidquery.AQuery;
 import com.androidquery.callback.AjaxCallback;
 import com.androidquery.callback.AjaxStatus;
 import com.daejeonpeople.R;
+import com.daejeonpeople.activities.base.BaseActivity;
 import com.daejeonpeople.support.views.ColorManager;
 import com.daejeonpeople.support.views.SnackbarManager;
 import com.daejeonpeople.valueobject.UserInSignup;

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 
 import com.daejeonpeople.R;
+import com.daejeonpeople.activities.base.BaseActivity;
 
 //근철
 

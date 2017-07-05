@@ -8,13 +8,14 @@ import android.os.Bundle;
 import android.os.Handler;
 
 import com.daejeonpeople.R;
+import com.daejeonpeople.activities.base.BaseActivity;
 import com.daejeonpeople.support.database.DBHelper;
 
 /**
  * Created by 10102김동규 on 2017-05-10.
  */
 
-public class Splash extends BaseActivity{
+public class Splash extends BaseActivity {
     @Override
     protected void onPause(){
         super.onPause();

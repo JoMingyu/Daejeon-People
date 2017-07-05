@@ -13,6 +13,7 @@ import com.androidquery.AQuery;
 import com.androidquery.callback.AjaxCallback;
 import com.androidquery.callback.AjaxStatus;
 import com.daejeonpeople.R;
+import com.daejeonpeople.activities.base.BaseActivity;
 import com.daejeonpeople.support.network.SessionManager;
 import com.daejeonpeople.support.views.SnackbarManager;
 
@@ -24,7 +25,7 @@ import java.util.Map;
  */
 // Modified by JoMingyu
 
-public class SignIn extends BaseActivity{
+public class SignIn extends BaseActivity {
     private AQuery aQuery;
 
     private Button submitBtn;

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.widget.TabHost;
 
 import com.daejeonpeople.R;
+import com.daejeonpeople.activities.base.BaseActivity;
 
 //동규
 

@@ -4,8 +4,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.daejeonpeople.R;
+import com.daejeonpeople.activities.base.BaseActivity;
 
-public class FriendRequest extends AppCompatActivity {
+public class FriendRequest extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
