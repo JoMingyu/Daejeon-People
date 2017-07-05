@@ -19,8 +19,6 @@ public class UserInSignup {
     public static boolean passwordConfirmed;
 
     public static void initializeAll() {
-        emailDemanded = false;
-        emailCertified = false;
         nameChecked = false;
         idChecked = false;
         passwordConfirmed = false;

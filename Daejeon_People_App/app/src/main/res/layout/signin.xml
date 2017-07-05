@@ -63,10 +63,10 @@
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:gravity="center"
-                    android:text="대전광역시 정보 알림 서비스"
+                    android:text="대전광역시 여행 정보 서비스"
                     android:textStyle="bold"
                     sl:scale_height="30"
-                    sl:scale_textsize="20"
+                    sl:scale_textsize="16"
                     sl:scale_width="400" />
 
             </com.ssomai.android.scalablelayout.ScalableLayout>
@@ -91,7 +91,7 @@
                 android:textColorHint="@color/Gray"
                 sl:scale_height="60"
                 sl:scale_left="15"
-                sl:scale_textsize="18"
+                sl:scale_textsize="15"
                 sl:scale_width="370"/>
 
         </com.ssomai.android.scalablelayout.ScalableLayout>
@@ -115,7 +115,7 @@
                 android:textColorHint="@color/Gray"
                 sl:scale_height="60"
                 sl:scale_left="15"
-                sl:scale_textsize="18"
+                sl:scale_textsize="15"
                 sl:scale_width="370" />
 
         </com.ssomai.android.scalablelayout.ScalableLayout>
@@ -143,7 +143,7 @@
                         android:textStyle="bold"
                         android:text="로그인 유지"
                         sl:scale_height="70"
-                        sl:scale_textsize="26"
+                        sl:scale_textsize="22"
                         sl:scale_width="400" />
 
                 </com.ssomai.android.scalablelayout.ScalableLayout>
@@ -186,10 +186,10 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:background="@drawable/round_corner_middle"
-                android:text="확인"
+                android:text="로그인"
                 sl:scale_height="60"
                 sl:scale_left="15"
-                sl:scale_textsize="20"
+                sl:scale_textsize="18"
                 sl:scale_width="370" />
 
         </com.ssomai.android.scalablelayout.ScalableLayout>
@@ -217,7 +217,7 @@
                         android:gravity="center_vertical|right"
                         android:text="계정이 없으면 등록해주세요."
                         sl:scale_height="70"
-                        sl:scale_textsize="26"
+                        sl:scale_textsize="24"
                         sl:scale_width="400" />
 
                 </com.ssomai.android.scalablelayout.ScalableLayout>
@@ -244,7 +244,7 @@
                         android:textStyle="bold"
                         sl:scale_height="140"
                         sl:scale_left="20"
-                        sl:scale_textsize="50"
+                        sl:scale_textsize="48"
                         sl:scale_width="400" />
 
                 </com.ssomai.android.scalablelayout.ScalableLayout>
@@ -275,7 +275,7 @@
                         android:layout_height="0dp"
                         android:text="아이디 찾기"
                         sl:scale_height="140"
-                        sl:scale_textsize="40"
+                        sl:scale_textsize="32"
                         android:textStyle="bold"
                         sl:scale_width="400"
                         android:gravity="center"/>
@@ -304,7 +304,7 @@
                         android:text="비밀번호 찾기"
                         android:textStyle="bold"
                         sl:scale_height="140"
-                        sl:scale_textsize="40"
+                        sl:scale_textsize="32"
                         sl:scale_width="400" />
 
                 </com.ssomai.android.scalablelayout.ScalableLayout>

@@ -50,7 +50,7 @@
                         sl:scale_width="320"
                         sl:scale_left="50"
                         android:text="이메일 인증"
-                        sl:scale_textsize="30"
+                        sl:scale_textsize="26"
                         android:background="@drawable/round_corner"
                         android:textColor="@color/Gray"
                         android:textStyle="bold"/>
@@ -78,7 +78,7 @@
                         sl:scale_height="100"
                         sl:scale_left="30"
                         android:text="휴대폰 인증"
-                        sl:scale_textsize="30"
+                        sl:scale_textsize="26"
                         android:background="@drawable/round_corner"
                         android:textColor="@color/Gray"
                         android:textStyle="bold"/>
@@ -110,7 +110,7 @@
                     android:textColor="@color/Black"
                     android:hint="이름을 입력하세요"
                     android:textColorHint="@color/Gray"
-                    sl:scale_textsize="15"/>
+                    sl:scale_textsize="13"/>
 
                 <ImageView
                     android:layout_width="0dp"
@@ -147,7 +147,7 @@
                     android:textColor="@color/Black"
                     android:hint="아이디를 입력하세요"
                     android:textColorHint="@color/Gray"
-                    sl:scale_textsize="15"/>
+                    sl:scale_textsize="13"/>
 
                 <ImageView
                     android:layout_width="0dp"
@@ -184,7 +184,7 @@
                     android:textColor="@color/Black"
                     android:hint="비밀번호를 입력하세요"
                     android:textColorHint="@color/Gray"
-                    sl:scale_textsize="15"
+                    sl:scale_textsize="13"
                     android:inputType="textPassword"/>
 
                 <ImageView
@@ -222,7 +222,7 @@
                     android:textColor="@color/Black"
                     android:hint="비밀번호를 다시 입력하세요"
                     android:textColorHint="@color/Gray"
-                    sl:scale_textsize="15"
+                    sl:scale_textsize="13"
                     android:inputType="textPassword"/>
 
                 <ImageView
