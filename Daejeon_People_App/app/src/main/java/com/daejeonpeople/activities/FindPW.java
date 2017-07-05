@@ -30,7 +30,7 @@ import java.util.Map;
 // 근철
 // Modified by JoMingyu
 
-public class FindPW extends Activity {
+public class FindPW extends BaseActivity {
     private AQuery aQuery;
 
     private Button findBtn;

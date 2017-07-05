@@ -9,7 +9,7 @@ import com.daejeonpeople.R;
 
 //동규
 
-public class Main extends Activity {
+public class Main extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

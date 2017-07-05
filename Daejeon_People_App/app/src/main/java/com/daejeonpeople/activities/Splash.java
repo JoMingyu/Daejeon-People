@@ -14,7 +14,7 @@ import com.daejeonpeople.support.database.DBHelper;
  * Created by 10102김동규 on 2017-05-10.
  */
 
-public class Splash extends Activity{
+public class Splash extends BaseActivity{
     @Override
     protected void onPause(){
         super.onPause();

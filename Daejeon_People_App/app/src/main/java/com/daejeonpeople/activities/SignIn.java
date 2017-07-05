@@ -24,7 +24,7 @@ import java.util.Map;
  */
 // Modified by JoMingyu
 
-public class SignIn extends Activity{
+public class SignIn extends BaseActivity{
     private AQuery aQuery;
 
     private Button submitBtn;

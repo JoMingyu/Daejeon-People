@@ -11,7 +11,7 @@ import com.daejeonpeople.R;
  */
 //동규
 
-public class Category extends Activity {
+public class Category extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

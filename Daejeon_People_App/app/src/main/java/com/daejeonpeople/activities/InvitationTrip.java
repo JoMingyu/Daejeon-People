@@ -10,7 +10,7 @@ import com.daejeonpeople.R;
  */
 //근철
 
-public class InvitationTrip extends Activity {
+public class InvitationTrip extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);

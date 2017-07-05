@@ -31,7 +31,7 @@ import java.util.Map;
 // 근철
 // Modified by JoMingyu
 
-public class FindID extends Activity {
+public class FindID extends BaseActivity {
     private AQuery aQuery;
 
     private Button findBtn;

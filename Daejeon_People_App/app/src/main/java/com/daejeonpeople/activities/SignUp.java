@@ -9,12 +9,12 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.androidquery.AQuery;
 import com.androidquery.callback.AjaxCallback;
 import com.androidquery.callback.AjaxStatus;
 import com.daejeonpeople.R;
+import com.daejeonpeople.activities.base.BaseActivity;
 import com.daejeonpeople.support.firebase.Firebase;
 import com.daejeonpeople.support.views.ColorManager;
 import com.daejeonpeople.support.views.SnackbarManager;
@@ -25,7 +25,7 @@ import java.util.Map;
 // 민지
 // Modified by JoMingyu
 
-public class SignUp extends Activity {
+public class SignUp extends BaseActivity {
     private AQuery aQuery;
     private Firebase firebase;
 

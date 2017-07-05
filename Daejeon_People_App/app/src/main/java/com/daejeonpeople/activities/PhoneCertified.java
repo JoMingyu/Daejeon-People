@@ -7,7 +7,7 @@ import com.daejeonpeople.R;
 
 //근철
 
-public class PhoneCertified extends Activity {
+public class PhoneCertified extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

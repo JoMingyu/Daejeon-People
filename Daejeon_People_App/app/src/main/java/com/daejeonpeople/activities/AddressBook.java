@@ -23,7 +23,7 @@ import java.util.HashMap;
 
 // 근철
 
-public class AddressBook extends Activity {
+public class AddressBook extends BaseActivity {
     AQuery aQuery;
     HashMap<String, Object> params = new HashMap<>();
     ListView listView;

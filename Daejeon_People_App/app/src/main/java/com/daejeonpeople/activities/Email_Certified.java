@@ -27,7 +27,7 @@ import java.util.Map;
 // 민지
 // Modified by JoMingyu
 
-public class Email_Certified extends Activity {
+public class Email_Certified extends BaseActivity {
     private AQuery aQuery;
     private Map<String, Object> params = new HashMap<>();
 

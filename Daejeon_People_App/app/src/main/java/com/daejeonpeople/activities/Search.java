@@ -10,7 +10,7 @@ import com.daejeonpeople.R;
  */
 //근철
 
-public class Search extends Activity {
+public class Search extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

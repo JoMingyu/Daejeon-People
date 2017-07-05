@@ -11,7 +11,7 @@ import com.daejeonpeople.R;
 
 //민지
 
-public class EntryID extends Activity {
+public class EntryID extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
