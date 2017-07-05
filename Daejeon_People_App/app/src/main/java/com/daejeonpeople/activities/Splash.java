@@ -42,12 +42,13 @@ public class Splash extends Activity{
         Intent Main = new Intent(getApplicationContext(), Main.class);
 
         if(dbHelper.isFirstExecution()){
+            dbHelper.firstExecution();
             startActivity(SignUp);
         } else {
-            if(dbHelper.isAutoLogined()) {
-                startActivity(SignIn);
-            } else {
+            if(dbHelper.getCookie() != null) {
                 startActivity(Main);
+            } else {
+                startActivity(SignIn);
             }
         }
     }

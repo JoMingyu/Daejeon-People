@@ -9,7 +9,7 @@ public class DBHelper extends SQLiteOpenHelper {
     private DBHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
     }
-    boolean createTable = false;
+    boolean tableCreated = false;
 
     private volatile static DBHelper dbHelper;     //DCL사용
 
@@ -26,15 +26,13 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        if(!createTable){
-            db.execSQL("CREATE TABLE `CHECK`(" +
-                    "autologin Integer," +
-                    "first Integer" +
-                    ");");
-            createTable = true;
+        if(!tableCreated){
+            db.execSQL("CREATE TABLE `checker`(first INTEGER, cookie TEXT);");
+
+            tableCreated = true;
             insert(db);
-        } else if(createTable) {
-            Log.d("Database/createTable", "Already created");
+        } else if(tableCreated) {
+            Log.d("Database", "Already created");
         }
     }
 
@@ -49,41 +47,35 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     public void insert(SQLiteDatabase db){
-        db.execSQL("INSERT INTO `CHECK`(first, autologin) VALUES(1, 0);");
-    }
-
-    public void autoLogin(){
-        SQLiteDatabase db = getWritableDatabase();
-        db.execSQL("UPDATE CHECK SET CHECK.autologin = 1");
-    }
-
-    public void first(){
-        SQLiteDatabase db = getWritableDatabase();
-        db.execSQL("UPDATE CHECK SET CHECK.first = 0");
-    }
-
-    public boolean isAutoLogined(){
-        SQLiteDatabase db = getReadableDatabase();
-        Cursor cursor = db.rawQuery("select autologin from `CHECK`", null);
-        cursor.moveToFirst();
-        if(cursor.getInt(0) == 1) {
-            // 자동로그인 활성화
-            return true;
-        } else {
-            return false;
-        }
+        db.execSQL("INSERT INTO `checker`(first, cookie) VALUES(1, null);");
     }
 
     public boolean isFirstExecution(){
         SQLiteDatabase db = getReadableDatabase();
-        Cursor cursor = db.rawQuery("select first from `CHECK`", null);
+        Cursor cursor = db.rawQuery("SELECT first FROM `checker`", null);
         cursor.moveToFirst();
-        System.out.println(cursor.getInt(0));
         if(cursor.getInt(0) == 1) {
             // 첫 실행
             return true;
         } else {
             return false;
         }
+    }
+
+    public void firstExecution(){
+        SQLiteDatabase db = getWritableDatabase();
+        db.execSQL("UPDATE `checker` SET first = 0");
+    }
+
+    public String getCookie(){
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT cookie FROM `checker`", null);
+        cursor.moveToFirst();
+        return cursor.getString(0);
+    }
+
+    public void setCookie(String cookie){
+        SQLiteDatabase db = getWritableDatabase();
+        db.execSQL("UPDATE `checker` SET cookie='" + cookie + "'");
     }
 }
