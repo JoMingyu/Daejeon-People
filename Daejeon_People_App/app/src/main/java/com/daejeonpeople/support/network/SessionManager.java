@@ -27,13 +27,9 @@ public class SessionManager {
 
     public String detectCookie(String key) {
         List<Cookie> cookies = status.getCookies();
-        if (!cookies.contains(key)) {
-            return null;
-        } else {
-            for (Cookie cookie : cookies) {
-                if (cookie.getName().equals(key)) {
-                    return cookie.getValue();
-                }
+        for (Cookie cookie : cookies) {
+            if (cookie.getName().equals(key)) {
+                return cookie.getValue();
             }
         }
 

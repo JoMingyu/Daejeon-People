@@ -47,7 +47,7 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     public void insert(SQLiteDatabase db){
-        db.execSQL("INSERT INTO `checker`(first, cookie) VALUES(1, null);");
+        db.execSQL("INSERT INTO `checker`(first, cookie) VALUES(1, null)");
     }
 
     public boolean isFirstExecution(){
