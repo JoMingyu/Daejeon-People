@@ -34,6 +34,7 @@ dependencies {
     compile 'com.google.firebase:firebase-messaging:9.4.0'
     compile 'com.ssomai:android.scalablelayout:2.0.0'
     compile 'org.apache.directory.studio:org.apache.commons.codec:1.8'
+    compile 'com.tsengvn:Typekit:1.0.0'
     testCompile 'junit:junit:4.12'
     provided 'org.jbundle.util.osgi.wrapped:org.jbundle.util.osgi.wrapped.org.apache.http.client:4.1.2'
 }
