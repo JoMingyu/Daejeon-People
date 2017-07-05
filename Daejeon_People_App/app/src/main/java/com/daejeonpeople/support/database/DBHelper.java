@@ -76,6 +76,10 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public void setCookie(String cookie){
         SQLiteDatabase db = getWritableDatabase();
-        db.execSQL("UPDATE `checker` SET cookie='" + cookie + "'");
+        if(cookie == null) {
+            db.execSQL("UPDATE `checker` SET cookie=null");
+        } else {
+            db.execSQL("UPDATE `checker` SET cookie='" + cookie + "'");
+        }
     }
 }
