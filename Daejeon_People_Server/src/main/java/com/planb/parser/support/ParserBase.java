@@ -8,7 +8,7 @@ public enum ParserBase {
 	
 	private final String name;
 	
-	private ParserBase(String name) {
+	ParserBase(String name) {
 		this.name = name;
 	}
 	

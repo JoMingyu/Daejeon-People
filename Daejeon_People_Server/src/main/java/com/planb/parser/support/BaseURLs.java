@@ -10,7 +10,7 @@ public enum BaseURLs {
 	
 	public final String name;
 	
-	private BaseURLs(String name) {
+	BaseURLs(String name) {
 		this.name = name;
 	}
 	
