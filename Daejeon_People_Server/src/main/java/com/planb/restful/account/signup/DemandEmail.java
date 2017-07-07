@@ -55,11 +55,7 @@ public class DemandEmail implements Handler<RoutingContext> {
 	private boolean checkEmailExists(String email) {
 		ResultSet rs = MySQL.executeQuery("SELECT * FROM account WHERE email=?", AES256.encrypt(email));
 		try {
-			if (rs.next()) {
-				return true;
-			} else {
-				return false;
-			}
+			return rs.next();
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return false;

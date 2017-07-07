@@ -28,7 +28,7 @@ public class CheckIdExist implements Handler<RoutingContext> {
 	private int checkIdExists(String id) {
 		ResultSet rs = MySQL.executeQuery("SELECT * FROM account WHERE id=?", AES256.encrypt(id));
 		try {
-			if (rs.next()) {
+			if (rs != null ? rs.next() : false) {
 				return 204;
 			} else {
 				return 201;
