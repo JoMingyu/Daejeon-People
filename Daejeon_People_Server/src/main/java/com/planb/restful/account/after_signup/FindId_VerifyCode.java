@@ -28,11 +28,12 @@ public class FindId_VerifyCode implements Handler<RoutingContext> {
 		
 		ResultSet rs = MySQL.executeQuery("SELECT * FROM email_verify_codes WHERE email=? AND code=?", encryptedEmail, code);
 		try {
-			if(rs.next()) {
+			if(rs != null ? rs.next() : false) {
 				// 전송한 인증 코드가 있을 경우
 				
 				MySQL.executeUpdate("DELETE FROM email_verify_codes WHERE email=? AND code=?", encryptedEmail, code);
 				rs = MySQL.executeQuery("SELECT * FROM account WHERE email=?", encryptedEmail);
+				assert rs != null;
 				rs.next();
 				
 				String id = rs.getString("id");

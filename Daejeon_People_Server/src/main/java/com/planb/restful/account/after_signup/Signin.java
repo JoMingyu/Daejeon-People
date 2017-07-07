@@ -45,11 +45,7 @@ public class Signin implements Handler<RoutingContext> {
 
 		ResultSet rs = MySQL.executeQuery("SELECT * FROM account WHERE id=? AND password=?", encryptedId, encryptedPassword);
 		try {
-			if (rs.next()) {
-				return true;
-			} else {
-				return false;
-			}
+			return rs.next();
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return false;
@@ -80,6 +76,7 @@ public class Signin implements Handler<RoutingContext> {
 	private String getSessionFromId(String id) {
 		ResultSet rs = MySQL.executeQuery("SELECT * FROM account WHERE id=?", AES256.encrypt(id));
 		try {
+			assert rs != null;
 			rs.next();
 			if(rs.getString("session_id") != null) {
 				return rs.getString("session_id");
@@ -99,7 +96,7 @@ public class Signin implements Handler<RoutingContext> {
 			uuid = UUID.randomUUID().toString();
 			ResultSet rs = MySQL.executeQuery("SELECT * FROM account WHERE session_id=?", SHA256.encrypt(uuid));
 			try {
-				if(!rs.next()) {
+				if(!(rs != null ? rs.next() : false)) {
 					// 다른 계정과 중복되지 않는 session id
 					return uuid;
 				}
