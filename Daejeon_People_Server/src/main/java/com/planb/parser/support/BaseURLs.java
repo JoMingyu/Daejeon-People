@@ -8,7 +8,7 @@ public enum BaseURLs {
 	DETAIL("http://api.visitkorea.or.kr/openapi/service/rest/KorService/detailIntro" + ParserBase.DEF_PARAM2.getName()),
 	ADDITIONAL_IMAGE("http://api.visitkorea.or.kr/openapi/service/rest/KorService/detailImage" + ParserBase.DEF_PARAM2.getName() + "&imageYN=Y");
 	
-	public final String name;
+	private final String name;
 	
 	BaseURLs(String name) {
 		this.name = name;

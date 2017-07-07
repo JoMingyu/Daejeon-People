@@ -280,11 +280,11 @@ public class EnhancedDetailParser implements Parser {
 					// 퇴실 시간
 					
 					int benikiaInt = item.has("benikia") ? item.getInt("benikia") : null;
-					boolean benikia = benikiaInt == 1 ? true : false;
+					boolean benikia = benikiaInt == 1;
 					// 베니키아 여부
 					
 					int goodStayInt = item.has("goodstay") ? item.getInt("goodstay") : null;
-					boolean goodStay = goodStayInt == 1 ? true : false;
+					boolean goodStay = goodStayInt == 1;
 					// 굿스테이 여부
 					
 					String accomCount = item.has("accomcountlodging") ? item.getString("accomcountlodging") : null;

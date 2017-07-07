@@ -1,5 +1,5 @@
 package com.planb.parser;
 
-public interface Parser {
+interface Parser {
 	void parse();
 }

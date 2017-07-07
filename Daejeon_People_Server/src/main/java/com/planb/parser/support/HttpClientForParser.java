@@ -15,12 +15,11 @@ public class HttpClientForParser {
 		try {
 			HttpClient client = new HttpClient(url, 80, 60000, 60000);
 			
-			JSONObject responseEntire = new JSONObject(client.get("/", new HashMap<String, Object>(), new HashMap<String, Object>()).getResponseBody());
 			/*
 			 * Response 전체 : response를 key로 header와 body가 갈라짐
 			 * response -> body -> items -> item 순서로 깊어지는 구조
 			 */
-			return responseEntire;
+			return new JSONObject(client.get("/", new HashMap<>(), new HashMap<>()).getResponseBody());
 		} catch (JSONException e) {
 			e.printStackTrace();
 			return null;
@@ -35,13 +34,14 @@ public class HttpClientForParser {
 		 * 2. TotalCount에 맞춰서 page를 넘겨가며 array를 얻어내는 등의 방법으로 활용 가능
 		 */
 		JSONObject responseEntire = request(URL);
+		assert responseEntire != null;
 		JSONObject inResponse = responseEntire.getJSONObject("response");
 		JSONObject responseBody = inResponse.getJSONObject("body");
-		int totalCount = responseBody.getInt("totalCount");
-		
-		return totalCount;
+
+		return responseBody.getInt("totalCount");
 	}
 	
+	@SuppressWarnings("unused")
 	public static int getNumOfRows(String URL) {
 		/*
 		 * 요청에 대한 응답에서 아이템이 복수 개라면 array로 묶여 있고
@@ -50,25 +50,25 @@ public class HttpClientForParser {
 		 * 파싱을 위해 array들을 점차 쌓아가는 과정에서 이를 확인해야 함
 		 */
 		JSONObject responseEntire = request(URL);
+		assert responseEntire != null;
 		JSONObject inResponse = responseEntire.getJSONObject("response");
 		JSONObject responseBody = inResponse.getJSONObject("body");
-		int numOfRows = responseBody.getInt("numOfRows");
-		
-		return numOfRows;
+
+		return responseBody.getInt("numOfRows");
 	}
-	
+
 	public static JSONArray getItems(String URL) {
 		/*
 		 * 요청에 대한 응답에서 아이템이 복수 개라면 array로 묶여 있음
 		 * 아이템이 복수 개 = numOfRows > 1
 		 */
 		JSONObject responseEntire = request(URL);
+		assert responseEntire != null;
 		JSONObject inResponse = responseEntire.getJSONObject("response");
 		JSONObject responseBody = inResponse.getJSONObject("body");
 		JSONObject items = responseBody.getJSONObject("items");
-		JSONArray itemsArray = items.getJSONArray("item");
-		
-		return itemsArray;
+
+		return items.getJSONArray("item");
 	}
 	
 	public static JSONObject getItem(String URL) {
@@ -77,12 +77,12 @@ public class HttpClientForParser {
 		 * 아이템이 1개 = numOfRows가 1
 		 */
 		JSONObject responseEntire = request(URL);
+		assert responseEntire != null;
 		JSONObject inResponse = responseEntire.getJSONObject("response");
 		JSONObject responseBody = inResponse.getJSONObject("body");
 		if(responseBody.getInt("totalCount") != 0) {
 			JSONObject items = responseBody.getJSONObject("items");
-			JSONObject item = items.getJSONObject("item");
-			return item;
+			return items.getJSONObject("item");
 		} else {
 			return null;
 		}
