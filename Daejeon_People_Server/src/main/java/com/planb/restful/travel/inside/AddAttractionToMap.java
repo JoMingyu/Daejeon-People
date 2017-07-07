@@ -32,7 +32,7 @@ public class AddAttractionToMap implements Handler<RoutingContext> {
 	private int addAttraction(String clientId, String topic, int contentId) {
 		ResultSet travelPinSet = MySQL.executeQuery("SELECT * FROM travel_pins WHERE topic=? AND content_id=?", topic, contentId);
 		try {
-			if(travelPinSet.next()) {
+			if(travelPinSet != null ? travelPinSet.next() : false) {
 				// 이미 공유된 여행지
 				return 204;
 			}
@@ -43,7 +43,9 @@ public class AddAttractionToMap implements Handler<RoutingContext> {
 		ResultSet userInfoSet = MySQL.executeQuery("SELECT * FROM account WHERE id=?", clientId);
 		ResultSet attractionInfoSet = MySQL.executeQuery("SELECT * FROM attractions_basic WHERE content_id=?", contentId);
 		try {
+			assert userInfoSet != null;
 			userInfoSet.next();
+			assert attractionInfoSet != null;
 			attractionInfoSet.next();
 			
 			String title = attractionInfoSet.getString("title");
