@@ -2,6 +2,7 @@ package com.planb.restful.attractions.details;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -34,6 +35,7 @@ public class DetailInfo implements Handler<RoutingContext> {
 		ResultSet contentInfo = MySQL.executeQuery("SELECT * FROM attractions_basic WHERE content_id=?", contentId);
 		int contentTypeId = 0;
 		try {
+			assert contentInfo != null;
 			contentInfo.next();
 			contentTypeId = contentInfo.getInt("content_type_id");
 			response.put("content_id", contentId);
@@ -68,6 +70,7 @@ public class DetailInfo implements Handler<RoutingContext> {
 			case 12:
 				// 관광지
 				contentDetailInfo = MySQL.executeQuery(baseQuery, "tourrism_detail_info", contentId);
+				assert contentDetailInfo != null;
 				contentDetailInfo.next();
 				response.put("credit_card", contentDetailInfo.getString("credit_card") == null ? "없음" : contentDetailInfo.getString("credit_card"));
 				response.put("baby_carriage", contentDetailInfo.getString("baby_carriage") == null ? "없음" : contentDetailInfo.getString("baby_carriage"));
@@ -79,6 +82,7 @@ public class DetailInfo implements Handler<RoutingContext> {
 			case 14:
 				// 문화시설
 				contentDetailInfo = MySQL.executeQuery(baseQuery, "cultural_facility_detail_info", contentId);
+				assert contentDetailInfo != null;
 				contentDetailInfo.next();
 				response.put("credit_card", contentDetailInfo.getString("credit_card") == null ? "없음" : contentDetailInfo.getString("credit_card"));
 				response.put("baby_carriage", contentDetailInfo.getString("baby_carriage") == null ? "없음" : contentDetailInfo.getString("baby_carriage"));
@@ -86,25 +90,28 @@ public class DetailInfo implements Handler<RoutingContext> {
 				response.put("info_center", extractPhoneNumber(contentDetailInfo.getString("info_center")));
 				response.put("use_time", contentDetailInfo.getString("use_time") == null ? "정보 없음" : contentDetailInfo.getString("use_time"));
 				response.put("rest_date", contentDetailInfo.getString("rest_date") == null ? "정보 없음" : contentDetailInfo.getString("rest_date"));
-				response.put("use_fee", contentDetailInfo.getString("use_fee") == "" ? "정보 없음" : contentDetailInfo.getString("use_fee"));
+				response.put("use_fee", Objects.equals(contentDetailInfo.getString("use_fee"), "") ? "정보 없음" : contentDetailInfo.getString("use_fee"));
 				response.put("spend_time", contentDetailInfo.getString("spend_time") == null ? "정보 없음" : contentDetailInfo.getString("spend_time"));
 				break;
 			case 15:
 				// 축제, 공연, 행사
 				contentCommonInfo = MySQL.executeQuery(baseQuery, "attractions_detail_common", contentId);
+				assert contentCommonInfo != null;
 				contentCommonInfo.next();
 				response.put("info_center", extractPhoneNumber(contentCommonInfo.getString("tel")));
 
 				contentDetailInfo = MySQL.executeQuery(baseQuery, "festival_detail_info", contentId);
+				assert contentDetailInfo != null;
 				contentDetailInfo.next();
 				response.put("start_date", contentDetailInfo.getString("start_date"));
 				response.put("end_date", contentDetailInfo.getString("end_date"));
-				response.put("use_fee", contentDetailInfo.getString("use_fee") == "" ? "정보 없음" : contentDetailInfo.getString("use_fee"));
+				response.put("use_fee", Objects.equals(contentDetailInfo.getString("use_fee"), "") ? "정보 없음" : contentDetailInfo.getString("use_fee"));
 				response.put("spend_time", contentDetailInfo.getString("spend_time") == null ? "정보 없음" : contentDetailInfo.getString("spend_time"));
 				break;
 			case 25:
 				// 여행코스
 				contentDetailInfo = MySQL.executeQuery(baseQuery, "tour_course_detail_info", contentId);
+				assert contentDetailInfo != null;
 				contentDetailInfo.next();
 				response.put("spend_time", contentDetailInfo.getString("spend_time"));
 				response.put("distance", contentDetailInfo.getString("distance"));
@@ -112,6 +119,7 @@ public class DetailInfo implements Handler<RoutingContext> {
 			case 28:
 				// 레포츠
 				contentDetailInfo = MySQL.executeQuery(baseQuery, "leports_detail_info", contentId);
+				assert contentDetailInfo != null;
 				contentDetailInfo.next();
 				response.put("credit_card", contentDetailInfo.getString("credit_card") == null ? "없음" : contentDetailInfo.getString("credit_card"));
 				response.put("baby_carriage", contentDetailInfo.getString("baby_carriage") == null ? "없음" : contentDetailInfo.getString("baby_carriage"));
@@ -119,11 +127,12 @@ public class DetailInfo implements Handler<RoutingContext> {
 				response.put("info_center", extractPhoneNumber(contentDetailInfo.getString("info_center")));
 				response.put("use_time", contentDetailInfo.getString("use_time") == null ? "정보 없음" : contentDetailInfo.getString("use_time"));
 				response.put("rest_date", contentDetailInfo.getString("rest_date") == null ? "정보 없음" : contentDetailInfo.getString("rest_date"));
-				response.put("use_fee", contentDetailInfo.getString("use_fee") == "" ? "정보 없음" : contentDetailInfo.getString("use_fee"));
+				response.put("use_fee", Objects.equals(contentDetailInfo.getString("use_fee"), "") ? "정보 없음" : contentDetailInfo.getString("use_fee"));
 				break;
 			case 32:
 				// 숙박
 				contentDetailInfo = MySQL.executeQuery(baseQuery, "accommodation_detail_info", contentId);
+				assert contentDetailInfo != null;
 				contentDetailInfo.next();
 				response.put("info_center", extractPhoneNumber(contentDetailInfo.getString("info_center")));
 				response.put("checkin_time", contentDetailInfo.getString("checkin_time"));
@@ -135,6 +144,7 @@ public class DetailInfo implements Handler<RoutingContext> {
 			case 38:
 				// 쇼핑
 				contentDetailInfo = MySQL.executeQuery("SELECT * FROM shopping_detail_info WHERE content_id=", contentId);
+				assert contentDetailInfo != null;
 				contentDetailInfo.next();
 				response.put("credit_card", contentDetailInfo.getString("credit_card") == null ? "없음" : contentDetailInfo.getString("credit_card"));
 				response.put("baby_carriage", contentDetailInfo.getString("baby_carriage") == null ? "없음" : contentDetailInfo.getString("baby_carriage"));
@@ -146,6 +156,7 @@ public class DetailInfo implements Handler<RoutingContext> {
 			case 39:
 				// 식당
 				contentDetailInfo = MySQL.executeQuery(baseQuery, "restaurant_detail_info", contentId);
+				assert contentDetailInfo != null;
 				contentDetailInfo.next();
 				response.put("credit_card", contentDetailInfo.getString("credit_card") == null ? "없음" : contentDetailInfo.getString("credit_card"));
 				response.put("info_center", extractPhoneNumber(contentDetailInfo.getString("info_center")));
@@ -158,13 +169,13 @@ public class DetailInfo implements Handler<RoutingContext> {
 		}
 		
 		wishInfo = MySQL.executeQuery("SELECT * FROM wish_list WHERE client_id=? AND content_id=?", clientId, contentId);
-		if(wishInfo.next()) {
+		if(wishInfo != null ? wishInfo.next() : false) {
 			response.put("wish", true);
 		}
 		
 		contentImage = MySQL.executeQuery("SELECT * FROM attractions_images WHERE content_id=?", contentId);
 		int count = 0;
-		if(contentImage.next()) {
+		if(contentImage != null ? contentImage.next() : false) {
 			response.put("additional_image", true);
 			do {
 				response.put("additional_image_" + ++count, contentImage.getString("image"));
@@ -189,7 +200,7 @@ public class DetailInfo implements Handler<RoutingContext> {
 		Pattern p = Pattern.compile("\\d+-\\d+-\\d+");
 		Matcher m = p.matcher(phoneNumber);
 		if(m.find()) {
-			return m.group().toString();
+			return m.group();
 		} else {
 			return "정보 없음";
 		}
