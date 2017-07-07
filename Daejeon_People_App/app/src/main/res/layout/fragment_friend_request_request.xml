@@ -17,6 +17,7 @@
             <ImageView
                 android:layout_width="70dp"
                 android:layout_height="70dp"
+                android:background="@drawable/ic_profile"
                 android:layout_marginTop="6dp"/>
         </LinearLayout>
 
@@ -28,11 +29,12 @@
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="7dp">
+                android:padding="7dp"
+                android:id="@+id/infoarea">
 
                 <TextView
                     android:id="@+id/userName"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="18dp"
                     android:textColor="@color/Black"
@@ -41,7 +43,7 @@
 
                 <TextView
                     android:id="@+id/userPhoneNum"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="11dp"
                     android:textColor="@color/Black"
@@ -51,38 +53,29 @@
 
                 <TextView
                     android:id="@+id/userEmail"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/userPhoneNum"
                     android:textSize="15dp"
                     android:paddingTop="2dp"
                     android:paddingBottom="2dp"/>
+            </RelativeLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/userEmail"
-                    android:layout_marginTop="4dp">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/infoarea"
+                android:gravity="right"
+                android:layout_marginTop="20dp">
 
-                    <Button
-                        android:id="@+id/btn_accept"
-                        android:layout_width="0dp"
-                        android:layout_height="30dp"
-                        android:layout_weight="1"
-                        android:text="수락"
-                        android:textColor="@color/Green"
-                        android:background="@drawable/btn_accept_design"/>
-
-                    <Button
-                        android:id="@+id/btn_reject"
-                        android:layout_width="0dp"
-                        android:layout_height="30dp"
-                        android:layout_weight="1"
-                        android:text="거절"
-                        android:textColor="@color/Orange"
-                        android:layout_marginLeft="10dp"
-                        android:background="@drawable/btn_resign_design"/>
-                </LinearLayout>
+                <Button
+                    android:id="@+id/btn_request"
+                    android:layout_width="100dp"
+                    android:layout_height="30dp"
+                    android:text="친구요청"
+                    android:textColor="@color/Green"
+                    android:textSize="12dp"
+                    android:background="@drawable/btn_accept_design"/>
 
             </RelativeLayout>
 

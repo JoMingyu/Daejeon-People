@@ -85,7 +85,7 @@
                         android:text="거절"
                         android:textColor="@color/Orange"
                         android:layout_marginLeft="10dp"
-                        android:background="@drawable/btn_reject_design"/>
+                        android:background="@drawable/btn_resign_design"/>
                 </LinearLayout>
 
             </RelativeLayout>
