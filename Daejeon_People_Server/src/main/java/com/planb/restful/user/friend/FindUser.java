@@ -48,7 +48,7 @@ public class FindUser implements Handler<RoutingContext> {
 		
 		ResultSet rs = MySQL.executeQuery("SELECT * FROM account WHERE email=? OR phone_number=?", keyword, keyword);
 		try {
-			if(rs.next()) {
+			if(rs != null ? rs.next() : false) {
 				JSONObject response = new JSONObject();
 				
 				if(rs.getString("id").equals(clientId)) {
@@ -62,14 +62,14 @@ public class FindUser implements Handler<RoutingContext> {
 				response.put("id", rs.getString("id"));
 				
 				ResultSet friendSet = MySQL.executeQuery("SELECT * FROM friend_requests WHERE src_id=? AND dst_id=?", clientId, rs.getString("id"));
-				if(friendSet.next()) {
+				if(friendSet != null ? friendSet.next() : false) {
 					response.put("friend_requested", true);
 				} else {
 					response.put("friend_requested", false);
 				}
 				
 				friendSet = MySQL.executeQuery("SELECT * FROM friend_requests WHERE src_id=? AND dst_id=?", rs.getString("id"), clientId);
-				if(friendSet.next()) {
+				if(friendSet != null ? friendSet.next() : false) {
 					response.put("friend_recieved", true);
 				} else {
 					response.put("friend_recieved", false);

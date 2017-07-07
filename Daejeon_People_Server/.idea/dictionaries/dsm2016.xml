@@ -39,6 +39,7 @@
       <w>count에</w>
       <w>createdtime</w>
       <w>culturecenter</w>
+      <w>curdate</w>
       <w>daejeon</w>
       <w>discountinfo</w>
       <w>discountinfofood</w>
@@ -73,6 +74,7 @@
       <w>mapy</w>
       <w>modifiedtime</w>
       <w>mueq</w>
+      <w>mypage</w>
       <w>null이</w>
       <w>null이면</w>
       <w>object로</w>
@@ -97,6 +99,7 @@
       <w>publicbath</w>
       <w>publicpc</w>
       <w>readcount</w>
+      <w>recieved</w>
       <w>regex로</w>
       <w>reservationfood</w>
       <w>reservationlodging</w>
@@ -138,6 +141,7 @@
       <w>usetimeleports</w>
       <w>verticle</w>
       <w>xxxx</w>
+      <w>xxxxxxxx</w>
     </words>
   </dictionary>
 </component>

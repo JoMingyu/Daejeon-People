@@ -19,7 +19,7 @@ import io.vertx.ext.web.RoutingContext;
 @API(functionCategory = "사용자", summary = "내 정보")
 @REST(responseBody = "id : String, email : String, phone_number : String, name : String, friend_req_count : int, travel_req_count : int", successCode = 200)
 @Route(uri = "/user", method = HttpMethod.GET)
-public class MyInfo implements Handler<RoutingContext> {
+class MyInfo implements Handler<RoutingContext> {
 	@Override
 	public void handle(RoutingContext ctx) {
 		String clientId = UserManager.getEncryptedIdFromSession(ctx);
@@ -29,14 +29,14 @@ public class MyInfo implements Handler<RoutingContext> {
 		ResultSet rs;
 		try {
 			rs = MySQL.executeQuery("SELECT COUNT(*) FROM friend_requests WHERE dst_id=?", clientId);
-			if(rs.next()) {
+			if(rs != null ? rs.next() : false) {
 				response.put("friend_req_count", rs.getInt(1));
 			} else {
 				response.put("friend_req_count", 0);
 			}
 			
 			rs = MySQL.executeQuery("SELECT COUNT(*) FROM travel_invites WHERE dst_id=?", clientId);
-			if(rs.next()) {
+			if(rs != null ? rs.next() : false) {
 				response.put("travel_req_count", rs.getInt(1));
 			} else {
 				response.put("travel_req_count", 0);
