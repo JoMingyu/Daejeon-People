@@ -14,8 +14,9 @@ import com.planb.parser.support.HttpClientForParser;
 import com.planb.support.utilities.Log;
 import com.planb.support.utilities.MySQL;
 
+@SuppressWarnings("unused")
 public class FullDetailParser implements Parser {
-	private static String URL = BaseURLs.DETAIL.getName();
+	private static final String URL = BaseURLs.DETAIL.getName();
 	
 	private static void clearTables() {
 		MySQL.executeUpdate("DELETE FROM accommodation_detail_info");
@@ -28,6 +29,7 @@ public class FullDetailParser implements Parser {
 		MySQL.executeUpdate("DELETE FROM tourrism_detail_info");
 	}
 	
+	@SuppressWarnings("unused")
 	@Override
 	public void parse() {
 		/*
@@ -40,7 +42,7 @@ public class FullDetailParser implements Parser {
 		clearTables();
 		
 		ResultSet rs = MySQL.executeQuery("SELECT * FROM attractions_basic");
-		Map<Integer, Integer> contentInfoMap = new HashMap<Integer, Integer>();
+		Map<Integer, Integer> contentInfoMap = new HashMap<>();
 		Pattern p = Pattern.compile("\\d+");
 		
 		try {

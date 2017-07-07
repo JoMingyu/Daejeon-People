@@ -13,7 +13,7 @@ import com.planb.support.utilities.MySQL;
 public class EnhancedDetailParser implements Parser {
 	// API 상황에 맞춰 향상된 세부정보 파서
 	
-	private static String URL = BaseURLs.DETAIL.getName();
+	private static final String URL = BaseURLs.DETAIL.getName();
 	
 	private void clearTables() {
 		MySQL.executeUpdate("DELETE FROM accommodation_detail_info");
@@ -33,7 +33,7 @@ public class EnhancedDetailParser implements Parser {
 		ResultSet rs = MySQL.executeQuery("SELECT * FROM attractions_basic");
 		
 		try {
-			while(rs.next()) {
+			while(rs != null ? rs.next() : false) {
 				int contentId = rs.getInt("content_id");
 				int contentTypeId = rs.getInt("content_type_id");
 				
@@ -279,11 +279,11 @@ public class EnhancedDetailParser implements Parser {
 					String checkoutTime = item.has("checkouttime") ? item.getString("checkouttime") : null;
 					// 퇴실 시간
 					
-					int benikiaInt = item.has("benikia") ? item.getInt("benikia") : null;
+					int benikiaInt = item.has("benikia") ? item.getInt("benikia") : 0;
 					boolean benikia = benikiaInt == 1;
 					// 베니키아 여부
 					
-					int goodStayInt = item.has("goodstay") ? item.getInt("goodstay") : null;
+					int goodStayInt = item.has("goodstay") ? item.getInt("goodstay") : 0;
 					boolean goodStay = goodStayInt == 1;
 					// 굿스테이 여부
 					

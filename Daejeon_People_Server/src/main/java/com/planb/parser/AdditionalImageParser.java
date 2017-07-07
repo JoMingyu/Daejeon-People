@@ -14,7 +14,7 @@ import com.planb.support.utilities.MySQL;
 public class AdditionalImageParser implements Parser {
 	// 추가 이미지 파서
 	
-	private static String defaultURL = BaseURLs.ADDITIONAL_IMAGE.getName();
+	private static final String defaultURL = BaseURLs.ADDITIONAL_IMAGE.getName();
 	
 	private void clearTables() {
 		MySQL.executeUpdate("DELETE FROM attractions_images");
@@ -27,7 +27,7 @@ public class AdditionalImageParser implements Parser {
 		ResultSet rs = MySQL.executeQuery("SELECT * FROM attractions_basic");
 		
 		try {
-			while(rs.next()) {
+			while(rs != null ? rs.next() : false) {
 				int contentId = rs.getInt("content_id");
 				int contentTypeId = rs.getInt("content_type_id");
 				
@@ -40,7 +40,7 @@ public class AdditionalImageParser implements Parser {
 				
 				if(totalCount == 1) {
 					JSONObject item = HttpClientForParser.getItem(requestURL);
-					MySQL.executeUpdate("INSERT INTO attractions_images VALUES(?, ?)", contentId, item.getString("originimgurl"));
+					MySQL.executeUpdate("INSERT INTO attractions_images VALUES(?, ?)", contentId, item != null ? item.getString("originimgurl") : null);
 				} else {
 					// totalCount > 1
 					

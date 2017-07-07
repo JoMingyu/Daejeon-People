@@ -13,7 +13,7 @@ import com.planb.support.utilities.MySQL;
 public class DetailCommonParser implements Parser {
 	// 공통 세부 정보 파서
 	
-	private static String URL = BaseURLs.DETAIL_COMMON.getName();
+	private static final String URL = BaseURLs.DETAIL_COMMON.getName();
 	
 	private void clearTables() {
 		MySQL.executeUpdate("DELETE FROM attractions_detail_common");
@@ -26,7 +26,7 @@ public class DetailCommonParser implements Parser {
 		ResultSet rs = MySQL.executeQuery("SELECT * FROM attractions_basic");
 		
 		try {
-			while(rs.next()) {
+			while(rs != null ? rs.next() : false) {
 				int contentId = rs.getInt("content_id");
 				int contentTypeId = rs.getInt("content_type_id");
 				
