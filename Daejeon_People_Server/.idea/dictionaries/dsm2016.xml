@@ -91,6 +91,7 @@
       <w>parkinglodging</w>
       <w>parkingshopping</w>
       <w>placeinfo</w>
+      <w>planb</w>
       <w>publicbath</w>
       <w>publicpc</w>
       <w>readcount</w>
@@ -131,6 +132,7 @@
       <w>usetimeculture</w>
       <w>usetimefestival</w>
       <w>usetimeleports</w>
+      <w>verticle</w>
     </words>
   </dictionary>
 </component>
