@@ -26,16 +26,16 @@ public class TravelInfo implements Handler<RoutingContext> {
 		String topic = ctx.request().getParam("topic");
 		
 		ctx.response().setStatusCode(200);
-		ctx.response().end(getRoomInsideInfo(clientId, topic).toString());
+		ctx.response().end(getRoomInsideInfo(topic).toString());
 		ctx.response().close();
 	}
 	
-	private JSONArray getRoomInsideInfo(String requesterId, String topic) {
+	private JSONArray getRoomInsideInfo(String topic) {
 		JSONArray response = new JSONArray();
 		ResultSet travelInfoSet = MySQL.executeQuery("SELECT * FROM travel_clients WHERE topic=?", topic);
 		
 		try {
-			while(travelInfoSet.next()) {
+			while(travelInfoSet != null ? travelInfoSet.next() : false) {
 				String clientId = travelInfoSet.getString("client_id");
 
 				JSONObject clientInfo = UserManager.getUserInfo(clientId);

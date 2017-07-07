@@ -19,7 +19,7 @@ import io.vertx.ext.web.RoutingContext;
 @API(functionCategory = "여행 모드 내부", summary = "읽지 않은 채팅 기록 조회")
 @REST(requestBody = "topic : String, idx : int", responseBody = "idx : int, type : String, name : String, content : String, remaining_views : int, (JSONArray)", successCode = 201, failureCode = 204)
 @Route(uri = "/chat/read", method = HttpMethod.POST)
-public class GetUnreadMessages implements Handler<RoutingContext> {
+class GetUnreadMessages implements Handler<RoutingContext> {
 	@Override
 	public void handle(RoutingContext ctx) {
 		String topic = ctx.request().getFormAttribute("topic");
@@ -42,7 +42,7 @@ public class GetUnreadMessages implements Handler<RoutingContext> {
 		
 		JSONArray messages = new JSONArray();
 		try {
-			while(chatLogSet.next()) {
+			while(chatLogSet != null ? chatLogSet.next() : false) {
 				JSONObject msg = new JSONObject();
 				
 				msg.put("idx", chatLogSet.getInt("idx"));

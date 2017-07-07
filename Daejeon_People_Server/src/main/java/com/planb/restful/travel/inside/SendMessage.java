@@ -22,7 +22,7 @@ import io.vertx.ext.web.RoutingContext;
 @API(functionCategory = "여행 모드 내부", summary = "메시지 전송")
 @REST(requestBody = "topic : String, type : String, (text or image), content : String(type is text)", successCode = 201)
 @Route(uri = "/chat", method = HttpMethod.POST)
-public class SendMessage implements Handler<RoutingContext> {
+class SendMessage implements Handler<RoutingContext> {
 	@Override
 	public void handle(RoutingContext ctx) {
 		String clientId = UserManager.getEncryptedIdFromSession(ctx);
@@ -43,6 +43,7 @@ public class SendMessage implements Handler<RoutingContext> {
 		ResultSet userInfoSet = MySQL.executeQuery("SELECT * FROM account WHERE id=?", clientId);
 		
 		try {
+			assert userInfoSet != null;
 			userInfoSet.next();
 			MySQL_Chat.executeUpdate("INSERT INTO " + topic + "(remaining_views, type, name, content) VALUES(?, ?, ?, ?)", ChatRoomManager.getUserCountInRoom(topic), "text", userInfoSet.getString("name"), content);
 		} catch (SQLException e) {
@@ -54,6 +55,7 @@ public class SendMessage implements Handler<RoutingContext> {
 		ResultSet userInfoSet = MySQL.executeQuery("SELECT * FROM account WHERE id=?", clientId);
 		
 		try {
+			assert userInfoSet != null;
 			userInfoSet.next();
 			
 			for(FileUpload upload : uploads) {
@@ -71,14 +73,14 @@ public class SendMessage implements Handler<RoutingContext> {
 	}
 	
 	private String createIdentifier(String topic) {
-		String identifier = null;
+		String identifier;
 		
 		while(true) {
 			identifier = UUID.randomUUID().toString();
 			ResultSet rs = MySQL_Chat.executeQuery("SELECT * FROM " + topic + " WHERE content=?", identifier);
 			
 			try {
-				if(!rs.next()) {
+				if(!(rs != null ? rs.next() : false)) {
 					break;
 				}
 			} catch (SQLException e) {
