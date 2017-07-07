@@ -20,7 +20,7 @@ import com.planb.support.utilities.Config;
 public class AES256 {
     private static String ips;
     private static Key keySpec;
-    private static String key = Config.getValue("aesKey");
+    private static final String key = Config.getValue("aesKey");
     
     static {
     	try {
@@ -44,8 +44,7 @@ public class AES256 {
                     new IvParameterSpec(ips.getBytes("UTF-8")));
 
             byte[] encrypted = cipher.doFinal(str.getBytes("UTF-8"));
-            String Str = new String(Base64.encodeBase64(encrypted));
-            return Str;
+            return new String(Base64.encodeBase64(encrypted));
         } catch (NoSuchAlgorithmException | NoSuchPaddingException
                 | InvalidKeyException | InvalidAlgorithmParameterException
                 | IllegalBlockSizeException | BadPaddingException
@@ -64,9 +63,8 @@ public class AES256 {
                     new IvParameterSpec(ips.getBytes("UTF-8")));
 
             byte[] byteStr = Base64.decodeBase64(str.getBytes());
-            String Str = new String(cipher.doFinal(byteStr), "UTF-8");
 
-            return Str;
+            return new String(cipher.doFinal(byteStr), "UTF-8");
         } catch (NoSuchAlgorithmException | NoSuchPaddingException
                 | InvalidKeyException | InvalidAlgorithmParameterException
                 | IllegalBlockSizeException | BadPaddingException

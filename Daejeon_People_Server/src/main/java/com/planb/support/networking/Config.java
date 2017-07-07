@@ -1,6 +1,6 @@
 package com.planb.support.networking;
 
-public class Config {
+class Config {
 	private String targetAddress;
 	private int readTimeout = 3000;
 	private int connectTimeout = 3000;

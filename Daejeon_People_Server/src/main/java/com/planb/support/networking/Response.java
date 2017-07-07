@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 public class Response {
-	private Map<String, List<String>> responseHeader = new HashMap<String, List<String>>();
+	private Map<String, List<String>> responseHeader = new HashMap<>();
 	private String responseBody;
 	private int responseCode;
 	

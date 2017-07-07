@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.util.Calendar;
 
 public class Log {
-	private static File logFile = null;
 	private static FileWriter fw;
 	private static Calendar cal;
 	
@@ -21,7 +20,7 @@ public class Log {
 		String month = String.format("%02d", cal.get(Calendar.MONTH) + 1);
 		String date = String.format("%02d", cal.get(Calendar.DATE));
 		String logFileName = "logs/" + year + "-" + month + "-" + date + ".log";
-		logFile = new File(logFileName);
+		File logFile = new File(logFileName);
 		try {
 			if(!logFile.exists()) {
 				logFile.createNewFile();

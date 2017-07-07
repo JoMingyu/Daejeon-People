@@ -11,10 +11,9 @@ import com.planb.support.utilities.Log;
 
 public class MySQL_Chat {
 	private static Connection connection;
-	
-	private static String url;
-	private static String user = Config.getValue("dbUserName");
-	private static String password = Config.getValue("dbPassword");
+
+	private static final String user = Config.getValue("dbUserName");
+	private static final String password = Config.getValue("dbPassword");
 	
 	static {
 		StringBuilder urlBuilder = new StringBuilder();
@@ -22,8 +21,8 @@ public class MySQL_Chat {
 		urlBuilder.append(Config.getValue("dbPort")).append("/");
 		urlBuilder.append(Config.getValue("dbTableName2")).append("?");
 		urlBuilder.append("useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC");
-		
-		url = urlBuilder.toString();
+
+		String url = urlBuilder.toString();
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			connection = DriverManager.getConnection(url, user, password);

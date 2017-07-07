@@ -12,13 +12,6 @@ import com.planb.support.utilities.SessionUtil;
 import io.vertx.ext.web.RoutingContext;
 
 public class UserManager {
-	/*
-	 * ID : AES256
-	 * Registration ID : AES256
-	 * Email, Name, Tel : AES256
-	 * PW, Session ID : SHA256
-	 */
-	private static ResultSet rs;
 
 	public static String getEncryptedIdFromSession(RoutingContext ctx) {
 		/*
@@ -29,10 +22,10 @@ public class UserManager {
 		String sessionId = SessionUtil.getClientSessionId(ctx, "UserSession");
 		String encryptedSessionId = SHA256.encrypt(sessionId);
 		String encryptedId = null;
-		
-		rs = MySQL.executeQuery("SELECT * FROM account WHERE session_id=?", encryptedSessionId);
+
+		ResultSet rs = MySQL.executeQuery("SELECT * FROM account WHERE session_id=?", encryptedSessionId);
 		try {
-			if(rs.next()) {
+			if(rs != null ? rs.next() : false) {
 				encryptedId = rs.getString("id");
 			}
 		} catch (SQLException e) {
@@ -47,6 +40,7 @@ public class UserManager {
 		JSONObject userInfo = new JSONObject();
 		
 		try {
+			assert userInfoSet != null;
 			userInfoSet.next();
 			userInfo.put("id", id);
 			userInfo.put("phone_number", userInfoSet.getString("phone_number") == null ? "전화번호 없음" : userInfoSet.getString("phone_number"));
@@ -60,6 +54,6 @@ public class UserManager {
 	}
 
 	public static boolean isLogined(RoutingContext ctx) {
-		return ((getEncryptedIdFromSession(ctx) == null) ? false : true);
+		return (getEncryptedIdFromSession(ctx) != null);
 	}
 }

@@ -16,21 +16,19 @@ public class Mail {
 	private static final String SENDER_ID = Config.getValue("smtpId");
 	private static final String SENDER_PW = Config.getValue("smtpPw");
 	private static final int PORT = Config.getIntValue("smtpPort");
-	
-	private static Properties props;
-	private static Session session;
-	private static Message mimeMessage;
+
+	private static final Message mimeMessage;
 	
 	static {
-		props = System.getProperties();
+		Properties props = System.getProperties();
 		
 		props.put("mail.smtp.host", SMTP_HOST);
 		props.put("mail.smpt.port", PORT);
 		props.put("mail.smtp.auth", "true");
 		props.put("mail.smtp.ssl.enable", "true");
 		props.put("mail.smtp.ssl.trust", SMTP_HOST);
-		
-		session = Session.getDefaultInstance(props, new Authenticator() {
+
+		Session session = Session.getDefaultInstance(props, new Authenticator() {
 			protected PasswordAuthentication getPasswordAuthentication() {
 				return new PasswordAuthentication(SENDER_ID, SENDER_PW);
 			}

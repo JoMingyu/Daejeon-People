@@ -17,7 +17,7 @@ import com.planb.support.utilities.MySQL;
 import io.vertx.ext.web.RoutingContext;
 
 public class AttractionsListInquiry {
-	private static int numOfRows = AttractionsConfig.NUM_OF_ROWS;
+	private static final int numOfRows = AttractionsConfig.NUM_OF_ROWS;
 	
 	public static JSONArray inquire(RoutingContext ctx, int contentTypeId) {
 		// content type을 지정하여 정보 얻어오기
@@ -50,10 +50,8 @@ public class AttractionsListInquiry {
 			
 			break;
 		}
-		
-		JSONArray result = extractDatas(ctx, rs);
-		
-		return result;
+
+		return extractDatas(ctx, rs);
 	}
 	
 	public static JSONArray inquire(RoutingContext ctx) {
@@ -88,10 +86,8 @@ public class AttractionsListInquiry {
 			
 			break;
 		}
-		
-		JSONArray result = extractDatas(ctx, rs);
-		
-		return result;
+
+		return extractDatas(ctx, rs);
 	}
 	
 	private static ResultSet distanceBasedInquiry(ResultSet rs, int page, double clientX, double clientY) {
@@ -100,7 +96,7 @@ public class AttractionsListInquiry {
 		 * 조회할 수 있는 데이터가 없는 경우 null 리턴됨
 		 */
 		
-		Map<Integer, Double> distances = new HashMap<Integer, Double>();
+		Map<Integer, Double> distances = new HashMap<>();
 		/*
 		 * 클라이언트와 여행지 사이의 거리를 가지고 있는 HashMap
 		 * Key : Content ID
@@ -110,7 +106,7 @@ public class AttractionsListInquiry {
 		ValueComparator vc = new ValueComparator(distances);
 		// Map의 Value 기반 오름차순 정렬을 위한 Comparator
 		
-		Map<Integer, Double> sortedMap = new TreeMap<Integer, Double>(vc);
+		Map<Integer, Double> sortedMap = new TreeMap<>(vc);
 		// ValueComparator를 생성자 파라미터로 가진 Value 기반 정렬된 TreeMap
 		
 		try {
@@ -158,7 +154,7 @@ public class AttractionsListInquiry {
 			if(contentIdIterator.hasNext()) {
 				int contentId = contentIdIterator.next();
 				if(i < numOfRows - 1) {
-					query.append(contentId + " OR content_id=");
+					query.append(contentId).append(" OR content_id=");
 				} else {
 					query.append(contentId);
 				}
@@ -184,7 +180,7 @@ public class AttractionsListInquiry {
 			while(rs.next()) {
 				JSONObject attractionInfo = new JSONObject();
 				ResultSet wish = MySQL.executeQuery("SELECT * FROM wish_list WHERE client_id=? AND content_id=?", UserManager.getEncryptedIdFromSession(ctx), rs.getInt("content_id"));
-				attractionInfo.put("wish", wish.next() ? true : false);
+				attractionInfo.put("wish", wish != null ? wish.next() : false);
 				
 				attractionInfo.put("wish_count", rs.getInt("wish_count"));
 				attractionInfo.put("content_id", rs.getInt("content_id"));

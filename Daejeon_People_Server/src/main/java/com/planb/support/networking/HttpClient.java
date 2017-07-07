@@ -10,17 +10,15 @@ import java.util.Map;
 import org.json.JSONObject;
 
 public class HttpClient {
-	private String targetAddress;
+	private final String targetAddress;
 	private URL url;
 	
 	private int readTimeout = 3000;
 	private int connectTimeout = 3000;
 	
 	private HttpURLConnection connection = null;
-	private OutputStream out = null;
-	private OutputStreamWriter wr = null;
-	
-	public HttpClient(String targetAddress, int port, int readTimeout, int connectTimeout) {
+
+    public HttpClient(String targetAddress, int port, int readTimeout, int connectTimeout) {
 		// Constructor with address, port, timeouts
 		
 		if(targetAddress.endsWith("/")) {
@@ -82,7 +80,7 @@ public class HttpClient {
 			}
 			
 			if(params != null && params.size() > 0) {
-				out = connection.getOutputStream();
+                OutputStream out = connection.getOutputStream();
 				out.write(NetworkingHelper.createParamBytes(params));
 				// Send byte[] data if body data is exists
 				out.flush();
@@ -115,8 +113,8 @@ public class HttpClient {
 					connection.setRequestProperty(key, (String) headers.get(key));
 				}
 			}
-			
-			wr = new OutputStreamWriter(connection.getOutputStream());
+
+            OutputStreamWriter wr = new OutputStreamWriter(connection.getOutputStream());
 			wr.write(requestObject.toString());
 			wr.flush();
 			
@@ -130,7 +128,7 @@ public class HttpClient {
 	public Response get(String uri, Map<String, Object> headers, Map<String, Object> params) {
 		// GET request
 		
-		String requestAddress = null;
+		String requestAddress;
 		if(params != null && params.size() > 0) {
 			requestAddress = NetworkingHelper.createRequestAddress(this.targetAddress, uri, params);
 			// Request address with uri and parameter
@@ -161,7 +159,7 @@ public class HttpClient {
 	public Response delete(String uri, Map<String, Object> headers, Map<String, Object> params) {
 		// GET request
 		
-		String requestAddress = null;
+		String requestAddress;
 		if(params != null && params.size() > 0) {
 			requestAddress = NetworkingHelper.createRequestAddress(this.targetAddress, uri, params);
 			// Request address with uri and parameter

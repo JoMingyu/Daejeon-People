@@ -14,7 +14,7 @@ import io.vertx.ext.web.Router;
 import io.vertx.ext.web.RoutingContext;
 
 public class Routing {
-	private static List<RESTResource> resourceList = new ArrayList<RESTResource>();
+	private static final List<RESTResource> resourceList = new ArrayList<>();
 	
 	@SuppressWarnings("unchecked")
 	public static void route(Router router, String... packages) {

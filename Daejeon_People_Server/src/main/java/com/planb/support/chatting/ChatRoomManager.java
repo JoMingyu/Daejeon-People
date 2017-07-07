@@ -9,7 +9,7 @@ public class ChatRoomManager {
 	public static int getUserCountInRoom(String topic) {
 		ResultSet room = MySQL.executeQuery("SELECT COUNT(*) FROM travel_clients WHERE topic=?", topic);
 		try {
-			if(room.next()) {
+			if(room != null ? room.next() : false) {
 				return room.getInt(1);
 			} else {
 				return 0;
@@ -24,7 +24,7 @@ public class ChatRoomManager {
 		ResultSet room = MySQL_Chat.executeQuery("SELECT idx FROM " + topic + " ORDER BY idx DESC limit 1");
 		
 		try {
-			if(room.next()) {
+			if(room != null ? room.next() : false) {
 				return room.getInt(1);
 			} else {
 				return 0;
