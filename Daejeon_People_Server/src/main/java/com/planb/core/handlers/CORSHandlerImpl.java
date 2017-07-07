@@ -4,7 +4,7 @@ import com.google.common.net.HttpHeaders;
 
 import io.vertx.ext.web.RoutingContext;
 
-public class CORSHandlerImpl implements CORSHandler {
+class CORSHandlerImpl implements CORSHandler {
 	@Override
 	public void handle(RoutingContext ctx) {
         ctx.response().putHeader(HttpHeaders.ACCESS_CONTROL_ALLOW_HEADERS, "Cookie, Origin, X-Requested-With, Content-Type");

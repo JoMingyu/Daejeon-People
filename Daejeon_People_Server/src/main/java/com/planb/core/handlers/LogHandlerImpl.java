@@ -5,7 +5,7 @@ import com.planb.support.utilities.Log;
 import io.vertx.core.http.HttpMethod;
 import io.vertx.ext.web.RoutingContext;
 
-public class LogHandlerImpl implements LogHandler {
+class LogHandlerImpl implements LogHandler {
 	@Override
 	public void handle(RoutingContext ctx) {
 		StringBuilder logStrBuilder = new StringBuilder();
