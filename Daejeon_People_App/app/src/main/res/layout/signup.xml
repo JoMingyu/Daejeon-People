@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:sl="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@mipmap/background">
@@ -99,7 +98,7 @@
 
                 <EditText
                     android:id="@+id/inputName"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     sl:scale_width="350"
                     sl:scale_height="50"
@@ -245,21 +244,21 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 sl:scale_base_width="400"
-                sl:scale_base_height="150">
+                sl:scale_base_height="70">
 
                 <Button
                     android:id="@+id/submitButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
                     sl:scale_width="350"
                     sl:scale_height="50"
-                    sl:scale_top="50"
+                    sl:scale_top="20"
                     android:gravity="center"
                     android:background="@drawable/round_corner_middle"
                     sl:scale_left="25"
-                    android:textStyle="bold"
-                    android:text="가입"
-                    sl:scale_textsize="15"/>
+                    android:textColor="@color/White"
+                    sl:scale_textsize="18"
+                    android:text="확 인"/>
 
             </com.ssomai.android.scalablelayout.ScalableLayout>
         </LinearLayout>

@@ -1,7 +1,6 @@
 package com.daejeonpeople.activities;
 
 import android.app.ActionBar;
-import android.app.Activity;
 import android.os.Bundle;
 import android.widget.ListView;
 
@@ -15,8 +14,6 @@ import com.daejeonpeople.adapter.AddressBookAdapter;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.HashMap;
 
 /**
  * Created by geni on 2017. 5. 28..
@@ -55,7 +52,7 @@ public class AddressBook extends BaseActivity {
         });
 
         final ActionBar addressbook = getActionBar();
-        addressbook.setCustomView(R.layout.custom_addresslist);
+        addressbook.setCustomView(R.layout.custom_address_book);
         addressbook.setDisplayShowTitleEnabled(false);
         addressbook.setDisplayShowCustomEnabled(true);
         addressbook.setDisplayShowHomeEnabled(false);

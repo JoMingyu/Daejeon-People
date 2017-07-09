@@ -23,7 +23,7 @@ public class Chatting extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.chatting);
+        setContentView(R.layout.fragment_chatting);
 
         final ActionBar chatting = getActionBar();
         chatting.setCustomView(R.layout.custom_chatting);

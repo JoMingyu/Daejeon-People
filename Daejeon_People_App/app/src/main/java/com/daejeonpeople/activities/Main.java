@@ -1,7 +1,6 @@
 package com.daejeonpeople.activities;
 
 import android.app.ActionBar;
-import android.app.Activity;
 import android.os.Bundle;
 import android.widget.TabHost;
 
@@ -14,7 +13,7 @@ public class Main extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);
+        setContentView(R.layout.fragment_main);
 
         TabHost tabHost = (TabHost) findViewById(R.id.tabHost1);
         tabHost.setup();

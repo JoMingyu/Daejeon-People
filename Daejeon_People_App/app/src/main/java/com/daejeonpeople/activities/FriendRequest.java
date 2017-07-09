@@ -10,7 +10,7 @@ public class FriendRequest extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.friend_request_request);
+        setContentView(R.layout.friend_request_listview);
 
 
     }

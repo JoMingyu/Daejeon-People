@@ -1,11 +1,9 @@
 package com.daejeonpeople.activities;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -124,7 +122,7 @@ public class Email_Certified extends BaseActivity {
     private void ShowDialog()
     {
         LayoutInflater dialog = LayoutInflater.from(this);
-        final View dialogLayout = dialog.inflate(R.layout.email_certified_dialog, null);
+        final View dialogLayout = dialog.inflate(R.layout.dialog_email_certified_sended, null);
         final Dialog myDialog = new Dialog(this);
 
         myDialog.setTitle("이메일 인증");

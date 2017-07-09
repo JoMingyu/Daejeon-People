@@ -17,26 +17,12 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="이메일 주소로 인증번호를 발송하였습니다."
+                android:text="이메일 인증에 성공하였습니다.\n 아이디는 12345678입니다."
                 android:textSize="16sp"
                 android:textColor="@color/Black"
                 android:textStyle="bold"
                 android:layout_marginTop="50dp"
-                android:layout_marginBottom="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="40dp">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="아이디가 이메일로 발송되었습니다."
-                android:textAlignment="center"
-                android:textSize="18sp"
+                android:layout_marginBottom="50dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"/>
         </LinearLayout>
@@ -44,7 +30,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <!-- 확인, 취소 자간 넓히는 방법으로 개선 (띄어쓰기로 한거를 고쳐야함) -->
             <Button
                 android:id="@+id/okBtn"
                 android:layout_width="match_parent"

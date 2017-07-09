@@ -12,7 +12,13 @@
         android:supportsRtl="true"
         android:name="application.ApplicationClass"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.SignUp" />
+        <activity android:name=".activities.SignUp">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".activities.Email_Certified" />
         <activity
             android:name=".activities.Chatting"
@@ -25,13 +31,7 @@
             android:name=".activities.Main"
             android:theme="@style/CustomActionBarTheme" />
         <activity
-            android:name=".activities.Splash">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:name=".activities.Splash"/>
         <activity
             android:name=".activities.Category"
             android:theme="@style/CustomActionBarTheme" />

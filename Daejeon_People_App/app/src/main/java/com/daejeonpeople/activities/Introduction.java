@@ -1,9 +1,8 @@
 package com.daejeonpeople.activities;
 
 import android.os.Bundle;
-        import android.support.v7.app.AppCompatActivity;
 
-        import com.daejeonpeople.R;
+import com.daejeonpeople.R;
 import com.daejeonpeople.activities.base.BaseActivity;
 
 /**
@@ -14,6 +13,6 @@ public class Introduction extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.introduction_form);
+        setContentView(R.layout.fragment_introduction);
     }
 }

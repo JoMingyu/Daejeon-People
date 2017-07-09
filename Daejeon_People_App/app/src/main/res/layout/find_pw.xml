@@ -37,6 +37,7 @@
             android:gravity="center"
             android:inputType="text"
             android:hint="아이디를 입력하세요"
+            android:textColorHint="@color/Gray"
             android:textSize="15sp"/>
 
         <EditText
@@ -47,6 +48,7 @@
             android:background="@drawable/round_corner"
             android:gravity="center"
             android:hint="이메일을 입력하세요"
+            android:textColorHint="@color/Gray"
             android:inputType="text"
             android:layout_marginBottom="20dp"
             android:textSize="15sp"/>
@@ -61,6 +63,7 @@
             android:gravity="center"
             android:inputType="text"
             android:hint="인증번호를 입력하세요"
+            android:textColorHint="@color/Gray"
             android:textSize="15sp"/>
 
         <Button

@@ -119,7 +119,7 @@ public class FindPW extends BaseActivity {
     private void ShowDialog()
     {
         LayoutInflater dialog = LayoutInflater.from(this);
-        final View dialogLayout = dialog.inflate(R.layout.email_certified_dialog, null);
+        final View dialogLayout = dialog.inflate(R.layout.dialog_email_certified_sended, null);
         final Dialog myDialog = new Dialog(this);
 
         myDialog.setTitle("이메일 인증");
