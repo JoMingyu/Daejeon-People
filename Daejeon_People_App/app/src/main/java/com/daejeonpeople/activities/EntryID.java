@@ -16,6 +16,6 @@ public class EntryID extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.entry_id);
+        setContentView(R.layout.dialog_find_id_input);
     }
 }

@@ -48,7 +48,7 @@ public class FindPW extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.find_password);
+        setContentView(R.layout.find_pw);
 
         aQuery = new AQuery(getApplicationContext());
 
@@ -151,7 +151,7 @@ public class FindPW extends BaseActivity {
     private void PWDialog()
     {
         LayoutInflater dialog = LayoutInflater.from(this);
-        final View dialogLayout = dialog.inflate(R.layout.find_password_dialog, null);
+        final View dialogLayout = dialog.inflate(R.layout.dialog_find_pw_input, null);
         final Dialog myDialog = new Dialog(this);
 
         myDialog.setTitle("임시 비밀번호 발급");

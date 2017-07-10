@@ -43,7 +43,7 @@ public class Email_Certified extends BaseActivity {
 
         confirmButton = (Button) findViewById(R.id.confirmBtn);
         email = (EditText) findViewById(R.id.email);
-        checkCode = (EditText) findViewById (R.id.checkCode);
+       // checkCode = (EditText) findViewById (R.id.checkCode);
 
         UserInSignup.emailDemanded = false;
         // 액티비티 로드마다 false

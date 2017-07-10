@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:android="http://schemas.android.com/tools">
     <!-- the theme applied to the application or activity -->
     <style name="CustomActionBarTheme" parent="@android:style/Theme.Holo.Light.DarkActionBar">
         <item name="android:actionBarStyle">@style/MyActionBar</item>

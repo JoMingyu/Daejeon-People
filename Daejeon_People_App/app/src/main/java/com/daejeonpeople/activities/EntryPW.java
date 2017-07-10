@@ -16,6 +16,6 @@ public class EntryPW extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.entry_pw);
+        setContentView(R.layout.dialog_find_pw_input);
     }
 }
