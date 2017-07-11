@@ -27,12 +27,17 @@ import java.util.Map;
 // Modified by JoMingyu
 
 public class Email_Certified extends BaseActivity {
-    private AQuery aQuery;
     private Map<String, Object> params = new HashMap<>();
 
     private EditText email;
-    private EditText checkCode;
     private Button confirmButton;
+    private AQuery aQuery;
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        finish();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,10 +48,6 @@ public class Email_Certified extends BaseActivity {
 
         confirmButton = (Button) findViewById(R.id.confirmBtn);
         email = (EditText) findViewById(R.id.email);
-       // checkCode = (EditText) findViewById (R.id.checkCode);
-
-        UserInSignup.emailDemanded = false;
-        // 액티비티 로드마다 false
 
         email.addTextChangedListener(new TextWatcher() {
             @Override
@@ -54,10 +55,8 @@ public class Email_Certified extends BaseActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                // 이메일 EditText가 수정되면 발급으로 다시 되도록
+                // 이메일 EditText가 수정되면 다시 검은색이 되도록
                 email.setTextColor(Color.BLACK);
-                UserInSignup.emailDemanded = false;
-                confirmButton.setText("발급");
             }
 
             @Override
@@ -66,82 +65,96 @@ public class Email_Certified extends BaseActivity {
 
         confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(final View v)
-            {
-                if(!UserInSignup.emailDemanded){
-                    // 버튼이 눌렸을 때 이메일 인증번호가 전송되지 않은 상태라면
-
-                    params.put("email", email.getText().toString());
-                    aQuery.ajax("http://52.79.134.200/signup/email/demand", params, String.class, new AjaxCallback<String>(){
-                        @Override
-                        public void callback(String url, String response, AjaxStatus status) {
-                            if(status.getCode() == 201){
-                                UserInSignup.emailDemanded = true;
-                                // 이메일 인증 번호가 전송되었음을 표시
-
-                                email.setTextColor(ColorManager.successColor);
-                                // 이메일 텍스트 컬러를 바꿈
-
-                                confirmButton.setText("인증");
-                                ShowDialog();
-                            } else {
-                                email.setTextColor(ColorManager.failureColor);
-
-                                SnackbarManager.createCancelableSnackbar(v, "이미 존재하는 이메일입니다.").show();
-                            }
-                        }
-                    });
-                } else {
-                    // 전송된 상태라면
-                    params.put("code", checkCode.getText().toString());
-                    aQuery.ajax("http://52.79.134.200/signup/email/verify", params, String.class, new AjaxCallback<String>(){
-                       @Override
-                        public void callback(String url, String response, AjaxStatus status){
-                            if(status.getCode() == 201){
-                                UserInSignup.email = email.getText().toString();
-                                UserInSignup.emailCertified = true;
-                                // 인증 완료되었음을 표시
-
-                                checkCode.setTextColor(ColorManager.successColor);
-                                finish();
-                                Intent intent = new Intent(getApplicationContext(), SignUp.class);
-                                startActivity(intent);
-                            } else {
-                                UserInSignup.emailCertified = false;
-
-                                checkCode.setTextColor(ColorManager.failureColor);
-                                SnackbarManager.createCancelableSnackbar(v, "인증번호가 맞지 않습니다.").show();
-                            }
-                       }
-                    });
+            public void onClick(final View v) {
+                if(email.getText().toString().isEmpty()) {
+                    SnackbarManager.createCancelableSnackbar(v, "이메일을 확인하세요.").show();
                 }
+
+                params.put("email", email.getText().toString());
+                System.out.println(params);
+
+                aQuery.ajax("http://52.79.134.200/signup/email/demand", params, String.class, new AjaxCallback<String>() {
+                    @Override
+                    public void callback(String url, String response, AjaxStatus status) {
+                        System.out.println(status.getCode());
+                        if (status.getCode() == 201) {
+                            email.setTextColor(ColorManager.successColor);
+                            // 이메일 텍스트 컬러를 바꿈
+
+                            ShowDialog();
+                        } else {
+                            email.setTextColor(ColorManager.failureColor);
+
+                            SnackbarManager.createCancelableSnackbar(v, "이미 존재하는 이메일입니다.").show();
+                        }
+                    }
+                });
             }
         });
     }
 
     private void ShowDialog()
     {
-        LayoutInflater dialog = LayoutInflater.from(this);
-        final View dialogLayout = dialog.inflate(R.layout.dialog_email_certified_sended, null);
+        final LayoutInflater dialog = LayoutInflater.from(this);
+        final View dialogLayout = dialog.inflate(R.layout.dialog_email_certified_input, null);
         final Dialog myDialog = new Dialog(this);
 
         myDialog.setTitle("이메일 인증");
         myDialog.setContentView(dialogLayout);
         myDialog.show();
 
-        Button btn_ok = (Button)dialogLayout.findViewById(R.id.okBtn);
-        Button btn_cancel = (Button)dialogLayout.findViewById(R.id.cancelBtn);
+        final Button okBtn = (Button) dialogLayout.findViewById(R.id.okBtn);
+        final Button cancelBtn = (Button) dialogLayout.findViewById(R.id.cancelBtn);
+        final EditText checkCode = (EditText) dialogLayout.findViewById(R.id.checkCode);
 
-        btn_ok.setOnClickListener(new View.OnClickListener()
+        checkCode.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                checkCode.setTextColor(Color.BLACK);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) { }
+        });
+
+        okBtn.setOnClickListener(new View.OnClickListener()
         {
             @Override
-            public void onClick(View v)
+            public void onClick(final View v)
             {
-                myDialog.cancel();
+                HashMap<String, String> params = new HashMap<>();
+                params.put("email", email.getText().toString());
+                params.put("code", checkCode.getText().toString());
+
+                aQuery.ajax("http://52.79.134.200/signup/email/verify", params, String.class, new AjaxCallback<String>(){
+                    @Override
+                    public void callback(String url, String response, AjaxStatus status) {
+                        System.out.println(status.getCode());
+                        if(status.getCode() == 201){
+                            UserInSignup.email = email.getText().toString();
+                            UserInSignup.emailCertified = true;
+                            // 인증 완료되었음을 표시
+
+                            SnackbarManager.createCancelableSnackbar(getWindow().getDecorView().getRootView(), "이메일 인증 완료").show();
+                            myDialog.cancel();
+                            finish();
+                            Intent intent = new Intent(getApplicationContext(), SignUp.class);
+                            startActivity(intent);
+                        } else {
+                            UserInSignup.emailCertified = false;
+
+                            checkCode.setTextColor(ColorManager.failureColor);
+                            SnackbarManager.createCancelableSnackbar(getWindow().getDecorView().getRootView(), "인증번호가 맞지 않습니다.").show();
+                        }
+                    }
+                }.method(AQuery.METHOD_POST));
             }
         });
 
-        btn_cancel.setOnClickListener(new View.OnClickListener()
+        cancelBtn.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)

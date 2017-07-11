@@ -6,7 +6,6 @@ package com.daejeonpeople.valueobject;
 
 public class UserInSignup {
     public static String email;
-    public static boolean emailDemanded;
     public static boolean emailCertified;
 
     public static String name;
