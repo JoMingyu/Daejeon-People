@@ -7,6 +7,7 @@ import android.widget.TabHost;
 import com.daejeonpeople.R;
 import com.daejeonpeople.activities.base.BaseActivity;
 import com.daejeonpeople.adapter.CustomAdapter;
+import com.daejeonpeople.adapter.CustomsAdapter;
 
 //동규
 
@@ -54,9 +55,18 @@ public class Main extends BaseActivity {
 //        main.setDisplayShowCustomEnabled(true);
 //        main.setDisplayShowHomeEnabled(false);
 
-        pager= (ViewPager)findViewById(R.id.pager);
+        pager= (ViewPager)findViewById(R.id.pager1);
         CustomAdapter adapter= new CustomAdapter(getLayoutInflater());
         pager.setAdapter(adapter);
+
+
+        pager= (ViewPager)findViewById(R.id.pager2);
+        CustomsAdapter adapter2= new CustomsAdapter(getLayoutInflater());
+        pager.setAdapter(adapter2);
+
+        pager= (ViewPager)findViewById(R.id.pager3);
+        CustomsAdapter adapter3= new CustomsAdapter(getLayoutInflater());
+        pager.setAdapter(adapter3);
 
     }
 }

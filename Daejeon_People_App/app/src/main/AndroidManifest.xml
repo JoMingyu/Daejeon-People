@@ -12,9 +12,10 @@
         android:supportsRtl="true"
         android:name="application.ApplicationClass"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.SignUp">
+        <activity android:name=".activities.Main">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"
+                    android:theme="@style/CustomActionBarTheme"/>
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
@@ -28,7 +29,7 @@
             android:theme="@style/CustomActionBarTheme" />
         <activity android:name=".activities.SignIn" />
         <activity
-            android:name=".activities.Main"
+            android:name=".activities.SignUp"
             android:theme="@style/CustomActionBarTheme" />
         <activity
             android:name=".activities.Splash"/>
