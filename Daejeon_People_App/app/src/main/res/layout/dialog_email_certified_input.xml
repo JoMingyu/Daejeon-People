@@ -33,6 +33,7 @@
             android:layout_marginBottom="20dp">
 
             <EditText
+                android:id="@+id/checkCode"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
