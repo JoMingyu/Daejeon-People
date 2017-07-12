@@ -1,8 +1,12 @@
 package com.daejeonpeople.activities;
 
+import android.app.ActionBar;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
+import android.widget.Button;
 import android.widget.TabHost;
+import android.widget.TextView;
 
 import com.daejeonpeople.R;
 import com.daejeonpeople.activities.base.BaseActivity;
@@ -49,11 +53,11 @@ public class Main extends BaseActivity {
 
         tabHost.setCurrentTab(0);
 
-//        final ActionBar main = getActionBar();
-//        main.setCustomView(R.layout.custom_main);
-//        main.setDisplayShowTitleEnabled(false);
-//        main.setDisplayShowCustomEnabled(true);
-//        main.setDisplayShowHomeEnabled(false);
+        final ActionBar main = getActionBar();
+        main.setCustomView(R.layout.custom_main);
+        main.setDisplayShowTitleEnabled(false);
+        main.setDisplayShowCustomEnabled(true);
+        main.setDisplayShowHomeEnabled(false);
 
         pager= (ViewPager)findViewById(R.id.pager1);
         CustomAdapter adapter= new CustomAdapter(getLayoutInflater());
@@ -67,6 +71,7 @@ public class Main extends BaseActivity {
         pager= (ViewPager)findViewById(R.id.pager3);
         CustomsAdapter adapter3= new CustomsAdapter(getLayoutInflater());
         pager.setAdapter(adapter3);
+
 
     }
 }
