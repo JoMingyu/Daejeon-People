@@ -1,13 +1,12 @@
 package com.daejeonpeople.activities;
 
 import android.app.ActionBar;
-import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TabHost;
-import android.widget.TextView;
-
+import android.widget.Toast;
 import com.daejeonpeople.R;
 import com.daejeonpeople.activities.base.BaseActivity;
 import com.daejeonpeople.adapter.CustomAdapter;
@@ -22,6 +21,7 @@ public class Main extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_main);
 
+        //Bottom tabwidget & tabhost Code
         TabHost tabHost = (TabHost) findViewById(R.id.tabHost1);
         tabHost.setup();
 
@@ -53,25 +53,35 @@ public class Main extends BaseActivity {
 
         tabHost.setCurrentTab(0);
 
+        //Actionbat Code
         final ActionBar main = getActionBar();
         main.setCustomView(R.layout.custom_main);
         main.setDisplayShowTitleEnabled(false);
         main.setDisplayShowCustomEnabled(true);
         main.setDisplayShowHomeEnabled(false);
 
+        //Advertising ViewPager
         pager= (ViewPager)findViewById(R.id.pager1);
         CustomAdapter adapter= new CustomAdapter(getLayoutInflater());
         pager.setAdapter(adapter);
 
-
+        //이달의 인기만점 ViewPager
         pager= (ViewPager)findViewById(R.id.pager2);
         CustomsAdapter adapter2= new CustomsAdapter(getLayoutInflater());
         pager.setAdapter(adapter2);
 
+        //이달이 가볼만한 곳 ViewPager
         pager= (ViewPager)findViewById(R.id.pager3);
         CustomsAdapter adapter3= new CustomsAdapter(getLayoutInflater());
         pager.setAdapter(adapter3);
 
+        findViewById(R.id.ic_menu).setOnClickListener(
+                new Button.OnClickListener() {
+                    public void onClick(View v) {
+                        Toast.makeText(getApplicationContext(), "토스트메시지입니다.", Toast.LENGTH_SHORT).show();
+                    }
+                }
+        );
 
     }
 }
