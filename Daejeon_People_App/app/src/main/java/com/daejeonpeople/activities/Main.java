@@ -16,6 +16,7 @@ import com.daejeonpeople.adapter.CustomsAdapter;
 
 public class Main extends BaseActivity {
     ViewPager pager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,7 +54,7 @@ public class Main extends BaseActivity {
 
         tabHost.setCurrentTab(0);
 
-        //Actionbat Code
+        //Actionbar Code
         final ActionBar main = getActionBar();
         main.setCustomView(R.layout.custom_main);
         main.setDisplayShowTitleEnabled(false);
@@ -82,6 +83,5 @@ public class Main extends BaseActivity {
                     }
                 }
         );
-
     }
 }
