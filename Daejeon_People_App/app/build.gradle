@@ -35,6 +35,9 @@ dependencies {
     compile 'com.ssomai:android.scalablelayout:2.0.0'
     compile 'org.apache.directory.studio:org.apache.commons.codec:1.8'
     compile 'com.tsengvn:Typekit:1.0.0'
+    compile('com.mikepenz:materialdrawer:4.3.3@aar') {
+        transitive = true
+    }
     testCompile 'junit:junit:4.12'
     provided 'org.jbundle.util.osgi.wrapped:org.jbundle.util.osgi.wrapped.org.apache.http.client:4.1.2'
 }

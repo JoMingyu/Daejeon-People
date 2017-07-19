@@ -13,7 +13,7 @@
         android:name="application.ApplicationClass"
         android:theme="@style/AppTheme">
         <activity android:name=".activities.Main"
-            android:theme="@style/CustomActionBarTheme">
+            android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
