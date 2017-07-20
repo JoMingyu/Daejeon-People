@@ -24,6 +24,7 @@ import com.daejeonpeople.R;
 import com.daejeonpeople.activities.base.BaseActivity;
 import com.daejeonpeople.adapter.CustomAdapter;
 import com.daejeonpeople.adapter.CustomsAdapter;
+import com.daejeonpeople.support.views.SnackbarManager;
 
 //동규
 
@@ -34,7 +35,6 @@ public class Main extends AppCompatActivity implements NavigationView.OnNavigati
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_main);
-
 
         //툴바 생성 액션바 대신 툴바 사용합니다.
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -58,7 +58,6 @@ public class Main extends AppCompatActivity implements NavigationView.OnNavigati
         tabHost.addTab(ts2);
         //tabwidget에 사진 넣기가 너무 어렵네요.ㅠㅠ 죄송합니다.
         tabHost.setCurrentTab(0);
-
 
         //Advertising ViewPager
         pager = (ViewPager) findViewById(R.id.pager1);
@@ -102,32 +101,29 @@ public class Main extends AppCompatActivity implements NavigationView.OnNavigati
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // 네비게이션 뷰 조작
-        int id = item.getItemId();
-        if (id == R.id.navigation_item01) {
-            //내 정보
-            //Myinfo로 이동 (XML 구현 미완료)
-            Toast.makeText(this, "내 정보", Toast.LENGTH_SHORT).show();
-        } else if (id == R.id.navigation_item02) {
-            //설정
-            //어디로 가는지 알 수 가 없음
-            Toast.makeText(this, "설정", Toast.LENGTH_SHORT).show();
-        } else if (id == R.id.nav_sub_menu_item01) {
-            //위시리스트
-            //WishList로 이동 (XML 구현 미완료)
-            Toast.makeText(this, "위시리스트", Toast.LENGTH_SHORT).show();
-        } else if (id == R.id.nav_sub_menu_item02) {
-            //친구 목록
-            //AddressBook으로 이동
-            Intent intent = new Intent(Main.this, AddressBook.class);
-            startActivity(intent);
-        } else if (id == R.id.nav_sub_menu_item03) {
-            //최근여행지
-            //recent_destinations로 이동 (XML 구현 미완료)
-            Toast.makeText(this, "최근 여행지", Toast.LENGTH_SHORT).show();
-        } else if (id == R.id.nav_sub_menu_item04) {
-            //활성화된 여행
-            //Chat List로 이동 (오류 발생)
-            Toast.makeText(this, "활성화된 여행", Toast.LENGTH_SHORT).show();
+        switch(item.getItemId()) {
+            case R.id.navigation_item01:
+                // 내 정보
+                SnackbarManager.createCancelableSnackbar(getWindow().getDecorView().getRootView(), "하이염").show();
+                break;
+            case R.id.navigation_item02:
+                // 설정
+                break;
+            case R.id.nav_sub_menu_item01:
+                // 위시리스트
+                break;
+            case R.id.nav_sub_menu_item02:
+                // 친구 목록
+                break;
+            case R.id.nav_sub_menu_item03:
+                // 최근여행지
+                break;
+            case R.id.nav_sub_menu_item04:
+                // 활성화된 여행
+                break;
+            default:
+                SnackbarManager.createCancelableSnackbar(getWindow().getDecorView().getRootView(), "비정상적인 접근입니다.").show();
+                break;
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
