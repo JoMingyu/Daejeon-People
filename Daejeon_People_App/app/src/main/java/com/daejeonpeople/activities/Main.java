@@ -32,6 +32,12 @@ public class Main extends AppCompatActivity implements NavigationView.OnNavigati
     ViewPager pager;
 
     @Override
+    protected void onPause() {
+        super.onPause();
+        finish();
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_main);
