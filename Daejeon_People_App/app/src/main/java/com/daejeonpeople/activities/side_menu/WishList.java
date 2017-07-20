@@ -30,7 +30,7 @@ public class WishList extends BaseActivity {
         setContentView(R.layout.wishlist_listview);
 
         final ActionBar chatting = getActionBar();
-        chatting.setCustomView(R.layout.custom_chat_list);
+        chatting.setCustomView(R.layout.custom_wishlist);
         chatting.setDisplayShowTitleEnabled(false);
         chatting.setDisplayShowCustomEnabled(true);
         chatting.setDisplayShowHomeEnabled(false);

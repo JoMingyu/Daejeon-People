@@ -13,6 +13,7 @@
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_margin="18dp"
+            android:id="@+id/backBtn"
             android:background="@drawable/ic_back" />
 
         <TextView
@@ -30,8 +31,8 @@
             android:layout_width="6dp"
             android:layout_height="20dp"
             android:layout_marginRight="25dp"
-            android:layout_marginLeft="25dp" />
+            android:layout_marginLeft="25dp"
+            android:background="@drawable/ic_more_vert" />
     </LinearLayout>
-
 
 </LinearLayout>

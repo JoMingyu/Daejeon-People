@@ -14,24 +14,21 @@
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_margin="18dp"
-            android:background="@drawable/ic_back" />
+            android:background="@drawable/ic_back"/>
 
         <TextView
-            android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            android:text="활성화된 여행"
+            android:layout_weight="1"
+            android:text="내 정보"
             android:textColor="@color/White"
             android:textSize="22sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"/>
 
-        <Button
-            android:layout_width="6dp"
+        <TextView
+            android:layout_width="20dp"
             android:layout_height="20dp"
-            android:layout_marginRight="25dp"
-            android:layout_marginLeft="25dp"
-            android:background="@drawable/ic_more_vert" />
-</LinearLayout>
-
+            android:layout_margin="18dp" />
+    </LinearLayout>
 </LinearLayout>
