@@ -2,8 +2,6 @@ package com.daejeonpeople.activities.side_menu;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.os.PersistableBundle;
-import android.support.annotation.Nullable;
 
 import com.daejeonpeople.R;
 

@@ -3,6 +3,7 @@ package com.daejeonpeople.activities.side_menu;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.os.Bundle;
+import android.widget.Button;
 
 import com.daejeonpeople.R;
 
@@ -11,6 +12,8 @@ import com.daejeonpeople.R;
  */
 
 public class WishList extends Activity {
+    private Button backBtn;
+
     @Override
     protected void onPause() {
         super.onPause();
@@ -26,5 +29,7 @@ public class WishList extends Activity {
         chatting.setDisplayShowTitleEnabled(false);
         chatting.setDisplayShowCustomEnabled(true);
         chatting.setDisplayShowHomeEnabled(false);
+
+        backBtn = (Button) findViewById(R.id.backBtn);
     }
 }
