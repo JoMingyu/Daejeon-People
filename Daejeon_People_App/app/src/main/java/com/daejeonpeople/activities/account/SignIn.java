@@ -1,7 +1,5 @@
-package com.daejeonpeople.activities;
+package com.daejeonpeople.activities.account;
 
-import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -14,6 +12,7 @@ import com.androidquery.AQuery;
 import com.androidquery.callback.AjaxCallback;
 import com.androidquery.callback.AjaxStatus;
 import com.daejeonpeople.R;
+import com.daejeonpeople.activities.Main;
 import com.daejeonpeople.activities.base.BaseActivity;
 import com.daejeonpeople.support.network.SessionManager;
 import com.daejeonpeople.support.views.SnackbarManager;

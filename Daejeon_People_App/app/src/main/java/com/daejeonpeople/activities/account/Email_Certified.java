@@ -1,4 +1,4 @@
-package com.daejeonpeople.activities;
+package com.daejeonpeople.activities.account;
 
 import android.app.Dialog;
 import android.content.Intent;
@@ -15,6 +15,7 @@ import com.androidquery.AQuery;
 import com.androidquery.callback.AjaxCallback;
 import com.androidquery.callback.AjaxStatus;
 import com.daejeonpeople.R;
+import com.daejeonpeople.activities.account.SignUp;
 import com.daejeonpeople.activities.base.BaseActivity;
 import com.daejeonpeople.support.views.ColorManager;
 import com.daejeonpeople.support.views.SnackbarManager;

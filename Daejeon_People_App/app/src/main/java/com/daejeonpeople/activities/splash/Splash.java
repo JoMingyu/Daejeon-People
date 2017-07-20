@@ -1,13 +1,11 @@
-package com.daejeonpeople.activities;
+package com.daejeonpeople.activities.splash;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.os.Handler;
 
 import com.daejeonpeople.R;
+import com.daejeonpeople.activities.Main;
 import com.daejeonpeople.activities.base.BaseActivity;
 import com.daejeonpeople.support.database.DBHelper;
 
@@ -38,9 +36,9 @@ public class Splash extends BaseActivity {
 
     private void judge() {
         DBHelper dbHelper = DBHelper.getInstance(getApplicationContext(), "CHECK.db", null, 1);
-        Intent SignIn = new Intent(getApplicationContext(), SignIn.class);
-        Intent SignUp = new Intent(getApplicationContext(), SignUp.class);
-        Intent Main = new Intent(getApplicationContext(), Main.class);
+        Intent SignIn = new Intent(getApplicationContext(), com.daejeonpeople.activities.account.SignIn.class);
+        Intent SignUp = new Intent(getApplicationContext(), com.daejeonpeople.activities.account.SignUp.class);
+        Intent Main = new Intent(getApplicationContext(), com.daejeonpeople.activities.Main.class);
 
         if(dbHelper.isFirstExecution()){
             dbHelper.firstExecution();

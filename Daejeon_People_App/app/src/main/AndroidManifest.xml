@@ -20,26 +20,26 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.Email_Certified" />
+        <activity android:name=".activities.account.Email_Certified" />
         <activity
             android:name=".activities.Chatting"
             android:theme="@style/CustomActionBarTheme" />
         <activity
             android:name=".activities.AddressBook"
             android:theme="@style/CustomActionBarTheme" />
-        <activity android:name=".activities.SignIn" />
+        <activity android:name=".activities.account.SignIn" />
         <activity
-            android:name=".activities.SignUp"
+            android:name=".activities.account.SignUp"
             android:theme="@style/CustomActionBarTheme" />
         <activity
-            android:name=".activities.Splash"/>
+            android:name=".activities.splash.Splash"/>
         <activity
             android:name=".activities.Category"
             android:theme="@style/CustomActionBarTheme" />
-        <activity android:name=".activities.EntryID" />
-        <activity android:name=".activities.EntryPW" />
-        <activity android:name=".activities.FindID" />
-        <activity android:name=".activities.FindPW" />
+        <activity android:name=".activities.account.EntryID" />
+        <activity android:name=".activities.account.EntryPW" />
+        <activity android:name=".activities.account.FindID" />
+        <activity android:name=".activities.account.FindPW" />
         <activity android:name=".activities.Search" />
         <activity
             android:name=".activities.InvitationTrip"

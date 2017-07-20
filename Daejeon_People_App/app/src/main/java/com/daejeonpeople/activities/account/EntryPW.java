@@ -1,4 +1,4 @@
-package com.daejeonpeople.activities;
+package com.daejeonpeople.activities.account;
 
 import android.app.Activity;
 import android.os.Bundle;
