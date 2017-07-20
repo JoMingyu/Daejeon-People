@@ -17,6 +17,7 @@ import android.view.MenuItem;
 import android.widget.TabHost;
 
 import com.daejeonpeople.R;
+import com.daejeonpeople.activities.side_menu.MyInfo;
 import com.daejeonpeople.adapter.CustomAdapter;
 import com.daejeonpeople.adapter.CustomsAdapter;
 import com.daejeonpeople.support.views.SnackbarManager;
@@ -110,7 +111,7 @@ public class Main extends AppCompatActivity implements NavigationView.OnNavigati
         switch(item.getItemId()) {
             case R.id.navigation_item01:
                 // 내 정보
-                SnackbarManager.createCancelableSnackbar(getWindow().getDecorView().getRootView(), "하이염").show();
+                startActivity(new Intent(this, MyInfo.class));
                 break;
             case R.id.navigation_item02:
                 // 설정

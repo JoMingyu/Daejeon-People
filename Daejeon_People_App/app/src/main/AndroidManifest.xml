@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:name="application.ApplicationClass"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.Main"
+        <activity android:name=".activities.splash.Splash"
             android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -32,7 +32,7 @@
             android:name=".activities.account.SignUp"
             android:theme="@style/CustomActionBarTheme" />
         <activity
-            android:name=".activities.splash.Splash"/>
+            android:name=".activities.Main"/>
         <activity
             android:name=".activities.Category"
             android:theme="@style/CustomActionBarTheme" />
@@ -44,7 +44,10 @@
         <activity
             android:name=".activities.InvitationTrip"
             android:theme="@style/CustomActionBarTheme" />
-        <activity android:name=".activities.FriendRequest"></activity>
+        <activity android:name=".activities.FriendRequest" />
+        <activity
+            android:name=".activities.side_menu.MyInfo"
+            android:theme="@style/CustomActionBarTheme"/>
     </application>
 
 </manifest>
