@@ -1,4 +1,4 @@
-package com.daejeonpeople.activities;
+package com.daejeonpeople.activities.side_menu;
 
 import android.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
