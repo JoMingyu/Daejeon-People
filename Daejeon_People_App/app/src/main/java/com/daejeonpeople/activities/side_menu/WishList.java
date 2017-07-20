@@ -1,18 +1,25 @@
 package com.daejeonpeople.activities.side_menu;
 
 import android.app.ActionBar;
+import android.app.Activity;
 import android.os.Bundle;
 
 import com.daejeonpeople.R;
-import com.daejeonpeople.activities.base.BaseActivity;
-//민지
 
-public class ChatList extends BaseActivity {
+/**
+ * Created by dsm2016 on 2017-07-20.
+ */
+
+public class WishList extends Activity {
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.chat_list_listview);
+        setContentView(R.layout.wishlist_listview);
 
         final ActionBar chatting = getActionBar();
         chatting.setCustomView(R.layout.custom_chat_list);

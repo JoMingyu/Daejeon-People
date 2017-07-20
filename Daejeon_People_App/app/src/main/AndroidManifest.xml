@@ -13,7 +13,7 @@
         android:name="application.ApplicationClass"
         android:theme="@style/AppTheme">
         <activity android:name=".activities.splash.Splash"
-            android:theme="@style/AppTheme">
+            android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -47,6 +47,15 @@
         <activity android:name=".activities.FriendRequest" />
         <activity
             android:name=".activities.side_menu.MyInfo"
+            android:theme="@style/CustomActionBarTheme"/>
+        <activity
+            android:name=".activities.side_menu.ChatList"
+            android:theme="@style/CustomActionBarTheme"/>
+        <activity
+            android:name=".activities.side_menu.FriendList"
+            android:theme="@style/CustomActionBarTheme"/>
+        <activity
+            android:name=".activities.side_menu.WishList"
             android:theme="@style/CustomActionBarTheme"/>
     </application>
 

@@ -17,7 +17,10 @@ import android.view.MenuItem;
 import android.widget.TabHost;
 
 import com.daejeonpeople.R;
+import com.daejeonpeople.activities.side_menu.ChatList;
+import com.daejeonpeople.activities.side_menu.FriendList;
 import com.daejeonpeople.activities.side_menu.MyInfo;
+import com.daejeonpeople.activities.side_menu.WishList;
 import com.daejeonpeople.adapter.CustomAdapter;
 import com.daejeonpeople.adapter.CustomsAdapter;
 import com.daejeonpeople.support.views.SnackbarManager;
@@ -115,18 +118,22 @@ public class Main extends AppCompatActivity implements NavigationView.OnNavigati
                 break;
             case R.id.navigation_item02:
                 // 설정
+//                startActivity(new Intent(this, ))
                 break;
             case R.id.nav_sub_menu_item01:
                 // 위시리스트
+                startActivity(new Intent(this, WishList.class));
                 break;
             case R.id.nav_sub_menu_item02:
                 // 친구 목록
+                startActivity(new Intent(this, FriendList.class));
                 break;
             case R.id.nav_sub_menu_item03:
                 // 최근여행지
                 break;
             case R.id.nav_sub_menu_item04:
                 // 활성화된 여행
+                startActivity(new Intent(this, ChatList.class));
                 break;
             default:
                 SnackbarManager.createCancelableSnackbar(getWindow().getDecorView().getRootView(), "비정상적인 접근입니다.").show();
