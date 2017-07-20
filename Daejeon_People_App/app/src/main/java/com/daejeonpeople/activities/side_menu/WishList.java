@@ -6,17 +6,19 @@ import android.os.Bundle;
 import android.widget.Button;
 
 import com.daejeonpeople.R;
+import com.daejeonpeople.activities.base.BaseActivity;
 
 /**
  * Created by dsm2016 on 2017-07-20.
  */
 
-public class WishList extends Activity {
+public class WishList extends BaseActivity {
     private Button backBtn;
 
     @Override
     protected void onPause() {
         super.onPause();
+        finish();
     }
 
     @Override
