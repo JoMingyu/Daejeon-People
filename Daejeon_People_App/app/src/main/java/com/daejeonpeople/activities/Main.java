@@ -69,12 +69,6 @@ public class Main extends AppCompatActivity implements NavigationView.OnNavigati
         CustomsAdapter adapter2 = new CustomsAdapter(getLayoutInflater());
         pager.setAdapter(adapter2);
 
-        //이달이 가볼만한 곳 ViewPager
-        pager = (ViewPager) findViewById(R.id.pager3);
-        CustomsAdapter adapter3 = new CustomsAdapter(getLayoutInflater());
-        pager.setAdapter(adapter3);
-
-
         //사이드메뉴 생성
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
