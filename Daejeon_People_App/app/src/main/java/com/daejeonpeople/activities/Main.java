@@ -103,7 +103,6 @@ public class Main extends AppCompatActivity implements NavigationView.OnNavigati
     public boolean onNavigationItemSelected(MenuItem item) {
         // 네비게이션 뷰 조작
         int id = item.getItemId();
-
         if (id == R.id.navigation_item01) {
             //내 정보
             //Myinfo로 이동 (XML 구현 미완료)
