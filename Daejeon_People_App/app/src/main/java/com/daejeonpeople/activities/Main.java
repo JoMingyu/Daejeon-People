@@ -33,33 +33,31 @@ public class Main extends AppCompatActivity implements NavigationView.OnNavigati
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_main);
+
+
+        //툴바 생성 액션바 대신 툴바 사용합니다.
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         //Bottom tabwidget & tabhost Code
         TabHost tabHost = (TabHost) findViewById(R.id.tabHost1);
         tabHost.setup();
 
-        //tabwidget에 사진 넣기가 너무 어렵네요.ㅠㅠ 죄송합니다.
+        //메인으로 위젯 생성
         TabHost.TabSpec ts1 = tabHost.newTabSpec("Tab1");
         ts1.setIndicator("메인으로", ContextCompat.getDrawable( getApplicationContext() ,R.drawable.ic_home));
         ts1.setContent(R.id.tab1);
         tabHost.addTab(ts1);
 
+        //카테고리 위젯 생성
         TabHost.TabSpec ts2 = tabHost.newTabSpec("Tab2");
         ts2.setIndicator("카테고리", ContextCompat.getDrawable( getApplicationContext() ,R.drawable.ic_category));
         ts2.setContent(R.id.tab2);
         tabHost.addTab(ts2);
-
+        //tabwidget에 사진 넣기가 너무 어렵네요.ㅠㅠ 죄송합니다.
         tabHost.setCurrentTab(0);
 
-//        //Actionbar Code
-//        final ActionBar main = getActionBar();
-//        main.setCustomView(R.layout.custom_main);
-//        main.setDisplayShowTitleEnabled(false);
-//        main.setDisplayShowCustomEnabled(true);
-//        main.setDisplayShowHomeEnabled(false);
 
         //Advertising ViewPager
         pager = (ViewPager) findViewById(R.id.pager1);
@@ -76,14 +74,8 @@ public class Main extends AppCompatActivity implements NavigationView.OnNavigati
         CustomsAdapter adapter3 = new CustomsAdapter(getLayoutInflater());
         pager.setAdapter(adapter3);
 
-//        findViewById(R.id.ic_menu).setOnClickListener(
-//                new Button.OnClickListener() {
-//                    public void onClick(View v) {
-//                        Toast.makeText(getApplicationContext(), "토스트메시지입니다.", Toast.LENGTH_SHORT).show();
-//                    }
-//                }
-//        );
 
+        //사이드메뉴 생성
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -92,11 +84,42 @@ public class Main extends AppCompatActivity implements NavigationView.OnNavigati
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
     }
 
+    //Navigation onBackPressed
     @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        return false;
+    public void onBackPressed() {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
     }
+
+    @SuppressWarnings("StatementWithEmptyBody")
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        // 네비게이션 뷰 조작
+        int id = item.getItemId();
+
+        if (id == R.id.navigation_item01) {
+            Toast.makeText(this, "내 정보", Toast.LENGTH_SHORT).show();
+        } else if (id == R.id.navigation_item02) {
+            Toast.makeText(this, "설정", Toast.LENGTH_SHORT).show();
+        } else if (id == R.id.nav_sub_menu_item01) {
+            Toast.makeText(this, "위시리스트", Toast.LENGTH_SHORT).show();
+        } else if (id == R.id.nav_sub_menu_item02) {
+            Toast.makeText(this, "친구 목록", Toast.LENGTH_SHORT).show();
+        } else if (id == R.id.nav_sub_menu_item03) {
+            Toast.makeText(this, "최근 여행지", Toast.LENGTH_SHORT).show();
+        } else if (id == R.id.nav_sub_menu_item04) {
+            Toast.makeText(this, "활성화된 여행", Toast.LENGTH_SHORT).show();
+        }
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
+    }
+
 }
