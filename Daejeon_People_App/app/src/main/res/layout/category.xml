@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:sc="http://schemas.android.com/apk/res-auto"
+    xmlns:sl="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
-
     <LinearLayout
+        android:id="@+id/tab2"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <ScrollView
             android:layout_width="fill_parent"
@@ -60,14 +64,17 @@
                                         android:gravity="center"
                                         android:text="관광지"
                                         android:textColor="@color/White"
-                                        android:textSize="50dp" />
+                                        android:textStyle="bold"
+                                        android:layout_marginBottom="10dp"
+                                        android:textSize="30dp" />
 
                                     <Button
                                         android:background="@drawable/round_corner_middle"
-                                        android:layout_width="100dp"
+                                        android:layout_width="150dp"
                                         android:layout_height="25dp"
                                         android:layout_gravity="center"
                                         android:textColor="@color/White"
+                                        android:textStyle="bold"
                                         android:text="살펴보기" />
                                 </LinearLayout>
                             </RelativeLayout>
@@ -115,13 +122,16 @@
                                         android:layout_gravity="center"
                                         android:gravity="center"
                                         android:text="문화시설"
+                                        android:textStyle="bold"
+                                        android:layout_marginBottom="10dp"
                                         android:textColor="@color/White"
-                                        android:textSize="50dp" />
+                                        android:textSize="30dp" />
 
                                     <Button
                                         android:background="@drawable/round_corner_middle"
-                                        android:layout_width="100dp"
+                                        android:layout_width="150dp"
                                         android:layout_height="25dp"
+                                        android:textStyle="bold"
                                         android:layout_gravity="center"
                                         android:textColor="@color/White"
                                         android:text="살펴보기" />
@@ -173,13 +183,16 @@
                                         android:gravity="center"
                                         android:text="행사\u0026축제"
                                         android:textColor="@color/White"
-                                        android:textSize="50dp" />
+                                        android:textStyle="bold"
+                                        android:layout_marginBottom="10dp"
+                                        android:textSize="30dp" />
 
                                     <Button
                                         android:background="@drawable/round_corner_middle"
-                                        android:layout_width="100dp"
+                                        android:layout_width="150dp"
                                         android:layout_height="25dp"
                                         android:layout_gravity="center"
+                                        android:textStyle="bold"
                                         android:textColor="@color/White"
                                         android:text="살펴보기" />
                                 </LinearLayout>
@@ -232,14 +245,17 @@
                                         android:layout_gravity="center"
                                         android:gravity="center"
                                         android:text="여행코스"
+                                        android:textStyle="bold"
+                                        android:layout_marginBottom="10dp"
                                         android:textColor="@color/White"
-                                        android:textSize="50dp" />
+                                        android:textSize="30dp" />
 
                                     <Button
                                         android:background="@drawable/round_corner_middle"
-                                        android:layout_width="100dp"
+                                        android:layout_width="150dp"
                                         android:layout_height="25dp"
                                         android:layout_gravity="center"
+                                        android:textStyle="bold"
                                         android:textColor="@color/White"
                                         android:text="살펴보기" />
                                 </LinearLayout>
@@ -289,15 +305,18 @@
                                         android:layout_alignRight="@id/leisure"
                                         android:layout_alignTop="@id/leisure"
                                         android:layout_gravity="center"
+                                        android:textStyle="bold"
+                                        android:layout_marginBottom="10dp"
                                         android:gravity="center"
                                         android:text="레포츠"
                                         android:textColor="@color/White"
-                                        android:textSize="50dp" />
+                                        android:textSize="30dp" />
 
                                     <Button
                                         android:background="@drawable/round_corner_middle"
-                                        android:layout_width="100dp"
+                                        android:layout_width="150dp"
                                         android:layout_height="25dp"
+                                        android:textStyle="bold"
                                         android:layout_gravity="center"
                                         android:textColor="@color/White"
                                         android:text="살펴보기" />
@@ -347,15 +366,18 @@
                                         android:layout_alignLeft="@id/accommodation"
                                         android:layout_alignRight="@id/accommodation"
                                         android:layout_alignTop="@id/accommodation"
+                                        android:textStyle="bold"
+                                        android:layout_marginBottom="10dp"
                                         android:layout_gravity="center"
                                         android:gravity="center"
                                         android:text="숙박\u0026리조트"
                                         android:textColor="@color/White"
-                                        android:textSize="50dp" />
+                                        android:textSize="30dp" />
 
                                     <Button
                                         android:background="@drawable/round_corner_middle"
-                                        android:layout_width="100dp"
+                                        android:layout_width="150dp"
+                                        android:textStyle="bold"
                                         android:layout_height="25dp"
                                         android:layout_gravity="center"
                                         android:textColor="@color/White"
@@ -406,15 +428,18 @@
                                         android:layout_alignRight="@id/shopping"
                                         android:layout_alignTop="@id/shopping"
                                         android:layout_gravity="center"
+                                        android:textStyle="bold"
+                                        android:layout_marginBottom="10dp"
                                         android:gravity="center"
                                         android:text="쇼핑"
                                         android:textColor="@color/White"
-                                        android:textSize="50dp" />
+                                        android:textSize="30dp" />
 
                                     <Button
                                         android:background="@drawable/round_corner_middle"
-                                        android:layout_width="100dp"
+                                        android:layout_width="150dp"
                                         android:layout_height="25dp"
+                                        android:textStyle="bold"
                                         android:layout_gravity="center"
                                         android:textColor="@color/White"
                                         android:text="살펴보기" />
@@ -466,14 +491,17 @@
                                         android:layout_alignTop="@id/food"
                                         android:layout_gravity="center"
                                         android:gravity="center"
+                                        android:textStyle="bold"
+                                        android:layout_marginBottom="10dp"
                                         android:text="음식점"
                                         android:textColor="@color/White"
-                                        android:textSize="50dp" />
+                                        android:textSize="30dp" />
 
                                     <Button
                                         android:background="@drawable/round_corner_middle"
-                                        android:layout_width="100dp"
+                                        android:layout_width="150dp"
                                         android:layout_height="25dp"
+                                        android:textStyle="bold"
                                         android:layout_gravity="center"
                                         android:textColor="@color/White"
                                         android:text="살펴보기" />

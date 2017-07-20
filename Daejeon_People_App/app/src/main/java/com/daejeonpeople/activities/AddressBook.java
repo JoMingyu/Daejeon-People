@@ -1,21 +1,21 @@
 package com.daejeonpeople.activities;
 
 import android.app.ActionBar;
-import android.app.Activity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 
 import com.androidquery.AQuery;
 import com.androidquery.callback.AjaxCallback;
 import com.androidquery.callback.AjaxStatus;
 import com.daejeonpeople.R;
+import com.daejeonpeople.activities.base.BaseActivity;
 import com.daejeonpeople.adapter.AddressBookAdapter;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.HashMap;
 
 /**
  * Created by geni on 2017. 5. 28..
@@ -23,9 +23,9 @@ import java.util.HashMap;
 
 // 근철
 
-public class AddressBook extends Activity {
+@Deprecated
+public class AddressBook extends BaseActivity {
     AQuery aQuery;
-    HashMap<String, Object> params = new HashMap<>();
     ListView listView;
     final AddressBookAdapter adapter = new AddressBookAdapter();
 
@@ -41,10 +41,7 @@ public class AddressBook extends Activity {
         aQuery.ajax("http://52.79.134.200:80/friend", JSONArray.class, new AjaxCallback<JSONArray>(){
             @Override
             public void callback(String url, JSONArray response, AjaxStatus status) {
-                System.out.println(status.getCode());
-                System.out.println(url);
                 try {
-                    System.out.println("connect success");
                     JSONArray jsonArray = new JSONArray();
                     for(int i=0; i<jsonArray.length(); i++){
                         JSONObject friendInfo = jsonArray.getJSONObject(i);
@@ -58,7 +55,7 @@ public class AddressBook extends Activity {
         });
 
         final ActionBar addressbook = getActionBar();
-        addressbook.setCustomView(R.layout.custom_addresslist);
+        addressbook.setCustomView(R.layout.custom_address_book);
         addressbook.setDisplayShowTitleEnabled(false);
         addressbook.setDisplayShowCustomEnabled(true);
         addressbook.setDisplayShowHomeEnabled(false);
@@ -66,5 +63,13 @@ public class AddressBook extends Activity {
         final AddressBookAdapter adapter = new AddressBookAdapter();
         final ListView listView = (ListView)findViewById(R.id.addressList);
         listView.setAdapter(adapter);
+
+//        Button button = (Button) findViewById(R.id.address_back);
+//        button.setOnClickListener(new Button.OnClickListener() {
+//            @Override public void onClick(View view)
+//            {
+//                finish();
+//            }
+//        }) ;
     }
 }

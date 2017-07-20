@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    tools:context="com.daejeonpeople.activities.side_menu.ChatList">
+
+    <ImageView
+        android:id="@+id/profile"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_margin="10dp"
+        android:layout_alignParentLeft="true"/>
+
+    <TextView
+        android:id="@+id/chatname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textColor="@color/Black"
+        android:layout_toRightOf="@id/profile"
+        android:layout_marginTop="20dp"/>
+
+    <TextView
+        android:id="@+id/chatpreview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:layout_below="@id/chatname"
+        android:layout_toRightOf="@id/profile"
+        android:layout_marginTop="5dp"/>
+
+    <TextView
+        android:id="@+id/chattime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/Black"
+        android:textSize="12sp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"/>
+
+    <ImageView
+        android:id="@+id/group"
+        android:layout_width="20dp"
+        android:layout_height="14dp"
+        android:background="@drawable/ic_group"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="45dp"
+        android:layout_marginRight="20dp"/>
+
+</RelativeLayout>

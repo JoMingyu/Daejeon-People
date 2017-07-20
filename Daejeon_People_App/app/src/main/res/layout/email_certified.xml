@@ -34,23 +34,13 @@
             android:layout_width="300dp"
             android:layout_height="45dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="10dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="20dp"
             android:background="@drawable/round_corner"
             android:gravity="center"
             android:hint="이메일을 입력하시오"
             android:inputType="text"
-            android:textSize="15sp" />
-
-        <EditText
-            android:id="@+id/checkCode"
-            android:layout_width="300dp"
-            android:layout_height="45dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="20dp"
-            android:background="@drawable/round_corner"
-            android:gravity="center"
-            android:hint="인증 번호를 입력하시오"
-            android:inputType="number"
+            android:textColorHint="@color/Gray"
             android:textSize="15sp" />
 
         <Button

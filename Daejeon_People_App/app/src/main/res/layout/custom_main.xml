@@ -13,10 +13,10 @@
             android:layout_width="22dp"
             android:layout_height="15dp"
             android:layout_margin="18dp"
+            android:id="@+id/ic_menu"
             android:background="@drawable/ic_menu"/>
 
         <TextView
-            android:id="@+id/textView2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
@@ -26,17 +26,10 @@
             android:textSize="22sp"
             android:textStyle="bold"/>
 
-        <Button
+        <TextView
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:layout_marginRight="2dp"
-            android:background="@drawable/ic_fiter"/>
-
-        <Button
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_margin="18dp"
-            android:background="@drawable/ic_search"/>
+            android:layout_margin="18dp" />
     </LinearLayout>
 
 
