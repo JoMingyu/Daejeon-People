@@ -2,6 +2,8 @@ package com.daejeonpeople.activities;
 
 import android.app.ActionBar;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 
 import com.androidquery.AQuery;
@@ -60,5 +62,13 @@ public class AddressBook extends BaseActivity {
         final AddressBookAdapter adapter = new AddressBookAdapter();
         final ListView listView = (ListView)findViewById(R.id.addressList);
         listView.setAdapter(adapter);
+
+        Button button = (Button) findViewById(R.id.address_back);
+        button.setOnClickListener(new Button.OnClickListener() {
+            @Override public void onClick(View view)
+            {
+                finish();
+            }
+        }) ;
     }
 }
