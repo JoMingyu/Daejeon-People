@@ -68,6 +68,7 @@ public class Signin implements Handler<RoutingContext> {
 		// keep_login 설정에 따라 쿠키 또는 세션 put
 		if(keepLogin) {
 			SessionUtil.createCookie(ctx, "UserSession", sessionId);
+			MySQL.executeUpdate("UPDATE account SET session_id=? WHERE id=?", SHA256.encrypt(sessionId), AES256.encrypt(id));
 		} else {
 			SessionUtil.createSession(ctx, "UserSession", sessionId);
 		}
@@ -96,7 +97,7 @@ public class Signin implements Handler<RoutingContext> {
 			uuid = UUID.randomUUID().toString();
 			ResultSet rs = MySQL.executeQuery("SELECT * FROM account WHERE session_id=?", SHA256.encrypt(uuid));
 			try {
-				if(!(rs != null ? rs.next() : false)) {
+				if(!(rs != null && rs.next())) {
 					// 다른 계정과 중복되지 않는 session id
 					return uuid;
 				}
