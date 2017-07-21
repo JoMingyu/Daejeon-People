@@ -115,9 +115,9 @@
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:background="@drawable/ic_person"
-                    sl:scale_width="30"
-                    sl:scale_height="30"
-                    sl:scale_top="30"
+                    sl:scale_width="24"
+                    sl:scale_height="24"
+                    sl:scale_top="32"
                     sl:scale_left="50"/>
 
             </com.ssomai.android.scalablelayout.ScalableLayout>
@@ -152,9 +152,9 @@
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:background="@drawable/ic_work"
-                    sl:scale_width="30"
-                    sl:scale_height="30"
-                    sl:scale_top="30"
+                    sl:scale_width="24"
+                    sl:scale_height="24"
+                    sl:scale_top="32"
                     sl:scale_left="50"/>
 
             </com.ssomai.android.scalablelayout.ScalableLayout>
@@ -190,9 +190,9 @@
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:background="@drawable/ic_lock"
-                    sl:scale_width="30"
-                    sl:scale_height="35"
-                    sl:scale_top="30"
+                    sl:scale_width="24"
+                    sl:scale_height="26"
+                    sl:scale_top="32"
                     sl:scale_left="50"/>
 
             </com.ssomai.android.scalablelayout.ScalableLayout>
@@ -228,9 +228,9 @@
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:background="@drawable/ic_lock"
-                    sl:scale_width="30"
-                    sl:scale_height="35"
-                    sl:scale_top="30"
+                    sl:scale_width="24"
+                    sl:scale_height="26"
+                    sl:scale_top="32"
                     sl:scale_left="50"/>
 
             </com.ssomai.android.scalablelayout.ScalableLayout>
