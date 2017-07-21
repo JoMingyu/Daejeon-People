@@ -68,7 +68,7 @@ public class SignUp extends BaseActivity {
         if(UserInSignup.emailCertified) {
             // 이메일 인증이 완료됐다면 버튼 컬러 변경
             emailCertifiedBtn.setTextColor(ColorManager.successColor);
-            SnackbarManager.createCancelableSnackbar(getWindow().getDecorView().getRootView(), "이메일 인증 완료").show();
+            SnackbarManager.createCancelableSnackbar(emailCertifiedBtn, "이메일 인증 완료").show();
         }
 
         emailCertifiedBtn.setOnClickListener(new View.OnClickListener() {
@@ -169,7 +169,7 @@ public class SignUp extends BaseActivity {
 
         submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(final View v) {
                 if (UserInSignup.emailCertified && UserInSignup.nameChecked && UserInSignup.idChecked && UserInSignup.passwordConfirmed) {
                     Map<String, String> params = new HashMap<>();
 
@@ -184,16 +184,16 @@ public class SignUp extends BaseActivity {
                         public void callback(String url, String response, AjaxStatus status) {
                             int statusCode = status.getCode();
                             if (statusCode == 201) {
-                                SnackbarManager.createCancelableSnackbar(getWindow().getDecorView().getRootView(), "회원가입 성공!").show();
+                                SnackbarManager.createCancelableSnackbar(v, "회원가입 성공!").show();
                                 Intent intent = new Intent(getApplicationContext(), SignIn.class);
                                 startActivity(intent);
                             } else {
-                                SnackbarManager.createCancelableSnackbar(getWindow().getDecorView().getRootView(), "회원가입에 실패했습니다.").show();
+                                SnackbarManager.createCancelableSnackbar(v, "회원가입에 실패했습니다.").show();
                             }
                         }
                     });
                 } else {
-                    SnackbarManager.createCancelableSnackbar(getWindow().getDecorView().getRootView(), "회원가입에 실패했습니다.").show();
+                    SnackbarManager.createCancelableSnackbar(v, "회원가입에 실패했습니다.").show();
                 }
             }
         });
