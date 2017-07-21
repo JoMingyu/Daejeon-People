@@ -109,7 +109,7 @@ public class SignUp extends BaseActivity {
 
         userId.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
-            public void onFocusChange(View v, boolean hasFocus) {
+            public void onFocusChange(final View v, boolean hasFocus) {
                 UserInSignup.id = userId.getText().toString();
                 if (!hasFocus) {
                     // Focus가 넘어갈 때
@@ -130,6 +130,7 @@ public class SignUp extends BaseActivity {
                                 } else {
                                     // 중복
                                     userId.setTextColor(ColorManager.failureColor);
+                                    SnackbarManager.createCancelableSnackbar(v, "이미 존재하는 아이디입니다.").show();
                                 }
                             }
                         });
@@ -187,12 +188,12 @@ public class SignUp extends BaseActivity {
                                 Intent intent = new Intent(getApplicationContext(), SignIn.class);
                                 startActivity(intent);
                             } else {
-                                SnackbarManager.createCancelableSnackbar(getWindow().getDecorView().getRootView(), "회원가입 실패").show();
+                                SnackbarManager.createCancelableSnackbar(getWindow().getDecorView().getRootView(), "회원가입에 실패했습니다.").show();
                             }
                         }
                     });
                 } else {
-                    // 체크가 모두 안되어 있을 경우
+                    SnackbarManager.createCancelableSnackbar(getWindow().getDecorView().getRootView(), "회원가입에 실패했습니다.").show();
                 }
             }
         });
