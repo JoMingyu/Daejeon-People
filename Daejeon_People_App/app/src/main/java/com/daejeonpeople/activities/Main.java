@@ -23,6 +23,7 @@ import com.daejeonpeople.activities.side_menu.MyInfo;
 import com.daejeonpeople.activities.side_menu.WishList;
 import com.daejeonpeople.adapter.CustomAdapter;
 import com.daejeonpeople.adapter.CustomsAdapter;
+import com.daejeonpeople.support.network.SessionManager;
 import com.daejeonpeople.support.views.SnackbarManager;
 import com.daejeonpeople.support.database.DBHelper;
 
@@ -75,10 +76,8 @@ public class Main extends AppCompatActivity implements NavigationView.OnNavigati
         CustomsAdapter adapter2 = new CustomsAdapter(getLayoutInflater());
         pager.setAdapter(adapter2);
 
-        DBHelper dbHelper = DBHelper.getInstance(getApplicationContext(), "CHECK.db", null, 1);
-
         //로그인이 되어 있는 경우
-        if(dbHelper.getCookie() != null) {
+        if(SessionManager.getCookieFromDB(getApplicationContext()) != null) {
             //사이드메뉴 생성
             DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
             ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
