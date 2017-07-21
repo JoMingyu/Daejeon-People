@@ -244,21 +244,34 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 sl:scale_base_width="400"
-                sl:scale_base_height="70">
+                sl:scale_base_height="110">
 
                 <Button
                     android:id="@+id/submitButton"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
+                    android:gravity="center"
+                    android:background="@drawable/round_corner_middle"
+                    android:textColor="@color/White"
+                    android:text="확 인"
                     sl:scale_width="350"
                     sl:scale_height="50"
                     sl:scale_top="20"
-                    android:gravity="center"
-                    android:background="@drawable/round_corner_middle"
                     sl:scale_left="25"
-                    android:textColor="@color/White"
-                    sl:scale_textsize="18"
-                    android:text="확 인"/>
+                    sl:scale_textsize="18"/>
+
+                <TextView
+                    android:id="@+id/jumpToSignin"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center"
+                    android:text="이미 계정이 있으신가요? 로그인하기"
+                    android:gravity="center"
+                    sl:scale_textsize="16"
+                    sl:scale_width="350"
+                    sl:scale_height="30"
+                    sl:scale_left="25"
+                    sl:scale_top="90"/>
 
             </com.ssomai.android.scalablelayout.ScalableLayout>
         </LinearLayout>

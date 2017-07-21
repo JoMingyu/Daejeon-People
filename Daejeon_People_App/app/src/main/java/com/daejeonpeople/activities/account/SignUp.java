@@ -8,6 +8,7 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.androidquery.AQuery;
 import com.androidquery.callback.AjaxCallback;
@@ -36,6 +37,8 @@ public class SignUp extends BaseActivity {
     private EditText userPassword;
     private EditText passwordConfirm;
 
+    private TextView jumpToSignin;
+
     @Override
     protected void onPause() {
         super.onPause();
@@ -59,6 +62,8 @@ public class SignUp extends BaseActivity {
         userId = (EditText) findViewById(R.id.inputId);
         userPassword = (EditText) findViewById(R.id.inputPassword);
         passwordConfirm = (EditText) findViewById(R.id.inputPasswordConfirm);
+
+        jumpToSignin = (TextView) findViewById(R.id.jumpToSignin);
 
         if(UserInSignup.emailCertified) {
             // 이메일 인증이 완료됐다면 버튼 컬러 변경
@@ -189,6 +194,13 @@ public class SignUp extends BaseActivity {
                 } else {
                     // 체크가 모두 안되어 있을 경우
                 }
+            }
+        });
+
+        jumpToSignin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), SignIn.class));
             }
         });
     }
