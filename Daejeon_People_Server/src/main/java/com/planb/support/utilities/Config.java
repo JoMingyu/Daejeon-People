@@ -15,7 +15,7 @@ public class Config {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public static String getValue(String attribute) {
 		return props.get(attribute).toString();
 	}

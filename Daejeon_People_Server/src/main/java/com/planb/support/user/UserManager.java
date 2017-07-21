@@ -25,20 +25,20 @@ public class UserManager {
 
 		ResultSet rs = MySQL.executeQuery("SELECT * FROM account WHERE session_id=?", encryptedSessionId);
 		try {
-			if(rs != null ? rs.next() : false) {
+			if(rs != null && rs.next()) {
 				encryptedId = rs.getString("id");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
 		return encryptedId;
 	}
 	
 	public static JSONObject getUserInfo(String id) {
 		ResultSet userInfoSet = MySQL.executeQuery("SELECT * FROM account WHERE id=?", id);
 		JSONObject userInfo = new JSONObject();
-		
+
 		try {
 			assert userInfoSet != null;
 			userInfoSet.next();

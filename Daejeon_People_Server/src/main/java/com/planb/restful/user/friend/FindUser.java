@@ -48,7 +48,7 @@ public class FindUser implements Handler<RoutingContext> {
 		
 		ResultSet rs = MySQL.executeQuery("SELECT * FROM account WHERE email=? OR phone_number=?", keyword, keyword);
 		try {
-			if(rs != null ? rs.next() : false) {
+			if(rs != null && rs.next()) {
 				JSONObject response = new JSONObject();
 				
 				if(rs.getString("id").equals(clientId)) {

@@ -32,7 +32,7 @@ public class FindId_DemandCode implements Handler<RoutingContext> {
 		
 		ResultSet rs = MySQL.executeQuery("SELECT id FROM account WHERE email=?", encryptedEmail);
 		try {
-			if(rs != null ? rs.next() : false) {
+			if(rs != null && rs.next()) {
 				// 계정 정보가 존재할 경우
 				
 				Random random = new Random();

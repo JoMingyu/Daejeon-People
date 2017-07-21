@@ -13,7 +13,7 @@ import io.vertx.ext.web.RoutingContext;
 @API(functionCategory = "여행 모드", summary = "여행 삭제")
 @REST(params = "topic : String", successCode = 200)
 @Route(uri = "/travel", method = HttpMethod.DELETE)
-class DeleteTravel implements Handler<RoutingContext> {
+public class DeleteTravel implements Handler<RoutingContext> {
 	@Override
 	public void handle(RoutingContext ctx) {
 		String topic = ctx.request().getParam("topic");

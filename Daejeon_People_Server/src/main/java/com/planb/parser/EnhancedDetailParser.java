@@ -33,7 +33,7 @@ public class EnhancedDetailParser implements Parser {
 		ResultSet rs = MySQL.executeQuery("SELECT * FROM attractions_basic");
 		
 		try {
-			while(rs != null ? rs.next() : false) {
+			while(rs != null && rs.next()) {
 				int contentId = rs.getInt("content_id");
 				int contentTypeId = rs.getInt("content_type_id");
 				

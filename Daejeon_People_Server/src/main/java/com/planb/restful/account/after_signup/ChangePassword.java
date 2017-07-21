@@ -34,7 +34,7 @@ public class ChangePassword implements Handler<RoutingContext> {
 	private int changePassword(String id, String currentPassword, String newPassword) {
 		ResultSet rs = MySQL.executeQuery("SELECT * FROM account WHERE id=? AND password=?", AES256.encrypt(id), SHA256.encrypt(currentPassword));
 		try {
-			if(rs != null ? rs.next() : false) {
+			if(rs != null && rs.next()) {
 				// 계정 정보가 존재할 경우
 				
 				MySQL.executeUpdate("UPDATE account SET password=? WHERE id=?", SHA256.encrypt(newPassword), AES256.encrypt(id));

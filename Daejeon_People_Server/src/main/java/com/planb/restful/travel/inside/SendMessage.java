@@ -22,7 +22,7 @@ import io.vertx.ext.web.RoutingContext;
 @API(functionCategory = "여행 모드 내부", summary = "메시지 전송")
 @REST(requestBody = "topic : String, type : String, (text or image), content : String(type is text)", successCode = 201)
 @Route(uri = "/chat", method = HttpMethod.POST)
-class SendMessage implements Handler<RoutingContext> {
+public class SendMessage implements Handler<RoutingContext> {
 	@Override
 	public void handle(RoutingContext ctx) {
 		String clientId = UserManager.getEncryptedIdFromSession(ctx);
@@ -80,7 +80,7 @@ class SendMessage implements Handler<RoutingContext> {
 			ResultSet rs = MySQL_Chat.executeQuery("SELECT * FROM " + topic + " WHERE content=?", identifier);
 			
 			try {
-				if(!(rs != null ? rs.next() : false)) {
+				if(!(rs != null && rs.next())) {
 					break;
 				}
 			} catch (SQLException e) {
