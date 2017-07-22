@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:sl="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@mipmap/background">
@@ -50,7 +49,7 @@
                         sl:scale_width="320"
                         sl:scale_left="50"
                         android:text="이메일 인증"
-                        sl:scale_textsize="30"
+                        sl:scale_textsize="26"
                         android:background="@drawable/round_corner"
                         android:textColor="@color/Gray"
                         android:textStyle="bold"/>
@@ -78,7 +77,7 @@
                         sl:scale_height="100"
                         sl:scale_left="30"
                         android:text="휴대폰 인증"
-                        sl:scale_textsize="30"
+                        sl:scale_textsize="26"
                         android:background="@drawable/round_corner"
                         android:textColor="@color/Gray"
                         android:textStyle="bold"/>
@@ -99,7 +98,7 @@
 
                 <EditText
                     android:id="@+id/inputName"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     sl:scale_width="350"
                     sl:scale_height="50"
@@ -110,15 +109,15 @@
                     android:textColor="@color/Black"
                     android:hint="이름을 입력하세요"
                     android:textColorHint="@color/Gray"
-                    sl:scale_textsize="15"/>
+                    sl:scale_textsize="13"/>
 
                 <ImageView
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:background="@drawable/ic_person"
-                    sl:scale_width="30"
-                    sl:scale_height="30"
-                    sl:scale_top="30"
+                    sl:scale_width="24"
+                    sl:scale_height="24"
+                    sl:scale_top="32"
                     sl:scale_left="50"/>
 
             </com.ssomai.android.scalablelayout.ScalableLayout>
@@ -147,15 +146,15 @@
                     android:textColor="@color/Black"
                     android:hint="아이디를 입력하세요"
                     android:textColorHint="@color/Gray"
-                    sl:scale_textsize="15"/>
+                    sl:scale_textsize="13"/>
 
                 <ImageView
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:background="@drawable/ic_work"
-                    sl:scale_width="30"
-                    sl:scale_height="30"
-                    sl:scale_top="30"
+                    sl:scale_width="24"
+                    sl:scale_height="24"
+                    sl:scale_top="32"
                     sl:scale_left="50"/>
 
             </com.ssomai.android.scalablelayout.ScalableLayout>
@@ -184,16 +183,16 @@
                     android:textColor="@color/Black"
                     android:hint="비밀번호를 입력하세요"
                     android:textColorHint="@color/Gray"
-                    sl:scale_textsize="15"
+                    sl:scale_textsize="13"
                     android:inputType="textPassword"/>
 
                 <ImageView
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:background="@drawable/ic_lock"
-                    sl:scale_width="30"
-                    sl:scale_height="35"
-                    sl:scale_top="30"
+                    sl:scale_width="24"
+                    sl:scale_height="26"
+                    sl:scale_top="32"
                     sl:scale_left="50"/>
 
             </com.ssomai.android.scalablelayout.ScalableLayout>
@@ -222,16 +221,16 @@
                     android:textColor="@color/Black"
                     android:hint="비밀번호를 다시 입력하세요"
                     android:textColorHint="@color/Gray"
-                    sl:scale_textsize="15"
+                    sl:scale_textsize="13"
                     android:inputType="textPassword"/>
 
                 <ImageView
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:background="@drawable/ic_lock"
-                    sl:scale_width="30"
-                    sl:scale_height="35"
-                    sl:scale_top="30"
+                    sl:scale_width="24"
+                    sl:scale_height="26"
+                    sl:scale_top="32"
                     sl:scale_left="50"/>
 
             </com.ssomai.android.scalablelayout.ScalableLayout>
@@ -245,25 +244,36 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 sl:scale_base_width="400"
-                sl:scale_base_height="150">
+                sl:scale_base_height="120">
 
                 <Button
                     android:id="@+id/submitButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    sl:scale_width="350"
-                    sl:scale_height="50"
-                    sl:scale_top="50"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
                     android:gravity="center"
                     android:background="@drawable/round_corner_middle"
+                    android:textColor="@color/White"
+                    android:text="확 인"
+                    sl:scale_width="350"
+                    sl:scale_height="50"
+                    sl:scale_top="20"
                     sl:scale_left="25"
-                    android:textStyle="bold"
-                    android:text="가입"
-                    sl:scale_textsize="15"/>
+                    sl:scale_textsize="18"/>
+
+                <TextView
+                    android:id="@+id/jumpToSignin"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center"
+                    android:text="이미 계정이 있으신가요? 로그인하기"
+                    android:gravity="center"
+                    sl:scale_textsize="16"
+                    sl:scale_width="350"
+                    sl:scale_height="30"
+                    sl:scale_left="25"
+                    sl:scale_top="90"/>
 
             </com.ssomai.android.scalablelayout.ScalableLayout>
         </LinearLayout>
-
-
     </LinearLayout>
 </LinearLayout>

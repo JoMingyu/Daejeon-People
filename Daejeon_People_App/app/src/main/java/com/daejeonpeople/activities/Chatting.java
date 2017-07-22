@@ -10,6 +10,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.daejeonpeople.R;
+import com.daejeonpeople.activities.base.BaseActivity;
 import com.daejeonpeople.adapter.AddressBookAdapter;
 
 /**
@@ -18,11 +19,17 @@ import com.daejeonpeople.adapter.AddressBookAdapter;
 
 //근철
 
-public class Chatting extends AppCompatActivity {
+public class Chatting extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.chatting);
+        setContentView(R.layout.fragment_chatting);
+
+        final ActionBar chatting = getActionBar();
+        chatting.setCustomView(R.layout.custom_chatting);
+        chatting.setDisplayShowTitleEnabled(false);
+        chatting.setDisplayShowCustomEnabled(true);
+        chatting.setDisplayShowHomeEnabled(false);
     }
 
     @Override

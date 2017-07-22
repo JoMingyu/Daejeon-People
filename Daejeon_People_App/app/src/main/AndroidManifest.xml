@@ -10,26 +10,53 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:name="application.ApplicationClass"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.SignUp"/>
-        <activity android:name=".activities.Email_Certified" />
-        <activity android:name=".activities.Chatting"/>
-        <activity android:name=".activities.AddressBook" android:theme="@style/CustomActionBarTheme"/>
-        <activity android:name=".activities.SignIn"/>
-        <activity android:name=".activities.Main"/>
-        <activity android:name=".activities.Splash" android:theme="@style/CustomActionBarTheme">
+        <activity android:name=".activities.splash.Splash"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.Category" />
-        <activity android:name=".activities.EntryID" />
-        <activity android:name=".activities.EntryPW" />
-        <activity android:name=".activities.FindID" />
-        <activity android:name=".activities.FindPW" />
+        <activity android:name=".activities.account.Email_Certified" />
+        <activity
+            android:name=".activities.Chatting"
+            android:theme="@style/CustomActionBarTheme" />
+        <activity
+            android:name=".activities.AddressBook"
+            android:theme="@style/CustomActionBarTheme" />
+        <activity android:name=".activities.account.SignIn" />
+        <activity
+            android:name=".activities.account.SignUp"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".activities.Main"/>
+        <activity
+            android:name=".activities.Category"
+            android:theme="@style/CustomActionBarTheme" />
+        <activity android:name=".activities.account.EntryID" />
+        <activity android:name=".activities.account.EntryPW" />
+        <activity android:name=".activities.account.FindID" />
+        <activity android:name=".activities.account.FindPW" />
         <activity android:name=".activities.Search" />
+        <activity
+            android:name=".activities.InvitationTrip"
+            android:theme="@style/CustomActionBarTheme" />
+        <activity android:name=".activities.FriendRequest" />
+        <activity
+            android:name=".activities.side_menu.MyInfo"
+            android:theme="@style/CustomActionBarTheme"/>
+        <activity
+            android:name=".activities.side_menu.ChatList"
+            android:theme="@style/CustomActionBarTheme"/>
+        <activity
+            android:name=".activities.side_menu.FriendList"
+            android:theme="@style/CustomActionBarTheme"/>
+        <activity
+            android:name=".activities.side_menu.WishList"
+            android:theme="@style/CustomActionBarTheme"/>
     </application>
 
 </manifest>

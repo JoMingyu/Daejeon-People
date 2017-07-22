@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+        <LinearLayout
+            android:id="@+id/profilearea"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:background="@drawable/ic_profile"
+                android:layout_marginTop="6dp"/>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="7dp"
+                android:id="@+id/infoarea">
+
+                <TextView
+                    android:id="@+id/userName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="문재수"
+                    android:textSize="18dp"
+                    android:textColor="@color/Black"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="2dp"/>
+
+                <TextView
+                    android:id="@+id/userPhoneNum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="010-9945-7580"
+                    android:textSize="11dp"
+                    android:textColor="@color/Black"
+                    android:layout_below="@id/userName"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="2dp"/>
+
+                <TextView
+                    android:id="@+id/userEmail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/userPhoneNum"
+                    android:text="alswl4152@naver.com"
+                    android:textSize="15dp"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="2dp"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/infoarea"
+                android:gravity="right"
+                android:layout_marginTop="20dp">
+
+                <Button
+                    android:id="@+id/btn_call"
+                    android:layout_width="100dp"
+                    android:layout_height="30dp"
+                    android:text="요청취소"
+                    android:textColor="@color/Orange"
+                    android:textSize="12dp"
+                    android:background="@drawable/btn_resign_design"/>
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="180dp"
+    android:background="@color/colorPrimaryLight"
+    android:padding="16dp"
+    android:theme="@style/AppTheme">
+
+    <RelativeLayout
+        android:layout_gravity="center_vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/header_img"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="10dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp" />
+
+        <LinearLayout
+            android:layout_toRightOf="@id/header_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_centerInParent="true">
+            <TextView
+                android:id="@+id/nameView"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:layout_marginLeft="10dp"
+                android:textColor="@color/White"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/drawer_header_text01"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+
+            <TextView
+                android:id="@+id/emailView"
+                android:textSize="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:textColor="@color/White"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/drawer_header_text02"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+
+            <TextView
+                android:id="@+id/phoneNumberView"
+                android:textSize="10dp"
+                android:layout_marginLeft="10dp"
+                android:textColor="@color/White"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/drawer_header_text03"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
+</LinearLayout>
