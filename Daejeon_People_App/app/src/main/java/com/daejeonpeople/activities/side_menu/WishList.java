@@ -43,17 +43,7 @@ public class WishList extends BaseActivity {
         chatting.setDisplayShowHomeEnabled(false);
 
         backBtn = (Button) findViewById(R.id.backBtn);
-        getDatas();
 
-        backBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), Main.class));
-            }
-        });
-    }
-
-    private void getDatas() {
         AQuery aq = new AQuery(getApplicationContext());
 
         aq.ajax("http://52.79.134.200/wish", String.class, new AjaxCallback<String>() {
@@ -61,5 +51,12 @@ public class WishList extends BaseActivity {
             public void callback(String url, String response, AjaxStatus status) {
             }
         }.method(AQuery.METHOD_GET).cookie("UserSession", SessionManager.getCookieFromDB(getApplicationContext())));
+
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), Main.class));
+            }
+        });
     }
 }
