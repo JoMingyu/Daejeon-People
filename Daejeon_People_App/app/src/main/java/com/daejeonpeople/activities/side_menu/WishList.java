@@ -18,6 +18,9 @@ import com.daejeonpeople.activities.base.BaseActivity;
 import com.daejeonpeople.support.network.SessionManager;
 import com.daejeonpeople.support.views.SnackbarManager;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 /**
  * Created by dsm2016 on 2017-07-20.
  */
@@ -49,6 +52,13 @@ public class WishList extends BaseActivity {
         aq.ajax("http://52.79.134.200/wish", String.class, new AjaxCallback<String>() {
             @Override
             public void callback(String url, String response, AjaxStatus status) {
+                if(status.getCode() == 200) {
+                    try {
+                        JSONObject res = new JSONObject(response);
+                    } catch(JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
             }
         }.method(AQuery.METHOD_GET).cookie("UserSession", SessionManager.getCookieFromDB(getApplicationContext())));
 
