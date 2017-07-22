@@ -46,18 +46,20 @@ public class MyInfo extends BaseActivity {
 
         AQuery aq = new AQuery(getApplicationContext());
 
-        aq.ajax("http://52.79.134.200/wish", String.class, new AjaxCallback<String>() {
-            @Override
-            public void callback(String url, String response, AjaxStatus status) {
-                if(status.getCode() == 200) {
-                    try {
-                        JSONObject res = new JSONObject(response);
-                    } catch(JSONException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        }.method(AQuery.METHOD_GET).cookie("UserSession", SessionManager.getCookieFromDB(getApplicationContext())));
+//        aq.ajax("http://52.79.134.200/wish", String.class, new AjaxCallback<String>() {
+//            @Override
+//            public void callback(String url, String response, AjaxStatus status) {
+//                if(status.getCode() == 200) {
+//                    try {
+//                        JSONObject res = new JSONObject(response);
+//                    } catch(JSONException e) {
+//                        e.printStackTrace();
+//                    }
+//                } else {
+//
+//                }
+//            }
+//        }.method(AQuery.METHOD_GET).cookie("UserSession", SessionManager.getCookieFromDB(getApplicationContext())));
 
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override

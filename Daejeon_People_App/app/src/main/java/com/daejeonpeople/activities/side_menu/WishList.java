@@ -58,6 +58,8 @@ public class WishList extends BaseActivity {
                     } catch(JSONException e) {
                         e.printStackTrace();
                     }
+                } else {
+
                 }
             }
         }.method(AQuery.METHOD_GET).cookie("UserSession", SessionManager.getCookieFromDB(getApplicationContext())));
