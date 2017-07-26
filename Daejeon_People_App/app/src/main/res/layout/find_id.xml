@@ -34,9 +34,9 @@
             android:layout_gravity="center_horizontal"
             android:background="@drawable/round_corner"
             android:gravity="center"
-            android:hint="이름을 입력하세요"
+            android:hint="이메일을 입력하세요"
+            android:textColorHint="@color/colorPrimaryHint"
             android:inputType="text"
-            android:textColorHint="@color/Gray"
             android:layout_marginBottom="20dp"
             android:textSize="15sp"/>
 
@@ -49,8 +49,8 @@
             android:background="@drawable/round_corner"
             android:gravity="center"
             android:inputType="text"
-            android:hint="이메일을 입력하세요"
-            android:textColorHint="@color/Gray"
+            android:hint="인증 번호를 입력하세요"
+            android:textColorHint="@color/colorPrimaryHint"
             android:textSize="15sp"/>
 
         <Button
@@ -59,7 +59,7 @@
             android:layout_height="45dp"
             android:layout_gravity="center_horizontal"
             android:background="@drawable/round_corner_middle"
-            android:text="확 인"
+            android:text="발급"
             android:textColor="@color/White"
             android:layout_marginBottom="100dp"/>
     </LinearLayout>

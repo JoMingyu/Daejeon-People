@@ -1,26 +1,37 @@
-package com.daejeonpeople.activities;
+package com.daejeonpeople.activities.side_menu.nolayout;
 
 import android.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.ListView;
+import android.widget.Button;
 
 import com.daejeonpeople.R;
 import com.daejeonpeople.activities.base.BaseActivity;
-import com.daejeonpeople.adapter.AddressBookAdapter;
-//민지
 
-public class ChatList extends BaseActivity {
+/**
+ * Created by dsm2016 on 2017-07-20.
+ */
+
+public class Setting extends BaseActivity {
+    private Button backBtn;
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        finish();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.chat_list_listview);
+//        setContentView(R.layout.chat_list_listview);
 
         final ActionBar chatting = getActionBar();
-        chatting.setCustomView(R.layout.custom_chatlist);
+//        chatting.setCustomView(R.layout.custom_chat_list);
         chatting.setDisplayShowTitleEnabled(false);
         chatting.setDisplayShowCustomEnabled(true);
         chatting.setDisplayShowHomeEnabled(false);
+
+        backBtn = (Button) findViewById(R.id.backBtn);
     }
 }
+

@@ -10,29 +10,25 @@
         android:gravity="center">
 
         <Button
+            android:id="@+id/backBtn"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_margin="18dp"
-            android:id="@+id/backBtn"
-            android:background="@drawable/ic_back" />
+            android:background="@drawable/ic_back"/>
 
         <TextView
-            android:id="@+id/textView2"
-            android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            android:text="위시리스트"
+            android:layout_weight="1"
+            android:text="내 정보"
             android:textColor="@color/White"
             android:textSize="22sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"/>
 
-        <Button
-            android:layout_width="6dp"
+        <TextView
+            android:layout_width="20dp"
             android:layout_height="20dp"
-            android:layout_marginRight="25dp"
-            android:layout_marginLeft="25dp"
-            android:background="@drawable/ic_more_vert" />
+            android:layout_margin="18dp" />
     </LinearLayout>
-
 </LinearLayout>

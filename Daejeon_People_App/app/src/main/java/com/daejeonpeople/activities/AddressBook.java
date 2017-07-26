@@ -23,6 +23,7 @@ import org.json.JSONObject;
 
 // 근철
 
+@Deprecated
 public class AddressBook extends BaseActivity {
     AQuery aQuery;
     ListView listView;
@@ -63,12 +64,12 @@ public class AddressBook extends BaseActivity {
         final ListView listView = (ListView)findViewById(R.id.addressList);
         listView.setAdapter(adapter);
 
-        Button button = (Button) findViewById(R.id.address_back);
-        button.setOnClickListener(new Button.OnClickListener() {
-            @Override public void onClick(View view)
-            {
-                finish();
-            }
-        }) ;
+//        Button button = (Button) findViewById(R.id.address_back);
+//        button.setOnClickListener(new Button.OnClickListener() {
+//            @Override public void onClick(View view)
+//            {
+//                finish();
+//            }
+//        }) ;
     }
 }

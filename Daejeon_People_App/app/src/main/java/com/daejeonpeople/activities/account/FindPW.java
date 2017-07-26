@@ -1,4 +1,4 @@
-package com.daejeonpeople.activities;
+package com.daejeonpeople.activities.account;
 
 import android.app.Dialog;
 import android.graphics.Color;
@@ -15,26 +15,24 @@ import com.androidquery.callback.AjaxCallback;
 import com.androidquery.callback.AjaxStatus;
 import com.daejeonpeople.R;
 import com.daejeonpeople.activities.base.BaseActivity;
-import com.daejeonpeople.support.security.AES;
 import com.daejeonpeople.support.views.ColorManager;
 import com.daejeonpeople.support.views.SnackbarManager;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by geni on 2017. 5. 28..
+ * Created by geni on 2017. 5. 28.
  */
+
 // 근철
 // Modified by JoMingyu
 
-public class FindID extends BaseActivity {
+public class FindPW extends BaseActivity {
     private AQuery aQuery;
 
     private Button findBtn;
+    private EditText inputId;
     private EditText inputEmail;
     private EditText inputCode;
 
@@ -50,11 +48,12 @@ public class FindID extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.find_id);
+        setContentView(R.layout.find_pw);
 
         aQuery = new AQuery(getApplicationContext());
 
-        findBtn = (Button)findViewById(R.id.findBtn);
+        findBtn = (Button) findViewById(R.id.findBtn);
+        inputId = (EditText) findViewById(R.id.inputId);
         inputEmail = (EditText) findViewById(R.id.inputEmail);
         inputCode = (EditText) findViewById(R.id.inputCode);
 
@@ -77,18 +76,21 @@ public class FindID extends BaseActivity {
             @Override
             public void onClick(final View v) {
                 if(!emailDemanded){
+                    params.put("id", inputId.getText().toString());
                     params.put("email", inputEmail.getText().toString());
-                    aQuery.ajax("http://52.79.134.200/find/id/demand", params, String.class, new AjaxCallback<String>(){
+                    aQuery.ajax("http://52.79.134.200/find/password/demand", params, String.class, new AjaxCallback<String>(){
                         @Override
                         public void callback(String url, String response, AjaxStatus status){
                             if(status.getCode() == 201){
                                 emailDemanded = true;
 
+                                inputId.setTextColor(ColorManager.successColor);
                                 inputEmail.setTextColor(ColorManager.successColor);
 
                                 findBtn.setText("인증");
                                 ShowDialog();
                             } else {
+                                inputId.setTextColor(ColorManager.failureColor);
                                 inputEmail.setTextColor(ColorManager.failureColor);
 
                                 SnackbarManager.createCancelableSnackbar(v, "일치하는 계정 정보가 없습니다.").show();
@@ -97,25 +99,18 @@ public class FindID extends BaseActivity {
                     });
                 } else {
                     params.put("code", inputCode.getText().toString());
-                    aQuery.ajax("http://52.79.134.200/find/id/verify", params, String.class, new AjaxCallback<String>(){
-                        @Override
-                        public void callback(String url, String response, AjaxStatus status){
-                            if(status.getCode() == 201){
-                                inputCode.setTextColor(ColorManager.successColor);
+                    aQuery.ajax("http://52.79.134.200/find/password/verify", params, String.class, new AjaxCallback<String>() {
+                       @Override
+                        public void callback(String url, String response, AjaxStatus status) {
+                           if(status.getCode() == 201){
+                               inputCode.setTextColor(ColorManager.successColor);
 
-                                try {
-                                    JSONObject resp = new JSONObject(response);
-
-                                    String id = AES.decrypt(resp.getString("id"));
-                                } catch(JSONException e) {
-                                    e.printStackTrace();
-                                }
-                            } else {
-                                inputCode.setTextColor(ColorManager.failureColor);
-                            }
-                        }
+                               SnackbarManager.createCancelableSnackbar(v, "임시 비밀번호가 " + inputEmail.getText().toString() + "로 전송되었습니다.").show();
+                           } else {
+                               inputCode.setTextColor(ColorManager.failureColor);
+                           }
+                       }
                     });
-                    //전송된 id 확인할 레이아웃 제작 필요 - 민지
                 }
             }
         });
@@ -128,6 +123,38 @@ public class FindID extends BaseActivity {
         final Dialog myDialog = new Dialog(this);
 
         myDialog.setTitle("이메일 인증");
+        myDialog.setContentView(dialogLayout);
+        myDialog.show();
+
+        Button okBtn = (Button)dialogLayout.findViewById(R.id.okBtn);
+        Button cancelBtn = (Button)dialogLayout.findViewById(R.id.cancelBtn);
+
+        okBtn.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                myDialog.cancel();
+            }
+        });
+
+        cancelBtn.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                myDialog.cancel();
+            }
+        });
+    }
+
+    private void PWDialog()
+    {
+        LayoutInflater dialog = LayoutInflater.from(this);
+        final View dialogLayout = dialog.inflate(R.layout.dialog_find_pw_input, null);
+        final Dialog myDialog = new Dialog(this);
+
+        myDialog.setTitle("임시 비밀번호 발급");
         myDialog.setContentView(dialogLayout);
         myDialog.show();
 

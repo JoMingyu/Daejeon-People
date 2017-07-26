@@ -1,10 +1,7 @@
 package com.daejeonpeople.activities;
 
-import android.app.ActionBar;
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
@@ -16,16 +13,32 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.TabHost;
 
+import com.androidquery.AQuery;
+import com.androidquery.callback.AjaxCallback;
+import com.androidquery.callback.AjaxStatus;
 import com.daejeonpeople.R;
+import com.daejeonpeople.activities.side_menu.ChatList;
+import com.daejeonpeople.activities.side_menu.FriendList;
+import com.daejeonpeople.activities.side_menu.MyInfo;
+import com.daejeonpeople.activities.side_menu.WishList;
 import com.daejeonpeople.adapter.CustomAdapter;
 import com.daejeonpeople.adapter.CustomsAdapter;
+import com.daejeonpeople.support.network.SessionManager;
 import com.daejeonpeople.support.views.SnackbarManager;
-import com.daejeonpeople.support.database.DBHelper;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 //동규
 
 public class Main extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     ViewPager pager;
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        finish();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +73,7 @@ public class Main extends AppCompatActivity implements NavigationView.OnNavigati
         CustomsAdapter adapter2 = new CustomsAdapter(getLayoutInflater());
         pager.setAdapter(adapter2);
 
+<<<<<<< HEAD
         DBHelper dbHelper = DBHelper.getInstance(getApplicationContext(), "CHECK.db", null, 1);
 
         DrawerLayout drawer;
@@ -78,11 +92,19 @@ public class Main extends AppCompatActivity implements NavigationView.OnNavigati
             drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
             toggle = new ActionBarDrawerToggle(
                     this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+=======
+        //로그인이 되어 있는 경우
+        if(SessionManager.getCookieFromDB(getApplicationContext()) != null) {
+            //사이드메뉴 생성
+            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+            ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+>>>>>>> origin/android
             drawer.setDrawerListener(toggle);
             toggle.syncState();
 
             navigationView = (NavigationView) findViewById(R.id.nav_view);
             navigationView.setNavigationItemSelectedListener(this);
+<<<<<<< HEAD
         } //로그인이 되어 있지 않은 경우
           else {
 
@@ -110,6 +132,25 @@ public class Main extends AppCompatActivity implements NavigationView.OnNavigati
             drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
             toggle = new ActionBarDrawerToggle(
                     this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+=======
+
+            AQuery aq = new AQuery(getApplicationContext());
+            aq.ajax("http://52.79.134.200/user", String.class, new AjaxCallback<String>() {
+                @Override
+                public void callback(String url, String response, AjaxStatus status) {
+                    try {
+                        JSONObject res = new JSONObject(response);
+                    } catch(JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }.method(AQuery.METHOD_GET).cookie("UserSession", SessionManager.getCookieFromDB(getApplicationContext())));
+        } else {
+            //로그인이 되어 있지 않은 경우
+            //사이드메뉴 생성
+            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+            ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+>>>>>>> origin/android
             drawer.setDrawerListener(toggle);
             toggle.syncState();
 
@@ -136,22 +177,26 @@ public class Main extends AppCompatActivity implements NavigationView.OnNavigati
         switch(item.getItemId()) {
             case R.id.navigation_item01:
                 // 내 정보
-                SnackbarManager.createCancelableSnackbar(getWindow().getDecorView().getRootView(), "하이염").show();
+                startActivity(new Intent(this, MyInfo.class));
                 break;
             case R.id.navigation_item02:
                 // 설정
+//                startActivity(new Intent(this, ))
                 break;
             case R.id.nav_sub_menu_item01:
                 // 위시리스트
+                startActivity(new Intent(this, WishList.class));
                 break;
             case R.id.nav_sub_menu_item02:
                 // 친구 목록
+                startActivity(new Intent(this, FriendList.class));
                 break;
             case R.id.nav_sub_menu_item03:
                 // 최근여행지
                 break;
             case R.id.nav_sub_menu_item04:
                 // 활성화된 여행
+                startActivity(new Intent(this, ChatList.class));
                 break;
             default:
                 SnackbarManager.createCancelableSnackbar(getWindow().getDecorView().getRootView(), "비정상적인 접근입니다.").show();
