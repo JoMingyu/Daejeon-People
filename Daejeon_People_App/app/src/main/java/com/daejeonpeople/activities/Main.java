@@ -1,10 +1,7 @@
 package com.daejeonpeople.activities;
 
-import android.app.ActionBar;
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
@@ -16,6 +13,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.TabHost;
 
+import com.androidquery.AQuery;
+import com.androidquery.callback.AjaxCallback;
+import com.androidquery.callback.AjaxStatus;
 import com.daejeonpeople.R;
 import com.daejeonpeople.activities.side_menu.ChatList;
 import com.daejeonpeople.activities.side_menu.FriendList;
@@ -23,8 +23,11 @@ import com.daejeonpeople.activities.side_menu.MyInfo;
 import com.daejeonpeople.activities.side_menu.WishList;
 import com.daejeonpeople.adapter.CustomAdapter;
 import com.daejeonpeople.adapter.CustomsAdapter;
+import com.daejeonpeople.support.network.SessionManager;
 import com.daejeonpeople.support.views.SnackbarManager;
-import com.daejeonpeople.support.database.DBHelper;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 //동규
 
@@ -41,11 +44,6 @@ public class Main extends AppCompatActivity implements NavigationView.OnNavigati
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_main);
-
-        //툴바 생성 액션바 대신 툴바 사용합니다.
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         //Bottom tabwidget & tabhost Code
         TabHost tabHost = (TabHost) findViewById(R.id.tabHost1);
@@ -75,29 +73,88 @@ public class Main extends AppCompatActivity implements NavigationView.OnNavigati
         CustomsAdapter adapter2 = new CustomsAdapter(getLayoutInflater());
         pager.setAdapter(adapter2);
 
+<<<<<<< HEAD
         DBHelper dbHelper = DBHelper.getInstance(getApplicationContext(), "CHECK.db", null, 1);
+
+        DrawerLayout drawer;
+        Toolbar toolbar;
+        ActionBarDrawerToggle toggle;
+        NavigationView navigationView;
 
         //로그인이 되어 있는 경우
         if(dbHelper.getCookie() != null) {
+            //툴바 생성 액션바 대신 툴바 사용합니다.
+            toolbar = (Toolbar) findViewById(R.id.toolbar);
+            setSupportActionBar(toolbar);
+            getSupportActionBar().setDisplayShowTitleEnabled(false);
+
+            //사이드메뉴 생성
+            drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+            toggle = new ActionBarDrawerToggle(
+                    this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+=======
+        //로그인이 되어 있는 경우
+        if(SessionManager.getCookieFromDB(getApplicationContext()) != null) {
             //사이드메뉴 생성
             DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-            ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                    this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+            ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+>>>>>>> origin/android
             drawer.setDrawerListener(toggle);
             toggle.syncState();
 
-            NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+            navigationView = (NavigationView) findViewById(R.id.nav_view);
             navigationView.setNavigationItemSelectedListener(this);
+<<<<<<< HEAD
         } //로그인이 되어 있지 않은 경우
           else {
+
+//            //툴바 생성 액션바 대신 툴바 사용합니다.
+//            toolbar = (Toolbar) findViewById(R.id.toolbar_not_login);
+//            setSupportActionBar(toolbar);
+//            getSupportActionBar().setDisplayShowTitleEnabled(false);
+//
+//            //사이드메뉴 생성
+//            drawer = (DrawerLayout) findViewById(R.id.drawer_layout_not_login);
+//            toggle = new ActionBarDrawerToggle(
+//                    this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+//            drawer.setDrawerListener(toggle);
+//            toggle.syncState();
+//
+//            navigationView = (NavigationView) findViewById(R.id.nav_view_not_login);
+//            navigationView.setNavigationItemSelectedListener(this);
+
+            //툴바 생성 액션바 대신 툴바 사용합니다.
+            toolbar = (Toolbar) findViewById(R.id.toolbar);
+            setSupportActionBar(toolbar);
+            getSupportActionBar().setDisplayShowTitleEnabled(false);
+
+            //사이드메뉴 생성
+            drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+            toggle = new ActionBarDrawerToggle(
+                    this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+=======
+
+            AQuery aq = new AQuery(getApplicationContext());
+            aq.ajax("http://52.79.134.200/user", String.class, new AjaxCallback<String>() {
+                @Override
+                public void callback(String url, String response, AjaxStatus status) {
+                    try {
+                        JSONObject res = new JSONObject(response);
+                    } catch(JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }.method(AQuery.METHOD_GET).cookie("UserSession", SessionManager.getCookieFromDB(getApplicationContext())));
+        } else {
+            //로그인이 되어 있지 않은 경우
             //사이드메뉴 생성
             DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-            ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                    this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+            ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+>>>>>>> origin/android
             drawer.setDrawerListener(toggle);
             toggle.syncState();
 
-            NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+            navigationView = (NavigationView) findViewById(R.id.nav_view);
             navigationView.setNavigationItemSelectedListener(this);
         }
     }
@@ -150,5 +207,4 @@ public class Main extends AppCompatActivity implements NavigationView.OnNavigati
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-
 }

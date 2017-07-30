@@ -11,31 +11,30 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
         <ImageView
-            android:id="@+id/header_img"
+            android:id="@+id/header_img2"
+            android:src="@drawable/ic_profile_dark"
             android:layout_gravity="center_vertical"
             android:layout_margin="10dp"
             android:layout_width="80dp"
             android:layout_height="80dp" />
 
         <LinearLayout
-            android:layout_toRightOf="@id/header_img"
+            android:layout_toRightOf="@id/header_img2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_centerInParent="true">
             <TextView
-                android:id="@+id/nameView"
                 android:textSize="20dp"
                 android:textStyle="bold"
                 android:layout_marginLeft="10dp"
                 android:textColor="@color/White"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/drawer_header_text01"
+                android:text="익명 사용자"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
 
             <TextView
-                android:id="@+id/emailView"
                 android:textSize="10dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="5dp"
@@ -43,17 +42,16 @@
                 android:textColor="@color/White"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/drawer_header_text02"
+                android:text="이메일 주소가 없습니다."
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
 
             <TextView
-                android:id="@+id/phoneNumberView"
                 android:textSize="10dp"
                 android:layout_marginLeft="10dp"
                 android:textColor="@color/White"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/drawer_header_text03"
+                android:text="전화번호가 없습니다.."
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
         </LinearLayout>
 

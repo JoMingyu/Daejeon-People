@@ -15,4 +15,5 @@
     <color name="Green">#55b268</color>
     <color name="Orange">#ed6a07</color>
     <color name="Gray">#b2b8c1</color>
+    <color name="colorPrimaryHint">#808080</color>
 </resources>

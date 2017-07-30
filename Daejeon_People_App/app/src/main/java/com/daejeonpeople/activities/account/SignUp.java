@@ -8,6 +8,7 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.androidquery.AQuery;
 import com.androidquery.callback.AjaxCallback;
@@ -36,6 +37,8 @@ public class SignUp extends BaseActivity {
     private EditText userPassword;
     private EditText passwordConfirm;
 
+    private TextView jumpToSignin;
+
     @Override
     protected void onPause() {
         super.onPause();
@@ -60,10 +63,12 @@ public class SignUp extends BaseActivity {
         userPassword = (EditText) findViewById(R.id.inputPassword);
         passwordConfirm = (EditText) findViewById(R.id.inputPasswordConfirm);
 
+        jumpToSignin = (TextView) findViewById(R.id.jumpToSignin);
+
         if(UserInSignup.emailCertified) {
             // 이메일 인증이 완료됐다면 버튼 컬러 변경
             emailCertifiedBtn.setTextColor(ColorManager.successColor);
-            SnackbarManager.createCancelableSnackbar(getWindow().getDecorView().getRootView(), "이메일 인증 완료").show();
+            SnackbarManager.createCancelableSnackbar(emailCertifiedBtn, "이메일 인증 완료").show();
         }
 
         emailCertifiedBtn.setOnClickListener(new View.OnClickListener() {
@@ -104,7 +109,7 @@ public class SignUp extends BaseActivity {
 
         userId.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
-            public void onFocusChange(View v, boolean hasFocus) {
+            public void onFocusChange(final View v, boolean hasFocus) {
                 UserInSignup.id = userId.getText().toString();
                 if (!hasFocus) {
                     // Focus가 넘어갈 때
@@ -125,6 +130,7 @@ public class SignUp extends BaseActivity {
                                 } else {
                                     // 중복
                                     userId.setTextColor(ColorManager.failureColor);
+                                    SnackbarManager.createCancelableSnackbar(v, "이미 존재하는 아이디입니다.").show();
                                 }
                             }
                         });
@@ -163,7 +169,7 @@ public class SignUp extends BaseActivity {
 
         submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(final View v) {
                 if (UserInSignup.emailCertified && UserInSignup.nameChecked && UserInSignup.idChecked && UserInSignup.passwordConfirmed) {
                     Map<String, String> params = new HashMap<>();
 
@@ -178,17 +184,24 @@ public class SignUp extends BaseActivity {
                         public void callback(String url, String response, AjaxStatus status) {
                             int statusCode = status.getCode();
                             if (statusCode == 201) {
-                                SnackbarManager.createCancelableSnackbar(getWindow().getDecorView().getRootView(), "회원가입 성공!").show();
+                                SnackbarManager.createCancelableSnackbar(v, "회원가입 성공!").show();
                                 Intent intent = new Intent(getApplicationContext(), SignIn.class);
                                 startActivity(intent);
                             } else {
-                                SnackbarManager.createCancelableSnackbar(getWindow().getDecorView().getRootView(), "회원가입 실패").show();
+                                SnackbarManager.createCancelableSnackbar(v, "회원가입에 실패했습니다.").show();
                             }
                         }
                     });
                 } else {
-                    // 체크가 모두 안되어 있을 경우
+                    SnackbarManager.createCancelableSnackbar(v, "회원가입에 실패했습니다.").show();
                 }
+            }
+        });
+
+        jumpToSignin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), SignIn.class));
             }
         });
     }
