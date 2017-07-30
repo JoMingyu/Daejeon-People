@@ -14,11 +14,11 @@
         android:theme="@style/AppTheme">
         <activity android:name=".activities.splash.Splash"
             android:theme="@style/Theme.AppCompat.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN"/>-->
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+                <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
         </activity>
         <activity android:name=".activities.account.Email_Certified" />
         <activity
@@ -38,7 +38,13 @@
             android:theme="@style/CustomActionBarTheme" />
         <activity android:name=".activities.account.EntryID" />
         <activity android:name=".activities.account.EntryPW" />
-        <activity android:name=".activities.account.FindID" />
+        <activity android:name=".activities.account.FindID" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".activities.account.FindPW" />
         <activity android:name=".activities.Search" />
         <activity

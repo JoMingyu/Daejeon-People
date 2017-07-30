@@ -31,23 +31,23 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
-            android:orientation="horizontal"
-            android:gravity="center">
+            android:gravity="center"
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="아이디는 "/>
+                android:text="아이디는 " />
 
             <EditText
-                android:id="@+id/checkCode"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"/>
+                android:id="@+id/findIdResult"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text=" 입니다."/>
+                android:text=" 입니다." />
         </LinearLayout>
 
         <LinearLayout
