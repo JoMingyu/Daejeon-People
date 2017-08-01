@@ -94,6 +94,9 @@ public class Main extends AppCompatActivity implements NavigationView.OnNavigati
         //로그인이 되어 있는 경우
         if(SessionManager.getCookieFromDB(getApplicationContext()) != null) {
             //사이드메뉴 생성
+            toolbar = (Toolbar) findViewById(R.id.toolbar);
+            setSupportActionBar(toolbar);
+            getSupportActionBar().setDisplayShowTitleEnabled(false);
             drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
             toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
             drawer.setDrawerListener(toggle);
@@ -123,7 +126,6 @@ public class Main extends AppCompatActivity implements NavigationView.OnNavigati
             toolbar = (Toolbar) findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);
             getSupportActionBar().setDisplayShowTitleEnabled(false);
-
             //사이드메뉴 생성
             drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
             toggle = new ActionBarDrawerToggle(
