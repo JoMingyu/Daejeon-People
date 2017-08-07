@@ -112,7 +112,6 @@
                 android:gravity="center"
                 android:hint="비밀번호를 입력하세요"
                 android:textColor="@color/Black"
-                android:inputType="textPassword"
                 android:textColorHint="@color/Gray"
                 sl:scale_height="60"
                 sl:scale_left="15"

@@ -183,8 +183,7 @@
                     android:textColor="@color/Black"
                     android:hint="비밀번호를 입력하세요"
                     android:textColorHint="@color/Gray"
-                    sl:scale_textsize="13"
-                    android:inputType="textPassword"/>
+                    sl:scale_textsize="13"/>
 
                 <ImageView
                     android:layout_width="0dp"
@@ -221,8 +220,7 @@
                     android:textColor="@color/Black"
                     android:hint="비밀번호를 다시 입력하세요"
                     android:textColorHint="@color/Gray"
-                    sl:scale_textsize="13"
-                    android:inputType="textPassword"/>
+                    sl:scale_textsize="13"/>
 
                 <ImageView
                     android:layout_width="0dp"
