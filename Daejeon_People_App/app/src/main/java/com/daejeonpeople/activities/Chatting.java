@@ -26,7 +26,7 @@ public class Chatting extends BaseActivity {
         setContentView(R.layout.fragment_chatting);
 
         final ActionBar chatting = getActionBar();
-        chatting.setCustomView(R.layout.custom_chatting);
+        //chatting.setCustomView(R.layout.custom_chatting);
         chatting.setDisplayShowTitleEnabled(false);
         chatting.setDisplayShowCustomEnabled(true);
         chatting.setDisplayShowHomeEnabled(false);

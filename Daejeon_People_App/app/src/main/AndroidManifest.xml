@@ -26,20 +26,20 @@
             android:theme="@style/CustomActionBarTheme" />
         <activity
             android:name=".activities.AddressBook" />
-        <activity android:name=".activities.account.SignIn" />
-        <activity
-            android:name=".activities.account.SignUp"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity
-            android:name=".activities.Main"/>
-        <activity
-            android:name=".activities.Category">
+        <activity android:name=".activities.account.SignIn">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".activities.account.SignUp"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".activities.Main"/>
+        <activity
+            android:name=".activities.Category"/>
         <activity android:name=".activities.account.EntryID" />
         <activity android:name=".activities.account.EntryPW" />
         <activity android:name=".activities.account.FindID" />

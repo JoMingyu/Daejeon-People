@@ -17,7 +17,7 @@ public class InvitationTrip extends BaseActivity {
         setContentView(R.layout.fragment_invitation_trip);
 
         final ActionBar invitation = getActionBar();
-        invitation.setCustomView(R.layout.custom_invitation_trip);
+        //invitation.setCustomView(R.layout.custom_invitation_trip);
         invitation.setDisplayShowTitleEnabled(false);
         invitation.setDisplayShowCustomEnabled(true);
         invitation.setDisplayShowHomeEnabled(false);
