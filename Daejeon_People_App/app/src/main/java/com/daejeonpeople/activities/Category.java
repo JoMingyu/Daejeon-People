@@ -18,10 +18,5 @@ public class Category extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.category);
 
-        final ActionBar category = getActionBar();
-        category.setCustomView(R.layout.custom_category);
-        category.setDisplayShowTitleEnabled(false);
-        category.setDisplayShowCustomEnabled(true);
-        category.setDisplayShowHomeEnabled(false);
     }
 }

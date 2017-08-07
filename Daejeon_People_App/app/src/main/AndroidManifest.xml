@@ -25,8 +25,7 @@
             android:name=".activities.Chatting"
             android:theme="@style/CustomActionBarTheme" />
         <activity
-            android:name=".activities.AddressBook"
-            android:theme="@style/CustomActionBarTheme" />
+            android:name=".activities.AddressBook" />
         <activity android:name=".activities.account.SignIn" />
         <activity
             android:name=".activities.account.SignUp"
@@ -34,17 +33,16 @@
         <activity
             android:name=".activities.Main"/>
         <activity
-            android:name=".activities.Category"
-            android:theme="@style/CustomActionBarTheme" />
-        <activity android:name=".activities.account.EntryID" />
-        <activity android:name=".activities.account.EntryPW" />
-        <activity android:name=".activities.account.FindID" >
+            android:name=".activities.Category">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".activities.account.EntryID" />
+        <activity android:name=".activities.account.EntryPW" />
+        <activity android:name=".activities.account.FindID" />
         <activity android:name=".activities.account.FindPW" />
         <activity android:name=".activities.Search" />
         <activity
