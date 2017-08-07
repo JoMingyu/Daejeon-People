@@ -22,8 +22,7 @@
         </activity>
         <activity android:name=".activities.account.Email_Certified" />
         <activity
-            android:name=".activities.Chatting"
-            android:theme="@style/CustomActionBarTheme" />
+            android:name=".activities.Chatting"/>
         <activity
             android:name=".activities.AddressBook" />
         <activity android:name=".activities.account.SignIn">
@@ -46,21 +45,16 @@
         <activity android:name=".activities.account.FindPW" />
         <activity android:name=".activities.Search" />
         <activity
-            android:name=".activities.InvitationTrip"
-            android:theme="@style/CustomActionBarTheme" />
+            android:name=".activities.InvitationTrip"/>
         <activity android:name=".activities.FriendRequest" />
         <activity
-            android:name=".activities.side_menu.MyInfo"
-            android:theme="@style/CustomActionBarTheme"/>
+            android:name=".activities.side_menu.MyInfo"/>
         <activity
-            android:name=".activities.side_menu.ChatList"
-            android:theme="@style/CustomActionBarTheme"/>
+            android:name=".activities.side_menu.ChatList"/>
         <activity
-            android:name=".activities.side_menu.FriendList"
-            android:theme="@style/CustomActionBarTheme"/>
+            android:name=".activities.side_menu.FriendList"/>
         <activity
-            android:name=".activities.side_menu.WishList"
-            android:theme="@style/CustomActionBarTheme"/>
+            android:name=".activities.side_menu.WishList"/>
     </application>
 
 </manifest>
