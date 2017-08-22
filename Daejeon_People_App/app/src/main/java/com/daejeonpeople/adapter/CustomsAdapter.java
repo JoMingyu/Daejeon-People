@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
-
 import com.daejeonpeople.R;
 
 /**
@@ -27,8 +26,11 @@ public class CustomsAdapter extends PagerAdapter {
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
         // TODO Auto-generated method stub
-        View view=null;
-        view= inflater.inflate(R.layout.viewpager_childview2, null);
+        View view = null;
+        view = inflater.inflate(R.layout.viewpager_childview2, null);
+
+        ImageView img= (ImageView)view.findViewById(R.id.img_viewpager_childimage2);
+        img.setImageResource(R.drawable.ic_test+position);
 
         Button btn= (Button) view.findViewById(R.id.view_button);
         btn.getResources();

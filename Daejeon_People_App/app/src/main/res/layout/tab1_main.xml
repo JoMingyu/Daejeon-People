@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:sl="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    android:layout_weight="1">
+                    <android.support.v4.view.ViewPager
+                        android:id="@+id/pager1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+
+                    </android.support.v4.view.ViewPager>
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:orientation="vertical">
+                    <com.ssomai.android.scalablelayout.ScalableLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        sl:scale_base_height="150"
+                        sl:scale_base_width="1080">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="이달의 인기만점"
+                            android:textStyle="bold"
+                            android:textColor="@color/colorPrimary"
+                            sl:scale_height="100"
+                            sl:scale_width="1000"
+                            sl:scale_textsize="60"
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="이달의 대전에서 인기많은 장소를 알려드립니다."
+                            sl:scale_top="80"
+                            sl:scale_height="50"
+                            sl:scale_width="1000"
+                            sl:scale_textsize="35" />
+
+                    </com.ssomai.android.scalablelayout.ScalableLayout>
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    android:layout_weight="1">
+
+                    <android.support.v4.view.ViewPager
+                        android:id="@+id/pager2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+
+                    </android.support.v4.view.ViewPager>
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:orientation="vertical">
+
+                    <com.ssomai.android.scalablelayout.ScalableLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        sl:scale_base_height="150"
+                        sl:scale_base_width="1080">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="이달의 가볼만한 곳"
+                            android:textStyle="bold"
+                            android:textColor="@color/colorPrimary"
+                            sl:scale_height="100"
+                            sl:scale_width="1000"
+                            sl:scale_textsize="60"
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="이달의 대전에서 가볼만한 곳을 추천해드립니다."
+                            sl:scale_top="80"
+                            sl:scale_height="50"
+                            sl:scale_width="1000"
+                            sl:scale_textsize="35" />
+
+                    </com.ssomai.android.scalablelayout.ScalableLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+</LinearLayout>
