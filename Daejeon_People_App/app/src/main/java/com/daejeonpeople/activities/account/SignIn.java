@@ -133,7 +133,7 @@ public class SignIn extends BaseActivity {
         apiInterface.doSignIn(id, password).enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                if(response.isSuccessful()){
+                if(response.code() == 201){
                     startActivity(new Intent(getApplicationContext(), Main.class));
                 }
             }

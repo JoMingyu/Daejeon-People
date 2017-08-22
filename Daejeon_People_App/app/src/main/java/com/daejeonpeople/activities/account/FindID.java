@@ -10,13 +10,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.androidquery.AQuery;
 import com.androidquery.callback.AjaxCallback;
 import com.androidquery.callback.AjaxStatus;
+import com.bumptech.glide.Glide;
 import com.daejeonpeople.R;
 import com.daejeonpeople.activities.base.BaseActivity;
+import com.daejeonpeople.support.network.APIinterface;
 import com.daejeonpeople.support.security.AES;
 import com.daejeonpeople.support.views.ColorManager;
 import com.daejeonpeople.support.views.SnackbarManager;
@@ -34,31 +37,24 @@ import java.util.Map;
 // Modified by JoMingyu
 
 public class FindID extends BaseActivity {
-    private AQuery aQuery;
+    private APIinterface apiInterface;
 
     private Button findBtn;
-    private EditText inputEmail;
-    private EditText inputCode;
-
-    private Map<String, String> params = new HashMap<>();
+    private EditText inputEmail, inputCode;
+    private ImageView background;
     private boolean emailDemanded = false;
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        finish();
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.find_id);
 
-        aQuery = new AQuery(getApplicationContext());
-
         findBtn = (Button)findViewById(R.id.findBtn);
         inputEmail = (EditText) findViewById(R.id.inputEmail);
         inputCode = (EditText) findViewById(R.id.inputCode);
+        background = (ImageView) findViewById(R.id.background);
+
+        Glide.with(getApplicationContext()).load(R.drawable.background).centerCrop().into(background);
 
         inputEmail.addTextChangedListener(new TextWatcher() {
             @Override

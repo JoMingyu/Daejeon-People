@@ -14,33 +14,28 @@ import retrofit2.http.POST;
 public interface APIinterface {
     @FormUrlEncoded
     @POST("/signup")
-    Call<Void> doSignUp(
-            @Field("id") String id,
-            @Field("password") String password,
-            @Field("email") String email,
-            @Field("name") String name,
-            @Field("resistration_id") String resistrationId);
+    Call<Void> doSignUp(@Field("id") String id,
+                        @Field("password") String password,
+                        @Field("email") String email,
+                        @Field("name") String name,
+                        @Field("resistration_id") String resistrationId);
 
     @FormUrlEncoded
     @POST("/signup/phone/demand")
-    Call<Void> doSignUpDemand(
-            @Field("number") String number);
+    Call<Void> doSignUpDemand(@Field("number") String number);
 
     @FormUrlEncoded
     @POST("/signup/email/demand")
-    Call<Void> doSignUpDemandE(
-            @Field("email") String email);
+    Call<Void> doSignUpDemandE(@Field("email") String email);
 
     @FormUrlEncoded
     @POST("/signup/id/check")
-    Call<Void> doIDcheck(
-            @Field("id") String id);
+    Call<Void> doIDcheck(@Field("id") String id);
 
     @FormUrlEncoded
     @POST("/signin")
-    Call<Void> doSignIn(
-            @Field("id") String id,
-            @Field("password") String passwrod);
+    Call<Void> doSignIn(@Field("id") String id,
+                        @Field("password") String passwrod);
 
     @FormUrlEncoded
     @POST("/logout")
@@ -48,20 +43,22 @@ public interface APIinterface {
 
     @FormUrlEncoded
     @POST("/change/password")
-    Call<Void> doChangePassword(
-            @Field("id") String id,
-            @Field("current_password") String currentPassword,
-            @Field("new_password") String newPassword);
+    Call<Void> doChangePassword(@Field("id") String id,
+                                @Field("current_password") String currentPassword,
+                                @Field("new_password") String newPassword);
 
     @FormUrlEncoded
     @POST("/signup/phone/verify")
-    Call<Void> doSignUpVerify(
-            @Field("number") String number,
-            @Field("code") String code);
+    Call<Void> doSignUpVerify(@Field("number") String number,
+                              @Field("code") String code);
 
     @FormUrlEncoded
     @POST("/signup/email/verify")
-    Call<Void> doSignUpVerifyE(
-            @Field("email") String email,
-            @Field("code") String code);
+    Call<Void> doSignUpVerifyE(@Field("email") String email,
+                               @Field("code") String code);
+
+    @FormUrlEncoded
+    @POST("/find/id/demand")
+    Call<Void> doFindIdDemand(@Field("email") String email,
+                              @Field("name") String name);
 }
