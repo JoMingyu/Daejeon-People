@@ -17,6 +17,9 @@ import com.androidquery.callback.AjaxStatus;
 import com.daejeonpeople.R;
 import com.daejeonpeople.activities.Main;
 import com.daejeonpeople.activities.base.BaseActivity;
+import com.daejeonpeople.support.database.DBHelper;
+import com.daejeonpeople.support.network.APIClient;
+import com.daejeonpeople.support.network.APIinterface;
 import com.daejeonpeople.support.network.SessionManager;
 import com.daejeonpeople.support.views.SnackbarManager;
 import com.mikepenz.materialize.color.Material;
@@ -35,6 +38,8 @@ import static com.daejeonpeople.valueobject.UserInSignup.password;
 
 public class SignIn extends BaseActivity {
     private AQuery aQuery;
+    private APIinterface apiInterface;
+    private DBHelper dbHelper;
 
     private Button submitBtn;
     private EditText userId;
@@ -61,6 +66,8 @@ public class SignIn extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.signin);
 
+        apiInterface = APIClient.getClient().create(APIinterface.class);
+        dbHelper = DBHelper.getInstance(getApplicationContext(), "CHECK.db", null, 1);
         needFinish = false;
 
         signUpView = (TextView) findViewById(R.id.signUpView);
@@ -163,6 +170,9 @@ public class SignIn extends BaseActivity {
                 return mSource.subSequence(start, end); // Return default
             }
         }
-    };
+    }
+
+    public void doSignIn(String id, String password){
+    }
 }
 
