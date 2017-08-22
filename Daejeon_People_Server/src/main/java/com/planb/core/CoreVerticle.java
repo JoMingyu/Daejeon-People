@@ -2,6 +2,7 @@ package com.planb.core;
 
 import com.planb.core.handlers.CORSHandler;
 import com.planb.core.handlers.LogHandler;
+import com.planb.parser.support.ParserThread;
 import com.planb.support.routing.Routing;
 import com.planb.support.utilities.Config;
 import com.planb.support.utilities.Log;
@@ -29,7 +30,7 @@ public class CoreVerticle extends AbstractVerticle {
 
 		router.route().handler(StaticHandler.create());
 
-//		new ParserThread().start();
+		new ParserThread().start();
 
 		Log.info("Server Started");
 		vertx.createHttpServer().requestHandler(router::accept).listen(serverPort);
