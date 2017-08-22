@@ -43,12 +43,6 @@ public class SignUp extends BaseActivity {
     private boolean passwordConfirmCheck = false;
 
     @Override
-    protected void onPause() {
-        super.onPause();
-        finish();
-    }
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.signup);

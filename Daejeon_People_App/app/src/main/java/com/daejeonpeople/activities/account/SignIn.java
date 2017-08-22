@@ -7,7 +7,10 @@ import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
 import com.daejeonpeople.R;
 import com.daejeonpeople.activities.Main;
 import com.daejeonpeople.activities.base.BaseActivity;
@@ -29,8 +32,8 @@ public class SignIn extends BaseActivity {
 
     private Button submitBtn;
     private EditText userId, userPassword;
-
     private TextView signUpView, findIdView, findPasswordView;
+    private ImageView background;
 
     private boolean needFinish;
 
@@ -53,6 +56,9 @@ public class SignIn extends BaseActivity {
         signUpView = (TextView) findViewById(R.id.signUpView);
         findIdView = (TextView) findViewById(R.id.findIdView);
         findPasswordView = (TextView) findViewById(R.id.findPasswordView);
+        background = (ImageView) findViewById(R.id.background);
+
+        Glide.with(getApplicationContext()).load(R.drawable.background).centerCrop().into(background);
 
         submitBtn = (Button) findViewById(R.id.okBtn);
         userId = (EditText) findViewById(R.id.inputId);

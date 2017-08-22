@@ -10,10 +10,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.androidquery.AQuery;
 import com.androidquery.callback.AjaxCallback;
 import com.androidquery.callback.AjaxStatus;
+import com.bumptech.glide.Glide;
 import com.daejeonpeople.R;
 import com.daejeonpeople.activities.account.SignUp;
 import com.daejeonpeople.activities.base.BaseActivity;
@@ -39,6 +41,7 @@ public class Email_Certified extends BaseActivity {
 
     private EditText email;
     private Button confirmButton;
+    private ImageView background;
 
     @Override
     protected void onPause() {
@@ -56,6 +59,9 @@ public class Email_Certified extends BaseActivity {
 
         confirmButton = (Button) findViewById(R.id.confirmBtn);
         email = (EditText) findViewById(R.id.email);
+        background = (ImageView) findViewById(R.id.background);
+
+        Glide.with(getApplicationContext()).load(R.drawable.phone_certified_background).centerCrop().into(background);
 
         email.addTextChangedListener(new TextWatcher() {
             @Override
