@@ -18,7 +18,6 @@ public interface APIinterface {
             @Field("id") String id,
             @Field("password") String password,
             @Field("email") String email,
-            @Field("tel") String tel,
             @Field("name") String name,
             @Field("resistration_id") String resistrationId);
 
@@ -41,8 +40,7 @@ public interface APIinterface {
     @POST("/signin")
     Call<Void> doSignIn(
             @Field("id") String id,
-            @Field("password") String passwrod,
-            @Field("keep_login") boolean keep_login);
+            @Field("password") String passwrod);
 
     @FormUrlEncoded
     @POST("/logout")

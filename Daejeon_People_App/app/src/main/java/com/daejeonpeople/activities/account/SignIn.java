@@ -1,35 +1,23 @@
 package com.daejeonpeople.activities.account;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.text.InputType;
 import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
-
-import com.androidquery.AQuery;
-import com.androidquery.callback.AjaxCallback;
-import com.androidquery.callback.AjaxStatus;
 import com.daejeonpeople.R;
 import com.daejeonpeople.activities.Main;
 import com.daejeonpeople.activities.base.BaseActivity;
-import com.daejeonpeople.support.database.DBHelper;
 import com.daejeonpeople.support.network.APIClient;
 import com.daejeonpeople.support.network.APIinterface;
-import com.daejeonpeople.support.network.SessionManager;
 import com.daejeonpeople.support.views.SnackbarManager;
-import com.mikepenz.materialize.color.Material;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import static android.R.color.black;
-import static android.R.id.input;
-import static com.daejeonpeople.valueobject.UserInSignup.password;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by 10102김동규 on 2017-05-11.
@@ -37,19 +25,12 @@ import static com.daejeonpeople.valueobject.UserInSignup.password;
 // Modified by JoMingyu
 
 public class SignIn extends BaseActivity {
-    private AQuery aQuery;
     private APIinterface apiInterface;
-    private DBHelper dbHelper;
 
     private Button submitBtn;
-    private EditText userId;
-    private EditText userPassword;
+    private EditText userId, userPassword;
 
-    private CheckBox keepLoginBox;
-
-    private TextView signUpView;
-    private TextView findIdView;
-    private TextView findPasswordView;
+    private TextView signUpView, findIdView, findPasswordView;
 
     private boolean needFinish;
 
@@ -67,14 +48,11 @@ public class SignIn extends BaseActivity {
         setContentView(R.layout.signin);
 
         apiInterface = APIClient.getClient().create(APIinterface.class);
-        dbHelper = DBHelper.getInstance(getApplicationContext(), "CHECK.db", null, 1);
         needFinish = false;
 
         signUpView = (TextView) findViewById(R.id.signUpView);
         findIdView = (TextView) findViewById(R.id.findIdView);
         findPasswordView = (TextView) findViewById(R.id.findPasswordView);
-
-        keepLoginBox = (CheckBox) findViewById(R.id.keepLoginBox);
 
         submitBtn = (Button) findViewById(R.id.okBtn);
         userId = (EditText) findViewById(R.id.inputId);
@@ -110,38 +88,11 @@ public class SignIn extends BaseActivity {
         submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
-                aQuery = new AQuery(getApplicationContext());
-
                 String id = userId.getText().toString();
                 String password = userPassword.getText().toString();
-                final boolean keepLogin = keepLoginBox.isChecked();
 
                 if(!id.isEmpty() && !password.isEmpty()) {
-                    Map<String, Object> params = new HashMap<>();
-
-                    params.put("id", id);
-                    params.put("password", password);
-                    params.put("keep_login", keepLogin);
-
-                    aQuery.ajax("http://52.79.134.200/signin", params, String.class, new AjaxCallback<String>(){
-                        @Override
-                        public void callback(String url, String response, AjaxStatus status){
-                            int statusCode = status.getCode();
-                            if(statusCode == 201) {
-                                if(keepLogin) {
-                                    String cookie = new SessionManager(status).detectCookie("UserSession");
-                                    SessionManager.setCookieToDB(getApplicationContext(), cookie);
-                                }
-
-                                SnackbarManager.createCancelableSnackbar(v, "로그인 성공").show();
-                                Intent intent = new Intent(getApplicationContext(), Main.class);
-                                needFinish = true;
-                                startActivity(intent);
-                            } else {
-                                SnackbarManager.createCancelableSnackbar(v, "아이디나 비밀번호를 확인하세요.").show();
-                            }
-                        }
-                    });
+                    doSignIn(id, password);
                 } else {
                     SnackbarManager.createCancelableSnackbar(v, "아이디나 비밀번호를 확인하세요.").show();
                 }
@@ -173,6 +124,19 @@ public class SignIn extends BaseActivity {
     }
 
     public void doSignIn(String id, String password){
+        apiInterface.doSignIn(id, password).enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if(response.isSuccessful()){
+                    startActivity(new Intent(getApplicationContext(), Main.class));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+
+            }
+        });
     }
 }
 
