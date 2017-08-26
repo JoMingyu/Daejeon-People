@@ -40,9 +40,9 @@
                                     android:id="@+id/tourism"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:background="@drawable/bg_tourism"
                                     android:layout_alignParentTop="true"
-                                    android:layout_alignParentStart="true" />
+                                    android:layout_alignParentStart="true"
+                                    android:scaleType="fitXY" />
 
                                 <LinearLayout
                                     android:layout_width="wrap_content"
@@ -101,7 +101,7 @@
                                     android:id="@+id/culture"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:background="@drawable/bg_culture" />
+                                    android:scaleType="fitXY"/>
 
                                 <LinearLayout
                                     android:layout_width="wrap_content"
@@ -161,7 +161,7 @@
                                     android:id="@+id/event"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:background="@drawable/bg_event" />
+                                    android:scaleType="fitXY" />
 
                                 <LinearLayout
                                     android:layout_width="wrap_content"
@@ -224,7 +224,7 @@
                                     android:id="@+id/course"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:background="@drawable/bg_course" />
+                                    android:scaleType="fitXY" />
 
                                 <LinearLayout
                                     android:layout_width="wrap_content"
@@ -286,7 +286,7 @@
                                     android:id="@+id/leisure"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:background="@drawable/bg_leisure" />
+                                    android:scaleType="fitXY" />
 
                                 <LinearLayout
                                     android:layout_width="wrap_content"
@@ -348,7 +348,7 @@
                                     android:id="@+id/accommodation"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:background="@drawable/bg_accommodation" />
+                                    android:scaleType="fitXY" />
 
                                 <LinearLayout
                                     android:layout_width="wrap_content"
@@ -409,7 +409,7 @@
                                     android:id="@+id/shopping"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:background="@drawable/bg_shopping" />
+                                    android:scaleType="fitXY" />
 
                                 <LinearLayout
                                     android:layout_width="wrap_content"
@@ -471,7 +471,7 @@
                                     android:id="@+id/food"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:background="@drawable/bg_food" />
+                                    android:scaleType="fitXY" />
 
                                 <LinearLayout
                                     android:layout_width="wrap_content"

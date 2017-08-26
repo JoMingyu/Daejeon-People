@@ -36,7 +36,9 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.Main"/>
+            android:name=".activities.Main"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        </activity>
         <activity
             android:name=".activities.Category"/>
         <activity android:name=".activities.account.EntryID" />
@@ -47,8 +49,7 @@
         <activity
             android:name=".activities.InvitationTrip"/>
         <activity android:name=".activities.FriendRequest" />
-        <activity
-            android:name=".activities.side_menu.MyInfo"/>
+
         <activity
             android:name=".activities.side_menu.ChatList"/>
         <activity
