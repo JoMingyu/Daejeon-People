@@ -1,63 +1,39 @@
 package com.daejeonpeople.activities;
 
-import android.app.ActionBar;
-import android.app.Fragment;
-import android.app.TabActivity;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.app.FragmentTransaction;
 import android.app.FragmentManager;
-import android.support.v4.content.ContextCompat;
+import android.support.design.widget.TabLayout;
 import android.support.v4.view.GravityCompat;
-import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.ActionBarOverlayLayout;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.TabHost;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.androidquery.AQuery;
-import com.androidquery.callback.AjaxCallback;
-import com.androidquery.callback.AjaxStatus;
-import com.bumptech.glide.Glide;
 import com.daejeonpeople.R;
+import com.daejeonpeople.activities.account.SignIn;
+import com.daejeonpeople.activities.account.SignUp;
 import com.daejeonpeople.activities.side_menu.ChatList;
 import com.daejeonpeople.activities.side_menu.FriendList;
 import com.daejeonpeople.activities.side_menu.MyInfo;
 import com.daejeonpeople.activities.side_menu.WishList;
-import com.daejeonpeople.adapter.CustomAdapter;
-import com.daejeonpeople.adapter.CustomsAdapter;
 import com.daejeonpeople.support.database.DBHelper;
-import com.daejeonpeople.support.network.SessionManager;
 import com.daejeonpeople.support.views.SnackbarManager;
-import com.mikepenz.materialdrawer.util.PressedEffectStateListDrawable;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.List;
 
 //동규
 
 public class Main extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener
 {
-    ViewPager pager;
-    FragmentManager fragmentManager;
 
     @Override
     protected void onPause() {
         super.onPause();
-        finish();
     }
 
     @Override
@@ -70,60 +46,42 @@ public class Main extends AppCompatActivity
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
-        //Bottom tabwidget & tabhost Code
-        TabHost tabHost = (TabHost) findViewById(R.id.tabHost1);
-        tabHost.setup();
+        final Main_fragment main_fragment;
+        final Category_fragment category_fragment;
 
-        //메인으로 위젯 생성
-        TabHost.TabSpec ts1 = tabHost.newTabSpec("Tab1");
-        ts1.setIndicator("메인으로", ContextCompat.getDrawable( getApplicationContext() ,R.drawable.ic_home));
-        ts1.setContent(R.id.tab1);
-        tabHost.addTab(ts1);
+        main_fragment = new Main_fragment();
+        category_fragment = new Category_fragment();
 
-        //카테고리 위젯 생성
-        TabHost.TabSpec ts2 = tabHost.newTabSpec("Tab2");
-        ts2.setIndicator("카테고리", ContextCompat.getDrawable( getApplicationContext() ,R.drawable.ic_category));
-        ts2.setContent(R.id.tab2);
-        tabHost.addTab(ts2);
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.tabcontent, main_fragment).commit();
 
-        //카테고리 이미지 적용
-        ImageView iv = (ImageView)findViewById(R.id.tourism);
-        Glide.with(this).load(R.drawable.bg_tourism).into(iv);
+        TabLayout tabs = (TabLayout) findViewById(R.id.tabs);
+        tabs.addTab(tabs.newTab().setText("메인으로").setIcon(R.drawable.tabwidget01));
+        tabs.addTab(tabs.newTab().setText("카테고리").setIcon(R.drawable.tabwidget02));
 
-        iv = (ImageView)findViewById(R.id.culture);
-        Glide.with(this).load(R.drawable.bg_culture).into(iv);
+        tabs.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab){
+             int position = tab.getPosition();
 
-        iv = (ImageView)findViewById(R.id.event);
-        Glide.with(this).load(R.drawable.bg_event).into(iv);
+                android.support.v4.app.Fragment selected = null;
+                if(position == 0){
+                    selected = main_fragment;
+                } else if(position == 1) {
+                    selected = category_fragment;
+                }
 
-        iv = (ImageView)findViewById(R.id.course);
-        Glide.with(this).load(R.drawable.bg_course).into(iv);
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.tabcontent, selected).commit();
+            }
 
-        iv = (ImageView)findViewById(R.id.leisure);
-        Glide.with(this).load(R.drawable.bg_leisure).into(iv);
-
-        iv = (ImageView)findViewById(R.id.accommodation);
-        Glide.with(this).load(R.drawable.bg_accommodation).into(iv);
-
-        iv = (ImageView)findViewById(R.id.shopping);
-        Glide.with(this).load(R.drawable.bg_shopping).into(iv);
-
-        iv = (ImageView)findViewById(R.id.food);
-        Glide.with(this).load(R.drawable.bg_food).into(iv);
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) { }
 
 
-        //tabwidget에 사진 넣기가 너무 어렵네요.ㅠㅠ 죄송합니다.
-        tabHost.setCurrentTab(0);
-
-        //Advertising ViewPager
-        pager = (ViewPager) findViewById(R.id.pager1);
-        CustomAdapter adapter = new CustomAdapter(getLayoutInflater());
-        pager.setAdapter(adapter);
-
-        //이달의 인기만점 ViewPager
-        pager = (ViewPager) findViewById(R.id.pager2);
-        CustomsAdapter adapter2 = new CustomsAdapter(getLayoutInflater());
-        pager.setAdapter(adapter2);
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) { }
+        });
 
         DBHelper dbHelper = DBHelper.getInstance(getApplicationContext(), "CHECK.db", null, 1);
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -206,7 +164,7 @@ public class Main extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-        Fragment fragment = null;
+        android.app.Fragment fragment = null;
         String title = getString(R.string.app_name);
 
 
@@ -244,15 +202,17 @@ public class Main extends AppCompatActivity
             }
         } else {
             // 네비게이션 뷰 조작
+            Intent intent;
             switch(id) {
                 case R.id.navigation_not_login_item01:
-                    // 내 정보
-                    fragment = new MyInfo();
-                    title = "내정보";
+                    // 로그인
+                    intent = new Intent(this, SignIn.class);
+                    startActivity(intent);
                     break;
                 case R.id.navigation_not_login_item02:
-                    // 설정
-//                startActivity(new Intent(this, ))
+                    // 회원 가입
+                    intent = new Intent(this, SignUp.class);
+                    startActivity(intent);
                     break;
                 default:
                     SnackbarManager.createCancelableSnackbar(getWindow().getDecorView().getRootView(), "비정상적인 접근입니다.").show();

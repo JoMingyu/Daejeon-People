@@ -208,6 +208,7 @@ public class SignUp extends BaseActivity {
         });
     }
 
+
     public class AsteriskPasswordTransformationMethod extends PasswordTransformationMethod {
         @Override
         public CharSequence getTransformation(CharSequence source, View view) {

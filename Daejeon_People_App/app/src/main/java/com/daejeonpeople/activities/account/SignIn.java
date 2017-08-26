@@ -45,6 +45,7 @@ public class SignIn extends BaseActivity {
         }
     }
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -128,6 +129,7 @@ public class SignIn extends BaseActivity {
             }
         }
     }
+
 
     public void doSignIn(String id, String password){
         apiInterface.doSignIn(id, password).enqueue(new Callback<Void>() {

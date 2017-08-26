@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:sl="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
@@ -21,9 +21,7 @@
             <TabHost
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/tabHost1"
-                tools:layout_editor_absoluteY="8dp"
-                tools:layout_editor_absoluteX="8dp">
+                android:id="@+id/tabHost1">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -31,36 +29,47 @@
                     android:orientation="vertical">
 
                     <FrameLayout
-                        android:id="@android:id/tabcontent"
+                        android:id="@+id/tabcontent"
                         android:layout_weight="1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
 
 
-                        <include
-                            android:id="@+id/tab1"
-                            layout="@layout/tab1_main"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent" />
+                        <!--<include-->
+                            <!--android:id="@+id/tab1"-->
+                            <!--layout="@layout/tab1_main"-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="match_parent" />-->
 
 
-                        <include
-                            android:id="@+id/tab2"
-                            layout="@layout/tab2_category"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent" />
+                        <!--<include-->
+                            <!--android:id="@+id/tab2"-->
+                            <!--layout="@layout/tab2_category"-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="match_parent" />-->
 
                     </FrameLayout>
 
+                    <android.support.design.widget.TabLayout
+                        android:id="@+id/tabs"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:tabMode="fixed"
+                        app:tabGravity="fill"
+                        app:tabTextColor="@color/Gray"
+                        app:tabSelectedTextColor="@color/colorPrimary"
+                        android:elevation="1dp"
+                        android:background="@color/White">
+                    </android.support.design.widget.TabLayout>
 
-                    <TabWidget
-                        android:id="@android:id/tabs"
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content" >
-                    </TabWidget>
+                    <!--<TabWidget-->
+                        <!--android:id="@android:id/tabs"-->
+                        <!--android:layout_width="fill_parent"-->
+                        <!--android:layout_height="wrap_content" >-->
+                    <!--</TabWidget>-->
 
                 </LinearLayout>
             </TabHost>
         </RelativeLayout>
     </FrameLayout>
-</android.support.constraint.ConstraintLayout>
+</RelativeLayout>
