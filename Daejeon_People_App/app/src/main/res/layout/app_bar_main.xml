@@ -17,7 +17,6 @@
             android:layout_height="?attr/actionBarSize"
             android:background="@color/colorPrimary"
             app:popupTheme="@style/AppTheme.PopupOverlay">
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -28,7 +27,18 @@
                 android:layout_gravity="center"
                 android:id="@+id/toolbar_title" />
 
-
+            <Button
+                android:layout_marginRight="20dp"
+                android:background="@drawable/ic_search"
+                android:layout_gravity="right"
+                android:layout_width="22dp"
+                android:layout_height="22dp" />
+            <Button
+                android:layout_marginRight="20dp"
+                android:background="@drawable/ic_fiter"
+                android:layout_gravity="right"
+                android:layout_width="20dp"
+                android:layout_height="22dp" />
         </android.support.v7.widget.Toolbar>
 
     </android.support.design.widget.AppBarLayout>
