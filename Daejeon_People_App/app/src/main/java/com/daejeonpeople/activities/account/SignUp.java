@@ -61,7 +61,7 @@ public class SignUp extends BaseActivity {
         passwordConfirm = (EditText) findViewById(R.id.inputPasswordConfirm);
         background = (ImageView) findViewById(R.id.background);
 
-        Glide.with(getApplicationContext()).load(R.drawable.background).centerCrop().into(background);
+        Glide.with(getApplicationContext()).load(R.drawable.phone_certified_background).centerCrop().into(background);
 
         userPassword.setInputType(InputType.TYPE_CLASS_TEXT|InputType.TYPE_TEXT_VARIATION_PASSWORD);
         userPassword.setTransformationMethod(new AsteriskPasswordTransformationMethod());

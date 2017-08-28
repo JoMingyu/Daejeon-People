@@ -68,9 +68,9 @@
                                         android:textSize="30dp" />
 
                                     <Button
-                                        android:background="@drawable/round_corner_middle"
-                                        android:layout_width="150dp"
-                                        android:layout_height="25dp"
+                                        android:background="@drawable/round_corner_gradation"
+                                        android:layout_width="130dp"
+                                        android:layout_height="28dp"
                                         android:layout_gravity="center"
                                         android:textColor="@color/White"
                                         android:textStyle="bold"
@@ -127,12 +127,12 @@
                                         android:textSize="30dp" />
 
                                     <Button
-                                        android:background="@drawable/round_corner_middle"
-                                        android:layout_width="150dp"
-                                        android:layout_height="25dp"
-                                        android:textStyle="bold"
+                                        android:background="@drawable/round_corner_gradation"
+                                        android:layout_width="130dp"
+                                        android:layout_height="28dp"
                                         android:layout_gravity="center"
                                         android:textColor="@color/White"
+                                        android:textStyle="bold"
                                         android:text="살펴보기" />
                                 </LinearLayout>
                             </RelativeLayout>
@@ -187,12 +187,12 @@
                                         android:textSize="30dp" />
 
                                     <Button
-                                        android:background="@drawable/round_corner_middle"
-                                        android:layout_width="150dp"
-                                        android:layout_height="25dp"
+                                        android:background="@drawable/round_corner_gradation"
+                                        android:layout_width="130dp"
+                                        android:layout_height="28dp"
                                         android:layout_gravity="center"
-                                        android:textStyle="bold"
                                         android:textColor="@color/White"
+                                        android:textStyle="bold"
                                         android:text="살펴보기" />
                                 </LinearLayout>
                             </RelativeLayout>
@@ -250,12 +250,12 @@
                                         android:textSize="30dp" />
 
                                     <Button
-                                        android:background="@drawable/round_corner_middle"
-                                        android:layout_width="150dp"
-                                        android:layout_height="25dp"
+                                        android:background="@drawable/round_corner_gradation"
+                                        android:layout_width="130dp"
+                                        android:layout_height="28dp"
                                         android:layout_gravity="center"
-                                        android:textStyle="bold"
                                         android:textColor="@color/White"
+                                        android:textStyle="bold"
                                         android:text="살펴보기" />
                                 </LinearLayout>
                             </RelativeLayout>
@@ -312,12 +312,12 @@
                                         android:textSize="30dp" />
 
                                     <Button
-                                        android:background="@drawable/round_corner_middle"
-                                        android:layout_width="150dp"
-                                        android:layout_height="25dp"
-                                        android:textStyle="bold"
+                                        android:background="@drawable/round_corner_gradation"
+                                        android:layout_width="130dp"
+                                        android:layout_height="28dp"
                                         android:layout_gravity="center"
                                         android:textColor="@color/White"
+                                        android:textStyle="bold"
                                         android:text="살펴보기" />
                                 </LinearLayout>
                             </RelativeLayout>
@@ -374,12 +374,12 @@
                                         android:textSize="30dp" />
 
                                     <Button
-                                        android:background="@drawable/round_corner_middle"
-                                        android:layout_width="150dp"
-                                        android:textStyle="bold"
-                                        android:layout_height="25dp"
+                                        android:background="@drawable/round_corner_gradation"
+                                        android:layout_width="130dp"
+                                        android:layout_height="28dp"
                                         android:layout_gravity="center"
                                         android:textColor="@color/White"
+                                        android:textStyle="bold"
                                         android:text="살펴보기" />
                                 </LinearLayout>
                             </RelativeLayout>
@@ -435,12 +435,12 @@
                                         android:textSize="30dp" />
 
                                     <Button
-                                        android:background="@drawable/round_corner_middle"
-                                        android:layout_width="150dp"
-                                        android:layout_height="25dp"
-                                        android:textStyle="bold"
+                                        android:background="@drawable/round_corner_gradation"
+                                        android:layout_width="130dp"
+                                        android:layout_height="28dp"
                                         android:layout_gravity="center"
                                         android:textColor="@color/White"
+                                        android:textStyle="bold"
                                         android:text="살펴보기" />
                                 </LinearLayout>
                             </RelativeLayout>
@@ -497,12 +497,12 @@
                                         android:textSize="30dp" />
 
                                     <Button
-                                        android:background="@drawable/round_corner_middle"
-                                        android:layout_width="150dp"
-                                        android:layout_height="25dp"
-                                        android:textStyle="bold"
+                                        android:background="@drawable/round_corner_gradation"
+                                        android:layout_width="130dp"
+                                        android:layout_height="28dp"
                                         android:layout_gravity="center"
                                         android:textColor="@color/White"
+                                        android:textStyle="bold"
                                         android:text="살펴보기" />
                                 </LinearLayout>
                             </RelativeLayout>
