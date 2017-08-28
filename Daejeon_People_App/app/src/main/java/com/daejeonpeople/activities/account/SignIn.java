@@ -14,6 +14,7 @@ import com.bumptech.glide.Glide;
 import com.daejeonpeople.R;
 import com.daejeonpeople.activities.Main;
 import com.daejeonpeople.activities.base.BaseActivity;
+import com.daejeonpeople.support.database.DBHelper;
 import com.daejeonpeople.support.network.APIClient;
 import com.daejeonpeople.support.network.APIinterface;
 import com.daejeonpeople.support.views.SnackbarManager;
@@ -29,6 +30,7 @@ import retrofit2.Response;
 
 public class SignIn extends BaseActivity {
     private APIinterface apiInterface;
+    private DBHelper dbHelper;
 
     private Button submitBtn;
     private EditText userId, userPassword;
@@ -52,6 +54,7 @@ public class SignIn extends BaseActivity {
         setContentView(R.layout.signin);
 
         apiInterface = APIClient.getClient().create(APIinterface.class);
+        dbHelper = DBHelper.getInstance(getApplicationContext(), "CHECK.db", null, 1);
         needFinish = false;
 
         signUpView = (TextView) findViewById(R.id.signUpView);
@@ -136,6 +139,8 @@ public class SignIn extends BaseActivity {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if(response.code() == 201){
+                    needFinish = true;
+
                     startActivity(new Intent(getApplicationContext(), Main.class));
                 }
             }

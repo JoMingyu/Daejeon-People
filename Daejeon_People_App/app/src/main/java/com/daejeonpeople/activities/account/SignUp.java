@@ -187,6 +187,7 @@ public class SignUp extends BaseActivity {
                                 SnackbarManager.createCancelableSnackbar(v, "회원가입 성공!").show();
                                 Intent intent = new Intent(getApplicationContext(), SignIn.class);
                                 startActivity(intent);
+                                finish();
                             } else {
                                 SnackbarManager.createCancelableSnackbar(v, "회원가입에 실패했습니다.").show();
                             }
