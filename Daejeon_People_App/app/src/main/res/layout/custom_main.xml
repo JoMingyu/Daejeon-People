@@ -1,36 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <LinearLayout
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.daejeonpeople.activities.Main">
+    <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
-        android:gravity="center">
+        android:theme="@style/AppTheme.AppBarOverlay">
 
-        <Button
-            android:layout_width="22dp"
-            android:layout_height="15dp"
-            android:layout_margin="18dp"
-            android:id="@+id/ic_menu"
-            android:background="@drawable/ic_menu"/>
-
-        <TextView
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:layout_weight="1"
-            android:text="대전사람"
-            android:textColor="@color/White"
-            android:textSize="22sp"
-            android:textStyle="bold"/>
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="대전사람"
+                android:textStyle="bold"
+                android:textSize="20dp"
+                android:textColor="@color/White"
+                android:layout_gravity="center"
+                android:id="@+id/toolbar_title" />
 
-        <TextView
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_margin="18dp" />
-    </LinearLayout>
+            <Button
+                android:layout_marginRight="20dp"
+                android:background="@drawable/ic_search"
+                android:layout_gravity="right"
+                android:layout_width="22dp"
+                android:layout_height="22dp" />
+            <Button
+                android:layout_marginRight="20dp"
+                android:background="@drawable/ic_fiter"
+                android:layout_gravity="right"
+                android:layout_width="20dp"
+                android:layout_height="22dp" />
+        </android.support.v7.widget.Toolbar>
 
+    </android.support.design.widget.AppBarLayout>
 
-</LinearLayout>
+</android.support.design.widget.CoordinatorLayout>
