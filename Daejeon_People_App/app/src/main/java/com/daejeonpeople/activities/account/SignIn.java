@@ -59,7 +59,7 @@ public class SignIn extends BaseActivity {
         findPasswordView = (TextView) findViewById(R.id.findPasswordView);
         background = (ImageView) findViewById(R.id.background);
 
-        Glide.with(getApplicationContext()).load(R.drawable.background).centerCrop().into(background);
+        Glide.with(getApplicationContext()).load(R.drawable.phone_certified_background).centerCrop().into(background);
 
         submitBtn = (Button) findViewById(R.id.okBtn);
         userId = (EditText) findViewById(R.id.inputId);
