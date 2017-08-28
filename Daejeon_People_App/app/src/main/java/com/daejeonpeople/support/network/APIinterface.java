@@ -18,7 +18,7 @@ public interface APIinterface {
                         @Field("password") String password,
                         @Field("email") String email,
                         @Field("name") String name,
-                        @Field("resistration_id") String resistrationId);
+                        @Field("registration_id") String resistrationId);
 
     @FormUrlEncoded
     @POST("/signup/phone/demand")
@@ -61,4 +61,9 @@ public interface APIinterface {
     @POST("/find/id/demand")
     Call<Void> doFindIdDemand(@Field("email") String email,
                               @Field("name") String name);
+
+    @FormUrlEncoded
+    @POST("find/id/verify")
+    Call<Void> doFindIdVerify(@Field("email") String email,
+                              @Field("code") String code);
 }

@@ -15,11 +15,17 @@ import com.androidquery.callback.AjaxCallback;
 import com.androidquery.callback.AjaxStatus;
 import com.daejeonpeople.R;
 import com.daejeonpeople.activities.base.BaseActivity;
+import com.daejeonpeople.support.network.APIClient;
+import com.daejeonpeople.support.network.APIinterface;
 import com.daejeonpeople.support.views.ColorManager;
 import com.daejeonpeople.support.views.SnackbarManager;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by geni on 2017. 5. 28.
@@ -29,28 +35,20 @@ import java.util.Map;
 // Modified by JoMingyu
 
 public class FindPW extends BaseActivity {
-    private AQuery aQuery;
+    private APIinterface apiInterface;
 
     private Button findBtn;
     private EditText inputId;
     private EditText inputEmail;
     private EditText inputCode;
-
-    private Map<String, String> params = new HashMap<>();
     private boolean emailDemanded = false;
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        finish();
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.find_pw);
 
-        aQuery = new AQuery(getApplicationContext());
+        apiInterface = APIClient.getClient().create(APIinterface.class);
 
         findBtn = (Button) findViewById(R.id.findBtn);
         inputId = (EditText) findViewById(R.id.inputId);
@@ -76,12 +74,11 @@ public class FindPW extends BaseActivity {
             @Override
             public void onClick(final View v) {
                 if(!emailDemanded){
-                    params.put("id", inputId.getText().toString());
-                    params.put("email", inputEmail.getText().toString());
-                    aQuery.ajax("http://52.79.134.200/find/password/demand", params, String.class, new AjaxCallback<String>(){
+                    apiInterface.doFindIdDemand(inputId.getText().toString(),
+                                                inputEmail.getText().toString()).enqueue(new Callback<Void>() {
                         @Override
-                        public void callback(String url, String response, AjaxStatus status){
-                            if(status.getCode() == 201){
+                        public void onResponse(Call<Void> call, Response<Void> response) {
+                            if(response.code() == 201){
                                 emailDemanded = true;
 
                                 inputId.setTextColor(ColorManager.successColor);
@@ -92,24 +89,32 @@ public class FindPW extends BaseActivity {
                             } else {
                                 inputId.setTextColor(ColorManager.failureColor);
                                 inputEmail.setTextColor(ColorManager.failureColor);
-
                                 SnackbarManager.createCancelableSnackbar(v, "일치하는 계정 정보가 없습니다.").show();
                             }
                         }
+
+                        @Override
+                        public void onFailure(Call<Void> call, Throwable t) {
+
+                        }
                     });
                 } else {
-                    params.put("code", inputCode.getText().toString());
-                    aQuery.ajax("http://52.79.134.200/find/password/verify", params, String.class, new AjaxCallback<String>() {
-                       @Override
-                        public void callback(String url, String response, AjaxStatus status) {
-                           if(status.getCode() == 201){
-                               inputCode.setTextColor(ColorManager.successColor);
+                    apiInterface.doFindIdVerify(inputEmail.getText().toString(),
+                                                inputCode.getText().toString()).enqueue(new Callback<Void>() {
+                        @Override
+                        public void onResponse(Call<Void> call, Response<Void> response) {
+                            if(response.code() == 201){
+                                inputCode.setTextColor(ColorManager.successColor);
+                                SnackbarManager.createCancelableSnackbar(v, "임시 비밀번호가 " + inputEmail.getText().toString() + "로 전송되었습니다.").show();
+                            } else {
+                                inputCode.setTextColor(ColorManager.failureColor);
+                            }
+                        }
 
-                               SnackbarManager.createCancelableSnackbar(v, "임시 비밀번호가 " + inputEmail.getText().toString() + "로 전송되었습니다.").show();
-                           } else {
-                               inputCode.setTextColor(ColorManager.failureColor);
-                           }
-                       }
+                        @Override
+                        public void onFailure(Call<Void> call, Throwable t) {
+
+                        }
                     });
                 }
             }
