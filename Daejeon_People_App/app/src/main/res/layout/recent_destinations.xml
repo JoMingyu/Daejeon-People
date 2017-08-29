@@ -24,9 +24,9 @@
                 android:gravity="center_vertical">
 
                 <Button
-                    android:layout_width="24dp"
-                    android:layout_height="16dp"
-                    android:background="@drawable/ic_menu"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:background="@drawable/ic_back"
                     android:layout_marginLeft="18dp"/>
 
             </LinearLayout>
@@ -39,12 +39,11 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="대전사람"
+                    android:text="최근 여행지"
                     android:textAlignment="center"
                     android:textSize="22sp"
                     android:textColor="#ffffff"
-                    android:textStyle="bold"
-                    android:gravity="center"/>
+                    android:textStyle="bold"/>
 
             </LinearLayout>
 
@@ -52,26 +51,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1.5">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center">
-
-                    <Button
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:background="@drawable/ic_fiter"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginRight="70dp"/>
-
-                    <Button
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:background="@drawable/ic_search"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginRight="25dp"/>
-                </RelativeLayout>
 
             </LinearLayout>
         </LinearLayout>
