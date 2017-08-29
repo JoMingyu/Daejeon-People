@@ -7,6 +7,7 @@ import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
 import android.text.method.PasswordTransformationMethod;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -60,7 +61,7 @@ public class SignUp extends BaseActivity {
         passwordConfirm = (EditText) findViewById(R.id.inputPasswordConfirm);
         background = (ImageView) findViewById(R.id.background);
 
-        Glide.with(getApplicationContext()).load(R.drawable.background).centerCrop().into(background);
+        Glide.with(getApplicationContext()).load(R.drawable.phone_certified_background).centerCrop().into(background);
 
         userPassword.setInputType(InputType.TYPE_CLASS_TEXT|InputType.TYPE_TEXT_VARIATION_PASSWORD);
         userPassword.setTransformationMethod(new AsteriskPasswordTransformationMethod());
@@ -70,7 +71,7 @@ public class SignUp extends BaseActivity {
 
         jumpToSignin = (TextView) findViewById(R.id.jumpToSignin);
 
-        if(intent.getBooleanExtra("emailCertified", false)) {
+        if(intent.getBooleanExtra("emailCertified", false) && intent != null) {
             // 이메일 인증이 완료됐다면 버튼 컬러 변경
             emailCertifiedBtn.setTextColor(ColorManager.successColor);
             SnackbarManager.createCancelableSnackbar(emailCertifiedBtn, "이메일 인증 완료").show();
@@ -170,6 +171,8 @@ public class SignUp extends BaseActivity {
         submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
+                intent = getIntent();
+                Log.d("emailCertified", intent.getBooleanExtra("emailCertified", false)+"");
                 if (intent.getBooleanExtra("emailCertified", false) && nameCheck && idCheck && passwordConfirmCheck) {
                     apIinterface.doSignUp(
                             userId.getText().toString(),
@@ -184,6 +187,7 @@ public class SignUp extends BaseActivity {
                                 SnackbarManager.createCancelableSnackbar(v, "회원가입 성공!").show();
                                 Intent intent = new Intent(getApplicationContext(), SignIn.class);
                                 startActivity(intent);
+                                finish();
                             } else {
                                 SnackbarManager.createCancelableSnackbar(v, "회원가입에 실패했습니다.").show();
                             }

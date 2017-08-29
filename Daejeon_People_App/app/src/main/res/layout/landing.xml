@@ -66,14 +66,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
                 <Button
+                    android:id="@+id/signInBtn"
                     android:text="로그인"
                     android:layout_width="170dp"
                     android:layout_height="40dp"
                     android:textColor="@color/White"
                     android:layout_marginBottom="20dp"
-                    android:background="@drawable/round_corner_trans"/>
+                    android:background="@drawable/round_corner_trans" />
 
                 <Button
+                    android:id="@+id/signUpBtn"
                     android:text="회원 가입"
                     android:layout_width="170dp"
                     android:layout_height="40dp"
@@ -82,6 +84,7 @@
                     android:background="@drawable/round_corner_trans"/>
 
                 <Button
+                    android:id="@+id/skipBtn"
                     android:text="로그인 건너 뛰기"
                     android:layout_width="170dp"
                     android:layout_height="40dp"

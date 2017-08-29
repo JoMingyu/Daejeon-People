@@ -15,35 +15,42 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="fitXY"/>
-
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_centerInParent="true">
+            android:background="#88000000"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="유성온천문화축제"
-                android:textColor="@color/White"
-                android:layout_gravity="center"
-                android:textStyle="bold"
-                android:textSize="30dp"
-                />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_centerInParent="true">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Yuseong Spa Culture Festival"
-                android:textColor="@color/White"
-                android:layout_gravity="center"
-                android:textSize="20dp"
-                />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="유성온천문화축제"
+                        android:textColor="@color/White"
+                        android:layout_gravity="center"
+                        android:textStyle="bold"
+                        android:textSize="30dp"
+                        />
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Yuseong Spa Culture Festival"
+                        android:textColor="@color/White"
+                        android:layout_gravity="center"
+                        android:textSize="20dp"
+                        />
+
+                </LinearLayout>
+            </RelativeLayout>
         </LinearLayout>
-
-
     </RelativeLayout>
 
 

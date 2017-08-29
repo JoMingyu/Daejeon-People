@@ -31,18 +31,18 @@ public class Splash extends BaseActivity {
             public void run() {
                 judge();
             }
-        }, 3000);
+        }, 2000);
     }
 
     private void judge() {
         DBHelper dbHelper = DBHelper.getInstance(getApplicationContext(), "CHECK.db", null, 1);
+        Intent Landing = new Intent(getApplicationContext(), com.daejeonpeople.activities.Landing.class);
         Intent SignIn = new Intent(getApplicationContext(), com.daejeonpeople.activities.account.SignIn.class);
-        Intent SignUp = new Intent(getApplicationContext(), com.daejeonpeople.activities.account.SignUp.class);
         Intent Main = new Intent(getApplicationContext(), com.daejeonpeople.activities.Main.class);
 
         if(dbHelper.isFirstExecution()){
             dbHelper.firstExecution();
-            startActivity(SignUp);
+            startActivity(Landing);
         } else {
             if(dbHelper.getCookie() != null) {
                 startActivity(Main);

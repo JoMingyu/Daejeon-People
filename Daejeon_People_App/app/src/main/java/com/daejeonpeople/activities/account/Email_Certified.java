@@ -44,12 +44,6 @@ public class Email_Certified extends BaseActivity {
     private ImageView background;
 
     @Override
-    protected void onPause() {
-        super.onPause();
-        finish();
-    }
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.email_certified);
@@ -89,18 +83,16 @@ public class Email_Certified extends BaseActivity {
                         if(response.code() == 201){
                             email.setTextColor(ColorManager.successColor);
                             // 이메일 텍스트 컬러를 바꿈
-
                             ShowDialog();
                         } else {
                             email.setTextColor(ColorManager.failureColor);
-
                             SnackbarManager.createCancelableSnackbar(v, "이미 존재하는 이메일입니다.").show();
                         }
                     }
 
                     @Override
                     public void onFailure(Call<Void> call, Throwable t) {
-
+                        t.printStackTrace();
                     }
                 });
             }
@@ -151,11 +143,8 @@ public class Email_Certified extends BaseActivity {
                         SnackbarManager.createCancelableSnackbar(getWindow().getDecorView().getRootView(), "이메일 인증 완료").show();
                         myDialog.cancel();
                         finish();
-                        Intent intent = new Intent(getApplicationContext(), SignUp.class);
                         startActivity(intent);
                     } else {
-                        intent.putExtra("emailCertified", false);
-
                         checkCode.setTextColor(ColorManager.failureColor);
                         SnackbarManager.createCancelableSnackbar(getWindow().getDecorView().getRootView(), "인증번호가 맞지 않습니다.").show();
                     }
