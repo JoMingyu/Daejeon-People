@@ -51,7 +51,7 @@ public class WishList extends BaseActivity {
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-//        mAdapter = new WishlistAdapter(myDataset);
+        mAdapter = new WishlistAdapter();
         mRecyclerView.setAdapter(mAdapter);
 
         backBtn = (Button) findViewById(R.id.backBtn);
