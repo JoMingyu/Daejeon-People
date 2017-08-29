@@ -11,6 +11,7 @@ com\planb\support\restful\attractions\ValueComparator.class
 com\planb\support\routing\API.class
 com\planb\restful\attractions\list\ListByType.class
 com\planb\restful\travel\inside\InviteTravel.class
+com\planb\restful\attractions\list\CategoryFilteredList.class
 com\planb\restful\travel\TravelList.class
 com\planb\support\crypto\AES256.class
 com\planb\support\utilities\Mail$1.class

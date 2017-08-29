@@ -11,7 +11,7 @@ import io.vertx.core.Handler;
 import io.vertx.core.http.HttpMethod;
 import io.vertx.ext.web.RoutingContext;
 
-@API(functionCategory = "여행지 정보", summary = "카테고리 지정된 여행지 리스트 조회")
+@API(functionCategory = "여행지 정보", summary = "타입 지정된 여행지 리스트 조회")
 @REST(params = "content_type_id : int, sort_type : int, page : int", responseBody = "content_id : int, title : String, wish : boolean, wish_count : int, address : String, category : String, image : String, mapx : double, mapy : double", successCode = 200, failureCode = 204)
 @Route(uri = "/attractions/list", method = HttpMethod.GET)
 public class ListByType implements Handler<RoutingContext> {
