@@ -13,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.daejeonpeople.R;
@@ -131,6 +132,27 @@ public class Main extends AppCompatActivity
             ImageView profileimg = (ImageView)header.findViewById(R.id.header_img);
             profileimg.setImageResource(R.drawable.ic_profile_dark);
         }
+
+        //filter버튼 이벤트
+        Button filter_btn = (Button) findViewById(R.id.ic_filter);
+
+        filter_btn.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), Filter.class);
+                startActivity(intent);
+            }
+        }) ;
+
+        //search버튼 이벤트
+        Button search_btn = (Button) findViewById(R.id.ic_search);
+
+        search_btn.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //검색창
+            }
+        }) ;
 
     }
 
