@@ -43,6 +43,7 @@ public class Filter_detail_ItemAdapter extends RecyclerView.Adapter<RecyclerView
             visibleItems.add(item3);
             visibleItems.add(item4);
         }
+
     }
 
     @Override
