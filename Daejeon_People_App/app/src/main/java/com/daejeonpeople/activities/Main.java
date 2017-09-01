@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.daejeonpeople.R;
+import com.daejeonpeople.activities.Filter.Filter;
 import com.daejeonpeople.activities.account.SignIn;
 import com.daejeonpeople.activities.account.SignUp;
 import com.daejeonpeople.activities.side_menu.ChatList;
