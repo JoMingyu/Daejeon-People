@@ -97,23 +97,23 @@ public class FindPW extends BaseActivity {
                         }
                     });
                 } else {
-                    apiInterface.doFindIdVerify(inputEmail.getText().toString(),
-                                                inputCode.getText().toString()).enqueue(new Callback<Void>() {
-                        @Override
-                        public void onResponse(Call<Void> call, Response<Void> response) {
-                            if(response.code() == 201){
-                                inputCode.setTextColor(ColorManager.successColor);
-                                SnackbarManager.createCancelableSnackbar(v, "임시 비밀번호가 " + inputEmail.getText().toString() + "로 전송되었습니다.").show();
-                            } else {
-                                inputCode.setTextColor(ColorManager.failureColor);
-                            }
-                        }
-
-                        @Override
-                        public void onFailure(Call<Void> call, Throwable t) {
-
-                        }
-                    });
+//                    apiInterface.doFindIdVerify(inputEmail.getText().toString(),
+//                                                inputCode.getText().toString()).enqueue(new Callback<Void>() {
+//                        @Override
+//                        public void onResponse(Call<Void> call, Response<Void> response) {
+//                            if(response.code() == 201){
+//                                inputCode.setTextColor(ColorManager.successColor);
+//                                SnackbarManager.createCancelableSnackbar(v, "임시 비밀번호가 " + inputEmail.getText().toString() + "로 전송되었습니다.").show();
+//                            } else {
+//                                inputCode.setTextColor(ColorManager.failureColor);
+//                            }
+//                        }
+//
+//                        @Override
+//                        public void onFailure(Call<Void> call, Throwable t) {
+//
+//                        }
+//                    });
                 }
             }
         });

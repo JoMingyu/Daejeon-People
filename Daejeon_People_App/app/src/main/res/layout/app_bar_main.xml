@@ -37,7 +37,7 @@
             <Button
                 android:id="@+id/ic_filter"
                 android:layout_marginRight="20dp"
-                android:background="@drawable/ic_fiter"
+                android:background="@drawable/ic_filter"
                 android:layout_gravity="right"
                 android:layout_width="20dp"
                 android:layout_height="22dp" />
