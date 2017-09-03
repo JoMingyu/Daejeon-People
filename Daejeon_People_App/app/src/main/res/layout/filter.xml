@@ -4,562 +4,237 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
     <android.support.v7.widget.Toolbar
+        android:id="@+id/filter_toolbar"
+        android:background="@color/White"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:contentInsetStart="0dp">
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <Button
+            android:id="@+id/filter_backbtn"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_margin="18dp"
+            android:background="@drawable/ic_back_dark"/>
+
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/colorPrimary"
-            android:gravity="center">
+            android:text="필터"
+            android:textColor="@color/colorPrimary"
+            android:textSize="20dp"
+            android:textStyle="bold"/>
 
-            <Button
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_margin="18dp"
-                android:background="@drawable/ic_back" />
-
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_weight="1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="left"
-                android:text="필터"
-                android:textColor="@color/White"
-                android:textSize="22sp"
-                android:textStyle="bold" />
-
-        </LinearLayout>
     </android.support.v7.widget.Toolbar>
 
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/filter_img"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:scaleType="fitXY"/>
+
+            <LinearLayout
+                android:background="#66000000"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            </LinearLayout>
+
+            <TextView
+                android:layout_centerInParent="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="콘텐츠를 선택해주세요."
+                android:textColor="@color/White"
+                android:textSize="25dp"
+                android:textStyle="bold"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <TableLayout
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_margin="20dp"
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
                     <LinearLayout
+                        android:layout_weight="1"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical">
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_weight="5">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                        android:layout_height="wrap_content">
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+                            <Button
+                                android:id="@+id/page_btn1"
+                                android:background="@drawable/round_corner_border_dark"
+                                android:layout_centerInParent="true"
+                                android:layout_width="130dp"
+                                android:layout_height="40dp"
                                 android:text="관광지"
-                                android:textColor="@color/colorPrimaryDark"
-                                android:textSize="30dp" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginTop="3dp"
-                            android:layout_weight="1">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="관광지의 종류를 선택해주세요."
-                                android:textSize="10dp" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="10dp"
-                            android:layout_weight="7">
-
-                            <HorizontalScrollView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent">
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:orientation="horizontal">
-
-                                    <RadioButton
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="없음" />
-
-                                    <RadioButton
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginLeft="10dp"
-                                        android:text="자연" />
-
-                                    <RadioButton
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginLeft="10dp"
-                                        android:text="인문" />
-
-                                </LinearLayout>
-
-                            </HorizontalScrollView>
-
-                        </LinearLayout>
-
+                                android:textColor="@color/primary"
+                                android:textStyle="bold"/>
+                        </RelativeLayout>
                     </LinearLayout>
-
-                </TableRow>
-
-                <View
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginRight="15dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="0.5dip"
-                    android:background="#808080"/>
-
-            </TableLayout>
-
-            <TableLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
                     <LinearLayout
+                        android:layout_weight="1"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical">
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_weight="5">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="문화시설"
-                                android:textColor="@color/colorPrimaryDark"
-                                android:textSize="30dp" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginTop="3dp"
-                            android:layout_weight="1">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="문화시설의 종류를 선택해주세요."
-                                android:textSize="10dp" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="10dp"
-                            android:layout_weight="7">
-
-                            <HorizontalScrollView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent">
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:orientation="horizontal">
-
-                                    <RadioButton
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="없음" />
-
-                                    <RadioButton
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginLeft="10dp"
-                                        android:text="전시관" />
-
-                                    <RadioButton
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginLeft="10dp"
-                                        android:text="컨벤션센터" />
-
-                                    <RadioButton
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginLeft="10dp"
-                                        android:text="미술관 &#183; 화랑" />
-
-                                    <RadioButton
-                                        android:id="@+id/RadioButton2"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginLeft="10dp"
-                                        android:text="공연장" />
-
-                                </LinearLayout>
-
-                            </HorizontalScrollView>
-
-                        </LinearLayout>
-
+                        android:layout_height="wrap_content">
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+                            <Button
+                                android:id="@+id/page_btn2"
+                                android:background="@drawable/round_corner_border_dark"
+                                android:layout_centerInParent="true"
+                                android:layout_width="130dp"
+                                android:layout_height="40dp"
+                                android:text="행사\u0026축제"
+                                android:textColor="@color/primary"
+                                android:textStyle="bold"/>
+                        </RelativeLayout>
                     </LinearLayout>
-
-                </TableRow>
-
-                <View
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginRight="15dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="0.5dip"
-                    android:background="#808080"/>
-
-            </TableLayout>
-
-            <TableLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
                     <LinearLayout
+                        android:layout_weight="1"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical">
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_weight="5">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="축제 &#183; 공연 &#183; 행사"
-                                android:textColor="@color/colorPrimaryDark"
-                                android:textSize="30dp" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginTop="3dp"
-                            android:layout_weight="1">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="축제 &#183; 공연 &#183; 행사의 종류를 선택해주세요."
-                                android:textSize="10dp" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="10dp"
-                            android:layout_weight="7">
-
-                            <HorizontalScrollView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent">
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:orientation="horizontal">
-
-                                    <RadioButton
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="축제" />
-
-                                    <RadioButton
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginLeft="10dp"
-                                        android:text="공연 &#183; 행사" />
-
-                                </LinearLayout>
-
-                            </HorizontalScrollView>
-
-                        </LinearLayout>
-
-                    </LinearLayout>
-
-                </TableRow>
-
-                <View
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginRight="15dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="0.5dip"
-                    android:background="#808080"/>
-
-            </TableLayout>
-
-            <TableLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical">
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_weight="5">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="여행코스"
-                                android:textColor="@color/colorPrimaryDark"
-                                android:textSize="30dp" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginTop="3dp"
-                            android:layout_weight="1">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="코스별 종류를 선택해주세요."
-                                android:textSize="10dp" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="10dp"
-                            android:layout_weight="7">
-
-                            <HorizontalScrollView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent">
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:orientation="horizontal">
-
-                                    <RadioButton
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="가족코스" />
-
-                                    <RadioButton
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginLeft="10dp"
-                                        android:text="나홀로코스" />
-
-                                    <RadioButton
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginLeft="10dp"
-                                        android:text="힐링코스" />
-
-                                    <RadioButton
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginLeft="10dp"
-                                        android:text="도보코스" />
-
-                                    <RadioButton
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginLeft="10dp"
-                                        android:text="연인코스" />
-
-                                </LinearLayout>
-
-                            </HorizontalScrollView>
-
-                        </LinearLayout>
-
-                    </LinearLayout>
-
-                </TableRow>
-
-                <View
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginRight="15dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="0.5dip"
-                    android:background="#808080"/>
-
-            </TableLayout>
-
-            <TableLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical">
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_weight="5">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                        android:layout_height="wrap_content">
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+                            <Button
+                                android:id="@+id/page_btn3"
+                                android:background="@drawable/round_corner_border_dark"
+                                android:layout_centerInParent="true"
+                                android:layout_width="130dp"
+                                android:layout_height="40dp"
                                 android:text="레포츠"
-                                android:textColor="@color/colorPrimaryDark"
-                                android:textSize="30dp" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginTop="3dp"
-                            android:layout_weight="1">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="레포츠의 종류를 선택해주세요."
-                                android:textSize="10dp" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="10dp"
-                            android:layout_weight="7">
-
-                            <HorizontalScrollView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent">
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:orientation="horizontal">
-
-                                    <RadioButton
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="없음" />
-
-                                    <RadioButton
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginLeft="10dp"
-                                        android:text="피트니스센터" />
-
-                                    <RadioButton
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginLeft="10dp"
-                                        android:text="헬스장" />
-
-                                    <RadioButton
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginLeft="10dp"
-                                        android:text="수영장" />
-
-                                    <RadioButton
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginLeft="10dp"
-                                        android:text="농구장" />
-
-                                    <RadioButton
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginLeft="10dp"
-                                        android:text="축구장" />
-
-                                </LinearLayout>
-
-                            </HorizontalScrollView>
-
-                        </LinearLayout>
-
+                                android:textColor="@color/primary"
+                                android:textStyle="bold"/>
+                        </RelativeLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+                            <Button
+                                android:id="@+id/page_btn4"
+                                android:background="@drawable/round_corner_border_dark"
+                                android:layout_centerInParent="true"
+                                android:layout_width="130dp"
+                                android:layout_height="40dp"
+                                android:text="쇼핑"
+                                android:textColor="@color/primary"
+                                android:textStyle="bold"/>
+                        </RelativeLayout>
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+                    <LinearLayout
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+                            <Button
+                                android:id="@+id/page_btn5"
+                                android:background="@drawable/round_corner_border_dark"
+                                android:layout_centerInParent="true"
+                                android:layout_width="130dp"
+                                android:layout_height="40dp"
+                                android:text="문화시설"
+                                android:textColor="@color/primary"
+                                android:textStyle="bold"/>
+                        </RelativeLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+                            <Button
+                                android:id="@+id/page_btn6"
+                                android:background="@drawable/round_corner_border_dark"
+                                android:layout_centerInParent="true"
+                                android:layout_width="130dp"
+                                android:layout_height="40dp"
+                                android:text="여행코스"
+                                android:textColor="@color/primary"
+                                android:textStyle="bold"/>
+                        </RelativeLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+                            <Button
+                                android:id="@+id/page_btn7"
+                                android:background="@drawable/round_corner_border_dark"
+                                android:layout_centerInParent="true"
+                                android:layout_width="130dp"
+                                android:layout_height="40dp"
+                                android:text="숙박\u0026리조트"
+                                android:textColor="@color/primary"
+                                android:textStyle="bold"/>
+                        </RelativeLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+                            <Button
+                                android:id="@+id/page_btn8"
+                                android:background="@drawable/round_corner_border_dark"
+                                android:layout_centerInParent="true"
+                                android:layout_width="130dp"
+                                android:layout_height="40dp"
+                                android:text="음식점"
+                                android:textColor="@color/primary"
+                                android:textStyle="bold"/>
+                        </RelativeLayout>
                     </LinearLayout>
 
-                </TableRow>
-
-                <View
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginRight="15dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="0.5dip"
-                    android:background="#808080"/>
-
-            </TableLayout>
-
-
+                </LinearLayout>
+            </LinearLayout>
         </LinearLayout>
-
-    </ScrollView>
+    </LinearLayout>
 
 </LinearLayout>

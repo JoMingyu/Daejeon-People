@@ -60,6 +60,16 @@
             android:name=".activities.side_menu.FriendList"/>
         <activity
             android:name=".activities.side_menu.WishList"/>
+        <activity
+            android:name=".activities.Filter.Filter"/>
+        <activity
+            android:name=".activities.Filter.Filter_detail">
+            <!--<intent-filter>-->
+            <!--<action android:name="android.intent.action.MAIN"/>-->
+
+            <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
+        </activity>
     </application>
 
 </manifest>

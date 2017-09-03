@@ -4,6 +4,8 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -15,6 +17,7 @@ import com.daejeonpeople.R;
 import com.daejeonpeople.activities.Main;
 import com.daejeonpeople.activities.account.SignIn;
 import com.daejeonpeople.activities.base.BaseActivity;
+import com.daejeonpeople.adapter.WishlistAdapter;
 import com.daejeonpeople.support.network.SessionManager;
 import com.daejeonpeople.support.views.SnackbarManager;
 
@@ -27,6 +30,9 @@ import org.json.JSONObject;
 
 public class WishList extends BaseActivity {
     private Button backBtn;
+    private RecyclerView mRecyclerView;
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.LayoutManager mLayoutManager;
 
     @Override
     protected void onPause() {
@@ -39,11 +45,14 @@ public class WishList extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.wishlist_listview);
 
-        final ActionBar chatting = getActionBar();
-        chatting.setCustomView(R.layout.custom_wishlist);
-        chatting.setDisplayShowTitleEnabled(false);
-        chatting.setDisplayShowCustomEnabled(true);
-        chatting.setDisplayShowHomeEnabled(false);
+        mRecyclerView = (RecyclerView)findViewById(R.id.wishlist_recycler);
+        mRecyclerView.setHasFixedSize(true);
+
+        mLayoutManager = new LinearLayoutManager(this);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+
+        mAdapter = new WishlistAdapter();
+        mRecyclerView.setAdapter(mAdapter);
 
         backBtn = (Button) findViewById(R.id.backBtn);
 
