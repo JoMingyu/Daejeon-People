@@ -61,7 +61,7 @@
                     <Button
                         android:layout_width="20dp"
                         android:layout_height="20dp"
-                        android:background="@drawable/ic_fiter"
+                        android:background="@drawable/ic_filter"
                         android:layout_alignParentRight="true"
                         android:layout_marginRight="70dp"/>
 
