@@ -5,6 +5,7 @@ import com.google.gson.JsonObject;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
 
 /**
@@ -22,7 +23,7 @@ public interface APIinterface {
 
     @FormUrlEncoded
     @POST("/signup/phone/demand")
-    Call<Void> doSignUpDemand(@Field("number") String number);
+    Call<Void> doPhoneDemand(@Field("number") String number);
 
     @FormUrlEncoded
     @POST("/signup/email/demand")
@@ -49,7 +50,7 @@ public interface APIinterface {
 
     @FormUrlEncoded
     @POST("/signup/phone/verify")
-    Call<Void> doSignUpVerify(@Field("number") String number,
+    Call<Void> doPhoneVerify(@Field("number") String number,
                               @Field("code") String code);
 
     @FormUrlEncoded
@@ -66,4 +67,12 @@ public interface APIinterface {
     @POST("find/id/verify")
     Call<Void> doFindIdVerify(@Field("email") String email,
                               @Field("code") String code);
+
+    @FormUrlEncoded
+    @GET("attractions/list/total")
+    Call<JsonObject> getAttractionsListTotal();
+
+    @FormUrlEncoded
+    @GET("attractions/list")
+    Call<JsonObject> getAttractionsList();
 }

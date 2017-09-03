@@ -40,7 +40,6 @@ public class FindPW extends BaseActivity {
     private Button findBtn;
     private EditText inputId;
     private EditText inputEmail;
-    private EditText inputCode;
     private boolean emailDemanded = false;
 
     @Override
@@ -53,7 +52,6 @@ public class FindPW extends BaseActivity {
         findBtn = (Button) findViewById(R.id.findBtn);
         inputId = (EditText) findViewById(R.id.inputId);
         inputEmail = (EditText) findViewById(R.id.inputEmail);
-        inputCode = (EditText) findViewById(R.id.inputCode);
 
         inputEmail.addTextChangedListener(new TextWatcher() {
             @Override
@@ -124,7 +122,7 @@ public class FindPW extends BaseActivity {
     private void ShowDialog()
     {
         LayoutInflater dialog = LayoutInflater.from(this);
-        final View dialogLayout = dialog.inflate(R.layout.dialog_email_certified_sended, null);
+        final View dialogLayout = dialog.inflate(R.layout.dialog_email_certified_input, null);
         final Dialog myDialog = new Dialog(this);
 
         myDialog.setTitle("이메일 인증");
@@ -133,12 +131,28 @@ public class FindPW extends BaseActivity {
 
         Button okBtn = (Button)dialogLayout.findViewById(R.id.okBtn);
         Button cancelBtn = (Button)dialogLayout.findViewById(R.id.cancelBtn);
+        final EditText checkCode = (EditText)dialogLayout.findViewById(R.id.checkCode);
 
-        okBtn.setOnClickListener(new View.OnClickListener()
-        {
+        okBtn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(final View v) {
+                apiInterface.doFindIdVerify(inputEmail.getText().toString(),
+                                            checkCode.getText().toString()).enqueue(new Callback<Void>() {
+                    @Override
+                    public void onResponse(Call<Void> call, Response<Void> response) {
+                        if(response.code() == 201){
+                            checkCode.setTextColor(ColorManager.successColor);
+                            SnackbarManager.createCancelableSnackbar(v, "임시 비밀번호가 " + inputEmail.getText().toString() + "로 전송되었습니다.").show();
+                        } else {
+                            checkCode.setTextColor(ColorManager.failureColor);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<Void> call, Throwable t) {
+
+                    }
+                });
                 myDialog.cancel();
             }
         });

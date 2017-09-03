@@ -2,6 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bd77befc-6693-43e4-a500-490e319197a4" name="Default" comment="">
+<<<<<<< HEAD
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Daejeon_People_App/app/src/main/res/layout/dialog_email_certified_sended.xml" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Daejeon_People_App/app/src/main/java/com/daejeonpeople/activities/account/FindPW.java" afterPath="$PROJECT_DIR$/Daejeon_People_App/app/src/main/java/com/daejeonpeople/activities/account/FindPW.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Daejeon_People_App/app/src/main/java/com/daejeonpeople/support/network/APIinterface.java" afterPath="$PROJECT_DIR$/Daejeon_People_App/app/src/main/java/com/daejeonpeople/support/network/APIinterface.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Daejeon_People_App/app/src/main/res/layout/find_pw.xml" afterPath="$PROJECT_DIR$/Daejeon_People_App/app/src/main/res/layout/find_pw.xml" />
+=======
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Daejeon_People_App/app/src/main/res/layout/filter_detail.xml" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Daejeon_People_App/app/src/main/res/layout/filter_detail_item.xml" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/Daejeon_People_App/app/src/main/java/com/daejeonpeople/adapter/FilterAdapter.java" afterPath="" />
@@ -13,6 +20,7 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Daejeon_People_App/app/src/main/java/com/daejeonpeople/activities/Main.java" afterPath="$PROJECT_DIR$/Daejeon_People_App/app/src/main/java/com/daejeonpeople/activities/Main.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Daejeon_People_App/app/src/main/res/layout/app_bar_main.xml" afterPath="$PROJECT_DIR$/Daejeon_People_App/app/src/main/res/layout/app_bar_main.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Daejeon_People_App/app/src/main/res/layout/filter.xml" afterPath="$PROJECT_DIR$/Daejeon_People_App/app/src/main/res/layout/filter.xml" />
+>>>>>>> 0c9fc5f8069f1881dd25ada82d7b5ad6994a85f3
     </list>
     <ignored path="Daejeon-People.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -83,6 +91,15 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+<<<<<<< HEAD
+      <pane id="ProjectPane" />
+      <pane id="AndroidView">
+        <subPane />
+      </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
+      <pane id="Scratches" />
+=======
       <pane id="PackagesPane" />
       <pane id="Scope" />
       <pane id="Scratches" />
@@ -163,6 +180,7 @@
       <pane id="AndroidView">
         <subPane />
       </pane>
+>>>>>>> 0c9fc5f8069f1881dd25ada82d7b5ad6994a85f3
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -170,7 +188,11 @@
     <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="FullScreen" value="true" />
+<<<<<<< HEAD
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Daejeon_People_App" />
+=======
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+>>>>>>> 0c9fc5f8069f1881dd25ada82d7b5ad6994a85f3
   </component>
   <component name="RunManager">
     <configuration default="true" type="Application" factoryName="Application">
@@ -268,8 +290,13 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+<<<<<<< HEAD
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24947146" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24947146" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+=======
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32678002" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+>>>>>>> 0c9fc5f8069f1881dd25ada82d7b5ad6994a85f3
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
