@@ -48,6 +48,7 @@ public class Filter extends AppCompatActivity{
         page_btn1.setOnClickListener(new Button.OnClickListener() {
             @Override public void onClick(View view) {
                 Intent intent = new Intent(Filter.this, Filter_detail.class);
+                intent.putExtra("key","Tourist");
                 startActivity(intent);
             }
         }) ;
@@ -56,6 +57,7 @@ public class Filter extends AppCompatActivity{
         page_btn2.setOnClickListener(new Button.OnClickListener() {
             @Override public void onClick(View view) {
                 Intent intent = new Intent(Filter.this, Filter_detail.class);
+                intent.putExtra("key","Events");
                 startActivity(intent);
             }
         }) ;
@@ -64,6 +66,7 @@ public class Filter extends AppCompatActivity{
         page_btn3.setOnClickListener(new Button.OnClickListener() {
             @Override public void onClick(View view) {
                 Intent intent = new Intent(Filter.this, Filter_detail.class);
+                intent.putExtra("key","Leisure");
                 startActivity(intent);
             }
         }) ;
@@ -72,6 +75,7 @@ public class Filter extends AppCompatActivity{
         page_btn4.setOnClickListener(new Button.OnClickListener() {
             @Override public void onClick(View view) {
                 Intent intent = new Intent(Filter.this, Filter_detail.class);
+                intent.putExtra("key","Shopping");
                 startActivity(intent);
             }
         }) ;
@@ -80,6 +84,7 @@ public class Filter extends AppCompatActivity{
         page_btn5.setOnClickListener(new Button.OnClickListener() {
             @Override public void onClick(View view) {
                 Intent intent = new Intent(Filter.this, Filter_detail.class);
+                intent.putExtra("key","Culture");
                 startActivity(intent);
             }
         }) ;
@@ -88,6 +93,7 @@ public class Filter extends AppCompatActivity{
         page_btn6.setOnClickListener(new Button.OnClickListener() {
             @Override public void onClick(View view) {
                 Intent intent = new Intent(Filter.this, Filter_detail.class);
+                intent.putExtra("key","Course");
                 startActivity(intent);
             }
         }) ;
@@ -96,6 +102,7 @@ public class Filter extends AppCompatActivity{
         page_btn7.setOnClickListener(new Button.OnClickListener() {
             @Override public void onClick(View view) {
                 Intent intent = new Intent(Filter.this, Filter_detail.class);
+                intent.putExtra("key","Accommodation");
                 startActivity(intent);
             }
         }) ;
@@ -104,6 +111,7 @@ public class Filter extends AppCompatActivity{
         page_btn8.setOnClickListener(new Button.OnClickListener() {
             @Override public void onClick(View view) {
                 Intent intent = new Intent(Filter.this, Filter_detail.class);
+                intent.putExtra("key","Restaurant");
                 startActivity(intent);
             }
         }) ;
