@@ -42,6 +42,7 @@ com\planb\restful\account\after_signup\FindPassword_DemandCode.class
 com\planb\support\utilities\Mail.class
 com\planb\restful\travel\inside\TravelInfo.class
 com\planb\restful\account\signup\CheckIdExist.class
+com\planb\restful\attractions\main\MainPage.class
 com\planb\restful\travel\TravelInvitesInquiry.class
 com\planb\support\networking\Response.class
 com\planb\support\chatting\MySQL_Chat.class
