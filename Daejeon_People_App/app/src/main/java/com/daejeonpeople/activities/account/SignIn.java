@@ -20,6 +20,8 @@ import com.daejeonpeople.support.network.APIClient;
 import com.daejeonpeople.support.network.APIinterface;
 import com.daejeonpeople.support.views.SnackbarManager;
 
+import okhttp3.Headers;
+import okhttp3.internal.http2.Header;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -142,8 +144,15 @@ public class SignIn extends BaseActivity {
                 if(response.code() == 201){
                     needFinish = true;
                     startActivity(new Intent(getApplicationContext(), Main.class));
-                    dbHelper.setCookie(response.headers().get("Set-Cookie"));
-                    Log.d("getCookie", dbHelper.getCookie());
+                    Headers headers = response.headers();
+                    String[] headersString = headers.toString().split("\n");
+                    for(String header : headersString) {
+                        if(header.startsWith("Set-Cookie: User")) {
+                            String cookieValue = header.split("UserSession=")[1].split("; Max-")[0];
+                            dbHelper.setCookie(cookieValue);
+                            Log.d("Cookie", dbHelper.getCookie());
+                        }
+                    }
                     finish();
                 }
             }

@@ -11,6 +11,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -25,13 +26,25 @@ import com.daejeonpeople.activities.side_menu.FriendList;
 import com.daejeonpeople.activities.side_menu.MyInfo;
 import com.daejeonpeople.activities.side_menu.WishList;
 import com.daejeonpeople.support.database.DBHelper;
+import com.daejeonpeople.support.network.APIClient;
+import com.daejeonpeople.support.network.APIinterface;
+import com.daejeonpeople.support.security.AES;
 import com.daejeonpeople.support.views.SnackbarManager;
+import com.google.gson.JsonObject;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 //동규
 
 public class Main extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener
 {
+    private TextView name, email, phonenum;
+    private ImageView profileimg;
+    private APIinterface apiInterface;
+    private AES aes;
 
     @Override
     protected void onPause() {
@@ -47,6 +60,9 @@ public class Main extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+
+        apiInterface = APIClient.getClient().create(APIinterface.class);
+        aes = new AES();
 
         final Main_fragment main_fragment;
         final Category_fragment category_fragment;
@@ -96,6 +112,11 @@ public class Main extends AppCompatActivity
         //사이드 메뉴
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        View header = navigationView.getHeaderView(0);
+        name = (TextView) header.findViewById(R.id.nameView);
+        email = (TextView) header.findViewById(R.id.emailView);
+        phonenum = (TextView) header.findViewById(R.id.phoneNumberView);
+        profileimg = (ImageView) header.findViewById(R.id.header_img);
 
         //로그인 됨
         if(dbHelper.getCookie() != null) {
@@ -109,6 +130,25 @@ public class Main extends AppCompatActivity
             navigationView.getMenu().findItem(R.id.nav_sub_menu_item04).setVisible(true);
             navigationView.getMenu().findItem(R.id.navigation_not_login_item01).setVisible(false);
             navigationView.getMenu().findItem(R.id.navigation_not_login_item02).setVisible(false);
+            apiInterface.getMyPage("UserSession="+dbHelper.getCookie()).enqueue(new Callback<JsonObject>() {
+                @Override
+                public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                    if(response.code() == 200){
+                        Log.d("name", name+"");
+                        Log.d("name", response.body().get("name").toString());
+                        name.setText(aes.decrypt(response.body().get("name").toString()));
+                        email.setText(aes.decrypt(response.body().get("name").toString()));
+                        phonenum.setText(response.body().get("phone_number").toString());
+                    } else {
+                        Log.d("error", "ang gi mo thi");
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<JsonObject> call, Throwable t) {
+                    t.printStackTrace();
+                }
+            });
         }
 
         //로그인 안됨
@@ -123,14 +163,9 @@ public class Main extends AppCompatActivity
             navigationView.getMenu().findItem(R.id.nav_sub_menu_item04).setVisible(false);
             navigationView.getMenu().findItem(R.id.navigation_not_login_item01).setVisible(true);
             navigationView.getMenu().findItem(R.id.navigation_not_login_item02).setVisible(true);
-            View header = navigationView.getHeaderView(0);
-            TextView name = (TextView)header.findViewById(R.id.nameView);
             name.setText("익명 사용자");
-            TextView email = (TextView)header.findViewById(R.id.emailView);
             email.setText("이메일 주소가 없습니다.");
-            TextView phonenum = (TextView)header.findViewById(R.id.phoneNumberView);
             phonenum.setText("전화번호가 없습니다.");
-            ImageView profileimg = (ImageView)header.findViewById(R.id.header_img);
             profileimg.setImageResource(R.drawable.ic_profile_dark);
         }
 
