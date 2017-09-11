@@ -27,7 +27,7 @@ public class WishlistAdapter extends RecyclerView.Adapter<WishlistAdapter.ViewHo
         public TextView title;
         public TextView address;
         public TextView love;
-
+        public ImageView back_image;
 
         public ViewHolder(View view) {
             super(view);
@@ -36,11 +36,12 @@ public class WishlistAdapter extends RecyclerView.Adapter<WishlistAdapter.ViewHo
             title = (TextView)view.findViewById(R.id.title);
             address = (TextView)view.findViewById(R.id.address);
             love = (TextView)view.findViewById(R.id.love);
+            back_image = (ImageView)view.findViewById(R.id.back_image);
         }
     }
 
     public WishlistAdapter(ArrayList<WishlistItem> myDataset) {
-        mDataset = myDataset;
+        this.mDataset = myDataset;
     }
 
     @Override
@@ -56,6 +57,7 @@ public class WishlistAdapter extends RecyclerView.Adapter<WishlistAdapter.ViewHo
         holder.title.setText(mDataset.get(position).getTitle());
         holder.address.setText(mDataset.get(position).getAddress());
         holder.love.setText(mDataset.get(position).getLove());
+        //holder.back_image.setImage(mDataset.get(position).getBack_image());
     }
 
     @Override

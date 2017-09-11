@@ -9,6 +9,7 @@ public class WishlistItem {
     private String title;
     private String address;
     private int love;
+    private int back_image;
 
     public String getDate() {
         return date;
@@ -40,5 +41,13 @@ public class WishlistItem {
 
     public void setLove(int love) {
         this.love = love;
+    }
+
+    public int getBack_image() {
+        return back_image;
+    }
+
+    public void setBack_image(int back_image) {
+        this.back_image = back_image;
     }
 }
