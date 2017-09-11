@@ -25,25 +25,18 @@ public class Filter_detail_ItemAdapter extends RecyclerView.Adapter<RecyclerView
     private ArrayList<Item> items = new ArrayList<>();
     private ArrayList<Item> visibleItems = new ArrayList<>();
 
-    public Filter_detail_ItemAdapter(){
-        char alphabet = 'A';
-        for(int i = 0; i < 10; i++){
-            Item item1 = new ParentItem((char)(alphabet+i)+"", PARENT_ITEM_VIEW);
-            Item item2 = new ChildItem((char)(alphabet+i)+"-1", CHILD_ITEM_VIEW);
-            Item item3 = new ChildItem((char)(alphabet+i)+"-2", CHILD_ITEM_VIEW);
-            Item item4 = new ChildItem((char)(alphabet+i)+"-3", CHILD_ITEM_VIEW);
+    public Filter_detail_ItemAdapter(String[][] array){
 
+        for(int i = 0; i < array.length; i++){
+            Item item1 = new ParentItem((String)array[i][0],PARENT_ITEM_VIEW);
             items.add(item1);
-            items.add(item2);
-            items.add(item3);
-            items.add(item4);
-
             visibleItems.add(item1);
-            visibleItems.add(item2);
-            visibleItems.add(item3);
-            visibleItems.add(item4);
+            for(int j = 1; j < array[i].length; j++){
+                Item item2 = new ChildItem((String)array[i][j],CHILD_ITEM_VIEW);
+                items.add(item2);
+                visibleItems.add(item2);
+            }
         }
-
     }
 
     @Override

@@ -20,9 +20,12 @@ import com.daejeonpeople.activities.base.BaseActivity;
 import com.daejeonpeople.adapter.WishlistAdapter;
 import com.daejeonpeople.support.network.SessionManager;
 import com.daejeonpeople.support.views.SnackbarManager;
+import com.daejeonpeople.valueobject.WishlistItem;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 /**
  * Created by dsm2016 on 2017-07-20.
@@ -31,8 +34,9 @@ import org.json.JSONObject;
 public class WishList extends BaseActivity {
     private Button backBtn;
     private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.Adapter myAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
+    private ArrayList<WishlistItem> myDataset;
 
     @Override
     protected void onPause() {
@@ -51,8 +55,12 @@ public class WishList extends BaseActivity {
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-//        mAdapter = new WishlistAdapter(myDataset);
-        mRecyclerView.setAdapter(mAdapter);
+        myDataset = new ArrayList<>();
+        myAdapter = new WishlistAdapter(myDataset);
+        mRecyclerView.setAdapter(myAdapter);
+
+//        myDataset.add(new WishlistItem(""))
+
 
         backBtn = (Button) findViewById(R.id.backBtn);
 
