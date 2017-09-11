@@ -22,7 +22,7 @@ public class VerifyEmail implements Handler<RoutingContext> {
 		String email = ctx.request().getFormAttribute("email");
 		String code = ctx.request().getFormAttribute("code");
 		
-		ctx.response().setStatusCode(verifyEmail(email, code));
+		ctx.response().setStatusCode(verifyEmail(email, code)).end();
 		ctx.response().close();
 	}
 	
@@ -31,7 +31,7 @@ public class VerifyEmail implements Handler<RoutingContext> {
 
 		ResultSet rs = MySQL.executeQuery("SELECT * FROM email_verify_codes WHERE email=? AND code=?", encryptedEmail, code);
 		try {
-			if (rs.next()) {
+			if (rs != null && rs.next()) {
 				// 전송한 인증 코드가 있을 경우
 				
 				MySQL.executeUpdate("DELETE FROM email_verify_codes WHERE email=? AND code=?", encryptedEmail, code);

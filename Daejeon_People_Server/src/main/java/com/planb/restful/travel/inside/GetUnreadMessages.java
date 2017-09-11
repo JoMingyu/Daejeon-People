@@ -42,7 +42,7 @@ public class GetUnreadMessages implements Handler<RoutingContext> {
 		
 		JSONArray messages = new JSONArray();
 		try {
-			while(chatLogSet.next()) {
+			while(chatLogSet != null ? chatLogSet.next() : false) {
 				JSONObject msg = new JSONObject();
 				
 				msg.put("idx", chatLogSet.getInt("idx"));

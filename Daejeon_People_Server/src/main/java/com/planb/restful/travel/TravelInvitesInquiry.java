@@ -30,9 +30,10 @@ public class TravelInvitesInquiry implements Handler<RoutingContext> {
 		// 자신을 타겟으로 한 여행 초대 목록
 		
 		try {
-			while(inviteSet.next()) {
+			while(inviteSet != null ? inviteSet.next() : false) {
 				JSONObject invite = new JSONObject();
 				ResultSet userInfoSet = MySQL.executeQuery("SELECT * FROM account WHERE id=?", inviteSet.getString("src_id"));
+				assert userInfoSet != null;
 				userInfoSet.next();
 				
 				invite.put("topic", inviteSet.getString("topic"));

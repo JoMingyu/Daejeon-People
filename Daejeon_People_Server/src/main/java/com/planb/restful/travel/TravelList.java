@@ -29,7 +29,7 @@ public class TravelList implements Handler<RoutingContext> {
 		
 		ResultSet rs = MySQL.executeQuery("SELECT * FROM travel_list WHERE client_id=?", clientId);
 		try {
-			while(rs.next()) {
+			while(rs != null && rs.next()) {
 				JSONObject travelRoom = new JSONObject();
 				travelRoom.put("topic", rs.getString("topic"));
 				travelRoom.put("title", rs.getString("title"));

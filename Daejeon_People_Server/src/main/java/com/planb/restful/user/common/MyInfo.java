@@ -23,20 +23,20 @@ public class MyInfo implements Handler<RoutingContext> {
 	@Override
 	public void handle(RoutingContext ctx) {
 		String clientId = UserManager.getEncryptedIdFromSession(ctx);
-		
+
 		JSONObject response = UserManager.getUserInfo(clientId);
 		
 		ResultSet rs;
 		try {
 			rs = MySQL.executeQuery("SELECT COUNT(*) FROM friend_requests WHERE dst_id=?", clientId);
-			if(rs.next()) {
+			if(rs != null && rs.next()) {
 				response.put("friend_req_count", rs.getInt(1));
 			} else {
 				response.put("friend_req_count", 0);
 			}
-			
+
 			rs = MySQL.executeQuery("SELECT COUNT(*) FROM travel_invites WHERE dst_id=?", clientId);
-			if(rs.next()) {
+			if(rs != null && rs.next()) {
 				response.put("travel_req_count", rs.getInt(1));
 			} else {
 				response.put("travel_req_count", 0);

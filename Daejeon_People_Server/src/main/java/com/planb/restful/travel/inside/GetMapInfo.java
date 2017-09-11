@@ -27,7 +27,7 @@ public class GetMapInfo implements Handler<RoutingContext> {
 		
 		ResultSet travelPinSet = MySQL.executeQuery("SELECT * FROM travel_pins WHERE topic=?", topic);
 		try {
-			while(travelPinSet.next()) {
+			while(travelPinSet != null ? travelPinSet.next() : false) {
 				JSONObject pinInfo = new JSONObject();
 				
 				pinInfo.put("content_id", travelPinSet.getInt("content_id"));

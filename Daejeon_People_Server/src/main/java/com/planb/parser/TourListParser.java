@@ -14,7 +14,7 @@ import com.planb.support.utilities.MySQL;
 public class TourListParser implements Parser {
 	// 지역기반 관광정보 리스트 파서
 	
-	private static String defaultURL = BaseURLs.TOUR_LIST.getName();
+	private static final String defaultURL = BaseURLs.TOUR_LIST.getName();
 	
 	@Override
 	public void parse() {
@@ -85,6 +85,6 @@ public class TourListParser implements Parser {
 				e.printStackTrace();
 			}
 		}
-		Log.I("Area Based Tour List Parse Success.");
+		Log.info("Area Based Tour List Parse Success.");
 	}
 }

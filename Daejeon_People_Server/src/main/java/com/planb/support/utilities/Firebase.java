@@ -7,7 +7,7 @@ import org.json.JSONObject;
 
 import com.planb.support.networking.HttpClient;
 
-public class Firebase {
+class Firebase {
 	private static final String SERVER_KEY = Config.getValue("fbServerKey");
 
 	public Firebase() {
@@ -26,7 +26,7 @@ public class Firebase {
 		requestObject.put("notification", noti);
 		requestObject.put("to", registrationId);
 
-		Map<String, Object> headers = new HashMap<String, Object>();
+		Map<String, Object> headers = new HashMap<>();
 		headers.put("Authorization", "key=" + SERVER_KEY);
 		headers.put("Content-Type", "application/json");
 
@@ -45,13 +45,14 @@ public class Firebase {
 		requestObject.put("notification", noti);
 		requestObject.put("to", "/topics/" + topicName);
 
-		Map<String, Object> headers = new HashMap<String, Object>();
+		Map<String, Object> headers = new HashMap<>();
 		headers.put("Authorization", "key=" + SERVER_KEY);
 		headers.put("Content-Type", "application/json");
 
 		client.post("/", headers, requestObject);
 	}
 
+	@SuppressWarnings("EmptyMethod")
 	public static void sendToGroup() {
 		// 아마도 클라이언트에서 처리
 	}

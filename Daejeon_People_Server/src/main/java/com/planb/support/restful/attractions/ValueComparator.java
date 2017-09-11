@@ -3,10 +3,10 @@ package com.planb.support.restful.attractions;
 import java.util.Comparator;
 import java.util.Map;
 
-public class ValueComparator implements Comparator<Integer> {
+class ValueComparator implements Comparator<Integer> {
 	// HashMap을 실수형 value로 정렬하기 위한 클래스
 	
-	Map<Integer, Double> base;
+	private final Map<Integer, Double> base;
 	
 	public ValueComparator(Map<Integer, Double> base) {
 		this.base = base;

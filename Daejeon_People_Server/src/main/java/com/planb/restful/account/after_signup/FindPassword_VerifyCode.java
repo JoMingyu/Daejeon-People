@@ -34,7 +34,7 @@ public class FindPassword_VerifyCode implements Handler<RoutingContext> {
 		
 		ResultSet rs = MySQL.executeQuery("SELECT * FROM email_verify_codes WHERE email=? AND code=?", encryptedEmail, code);
 		try {
-			if (rs.next()) {
+			if (rs != null && rs.next()) {
 				// 전송한 인증 코드가 있을 경우
 				
 				MySQL.executeUpdate("DELETE FROM email_verify_codes WHERE email=? AND code=?", encryptedEmail, code);
@@ -59,7 +59,7 @@ public class FindPassword_VerifyCode implements Handler<RoutingContext> {
 			tempPassword = UUID.randomUUID().toString().substring(0, 8);
 			ResultSet rs = MySQL.executeQuery("SELECT * FROM account WHERE password=?", SHA256.encrypt(tempPassword));
 			try {
-				if(!rs.next()) {
+				if(!(rs != null && rs.next())) {
 					break;
 				}
 			} catch (SQLException e) {

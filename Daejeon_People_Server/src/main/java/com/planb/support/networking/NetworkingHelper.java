@@ -91,8 +91,8 @@ public class NetworkingHelper {
 			e.printStackTrace();
 		}
 		
-		Response response = new Response();;
-		
+		Response response = new Response();
+
 		try {
 			String responseBody = new String(out.toByteArray(), "UTF-8");
 			response.setResponseBody(responseBody);

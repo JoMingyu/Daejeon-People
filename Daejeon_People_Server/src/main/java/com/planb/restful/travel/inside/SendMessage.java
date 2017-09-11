@@ -43,6 +43,7 @@ public class SendMessage implements Handler<RoutingContext> {
 		ResultSet userInfoSet = MySQL.executeQuery("SELECT * FROM account WHERE id=?", clientId);
 		
 		try {
+			assert userInfoSet != null;
 			userInfoSet.next();
 			MySQL_Chat.executeUpdate("INSERT INTO " + topic + "(remaining_views, type, name, content) VALUES(?, ?, ?, ?)", ChatRoomManager.getUserCountInRoom(topic), "text", userInfoSet.getString("name"), content);
 		} catch (SQLException e) {
@@ -54,6 +55,7 @@ public class SendMessage implements Handler<RoutingContext> {
 		ResultSet userInfoSet = MySQL.executeQuery("SELECT * FROM account WHERE id=?", clientId);
 		
 		try {
+			assert userInfoSet != null;
 			userInfoSet.next();
 			
 			for(FileUpload upload : uploads) {
@@ -71,14 +73,14 @@ public class SendMessage implements Handler<RoutingContext> {
 	}
 	
 	private String createIdentifier(String topic) {
-		String identifier = null;
+		String identifier;
 		
 		while(true) {
 			identifier = UUID.randomUUID().toString();
 			ResultSet rs = MySQL_Chat.executeQuery("SELECT * FROM " + topic + " WHERE content=?", identifier);
 			
 			try {
-				if(!rs.next()) {
+				if(!(rs != null && rs.next())) {
 					break;
 				}
 			} catch (SQLException e) {

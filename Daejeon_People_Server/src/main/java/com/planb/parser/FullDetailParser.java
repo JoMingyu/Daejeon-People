@@ -14,8 +14,9 @@ import com.planb.parser.support.HttpClientForParser;
 import com.planb.support.utilities.Log;
 import com.planb.support.utilities.MySQL;
 
+@SuppressWarnings("unused")
 public class FullDetailParser implements Parser {
-	private static String URL = BaseURLs.DETAIL.getName();
+	private static final String URL = BaseURLs.DETAIL.getName();
 	
 	private static void clearTables() {
 		MySQL.executeUpdate("DELETE FROM accommodation_detail_info");
@@ -28,6 +29,7 @@ public class FullDetailParser implements Parser {
 		MySQL.executeUpdate("DELETE FROM tourrism_detail_info");
 	}
 	
+	@SuppressWarnings("unused")
 	@Override
 	public void parse() {
 		/*
@@ -40,7 +42,7 @@ public class FullDetailParser implements Parser {
 		clearTables();
 		
 		ResultSet rs = MySQL.executeQuery("SELECT * FROM attractions_basic");
-		Map<Integer, Integer> contentInfoMap = new HashMap<Integer, Integer>();
+		Map<Integer, Integer> contentInfoMap = new HashMap<>();
 		Pattern p = Pattern.compile("\\d+");
 		
 		try {
@@ -84,9 +86,9 @@ public class FullDetailParser implements Parser {
 				int heritage1 = item.has("heritage1") ? item.getInt("heritage1") : 0;
 				int heritage2 = item.has("heritage2") ? item.getInt("heritage2") : 0;
 				int heritage3 = item.has("heritage3") ? item.getInt("heritage3") : 0;
-				boolean culturalHeritage = heritage1 == 1 ? true : false;
-				boolean naturalHeritage = heritage2 == 1 ? true : false;
-				boolean archivalHeritage = heritage3 == 1 ? true : false;
+				boolean culturalHeritage = heritage1 == 1;
+				boolean naturalHeritage = heritage2 == 1;
+				boolean archivalHeritage = heritage3 == 1;
 				/*
 				 *  문화재 여부
 				 *  boolean이지만 값은 0 또는 1, 따라서 타입 변환
@@ -292,66 +294,66 @@ public class FullDetailParser implements Parser {
 				// 수용인원
 				
 				int benikiaInt = item.has("benikia") ? item.getInt("benikia") : null;
-				boolean benikia = benikiaInt == 1 ? true : false;
+				boolean benikia = benikiaInt == 1;
 				// 베니키아 여부
 				
 				int goodStayInt = item.has("goodstay") ? item.getInt("goodstay") : null;
-				boolean goodStay = goodStayInt == 1 ? true : false;
+				boolean goodStay = goodStayInt == 1;
 				// 굿스테이 여부
 				
 				int koreanHouseInt = item.has("hanok") ? item.getInt("hanok") : null;
-				boolean koreanHouse = koreanHouseInt == 1 ? true : false;
+				boolean koreanHouse = koreanHouseInt == 1;
 				// 한옥 여부
 				
 				int barbecueInt = item.has("barbecue") ? item.getInt("barbecue") : null;
-				boolean barbecue = barbecueInt == 1 ? true : false;
+				boolean barbecue = barbecueInt == 1;
 				// 바비큐장 여부
 				
 				int beautyInt = item.has("beauty") ? item.getInt("beauty") : null;
-				boolean beauty = beautyInt == 1 ? true : false;
+				boolean beauty = beautyInt == 1;
 				// 뷰티시설 정보
 				
 				int beverageInt = item.has("beverage") ? item.getInt("beverage") : null;
-				boolean beverage = beverageInt == 1 ? true : false;
+				boolean beverage = beverageInt == 1;
 				// 식음료장 여부
 				
 				int bicycleInt = item.has("bicycle") ? item.getInt("bicycle") : null;
-				boolean bicycle = bicycleInt == 1 ? true : false;
+				boolean bicycle = bicycleInt == 1;
 				// 자전거 대여 여부
 				
 				int campfireInt = item.has("campfire") ? item.getInt("campfire") : null;
-				boolean campfire = campfireInt == 1 ? true : false;
+				boolean campfire = campfireInt == 1;
 				// 캠프파이어 여부
 				
 				String cookInRoom = item.has("chkcooking") ? item.getString("chkcooking") : null;
 				// 객실내 취사 여부
 				
 				int fitnessInt = item.has("fitness") ? item.getInt("fitness") : null;
-				boolean fitness = fitnessInt == 1 ? true : false;
+				boolean fitness = fitnessInt == 1;
 				// 피트니스 센터 여부
 				
 				int karaokeInt = item.has("karaoke") ? item.getInt("karaoke") : null;
-				boolean karaoke = karaokeInt == 1 ? true : false;
+				boolean karaoke = karaokeInt == 1;
 				// 노래방 여부
 				
 				int publicBathInt = item.has("publicbath") ? item.getInt("publicbath") : null;
-				boolean publicBath = publicBathInt == 1 ? true : false;
+				boolean publicBath = publicBathInt == 1;
 				// 공용 샤워실 여부
 				
 				int publicPcInt = item.has("publicpc") ? item.getInt("publicpc") : null;
-				boolean publicPc = publicPcInt == 1 ? true : false;
+				boolean publicPc = publicPcInt == 1;
 				// 공용 PC실 여부
 				
 				int saunaInt = item.has("sauna") ? item.getInt("sauna") : null;
-				boolean sauna = saunaInt == 1 ? true : false;
+				boolean sauna = saunaInt == 1;
 				// 사우나실 여부
 				
 				int seminarInt = item.has("seminar") ? item.getInt("seminar") : null;
-				boolean seminar = seminarInt == 1 ? true : false;
+				boolean seminar = seminarInt == 1;
 				// 세미나실 여부
 				
 				int sportsInt = item.has("sports") ? item.getInt("sports") : null;
-				boolean sports = sportsInt == 1 ? true : false;
+				boolean sports = sportsInt == 1;
 				// 스포츠 시설 여부
 				
 				String subFacility = item.has("subfacility") ? item.getString("subfacility") : null;
@@ -474,7 +476,7 @@ public class FullDetailParser implements Parser {
 				// 문의 및 안내
 				
 				int kidsFacilityInt = item.has("kidsfacility") ? item.getInt("kidsfacility") : null;
-				boolean kidsFacility = kidsFacilityInt == 1 ? true : false;
+				boolean kidsFacility = kidsFacilityInt == 1;
 				// 어린이 놀이방
 				
 				String openDate = item.has("opendatefood") ? item.getString("opendatefood") : null;
@@ -510,6 +512,6 @@ public class FullDetailParser implements Parser {
 				MySQL.executeUpdate("INSERT INTO restaurant_detail_info VALUES(", contentId, ", '", creditCard, "', '", repMenu, "', '", infoCenter, "', ", kidsFacility, ", '", openDate, "', '", useTime, "', '", packing, "', '", parking, "', '", reservation, "', '", restDate, "', '", scale, "', '", seat, "', '", smoking, "', '", treatMenu, "')");
 			}
 		}
-		Log.I("Detail Info Parse Success.");
+		Log.info("Detail Info Parse Success.");
 	}
 }

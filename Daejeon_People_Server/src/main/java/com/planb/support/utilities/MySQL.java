@@ -8,10 +8,9 @@ import java.sql.SQLException;
 
 public class MySQL {
 	private static Connection connection;
-	
-	private static String url;
-	private static String user = Config.getValue("dbUserName");
-	private static String password = Config.getValue("dbPassword");
+
+	private static final String user = Config.getValue("dbUserName");
+	private static final String password = Config.getValue("dbPassword");
 	
 	static {
 		StringBuilder urlBuilder = new StringBuilder();
@@ -19,8 +18,8 @@ public class MySQL {
 		urlBuilder.append(Config.getValue("dbPort")).append("/");
 		urlBuilder.append(Config.getValue("dbTableName")).append("?");
 		urlBuilder.append("useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC");
-		
-		url = urlBuilder.toString();
+
+		String url = urlBuilder.toString();
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			connection = DriverManager.getConnection(url, user, password);
@@ -30,7 +29,7 @@ public class MySQL {
 	}
 	
 	private synchronized static PreparedStatement buildQuery(String sql, Object... args) {
-		Log.Q(sql);
+		Log.query(sql);
 		
 		PreparedStatement statement = null;
 		try {

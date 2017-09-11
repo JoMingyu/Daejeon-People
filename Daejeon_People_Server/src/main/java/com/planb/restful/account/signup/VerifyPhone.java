@@ -31,7 +31,7 @@ public class VerifyPhone implements Handler<RoutingContext> {
 
 		ResultSet rs = MySQL.executeQuery("SELECT * FROM phone_verify_codes WHERE phone_number=? AND code=?", encryptedPhoneNumber, code);
 		try {
-			if (rs.next()) {
+			if (rs != null && rs.next()) {
 				// 전송한 인증 코드가 있을 경우
 				
 				MySQL.executeUpdate("DELETE FROM phone_verify_codes WHERE phone_number=? AND code=?", encryptedPhoneNumber, code);

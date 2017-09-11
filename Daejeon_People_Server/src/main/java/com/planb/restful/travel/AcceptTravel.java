@@ -36,8 +36,10 @@ public class AcceptTravel implements Handler<RoutingContext> {
 		ResultSet rs = MySQL.executeQuery("SELECT * FROM travel_list WHERE topic=?", topic);
 		ResultSet userInfoSet = MySQL.executeQuery("SELECT * FROM account WHERE id=?", clientId);
 		try {
-			rs.next();
-			userInfoSet.next();
+            assert rs != null;
+            rs.next();
+            assert userInfoSet != null;
+            userInfoSet.next();
 			
 			MySQL.executeUpdate("INSERT INTO travel_clients VALUES(?, ?, ?)", topic, clientId);
 			MySQL_Chat.executeUpdate("INSERT INTO " + topic +"(remaining_views, type, name) VALUES(?, ?, ?)", ChatRoomManager.getUserCountInRoom(topic), "enter", userInfoSet.getString("name"));

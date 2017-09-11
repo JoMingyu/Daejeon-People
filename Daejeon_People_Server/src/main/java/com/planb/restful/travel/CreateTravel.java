@@ -44,7 +44,7 @@ public class CreateTravel implements Handler<RoutingContext> {
 			topic = UUID.randomUUID().toString().replaceAll("-", "");
 			ResultSet rs = MySQL.executeQuery("SELECT * FROM travel_list WHERE topic=?", topic);
 			try {
-				if(!rs.next()) {
+				if(!(rs != null && rs.next())) {
 					MySQL.executeUpdate("INSERT INTO travel_list VALUES(?, ?)", topic, title);
 					MySQL.executeUpdate("INSERT INTO travel_clients VALUES(?, ?)", topic, clientId);
 					MySQL_Chat.executeUpdate("CREATE TABLE " + topic + "(idx INT(11) PRIMARY KEY NOT NULL AUTO_INCREMENT, remaining_views INT(3) NOT NULL, type VARCHAR(20) NOT NULL, name VARCHAR(256), content VARCHAR(1024))");

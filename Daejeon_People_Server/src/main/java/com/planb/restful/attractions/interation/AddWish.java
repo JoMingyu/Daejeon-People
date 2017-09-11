@@ -24,6 +24,7 @@ public class AddWish implements Handler<RoutingContext> {
 		
 		ResultSet contentSet = MySQL.executeQuery("SELECT wish_count FROM attractions_basic WHERE content_id=?", contentId);
 		try {
+			assert contentSet != null;
 			contentSet.next();
 			MySQL.executeUpdate("UPDATE attractions_basic SET wish_count=? WHERE content_id=?", contentSet.getInt("wish_count") + 1, contentId);
 		} catch (SQLException e) {

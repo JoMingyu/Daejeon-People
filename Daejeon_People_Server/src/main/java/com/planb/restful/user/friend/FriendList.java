@@ -27,8 +27,8 @@ public class FriendList implements Handler<RoutingContext> {
 		
 		ResultSet friendSet = MySQL.executeQuery("SELECT * FROM friend_list WHERE client_id1=? OR client_id2=?", clientId, clientId);
 		try {
-			while(friendSet.next()) {
-				String friendId = null;
+			while(friendSet != null ? friendSet.next() : false) {
+				String friendId;
 				
 				if(!friendSet.getString("client_id1").equals(clientId)) {
 					friendId = friendSet.getString("client_id1");

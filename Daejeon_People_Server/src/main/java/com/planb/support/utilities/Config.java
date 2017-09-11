@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.Properties;
 
 public class Config {
-	private static Properties props = new Properties();
+	private static final Properties props = new Properties();
 	
 	static {
 		try {
@@ -15,7 +15,7 @@ public class Config {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public static String getValue(String attribute) {
 		return props.get(attribute).toString();
 	}

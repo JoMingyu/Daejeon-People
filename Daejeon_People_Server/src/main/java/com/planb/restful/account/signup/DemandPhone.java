@@ -53,11 +53,7 @@ public class DemandPhone implements Handler<RoutingContext> {
 	private boolean checkPhoneNumberExists(String phoneNumber) {
 		ResultSet rs = MySQL.executeQuery("SELECT * FROM account WHERE phone_number=?", AES256.encrypt(phoneNumber));
 		try {
-			if(rs.next()) {
-				return true;
-			} else {
-				return false;
-			}
+            return rs.next();
 		} catch(SQLException e) {
 			e.printStackTrace();
 			return false;

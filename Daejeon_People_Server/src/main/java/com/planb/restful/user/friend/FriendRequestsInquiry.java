@@ -31,10 +31,11 @@ public class FriendRequestsInquiry implements Handler<RoutingContext> {
 		// 자신을 타겟으로 한 친구 요청 목록
 		
 		try {
-			while(requestSet.next()) {
+			while(requestSet != null ? requestSet.next() : false) {
 				ResultSet userInfoSet = MySQL.executeQuery("SELECT * FROM account WHERE id=?", requestSet.getString("src_id"));
 				// 요청자의 id와 요청 날짜
-				userInfoSet.next();
+                assert userInfoSet != null;
+                userInfoSet.next();
 				
 				JSONObject requesterInfo = new JSONObject();
 				requesterInfo.put("requester_id", requestSet.getString("src_id"));

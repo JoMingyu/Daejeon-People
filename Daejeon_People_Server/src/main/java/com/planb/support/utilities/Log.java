@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.util.Calendar;
 
 public class Log {
-	private static File logFile = null;
 	private static FileWriter fw;
 	private static Calendar cal;
 	
@@ -21,7 +20,7 @@ public class Log {
 		String month = String.format("%02d", cal.get(Calendar.MONTH) + 1);
 		String date = String.format("%02d", cal.get(Calendar.DATE));
 		String logFileName = "logs/" + year + "-" + month + "-" + date + ".log";
-		logFile = new File(logFileName);
+		File logFile = new File(logFileName);
 		try {
 			if(!logFile.exists()) {
 				logFile.createNewFile();
@@ -35,23 +34,23 @@ public class Log {
 			}
 	}
 	
-	public static void Req(String s) {
+	public static void request(String s) {
 		writeToFile(getLogText("REQUEST", s));
 	}
 	
-	public static void Q(String sql) {
+	public static void query(String sql) {
 		writeToFile(getLogText("QUERY", sql));
 	}
 	
-	public static void R(String s) {
+	public static void routing(String s) {
 		writeToFile(getLogText("ROUTING", s));
 	}
 	
-	public static void I(String s) {
+	public static void info(String s) {
 		writeToFile(getLogText("INFO", s));
 	}
 	
-	public static void E(String s) {
+	public static void error(String s) {
 		writeToFile(getLogText("ERROR", s));
 	}
 	
