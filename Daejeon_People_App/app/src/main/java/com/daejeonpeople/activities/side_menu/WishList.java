@@ -18,14 +18,22 @@ import com.daejeonpeople.activities.Main;
 import com.daejeonpeople.activities.account.SignIn;
 import com.daejeonpeople.activities.base.BaseActivity;
 import com.daejeonpeople.adapter.WishlistAdapter;
+import com.daejeonpeople.support.database.DBHelper;
+import com.daejeonpeople.support.network.APIClient;
+import com.daejeonpeople.support.network.APIinterface;
 import com.daejeonpeople.support.network.SessionManager;
 import com.daejeonpeople.support.views.SnackbarManager;
 import com.daejeonpeople.valueobject.WishlistItem;
+import com.google.gson.JsonObject;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by dsm2016 on 2017-07-20.
@@ -37,6 +45,7 @@ public class WishList extends BaseActivity {
     private RecyclerView.Adapter myAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private ArrayList<WishlistItem> Dataset;
+    private APIinterface apIinterface;
 
     @Override
     protected void onPause() {
@@ -49,6 +58,8 @@ public class WishList extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.wishlist);
 
+        DBHelper dbHelper = DBHelper.getInstance(getApplicationContext(), "CHECK.db", null, 1);
+
         mRecyclerView = (RecyclerView)findViewById(R.id.wishlist_recycler);
 //        mRecyclerView.setHasFixedSize(true);
 
@@ -58,6 +69,28 @@ public class WishList extends BaseActivity {
         Dataset = new ArrayList<>();
         myAdapter = new WishlistAdapter(Dataset);
         mRecyclerView.setAdapter(myAdapter);
+
+
+
+        apIinterface = APIClient.getClient().create(APIinterface.class);
+        apIinterface.getWish("UserSession="+dbHelper.getCookie()).enqueue(new Callback<JsonObject>() {
+            @Override
+            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                if(response.code()== 200) {
+                    Log.d("response", "SUCCESS");
+
+
+                    response.body();
+                } else if(response.code() == 204) {
+                    Log.d("response", "FAIL");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<JsonObject> call, Throwable t) {
+
+            }
+        });
 
         for(int i = 0; i < 5; i++) {
             WishlistItem wishlistItem = new WishlistItem();
