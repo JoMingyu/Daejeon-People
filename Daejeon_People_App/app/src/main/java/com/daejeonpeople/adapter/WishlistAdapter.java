@@ -1,5 +1,6 @@
 package com.daejeonpeople.adapter;
 
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +22,9 @@ import java.util.ArrayList;
 public class WishlistAdapter extends RecyclerView.Adapter<WishlistAdapter.ViewHolder>{
 
     private ArrayList<WishlistItem> mDataset;
+    public WishlistAdapter(ArrayList<WishlistItem> myDataset) {
+        this.mDataset = myDataset;
+    }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public TextView date;
@@ -31,7 +35,6 @@ public class WishlistAdapter extends RecyclerView.Adapter<WishlistAdapter.ViewHo
 
         public ViewHolder(View view) {
             super(view);
-
             date = (TextView)view.findViewById(R.id.date);
             title = (TextView)view.findViewById(R.id.title);
             address = (TextView)view.findViewById(R.id.address);
@@ -40,9 +43,6 @@ public class WishlistAdapter extends RecyclerView.Adapter<WishlistAdapter.ViewHo
         }
     }
 
-    public WishlistAdapter(ArrayList<WishlistItem> myDataset) {
-        this.mDataset = myDataset;
-    }
 
     @Override
     public WishlistAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -56,8 +56,8 @@ public class WishlistAdapter extends RecyclerView.Adapter<WishlistAdapter.ViewHo
         holder.date.setText(mDataset.get(position).getDate());
         holder.title.setText(mDataset.get(position).getTitle());
         holder.address.setText(mDataset.get(position).getAddress());
-        holder.love.setText(mDataset.get(position).getLove());
-        //holder.back_image.setImage(mDataset.get(position).getBack_image());
+        holder.love.setText(mDataset.get(position).getLove()+"");
+        holder.back_image.setImageResource(R.drawable.bg_accommodation);
     }
 
     @Override

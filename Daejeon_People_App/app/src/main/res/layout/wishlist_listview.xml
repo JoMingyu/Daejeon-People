@@ -3,7 +3,7 @@
     xmlns:sl="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -14,7 +14,6 @@
             android:layout_width="match_parent"
             android:layout_height="220dp"
             android:layout_margin="10dp"
-            android:src="@drawable/festivalex"
             android:scaleType="fitXY"/>
 
         <LinearLayout
@@ -52,7 +51,6 @@
                             android:id="@+id/date"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="2017.05.13 ~ 2017.05.14"
                             android:textColor="@color/BrightGray"
                             android:textSize="12dp" />
 
@@ -62,7 +60,6 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@id/date"
                             android:layout_marginTop="5dp"
-                            android:text="계족산맨발축제"
                             android:textColor="#ffffff"
                             android:textSize="18dp"
                             android:textStyle="bold" />
@@ -109,7 +106,6 @@
                             android:layout_marginLeft="8dp"
                             android:layout_marginTop="3dp"
                             android:layout_toRightOf="@id/ic_location"
-                            android:text="대전광역시 대덕구 장동 계족산 황톳길 일원"
                             android:textColor="@color/BrightGray"
                             android:textSize="11dp" />
 
@@ -127,7 +123,6 @@
                             android:layout_alignParentRight="true"
                             android:layout_marginRight="10dp"
                             android:layout_marginTop="1dp"
-                            android:text="2548"
                             android:textColor="@color/BrightGray"
                             android:textSize="12sp" />
 

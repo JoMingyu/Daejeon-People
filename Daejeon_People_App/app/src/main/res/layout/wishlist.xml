@@ -22,13 +22,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1.5"
-                android:gravity="center_vertical">
+                android:gravity="center_vertical"
+                android:weightSum="1">
 
                 <Button
+                    android:id="@+id/back_btn"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:background="@drawable/ic_back"
-                    android:layout_marginLeft="18dp"/>
+                    android:layout_marginLeft="18dp"
+                    android:layout_weight="0.02" />
 
             </LinearLayout>
 

@@ -75,4 +75,6 @@ public interface APIinterface {
     @FormUrlEncoded
     @GET("attractions/list")
     Call<JsonObject> getAttractionsList();
+
+
 }

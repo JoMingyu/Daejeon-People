@@ -36,7 +36,7 @@ public class WishList extends BaseActivity {
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter myAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
-    private ArrayList<WishlistItem> myDataset;
+    private ArrayList<WishlistItem> Dataset;
 
     @Override
     protected void onPause() {
@@ -47,22 +47,29 @@ public class WishList extends BaseActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.wishlist_listview);
+        setContentView(R.layout.wishlist);
 
         mRecyclerView = (RecyclerView)findViewById(R.id.wishlist_recycler);
-        mRecyclerView.setHasFixedSize(true);
+//        mRecyclerView.setHasFixedSize(true);
 
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        myDataset = new ArrayList<>();
-        myAdapter = new WishlistAdapter(myDataset);
+        Dataset = new ArrayList<>();
+        myAdapter = new WishlistAdapter(Dataset);
         mRecyclerView.setAdapter(myAdapter);
 
-//        myDataset.add(new WishlistItem(""))
+        for(int i = 0; i < 5; i++) {
+            WishlistItem wishlistItem = new WishlistItem();
+            wishlistItem.setDate("2017/05/08");
+            wishlistItem.setAddress("부산광역시 기장군 기장읍");
+            wishlistItem.setTitle("계족산 맨발 축제");
+            wishlistItem.setBack_image(R.id.back_image);
+            wishlistItem.setLove(150);
+            this.Dataset.add(i, wishlistItem);
+        }
 
-
-        backBtn = (Button) findViewById(R.id.backBtn);
+        backBtn = (Button) findViewById(R.id.back_btn);
 
         AQuery aq = new AQuery(getApplicationContext());
 
