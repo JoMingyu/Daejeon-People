@@ -6,7 +6,9 @@ import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 
 /**
  * Created by geni on 2017. 8. 22..
@@ -76,5 +78,9 @@ public interface APIinterface {
     @GET("attractions/list")
     Call<JsonObject> getAttractionsList();
 
+    @GET("/user")
+    Call<JsonObject> getUserInfo();
 
+    @GET("/mypage")
+    Call<JsonObject> getMyPage(@Header("cookie") String UserSession);
 }
