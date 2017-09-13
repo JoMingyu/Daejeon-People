@@ -22,7 +22,6 @@ import io.vertx.ext.web.RoutingContext;
 public class TravelInfo implements Handler<RoutingContext> {
 	@Override
 	public void handle(RoutingContext ctx) {
-		String clientId = UserManager.getEncryptedIdFromSession(ctx);
 		String topic = ctx.request().getParam("topic");
 		
 		ctx.response().setStatusCode(200);

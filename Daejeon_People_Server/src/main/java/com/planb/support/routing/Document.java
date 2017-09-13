@@ -11,11 +11,9 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import com.planb.support.utilities.Log;
 
 class Document {
-
     public Document(List<RESTResource> resourceList) {
 		String fileName = "API Document.xlsx";
-        XSSFWorkbook wb = new XSSFWorkbook();
-		XSSFSheet sheet = wb.createSheet("API");
+        XSSFSheet sheet = new XSSFWorkbook().createSheet("API");
 		
 		XSSFRow rowHead = sheet.createRow(0);
 		rowHead.createCell(0).setCellValue("Function Category");
@@ -51,7 +49,7 @@ class Document {
 		}
 		
 		try {
-			wb.write(new FileOutputStream(fileName));
+			new XSSFWorkbook().write(new FileOutputStream(fileName));
 			Log.info("REST Resource Documentation Complete");
 		} catch (IOException e) {
 			e.printStackTrace();

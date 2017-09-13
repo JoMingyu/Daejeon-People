@@ -17,7 +17,7 @@ import io.vertx.core.http.HttpMethod;
 import io.vertx.ext.web.RoutingContext;
 
 @API(functionCategory = "위시리스트", summary = "위시리스트 조회")
-@REST(params = "content_id : int", successCode = 200, failureCode = 204)
+@REST(responseBody = "address: String, category: String, content_id: int, image: String, mapx: double, mapy: double, title: String", successCode = 200, failureCode = 204)
 @Route(uri = "/wish", method = HttpMethod.GET)
 public class WishListInquiry implements Handler<RoutingContext> {
 	@Override
