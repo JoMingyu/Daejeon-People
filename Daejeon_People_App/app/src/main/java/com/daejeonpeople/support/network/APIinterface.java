@@ -84,6 +84,11 @@ public interface APIinterface {
     @GET("/mypage")
     Call<JsonObject> getMyPage(@Header("cookie") String UserSession);
 
+    @GET("/main-page")
+    Call<JsonObject> getMainInfo(@Header("cookie") String UserSession,
+                                 @Query("popular_count") int popluar_count,
+                                 @Query("monthly_count") int monthly_count);
+
     @GET("/wish")
     Call<JsonObject> getWish(@Header("cookie") String UserSession);
 }
