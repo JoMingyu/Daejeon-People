@@ -25,12 +25,14 @@ import java.util.ArrayList;
 public class CustomAdapter extends PagerAdapter {
     LayoutInflater inflater;
     private ArrayList<MainItemPopular> mDataset;
+    private Context mContext;
 
-    public CustomAdapter(LayoutInflater inflater, ArrayList<MainItemPopular> myDataset) {
+    public CustomAdapter(LayoutInflater inflater, ArrayList<MainItemPopular> myDataset, Context context) {
         // TODO Auto-generated constructor stub
         this.mDataset = myDataset;
         Log.d("myData" , myDataset.toString());
         this.inflater=inflater;
+        this.mContext = context;
     }
     @Override
     public int getCount() {
@@ -47,7 +49,7 @@ public class CustomAdapter extends PagerAdapter {
         TextView subtext = (TextView)view.findViewById(R.id.text_viewpager_sub);
         Log.d("position", position+"");
         maintext.setText(mDataset.get(position).getTitle());
-        Glide.with(container.getContext()).load(mDataset.get(position).getImage()).into(img);
+        Glide.with(mContext).load(mDataset.get(position).getImage()).into(img);
 
         container.addView(view);
         return view;

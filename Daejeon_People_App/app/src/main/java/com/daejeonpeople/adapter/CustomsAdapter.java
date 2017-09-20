@@ -1,5 +1,6 @@
 package com.daejeonpeople.adapter;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.support.v4.view.PagerAdapter;
 import android.util.Log;
@@ -30,11 +31,13 @@ import static android.R.attr.bitmap;
 public class CustomsAdapter extends PagerAdapter {
     LayoutInflater inflater;
     private ArrayList<MainItemMonthly> mDataset;
+    private Context mContext;
 
-    public CustomsAdapter(LayoutInflater inflater, ArrayList<MainItemMonthly> myDataset) {
+    public CustomsAdapter(LayoutInflater inflater, ArrayList<MainItemMonthly> myDataset, Context context) {
         // TODO Auto-generated constructor stub
         this.mDataset = myDataset;
         this.inflater=inflater;
+        this.mContext = context;
     }
 
     @Override
@@ -59,7 +62,7 @@ public class CustomsAdapter extends PagerAdapter {
         viewCount.setText(mDataset.get(position).getWish_count()+"");
 
         ImageView img= (ImageView)view.findViewById(R.id.img_viewpager_childimage2);
-        Glide.with(container.getContext()).load(mDataset.get(position).getImage()).into(img);
+        Glide.with(mContext).load(mDataset.get(position).getImage()).into(img);
         Log.d("url",mDataset.get(position).getImage());
 
         Button btn= (Button) view.findViewById(R.id.view_button);

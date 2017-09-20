@@ -1,5 +1,6 @@
 package com.daejeonpeople.activities;
 
+import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -71,9 +72,9 @@ public class Main_fragment extends Fragment {
                         mainItemPopular.setTitle(jsonArrayP.get(i).getAsJsonObject().get("title").toString());
                         arrayListP.add(mainItemPopular);
                     }
-                    CustomAdapter adapter1 = new CustomAdapter(getActivity().getLayoutInflater(), arrayListP);
+                    CustomAdapter adapter1 = new CustomAdapter(getActivity().getLayoutInflater(), arrayListP, getActivity());
                     pager1.setAdapter(adapter1);
-                    CustomsAdapter adapter2 = new CustomsAdapter(getActivity().getLayoutInflater(), arrayListM);
+                    CustomsAdapter adapter2 = new CustomsAdapter(getActivity().getLayoutInflater(), arrayListM, getActivity());
                     pager2.setAdapter(adapter2);
                     Log.d("image", arrayListM.get(3).getTitle()+"");
                 } else {
