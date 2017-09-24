@@ -1,6 +1,7 @@
 package com.daejeonpeople.activities.Filter;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,8 +26,10 @@ public class Filter_detail_ItemAdapter extends RecyclerView.Adapter<RecyclerView
     private ArrayList<Item> items = new ArrayList<>();
     private ArrayList<Item> visibleItems = new ArrayList<>();
 
-    public Filter_detail_ItemAdapter(String[][] array){
 
+
+    public Filter_detail_ItemAdapter(String[][] array){
+        Log.d("Log", "Filter_detail_ItemAdapter");
         for(int i = 0; i < array.length; i++){
             Item item1 = new ParentItem((String)array[i][0],PARENT_ITEM_VIEW);
             items.add(item1);
@@ -52,7 +55,7 @@ public class Filter_detail_ItemAdapter extends RecyclerView.Adapter<RecyclerView
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         RecyclerView.ViewHolder viewHolder = null;
-
+        Log.d("Log", "onCreateViewHolder");
         switch(viewType){
             case PARENT_ITEM_VIEW:
                 View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.filter_detail_item, parent, false);
@@ -63,11 +66,13 @@ public class Filter_detail_ItemAdapter extends RecyclerView.Adapter<RecyclerView
                 viewHolder = new ChildItemVH(subview);
                 break;
         }
+
         return viewHolder;
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+        Log.d("Log", "onBindViewHolder");
         if(holder instanceof ParentItemVH){
             ParentItemVH parentItemVH = (ParentItemVH)holder;
 
@@ -106,6 +111,7 @@ public class Filter_detail_ItemAdapter extends RecyclerView.Adapter<RecyclerView
     }
 
     private void collapseChildItems(int position){
+        Log.d("Log", "collapseChildItems");
         ParentItem parentItem = (ParentItem)visibleItems.get(position);
         parentItem.visibilityOfChildItems = false;
 
@@ -133,6 +139,7 @@ public class Filter_detail_ItemAdapter extends RecyclerView.Adapter<RecyclerView
     }
 
     private void expandChildItems(int position){
+        Log.d("Log", "expandChildItems");
         ParentItem parentItem = (ParentItem)visibleItems.get(position);
         parentItem.visibilityOfChildItems = true;
         int childSize = parentItem.unvisibleChildItems.size();
