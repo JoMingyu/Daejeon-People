@@ -3,6 +3,7 @@ package com.daejeonpeople.adapter;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.support.v4.view.PagerAdapter;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -49,7 +50,10 @@ public class CustomAdapter extends PagerAdapter {
         TextView subtext = (TextView)view.findViewById(R.id.text_viewpager_sub);
         Log.d("position", position+"");
         maintext.setText(mDataset.get(position).getTitle());
-        Glide.with(mContext).load(mDataset.get(position).getImage()).into(img);
+        Log.d("image url", mDataset.get(position).getImage());
+        String imgUrl = mDataset.get(position).getImage().substring(1,mDataset.get(position).getImage().length() - 1);
+        Log.d("image url2", imgUrl);
+        Glide.with(mContext).load(imgUrl).into(img);
 
         container.addView(view);
         return view;

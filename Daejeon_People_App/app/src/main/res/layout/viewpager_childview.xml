@@ -31,9 +31,12 @@
 
                     <TextView
                         android:id="@+id/text_viewpager_main"
-                        android:layout_width="wrap_content"
+                        android:layout_width="230dp"
                         android:layout_height="wrap_content"
                         android:text="유성온천문화축제"
+                        android:gravity="center"
+                        android:ellipsize="end"
+                        android:maxLines="1"
                         android:textColor="@color/White"
                         android:layout_gravity="center"
                         android:textStyle="bold"

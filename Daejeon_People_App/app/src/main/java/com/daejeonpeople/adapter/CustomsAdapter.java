@@ -62,7 +62,8 @@ public class CustomsAdapter extends PagerAdapter {
         viewCount.setText(mDataset.get(position).getWish_count()+"");
 
         ImageView img= (ImageView)view.findViewById(R.id.img_viewpager_childimage2);
-        Glide.with(mContext).load(mDataset.get(position).getImage()).into(img);
+        String imgUrl = mDataset.get(position).getImage().substring(1,mDataset.get(position).getImage().length() - 1);
+        Glide.with(mContext).load(imgUrl).into(img);
         Log.d("url",mDataset.get(position).getImage());
 
         Button btn= (Button) view.findViewById(R.id.view_button);
