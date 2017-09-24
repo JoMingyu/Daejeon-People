@@ -1,17 +1,13 @@
 package com.daejeonpeople.activities;
 
 import android.app.ActionBar;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import com.daejeonpeople.R;
 import com.daejeonpeople.activities.base.BaseActivity;
-import com.daejeonpeople.adapter.AddressBookAdapter;
 
 /**
  * Created by geni on 2017. 5. 18..
@@ -23,10 +19,10 @@ public class Chatting extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_chatting);
+        setContentView(R.layout.chatting);
 
         final ActionBar chatting = getActionBar();
-        chatting.setCustomView(R.layout.custom_chatting);
+        //chatting.setCustomView(R.layout.custom_chatting);
         chatting.setDisplayShowTitleEnabled(false);
         chatting.setDisplayShowCustomEnabled(true);
         chatting.setDisplayShowHomeEnabled(false);

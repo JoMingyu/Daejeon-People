@@ -31,7 +31,6 @@
                 android:textColor="@color/White"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/drawer_header_text01"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
 
             <TextView
@@ -43,7 +42,6 @@
                 android:textColor="@color/White"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/drawer_header_text02"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
 
             <TextView
@@ -53,7 +51,6 @@
                 android:textColor="@color/White"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/drawer_header_text03"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
         </LinearLayout>
 

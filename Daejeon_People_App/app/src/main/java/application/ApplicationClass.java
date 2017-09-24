@@ -12,6 +12,8 @@ public class ApplicationClass extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        Typekit.getInstance().addNormal(Typekit.createFromAsset(this, "NanumSquareL.ttf"));
+        Typekit.getInstance()
+                .addNormal(Typekit.createFromAsset(this, "NanumSquareR.ttf"))
+                .addBold(Typekit.createFromAsset(this, "NanumSquareB.ttf"));
     }
 }

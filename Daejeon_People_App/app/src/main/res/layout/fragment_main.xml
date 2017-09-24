@@ -15,12 +15,17 @@
         android:layout_height="match_parent" />
 
     <android.support.design.widget.NavigationView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/nav_view"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/drawer_header"
-        app:menu="@menu/drawer" />
+        app:menu="@menu/drawer" >
+    </android.support.design.widget.NavigationView>
+
+
 
 </android.support.v4.widget.DrawerLayout>

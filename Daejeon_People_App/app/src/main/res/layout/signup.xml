@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:sl="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@mipmap/background">
-
+    android:layout_height="match_parent">
+    <ImageView
+        android:id="@+id/background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -51,7 +54,7 @@
                         android:text="이메일 인증"
                         sl:scale_textsize="26"
                         android:background="@drawable/round_corner"
-                        android:textColor="@color/Gray"
+                        android:textColor="#000000"
                         android:textStyle="bold"/>
 
 
@@ -79,7 +82,7 @@
                         android:text="휴대폰 인증"
                         sl:scale_textsize="26"
                         android:background="@drawable/round_corner"
-                        android:textColor="@color/Gray"
+                        android:textColor="#000000"
                         android:textStyle="bold"/>
 
                 </com.ssomai.android.scalablelayout.ScalableLayout>
@@ -183,8 +186,7 @@
                     android:textColor="@color/Black"
                     android:hint="비밀번호를 입력하세요"
                     android:textColorHint="@color/Gray"
-                    sl:scale_textsize="13"
-                    android:inputType="textPassword"/>
+                    sl:scale_textsize="13"/>
 
                 <ImageView
                     android:layout_width="0dp"
@@ -221,8 +223,7 @@
                     android:textColor="@color/Black"
                     android:hint="비밀번호를 다시 입력하세요"
                     android:textColorHint="@color/Gray"
-                    sl:scale_textsize="13"
-                    android:inputType="textPassword"/>
+                    sl:scale_textsize="13"/>
 
                 <ImageView
                     android:layout_width="0dp"
@@ -276,4 +277,4 @@
             </com.ssomai.android.scalablelayout.ScalableLayout>
         </LinearLayout>
     </LinearLayout>
-</LinearLayout>
+</RelativeLayout>

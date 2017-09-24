@@ -6,12 +6,13 @@
     android:orientation="vertical">
 
     <ImageView
+        android:id="@+id/img_viewpager_childimage2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scaleType="fitXY"
-        android:src="@drawable/ic_test4"/>
+        android:scaleType="fitXY"/>
 
     <LinearLayout
+        android:background="#55000000"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -37,15 +38,6 @@
                     android:layout_gravity="bottom">
 
                     <TextView
-                        android:textColor="@color/White"
-                        android:id="@+id/view_title"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textStyle="bold"
-                        android:text="힐링 아트페스티벌"
-                        android:textSize="25dp" />
-
-                    <TextView
                         android:textSize="15dp"
                         android:textColor="@color/Gray"
                         android:id="@+id/view_date"
@@ -53,6 +45,19 @@
                         android:layout_height="wrap_content"
                         android:text="2017.05.25 ~ 2017.05.27"
                         android:layout_marginBottom="3dp"/>
+
+                    <TextView
+                        android:textColor="@color/White"
+                        android:id="@+id/view_title"
+                        android:layout_width="170dp"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:text="힐링 아트페스티벌"
+                        android:textSize="25dp" />
+
+
                 </LinearLayout>
 
 
@@ -93,7 +98,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center">
             <View
-                android:layout_width="350dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_width="wrap_content"
                 android:layout_height="2dp"
                 android:background="#55FFFFFF"/>
         </LinearLayout>
@@ -102,7 +109,7 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="7">
+            android:layout_weight="6">
 
 
 
@@ -115,12 +122,13 @@
                 android:layout_weight="8">
                 <ImageView
                     android:id="@+id/view_ic1"
-                    android:layout_width="15dp"
-                    android:layout_height="20dp"
+                    android:layout_width="10dp"
+                    android:layout_height="15dp"
                     android:background="@drawable/ic_location"
                     android:layout_gravity="center_vertical"/>
 
                 <TextView
+                    android:textSize="10dp"
                     android:textColor="@color/Gray"
                     android:layout_marginLeft="5dp"
                     android:id="@+id/view_place"
@@ -141,12 +149,13 @@
 
                 <ImageView
                     android:id="@+id/view_ic2"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
                     android:background="@drawable/ic_favorite"
                     android:layout_gravity="center_vertical"/>
 
                 <TextView
+                    android:textSize="10dp"
                     android:textColor="@color/Gray"
                     android:layout_marginLeft="5dp"
                     android:id="@+id/view_count"

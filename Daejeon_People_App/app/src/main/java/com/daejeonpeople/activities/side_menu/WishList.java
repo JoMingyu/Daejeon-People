@@ -4,6 +4,8 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -15,11 +17,23 @@ import com.daejeonpeople.R;
 import com.daejeonpeople.activities.Main;
 import com.daejeonpeople.activities.account.SignIn;
 import com.daejeonpeople.activities.base.BaseActivity;
+import com.daejeonpeople.adapter.WishlistAdapter;
+import com.daejeonpeople.support.database.DBHelper;
+import com.daejeonpeople.support.network.APIClient;
+import com.daejeonpeople.support.network.APIinterface;
 import com.daejeonpeople.support.network.SessionManager;
 import com.daejeonpeople.support.views.SnackbarManager;
+import com.daejeonpeople.valueobject.WishlistItem;
+import com.google.gson.JsonObject;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by dsm2016 on 2017-07-20.
@@ -27,6 +41,11 @@ import org.json.JSONObject;
 
 public class WishList extends BaseActivity {
     private Button backBtn;
+    private RecyclerView mRecyclerView;
+    private RecyclerView.Adapter myAdapter;
+    private RecyclerView.LayoutManager mLayoutManager;
+    private ArrayList<WishlistItem> Dataset;
+    private APIinterface apIinterface;
 
     @Override
     protected void onPause() {
@@ -37,15 +56,53 @@ public class WishList extends BaseActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.wishlist_listview);
+        setContentView(R.layout.wishlist);
 
-        final ActionBar chatting = getActionBar();
-        chatting.setCustomView(R.layout.custom_wishlist);
-        chatting.setDisplayShowTitleEnabled(false);
-        chatting.setDisplayShowCustomEnabled(true);
-        chatting.setDisplayShowHomeEnabled(false);
+        DBHelper dbHelper = DBHelper.getInstance(getApplicationContext(), "CHECK.db", null, 1);
 
-        backBtn = (Button) findViewById(R.id.backBtn);
+        mRecyclerView = (RecyclerView)findViewById(R.id.wishlist_recycler);
+//        mRecyclerView.setHasFixedSize(true);
+
+        mLayoutManager = new LinearLayoutManager(this);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+
+        Dataset = new ArrayList<>();
+        myAdapter = new WishlistAdapter(Dataset);
+        mRecyclerView.setAdapter(myAdapter);
+
+
+
+        apIinterface = APIClient.getClient().create(APIinterface.class);
+        apIinterface.getWish("UserSession="+dbHelper.getCookie()).enqueue(new Callback<JsonObject>() {
+            @Override
+            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                if(response.code()== 200) {
+                    Log.d("response", "SUCCESS");
+
+
+                    response.body();
+                } else if(response.code() == 204) {
+                    Log.d("response", "FAIL");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<JsonObject> call, Throwable t) {
+
+            }
+        });
+
+        for(int i = 0; i < 5; i++) {
+            WishlistItem wishlistItem = new WishlistItem();
+            wishlistItem.setDate("2017/05/08");
+            wishlistItem.setAddress("부산광역시 기장군 기장읍");
+            wishlistItem.setTitle("계족산 맨발 축제");
+            wishlistItem.setBack_image(R.id.back_image);
+            wishlistItem.setLove(150);
+            this.Dataset.add(i, wishlistItem);
+        }
+
+        backBtn = (Button) findViewById(R.id.back_btn);
 
         AQuery aq = new AQuery(getApplicationContext());
 

@@ -2,23 +2,29 @@ package com.daejeonpeople.activities.account;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
+import android.text.method.PasswordTransformationMethod;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.androidquery.AQuery;
-import com.androidquery.callback.AjaxCallback;
-import com.androidquery.callback.AjaxStatus;
+import com.bumptech.glide.Glide;
 import com.daejeonpeople.R;
 import com.daejeonpeople.activities.Main;
 import com.daejeonpeople.activities.base.BaseActivity;
-import com.daejeonpeople.support.network.SessionManager;
+import com.daejeonpeople.support.database.DBHelper;
+import com.daejeonpeople.support.network.APIClient;
+import com.daejeonpeople.support.network.APIinterface;
 import com.daejeonpeople.support.views.SnackbarManager;
 
-import java.util.HashMap;
-import java.util.Map;
+import okhttp3.Headers;
+import okhttp3.internal.http2.Header;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by 10102김동규 on 2017-05-11.
@@ -26,17 +32,13 @@ import java.util.Map;
 // Modified by JoMingyu
 
 public class SignIn extends BaseActivity {
-    private AQuery aQuery;
+    private APIinterface apiInterface;
+    private DBHelper dbHelper;
 
     private Button submitBtn;
-    private EditText userId;
-    private EditText userPassword;
-
-    private CheckBox keepLoginBox;
-
-    private TextView signUpView;
-    private TextView findIdView;
-    private TextView findPasswordView;
+    private EditText userId, userPassword;
+    private TextView signUpView, findIdView, findPasswordView;
+    private ImageView background;
 
     private boolean needFinish;
 
@@ -48,22 +50,29 @@ public class SignIn extends BaseActivity {
         }
     }
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.signin);
 
+        apiInterface = APIClient.getClient().create(APIinterface.class);
+        dbHelper = DBHelper.getInstance(getApplicationContext(), "CHECK.db", null, 1);
         needFinish = false;
 
         signUpView = (TextView) findViewById(R.id.signUpView);
         findIdView = (TextView) findViewById(R.id.findIdView);
         findPasswordView = (TextView) findViewById(R.id.findPasswordView);
+        background = (ImageView) findViewById(R.id.background);
 
-        keepLoginBox = (CheckBox) findViewById(R.id.keepLoginBox);
+        Glide.with(getApplicationContext()).load(R.drawable.phone_certified_background).centerCrop().into(background);
 
         submitBtn = (Button) findViewById(R.id.okBtn);
         userId = (EditText) findViewById(R.id.inputId);
         userPassword = (EditText) findViewById(R.id.inputPw);
+
+        userPassword.setInputType(InputType.TYPE_CLASS_TEXT|InputType.TYPE_TEXT_VARIATION_PASSWORD);
+        userPassword.setTransformationMethod(new AsteriskPasswordTransformationMethod());
 
         signUpView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,42 +101,67 @@ public class SignIn extends BaseActivity {
         submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
-                aQuery = new AQuery(getApplicationContext());
-
                 String id = userId.getText().toString();
                 String password = userPassword.getText().toString();
-                final boolean keepLogin = keepLoginBox.isChecked();
 
                 if(!id.isEmpty() && !password.isEmpty()) {
-                    Map<String, Object> params = new HashMap<>();
-
-                    params.put("id", id);
-                    params.put("password", password);
-                    params.put("keep_login", keepLogin);
-
-                    aQuery.ajax("http://52.79.134.200/signin", params, String.class, new AjaxCallback<String>(){
-                        @Override
-                        public void callback(String url, String response, AjaxStatus status){
-                            int statusCode = status.getCode();
-                            if(statusCode == 201) {
-                                if(keepLogin) {
-                                    String cookie = new SessionManager(status).detectCookie("UserSession");
-                                    SessionManager.setCookieToDB(getApplicationContext(), cookie);
-                                }
-
-                                SnackbarManager.createCancelableSnackbar(v, "로그인 성공").show();
-                                Intent intent = new Intent(getApplicationContext(), Main.class);
-                                needFinish = true;
-                                startActivity(intent);
-                            } else {
-                                SnackbarManager.createCancelableSnackbar(v, "아이디나 비밀번호를 확인하세요.").show();
-                            }
-                        }
-                    });
+                    doSignIn(id, password);
                 } else {
                     SnackbarManager.createCancelableSnackbar(v, "아이디나 비밀번호를 확인하세요.").show();
                 }
             }
         });
     }
+
+    public class AsteriskPasswordTransformationMethod extends PasswordTransformationMethod {
+        @Override
+        public CharSequence getTransformation(CharSequence source, View view) {
+            return new PasswordCharSequence(source);
+        }
+
+        private class PasswordCharSequence implements CharSequence {
+            private CharSequence mSource;
+            public PasswordCharSequence(CharSequence source) {
+                mSource = source; // Store char sequence
+            }
+            public char charAt(int index) {
+                return '●'; // This is the important part
+            }
+            public int length() {
+                return mSource.length(); // Return default
+            }
+            public CharSequence subSequence(int start, int end) {
+                return mSource.subSequence(start, end); // Return default
+            }
+        }
+    }
+
+
+    public void doSignIn(String id, String password){
+        apiInterface.doSignIn(id, password).enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if(response.code() == 201){
+                    needFinish = true;
+                    startActivity(new Intent(getApplicationContext(), Main.class));
+                    Headers headers = response.headers();
+                    String[] headersString = headers.toString().split("\n");
+                    for(String header : headersString) {
+                        if(header.startsWith("Set-Cookie: User")) {
+                            String cookieValue = header.split("UserSession=")[1].split("; Max-")[0];
+                            dbHelper.setCookie(cookieValue);
+                            Log.d("Cookie", dbHelper.getCookie());
+                        }
+                    }
+                    finish();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+
+            }
+        });
+    }
 }
+

@@ -10,13 +10,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.androidquery.AQuery;
 import com.androidquery.callback.AjaxCallback;
 import com.androidquery.callback.AjaxStatus;
+import com.bumptech.glide.Glide;
 import com.daejeonpeople.R;
 import com.daejeonpeople.activities.account.SignUp;
 import com.daejeonpeople.activities.base.BaseActivity;
+import com.daejeonpeople.support.network.APIClient;
+import com.daejeonpeople.support.network.APIinterface;
 import com.daejeonpeople.support.views.ColorManager;
 import com.daejeonpeople.support.views.SnackbarManager;
 import com.daejeonpeople.valueobject.UserInSignup;
@@ -24,31 +28,34 @@ import com.daejeonpeople.valueobject.UserInSignup;
 import java.util.HashMap;
 import java.util.Map;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 // 민지
 // Modified by JoMingyu
 
 public class Email_Certified extends BaseActivity {
-    private Map<String, Object> params = new HashMap<>();
+    private Intent intent;
+    private APIinterface apiInterface;
 
     private EditText email;
     private Button confirmButton;
-    private AQuery aQuery;
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        finish();
-    }
+    private ImageView background;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.email_certified);
 
-        aQuery = new AQuery(getApplicationContext());
+        intent = new Intent(getApplicationContext(), SignUp.class);
+        apiInterface = APIClient.getClient().create(APIinterface.class);
 
         confirmButton = (Button) findViewById(R.id.confirmBtn);
         email = (EditText) findViewById(R.id.email);
+        background = (ImageView) findViewById(R.id.background);
+
+        Glide.with(getApplicationContext()).load(R.drawable.phone_certified_background).centerCrop().into(background);
 
         email.addTextChangedListener(new TextWatcher() {
             @Override
@@ -67,29 +74,28 @@ public class Email_Certified extends BaseActivity {
         confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
-                if(email.getText().toString().isEmpty()) {
-                    SnackbarManager.createCancelableSnackbar(v, "이메일을 확인하세요.").show();
-                }
-
-                params.put("email", email.getText().toString());
-                System.out.println(params);
-
-                aQuery.ajax("http://52.79.134.200/signup/email/demand", params, String.class, new AjaxCallback<String>() {
+            if(email.getText().toString().isEmpty()) {
+                SnackbarManager.createCancelableSnackbar(v, "이메일을 확인하세요.").show();
+            } else {
+                apiInterface.doSignUpDemandE(email.getText().toString()).enqueue(new Callback<Void>() {
                     @Override
-                    public void callback(String url, String response, AjaxStatus status) {
-                        System.out.println(status.getCode());
-                        if (status.getCode() == 201) {
+                    public void onResponse(Call<Void> call, Response<Void> response) {
+                        if(response.code() == 201){
                             email.setTextColor(ColorManager.successColor);
                             // 이메일 텍스트 컬러를 바꿈
-
                             ShowDialog();
                         } else {
                             email.setTextColor(ColorManager.failureColor);
-
                             SnackbarManager.createCancelableSnackbar(v, "이미 존재하는 이메일입니다.").show();
                         }
                     }
+
+                    @Override
+                    public void onFailure(Call<Void> call, Throwable t) {
+                        t.printStackTrace();
+                    }
                 });
+            }
             }
         });
     }
@@ -126,32 +132,29 @@ public class Email_Certified extends BaseActivity {
             @Override
             public void onClick(final View v)
             {
-                HashMap<String, String> params = new HashMap<>();
-                params.put("email", email.getText().toString());
-                params.put("code", checkCode.getText().toString());
+            apiInterface.doSignUpVerifyE(email.getText().toString(), checkCode.getText().toString()).enqueue(new Callback<Void>() {
+                @Override
+                public void onResponse(Call<Void> call, Response<Void> response) {
+                    if(response.code() == 201){
+                        intent.putExtra("email", email.getText().toString());
+                        intent.putExtra("emailCertified", true);
+                        // 인증 완료되었음을 표시
 
-                aQuery.ajax("http://52.79.134.200/signup/email/verify", params, String.class, new AjaxCallback<String>(){
-                    @Override
-                    public void callback(String url, String response, AjaxStatus status) {
-                        System.out.println(status.getCode());
-                        if(status.getCode() == 201){
-                            UserInSignup.email = email.getText().toString();
-                            UserInSignup.emailCertified = true;
-                            // 인증 완료되었음을 표시
-
-                            SnackbarManager.createCancelableSnackbar(getWindow().getDecorView().getRootView(), "이메일 인증 완료").show();
-                            myDialog.cancel();
-                            finish();
-                            Intent intent = new Intent(getApplicationContext(), SignUp.class);
-                            startActivity(intent);
-                        } else {
-                            UserInSignup.emailCertified = false;
-
-                            checkCode.setTextColor(ColorManager.failureColor);
-                            SnackbarManager.createCancelableSnackbar(getWindow().getDecorView().getRootView(), "인증번호가 맞지 않습니다.").show();
-                        }
+                        SnackbarManager.createCancelableSnackbar(getWindow().getDecorView().getRootView(), "이메일 인증 완료").show();
+                        myDialog.cancel();
+                        finish();
+                        startActivity(intent);
+                    } else {
+                        checkCode.setTextColor(ColorManager.failureColor);
+                        SnackbarManager.createCancelableSnackbar(getWindow().getDecorView().getRootView(), "인증번호가 맞지 않습니다.").show();
                     }
-                }.method(AQuery.METHOD_POST));
+                }
+
+                @Override
+                public void onFailure(Call<Void> call, Throwable t) {
+
+                }
+            });
             }
         });
 

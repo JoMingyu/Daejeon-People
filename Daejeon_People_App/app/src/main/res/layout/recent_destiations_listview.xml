@@ -1,6 +1,132 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:sl="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:layout_margin="10dp"
+        android:orientation="vertical"
+        android:background="@drawable/festivalex">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:background="@drawable/gradation">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp">
+
+                    <TextView
+                        android:id="@+id/date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="2017.05.13 ~ 2017.05.14"
+                        android:textColor="@color/BrightGray"
+                        android:textSize="12dp"/>
+
+                    <TextView
+                        android:id="@+id/title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="계족산맨발축제"
+                        android:textStyle="bold"
+                        android:textColor="#ffffff"
+                        android:textSize="18dp"
+                        android:layout_below="@id/date"
+                        android:layout_marginTop="5dp"/>
+
+                    <Button
+                        android:id="@+id/btn_detail"
+                        android:layout_width="120dp"
+                        android:layout_height="36dp"
+                        android:text="자세히"
+                        android:textColor="@color/White"
+                        android:layout_alignParentRight="true"
+                        android:background="@drawable/round_corner_trans"
+                        android:textStyle="bold"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp"/>
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:gravity="bottom"
+                android:background="@drawable/line">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="15dp">
+
+                    <ImageView
+                        android:id="@+id/ic_location"
+                        android:layout_width="12dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/ic_location"/>
+
+                    <TextView
+                        android:id="@+id/address"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="대전광역시 대덕구 장동 계족산 황톳길 일원"
+                        android:textColor="@color/BrightGray"
+                        android:textSize="11dp"
+                        android:layout_toRightOf="@id/ic_location"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="3dp"/>
+
+                    <ImageView
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:src="@drawable/ic_favorite"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="45dp"/>
+
+                    <TextView
+                        android:id="@+id/love"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="2548"
+                        android:layout_marginRight="10dp"
+                        android:layout_alignParentRight="true"
+                        android:textColor="@color/BrightGray"
+                        android:textSize="12sp"
+                        android:layout_marginTop="1dp"/>
+
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
 </LinearLayout>

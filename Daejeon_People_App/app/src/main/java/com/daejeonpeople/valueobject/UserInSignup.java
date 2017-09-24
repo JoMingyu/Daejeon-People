@@ -5,21 +5,98 @@ package com.daejeonpeople.valueobject;
  */
 
 public class UserInSignup {
-    public static String email;
-    public static boolean emailCertified;
+    private String email;
+    private boolean emailCertified;
 
-    public static String name;
-    public static boolean nameChecked;
+    private String name;
+    private boolean nameChecked = false;
 
-    public static String id;
-    public static boolean idChecked;
+    private String id;
+    private boolean idChecked = false;
 
-    public static String password;
-    public static boolean passwordConfirmed;
+    private String password;
+    private boolean passwordConfirmed = false;
 
-    public static void initializeAll() {
-        nameChecked = false;
-        idChecked = false;
-        passwordConfirmed = false;
+    private String tel;
+    private boolean telCertified;
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public boolean isEmailCertified() {
+        return emailCertified;
+    }
+
+    public void setEmailCertified(boolean emailCertified) {
+        this.emailCertified = emailCertified;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public boolean isNameChecked() {
+        return nameChecked;
+    }
+
+    public void setNameChecked(boolean nameChecked) {
+        this.nameChecked = nameChecked;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public boolean isIdChecked() {
+        return idChecked;
+    }
+
+    public void setIdChecked(boolean idChecked) {
+        this.idChecked = idChecked;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public boolean isPasswordConfirmed() {
+        return passwordConfirmed;
+    }
+
+    public void setPasswordConfirmed(boolean passwordConfirmed) {
+        this.passwordConfirmed = passwordConfirmed;
+    }
+
+    public String getTel() {
+        return tel;
+    }
+
+    public void setTel(String tel) {
+        this.tel = tel;
+    }
+
+    public boolean isTelCertified() {
+        return telCertified;
+    }
+
+    public void setTelCertified(boolean telCertified) {
+        this.telCertified = telCertified;
     }
 }
