@@ -1,5 +1,6 @@
 package com.daejeonpeople.support.network;
 
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 import retrofit2.Call;
@@ -70,13 +71,21 @@ public interface APIinterface {
     Call<Void> doFindIdVerify(@Field("email") String email,
                               @Field("code") String code);
 
-    @FormUrlEncoded
-    @GET("attractions/list/total")
-    Call<JsonObject> getAttractionsListTotal();
-
-    @FormUrlEncoded
     @GET("attractions/list")
-    Call<JsonObject> getAttractionsList();
+    Call<JsonObject> getAttractionsList(@Header("cookie") String UserSession,
+                                        @Query("content_type_id") int content_type,
+                                        @Query("sort_type") int sort_type,
+                                        @Query("page") int page);
+
+    @GET("attractions/list/total")
+    Call<JsonObject> getAttractionsListTotal(@Header("cookie") String UserSession,
+                                             @Query("sort_type") int sort_type,
+                                             @Query("page") int page);
+
+    @GET("/attractions/detail")
+    Call<JsonObject> getAttractionsDetail();
+
+
 
     @GET("/user")
     Call<JsonObject> getUserInfo();
@@ -91,4 +100,12 @@ public interface APIinterface {
 
     @GET("/wish")
     Call<JsonObject> getWish(@Header("cookie") String UserSession);
+
+    @FormUrlEncoded
+    @POST("/wish")
+    Call<Void> addWish(@Field("content_id") int content_id);
+
+    @GET("/attractions/detail")
+    Call<JsonObject> getDetail(@Field("content_id") int content_id);
+
 }

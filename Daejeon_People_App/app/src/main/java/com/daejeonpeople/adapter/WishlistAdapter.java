@@ -43,6 +43,13 @@ public class WishlistAdapter extends RecyclerView.Adapter<WishlistAdapter.ViewHo
         }
     }
 
+    public void setData(WishlistItem[] datas){
+        ArrayList<WishlistItem> arrayListDatas = new ArrayList<>();
+        for(WishlistItem data : datas){
+            arrayListDatas.add(data);
+        }
+        mDataset = arrayListDatas;
+    }
 
     @Override
     public WishlistAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
