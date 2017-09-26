@@ -62,14 +62,16 @@ public class Main_fragment extends Fragment {
                         mainItemMonthly.setImage(jsonArrayM.get(i).getAsJsonObject().get("image").toString());
                         mainItemMonthly.setAddress(jsonArrayM.get(i).getAsJsonObject().get("address").toString());
                         mainItemMonthly.setContent_id(jsonArrayM.get(i).getAsJsonObject().get("content_id").getAsInt());
-                        mainItemMonthly.setTitle(jsonArrayM.get(i).getAsJsonObject().get("title").toString());
-                        mainItemMonthly.setContent_id(jsonArrayM.get(i).getAsJsonObject().get("wish_count").getAsInt());
+                        mainItemMonthly.setTitle(jsonArrayM.get(i).getAsJsonObject().get("title").toString().replaceAll("\"", ""));
+                        mainItemMonthly.setWish_count(jsonArrayM.get(i).getAsJsonObject().get("wish_count").getAsInt());
+                        mainItemMonthly.setEng_title(jsonArrayM.get(i).getAsJsonObject().get("eng_title").toString().replaceAll("\"", ""));
 
                         arrayListM.add(mainItemMonthly);
 
                         mainItemPopular.setImage(jsonArrayP.get(i).getAsJsonObject().get("image").toString());
                         mainItemPopular.setContent_id(jsonArrayP.get(i).getAsJsonObject().get("content_id").getAsInt());
-                        mainItemPopular.setTitle(jsonArrayP.get(i).getAsJsonObject().get("title").toString());
+                        mainItemPopular.setTitle(jsonArrayP.get(i).getAsJsonObject().get("title").toString().replaceAll("\"", ""));
+                        mainItemPopular.setEng_title(jsonArrayP.get(i).getAsJsonObject().get("eng_title").toString().replaceAll("\"", ""));
                         arrayListP.add(mainItemPopular);
                     }
                     CustomAdapter adapter1 = new CustomAdapter(getActivity().getLayoutInflater(), arrayListP, getActivity());

@@ -15,9 +15,8 @@
         <activity android:name=".activities.splash.Splash"
             android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-
-                <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.MAIN"></action>
+                <category android:name="android.intent.category.LAUNCHER"></category>
             </intent-filter>
         </activity>
         <activity android:name=".activities.Landing"/>
@@ -43,6 +42,8 @@
         <activity android:name=".activities.side_menu.WishList"/>
         <activity android:name=".activities.Filter.Filter"/>
         <activity android:name=".activities.Filter.Filter_detail"/>
+        <activity android:name=".activities.Detail.Detail">
+        </activity>
     </application>
 
 </manifest>

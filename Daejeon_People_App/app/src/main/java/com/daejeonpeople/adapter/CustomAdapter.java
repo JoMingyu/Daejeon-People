@@ -50,6 +50,7 @@ public class CustomAdapter extends PagerAdapter {
         TextView subtext = (TextView)view.findViewById(R.id.text_viewpager_sub);
         Log.d("position", position+"");
         maintext.setText(mDataset.get(position).getTitle());
+        subtext.setText(mDataset.get(position).getEng_title());
         Log.d("image url", mDataset.get(position).getImage());
         String imgUrl = mDataset.get(position).getImage().substring(1,mDataset.get(position).getImage().length() - 1);
         Log.d("image url2", imgUrl);

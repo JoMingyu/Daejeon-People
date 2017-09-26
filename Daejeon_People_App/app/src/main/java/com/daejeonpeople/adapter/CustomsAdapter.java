@@ -55,6 +55,9 @@ public class CustomsAdapter extends PagerAdapter {
         TextView viewTitle = (TextView)view.findViewById(R.id.view_title);
         viewTitle.setText(mDataset.get(position).getTitle());
 
+        TextView viewSubTitle = (TextView)view.findViewById(R.id.viewpager_subtitle);
+        viewSubTitle.setText(mDataset.get(position).getEng_title());
+
         TextView viewPlace = (TextView)view.findViewById(R.id.view_place);
         viewPlace.setText(mDataset.get(position).getAddress());
 

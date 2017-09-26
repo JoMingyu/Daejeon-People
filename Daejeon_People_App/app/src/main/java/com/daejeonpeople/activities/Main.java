@@ -192,6 +192,8 @@ public class Main extends AppCompatActivity
             @Override
             public void onClick(View view) {
                 //검색창
+                Intent intent=new Intent(Main.this, Search.class);
+                startActivity(intent);
             }
         }) ;
 
