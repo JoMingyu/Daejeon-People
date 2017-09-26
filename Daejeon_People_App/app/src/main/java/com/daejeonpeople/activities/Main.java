@@ -30,7 +30,12 @@ import com.daejeonpeople.support.network.APIClient;
 import com.daejeonpeople.support.network.APIinterface;
 import com.daejeonpeople.support.security.AES;
 import com.daejeonpeople.support.views.SnackbarManager;
+import com.daejeonpeople.valueobject.MainItemMonthly;
+import com.daejeonpeople.valueobject.MainItemPopular;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+
+import java.util.ArrayList;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -44,6 +49,7 @@ public class Main extends AppCompatActivity
     private TextView name, email, phonenum;
     private ImageView profileimg;
     private APIinterface apiInterface;
+    private DBHelper dbHelper;
     private AES aes;
 
     @Override
@@ -62,6 +68,7 @@ public class Main extends AppCompatActivity
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         apiInterface = APIClient.getClient().create(APIinterface.class);
+        dbHelper = DBHelper.getInstance(getApplicationContext(), "CHECK.db", null, 1);
         aes = new AES();
 
         final Main_fragment main_fragment;
@@ -100,8 +107,6 @@ public class Main extends AppCompatActivity
             @Override
             public void onTabReselected(TabLayout.Tab tab) { }
         });
-
-        DBHelper dbHelper = DBHelper.getInstance(getApplicationContext(), "CHECK.db", null, 1);
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -137,7 +142,7 @@ public class Main extends AppCompatActivity
                         Log.d("name", name+"");
                         Log.d("name", response.body().get("name").toString());
                         name.setText(aes.decrypt(response.body().get("name").toString()));
-                        email.setText(aes.decrypt(response.body().get("name").toString()));
+                        email.setText(aes.decrypt(response.body().get("email").toString()));
                         phonenum.setText(response.body().get("phone_number").toString());
                     } else {
                         Log.d("error", "ang gi mo thi");
