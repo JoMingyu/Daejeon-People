@@ -24,8 +24,10 @@ import com.daejeonpeople.support.network.APIinterface;
 import com.daejeonpeople.support.network.SessionManager;
 import com.daejeonpeople.support.views.SnackbarManager;
 import com.daejeonpeople.valueobject.WishlistItem;
+import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -78,7 +80,10 @@ public class WishList extends BaseActivity {
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                 if(response.code()== 200) {
                     Log.d("response", "SUCCESS");
-
+                    Gson gson = new Gson();
+                    WishlistItem[] items = gson.fromJson(response.body().toString(), WishlistItem[].class);
+                    ((WishlistAdapter)mRecyclerView.getAdapter()).setData(items);
+                    mRecyclerView.getAdapter().notifyDataSetChanged();
 
                     response.body();
                 } else if(response.code() == 204) {
@@ -88,19 +93,19 @@ public class WishList extends BaseActivity {
 
             @Override
             public void onFailure(Call<JsonObject> call, Throwable t) {
-
+                t.printStackTrace();
             }
         });
 
-        for(int i = 0; i < 5; i++) {
-            WishlistItem wishlistItem = new WishlistItem();
-            wishlistItem.setDate("2017/05/08");
-            wishlistItem.setAddress("부산광역시 기장군 기장읍");
-            wishlistItem.setTitle("계족산 맨발 축제");
-            wishlistItem.setBack_image(R.id.back_image);
-            wishlistItem.setLove(150);
-            this.Dataset.add(i, wishlistItem);
-        }
+//        for(int i = 0; i < 5; i++) {
+//            WishlistItem wishlistItem = new WishlistItem();
+//            wishlistItem.setDate("2017/05/08");
+//            wishlistItem.setAddress("부산광역시 기장군 기장읍");
+//            wishlistItem.setTitle("계족산 맨발 축제");
+//            wishlistItem.setBack_image(R.id.back_image);
+//            wishlistItem.setLove(150);
+//            this.Dataset.add(i, wishlistItem);
+//        }
 
         backBtn = (Button) findViewById(R.id.back_btn);
 
