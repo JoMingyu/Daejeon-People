@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.Button;
 
 import com.daejeonpeople.R;
 
@@ -24,6 +26,14 @@ public class Detail extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.detail);
         mRecyclerView = (RecyclerView) findViewById(R.id.detail_recycler_view);
+
+        Button backbtn = (Button) findViewById(R.id.detail_backbtn) ;
+        backbtn.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
         // use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView
