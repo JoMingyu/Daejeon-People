@@ -65,6 +65,7 @@ com\planb\restful\account\signup\Signup.class
 com\planb\restful\travel\AcceptTravel.class
 com\planb\core\Main.class
 com\planb\support\utilities\Config.class
+com\planb\support\utilities\Translator.class
 com\planb\parser\Parser.class
 com\planb\parser\support\HttpClientForParser.class
 com\planb\support\routing\Document.class
