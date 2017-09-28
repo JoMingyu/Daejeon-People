@@ -1,5 +1,8 @@
 package com.daejeonpeople.activities.Filter;
 
+import android.content.Context;
+import android.content.Intent;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -9,6 +12,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.daejeonpeople.R;
+import com.daejeonpeople.activities.Detail.Detail;
 import com.daejeonpeople.activities.Filter.Filter_model.ChildItem;
 import com.daejeonpeople.activities.Filter.Filter_model.Item;
 import com.daejeonpeople.activities.Filter.Filter_model.ParentItem;
@@ -26,9 +30,11 @@ public class Filter_detail_ItemAdapter extends RecyclerView.Adapter<RecyclerView
     private ArrayList<Item> items = new ArrayList<>();
     private ArrayList<Item> visibleItems = new ArrayList<>();
 
+    Context context;
 
 
-    public Filter_detail_ItemAdapter(String[][] array){
+
+    public Filter_detail_ItemAdapter(Context context, String[][] array){
         Log.d("Log", "Filter_detail_ItemAdapter");
         for(int i = 0; i < array.length; i++){
             Item item1 = new ParentItem((String)array[i][0],PARENT_ITEM_VIEW);
@@ -40,6 +46,7 @@ public class Filter_detail_ItemAdapter extends RecyclerView.Adapter<RecyclerView
                 visibleItems.add(item2);
             }
         }
+        this.context = context;
     }
 
     @Override
@@ -71,7 +78,7 @@ public class Filter_detail_ItemAdapter extends RecyclerView.Adapter<RecyclerView
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(final RecyclerView.ViewHolder holder, int position) {
         Log.d("Log", "onBindViewHolder");
         if(holder instanceof ParentItemVH){
             ParentItemVH parentItemVH = (ParentItemVH)holder;
@@ -107,6 +114,14 @@ public class Filter_detail_ItemAdapter extends RecyclerView.Adapter<RecyclerView
 
         }else if(holder instanceof ChildItemVH){
             ((ChildItemVH)holder).name.setText(visibleItems.get(position).name);
+            ChildItemVH childItemVH = (ChildItemVH)holder;
+            childItemVH.name.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent i = new Intent(context , Detail.class);
+                    context.startActivity(i);
+                }
+            });
         }
     }
 
@@ -176,13 +191,13 @@ public class Filter_detail_ItemAdapter extends RecyclerView.Adapter<RecyclerView
         }
     }
 
-    public class ChildItemVH extends RecyclerView.ViewHolder {
+public class ChildItemVH extends RecyclerView.ViewHolder {
 
-        TextView name;
+    TextView name;
 
-        public ChildItemVH(View itemView) {
-            super(itemView);
-            name = (TextView)itemView.findViewById(R.id.subitem_name);
-        }
+    public ChildItemVH(View itemView) {
+        super(itemView);
+        name = (TextView)itemView.findViewById(R.id.subitem_name);
     }
+}
 }

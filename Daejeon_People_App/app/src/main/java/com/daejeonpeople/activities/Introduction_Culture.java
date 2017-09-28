@@ -28,50 +28,50 @@ import retrofit2.Response;
  */
 
 public class Introduction_Culture extends BaseActivity {
-
-    private ImageButton btn_star;
-    private APIinterface apIinterface;
-    private ArrayList<CulturalItem> Dataset;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.introduction_cultural);
-
-        DBHelper dbHelper = DBHelper.getInstance(getApplicationContext(), "CHECK.db", null, 1);
-
-        btn_star = (ImageButton)findViewById(R.id.star);
-        apIinterface = APIClient.getClient().create(APIinterface.class);
-
-        apIinterface.getDetail("UserSession="+dbHelper.getCookie()).enqueue(new Callback<JsonObject>() {
-            @Override
-            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
-                if(response.code()== 200) {
-                    Log.d("response", "SUCCESS");
-                    Gson gson = new Gson();
-                    CulturalItem[] items = gson.fromJson(response.body().toString(), CulturalItem[].class);
-//                    ((CulturalAdapter))
-//                    ((CulturalAdapter)mRecyclerView.getAdapter()).setData(items);
-//                    mRecyclerView.getAdapter().notifyDataSetChanged();
-
-                    response.body();
-                } else if(response.code() == 204) {
-                    Log.d("response", "FAIL");
-                }
-            }
-
-            @Override
-            public void onFailure(Call<JsonObject> call, Throwable t) {
-                t.printStackTrace();
-            }
-        });
-
-        btn_star.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
-    }
+//
+//    private ImageButton btn_star;
+//    private APIinterface apIinterface;
+//    private ArrayList<CulturalItem> Dataset;
+//
+//    @Override
+//    protected void onCreate(Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//        setContentView(R.layout.introduction_cultural);
+//
+//        DBHelper dbHelper = DBHelper.getInstance(getApplicationContext(), "CHECK.db", null, 1);
+//
+//        btn_star = (ImageButton)findViewById(R.id.star);
+//        apIinterface = APIClient.getClient().create(APIinterface.class);
+//
+//        apIinterface.getDetail("UserSession="+dbHelper.getCookie()).enqueue(new Callback<JsonObject>() {
+//            @Override
+//            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+//                if(response.code()== 200) {
+//                    Log.d("response", "SUCCESS");
+//                    Gson gson = new Gson();
+//                    CulturalItem[] items = gson.fromJson(response.body().toString(), CulturalItem[].class);
+////                    ((CulturalAdapter))
+////                    ((CulturalAdapter)mRecyclerView.getAdapter()).setData(items);
+////                    mRecyclerView.getAdapter().notifyDataSetChanged();
+//
+//                    response.body();
+//                } else if(response.code() == 204) {
+//                    Log.d("response", "FAIL");
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<JsonObject> call, Throwable t) {
+//                t.printStackTrace();
+//            }
+//        });
+//
+//        btn_star.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//            }
+//        });
+//
+//    }
 }
