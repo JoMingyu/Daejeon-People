@@ -14,16 +14,18 @@
         android:theme="@style/AppTheme">
         <activity android:name=".activities.splash.Splash"
             android:theme="@style/Theme.AppCompat.NoActionBar">
+
+        </activity>
+        <activity android:name=".activities.Landing"/>
+        <activity android:name=".activities.account.Email_Certified" />
+        <activity android:name=".activities.Chatting"/>
+        <activity android:name=".activities.AddressBook">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.Landing"/>
-        <activity android:name=".activities.account.Email_Certified" />
-        <activity android:name=".activities.Chatting"/>
-        <activity android:name=".activities.AddressBook" />
         <activity android:name=".activities.account.SignIn"/>
         <activity
             android:name=".activities.account.SignUp"
@@ -44,6 +46,7 @@
         <activity android:name=".activities.Filter.Filter"/>
         <activity android:name=".activities.Filter.Filter_detail"/>
         <activity android:name=".activities.Detail.Detail"/>
+        <activity android:name=".activities.Introduction_Culture"/>
     </application>
 
 </manifest>
