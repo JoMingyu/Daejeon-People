@@ -14,25 +14,24 @@
         android:theme="@style/AppTheme">
         <activity android:name=".activities.splash.Splash"
             android:theme="@style/Theme.AppCompat.NoActionBar">
-
-        </activity>
-        <activity android:name=".activities.Landing"/>
-        <activity android:name=".activities.account.Email_Certified" />
-        <activity android:name=".activities.Chatting"/>
-        <activity android:name=".activities.AddressBook">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".activities.Landing"/>
+        <activity android:name=".activities.account.Email_Certified" />
+        <activity android:name=".activities.Chatting"/>
+        <activity android:name=".activities.AddressBook" />
         <activity android:name=".activities.account.SignIn"/>
         <activity
             android:name=".activities.account.SignUp"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
         <activity
             android:name=".activities.Main"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        </activity>
         <activity android:name=".activities.account.EntryID" />
         <activity android:name=".activities.account.EntryPW" />
         <activity android:name=".activities.account.FindID" />
@@ -43,10 +42,12 @@
         <activity android:name=".activities.side_menu.ChatList"/>
         <activity android:name=".activities.side_menu.FriendList"/>
         <activity android:name=".activities.side_menu.WishList"/>
-        <activity android:name=".activities.Filter.Filter"/>
-        <activity android:name=".activities.Filter.Filter_detail"/>
-        <activity android:name=".activities.Detail.Detail"/>
-        <activity android:name=".activities.Introduction_Culture"/>
+        <activity android:name=".activities.Filter.Filter"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity android:name=".activities.Filter.Filter_detail"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity android:name=".activities.Detail.Detail"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
     </application>
 
 </manifest>
