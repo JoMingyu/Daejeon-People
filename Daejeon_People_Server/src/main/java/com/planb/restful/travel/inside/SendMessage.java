@@ -12,6 +12,7 @@ import com.planb.support.routing.API;
 import com.planb.support.routing.REST;
 import com.planb.support.routing.Route;
 import com.planb.support.user.UserManager;
+import com.planb.support.utilities.Firebase;
 import com.planb.support.utilities.MySQL;
 
 import io.vertx.core.Handler;
@@ -41,6 +42,11 @@ public class SendMessage implements Handler<RoutingContext> {
 	
 	private void sendTextMessage(String clientId, String topic, String content) {
 		ResultSet userInfoSet = MySQL.executeQuery("SELECT * FROM account WHERE id=?", clientId);
+		try {
+			Firebase.sendByTopic("새로운 메시지가 도착했습니다", userInfoSet.getString("name") + " : " + content, topic);
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
 		
 		try {
 			assert userInfoSet != null;
