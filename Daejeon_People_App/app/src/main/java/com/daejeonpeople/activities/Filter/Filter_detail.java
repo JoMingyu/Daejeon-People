@@ -27,6 +27,7 @@ public class Filter_detail extends AppCompatActivity {
 
     private Filter_detail_Adapter adapter;
 
+    //서비스 이름
     private String[][] Tourist = {
             {"자연관광지", "국립공원", "도립공원", "군립공원", "산", "자연생태관광지", "자연휴양림", "수목원", "폭포", "계곡", "약수터", "해안절경", "해수욕장", "섬", "항구/포구", "어촌", "등대", "호수", "강", "동굴"},
             {"관광자원", "희귀동,식물", "기암괴석"},
@@ -71,6 +72,52 @@ public class Filter_detail extends AppCompatActivity {
             {"음식점", "한식", "서양식", "일식", "중식", "아시아식", "패밀리레스토랑", "이색음식점", "채식전문점", "바/까페", "클럽"}
     };
 
+
+    //서비스 분류 코드
+    private String[][] TouristCode = {
+            {"A0101", "A01010100", "A01010200", "A01010300", "A01010400", "A01010500", "A01010600", "A01010700", "A01010800", "A01010900", "A01011000", "A01011100", "A01011200", "A01011300", "A01011400", "A01011500", "A01011600", "A01011700", "A01011800", "A01011900"},
+            {"A0102", "A01020100", "A01020200"},
+            {"A0201", "A02010100", "A02010200", "A02010300", "A02010400", "A02010500", "A02010600", "A02010700", "A02010800", "A02010900", "A02011000"},
+            {"A0202", "A02020100", "A02020200", "A02020300", "A02020400", "A02020500", "A02020600", "A02020700", "A02020800"},
+            {"A0203", "A02030100", "A02030200", "A02030300", "A02030400", "A02030500", "A02030600"},
+            {"A0204", "A02040100", "A02040200", "A02040300", "A02040400", "A02040500", "A02040600", "A02040700", "A02040800", "A02040900", "A02041000"},
+            {"A0205", "A02050100", "A02050200", "A02050300", "A02050400", "A02050500", "A02050600"}
+    };
+
+    private String[][] EventsCode = {
+            {"A0207", "A02070100", "A02070200"},
+            {"A0208", "A02080100", "A02080200", "A02080300", "A02080400", "A02080500", "A02080600", "A02080700", "A02080800", "A02080900", "A02081000", "A02081100", "A02081200", "A02081300"}
+    };
+
+    private String[][] LeisureCode = {
+            {"A0301", "A03010100", "A03010200", "A03010300"},
+            {"A0302", "A03020100", "A03020200", "A03020300", "A03020400", "A03020500", "A03020600", "A03020700", "A03020800", "A03020900", "A03021000", "A03021100", "A03021200", "A03021300", "A03021400", "A03021500", "A03021600", "A03021700", "A03021800", "A03021900", "A03022000", "A03022100", "A03022200", "A03022300", "A03022400", "A03022500", "A03022600", "A03022700"},
+            {"A0303", "A03030100", "A03030200", "A03030300", "A03030400", "A03030500", "A03030600", "A03030700", "A03030800"},
+            {"A0304", "A03040100", "A03040200", "A03040300", "A03040400"},
+            {"A0305", "A03050100"}
+    };
+
+    private String[][] ShoppingCode = {
+            {"A0401","A04010100", "A04010200", "A04010300", "A04010400", "A04010500", "A04010600", "A04010700", "A04010800", "A04010900"}
+    };
+    private String[][] CultureCode = {
+            {"A0206", "A02060100", "A02060200", "A02060300", "A02060400", "A02060500", "A02060600", "A02060700", "A02060800", "A02060900", "A02061000", "A02061100", "A02061200", "A02061300", "A02061400"}
+    };
+    private String[][] CourseCode = {
+            {"C0112", "C01120001"},
+            {"C0113", "C01130001"},
+            {"C0114", "C01140001"},
+            {"C0115", "C01150001"},
+            {"C0116", "C01160001"},
+            {"C0117", "C01170001"}
+    };
+    private String[][] AccommodationCode = {
+            {"B0201", "B02010100", "B02010200", "B02010300", "B02010400", "B02010500", "B02010600", "B02010700", "B02010800", "B02010900", "B02011000", "B02011100", "B02011200", "B02011300", "B02011400", "B02011500", "B02011600"}
+    };
+    private String[][] RestaurantCode = {
+            {"A0502", "A05020100", "A05020200", "A05020300", "A05020400", "A05020500", "A05020600", "A05020700", "A05020800", "A05020900", "A05021000"}
+    };
+
     @Override
     protected void onCreate(Bundle saveInstanceState) {
         super.onCreate(saveInstanceState);
@@ -94,49 +141,49 @@ public class Filter_detail extends AppCompatActivity {
 
         if(str.equals("Tourist")) {
             Log.d("알림", "관광지");
-            Filter_detail_Data_Factory filter_detail_data_factory = new Filter_detail_Data_Factory(Tourist);
+            Filter_detail_Data_Factory filter_detail_data_factory = new Filter_detail_Data_Factory(Tourist, TouristCode);
             adapter = new Filter_detail_Adapter(filter_detail_data_factory.makeData());
             recyclerView.setLayoutManager(layoutManager);
             recyclerView.setAdapter(adapter);
         } else if(str.equals("Events")) {
             Log.d("알림", "행사 축제");
-            Filter_detail_Data_Factory filter_detail_data_factory = new Filter_detail_Data_Factory(Events);
+            Filter_detail_Data_Factory filter_detail_data_factory = new Filter_detail_Data_Factory(Events, EventsCode);
             adapter = new Filter_detail_Adapter(filter_detail_data_factory.makeData());
             recyclerView.setLayoutManager(layoutManager);
             recyclerView.setAdapter(adapter);
         } else if(str.equals("Leisure")) {
             Log.d("알림", "레포츠");
-            Filter_detail_Data_Factory filter_detail_data_factory = new Filter_detail_Data_Factory(Leisure);
+            Filter_detail_Data_Factory filter_detail_data_factory = new Filter_detail_Data_Factory(Leisure, LeisureCode);
             adapter = new Filter_detail_Adapter(filter_detail_data_factory.makeData());
             recyclerView.setLayoutManager(layoutManager);
             recyclerView.setAdapter(adapter);
         } else if(str.equals("Shopping")) {
             Log.d("알림", "쇼핑");
-            Filter_detail_Data_Factory filter_detail_data_factory = new Filter_detail_Data_Factory(Shopping);
+            Filter_detail_Data_Factory filter_detail_data_factory = new Filter_detail_Data_Factory(Shopping, ShoppingCode);
             adapter = new Filter_detail_Adapter(filter_detail_data_factory.makeData());
             recyclerView.setLayoutManager(layoutManager);
             recyclerView.setAdapter(adapter);
         } else if(str.equals("Culture")) {
             Log.d("알림", "문화시설");
-            Filter_detail_Data_Factory filter_detail_data_factory = new Filter_detail_Data_Factory(Culture);
+            Filter_detail_Data_Factory filter_detail_data_factory = new Filter_detail_Data_Factory(Culture, CultureCode);
             adapter = new Filter_detail_Adapter(filter_detail_data_factory.makeData());
             recyclerView.setLayoutManager(layoutManager);
             recyclerView.setAdapter(adapter);
         } else if(str.equals("Course")) {
             Log.d("알림", "여행코스");
-            Filter_detail_Data_Factory filter_detail_data_factory = new Filter_detail_Data_Factory(Course);
+            Filter_detail_Data_Factory filter_detail_data_factory = new Filter_detail_Data_Factory(Course, CourseCode);
             adapter = new Filter_detail_Adapter(filter_detail_data_factory.makeData());
             recyclerView.setLayoutManager(layoutManager);
             recyclerView.setAdapter(adapter);
         } else if(str.equals("Accommodation")) {
             Log.d("알림", "숙박 리조트");
-            Filter_detail_Data_Factory filter_detail_data_factory = new Filter_detail_Data_Factory(Accommodation);
+            Filter_detail_Data_Factory filter_detail_data_factory = new Filter_detail_Data_Factory(Accommodation, AccommodationCode);
             adapter = new Filter_detail_Adapter(filter_detail_data_factory.makeData());
             recyclerView.setLayoutManager(layoutManager);
             recyclerView.setAdapter(adapter);
         } else if(str.equals("Restaurant")) {
             Log.d("알림", "음식점");
-            Filter_detail_Data_Factory filter_detail_data_factory = new Filter_detail_Data_Factory(Restaurant);
+            Filter_detail_Data_Factory filter_detail_data_factory = new Filter_detail_Data_Factory(Restaurant, RestaurantCode);
             adapter = new Filter_detail_Adapter(filter_detail_data_factory.makeData());
             recyclerView.setLayoutManager(layoutManager);
             recyclerView.setAdapter(adapter);

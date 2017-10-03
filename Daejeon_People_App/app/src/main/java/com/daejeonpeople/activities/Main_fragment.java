@@ -54,7 +54,7 @@ public class Main_fragment extends Fragment {
                 if(response.code() == 200){
                     JsonArray jsonArrayM = response.body().get("monthly").getAsJsonArray();
                     JsonArray jsonArrayP = response.body().get("popular").getAsJsonArray();
-                    for(int i = 0; i < 5; i++) {
+                    for(int i = 0; i < jsonArrayM.size(); i++) {
                         MainItemMonthly mainItemMonthly = new MainItemMonthly();
                         MainItemPopular mainItemPopular = new MainItemPopular();
 

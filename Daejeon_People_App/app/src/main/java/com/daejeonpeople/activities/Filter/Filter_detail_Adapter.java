@@ -16,6 +16,7 @@ import java.util.ArrayList;
 
 
 public class Filter_detail_Adapter extends ExpandableRecyclerViewAdapter<ParentsViewHolder, ChildrenViewHolder> {
+
     public Filter_detail_Adapter(ArrayList<? extends ExpandableGroup> groups) {
         super(groups);
     }
@@ -31,7 +32,6 @@ public class Filter_detail_Adapter extends ExpandableRecyclerViewAdapter<Parents
     public ChildrenViewHolder onCreateChildViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.filter_detail_sub_item, parent, false);
-
         return new ChildrenViewHolder(view);
     }
 
@@ -41,6 +41,7 @@ public class Filter_detail_Adapter extends ExpandableRecyclerViewAdapter<Parents
 
         final Children children = ((Parents) group).getItems().get(childIndex);
         holder.setChildrenName(children.getName());
+        holder.setChildCode(children.getCode());
 
     }
 

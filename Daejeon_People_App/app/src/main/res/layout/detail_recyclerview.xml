@@ -50,7 +50,7 @@
                             android:layout_marginLeft="10dp">
 
                             <TextView
-                                android:id="@+id/date"
+                                android:id="@+id/detail_date"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="2017.05.13 ~ 2017.05.14"
@@ -58,14 +58,14 @@
                                 android:textSize="12dp"/>
 
                             <TextView
-                                android:id="@+id/title"
+                                android:id="@+id/detail_title"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="계족산맨발축제"
                                 android:textStyle="bold"
                                 android:textColor="#ffffff"
                                 android:textSize="18dp"
-                                android:layout_below="@id/date"
+                                android:layout_below="@id/detail_date"
                                 android:layout_marginTop="5dp"/>
 
                             <Button
@@ -104,7 +104,7 @@
                                 android:src="@drawable/ic_location"/>
 
                             <TextView
-                                android:id="@+id/address"
+                                android:id="@+id/detail_address"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="대전광역시 대덕구 장동 계족산 황톳길 일원"
@@ -122,7 +122,7 @@
                                 android:layout_marginRight="45dp"/>
 
                             <TextView
-                                android:id="@+id/love"
+                                android:id="@+id/detail_love"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="2548"
