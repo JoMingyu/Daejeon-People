@@ -57,8 +57,7 @@ public class MapView extends FragmentActivity implements OnMapReadyCallback {
                 select.setVisibility(View.VISIBLE);
                 Log.d("latLng", latLng.latitude+" "+latLng.longitude);
                 mMap.addMarker(new MarkerOptions()
-                        .position(latLng)
-                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.circle_marker)));
+                        .position(latLng));
             }
         });
 

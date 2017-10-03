@@ -117,4 +117,7 @@ public interface APIinterface {
     @GET("/friend")
     Call<JsonObject> getFriend(@Header("cookie") String UserSession);
 
+    @FormUrlEncoded
+    @POST("/friend/request")
+    Call<Void> friendRequest(@Field("dst") String destination);
 }
