@@ -1,72 +1,83 @@
 package com.daejeonpeople.adapter;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.support.v4.view.PagerAdapter;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.daejeonpeople.R;
-import com.daejeonpeople.valueobject.MainItemPopular;
+import com.daejeonpeople.valueobject.MainItemMonthly;
 
-import java.io.InputStream;
-import java.net.URL;
 import java.util.ArrayList;
 
 /**
  * Created by 10102김동규 on 2017-07-11.
  */
-public class CustomAdapter extends PagerAdapter {
+
+public class MainMonthlyAdapter extends PagerAdapter {
     LayoutInflater inflater;
-    private ArrayList<MainItemPopular> mDataset;
+    private ArrayList<MainItemMonthly> mDataset;
     private Context mContext;
 
-    public CustomAdapter(LayoutInflater inflater, ArrayList<MainItemPopular> myDataset, Context context) {
+    public MainMonthlyAdapter(LayoutInflater inflater, ArrayList<MainItemMonthly> myDataset, Context context) {
         // TODO Auto-generated constructor stub
         this.mDataset = myDataset;
-        Log.d("myData" , myDataset.toString());
         this.inflater=inflater;
         this.mContext = context;
     }
+
     @Override
     public int getCount() {
         // TODO Auto-generated method stub
-        return mDataset.size();
+        return 5;
     }
+
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
         // TODO Auto-generated method stub
         View view = null;
-        view= inflater.inflate(R.layout.viewpager_childview, null);
-        ImageView img= (ImageView)view.findViewById(R.id.img_viewpager_childimage);
-        TextView maintext = (TextView)view.findViewById(R.id.text_viewpager_main);
-        TextView subtext = (TextView)view.findViewById(R.id.text_viewpager_sub);
-        Log.d("position", position+"");
-        maintext.setText(mDataset.get(position).getTitle());
-        subtext.setText(mDataset.get(position).getEng_title());
-        Log.d("image url", mDataset.get(position).getImage());
+        view = inflater.inflate(R.layout.main_viewpager_monthly, null);
+
+        TextView viewTitle = (TextView)view.findViewById(R.id.view_title);
+        viewTitle.setText(mDataset.get(position).getTitle());
+
+        TextView viewSubTitle = (TextView)view.findViewById(R.id.viewpager_subtitle);
+        viewSubTitle.setText(mDataset.get(position).getEng_title());
+
+        TextView viewPlace = (TextView)view.findViewById(R.id.view_place);
+        viewPlace.setText(mDataset.get(position).getAddress());
+
+        TextView viewCount = (TextView)view.findViewById(R.id.view_count);
+        viewCount.setText(mDataset.get(position).getWish_count()+"");
+
+        ImageView img= (ImageView)view.findViewById(R.id.img_viewpager_childimage2);
         String imgUrl = mDataset.get(position).getImage().substring(1,mDataset.get(position).getImage().length() - 1);
-        Log.d("image url2", imgUrl);
         Glide.with(mContext).load(imgUrl).into(img);
+        Log.d("url",mDataset.get(position).getImage());
+
+        Button btn= (Button) view.findViewById(R.id.view_button);
+        btn.getResources();
 
         container.addView(view);
         return view;
     }
+
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
         // TODO Auto-generated method stub
         container.removeView((View)object);
     }
+
     @Override
     public boolean isViewFromObject(View v, Object obj) {
         // TODO Auto-generated method stub
-        return v == obj;
+        return v==obj;
     }
+
 }

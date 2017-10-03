@@ -50,25 +50,20 @@
                             android:layout_marginLeft="10dp">
 
                             <TextView
-                                android:id="@+id/detail_date"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="2017.05.13 ~ 2017.05.14"
-                                android:textColor="@color/BrightGray"
-                                android:textSize="12dp"/>
-
-                            <TextView
+                                android:layout_centerVertical="true"
                                 android:id="@+id/detail_title"
-                                android:layout_width="wrap_content"
+                                android:layout_width="170dp"
+                                android:ellipsize="end"
+                                android:maxLines="1"
                                 android:layout_height="wrap_content"
                                 android:text="계족산맨발축제"
                                 android:textStyle="bold"
                                 android:textColor="#ffffff"
-                                android:textSize="18dp"
-                                android:layout_below="@id/detail_date"
+                                android:textSize="20dp"
                                 android:layout_marginTop="5dp"/>
 
                             <Button
+                                android:layout_centerVertical="true"
                                 android:id="@+id/btn_detail"
                                 android:layout_width="120dp"
                                 android:layout_height="36dp"

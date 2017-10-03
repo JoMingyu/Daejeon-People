@@ -4,7 +4,7 @@ package com.daejeonpeople.valueobject;
  * Created by KimDongGyu on 2017-10-03.
  */
 
-public class DetailItem {
+public class ResultListItem {
     private int content_id;
     private String title;
     private boolean wish;
