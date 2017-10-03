@@ -1,4 +1,4 @@
-package com.daejeonpeople.activities.Detail;
+package com.daejeonpeople.activities.ResultList;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -10,16 +10,11 @@ import android.view.View;
 import android.widget.Button;
 
 import com.daejeonpeople.R;
-import com.daejeonpeople.adapter.CustomAdapter;
-import com.daejeonpeople.adapter.CustomsAdapter;
 import com.daejeonpeople.support.database.DBHelper;
 import com.daejeonpeople.support.network.APIClient;
 import com.daejeonpeople.support.network.APIinterface;
-import com.daejeonpeople.valueobject.DetailItem;
-import com.daejeonpeople.valueobject.MainItemMonthly;
-import com.daejeonpeople.valueobject.MainItemPopular;
+import com.daejeonpeople.valueobject.ResultListItem;
 import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
 
 import java.util.ArrayList;
 
@@ -32,9 +27,9 @@ import static com.androidquery.util.AQUtility.getContext;
  * Created by KimDongGyu on 2017-09-26.
  */
 
-public class Detail extends Activity {
+public class ResultList extends Activity {
 
-    private ArrayList<DetailItem> arrayListDetail = new ArrayList<>();
+    private ArrayList<ResultListItem> arrayListResultList = new ArrayList<>();
     private RecyclerView.LayoutManager mLayoutManager;
     private RecyclerView mRecyclerView;
     private APIinterface apiInterface;
@@ -44,9 +39,9 @@ public class Detail extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.detail);
+        setContentView(R.layout.result_list);
 
-        mRecyclerView = (RecyclerView) findViewById(R.id.detail_recycler_view);
+        mRecyclerView = (RecyclerView) findViewById(R.id.result_list_recycler_view);
         dbHelper = DBHelper.getInstance(getContext(), "CHECK.db", null, 1);
 
         Button backbtn = (Button) findViewById(R.id.detail_backbtn) ;
@@ -61,7 +56,7 @@ public class Detail extends Activity {
         final String category = intent.getStringExtra("category");
         Log.d("checkTheDetail", category);
 
-//        DetailItem detailItem = new DetailItem();
+//        ResultListItem detailItem = new ResultListItem();
 //        detailItem.setContent_id(1);
 //        detailItem.setTitle("타이틀1");
 //        detailItem.setWish(true);
@@ -74,7 +69,7 @@ public class Detail extends Activity {
 //
 //        arrayListDetail.add(detailItem);
 //
-//        DetailItem detailItem2 = new DetailItem();
+//        ResultListItem detailItem2 = new ResultListItem();
 //        detailItem2.setContent_id(1);
 //        detailItem2.setTitle("타이틀12");
 //        detailItem2.setWish(true);
@@ -88,7 +83,7 @@ public class Detail extends Activity {
 //        arrayListDetail.add(detailItem2);
 
 
-//        DetailAdapter mAdapter = new DetailAdapter(arrayListDetail, getContext());
+//        ResultListAdapter mAdapter = new ResultListAdapter(arrayListDetail, getContext());
 //        mRecyclerView.setAdapter(mAdapter);
 
 
@@ -104,22 +99,30 @@ public class Detail extends Activity {
                     JsonArray jsonArray = response.body();
 
                     for(int i = 0; i < jsonArray.size(); i++){
-                        DetailItem detailItem = new DetailItem();
+                        ResultListItem resultListItem = new ResultListItem();
 
-                        detailItem.setContent_id(jsonArray.get(i).getAsJsonObject().get("content_id").getAsInt());
+                        resultListItem.setContent_id(jsonArray.get(i).getAsJsonObject().get("content_id").getAsInt());
                         Log.d("checkContentid",jsonArray.get(i).getAsJsonObject().get("content_id").toString());
-                        detailItem.setTitle(jsonArray.get(i).getAsJsonObject().get("title").toString().replaceAll("\"", ""));
-                        detailItem.setWish(jsonArray.get(i).getAsJsonObject().get("wish").getAsBoolean());
-                        detailItem.setWish_count(jsonArray.get(i).getAsJsonObject().get("wish_count").getAsInt());
-                        detailItem.setAddress(jsonArray.get(i).getAsJsonObject().get("address").toString());
-                        detailItem.setCategory(jsonArray.get(i).getAsJsonObject().get("category").toString());
-                        detailItem.setImage(jsonArray.get(i).getAsJsonObject().get("image").toString());
-                        detailItem.setMapx(jsonArray.get(i).getAsJsonObject().get("mapx").getAsDouble());
-                        detailItem.setMapy(jsonArray.get(i).getAsJsonObject().get("mapy").getAsDouble());
+                        resultListItem.setTitle(jsonArray.get(i).getAsJsonObject().get("title").toString().replaceAll("\"", ""));
+                        resultListItem.setWish(jsonArray.get(i).getAsJsonObject().get("wish").getAsBoolean());
+                        resultListItem.setWish_count(jsonArray.get(i).getAsJsonObject().get("wish_count").getAsInt());
+                        if(jsonArray.get(i).getAsJsonObject().get("address") == null){
+                            resultListItem.setImage("주소 정보가 없습니다.");
+                        } else{
+                            resultListItem.setAddress(jsonArray.get(i).getAsJsonObject().get("address").toString());
+                        }
+                        resultListItem.setCategory(jsonArray.get(i).getAsJsonObject().get("category").toString());
+                        if(jsonArray.get(i).getAsJsonObject().get("image") == null){
+                            resultListItem.setImage("NoImage");
+                        } else {
+                            resultListItem.setImage(jsonArray.get(i).getAsJsonObject().get("image").toString());
+                        }
+                        resultListItem.setMapx(jsonArray.get(i).getAsJsonObject().get("mapx").getAsDouble());
+                        resultListItem.setMapy(jsonArray.get(i).getAsJsonObject().get("mapy").getAsDouble());
 
-                        arrayListDetail.add(detailItem);
+                        arrayListResultList.add(resultListItem);
                     }
-                    DetailAdapter mAdapter = new DetailAdapter(arrayListDetail, getContext());
+                    ResultListAdapter mAdapter = new ResultListAdapter(arrayListResultList, getContext());
                     mRecyclerView.setAdapter(mAdapter);
                 } else {
                     Log.d("Detail_error", "ang gi mo thi");

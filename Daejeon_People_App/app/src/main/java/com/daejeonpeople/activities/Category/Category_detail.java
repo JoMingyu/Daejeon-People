@@ -1,9 +1,8 @@
-package com.daejeonpeople.activities.Filter;
+package com.daejeonpeople.activities.Category;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -14,18 +13,14 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.daejeonpeople.R;
-import com.daejeonpeople.activities.Detail.Detail;
-import com.daejeonpeople.support.views.SnackbarManager;
-
-import java.util.ArrayList;
 
 /**
  * Created by KimDongGyu on 2017-08-31.
  */
 
-public class Filter_detail extends AppCompatActivity {
+public class Category_detail extends AppCompatActivity {
 
-    private Filter_detail_Adapter adapter;
+    private Category_detail_Adapter adapter;
 
     //서비스 이름
     private String[][] Tourist = {
@@ -121,14 +116,14 @@ public class Filter_detail extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle saveInstanceState) {
         super.onCreate(saveInstanceState);
-        setContentView(R.layout.filter_detail);
+        setContentView(R.layout.category_detail);
 
         //툴바 생성
-        Toolbar toolbar = (Toolbar) findViewById(R.id.filter_detial_toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.category_detial_toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.filter_recyclerview);
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.category_detail_recyclerview);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
 
         RecyclerView.ItemAnimator animator = recyclerView.getItemAnimator();
@@ -141,50 +136,50 @@ public class Filter_detail extends AppCompatActivity {
 
         if(str.equals("Tourist")) {
             Log.d("알림", "관광지");
-            Filter_detail_Data_Factory filter_detail_data_factory = new Filter_detail_Data_Factory(Tourist, TouristCode);
-            adapter = new Filter_detail_Adapter(filter_detail_data_factory.makeData());
+            Category_detail_Data_Factory category_detail_data_factory = new Category_detail_Data_Factory(Tourist, TouristCode);
+            adapter = new Category_detail_Adapter(category_detail_data_factory.makeData());
             recyclerView.setLayoutManager(layoutManager);
             recyclerView.setAdapter(adapter);
         } else if(str.equals("Events")) {
             Log.d("알림", "행사 축제");
-            Filter_detail_Data_Factory filter_detail_data_factory = new Filter_detail_Data_Factory(Events, EventsCode);
-            adapter = new Filter_detail_Adapter(filter_detail_data_factory.makeData());
+            Category_detail_Data_Factory category_detail_data_factory = new Category_detail_Data_Factory(Events, EventsCode);
+            adapter = new Category_detail_Adapter(category_detail_data_factory.makeData());
             recyclerView.setLayoutManager(layoutManager);
             recyclerView.setAdapter(adapter);
         } else if(str.equals("Leisure")) {
             Log.d("알림", "레포츠");
-            Filter_detail_Data_Factory filter_detail_data_factory = new Filter_detail_Data_Factory(Leisure, LeisureCode);
-            adapter = new Filter_detail_Adapter(filter_detail_data_factory.makeData());
+            Category_detail_Data_Factory category_detail_data_factory = new Category_detail_Data_Factory(Leisure, LeisureCode);
+            adapter = new Category_detail_Adapter(category_detail_data_factory.makeData());
             recyclerView.setLayoutManager(layoutManager);
             recyclerView.setAdapter(adapter);
         } else if(str.equals("Shopping")) {
             Log.d("알림", "쇼핑");
-            Filter_detail_Data_Factory filter_detail_data_factory = new Filter_detail_Data_Factory(Shopping, ShoppingCode);
-            adapter = new Filter_detail_Adapter(filter_detail_data_factory.makeData());
+            Category_detail_Data_Factory category_detail_data_factory = new Category_detail_Data_Factory(Shopping, ShoppingCode);
+            adapter = new Category_detail_Adapter(category_detail_data_factory.makeData());
             recyclerView.setLayoutManager(layoutManager);
             recyclerView.setAdapter(adapter);
         } else if(str.equals("Culture")) {
             Log.d("알림", "문화시설");
-            Filter_detail_Data_Factory filter_detail_data_factory = new Filter_detail_Data_Factory(Culture, CultureCode);
-            adapter = new Filter_detail_Adapter(filter_detail_data_factory.makeData());
+            Category_detail_Data_Factory category_detail_data_factory = new Category_detail_Data_Factory(Culture, CultureCode);
+            adapter = new Category_detail_Adapter(category_detail_data_factory.makeData());
             recyclerView.setLayoutManager(layoutManager);
             recyclerView.setAdapter(adapter);
         } else if(str.equals("Course")) {
             Log.d("알림", "여행코스");
-            Filter_detail_Data_Factory filter_detail_data_factory = new Filter_detail_Data_Factory(Course, CourseCode);
-            adapter = new Filter_detail_Adapter(filter_detail_data_factory.makeData());
+            Category_detail_Data_Factory category_detail_data_factory = new Category_detail_Data_Factory(Course, CourseCode);
+            adapter = new Category_detail_Adapter(category_detail_data_factory.makeData());
             recyclerView.setLayoutManager(layoutManager);
             recyclerView.setAdapter(adapter);
         } else if(str.equals("Accommodation")) {
             Log.d("알림", "숙박 리조트");
-            Filter_detail_Data_Factory filter_detail_data_factory = new Filter_detail_Data_Factory(Accommodation, AccommodationCode);
-            adapter = new Filter_detail_Adapter(filter_detail_data_factory.makeData());
+            Category_detail_Data_Factory category_detail_data_factory = new Category_detail_Data_Factory(Accommodation, AccommodationCode);
+            adapter = new Category_detail_Adapter(category_detail_data_factory.makeData());
             recyclerView.setLayoutManager(layoutManager);
             recyclerView.setAdapter(adapter);
         } else if(str.equals("Restaurant")) {
             Log.d("알림", "음식점");
-            Filter_detail_Data_Factory filter_detail_data_factory = new Filter_detail_Data_Factory(Restaurant, RestaurantCode);
-            adapter = new Filter_detail_Adapter(filter_detail_data_factory.makeData());
+            Category_detail_Data_Factory category_detail_data_factory = new Category_detail_Data_Factory(Restaurant, RestaurantCode);
+            adapter = new Category_detail_Adapter(category_detail_data_factory.makeData());
             recyclerView.setLayoutManager(layoutManager);
             recyclerView.setAdapter(adapter);
         } else {
@@ -192,7 +187,7 @@ public class Filter_detail extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "비정상적인 실행입니다.", Toast.LENGTH_LONG).show();
         }
 
-        Button filter_back_btn = (Button) findViewById(R.id.filter_detial_backbtn);
+        Button filter_back_btn = (Button) findViewById(R.id.category_detial_backbtn);
         filter_back_btn.setOnClickListener(new Button.OnClickListener() {
             @Override public void onClick(View view) {
                 finish();

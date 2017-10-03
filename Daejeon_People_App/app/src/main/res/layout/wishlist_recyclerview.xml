@@ -16,7 +16,7 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/detail_img"
+                android:id="@+id/wishlist_img"
                 android:scaleType="fitXY"
                 android:src="@drawable/festivalex"/>
 
@@ -50,26 +50,21 @@
                             android:layout_marginLeft="10dp">
 
                             <TextView
-                                android:id="@+id/detail_date"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="2017.05.13 ~ 2017.05.14"
-                                android:textColor="@color/BrightGray"
-                                android:textSize="12dp"/>
-
-                            <TextView
-                                android:id="@+id/detail_title"
-                                android:layout_width="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:id="@+id/wishlist_title"
+                                android:layout_width="170dp"
+                                android:ellipsize="end"
+                                android:maxLines="1"
                                 android:layout_height="wrap_content"
                                 android:text="계족산맨발축제"
                                 android:textStyle="bold"
                                 android:textColor="#ffffff"
-                                android:textSize="18dp"
-                                android:layout_below="@id/detail_date"
+                                android:textSize="20dp"
                                 android:layout_marginTop="5dp"/>
 
                             <Button
-                                android:id="@+id/btn_detail"
+                                android:layout_centerVertical="true"
+                                android:id="@+id/wishlist_btn"
                                 android:layout_width="120dp"
                                 android:layout_height="36dp"
                                 android:text="자세히"
@@ -77,7 +72,6 @@
                                 android:layout_alignParentRight="true"
                                 android:background="@drawable/round_corner_trans"
                                 android:textStyle="bold"
-                                android:layout_marginTop="10dp"
                                 android:layout_marginRight="10dp"/>
 
                         </RelativeLayout>
@@ -98,19 +92,19 @@
                             android:layout_marginLeft="15dp">
 
                             <ImageView
-                                android:id="@+id/ic_location"
+                                android:id="@+id/wishlist_location"
                                 android:layout_width="12dp"
                                 android:layout_height="20dp"
                                 android:src="@drawable/ic_location"/>
 
                             <TextView
-                                android:id="@+id/detail_address"
+                                android:id="@+id/wishlist_address"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="대전광역시 대덕구 장동 계족산 황톳길 일원"
                                 android:textColor="@color/BrightGray"
                                 android:textSize="11dp"
-                                android:layout_toRightOf="@id/ic_location"
+                                android:layout_toRightOf="@id/wishlist_location"
                                 android:layout_marginLeft="8dp"
                                 android:layout_marginTop="3dp"/>
 
@@ -122,7 +116,7 @@
                                 android:layout_marginRight="45dp"/>
 
                             <TextView
-                                android:id="@+id/detail_love"
+                                android:id="@+id/wishlist_love"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="2548"

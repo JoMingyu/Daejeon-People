@@ -1,6 +1,8 @@
 package com.daejeonpeople.activities;
 
 import android.app.ActionBar;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
@@ -17,8 +19,11 @@ import com.daejeonpeople.support.database.DBHelper;
 import com.daejeonpeople.support.network.APIClient;
 import com.daejeonpeople.support.network.APIinterface;
 import com.daejeonpeople.valueobject.AddressBookListItem;
+import com.daejeonpeople.valueobject.MainItemMonthly;
+import com.daejeonpeople.valueobject.MainItemPopular;
 import com.daejeonpeople.valueobject.WishlistItem;
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 import org.json.JSONArray;
@@ -53,9 +58,10 @@ public class AddressBook extends BaseActivity {
 
         DBHelper dbHelper = DBHelper.getInstance(getApplicationContext(), "CHECK.db", null, 1);
 
-        mRecyclerView = (RecyclerView) findViewById(R.id.friendlist_recycler);
+        mRecyclerView = (RecyclerView) findViewById(R.id.addresslist_recycler);
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
+
 
         Dataset = new ArrayList<>();
         myAdapter = new AddressBookAdapter(Dataset);
@@ -82,7 +88,14 @@ public class AddressBook extends BaseActivity {
                     mRecyclerView.getAdapter().notifyDataSetChanged();
 
                     response.body();
-                } else if(response.code() == 204) {
+
+                    JsonArray jsonArrayF = response.body().getAsJsonArray();
+                    for(int i = 0; i < 5; i++) {
+                        AddressBookListItem addresslistItem = new AddressBookListItem();
+
+                        addresslistItem.setUser_name(jsonArrayF.get(i).getAsJsonObject().get("address").getAsString());
+                    }
+                }else if(response.code() == 204) {
                     Log.d("response", "FAIL");
                 }
             }

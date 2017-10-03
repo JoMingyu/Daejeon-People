@@ -55,11 +55,9 @@
         <activity android:name=".activities.side_menu.ChatList"/>
         <activity android:name=".activities.side_menu.FriendList"/>
         <activity android:name=".activities.side_menu.WishList"/>
-        <activity android:name=".activities.Filter.Filter"
+        <activity android:name=".activities.Category.Category_detail"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
-        <activity android:name=".activities.Filter.Filter_detail"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
-        <activity android:name=".activities.Detail.Detail"
+        <activity android:name=".activities.ResultList.ResultList"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
     </application>
 

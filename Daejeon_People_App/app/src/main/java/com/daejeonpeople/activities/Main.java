@@ -18,7 +18,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.daejeonpeople.R;
-import com.daejeonpeople.activities.Filter.Filter;
 import com.daejeonpeople.activities.account.SignIn;
 import com.daejeonpeople.activities.account.SignUp;
 import com.daejeonpeople.activities.side_menu.ChatList;
@@ -30,12 +29,7 @@ import com.daejeonpeople.support.network.APIClient;
 import com.daejeonpeople.support.network.APIinterface;
 import com.daejeonpeople.support.security.AES;
 import com.daejeonpeople.support.views.SnackbarManager;
-import com.daejeonpeople.valueobject.MainItemMonthly;
-import com.daejeonpeople.valueobject.MainItemPopular;
-import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-
-import java.util.ArrayList;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -174,17 +168,6 @@ public class Main extends AppCompatActivity
             profileimg.setImageResource(R.drawable.ic_profile_dark);
         }
 
-        //filter버튼 이벤트
-        Button filter_btn = (Button) findViewById(R.id.ic_filter);
-
-        filter_btn.setOnClickListener(new Button.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), Filter.class);
-                startActivity(intent);
-            }
-        }) ;
-
         //search버튼 이벤트
         Button search_btn = (Button) findViewById(R.id.ic_search);
 
@@ -240,7 +223,6 @@ public class Main extends AppCompatActivity
                 case R.id.navigation_item01:
                     // 내 정보
                     fragment = new MyInfo();
-                    title = "내정보";
                     break;
                 case R.id.navigation_item02:
                     // 설정

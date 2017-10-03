@@ -89,7 +89,7 @@ public interface APIinterface {
                                        @Query("sort_type") int sort_type,
                                        @Query("page") int page);
 
-    @GET("/attractions/detail")
+    @GET("/attractions/result_list")
     Call<JsonObject> getAttractionsDetail();
 
 
@@ -111,7 +111,7 @@ public interface APIinterface {
     @POST("/wish")
     Call<Void> addWish(@Field("content_id") int content_id);
 
-    @GET("/attractions/detail")
+    @GET("/attractions/result_list")
     Call<JsonObject> getDetail(@Query("content_id") int content_id);
 
     @GET("/friend")

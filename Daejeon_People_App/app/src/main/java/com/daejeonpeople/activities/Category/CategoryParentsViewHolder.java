@@ -1,4 +1,4 @@
-package com.daejeonpeople.activities.Filter;
+package com.daejeonpeople.activities.Category;
 
 import android.view.View;
 import android.view.animation.RotateAnimation;
@@ -11,19 +11,19 @@ import com.thoughtbot.expandablerecyclerview.viewholders.GroupViewHolder;
 
 import static android.view.animation.Animation.RELATIVE_TO_SELF;
 
-public class ParentsViewHolder extends GroupViewHolder {
+public class CategoryParentsViewHolder extends GroupViewHolder {
 
   private TextView parentsName;
   private ImageView arrow;
 
-  public ParentsViewHolder(View itemView) {
+  public CategoryParentsViewHolder(View itemView) {
     super(itemView);
     parentsName = (TextView) itemView.findViewById(R.id.item_name);
     arrow = (ImageView) itemView.findViewById(R.id.item_arrow);
   }
 
   public void setParentsTitle(ExpandableGroup parents) {
-    if (parents instanceof Parents) {
+    if (parents instanceof Category_Parents) {
       parentsName.setText(parents.getTitle());
     }
 }

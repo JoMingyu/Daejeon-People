@@ -1,8 +1,7 @@
-package com.daejeonpeople.activities.Detail;
+package com.daejeonpeople.activities.ResultList;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +10,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.daejeonpeople.R;
-import com.daejeonpeople.valueobject.DetailItem;
+import com.daejeonpeople.valueobject.ResultListItem;
 
 import java.util.ArrayList;
 
@@ -19,8 +18,8 @@ import java.util.ArrayList;
  * Created by KimDongGyu on 2017-09-26.
  */
 
-public class DetailAdapter extends RecyclerView.Adapter<DetailAdapter.ViewHolder> {
-    private ArrayList<DetailItem> arrayListDetail;
+public class ResultListAdapter extends RecyclerView.Adapter<ResultListAdapter.ViewHolder> {
+    private ArrayList<ResultListItem> arrayListDetail;
     private Context context;
 
     // Provide a reference to the views for each data item
@@ -43,18 +42,18 @@ public class DetailAdapter extends RecyclerView.Adapter<DetailAdapter.ViewHolder
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public DetailAdapter(ArrayList<DetailItem> myDataset, Context context) {
+    public ResultListAdapter(ArrayList<ResultListItem> myDataset, Context context) {
         arrayListDetail = myDataset;
         this.context = context;
     }
 
     // Create new views (invoked by the layout manager)
     @Override
-    public DetailAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,
-                                                              int viewType) {
+    public ResultListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,
+                                                           int viewType) {
         // create a new view
         View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.detail_recyclerview, parent, false);
+                .inflate(R.layout.result_list_recyclerview, parent, false);
         // set the view's size, margins, paddings and layout parameters
         ViewHolder vh = new ViewHolder(v);
         return vh;
@@ -68,11 +67,12 @@ public class DetailAdapter extends RecyclerView.Adapter<DetailAdapter.ViewHolder
         holder.detail_title.setText(arrayListDetail.get(position).getTitle());
         holder.detail_address.setText(arrayListDetail.get(position).getAddress());
         holder.detail_love.setText(arrayListDetail.get(position).getWish_count()+"");
-        String imgUrl = arrayListDetail.get(position).getImage().substring(1,arrayListDetail.get(position).getImage().length() - 1);
-//        String imgUrl = arrayListDetail.get(position).getImage();
-        Glide.with(holder.itemView.getContext()).load(imgUrl).into(holder.detail_imgview);
-
-
+        if(arrayListDetail.get(position).getImage() == "NoImage"){
+            Glide.with(holder.itemView.getContext()).load(R.drawable.noimage).into(holder.detail_imgview);
+        } else {
+            String imgUrl = arrayListDetail.get(position).getImage().substring(1,arrayListDetail.get(position).getImage().length() - 1);
+            Glide.with(holder.itemView.getContext()).load(imgUrl).into(holder.detail_imgview);
+        }
     }
 
     // Return the size of your dataset (invoked by the layout manager)
