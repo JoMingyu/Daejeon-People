@@ -7,8 +7,11 @@ public class Children implements Parcelable {
 
   private String name;
 
-  public Children(String name) {
+  private String childCode;
+
+  public Children(String name, String childCode) {
     this.name = name;
+    this.childCode = childCode;
   }
 
   protected Children(Parcel in) {
@@ -18,6 +21,8 @@ public class Children implements Parcelable {
   public String getName() {
     return name;
   }
+
+  public String getCode() {return childCode;}
 
   @Override
   public boolean equals(Object o) {
