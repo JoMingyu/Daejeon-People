@@ -111,9 +111,17 @@ public class Detail extends Activity {
                         detailItem.setTitle(jsonArray.get(i).getAsJsonObject().get("title").toString().replaceAll("\"", ""));
                         detailItem.setWish(jsonArray.get(i).getAsJsonObject().get("wish").getAsBoolean());
                         detailItem.setWish_count(jsonArray.get(i).getAsJsonObject().get("wish_count").getAsInt());
-                        detailItem.setAddress(jsonArray.get(i).getAsJsonObject().get("address").toString());
+                        if(jsonArray.get(i).getAsJsonObject().get("address") == null){
+                            detailItem.setImage("주소 정보가 없습니다.");
+                        } else{
+                            detailItem.setAddress(jsonArray.get(i).getAsJsonObject().get("address").toString());
+                        }
                         detailItem.setCategory(jsonArray.get(i).getAsJsonObject().get("category").toString());
-                        detailItem.setImage(jsonArray.get(i).getAsJsonObject().get("image").toString());
+                        if(jsonArray.get(i).getAsJsonObject().get("image") == null){
+                            detailItem.setImage("NoImage");
+                        } else {
+                            detailItem.setImage(jsonArray.get(i).getAsJsonObject().get("image").toString());
+                        }
                         detailItem.setMapx(jsonArray.get(i).getAsJsonObject().get("mapx").getAsDouble());
                         detailItem.setMapy(jsonArray.get(i).getAsJsonObject().get("mapy").getAsDouble());
 

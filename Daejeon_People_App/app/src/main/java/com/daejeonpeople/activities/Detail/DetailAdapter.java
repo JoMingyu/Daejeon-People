@@ -68,11 +68,12 @@ public class DetailAdapter extends RecyclerView.Adapter<DetailAdapter.ViewHolder
         holder.detail_title.setText(arrayListDetail.get(position).getTitle());
         holder.detail_address.setText(arrayListDetail.get(position).getAddress());
         holder.detail_love.setText(arrayListDetail.get(position).getWish_count()+"");
-        String imgUrl = arrayListDetail.get(position).getImage().substring(1,arrayListDetail.get(position).getImage().length() - 1);
-//        String imgUrl = arrayListDetail.get(position).getImage();
-        Glide.with(holder.itemView.getContext()).load(imgUrl).into(holder.detail_imgview);
-
-
+        if(arrayListDetail.get(position).getImage() == "NoImage"){
+            Glide.with(holder.itemView.getContext()).load(R.drawable.noimage).into(holder.detail_imgview);
+        } else {
+            String imgUrl = arrayListDetail.get(position).getImage().substring(1,arrayListDetail.get(position).getImage().length() - 1);
+            Glide.with(holder.itemView.getContext()).load(imgUrl).into(holder.detail_imgview);
+        }
     }
 
     // Return the size of your dataset (invoked by the layout manager)
