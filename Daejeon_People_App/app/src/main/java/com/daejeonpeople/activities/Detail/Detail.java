@@ -94,14 +94,14 @@ public class Detail extends Activity {
 
 
         apiInterface = APIClient.getClient().create(APIinterface.class);
-        apiInterface.getFilteringPage("UserSession=" + dbHelper.getCookie(), category , 1 , 1).enqueue(new Callback<JsonObject>() {
+        apiInterface.getFilteringPage("UserSession=" + dbHelper.getCookie(), category, 1 , 1).enqueue(new Callback<JsonArray>() {
             @Override
-            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+            public void onResponse(Call<JsonArray> call, Response<JsonArray> response) {
                 if(response.code() == 200){
 
                     Log.d("detail_success","야 성공했다!!!");
 
-                    JsonArray jsonArray = response.body().getAsJsonArray();
+                    JsonArray jsonArray = response.body();
 
                     for(int i = 0; i < jsonArray.size(); i++){
                         DetailItem detailItem = new DetailItem();
@@ -126,7 +126,7 @@ public class Detail extends Activity {
                 }
             }
             @Override
-            public void onFailure(Call<JsonObject> call, Throwable t) {
+            public void onFailure(Call<JsonArray> call, Throwable t) {
                 t.printStackTrace();
             }
         });
