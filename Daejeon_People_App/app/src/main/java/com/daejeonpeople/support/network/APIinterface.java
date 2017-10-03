@@ -83,7 +83,6 @@ public interface APIinterface {
                                              @Query("sort_type") int sort_type,
                                              @Query("page") int page);
 
-<<<<<<< HEAD
     @GET("attractions/list/category")
     Call<JsonObject> getFilteringPage( @Header("cookie") String UserSession,
                                        @Query("category") String category,
@@ -93,9 +92,6 @@ public interface APIinterface {
     @GET("/attractions/detail")
     Call<JsonObject> getAttractionsDetail();
 
-
-=======
->>>>>>> 827babc39c702fa6feec81af748681f1adaef71c
 
     @GET("/user")
     Call<JsonObject> getUserInfo();
