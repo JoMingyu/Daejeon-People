@@ -1,5 +1,6 @@
 package com.daejeonpeople.support.network;
 
+import com.daejeonpeople.valueobject.CulturalItem;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
@@ -82,6 +83,7 @@ public interface APIinterface {
                                              @Query("sort_type") int sort_type,
                                              @Query("page") int page);
 
+<<<<<<< HEAD
     @GET("attractions/list/category")
     Call<JsonObject> getFilteringPage( @Header("cookie") String UserSession,
                                        @Query("category") String category,
@@ -92,6 +94,8 @@ public interface APIinterface {
     Call<JsonObject> getAttractionsDetail();
 
 
+=======
+>>>>>>> 827babc39c702fa6feec81af748681f1adaef71c
 
     @GET("/user")
     Call<JsonObject> getUserInfo();
@@ -112,6 +116,9 @@ public interface APIinterface {
     Call<Void> addWish(@Field("content_id") int content_id);
 
     @GET("/attractions/detail")
-    Call<JsonObject> getDetail(@Field("content_id") int content_id);
+    Call<JsonObject> getDetail(@Query("content_id") int content_id);
+
+    @GET("/friend")
+    Call<JsonObject> getFriend(@Header("cookie") String UserSession);
 
 }

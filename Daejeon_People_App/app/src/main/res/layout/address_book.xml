@@ -1,33 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/White">
 
-    <LinearLayout
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        app:contentInsetStart="0dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1.5"
+                android:gravity="center_vertical"
+                android:weightSum="1">
+
+                <Button
+                    android:id="@+id/back_btn"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:background="@drawable/ic_back"
+                    android:layout_marginLeft="18dp"
+                    android:layout_weight="0.02" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="위시리스트"
+                    android:textAlignment="center"
+                    android:textSize="22sp"
+                    android:textColor="#ffffff"
+                    android:textStyle="bold"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1.5">
+
+            </LinearLayout>
+        </LinearLayout>
+    </android.support.v7.widget.Toolbar>
+
+    <RelativeLayout
         android:id="@+id/addressInfo"
-        android:padding="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true">
+        android:padding="15dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
             android:text="나"
-            android:textSize="20sp"
             android:textColor="@color/colorAccent"
-            android:layout_alignParentTop="true" />
+            android:textSize="20sp" />
+
         <TextView
+            android:id="@+id/numOfAddress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/numOfAddress"
+            android:layout_alignParentRight="true"
             android:text="132개의 연락처"
-            android:textSize="20sp"
             android:textColor="@color/Dark"
-            android:layout_marginLeft="180dp"/>
-    </LinearLayout>
+            android:textSize="20sp" />
+    </RelativeLayout>
 
     <RelativeLayout
         android:orientation="vertical"
@@ -78,7 +135,7 @@
 
     </RelativeLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/startlist"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -92,7 +149,7 @@
             android:textColor="@color/colorAccent"
             android:text="#"/>
 
-    </LinearLayout>
+    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -101,12 +158,14 @@
         android:layout_alignParentStart="true"
         android:layout_below="@id/startlist">
 
-        <ListView
-            android:id="@+id/addressList"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent">
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/friendlist_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:scrollbars="vertical">
 
-        </ListView>
+        </android.support.v7.widget.RecyclerView>
     </LinearLayout>
 
     <!--<FrameLayout-->
@@ -454,4 +513,4 @@
             android:textColor="@android:color/darker_gray"/>
     </LinearLayout>
 
-</RelativeLayout>
+</LinearLayout>
