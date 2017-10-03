@@ -47,10 +47,14 @@ public class MainPopularAdapter extends PagerAdapter {
         maintext.setText(mDataset.get(position).getTitle());
         subtext.setText(mDataset.get(position).getEng_title());
         Log.d("image url", mDataset.get(position).getImage());
-        String imgUrl = mDataset.get(position).getImage().substring(1,mDataset.get(position).getImage().length() - 1);
-        Log.d("image url2", imgUrl);
-        Glide.with(mContext).load(imgUrl).into(img);
 
+        if(mDataset.get(position).getImage() == "NoImage"){
+            Glide.with(mContext).load(R.drawable.noimage).into(img);
+        } else {
+            String imgUrl = mDataset.get(position).getImage().substring(1, mDataset.get(position).getImage().length() - 1);
+            Log.d("image url2", imgUrl);
+            Glide.with(mContext).load(imgUrl).into(img);
+        }
         container.addView(view);
         return view;
     }

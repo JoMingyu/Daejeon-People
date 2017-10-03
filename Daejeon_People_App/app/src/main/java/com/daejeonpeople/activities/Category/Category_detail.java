@@ -116,14 +116,14 @@ public class Category_detail extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle saveInstanceState) {
         super.onCreate(saveInstanceState);
-        setContentView(R.layout.filter_detail);
+        setContentView(R.layout.category_detail);
 
         //툴바 생성
-        Toolbar toolbar = (Toolbar) findViewById(R.id.filter_detial_toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.category_detial_toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.filter_recyclerview);
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.category_detail_recyclerview);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
 
         RecyclerView.ItemAnimator animator = recyclerView.getItemAnimator();
@@ -187,7 +187,7 @@ public class Category_detail extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "비정상적인 실행입니다.", Toast.LENGTH_LONG).show();
         }
 
-        Button filter_back_btn = (Button) findViewById(R.id.filter_detial_backbtn);
+        Button filter_back_btn = (Button) findViewById(R.id.category_detial_backbtn);
         filter_back_btn.setOnClickListener(new Button.OnClickListener() {
             @Override public void onClick(View view) {
                 finish();

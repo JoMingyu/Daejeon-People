@@ -24,14 +24,14 @@ public class Category_detail_Adapter extends ExpandableRecyclerViewAdapter<Categ
     @Override
     public CategoryParentsViewHolder onCreateGroupViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.filter_detail_item, parent, false);
+                .inflate(R.layout.category_detail_item, parent, false);
         return new CategoryParentsViewHolder(view);
     }
 
     @Override
     public CategoryChildrenViewHolder onCreateChildViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.filter_detail_sub_item, parent, false);
+                .inflate(R.layout.category_detail_sub_item, parent, false);
         return new CategoryChildrenViewHolder(view);
     }
 

@@ -6,14 +6,14 @@
     android:orientation="vertical">
 
     <android.support.v7.widget.Toolbar
-        android:id="@+id/filter_detial_toolbar"
+        android:id="@+id/category_detial_toolbar"
         android:background="#ffffff"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:contentInsetStart="0dp">
 
         <Button
-            android:id="@+id/filter_detial_backbtn"
+            android:id="@+id/category_detial_backbtn"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_margin="18dp"
@@ -34,7 +34,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/filter_recyclerview"
+            android:id="@+id/category_detail_recyclerview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
     </LinearLayout>
