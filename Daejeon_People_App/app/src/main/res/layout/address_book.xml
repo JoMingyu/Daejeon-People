@@ -159,7 +159,7 @@
         android:layout_below="@id/startlist">
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/friendlist_recycler"
+            android:id="@+id/addresslist_recycler"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"

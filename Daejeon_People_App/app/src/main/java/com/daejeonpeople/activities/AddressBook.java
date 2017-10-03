@@ -1,6 +1,8 @@
 package com.daejeonpeople.activities;
 
 import android.app.ActionBar;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -20,8 +22,11 @@ import com.daejeonpeople.support.database.DBHelper;
 import com.daejeonpeople.support.network.APIClient;
 import com.daejeonpeople.support.network.APIinterface;
 import com.daejeonpeople.valueobject.AddressBookListItem;
+import com.daejeonpeople.valueobject.MainItemMonthly;
+import com.daejeonpeople.valueobject.MainItemPopular;
 import com.daejeonpeople.valueobject.WishlistItem;
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 import org.json.JSONArray;
@@ -55,9 +60,10 @@ public class AddressBook extends BaseActivity {
 
         DBHelper dbHelper = DBHelper.getInstance(getApplicationContext(), "CHECK.db", null, 1);
 
-        mRecyclerView = (RecyclerView) findViewById(R.id.friendlist_recycler);
+        mRecyclerView = (RecyclerView) findViewById(R.id.addresslist_recycler);
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
+
 
         Dataset = new ArrayList<>();
         myAdapter = new AddressBookAdapter(Dataset);
@@ -76,7 +82,14 @@ public class AddressBook extends BaseActivity {
                     mRecyclerView.getAdapter().notifyDataSetChanged();
 
                     response.body();
-                } else if(response.code() == 204) {
+
+                    JsonArray jsonArrayF = response.body().getAsJsonArray();
+                    for(int i = 0; i < 5; i++) {
+                        AddressBookListItem addresslistItem = new AddressBookListItem();
+
+                        addresslistItem.setUser_name(jsonArrayF.get(i).getAsJsonObject().get("address").getAsString());
+                    }
+                }else if(response.code() == 204) {
                     Log.d("response", "FAIL");
                 }
             }
@@ -94,45 +107,5 @@ public class AddressBook extends BaseActivity {
             addresslistItem.setPhone_number("010-9945-7580");
             this.Dataset.add(i, addresslistItem);
         }
-
-
-//        listView = (ListView)findViewById(R.id.addressList);
-//        listView.setAdapter(adapter);
-//        listView.setVerticalScrollBarEnabled(true);
-//        aQuery = new AQuery(getApplicationContext());
-//
-//        aQuery.ajax("http://52.79.134.200:80/friend", JSONArray.class, new AjaxCallback<JSONArray>(){
-//            @Override
-//            public void callback(String url, JSONArray response, AjaxStatus status) {
-//                try {
-//                    JSONArray jsonArray = new JSONArray();
-//                    for(int i=0; i<jsonArray.length(); i++){
-//                        JSONObject friendInfo = jsonArray.getJSONObject(i);
-//                        System.out.println(friendInfo.getString("name") + friendInfo.getString("phone_number") + friendInfo.getString("email"));
-//                        adapter.addItem(friendInfo.getString("name"), friendInfo.getString("phone_number"), friendInfo.getString("email"));
-//                    }
-//                } catch (JSONException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        });
-//
-//        final ActionBar addressbook = getActionBar();
-//        addressbook.setCustomView(R.layout.custom_address_book);
-//        addressbook.setDisplayShowTitleEnabled(false);
-//        addressbook.setDisplayShowCustomEnabled(true);
-//        addressbook.setDisplayShowHomeEnabled(false);
-//
-//        final AddressBookAdapter adapter = new AddressBookAdapter();
-//        final ListView listView = (ListView)findViewById(R.id.addressList);
-//        listView.setAdapter(adapter);
-
-//        Button button = (Button) findViewById(R.id.address_back);
-//        button.setOnClickListener(new Button.OnClickListener() {
-//            @Override public void onClick(View view)
-//            {
-//                finish();
-//            }
-//        }) ;
     }
 }

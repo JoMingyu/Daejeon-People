@@ -3,7 +3,9 @@ package com.daejeonpeople.activities;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import com.daejeonpeople.R;
 import com.daejeonpeople.activities.base.BaseActivity;
@@ -46,10 +48,16 @@ public class Introduction_Culture extends AppCompatActivity {
         btn_star = (ImageButton)findViewById(R.id.star);
         apIinterface = APIClient.getClient().create(APIinterface.class);
 
-        apIinterface.getDetail(25).enqueue(new Callback<JsonObject>() {
+        apIinterface.getDetail(125379).enqueue(new Callback<JsonObject>() {
             @Override
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                 Log.d("Response", response.body() + "");
+
+                JsonArray jsonArray = response.body().get("Introduction_culture").getAsJsonArray();
+
+                CulturalItem culturalItem = new CulturalItem();
+
+                culturalItem.setTitle(jsonArray.get(0).getAsJsonObject().get("title").getAsString());
             }
 
             @Override

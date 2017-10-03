@@ -73,8 +73,7 @@
                     android:id="@+id/btn_call"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:background="@drawable/ic_call_green"
-                    />
+                    android:background="@drawable/ic_call_green"/>
 
             </RelativeLayout>
 
