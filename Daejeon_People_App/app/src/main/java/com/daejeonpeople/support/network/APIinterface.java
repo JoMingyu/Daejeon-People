@@ -120,4 +120,7 @@ public interface APIinterface {
     @FormUrlEncoded
     @POST("/friend/request")
     Call<Void> friendRequest(@Field("dst") String destination);
+
+    @GET("/friend/request")
+    Call<JsonArray> getRequestList();
 }
