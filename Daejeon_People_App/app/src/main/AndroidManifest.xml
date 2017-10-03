@@ -43,7 +43,8 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
         <activity
             android:name=".activities.Main"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        </activity>
         <activity android:name=".activities.account.EntryID" />
         <activity android:name=".activities.account.EntryPW" />
         <activity android:name=".activities.account.FindID" />
@@ -54,9 +55,12 @@
         <activity android:name=".activities.side_menu.ChatList"/>
         <activity android:name=".activities.side_menu.FriendList"/>
         <activity android:name=".activities.side_menu.WishList"/>
-        <activity android:name=".activities.Filter.Filter"/>
-        <activity android:name=".activities.Filter.Filter_detail"/>
-        <activity android:name=".activities.Detail.Detail"/>
+        <activity android:name=".activities.Filter.Filter"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity android:name=".activities.Filter.Filter_detail"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity android:name=".activities.Detail.Detail"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
     </application>
 
 </manifest>

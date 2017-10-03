@@ -1,57 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical">
+    android:weightSum="1">
 
     <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
         app:contentInsetStart="0dp">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/colorPrimary"
-            android:gravity="center">
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
 
-            <Button
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_margin="18dp"
-                android:background="@drawable/ic_back"/>
-
-            <TextView
-                android:id="@+id/textView2"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:layout_weight="1"
-                android:text="친구요청"
-                android:textColor="@color/White"
-                android:textSize="22sp"
-                android:textStyle="bold"/>
+                android:layout_height="match_parent"
+                android:layout_weight="1.5"
+                android:gravity="center_vertical"
+                android:weightSum="1">
 
-            <Button
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_margin="18dp"
-                android:background="@drawable/ic_search"/>
+                <Button
+                    android:id="@+id/back_btn"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:background="@drawable/ic_back"
+                    android:layout_marginLeft="18dp"
+                    android:layout_weight="0.02" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="친구요청"
+                    android:textAlignment="center"
+                    android:textSize="22sp"
+                    android:textColor="#ffffff"
+                    android:textStyle="bold"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1.5">
+
+            </LinearLayout>
         </LinearLayout>
-
     </android.support.v7.widget.Toolbar>
 
-    <LinearLayout
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/friendlist_recycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentLeft="true">
+        android:layout_weight="1"
+        android:scrollbars="vertical">
 
-        <ListView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/friend_request">
+    </android.support.v7.widget.RecyclerView>
 
-        </ListView>
-    </LinearLayout>
 </LinearLayout>
