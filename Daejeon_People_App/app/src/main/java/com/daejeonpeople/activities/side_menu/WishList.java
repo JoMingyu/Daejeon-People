@@ -107,7 +107,7 @@ public class WishList extends BaseActivity {
 //            this.Dataset.add(i, wishlistItem);
 //        }
 
-        backBtn = (Button) findViewById(R.id.back_btn);
+        backBtn = (Button) findViewById(R.id.wishlist_back_btn);
 
         AQuery aq = new AQuery(getApplicationContext());
 

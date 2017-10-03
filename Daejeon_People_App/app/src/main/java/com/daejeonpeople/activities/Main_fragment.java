@@ -71,8 +71,11 @@ public class Main_fragment extends Fragment {
                         mainItemMonthly.setContent_id(jsonArrayM.get(i).getAsJsonObject().get("content_id").getAsInt());
                         mainItemMonthly.setTitle(jsonArrayM.get(i).getAsJsonObject().get("title").toString().replaceAll("\"", ""));
                         mainItemMonthly.setWish_count(jsonArrayM.get(i).getAsJsonObject().get("wish_count").getAsInt());
-                        mainItemMonthly.setEng_title(jsonArrayM.get(i).getAsJsonObject().get("eng_title").toString().replaceAll("\"", ""));
-
+                        if(jsonArrayM.get(i).getAsJsonObject().get("eng_title") == null) {
+                            mainItemMonthly.setEng_title("title 정보가 없습니다.");
+                        } else {
+                            mainItemMonthly.setEng_title(jsonArrayM.get(i).getAsJsonObject().get("eng_title").toString().replaceAll("\"", ""));
+                        }
                         arrayListM.add(mainItemMonthly);
 
                         if(jsonArrayP.get(i).getAsJsonObject().get("image") == null){
@@ -82,7 +85,11 @@ public class Main_fragment extends Fragment {
                         }
                         mainItemPopular.setContent_id(jsonArrayP.get(i).getAsJsonObject().get("content_id").getAsInt());
                         mainItemPopular.setTitle(jsonArrayP.get(i).getAsJsonObject().get("title").toString().replaceAll("\"", ""));
-                        mainItemPopular.setEng_title(jsonArrayP.get(i).getAsJsonObject().get("eng_title").toString().replaceAll("\"", ""));
+                        if(jsonArrayP.get(i).getAsJsonObject().get("eng_title") == null) {
+                            mainItemPopular.setEng_title("title 정보가 없습니다.");
+                        } else {
+                            mainItemPopular.setEng_title(jsonArrayP.get(i).getAsJsonObject().get("eng_title").toString().replaceAll("\"", ""));
+                        }
                         arrayListP.add(mainItemPopular);
                     }
                     MainPopularAdapter adapter1 = new MainPopularAdapter(getActivity().getLayoutInflater(), arrayListP, getActivity());
