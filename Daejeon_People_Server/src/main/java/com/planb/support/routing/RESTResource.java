@@ -1,6 +1,5 @@
 package com.planb.support.routing;
 
-@SuppressWarnings("WeakerAccess")
 public class RESTResource implements Comparable<RESTResource> {
 	private String functionCategory;
 	private String summary;

@@ -8,7 +8,6 @@ import com.planb.parser.TourListParser;
 public class ParserThread extends Thread {
 	// 매일 TourAPI를 파싱하기 위한 스레드
 	
-	@SuppressWarnings("InfiniteLoopStatement")
 	public void run() {
 		while(true) {
 			new TourListParser().parse();

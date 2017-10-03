@@ -17,7 +17,7 @@ public class MySQL {
 		urlBuilder.append("jdbc:mysql://localhost:");
 		urlBuilder.append(Config.getValue("dbPort")).append("/");
 		urlBuilder.append(Config.getValue("dbTableName")).append("?");
-		urlBuilder.append("useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC");
+		urlBuilder.append("useUnicode=true&characterEncoding=utf8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC");
 
 		String url = urlBuilder.toString();
 		try {

@@ -11,6 +11,7 @@ import com.planb.support.routing.REST;
 import com.planb.support.routing.Route;
 import com.planb.support.user.UserManager;
 import com.planb.support.utilities.MySQL;
+import com.planb.support.utilities.Translator;
 
 import io.vertx.core.Handler;
 import io.vertx.core.http.HttpMethod;
@@ -37,6 +38,7 @@ public class MainPage implements Handler<RoutingContext> {
 				
 				popularAttraction.put("content_id", rsForPopular.getInt("content_id"));
 				popularAttraction.put("title", rsForPopular.getString("title"));
+				popularAttraction.put("eng_title", Translator.translate(rsForPopular.getString("title")));
 				popularAttraction.put("image", rsForPopular.getString("image_big_url"));
 				popular.put(popularAttraction);
 				
@@ -47,6 +49,7 @@ public class MainPage implements Handler<RoutingContext> {
 				monthlyAttraction.put("wish_count", rsForMonthly.getInt("wish_count"));
 				monthlyAttraction.put("content_id", rsForMonthly.getInt("content_id"));
 				monthlyAttraction.put("title", rsForMonthly.getString("title"));
+				monthlyAttraction.put("eng_title", Translator.translate(rsForMonthly.getString("title")));
 				monthlyAttraction.put("address", rsForMonthly.getString("address"));
 				monthlyAttraction.put("image", rsForMonthly.getString("image_big_url"));
 				monthly.put(monthlyAttraction);
