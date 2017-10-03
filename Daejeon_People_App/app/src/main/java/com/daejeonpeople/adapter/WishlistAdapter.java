@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.daejeonpeople.R;
 import com.daejeonpeople.valueobject.WishlistItem;
 
@@ -57,8 +58,10 @@ public class WishlistAdapter extends RecyclerView.Adapter<WishlistAdapter.ViewHo
     public void onBindViewHolder(WishlistAdapter.ViewHolder holder, int position) {
         holder.title.setText(mDataset.get(position).getTitle());
         holder.address.setText(mDataset.get(position).getAddress());
-        holder.love.setText(mDataset.get(position).getLove()+"");
-        holder.back_image.setImageResource(R.drawable.bg_accommodation);
+//        holder.love.setText(mDataset.get(position).getLove()+"");
+//        holder.back_image.setImageResource(R.drawable.bg_accommodation);
+            String imgUrl = mDataset.get(position).getBack_image().substring(1,mDataset.get(position).getBack_image().length() - 1);
+            Glide.with(holder.itemView.getContext()).load(imgUrl).into(holder.back_image);
     }
 
     @Override

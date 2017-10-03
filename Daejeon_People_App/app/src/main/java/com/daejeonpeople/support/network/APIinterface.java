@@ -105,7 +105,7 @@ public interface APIinterface {
                                  @Query("monthly_count") int monthly_count);
 
     @GET("/wish")
-    Call<JsonObject> getWish(@Header("cookie") String UserSession);
+    Call<JsonArray> getWish(@Header("cookie") String UserSession);
 
     @FormUrlEncoded
     @POST("/wish")
