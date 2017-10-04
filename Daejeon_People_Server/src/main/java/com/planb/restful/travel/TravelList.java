@@ -18,7 +18,7 @@ import io.vertx.core.http.HttpMethod;
 import io.vertx.ext.web.RoutingContext;
 
 @API(functionCategory = "여행 모드", summary = "활성화된 여행 리스트 조회")
-@REST(responseBody = "topic : String, title : String, last_idx : int, (JSONArray)", successCode = 200, failureCode = 204)
+@REST(responseBody = "topic : String, title : String, last_idx : int, last_message : String, (JSONArray)", successCode = 200, failureCode = 204)
 @Route(uri = "/travel", method = HttpMethod.GET)
 public class TravelList implements Handler<RoutingContext> {
 	@Override
@@ -34,6 +34,7 @@ public class TravelList implements Handler<RoutingContext> {
 				travelRoom.put("topic", rs.getString("topic"));
 				travelRoom.put("title", rs.getString("title"));
 				travelRoom.put("last_idx", ChatRoomManager.getLastIndexInRoom(rs.getString("topic")));
+				travelRoom.put("last_message", ChatRoomManager.getLastMessageInRoom(rs.getString("topic")));
 				
 				response.put(travelRoom);
 			}

@@ -34,4 +34,19 @@ public class ChatRoomManager {
 			return 0;
 		}
 	}
+	
+	public static String getLastMessageInRoom(String topic) {
+		ResultSet room = MySQL_Chat.executeQuery("SELECT content FROM " + topic + " WHERE idx=?", getLastIndexInRoom(topic));
+		
+		try {
+			if(room != null ? room.next() : false) {
+				return room.getString(1);
+			} else {
+				return "새로운 메시지가 있습니다.";
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return "새로운 메시지가 있습니다.";
+		}
+	}
 }
