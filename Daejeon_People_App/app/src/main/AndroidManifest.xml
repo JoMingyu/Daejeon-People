@@ -6,59 +6,74 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
+        android:name="application.ApplicationClass"
         android:allowBackup="true"
         android:icon="@mipmap/ic_logo"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:name="application.ApplicationClass"
         android:theme="@style/AppTheme">
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-        <activity android:name=".activities.MapView" android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-            <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.MAIN"/>-->
+        <activity
+            android:name=".activities.MapView"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
 
-                <!--<category android:name="android.intent.category.LAUNCHER" />-->
-            <!--</intent-filter>-->
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN"/> -->
+
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
         </activity>
-
-        <activity android:name=".activities.splash.Splash"
-            android:theme="@style/Theme.AppCompat.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".activities.Landing"/>
+        <activity
+            android:name=".activities.splash.Splash"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity android:name=".activities.Landing" />
         <activity android:name=".activities.account.Email_Certified" />
-        <activity android:name=".activities.Chatting"/>
+        <activity android:name=".activities.Chatting" />
         <activity android:name=".activities.AddressBook" />
-        <activity android:name=".activities.account.SignIn"/>
+        <activity android:name=".activities.account.SignIn" />
         <activity
             android:name=".activities.account.SignUp"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".activities.Main"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        </activity>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity android:name=".activities.account.EntryID" />
         <activity android:name=".activities.account.EntryPW" />
         <activity android:name=".activities.account.FindID" />
         <activity android:name=".activities.account.FindPW" />
         <activity android:name=".activities.Search" />
-        <activity android:name=".activities.InvitationTrip"/>
+        <activity android:name=".activities.InvitationTrip" />
         <activity android:name=".activities.FriendRequest" />
-        <activity android:name=".activities.side_menu.ChatList"/>
-        <activity android:name=".activities.side_menu.FriendList"/>
-        <activity android:name=".activities.side_menu.WishList"/>
-        <activity android:name=".activities.Category.Category_detail"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
-        <activity android:name=".activities.ResultList.ResultList"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity android:name=".activities.side_menu.ChatList" />
+        <activity android:name=".activities.side_menu.FriendList" />
+        <activity android:name=".activities.side_menu.WishList" />
+        <activity
+            android:name=".activities.Category.Category_detail"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".activities.ResultList.ResultList"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity android:name=".activities.Introduction_Culture">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activities.Introduction_Accomodation"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity android:name=".activities.Introduction_Festival" />
+        <activity android:name=".activities.Introduction_Restaurant" />
+        <activity android:name=".activities.Introduction_Leisure" />
+        <activity android:name=".activities.Introduction_Shopping" />
+        <activity android:name=".activities.Introduction_Tourism" />
+        <activity android:name=".activities.Introduction_Course"></activity>
     </application>
 
 </manifest>
