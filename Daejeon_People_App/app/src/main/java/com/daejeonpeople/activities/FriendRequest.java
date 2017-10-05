@@ -46,7 +46,7 @@ public class FriendRequest extends BaseActivity {
             @Override
             public void onResponse(Call<JsonArray> call, Response<JsonArray> response) {
                 Log.d("frinedRequestList", response.body()+"");
-                if(response.body().size() > 0){
+                if(response.body() != null){
                     JsonArray requestList = response.body();
                     for(int i=0; i < requestList.size(); i++){
                         JsonObject requestItem = requestList.get(i).getAsJsonObject();
@@ -88,5 +88,9 @@ public class FriendRequest extends BaseActivity {
                 }
             }
         });
+    }
+
+    public void onBackBtnClicked(View view){
+        finish();
     }
 }
