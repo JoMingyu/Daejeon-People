@@ -30,13 +30,7 @@ public class ChatList extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.chat_list_listview);
-
-        final ActionBar chatting = getActionBar();
-       //chatting.setCustomView(R.layout.custom_chat_list);
-        chatting.setDisplayShowTitleEnabled(false);
-        chatting.setDisplayShowCustomEnabled(true);
-        chatting.setDisplayShowHomeEnabled(false);
+        setContentView(R.layout.chat_list_item);
 
         backBtn = (Button) findViewById(R.id.backBtn);
 

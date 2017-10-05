@@ -1,6 +1,7 @@
 package com.daejeonpeople.activities;
 
 import android.content.Intent;
+import android.location.Address;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.app.FragmentTransaction;
@@ -234,7 +235,7 @@ public class Main extends AppCompatActivity
                     break;
                 case R.id.nav_sub_menu_item02:
                     // 친구 목록
-                    startActivity(new Intent(this, FriendList.class));
+                    startActivity(new Intent(this, AddressBook.class));
                     break;
                 case R.id.nav_sub_menu_item03:
                     // 최근여행지

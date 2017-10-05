@@ -34,7 +34,7 @@ public class FriendRequest extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.friend_request_listview);
+        setContentView(R.layout.friend_request);
 
         destination=(EditText)findViewById(R.id.destination);
         requestBtn=(Button)findViewById(R.id.requestBtn);
@@ -46,17 +46,19 @@ public class FriendRequest extends BaseActivity {
             @Override
             public void onResponse(Call<JsonArray> call, Response<JsonArray> response) {
                 Log.d("frinedRequestList", response.body()+"");
-                JsonArray requestList = response.body();
-                for(int i=0; i < requestList.size(); i++){
-                    JsonObject requestItem = requestList.get(i).getAsJsonObject();
-                    FriendRequestItems friendRequestItems = new FriendRequestItems();
-                    friendRequestItems.setUserId(requestItem.get("requester_id").getAsString());
-                    friendRequestItems.setUserName(requestItem.get("name").getAsString());
-                    friendRequestItems.setUserPhoneNum(requestItem.get("phone_number").getAsString());
-                    friendRequestItems.setUserEmail(requestItem.get("email").getAsString());
-                    friendRequestItems.setRequestDate(requestItem.get("date").getAsString());
+                if(response.body().size() > 0){
+                    JsonArray requestList = response.body();
+                    for(int i=0; i < requestList.size(); i++){
+                        JsonObject requestItem = requestList.get(i).getAsJsonObject();
+                        FriendRequestItems friendRequestItems = new FriendRequestItems();
+                        friendRequestItems.setUserId(requestItem.get("requester_id").getAsString());
+                        friendRequestItems.setUserName(requestItem.get("name").getAsString());
+                        friendRequestItems.setUserPhoneNum(requestItem.get("phone_number").getAsString());
+                        friendRequestItems.setUserEmail(requestItem.get("email").getAsString());
+                        friendRequestItems.setRequestDate(requestItem.get("date").getAsString());
 
-                    RequestItem.add(i, friendRequestItems);
+                        RequestItem.add(i, friendRequestItems);
+                    }
                 }
                 requestListRecyclerView.setAdapter(new FriendRequestListAdapter(RequestItem));
                 requestListRecyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
@@ -64,7 +66,7 @@ public class FriendRequest extends BaseActivity {
 
             @Override
             public void onFailure(Call<JsonArray> call, Throwable t) {
-
+                t.printStackTrace();
             }
         });
 

@@ -123,4 +123,15 @@ public interface APIinterface {
 
     @GET("/friend/request")
     Call<JsonArray> getRequestList();
+
+    @FormUrlEncoded
+    @POST("/friend/accept")
+    Call<Void> acceptFriendRequest(@Field("requester_id") String requesterId);
+
+    @FormUrlEncoded
+    @POST("/friend/refuse")
+    Call<Void> refuseFriendRequest(@Field("requester_id") String requesterId);
+
+    @GET("/travel")
+    Call<JsonArray> getTravelList();
 }
