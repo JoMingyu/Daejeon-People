@@ -1,57 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="130dp"
-    android:background="@drawable/border_below_shadow">
-    <Button
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:background="@drawable/ic_back_dark"
-        android:layout_margin="20dp"
-        android:id="@+id/backBtn"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="검색"
-        android:textSize="25sp"
-        android:textColor="@color/Dark"
-        android:layout_toRightOf="@+id/backBtn"
-        android:layout_marginTop="17dp"/>
+    android:layout_height="match_parent">
+
     <RelativeLayout
-        android:layout_margin="10dp"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_below="@+id/backBtn"
-        android:background="@drawable/round_corner_border_dark">
+        android:layout_height="130dp"
+        android:background="@drawable/border_below_shadow">
+        <Button
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:background="@drawable/ic_back_dark"
+            android:layout_margin="20dp"
+            android:id="@+id/backBtn"/>
+        <TextView
+            android:id="@+id/search_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="검색"
+            android:textSize="25sp"
+            android:textColor="@color/Dark"
+            android:layout_toRightOf="@+id/backBtn"
+            android:layout_marginTop="17dp"/>
+
         <LinearLayout
-            android:orientation="horizontal"
+            android:orientation="vertical"
+            android:layout_toRightOf="@+id/search_search"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <EditText
-                android:id="@+id/searchContent"
-                android:layout_width="300dp"
-                android:layout_height="match_parent"
-                android:hint="텍스트를 입력하세요"
-                android:background="@android:color/transparent"
-                android:layout_marginLeft="20dp" />
+            android:layout_height="60dp">
+            <Spinner
+                android:layout_gravity="right"
+                android:entries="@array/search_spinner"
+                android:id="@+id/search_spinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="17dp">
+            </Spinner>
+        </LinearLayout>
+
+
+
+        <RelativeLayout
+            android:layout_margin="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@+id/backBtn"
+            android:background="@drawable/round_corner_border_dark">
             <LinearLayout
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-                <RelativeLayout
+                <EditText
+                    android:id="@+id/searchContent"
+                    android:layout_width="300dp"
+                    android:layout_height="match_parent"
+                    android:hint="텍스트를 입력하세요"
+                    android:background="@android:color/transparent"
+                    android:layout_marginLeft="20dp" />
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
-                    <Button
-                        android:layout_centerInParent="true"
-                        android:layout_gravity="center"
-                        android:layout_margin="10dp"
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:background="@drawable/ic_serach" />
-                </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <Button
+                            android:id="@+id/search_btn"
+                            android:layout_centerInParent="true"
+                            android:layout_gravity="center"
+                            android:layout_margin="10dp"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:background="@drawable/ic_serach" />
+                    </RelativeLayout>
+                </LinearLayout>
 
             </LinearLayout>
 
-        </LinearLayout>
-
+        </RelativeLayout>
     </RelativeLayout>
-</RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/search_result_recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </android.support.v7.widget.RecyclerView>
+    </LinearLayout>
+
+</LinearLayout>
