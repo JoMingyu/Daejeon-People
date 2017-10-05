@@ -40,7 +40,6 @@ com\planb\restful\attractions\list\TotalList.class
 com\planb\support\routing\Route.class
 com\planb\support\networking\Config.class
 com\planb\restful\account\after_signup\FindPassword_DemandCode.class
-com\planb\restful\attractions\list\CategoryFilteredWithSearchedList.class
 com\planb\support\utilities\Mail.class
 com\planb\restful\travel\inside\TravelInfo.class
 com\planb\restful\account\signup\CheckIdExist.class

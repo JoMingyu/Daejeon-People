@@ -19,29 +19,22 @@ import io.vertx.ext.web.RoutingContext;
 public class AttractionsListInquiry {
 	private static final int numOfRows = AttractionsConfig.NUM_OF_ROWS;
 	
-	public static JSONArray inquireBasedKeyword(RoutingContext ctx, String category, String keyword) {
-		// 카테고리 필터링 & 검색
+	public static JSONArray inquireBasedKeyword(RoutingContext ctx, String keyword) {
+		// 검색 + 정렬
 		int sortType = Integer.parseInt(ctx.request().getParam("sort_type"));
 		int page = Integer.parseInt(ctx.request().getParam("page"));
 		
-		String query = "SELECT * FROM attractions_basic WHERE title LIKE '%" + keyword + "%' AND ";
-		if(category.length() == 3) {
-			query = query + "cat1=? ORDER BY ? LIMIT " + (page - 1) * numOfRows + ", " + numOfRows;
-		} else if(category.length() == 5) {
-			query = query + "cat2=? ORDER BY ? LIMIT " + (page - 1) * numOfRows + ", " + numOfRows;
-		} else {
-			query =query + "cat3=? ORDER BY ? LIMIT " + (page - 1) * numOfRows + ", " + numOfRows;
-		}
+		String query = "SELECT * FROM attractions_basic WHERE title LIKE '%" + keyword + "%' ORDER BY ? LIMIT \" + (page - 1) * numOfRows + \", \" + numOfRows";
 
 		ResultSet rs = null;
 		switch (sortType) {
 		case 1:
 			// 조회순
-			rs = MySQL.executeQuery(query.replaceFirst("\\?", "'" + category + "'").replaceFirst("\\?", "views_count DESC"));
+			rs = MySQL.executeQuery(query.replaceFirst("\\?", "views_count DESC"));
 			break;
 		case 2:
 			// 위시리스트 많은 순
-			rs = MySQL.executeQuery(query.replaceFirst("\\?", "'" + category + "'").replaceFirst("\\?", "wish_count DESC"));
+			rs = MySQL.executeQuery(query.replaceFirst("\\?", "wish_count DESC"));
 			break;
 		case 3:
 			// 거리순
@@ -49,7 +42,7 @@ public class AttractionsListInquiry {
 			double y = Double.parseDouble(ctx.request().getParam("y"));
 			// 클라이언트 좌표값
 
-			rs = MySQL.executeQuery(query.split(" ORDER BY")[0], category);
+			rs = MySQL.executeQuery(query.split(" ORDER BY")[0]);
 			// contentTypeId에 해당하는 데이터 전체
 
 			rs = distanceBasedInquiry(rs, page, x, y);
