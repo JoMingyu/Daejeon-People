@@ -16,7 +16,18 @@
         android:background="@drawable/ic_profile"/>
 
     <TextView
-        android:id="@+id/chatname"
+        android:id="@+id/lastIndex"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:gravity="center"
+        android:text="1"
+        android:textColor="@android:color/white"
+        android:background="@drawable/bg_last_index"
+        android:layout_alignRight="@+id/profile"
+        android:layout_alignBottom="@+id/profile"/>
+
+    <TextView
+        android:id="@+id/chatTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="16sp"
@@ -31,7 +42,7 @@
         android:layout_height="wrap_content"
         android:text="제가 누굽니까아아아아아아아 ~"
         android:textSize="12sp"
-        android:layout_below="@id/chatname"
+        android:layout_below="@id/chatTitle"
         android:layout_toRightOf="@id/profile"
         android:layout_marginTop="5dp"/>
 

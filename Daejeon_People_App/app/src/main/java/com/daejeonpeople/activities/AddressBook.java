@@ -4,19 +4,17 @@ import android.app.ActionBar;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ListView;
 
-import com.androidquery.AQuery;
-import com.androidquery.callback.AjaxCallback;
-import com.androidquery.callback.AjaxStatus;
 import com.daejeonpeople.R;
 import com.daejeonpeople.activities.base.BaseActivity;
 import com.daejeonpeople.adapter.AddressBookAdapter;
+import com.daejeonpeople.adapter.ConsonantsBtnAdapter;
 import com.daejeonpeople.adapter.WishlistAdapter;
 import com.daejeonpeople.support.database.DBHelper;
 import com.daejeonpeople.support.network.APIClient;
@@ -45,13 +43,15 @@ import retrofit2.Response;
 
 // 근철
 
-@Deprecated
 public class AddressBook extends BaseActivity {
     private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter myAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
-    private ArrayList<AddressBookListItem> Dataset;
+    private RecyclerView sort;
+    private String[] consonants = {
+            "#", "ㄱ", "ㄴ", "ㄷ", "ㄹ", "ㅁ", "ㅂ", "ㅅ", "ㅇ", "ㅈ", "ㅊ", "ㅋ", "ㅌ", "ㅍ", "ㅎ", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"
+    };
+    private ArrayList<AddressBookListItem> Dataset = new ArrayList<>();
     private APIinterface apIinterface;
+    private FloatingActionButton addFriend;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,16 +60,24 @@ public class AddressBook extends BaseActivity {
 
         DBHelper dbHelper = DBHelper.getInstance(getApplicationContext(), "CHECK.db", null, 1);
 
-        mRecyclerView = (RecyclerView) findViewById(R.id.addresslist_recycler);
-        mLayoutManager = new LinearLayoutManager(this);
-        mRecyclerView.setLayoutManager(mLayoutManager);
+        mRecyclerView = (RecyclerView) findViewById(R.id.friendlist_recycler);
+        sort=(RecyclerView)findViewById(R.id.sorts);
+        sort.setAdapter(new ConsonantsBtnAdapter(consonants));
+        sort.setLayoutManager(new LinearLayoutManager(this));
 
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        Dataset = new ArrayList<>();
-        myAdapter = new AddressBookAdapter(Dataset);
-        mRecyclerView.setAdapter(myAdapter);
+        mRecyclerView.setAdapter(new AddressBookAdapter(Dataset));
+        addFriend = (FloatingActionButton)findViewById(R.id.addFriend);
 
         apIinterface = APIClient.getClient().create(APIinterface.class);
+
+        addFriend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), FriendRequest.class));
+            }
+        });
 
         apIinterface.getFriend("UserSession=" + dbHelper.getCookie()).enqueue(new Callback<JsonObject>() {
             @Override

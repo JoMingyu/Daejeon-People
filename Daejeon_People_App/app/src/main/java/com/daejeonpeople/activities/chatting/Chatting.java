@@ -1,4 +1,4 @@
-package com.daejeonpeople.activities;
+package com.daejeonpeople.activities.chatting;
 
 import android.app.ActionBar;
 import android.os.Bundle;

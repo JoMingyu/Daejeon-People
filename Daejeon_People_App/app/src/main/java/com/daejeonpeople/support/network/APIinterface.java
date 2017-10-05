@@ -105,7 +105,7 @@ public interface APIinterface {
                                  @Query("monthly_count") int monthly_count);
 
     @GET("/wish")
-    Call<JsonObject> getWish(@Header("cookie") String UserSession);
+    Call<JsonArray> getWish(@Header("cookie") String UserSession);
 
     @FormUrlEncoded
     @POST("/wish")
@@ -117,4 +117,21 @@ public interface APIinterface {
     @GET("/friend")
     Call<JsonObject> getFriend(@Header("cookie") String UserSession);
 
+    @FormUrlEncoded
+    @POST("/friend/request")
+    Call<Void> friendRequest(@Field("dst") String destination);
+
+    @GET("/friend/request")
+    Call<JsonArray> getRequestList();
+
+    @FormUrlEncoded
+    @POST("/friend/accept")
+    Call<Void> acceptFriendRequest(@Field("requester_id") String requesterId);
+
+    @FormUrlEncoded
+    @POST("/friend/refuse")
+    Call<Void> refuseFriendRequest(@Field("requester_id") String requesterId);
+
+    @GET("/travel")
+    Call<JsonArray> getTravelList();
 }
