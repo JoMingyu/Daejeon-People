@@ -1,10 +1,14 @@
 package com.daejeonpeople.activities;
 
+import android.graphics.Color;
+import android.media.Image;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Layout;
 import android.util.Log;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.daejeonpeople.R;
@@ -19,6 +23,8 @@ import com.daejeonpeople.valueobject.WishlistItem;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+
+import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -37,6 +43,7 @@ public class Introduction_Culture extends AppCompatActivity {
 
     private ImageButton btn_star;
     private APIinterface apIinterface;
+    private ImageView back_img;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,18 +53,21 @@ public class Introduction_Culture extends AppCompatActivity {
         DBHelper dbHelper = DBHelper.getInstance(getApplicationContext(), "CHECK.db", null, 1);
 
         btn_star = (ImageButton)findViewById(R.id.star);
+        TextView call_inquiry = (TextView) findViewById(R.id.call_inquiry);
+
         apIinterface = APIClient.getClient().create(APIinterface.class);
+
+        back_img = (ImageView)findViewById(R.id.intro_background);
+        back_img.setBackgroundResource(R.drawable.bg_culture);
 
         apIinterface.getDetail(125379).enqueue(new Callback<JsonObject>() {
             @Override
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
-                Log.d("Response", response.body() + "");
+                if(response.code() == 201) {
+                    Log.d("Response", response.body() + "");
 
-                JsonArray jsonArray = response.body().get("Introduction_culture").getAsJsonArray();
-
-                CulturalItem culturalItem = new CulturalItem();
-
-                culturalItem.setTitle(jsonArray.get(0).getAsJsonObject().get("title").getAsString());
+                    response.body().get("address").getAsJsonArray();
+                }
             }
 
             @Override
