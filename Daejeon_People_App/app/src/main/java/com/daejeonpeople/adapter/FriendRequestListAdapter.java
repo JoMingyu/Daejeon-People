@@ -6,7 +6,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.daejeonpeople.R;
 import com.daejeonpeople.support.network.APIClient;
@@ -40,7 +42,7 @@ public class FriendRequestListAdapter extends RecyclerView.Adapter<FriendRequest
     }
 
     @Override
-    public void onBindViewHolder(FriendRequestListAdapter.ViewHolder holder, final int position) {
+    public void onBindViewHolder(final FriendRequestListAdapter.ViewHolder holder, final int position) {
         holder.userName.setText(mDataSet.get(position).getUserName());
         holder.userPhoneNum.setText(mDataSet.get(position).getUserPhoneNum());
         holder.userEmail.setText(mDataSet.get(position).getUserEmail());
@@ -51,7 +53,8 @@ public class FriendRequestListAdapter extends RecyclerView.Adapter<FriendRequest
                 apiInterface.acceptFriendRequest(mDataSet.get(position).getUserId()).enqueue(new Callback<Void>() {
                     @Override
                     public void onResponse(Call<Void> call, Response<Void> response) {
-
+                        Log.d("request", "success");
+                        holder.friendRequestItem.setVisibility(View.GONE);
                     }
 
                     @Override
@@ -67,7 +70,7 @@ public class FriendRequestListAdapter extends RecyclerView.Adapter<FriendRequest
                 apiInterface.refuseFriendRequest(mDataSet.get(position).getUserId()).enqueue(new Callback<Void>() {
                     @Override
                     public void onResponse(Call<Void> call, Response<Void> response) {
-
+                        holder.friendRequestItem.setVisibility(View.GONE);
                     }
 
                     @Override
@@ -91,6 +94,7 @@ public class FriendRequestListAdapter extends RecyclerView.Adapter<FriendRequest
         private TextView requestDate;
         private Button acceptRequestBtn;
         private Button refuseRequestBtn;
+        private LinearLayout friendRequestItem;
 
         public ViewHolder(View view){
             super(view);
@@ -100,6 +104,7 @@ public class FriendRequestListAdapter extends RecyclerView.Adapter<FriendRequest
             requestDate=(TextView)view.findViewById(R.id.requestDate);
             acceptRequestBtn=(Button)view.findViewById(R.id.acceptRequestBtn);
             refuseRequestBtn=(Button)view.findViewById(R.id.refuseRequestBtn);
+            friendRequestItem=(LinearLayout)view.findViewById(R.id.friendRequestItem);
         }
     }
 }

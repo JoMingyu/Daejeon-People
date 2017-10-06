@@ -35,7 +35,8 @@
                         android:layout_height="20dp"
                         android:background="@drawable/ic_back"
                         android:layout_marginLeft="18dp"
-                        android:layout_weight="0.02" />
+                        android:layout_weight="0.02"
+                        android:onClick="onBackBtnClicked"/>
 
                 </LinearLayout>
 

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/friendRequestItem"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -16,24 +15,17 @@
             android:layout_height="wrap_content">
 
             <ImageView
+                android:id="@+id/imageView"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
-                android:background="@drawable/ic_profile"
-                android:layout_marginTop="6dp"/>
+                android:layout_marginTop="6dp"
+                android:background="@drawable/ic_profile" />
         </LinearLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1">
-            <Button
-                android:id="@+id/refuseRequestBtn"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_marginTop="-5dp"
-                android:background="@drawable/ic_remove_black_24dp"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentRight="true"/>
 
             <RelativeLayout
                 android:id="@+id/infoarea"
@@ -70,42 +62,23 @@
                     android:textSize="15dp" />
             </RelativeLayout>
 
-            <LinearLayout
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentTop="true"
                 android:layout_marginRight="20dp"
-                android:layout_marginTop="10dp"
-                android:gravity="center"
-                android:orientation="vertical">
+                android:layout_marginTop="20dp"
+                android:layout_toRightOf="@id/infoarea"
+                android:gravity="right">
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_above="@+id/requestDate"
-                    android:layout_marginBottom="2dp"
-                    android:text="요청일"
-                    android:textColor="@android:color/black"
-                    android:textSize="10sp" />
-
-                <TextView
-                    android:id="@+id/requestDate"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    android:text="2017/04/29"
-                    android:textSize="10sp"/>
-
-                <Button
-                    android:id="@+id/acceptRequestBtn"
-                    android:layout_width="100dp"
+                    android:id="@+id/addBtn"
+                    android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:background="@drawable/btn_accept_design"
-                    android:text="요청수락"
-                    android:textColor="@color/Green"
-                    android:textSize="12dp" />
-            </LinearLayout>
+                    android:text="추가"
+                    android:textColor="@android:color/black"
+                    android:gravity="center" />
+
+            </RelativeLayout>
 
         </RelativeLayout>
     </LinearLayout>
