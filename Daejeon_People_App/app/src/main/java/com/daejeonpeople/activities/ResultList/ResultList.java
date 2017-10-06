@@ -86,58 +86,56 @@ public class ResultList extends Activity {
 //        ResultListAdapter mAdapter = new ResultListAdapter(arrayListDetail, getContext());
 //        mRecyclerView.setAdapter(mAdapter);
 
+        for(int i = 1; i < 4; i++){
+            apiInterface = APIClient.getClient().create(APIinterface.class);
+            apiInterface.getFilteringPage("UserSession=" + dbHelper.getCookie(), category, 1 , i).enqueue(new Callback<JsonArray>() {
+                @Override
+                public void onResponse(Call<JsonArray> call, Response<JsonArray> response) {
+                    if(response.code() == 200){
 
+                        Log.d("detail_success","야 성공했다!!!");
 
-        apiInterface = APIClient.getClient().create(APIinterface.class);
-        apiInterface.getFilteringPage("UserSession=" + dbHelper.getCookie(), category, 1 , 1).enqueue(new Callback<JsonArray>() {
-            @Override
-            public void onResponse(Call<JsonArray> call, Response<JsonArray> response) {
-                if(response.code() == 200){
+                        JsonArray jsonArray = response.body();
 
-                    Log.d("detail_success","야 성공했다!!!");
+                        for(int i = 0; i < jsonArray.size(); i++){
+                            ResultListItem resultListItem = new ResultListItem();
 
-                    JsonArray jsonArray = response.body();
+                            resultListItem.setContent_id(jsonArray.get(i).getAsJsonObject().get("content_id").getAsInt());
+                            Log.d("checkContentid",jsonArray.get(i).getAsJsonObject().get("content_id").toString());
+                            resultListItem.setTitle(jsonArray.get(i).getAsJsonObject().get("title").toString().replaceAll("\"", ""));
+                            resultListItem.setWish(jsonArray.get(i).getAsJsonObject().get("wish").getAsBoolean());
+                            resultListItem.setWish_count(jsonArray.get(i).getAsJsonObject().get("wish_count").getAsInt());
+                            if(jsonArray.get(i).getAsJsonObject().get("address") == null){
+                                resultListItem.setImage("주소 정보가 없습니다.");
+                            } else{
+                                resultListItem.setAddress(jsonArray.get(i).getAsJsonObject().get("address").toString());
+                            }
+                            resultListItem.setCategory(jsonArray.get(i).getAsJsonObject().get("category").toString());
+                            if(jsonArray.get(i).getAsJsonObject().get("image") == null){
+                                resultListItem.setImage("NoImage");
+                            } else {
+                                resultListItem.setImage(jsonArray.get(i).getAsJsonObject().get("image").toString());
+                            }
+                            resultListItem.setMapx(jsonArray.get(i).getAsJsonObject().get("mapx").getAsDouble());
+                            resultListItem.setMapy(jsonArray.get(i).getAsJsonObject().get("mapy").getAsDouble());
 
-                    for(int i = 0; i < jsonArray.size(); i++){
-                        ResultListItem resultListItem = new ResultListItem();
-
-                        resultListItem.setContent_id(jsonArray.get(i).getAsJsonObject().get("content_id").getAsInt());
-                        Log.d("checkContentid",jsonArray.get(i).getAsJsonObject().get("content_id").toString());
-                        resultListItem.setTitle(jsonArray.get(i).getAsJsonObject().get("title").toString().replaceAll("\"", ""));
-                        resultListItem.setWish(jsonArray.get(i).getAsJsonObject().get("wish").getAsBoolean());
-                        resultListItem.setWish_count(jsonArray.get(i).getAsJsonObject().get("wish_count").getAsInt());
-                        if(jsonArray.get(i).getAsJsonObject().get("address") == null){
-                            resultListItem.setImage("주소 정보가 없습니다.");
-                        } else{
-                            resultListItem.setAddress(jsonArray.get(i).getAsJsonObject().get("address").toString());
+                            arrayListResultList.add(resultListItem);
                         }
-                        resultListItem.setCategory(jsonArray.get(i).getAsJsonObject().get("category").toString());
-                        if(jsonArray.get(i).getAsJsonObject().get("image") == null){
-                            resultListItem.setImage("NoImage");
-                        } else {
-                            resultListItem.setImage(jsonArray.get(i).getAsJsonObject().get("image").toString());
-                        }
-                        resultListItem.setMapx(jsonArray.get(i).getAsJsonObject().get("mapx").getAsDouble());
-                        resultListItem.setMapy(jsonArray.get(i).getAsJsonObject().get("mapy").getAsDouble());
-
-                        arrayListResultList.add(resultListItem);
+                        ResultListAdapter mAdapter = new ResultListAdapter(arrayListResultList, getContext());
+                        mRecyclerView.setAdapter(mAdapter);
+                    } else {
+                        Log.d("Detail_error", "ang gi mo thi");
                     }
-                    ResultListAdapter mAdapter = new ResultListAdapter(arrayListResultList, getContext());
-                    mRecyclerView.setAdapter(mAdapter);
-                } else {
-                    Log.d("Detail_error", "ang gi mo thi");
                 }
-            }
-            @Override
-            public void onFailure(Call<JsonArray> call, Throwable t) {
-                t.printStackTrace();
-            }
-        });
-
+                @Override
+                public void onFailure(Call<JsonArray> call, Throwable t) {
+                    t.printStackTrace();
+                }
+            });
+        }
         // use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView
         mRecyclerView.setHasFixedSize(true);
-
         // use a linear layout manager
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
