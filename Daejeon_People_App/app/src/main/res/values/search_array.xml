@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="search_spinner">
+        <item>조회순</item>
+        <item>위시순</item>
+        <item>거리순</item>
+    </string-array>
+</resources>
