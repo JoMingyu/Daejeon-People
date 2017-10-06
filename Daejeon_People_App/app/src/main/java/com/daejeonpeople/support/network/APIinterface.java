@@ -122,7 +122,7 @@ public interface APIinterface {
     Call<Void> friendRequest(@Field("dst") String destination);
 
     @GET("/friend/request")
-    Call<JsonArray> getRequestList();
+    Call<JsonArray> getRequestList(@Header("cookie") String UserSession);
 
     @FormUrlEncoded
     @POST("/friend/accept")
@@ -134,4 +134,8 @@ public interface APIinterface {
 
     @GET("/travel")
     Call<JsonArray> getTravelList();
+
+    @FormUrlEncoded
+    @POST("/user")
+    Call<JsonObject> userInquery(@Field("id") String id);
 }

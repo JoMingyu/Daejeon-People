@@ -116,4 +116,8 @@ public class AddressBook extends BaseActivity {
             this.Dataset.add(i, addresslistItem);
         }
     }
+
+    public void onBackBtnClicked(View view){
+        finish();
+    }
 }
