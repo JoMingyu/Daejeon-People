@@ -75,7 +75,8 @@ public class FriendRequest extends BaseActivity {
                             friendRequestBtn.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
-                                    apIinterface.friendRequest(AES.decrypt(result.get("id").getAsString())).enqueue(new Callback<Void>() {
+                                    Log.d("id", result.get("id").getAsString());
+                                    apIinterface.friendRequest(result.get("id").getAsString()).enqueue(new Callback<Void>() {
                                         @Override
                                         public void onResponse(Call<Void> call, Response<Void> response) {
                                             Toast.makeText(getApplicationContext(), "친구요청 성공", Toast.LENGTH_SHORT).show();
@@ -108,7 +109,7 @@ public class FriendRequest extends BaseActivity {
                     for(int i=0; i < requestList.size(); i++){
                         JsonObject requestItem = requestList.get(i).getAsJsonObject();
                         FriendRequestItems friendRequestItems = new FriendRequestItems();
-                        friendRequestItems.setUserId(AES.decrypt(requestItem.get("requester_id").getAsString()));
+                        friendRequestItems.setUserId(requestItem.get("requester_id").getAsString());
                         friendRequestItems.setUserName(AES.decrypt(requestItem.get("name").getAsString()));
                         if(requestItem.get("phone_number") != null){
                             friendRequestItems.setUserPhoneNum(requestItem.get("phone_number").getAsString());

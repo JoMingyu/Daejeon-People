@@ -70,7 +70,7 @@ public class FriendRequestListAdapter extends RecyclerView.Adapter<FriendRequest
                 apiInterface.refuseFriendRequest(mDataSet.get(position).getUserId()).enqueue(new Callback<Void>() {
                     @Override
                     public void onResponse(Call<Void> call, Response<Void> response) {
-
+                        holder.friendRequestItem.setVisibility(View.GONE);
                     }
 
                     @Override

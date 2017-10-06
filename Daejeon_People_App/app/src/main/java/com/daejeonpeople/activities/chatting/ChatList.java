@@ -1,56 +1,56 @@
 package com.daejeonpeople.activities.chatting;
 
+import android.app.ActionBar;
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 
+import com.androidquery.AQuery;
+import com.androidquery.callback.AjaxCallback;
+import com.androidquery.callback.AjaxStatus;
 import com.daejeonpeople.R;
+import com.daejeonpeople.activities.Main;
+import com.daejeonpeople.activities.base.BaseActivity;
 import com.daejeonpeople.support.network.APIClient;
 import com.daejeonpeople.support.network.APIinterface;
-import com.daejeonpeople.valueobject.ChatListItem;
-import com.google.gson.JsonArray;
+import com.daejeonpeople.support.network.SessionManager;
 import com.google.gson.JsonObject;
 
-import java.util.ArrayList;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+//민지
 
-/**
- * Created by geni on 2017. 10. 4..
- */
-
-public class ChatList extends AppCompatActivity {
+public class ChatList extends BaseActivity {
     private RecyclerView chatList;
-    private ArrayList<ChatListItem> chatListItem = new ArrayList<>();
+    private FloatingActionButton startChattingBtn;
     private APIinterface apiInterface;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.chat_list);
-        chatList=(RecyclerView)findViewById(R.id.chatList);
 
+        chatList=(RecyclerView)findViewById(R.id.chatList);
+        startChattingBtn=(FloatingActionButton)findViewById(R.id.startChatting);
         apiInterface= APIClient.getClient().create(APIinterface.class);
 
-        apiInterface.getTravelList().enqueue(new Callback<JsonArray>() {
+        startChattingBtn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onResponse(Call<JsonArray> call, Response<JsonArray> response) {
-                JsonArray result = response.body();
-                for(int i=0; i<result.size(); i++){
-                    ChatListItem chatListItem = new ChatListItem();
-                    JsonObject jsonObject = result.get(i).getAsJsonObject();
-                    chatListItem.setTitle(jsonObject.get("title").getAsString());
-                    chatListItem.setLastIndex(jsonObject.get("last_idx").getAsInt());
-                }
-            }
-
-            @Override
-            public void onFailure(Call<JsonArray> call, Throwable t) {
-
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), MakeChatting.class));
             }
         });
+    }
+
+    public void onBackBtnClicked(View view){
+        finish();
     }
 }

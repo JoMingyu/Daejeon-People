@@ -79,9 +79,9 @@ public class AddressBook extends BaseActivity {
             }
         });
 
-        apIinterface.getFriend("UserSession=" + dbHelper.getCookie()).enqueue(new Callback<JsonObject>() {
+        apIinterface.getFriendList("UserSession=" + dbHelper.getCookie()).enqueue(new Callback<JsonArray>() {
             @Override
-            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+            public void onResponse(Call<JsonArray> call, Response<JsonArray> response) {
                 if(response.code() == 200) {
                     Log.d("response", "SUCCESS");
                     Gson gson = new Gson();
@@ -103,7 +103,7 @@ public class AddressBook extends BaseActivity {
             }
 
             @Override
-            public void onFailure(Call<JsonObject> call, Throwable t) {
+            public void onFailure(Call<JsonArray> call, Throwable t) {
                 t.printStackTrace();
             }
         });

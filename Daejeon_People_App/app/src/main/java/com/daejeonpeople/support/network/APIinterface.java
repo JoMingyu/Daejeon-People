@@ -115,7 +115,7 @@ public interface APIinterface {
     Call<JsonObject> getDetail(@Query("content_id") int content_id);
 
     @GET("/friend")
-    Call<JsonObject> getFriend(@Header("cookie") String UserSession);
+    Call<JsonArray> getFriendList(@Header("cookie") String UserSession);
 
     @FormUrlEncoded
     @POST("/friend/request")
@@ -138,4 +138,14 @@ public interface APIinterface {
     @FormUrlEncoded
     @POST("/user")
     Call<JsonObject> userInquery(@Field("id") String id);
+
+    @FormUrlEncoded
+    @POST("/travel")
+    Call<JsonObject> makeTravel(@Field("title") String title);
+
+    @FormUrlEncoded
+    @POST("/travel/invite")
+    Call<Void> inviteFriend(@Field("dst") String destination,
+                            @Field("topic") String topic,
+                            @Field("msg") String message);
 }

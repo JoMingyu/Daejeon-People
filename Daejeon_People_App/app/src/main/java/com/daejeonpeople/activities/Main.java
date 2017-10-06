@@ -1,7 +1,6 @@
 package com.daejeonpeople.activities;
 
 import android.content.Intent;
-import android.location.Address;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.app.FragmentTransaction;
@@ -21,8 +20,7 @@ import android.widget.TextView;
 import com.daejeonpeople.R;
 import com.daejeonpeople.activities.account.SignIn;
 import com.daejeonpeople.activities.account.SignUp;
-import com.daejeonpeople.activities.side_menu.ChatList;
-import com.daejeonpeople.activities.side_menu.FriendList;
+import com.daejeonpeople.activities.chatting.ChatList;
 import com.daejeonpeople.activities.side_menu.MyInfo;
 import com.daejeonpeople.activities.side_menu.WishList;
 import com.daejeonpeople.support.database.DBHelper;
