@@ -24,7 +24,7 @@ public class AttractionsListInquiry {
 		int sortType = Integer.parseInt(ctx.request().getParam("sort_type"));
 		int page = Integer.parseInt(ctx.request().getParam("page"));
 		
-		String query = "SELECT * FROM attractions_basic WHERE title LIKE '%" + keyword + "%' ORDER BY ? LIMIT \" + (page - 1) * numOfRows + \", \" + numOfRows";
+		String query = "SELECT * FROM attractions_basic WHERE title LIKE '%" + keyword + "%' ORDER BY ? LIMIT " + (page - 1) * numOfRows + ", " + numOfRows;
 
 		ResultSet rs = null;
 		switch (sortType) {
