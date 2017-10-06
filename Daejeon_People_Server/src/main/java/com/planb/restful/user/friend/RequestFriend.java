@@ -1,6 +1,5 @@
 package com.planb.restful.user.friend;
 
-import com.planb.support.crypto.AES256;
 import com.planb.support.routing.API;
 import com.planb.support.routing.REST;
 import com.planb.support.routing.Route;
@@ -19,7 +18,7 @@ public class RequestFriend implements Handler<RoutingContext> {
 	@Override
 	public void handle(RoutingContext ctx) {
 		String clientId = UserManager.getEncryptedIdFromSession(ctx);
-		String dst = AES256.encrypt(ctx.request().getFormAttribute("dst"));
+		String dst = ctx.request().getFormAttribute("dst");
 		
 		MySQL.executeUpdate("INSERT INTO friend_requests VALUES(?, ?, CURDATE())", clientId, dst);
 		

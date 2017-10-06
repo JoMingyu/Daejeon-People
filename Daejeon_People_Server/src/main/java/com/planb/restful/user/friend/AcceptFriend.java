@@ -27,7 +27,7 @@ public class AcceptFriend implements Handler<RoutingContext> {
 		
 		ResultSet rs = MySQL.executeQuery("SELECT * FROM account WHERE id=?", requesterId);
 		try {
-			if(rs.next()) {
+			if(!rs.next()) {
 				ctx.response().setStatusCode(204).end();
 				ctx.response().close();
 				
