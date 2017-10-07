@@ -1,5 +1,6 @@
 package com.daejeonpeople.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -76,7 +77,7 @@ public class FriendRequest extends BaseActivity {
                                 @Override
                                 public void onClick(View v) {
                                     Log.d("id", result.get("id").getAsString());
-                                    apIinterface.friendRequest(result.get("id").getAsString()).enqueue(new Callback<Void>() {
+                                    apIinterface.friendRequest("UserSession="+dbHelper.getCookie(), result.get("id").getAsString()).enqueue(new Callback<Void>() {
                                         @Override
                                         public void onResponse(Call<Void> call, Response<Void> response) {
                                             Toast.makeText(getApplicationContext(), "친구요청 성공", Toast.LENGTH_SHORT).show();
@@ -122,7 +123,7 @@ public class FriendRequest extends BaseActivity {
                         RequestItem.add(i, friendRequestItems);
                     }
                 }
-                requestListRecyclerView.setAdapter(new FriendRequestListAdapter(RequestItem));
+                requestListRecyclerView.setAdapter(new FriendRequestListAdapter(RequestItem, getApplicationContext()));
                 requestListRecyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
             }
 
@@ -134,6 +135,7 @@ public class FriendRequest extends BaseActivity {
     }
 
     public void onBackBtnClicked(View view){
+        startActivity(new Intent(getApplicationContext(), AddressBook.class));
         finish();
     }
 }

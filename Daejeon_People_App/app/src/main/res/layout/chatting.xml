@@ -1,46 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/Light"
-    android:orientation="vertical">
+    android:background="@color/Light">
 
-    <LinearLayout
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
-        android:gravity="center">
+        android:layout_alignParentTop="true"
+        app:contentInsetStart="0dp">
 
-        <Button
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_margin="18dp"
-            android:background="@drawable/ic_back"/>
-
-        <TextView
-            android:id="@+id/textView2"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="2017년 대선 토론방 외 5명"
-            android:textColor="@color/White"
-            android:textSize="16sp"
-            android:textStyle="bold"/>
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
 
-        <Button
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_margin="18dp"
-            android:background="@drawable/ic_map_white"/>
-    </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1.5"
+                android:gravity="center_vertical"
+                android:weightSum="1">
 
-    <ListView
+                <Button
+                    android:id="@+id/back_btn"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:background="@drawable/ic_back"
+                    android:layout_marginLeft="18dp"
+                    android:layout_weight="0.02"
+                    android:onClick="onBackBtnClicked"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="친구목록"
+                    android:textSize="22sp"
+                    android:textColor="#ffffff"
+                    android:textStyle="bold"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1.5"
+                android:gravity="right">
+                <Button
+                    android:id="@+id/mapViewBtn"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_margin="18dp"
+                    android:background="@drawable/ic_map_white"/>
+            </LinearLayout>
+        </LinearLayout>
+    </android.support.v7.widget.Toolbar>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/chatLog"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
         android:layout_above="@+id/chattingBox"
-        android:id="@+id/chatLog">
-    </ListView>
+        android:layout_below="@+id/toolbar">
+    </android.support.v7.widget.RecyclerView>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="60dp"
@@ -48,15 +82,17 @@
         android:background="@color/White"
         android:id="@+id/chattingBox">
         <EditText
+            android:id="@+id/inputMessage"
             android:layout_width="280dp"
             android:layout_height="wrap_content"
             android:hint="메세지를 입력하세요"
             android:textColorHint="@android:color/darker_gray"
             android:background="@android:color/transparent"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
             android:paddingBottom="20dp"
-            android:id="@+id/inputMessage"/>
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="21dp" />
         <Button
             android:id="@+id/sendBtn"
             android:layout_width="20dp"
@@ -65,4 +101,4 @@
             android:layout_alignParentRight="true"
             android:layout_margin="20dp"/>
     </RelativeLayout>
-</LinearLayout>
+</RelativeLayout>

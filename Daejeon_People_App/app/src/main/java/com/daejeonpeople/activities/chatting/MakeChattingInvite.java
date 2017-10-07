@@ -34,7 +34,7 @@ public class MakeChattingInvite extends BaseActivity {
     private ArrayList<FriendListItem> friendListItems = new ArrayList<>();
     private APIinterface apiInterface;
     private DBHelper dbHelper;
-    private Intent intent;
+    private Intent mIntent;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -46,7 +46,7 @@ public class MakeChattingInvite extends BaseActivity {
 
         apiInterface=APIClient.getClient().create(APIinterface.class);
         dbHelper = DBHelper.getInstance(getApplicationContext(), "CHECK.db", null, 1);
-        intent = getIntent();
+        mIntent = getIntent();
 
         apiInterface.getFriendList("UserSession="+dbHelper.getCookie()).enqueue(new Callback<JsonArray>() {
             @Override
@@ -59,7 +59,7 @@ public class MakeChattingInvite extends BaseActivity {
                         friendListItem.setEmail(result.get("email").getAsString());
                         friendListItem.setPhoneNum(result.get("phone_number").getAsString());
                         friendListItem.setId(result.get("id").getAsString());
-                        friendListItem.setTopic(intent.getStringExtra("topic"));
+                        friendListItem.setTopic(mIntent.getStringExtra("topic"));
 
                         friendListItems.add(i, friendListItem);
                     }
@@ -78,7 +78,9 @@ public class MakeChattingInvite extends BaseActivity {
         nextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), Chatting.class));
+                Intent intent = new Intent(getApplicationContext(), Chatting.class);
+                intent.putExtra("topic", mIntent.getStringExtra("topic"));
+                startActivity(intent);
             }
         });
     }

@@ -52,6 +52,8 @@
         <activity android:name=".activities.Search" />
         <activity android:name=".activities.InvitationTrip"/>
         <activity android:name=".activities.FriendRequest" />
+        <activity android:name=".activities.chatting.MakeChatting"/>
+        <activity android:name=".activities.chatting.MakeChattingInvite" />
         <activity android:name=".activities.chatting.ChatList"/>
         <activity android:name=".activities.side_menu.WishList"/>
         <activity android:name=".activities.Category.Category_detail"

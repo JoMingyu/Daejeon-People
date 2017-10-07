@@ -119,18 +119,21 @@ public interface APIinterface {
 
     @FormUrlEncoded
     @POST("/friend/request")
-    Call<Void> friendRequest(@Field("dst") String destination);
+    Call<Void> friendRequest(@Header("cookie") String UserSession,
+                             @Field("dst") String destination);
 
     @GET("/friend/request")
     Call<JsonArray> getRequestList(@Header("cookie") String UserSession);
 
     @FormUrlEncoded
     @POST("/friend/accept")
-    Call<Void> acceptFriendRequest(@Field("requester_id") String requesterId);
+    Call<Void> acceptFriendRequest(@Header("cookie") String UserSession,
+                                   @Field("requester_id") String requesterId);
 
     @FormUrlEncoded
     @POST("/friend/refuse")
-    Call<Void> refuseFriendRequest(@Field("requester_id") String requesterId);
+    Call<Void> refuseFriendRequest(@Header("cookie") String UserSession,
+                                   @Field("requester_id") String requesterId);
 
     @GET("/travel")
     Call<JsonArray> getTravelList();
@@ -141,11 +144,19 @@ public interface APIinterface {
 
     @FormUrlEncoded
     @POST("/travel")
-    Call<JsonObject> makeTravel(@Field("title") String title);
+    Call<JsonObject> makeTravel(@Header("cookie") String UserSession,
+                                @Field("title") String title);
 
     @FormUrlEncoded
     @POST("/travel/invite")
     Call<Void> inviteFriend(@Field("dst") String destination,
                             @Field("topic") String topic,
                             @Field("msg") String message);
+
+    @FormUrlEncoded
+    @POST("/chat")
+    Call<Void> sendMessage(@Header("cookie") String cookie,
+                           @Field("topic") String topic,
+                           @Field("type") String type,
+                           @Field("content") String content);
 }

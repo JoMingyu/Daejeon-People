@@ -132,8 +132,6 @@ public class Main extends AppCompatActivity
                 @Override
                 public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                     if(response.code() == 200){
-                        Log.d("name", name+"");
-                        Log.d("name", response.body().get("name").toString());
                         name.setText(aes.decrypt(response.body().get("name").toString()));
                         email.setText(aes.decrypt(response.body().get("email").toString()));
                         phonenum.setText(response.body().get("phone_number").toString());

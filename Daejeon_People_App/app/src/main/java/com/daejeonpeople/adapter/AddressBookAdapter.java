@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.daejeonpeople.R;
 import com.daejeonpeople.valueobject.AddressBookListItem;
+import com.daejeonpeople.valueobject.FriendListItem;
 
 import java.util.ArrayList;
 /**
@@ -17,9 +18,27 @@ import java.util.ArrayList;
 
 public class AddressBookAdapter extends RecyclerView.Adapter<AddressBookAdapter.ViewHolder>{
 
-    private ArrayList<AddressBookListItem> aDataset;
-    public AddressBookAdapter(ArrayList<AddressBookListItem> myDataset) {
-        this.aDataset = myDataset;
+    private ArrayList<FriendListItem> mDataSet;
+    public AddressBookAdapter(ArrayList<FriendListItem> dataSet) {
+        this.mDataSet = dataSet;
+    }
+
+    @Override
+    public AddressBookAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.address_book_listview, parent, false);
+        return new AddressBookAdapter.ViewHolder(view);
+    }
+
+    @Override
+    public void onBindViewHolder(AddressBookAdapter.ViewHolder holder, int position) {
+        holder.userName.setText(mDataSet.get(position).getName());
+        holder.userPhonenum.setText(mDataSet.get(position).getPhoneNum());
+        holder.userEmail.setText(mDataSet.get(position).getEmail());
+    }
+
+    @Override
+    public int getItemCount() {
+        return mDataSet.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -33,32 +52,5 @@ public class AddressBookAdapter extends RecyclerView.Adapter<AddressBookAdapter.
             userPhonenum = (TextView)view.findViewById(R.id.userPhoneNum);
             userEmail = (TextView)view.findViewById(R.id.userEmail);
         }
-    }
-
-    public void setData(AddressBookListItem[] datas){
-        ArrayList<AddressBookListItem> arrayListDatas = new ArrayList<>();
-        for(AddressBookListItem data : datas){
-            arrayListDatas.add(data);
-        }
-        aDataset = arrayListDatas;
-    }
-
-    @Override
-    public AddressBookAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.address_book_listview, parent, false);
-        ViewHolder vh = new ViewHolder(v);
-        return vh;
-    }
-
-    @Override
-    public void onBindViewHolder(AddressBookAdapter.ViewHolder holder, int position) {
-        holder.userName.setText(aDataset.get(position).getUser_name());
-        holder.userPhonenum.setText(aDataset.get(position).getPhone_number());
-        holder.userEmail.setText(aDataset.get(position).getUser_email());
-    }
-
-    @Override
-    public int getItemCount() {
-        return aDataset.size();
     }
 }

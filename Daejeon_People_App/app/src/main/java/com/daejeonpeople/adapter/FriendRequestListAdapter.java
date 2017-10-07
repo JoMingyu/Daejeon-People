@@ -1,5 +1,6 @@
 package com.daejeonpeople.adapter;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.daejeonpeople.R;
+import com.daejeonpeople.support.database.DBHelper;
 import com.daejeonpeople.support.network.APIClient;
 import com.daejeonpeople.support.network.APIinterface;
 import com.daejeonpeople.valueobject.FriendRequestItems;
@@ -30,9 +32,11 @@ import retrofit2.Response;
 public class FriendRequestListAdapter extends RecyclerView.Adapter<FriendRequestListAdapter.ViewHolder> {
     private ArrayList<FriendRequestItems> mDataSet;
     private APIinterface apiInterface = APIClient.getClient().create(APIinterface.class);
+    private DBHelper dbHelper;
 
-    public FriendRequestListAdapter(ArrayList<FriendRequestItems> dataSet){
+    public FriendRequestListAdapter(ArrayList<FriendRequestItems> dataSet, Context context){
         this.mDataSet = dataSet;
+        dbHelper = DBHelper.getInstance(context, "CHECK.db", null, 1);
     }
 
     @Override
@@ -50,7 +54,7 @@ public class FriendRequestListAdapter extends RecyclerView.Adapter<FriendRequest
         holder.acceptRequestBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                apiInterface.acceptFriendRequest(mDataSet.get(position).getUserId()).enqueue(new Callback<Void>() {
+                apiInterface.acceptFriendRequest("UserSession="+dbHelper.getCookie(), mDataSet.get(position).getUserId()).enqueue(new Callback<Void>() {
                     @Override
                     public void onResponse(Call<Void> call, Response<Void> response) {
                         Log.d("request", "success");
@@ -67,7 +71,7 @@ public class FriendRequestListAdapter extends RecyclerView.Adapter<FriendRequest
         holder.refuseRequestBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                apiInterface.refuseFriendRequest(mDataSet.get(position).getUserId()).enqueue(new Callback<Void>() {
+                apiInterface.refuseFriendRequest("UserSession="+dbHelper.getCookie(), mDataSet.get(position).getUserId()).enqueue(new Callback<Void>() {
                     @Override
                     public void onResponse(Call<Void> call, Response<Void> response) {
                         holder.friendRequestItem.setVisibility(View.GONE);

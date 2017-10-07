@@ -82,11 +82,20 @@
                 android:textSize="20sp" />
 
             <TextView
+                android:id="@+id/countOfAddress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textColor="@color/Dark"
+                android:layout_marginRight="3dp"
+                android:layout_toLeftOf="@+id/numOfAddress"/>
+
+            <TextView
                 android:id="@+id/numOfAddress"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:text="132개의 연락처"
+                android:text="개의 연락처"
                 android:textColor="@color/Dark"
                 android:textSize="20sp" />
         </RelativeLayout>
@@ -109,8 +118,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/user_name"
-                android:text="문재수"
+                android:id="@+id/myName"
                 android:textSize="25sp"
                 android:textColor="@color/Black"
                 android:layout_toRightOf="@+id/profile"
@@ -119,10 +127,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/phone_number"
-                android:text="010-1234-5678"
+                android:id="@+id/myPhoneNum"
                 android:textColor="@color/Black"
-                android:layout_below="@+id/user_name"
+                android:layout_below="@+id/myName"
                 android:layout_toEndOf="@+id/profile"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="4dp"/>
@@ -131,10 +138,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="4dp"
-                android:text="theminjoo@naver.com"
                 android:textColor="@android:color/darker_gray"
-                android:id="@+id/user_email"
-                android:layout_below="@+id/phone_number"
+                android:id="@+id/myEmail"
+                android:layout_below="@+id/myPhoneNum"
                 android:layout_toRightOf="@+id/profile"
                 />
 
