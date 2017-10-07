@@ -1,15 +1,18 @@
 package com.daejeonpeople.activities.ResultList;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.daejeonpeople.R;
+import com.daejeonpeople.activities.Introduction_Culture;
 import com.daejeonpeople.valueobject.ResultListItem;
 
 import java.util.ArrayList;
@@ -31,6 +34,7 @@ public class ResultListAdapter extends RecyclerView.Adapter<ResultListAdapter.Vi
         public TextView detail_title;
         public TextView detail_address;
         public TextView detail_love;
+        public Button btn_intro;
 
         public ViewHolder(View view) {
             super(view);
@@ -38,6 +42,7 @@ public class ResultListAdapter extends RecyclerView.Adapter<ResultListAdapter.Vi
             detail_title = (TextView)view.findViewById(R.id.detail_title);
             detail_address = (TextView)view.findViewById(R.id.detail_address);
             detail_love = (TextView)view.findViewById(R.id.detail_love);
+            btn_intro = (Button)view.findViewById(R.id.btn_introduction);
         }
     }
 
@@ -49,8 +54,7 @@ public class ResultListAdapter extends RecyclerView.Adapter<ResultListAdapter.Vi
 
     // Create new views (invoked by the layout manager)
     @Override
-    public ResultListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,
-                                                           int viewType) {
+    public ResultListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         // create a new view
         View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.result_list_recyclerview, parent, false);
@@ -73,6 +77,13 @@ public class ResultListAdapter extends RecyclerView.Adapter<ResultListAdapter.Vi
             String imgUrl = arrayListDetail.get(position).getImage().substring(1,arrayListDetail.get(position).getImage().length() - 1);
             Glide.with(holder.itemView.getContext()).load(imgUrl).into(holder.detail_imgview);
         }
+        holder.btn_intro.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), Introduction_Culture.class);
+                v.getContext().startActivity(intent);
+            }
+        });
     }
 
     // Return the size of your dataset (invoked by the layout manager)
