@@ -59,23 +59,18 @@
                     android:hint="텍스트를 입력하세요"
                     android:background="@android:color/transparent"
                     android:layout_marginLeft="20dp" />
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-                        <Button
-                            android:id="@+id/search_btn"
-                            android:layout_centerInParent="true"
-                            android:layout_gravity="center"
-                            android:layout_margin="10dp"
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
-                            android:background="@drawable/ic_serach" />
-                    </RelativeLayout>
-                </LinearLayout>
-
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                    <Button
+                        android:id="@+id/search_btn"
+                        android:layout_gravity="right"
+                        android:layout_margin="10dp"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:background="@drawable/ic_serach" />
             </LinearLayout>
 
         </RelativeLayout>

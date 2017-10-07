@@ -138,6 +138,20 @@ public interface APIinterface {
     @GET("/travel")
     Call<JsonArray> getTravelList();
 
+    @GET("/attractions/list/keyworded")
+    Call<JsonArray> getSearchResult(@Header("cookie") String UserSession,
+                                    @Query("keyword") String keyword,
+                                    @Query("sort_type") int sort_type,
+                                    @Query("page") int page);
+
+    @GET("/attractions/list/keyworded")
+    Call<JsonArray> getSearchResult(@Header("cookie") String UserSession,
+                                    @Query("keyword") String keyword,
+                                    @Query("sort_type") int sort_type,
+                                    @Query("page") int page,
+                                    @Query("x") double x,
+                                    @Query("y") double y);
+
     @FormUrlEncoded
     @POST("/user")
     Call<JsonObject> userInquery(@Field("id") String id);

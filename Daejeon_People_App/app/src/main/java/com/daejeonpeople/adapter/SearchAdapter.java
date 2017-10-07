@@ -82,4 +82,15 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
         return arrayListSearch.size();
     }
 
+    public void updateData(ArrayList<SearchItem> searchItems) {
+        arrayListSearch.clear();
+        arrayListSearch.addAll(searchItems);
+        notifyDataSetChanged();
+    }
+
+    public void removeItem(int position) {
+        arrayListSearch.remove(position);
+        notifyItemRemoved(position);
+    }
+
 }
