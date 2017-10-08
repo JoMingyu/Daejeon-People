@@ -14,6 +14,7 @@ public class CategoryChildrenViewHolder extends ChildViewHolder {
   private TextView childTextView;
   private Button childButton;
   private String childCode;
+  private String category_key;
 
   public CategoryChildrenViewHolder(final View itemView) {
     super(itemView);
@@ -25,6 +26,7 @@ public class CategoryChildrenViewHolder extends ChildViewHolder {
       public void onClick(View view) {
         Intent intent = new Intent(view.getContext(), ResultList.class);
         intent.putExtra("category", childCode);
+        intent.putExtra("category_key", category_key);
         view.getContext().startActivity(intent);
       }
     }) ;
@@ -36,5 +38,9 @@ public class CategoryChildrenViewHolder extends ChildViewHolder {
 
   public void setChildCode(String childCode) {
     this.childCode = childCode;
+  }
+
+  public void setCategory_key(String category_key) {
+    this.category_key = category_key;
   }
 }

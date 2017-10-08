@@ -54,6 +54,7 @@ public class ResultList extends Activity {
 
         final Intent intent = getIntent();
         final String category = intent.getStringExtra("category");
+        final String category_key = intent.getStringExtra("category_key");
         Log.d("checkTheDetail", category);
 
 //        ResultListItem detailItem = new ResultListItem();
@@ -99,7 +100,6 @@ public class ResultList extends Activity {
 
                         for(int i = 0; i < jsonArray.size(); i++){
                             ResultListItem resultListItem = new ResultListItem();
-
                             resultListItem.setContent_id(jsonArray.get(i).getAsJsonObject().get("content_id").getAsInt());
                             Log.d("checkContentid",jsonArray.get(i).getAsJsonObject().get("content_id").toString());
                             resultListItem.setTitle(jsonArray.get(i).getAsJsonObject().get("title").toString().replaceAll("\"", ""));
@@ -121,7 +121,7 @@ public class ResultList extends Activity {
 
                             arrayListResultList.add(resultListItem);
                         }
-                        ResultListAdapter mAdapter = new ResultListAdapter(arrayListResultList, getContext());
+                        ResultListAdapter mAdapter = new ResultListAdapter(arrayListResultList, getContext(), category_key);
                         mRecyclerView.setAdapter(mAdapter);
                     } else {
                         Log.d("Detail_error", "ang gi mo thi");

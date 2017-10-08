@@ -9,9 +9,12 @@ public class Category_Children implements Parcelable {
 
   private String childCode;
 
-  public Category_Children(String name, String childCode) {
+  private String str;
+
+  public Category_Children(String name, String childCode, String str) {
     this.name = name;
     this.childCode = childCode;
+    this.str = str;
   }
 
   protected Category_Children(Parcel in) {
@@ -23,6 +26,8 @@ public class Category_Children implements Parcelable {
   }
 
   public String getCode() {return childCode;}
+
+  public String getStr() {return str;}
 
   @Override
   public boolean equals(Object o) {

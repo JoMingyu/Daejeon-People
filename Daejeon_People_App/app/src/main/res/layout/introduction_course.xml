@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.daejeonpeople.activities.Introduction_Course">
+    tools:context="com.daejeonpeople.activities.Introduction.Introduction_Course">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -16,7 +16,8 @@
         <ImageView
             android:id="@+id/intro_background"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -36,7 +37,8 @@
                     android:layout_width="15dp"
                     android:layout_height="15dp"
                     android:layout_marginLeft="15dp"
-                    android:background="@drawable/ic_back" />
+                    android:background="@drawable/ic_back"
+                    android:onClick="onBackBtnClicked"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -53,10 +55,10 @@
 
                     <ImageButton
                         android:id="@+id/star"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginRight="10dp"
                         android:layout_width="20dp"
                         android:layout_height="20dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="10dp"
                         android:background="@drawable/ic_star_border" />
 
                 </RelativeLayout>
@@ -86,7 +88,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
-                        android:text="문화예술의 전당"
                         android:textColor="@color/White"
                         android:textSize="20sp"
                         android:textStyle="bold" />
@@ -103,40 +104,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
-                        android:text="문화시설"
+                        android:text="여행코스"
                         android:textColor="@color/White"
                         android:textSize="12sp" />
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-
-                        <RelativeLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
-
-                            <ImageButton
-                                android:layout_width="13dp"
-                                android:layout_height="10dp"
-                                android:layout_alignParentRight="true"
-                                android:layout_marginRight="80dp"
-                                android:background="@drawable/ic_w_card" />
-
-                            <ImageButton
-                                android:layout_width="13dp"
-                                android:layout_height="12dp"
-                                android:layout_alignParentRight="true"
-                                android:layout_marginRight="50dp"
-                                android:background="@drawable/ic_g_carriage" />
-
-                            <ImageButton
-                                android:layout_width="13dp"
-                                android:layout_height="12dp"
-                                android:layout_alignParentRight="true"
-                                android:layout_marginRight="20dp"
-                                android:background="@drawable/ic_g_pet" />
-                        </RelativeLayout>
-                    </LinearLayout>
 
                 </LinearLayout>
 
@@ -186,10 +156,9 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/usetime"
+                            android:id="@+id/spend_time"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="2시간 40분"
                             android:textColor="@color/Black"
                             android:textSize="18sp" />
 
@@ -232,10 +201,9 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/holiday"
+                            android:id="@+id/distance"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="7km"
                             android:textColor="@color/Black"
                             android:textSize="18sp" />
 
@@ -282,7 +250,6 @@
                             android:id="@+id/location"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="대전광역시 서구 둔산대로"
                             android:textColor="@color/Black"
                             android:textSize="18sp" />
 

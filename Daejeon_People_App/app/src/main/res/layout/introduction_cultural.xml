@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.daejeonpeople.activities.Introduction_Culture">
+    tools:context="com.daejeonpeople.activities.Introduction.Introduction_Culture">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -16,7 +16,8 @@
         <ImageView
             android:id="@+id/intro_background"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -36,7 +37,8 @@
                     android:layout_width="15dp"
                     android:layout_height="15dp"
                     android:layout_marginLeft="15dp"
-                    android:background="@drawable/ic_back" />
+                    android:background="@drawable/ic_back"
+                    android:onClick="onBackBtnClicked"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -53,11 +55,10 @@
 
                     <ImageButton
                         android:id="@+id/star"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginRight="10dp"
                         android:layout_width="20dp"
                         android:layout_height="20dp"
-                        android:background="@drawable/ic_star_border" />
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="10dp" />
 
                 </RelativeLayout>
             </LinearLayout>
@@ -73,8 +74,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5"
-                android:orientation="vertical"
-                android:background="@drawable/gradation">
+                android:background="@drawable/gradation"
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -86,7 +87,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
-                        android:text="문화예술의 전당"
                         android:textColor="@color/White"
                         android:textSize="20sp"
                         android:textStyle="bold" />
@@ -115,26 +115,26 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content">
 
-                            <ImageButton
+                            <ImageView
+                                android:id="@+id/card"
                                 android:layout_width="13dp"
                                 android:layout_height="10dp"
                                 android:layout_alignParentRight="true"
-                                android:layout_marginRight="80dp"
-                                android:background="@drawable/ic_w_card" />
+                                android:layout_marginRight="80dp" />
 
-                            <ImageButton
+                            <ImageView
+                                android:id="@+id/carriage"
                                 android:layout_width="13dp"
                                 android:layout_height="12dp"
                                 android:layout_alignParentRight="true"
-                                android:layout_marginRight="50dp"
-                                android:background="@drawable/ic_g_carriage" />
+                                android:layout_marginRight="50dp" />
 
-                            <ImageButton
+                            <ImageView
+                                android:id="@+id/pet"
                                 android:layout_width="13dp"
                                 android:layout_height="12dp"
                                 android:layout_alignParentRight="true"
-                                android:layout_marginRight="20dp"
-                                android:background="@drawable/ic_g_pet" />
+                                android:layout_marginRight="20dp" />
                         </RelativeLayout>
                     </LinearLayout>
 
@@ -189,7 +189,7 @@
 
                         <TextView
                             android:id="@+id/call_inquiry"
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="@color/Black"
                             android:textSize="18sp" />
@@ -234,9 +234,8 @@
 
                         <TextView
                             android:id="@+id/usetime"
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="17시 30분 입장 마감"
                             android:textColor="@color/Black"
                             android:textSize="18sp" />
 
@@ -280,9 +279,8 @@
 
                         <TextView
                             android:id="@+id/holiday"
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="5월 8일 ~ 5월 14일"
                             android:textColor="@color/Black"
                             android:textSize="18sp" />
 
@@ -296,97 +294,95 @@
                 </TableRow>
             </TableLayout>
 
-            <TableLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1">
+            <!--<TableLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_weight="1">-->
 
-                <TableRow>
+            <!--<TableRow>-->
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:paddingBottom="25dp"
-                        android:paddingLeft="20dp"
-                        android:paddingRight="20dp"
-                        android:paddingTop="25dp">
+            <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:orientation="horizontal"-->
+            <!--android:paddingBottom="25dp"-->
+            <!--android:paddingLeft="20dp"-->
+            <!--android:paddingRight="20dp"-->
+            <!--android:paddingTop="25dp">-->
 
-                        <ImageView
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
-                            android:background="@drawable/ic_account" />
-                    </LinearLayout>
+            <!--<ImageView-->
+            <!--android:layout_width="25dp"-->
+            <!--android:layout_height="25dp"-->
+            <!--android:background="@drawable/ic_account" />-->
+            <!--</LinearLayout>-->
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:orientation="vertical">
+            <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:orientation="vertical">-->
 
-                        <TextView
-                            android:id="@+id/charge"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="12,000원"
-                            android:textColor="@color/Black"
-                            android:textSize="18sp" />
+            <!--<TextView-->
+            <!--android:id="@+id/charge"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:textColor="@color/Black"-->
+            <!--android:textSize="18sp" />-->
 
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:paddingTop="5dp"
-                            android:text="이용요금"
-                            android:textSize="10sp" />
-                    </LinearLayout>
-                </TableRow>
-            </TableLayout>
+            <!--<TextView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:paddingTop="5dp"-->
+            <!--android:text="이용요금"-->
+            <!--android:textSize="10sp" />-->
+            <!--</LinearLayout>-->
+            <!--</TableRow>-->
+            <!--</TableLayout>-->
 
-            <TableLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1">
+            <!--<TableLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_weight="1">-->
 
-                <TableRow>
+            <!--<TableRow>-->
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:paddingBottom="25dp"
-                        android:paddingLeft="20dp"
-                        android:paddingRight="20dp"
-                        android:paddingTop="25dp">
+            <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:orientation="horizontal"-->
+            <!--android:paddingBottom="25dp"-->
+            <!--android:paddingLeft="20dp"-->
+            <!--android:paddingRight="20dp"-->
+            <!--android:paddingTop="25dp">-->
 
-                        <ImageView
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
-                            android:background="@drawable/ic_required" />
-                    </LinearLayout>
+            <!--<ImageView-->
+            <!--android:layout_width="25dp"-->
+            <!--android:layout_height="25dp"-->
+            <!--android:background="@drawable/ic_required" />-->
+            <!--</LinearLayout>-->
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:orientation="vertical">
+            <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:orientation="vertical">-->
 
-                        <TextView
-                            android:id="@+id/requiredtime"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="1시간 40분"
-                            android:textColor="@color/Black"
-                            android:textSize="18sp" />
+            <!--<TextView-->
+            <!--android:id="@+id/requiredtime"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:textColor="@color/Black"-->
+            <!--android:textSize="18sp" />-->
 
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:paddingTop="5dp"
-                            android:text="소요시간"
-                            android:textSize="10sp" />
-                    </LinearLayout>
-                </TableRow>
-            </TableLayout>
+            <!--<TextView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:paddingTop="5dp"-->
+            <!--android:text="소요시간"-->
+            <!--android:textSize="10sp" />-->
+            <!--</LinearLayout>-->
+            <!--</TableRow>-->
+            <!--</TableLayout>-->
 
             <TableLayout
                 android:layout_width="match_parent"
@@ -421,7 +417,6 @@
                             android:id="@+id/location"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="대전광역시 서구 둔산대로"
                             android:textColor="@color/Black"
                             android:textSize="18sp" />
 

@@ -42,7 +42,7 @@ public class Category_detail_Adapter extends ExpandableRecyclerViewAdapter<Categ
         final Category_Children categoryChildren = ((Category_Parents) group).getItems().get(childIndex);
         holder.setChildrenName(categoryChildren.getName());
         holder.setChildCode(categoryChildren.getCode());
-
+        holder.setCategory_key(categoryChildren.getStr());
     }
 
     @Override
