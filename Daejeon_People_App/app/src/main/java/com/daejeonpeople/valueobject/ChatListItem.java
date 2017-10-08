@@ -8,6 +8,7 @@ public class ChatListItem {
     private String topic;
     private String title;
     private int lastIndex;
+    private String lastMessage;
 
     public String getTopic() {
         return topic;
@@ -31,5 +32,13 @@ public class ChatListItem {
 
     public void setLastIndex(int lastIndex) {
         this.lastIndex = lastIndex;
+    }
+
+    public String getLastMessage() {
+        return lastMessage;
+    }
+
+    public void setLastMessage(String lastMessage) {
+        this.lastMessage = lastMessage;
     }
 }

@@ -1,15 +1,19 @@
 package com.daejeonpeople.valueobject;
 
+import io.realm.RealmList;
+import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
+
 /**
  * Created by geni on 2017. 10. 8..
  */
 
-public class ChatLogItem {
+public class ChatLogItem extends RealmObject {
     private int index;
     private String type;
     private String userName;
     private String content;
-    private String remainingViewsl;
+    private int remainingViews;
 
     public int getIndex() {
         return index;
@@ -43,11 +47,11 @@ public class ChatLogItem {
         this.content = content;
     }
 
-    public String getRemainingViewsl() {
-        return remainingViewsl;
+    public int getRemainingViews() {
+        return remainingViews;
     }
 
-    public void setRemainingViewsl(String remainingViewsl) {
-        this.remainingViewsl = remainingViewsl;
+    public void setRemainingViews(int remainingViews) {
+        this.remainingViews = remainingViews;
     }
 }

@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp">
     <ImageView
         android:layout_width="40dp"
         android:layout_height="40dp"
@@ -39,12 +40,11 @@
         android:layout_toRightOf="@+id/profile"
         android:layout_below="@+id/userName"
         android:background="@drawable/message_box">
-        <EditText
+        <TextView
             android:id="@+id/chatContent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
-            android:padding="15dp"
-            android:hint="나라를 나라답게! 든든한 대통령"/>
+            android:padding="15dp" />
     </RelativeLayout>
 </RelativeLayout>

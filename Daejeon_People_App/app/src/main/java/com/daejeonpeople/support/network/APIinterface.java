@@ -137,7 +137,7 @@ public interface APIinterface {
                                    @Field("requester_id") String requesterId);
 
     @GET("/travel")
-    Call<JsonArray> getTravelList();
+    Call<JsonArray> getTravelList(@Header("cookie") String UserSession);
 
     @GET("/attractions/list/keyworded")
     Call<JsonArray> getSearchResult(@Header("cookie") String UserSession,
@@ -178,5 +178,6 @@ public interface APIinterface {
     @FormUrlEncoded
     @POST("/chat/read")
     Call<JsonArray> inqueryMessages(@Header("cookie") String cookie,
-                                    @Field("topic") String topic);
+                                    @Field("topic") String topic,
+                                    @Field("idx") int index);
 }

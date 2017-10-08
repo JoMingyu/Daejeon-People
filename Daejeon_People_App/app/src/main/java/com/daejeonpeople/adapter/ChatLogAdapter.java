@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.daejeonpeople.R;
+import com.daejeonpeople.support.security.AES;
 import com.daejeonpeople.valueobject.ChatLogItem;
 
 import java.util.ArrayList;
@@ -30,7 +31,7 @@ public class ChatLogAdapter extends RecyclerView.Adapter<ChatLogAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(ChatLogAdapter.ViewHolder holder, int position) {
-        holder.userName.setText(mDataSet.get(position).getUserName());
+        holder.userName.setText(AES.decrypt(mDataSet.get(position).getUserName()));
         holder.chatContent.setText(mDataSet.get(position).getContent());
     }
 

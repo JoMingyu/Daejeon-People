@@ -66,7 +66,7 @@ public class MakeChattingInvite extends BaseActivity {
 
                         InviteListItems.add(i, inviteListItem);
                     }
-                    friendList.setAdapter(new FriendListAdapter(InviteListItems));
+                    friendList.setAdapter(new FriendListAdapter(getApplicationContext(), InviteListItems));
                     friendList.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
                 }
 
@@ -82,8 +82,15 @@ public class MakeChattingInvite extends BaseActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), Chatting.class);
+                intent.putExtra("topic", mIntent.getStringExtra("topic"));
+                intent.putExtra("chatName", mIntent.getStringExtra("chatName"));
                 startActivity(intent);
+                finish();
             }
         });
+    }
+
+    public void onBackBtnClicked(){
+        finish();
     }
 }
