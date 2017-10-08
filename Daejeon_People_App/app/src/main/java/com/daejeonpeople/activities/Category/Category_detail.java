@@ -136,49 +136,49 @@ public class Category_detail extends AppCompatActivity {
 
         if(str.equals("Tourist")) {
             Log.d("알림", "관광지");
-            Category_detail_Data_Factory category_detail_data_factory = new Category_detail_Data_Factory(Tourist, TouristCode);
+            Category_detail_Data_Factory category_detail_data_factory = new Category_detail_Data_Factory(Tourist, TouristCode, str);
             adapter = new Category_detail_Adapter(category_detail_data_factory.makeData());
             recyclerView.setLayoutManager(layoutManager);
             recyclerView.setAdapter(adapter);
         } else if(str.equals("Events")) {
             Log.d("알림", "행사 축제");
-            Category_detail_Data_Factory category_detail_data_factory = new Category_detail_Data_Factory(Events, EventsCode);
+            Category_detail_Data_Factory category_detail_data_factory = new Category_detail_Data_Factory(Events, EventsCode, str);
             adapter = new Category_detail_Adapter(category_detail_data_factory.makeData());
             recyclerView.setLayoutManager(layoutManager);
             recyclerView.setAdapter(adapter);
         } else if(str.equals("Leisure")) {
             Log.d("알림", "레포츠");
-            Category_detail_Data_Factory category_detail_data_factory = new Category_detail_Data_Factory(Leisure, LeisureCode);
+            Category_detail_Data_Factory category_detail_data_factory = new Category_detail_Data_Factory(Leisure, LeisureCode, str);
             adapter = new Category_detail_Adapter(category_detail_data_factory.makeData());
             recyclerView.setLayoutManager(layoutManager);
             recyclerView.setAdapter(adapter);
         } else if(str.equals("Shopping")) {
             Log.d("알림", "쇼핑");
-            Category_detail_Data_Factory category_detail_data_factory = new Category_detail_Data_Factory(Shopping, ShoppingCode);
+            Category_detail_Data_Factory category_detail_data_factory = new Category_detail_Data_Factory(Shopping, ShoppingCode, str);
             adapter = new Category_detail_Adapter(category_detail_data_factory.makeData());
             recyclerView.setLayoutManager(layoutManager);
             recyclerView.setAdapter(adapter);
         } else if(str.equals("Culture")) {
             Log.d("알림", "문화시설");
-            Category_detail_Data_Factory category_detail_data_factory = new Category_detail_Data_Factory(Culture, CultureCode);
+            Category_detail_Data_Factory category_detail_data_factory = new Category_detail_Data_Factory(Culture, CultureCode, str);
             adapter = new Category_detail_Adapter(category_detail_data_factory.makeData());
             recyclerView.setLayoutManager(layoutManager);
             recyclerView.setAdapter(adapter);
         } else if(str.equals("Course")) {
             Log.d("알림", "여행코스");
-            Category_detail_Data_Factory category_detail_data_factory = new Category_detail_Data_Factory(Course, CourseCode);
+            Category_detail_Data_Factory category_detail_data_factory = new Category_detail_Data_Factory(Course, CourseCode, str);
             adapter = new Category_detail_Adapter(category_detail_data_factory.makeData());
             recyclerView.setLayoutManager(layoutManager);
             recyclerView.setAdapter(adapter);
         } else if(str.equals("Accommodation")) {
             Log.d("알림", "숙박 리조트");
-            Category_detail_Data_Factory category_detail_data_factory = new Category_detail_Data_Factory(Accommodation, AccommodationCode);
+            Category_detail_Data_Factory category_detail_data_factory = new Category_detail_Data_Factory(Accommodation, AccommodationCode, str);
             adapter = new Category_detail_Adapter(category_detail_data_factory.makeData());
             recyclerView.setLayoutManager(layoutManager);
             recyclerView.setAdapter(adapter);
         } else if(str.equals("Restaurant")) {
             Log.d("알림", "음식점");
-            Category_detail_Data_Factory category_detail_data_factory = new Category_detail_Data_Factory(Restaurant, RestaurantCode);
+            Category_detail_Data_Factory category_detail_data_factory = new Category_detail_Data_Factory(Restaurant, RestaurantCode, str);
             adapter = new Category_detail_Adapter(category_detail_data_factory.makeData());
             recyclerView.setLayoutManager(layoutManager);
             recyclerView.setAdapter(adapter);
