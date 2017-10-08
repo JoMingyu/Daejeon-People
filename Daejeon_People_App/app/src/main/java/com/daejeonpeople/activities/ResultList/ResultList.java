@@ -99,7 +99,6 @@ public class ResultList extends Activity {
 
                         for(int i = 0; i < jsonArray.size(); i++){
                             ResultListItem resultListItem = new ResultListItem();
-
                             resultListItem.setContent_id(jsonArray.get(i).getAsJsonObject().get("content_id").getAsInt());
                             Log.d("checkContentid",jsonArray.get(i).getAsJsonObject().get("content_id").toString());
                             resultListItem.setTitle(jsonArray.get(i).getAsJsonObject().get("title").toString().replaceAll("\"", ""));

@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.daejeonpeople.R;
-import com.daejeonpeople.activities.Introduction_Culture;
+import com.daejeonpeople.activities.Introduction.Introduction_Culture;
 import com.daejeonpeople.valueobject.ResultListItem;
 
 import java.util.ArrayList;
@@ -77,10 +77,12 @@ public class ResultListAdapter extends RecyclerView.Adapter<ResultListAdapter.Vi
             String imgUrl = arrayListDetail.get(position).getImage().substring(1,arrayListDetail.get(position).getImage().length() - 1);
             Glide.with(holder.itemView.getContext()).load(imgUrl).into(holder.detail_imgview);
         }
+        final ResultListItem resultListItem = new ResultListItem();
         holder.btn_intro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), Introduction_Culture.class);
+                intent.putExtra("content_id_result", resultListItem.getContent_id());
                 v.getContext().startActivity(intent);
             }
         });

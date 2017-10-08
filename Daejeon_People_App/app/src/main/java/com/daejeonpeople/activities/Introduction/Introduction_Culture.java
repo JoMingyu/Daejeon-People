@@ -1,4 +1,4 @@
-package com.daejeonpeople.activities;
+package com.daejeonpeople.activities.Introduction;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -55,6 +55,7 @@ public class Introduction_Culture extends BaseActivity {
     private ImageView back_img, card, carriage, pet;
     private TextView placename, call_inquiry, usetime, holiday, location;
     public boolean star = false;
+    private int content_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,12 +91,9 @@ public class Introduction_Culture extends BaseActivity {
         back_img = (ImageView)findViewById(R.id.intro_background);
         back_btn = (ImageButton)findViewById(R.id.backBtn);
 
-
-
         apIinterface = APIClient.getClient().create(APIinterface.class);
 
-
-        apIinterface.getDetail("UserSession=" + dbHelper.getCookie(), 125994).enqueue(new Callback<JsonObject>() {
+        apIinterface.getDetail("UserSession=" + dbHelper.getCookie(), 128413).enqueue(new Callback<JsonObject>() {
             @Override
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                 if(response.code() == 200) {

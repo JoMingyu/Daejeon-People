@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.daejeonpeople.activities.Introduction_Tourism">
+    tools:context="com.daejeonpeople.activities.Introduction.Introduction_Tourism">
 
     <RelativeLayout
         android:layout_width="match_parent"
