@@ -60,6 +60,7 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
         <activity android:name=".activities.ResultList.ResultList"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity android:name=".activities.Introduction_Culture"/>
     </application>
 
 </manifest>

@@ -1,5 +1,6 @@
 package com.daejeonpeople.activities;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.media.Image;
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.text.Layout;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -15,6 +17,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.daejeonpeople.R;
+import com.daejeonpeople.activities.ResultList.ResultList;
 import com.daejeonpeople.activities.base.BaseActivity;
 import com.daejeonpeople.adapter.AddressBookAdapter;
 import com.daejeonpeople.adapter.WishlistAdapter;
@@ -45,9 +48,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Created by Jeong Minji on 2017-07-03.
  */
 
-public class Introduction_Culture extends AppCompatActivity {
+public class Introduction_Culture extends BaseActivity {
 
-    private ImageButton btn_star;
+    private ImageButton btn_star, back_btn;
     private APIinterface apIinterface;
     private ImageView back_img, card, carriage, pet;
     private TextView placename, call_inquiry, usetime, holiday, location;
@@ -76,8 +79,6 @@ public class Introduction_Culture extends AppCompatActivity {
 
         });
 
-
-
         placename = (TextView)findViewById(R.id.placename);
         call_inquiry = (TextView)findViewById(R.id.call_inquiry);
         usetime = (TextView)findViewById(R.id.usetime);
@@ -86,10 +87,13 @@ public class Introduction_Culture extends AppCompatActivity {
         card = (ImageView)findViewById(R.id.card);
         carriage = (ImageView)findViewById(R.id.carriage);
         pet = (ImageView)findViewById(R.id.pet);
+        back_img = (ImageView)findViewById(R.id.intro_background);
+        back_btn = (ImageButton)findViewById(R.id.backBtn);
+
+
 
         apIinterface = APIClient.getClient().create(APIinterface.class);
 
-        back_img = (ImageView)findViewById(R.id.intro_background);
 
         apIinterface.getDetail("UserSession=" + dbHelper.getCookie(), 125994).enqueue(new Callback<JsonObject>() {
             @Override
@@ -132,6 +136,8 @@ public class Introduction_Culture extends AppCompatActivity {
 
             }
         });
-
+    }
+    public void onBackBtnClicked(View view){
+        finish();
     }
 }

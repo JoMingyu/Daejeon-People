@@ -65,8 +65,7 @@ public class ResultListAdapter extends RecyclerView.Adapter<ResultListAdapter.Vi
 
     // Create new views (invoked by the layout manager)
     @Override
-    public ResultListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,
-                                                           int viewType) {
+    public ResultListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         // create a new view
         View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.result_list_recyclerview, parent, false);
@@ -165,8 +164,6 @@ public class ResultListAdapter extends RecyclerView.Adapter<ResultListAdapter.Vi
             Log.d("알림", "비정상적인 실행");
             Toast.makeText(holder.itemView.getContext(), "비정상적인 실행입니다.", Toast.LENGTH_LONG).show();
         }
-
-
     }
 
     // Return the size of your dataset (invoked by the layout manager)
