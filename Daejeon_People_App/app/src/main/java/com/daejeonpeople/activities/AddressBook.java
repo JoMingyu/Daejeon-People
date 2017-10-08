@@ -9,6 +9,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -131,4 +132,5 @@ public class AddressBook extends BaseActivity {
     public void onBackBtnClicked(View view){
         finish();
     }
+
 }

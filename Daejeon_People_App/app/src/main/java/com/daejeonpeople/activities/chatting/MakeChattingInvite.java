@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.daejeonpeople.R;
@@ -14,7 +15,9 @@ import com.daejeonpeople.adapter.FriendListAdapter;
 import com.daejeonpeople.support.database.DBHelper;
 import com.daejeonpeople.support.network.APIClient;
 import com.daejeonpeople.support.network.APIinterface;
+import com.daejeonpeople.support.security.AES;
 import com.daejeonpeople.valueobject.FriendListItem;
+import com.daejeonpeople.valueobject.InviteListItem;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
@@ -31,7 +34,7 @@ import retrofit2.Response;
 public class MakeChattingInvite extends BaseActivity {
     private TextView nextBtn;
     private RecyclerView friendList;
-    private ArrayList<FriendListItem> friendListItems = new ArrayList<>();
+    private ArrayList<InviteListItem> InviteListItems = new ArrayList<>();
     private APIinterface apiInterface;
     private DBHelper dbHelper;
     private Intent mIntent;
@@ -54,16 +57,16 @@ public class MakeChattingInvite extends BaseActivity {
                 if(response.body() != null){
                     for(int i=0; i<response.body().size(); i++){
                         JsonObject result = response.body().get(i).getAsJsonObject();
-                        FriendListItem friendListItem = new FriendListItem();
-                        friendListItem.setName(result.get("name").getAsString());
-                        friendListItem.setEmail(result.get("email").getAsString());
-                        friendListItem.setPhoneNum(result.get("phone_number").getAsString());
-                        friendListItem.setId(result.get("id").getAsString());
-                        friendListItem.setTopic(mIntent.getStringExtra("topic"));
+                        InviteListItem inviteListItem = new InviteListItem();
+                        inviteListItem.setName(AES.decrypt(result.get("name").getAsString()));
+                        inviteListItem.setEmail(AES.decrypt(result.get("email").getAsString()));
+                        inviteListItem.setPhoneNum(result.get("phone_number").getAsString());
+                        inviteListItem.setId(result.get("id").getAsString());
+                        inviteListItem.setTopic(mIntent.getStringExtra("topic"));
 
-                        friendListItems.add(i, friendListItem);
+                        InviteListItems.add(i, inviteListItem);
                     }
-                    friendList.setAdapter(new FriendListAdapter(friendListItems));
+                    friendList.setAdapter(new FriendListAdapter(InviteListItems));
                     friendList.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
                 }
 
@@ -71,7 +74,7 @@ public class MakeChattingInvite extends BaseActivity {
 
             @Override
             public void onFailure(Call<JsonArray> call, Throwable t) {
-
+                t.printStackTrace();
             }
         });
 
