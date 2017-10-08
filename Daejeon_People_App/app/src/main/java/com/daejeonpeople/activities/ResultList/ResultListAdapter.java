@@ -14,14 +14,14 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.daejeonpeople.R;
-import com.daejeonpeople.activities.Introduction_Accomodation;
-import com.daejeonpeople.activities.Introduction_Course;
-import com.daejeonpeople.activities.Introduction_Culture;
-import com.daejeonpeople.activities.Introduction_Festival;
-import com.daejeonpeople.activities.Introduction_Leisure;
-import com.daejeonpeople.activities.Introduction_Restaurant;
-import com.daejeonpeople.activities.Introduction_Shopping;
-import com.daejeonpeople.activities.Introduction_Tourism;
+import com.daejeonpeople.activities.Introduction.Introduction_Culture;
+import com.daejeonpeople.activities.Introduction.Introduction_Course;
+import com.daejeonpeople.activities.Introduction.Introduction_Accomodation;
+import com.daejeonpeople.activities.Introduction.Introduction_Festival;
+import com.daejeonpeople.activities.Introduction.Introduction_Leisure;
+import com.daejeonpeople.activities.Introduction.Introduction_Restaurant;
+import com.daejeonpeople.activities.Introduction.Introduction_Shopping;
+import com.daejeonpeople.activities.Introduction.Introduction_Tourism;
 import com.daejeonpeople.valueobject.ResultListItem;
 
 import java.util.ArrayList;

@@ -64,7 +64,7 @@
                                 android:textStyle="bold" />
 
                             <Button
-                                android:id="@+id/btn_introduction"
+                                android:id="@+id/btn_detail"
                                 android:layout_width="120dp"
                                 android:layout_height="36dp"
                                 android:layout_alignParentRight="true"

@@ -37,6 +37,7 @@ import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Map;
 
 import retrofit2.Call;
@@ -56,6 +57,8 @@ public class Introduction_Culture extends BaseActivity {
     private TextView placename, call_inquiry, usetime, holiday, location;
     public boolean star = false;
     private int content_id;
+    private Object value;
+    private String key;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,9 +94,18 @@ public class Introduction_Culture extends BaseActivity {
         back_img = (ImageView)findViewById(R.id.intro_background);
         back_btn = (ImageButton)findViewById(R.id.backBtn);
 
+        Intent intent = getIntent();
+        Bundle b = intent.getExtras();
+        Iterator<String> iter = b.keySet().iterator();
+        while(iter.hasNext()) {
+            key = iter.next();
+            value = b.get(key);
+            Log.d("TAG", "key : "+key+", value : " + value.toString());
+        }
+
         apIinterface = APIClient.getClient().create(APIinterface.class);
 
-        apIinterface.getDetail("UserSession=" + dbHelper.getCookie(), 128413).enqueue(new Callback<JsonObject>() {
+        apIinterface.getDetail("UserSession=" + dbHelper.getCookie(), (Integer)value).enqueue(new Callback<JsonObject>() {
             @Override
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                 if(response.code() == 200) {
