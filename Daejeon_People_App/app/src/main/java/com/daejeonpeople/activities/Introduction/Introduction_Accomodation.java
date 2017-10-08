@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.daejeonpeople.R;
+import com.daejeonpeople.activities.MapView;
 import com.daejeonpeople.activities.ResultList.ResultList;
 import com.daejeonpeople.activities.base.BaseActivity;
 import com.daejeonpeople.adapter.AddressBookAdapter;
@@ -29,6 +30,7 @@ import com.daejeonpeople.support.security.AES;
 import com.daejeonpeople.valueobject.CulturalItem;
 import com.daejeonpeople.valueobject.FriendListItem;
 import com.daejeonpeople.valueobject.WishlistItem;
+import com.google.android.gms.maps.MapFragment;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -64,6 +66,8 @@ public class Introduction_Accomodation extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.introduction_accomodation);
+
+        getFragmentManager().beginTransaction().replace(R.id.placemap, new MapFragment());
 
         DBHelper dbHelper = DBHelper.getInstance(getApplicationContext(), "CHECK.db", null, 1);
 

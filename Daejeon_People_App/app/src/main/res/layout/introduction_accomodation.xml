@@ -436,13 +436,20 @@
                             android:textColor="@color/Black"
                             android:textSize="18sp" />
 
-                        <ImageView
+                        <fragment
                             android:id="@+id/placemap"
-                            android:layout_width="250dp"
-                            android:layout_height="150dp"
-                            android:layout_marginBottom="20dp"
+                            android:layout_width="300dp"
+                            android:layout_height="180dp"
                             android:layout_marginTop="20dp"
-                            android:background="@drawable/map_culturalfacilities" />
+                            android:layout_marginBottom="20dp"/>
+
+                        <!--<ImageView-->
+                            <!--android:id="@+id/placemap"-->
+                            <!--android:layout_width="250dp"-->
+                            <!--android:layout_height="150dp"-->
+                            <!--android:layout_marginBottom="20dp"-->
+                            <!--android:layout_marginTop="20dp"-->
+                            <!--android:background="@drawable/map_culturalfacilities" />-->
                     </LinearLayout>
                 </TableRow>
             </TableLayout>
