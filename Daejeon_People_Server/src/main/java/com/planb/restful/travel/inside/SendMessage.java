@@ -42,16 +42,12 @@ public class SendMessage implements Handler<RoutingContext> {
 	
 	private void sendTextMessage(String clientId, String topic, String content) {
 		ResultSet userInfoSet = MySQL.executeQuery("SELECT * FROM account WHERE id=?", clientId);
-		try {
-			Firebase.sendByTopic("새로운 메시지가 도착했습니다", userInfoSet.getString("name") + " : " + content, topic);
-		} catch (SQLException e1) {
-			e1.printStackTrace();
-		}
 		
 		try {
 			assert userInfoSet != null;
 			userInfoSet.next();
 			MySQL_Chat.executeUpdate("INSERT INTO " + topic + "(remaining_views, type, name, content) VALUES(?, ?, ?, ?)", ChatRoomManager.getUserCountInRoom(topic), "text", userInfoSet.getString("name"), content);
+			Firebase.sendByTopic("새로운 메시지가 도착했습니다", userInfoSet.getString("name") + " : " + content, topic);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
