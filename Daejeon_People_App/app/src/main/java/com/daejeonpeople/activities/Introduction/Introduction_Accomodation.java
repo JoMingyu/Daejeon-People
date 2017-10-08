@@ -37,6 +37,7 @@ import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Map;
 
 import retrofit2.Call;
@@ -52,15 +53,17 @@ public class Introduction_Accomodation extends BaseActivity {
 
     private ImageButton btn_star, back_btn;
     private APIinterface apIinterface;
-    private ImageView back_img, card, carriage, pet;
-    private TextView placename, call_inquiry, checkin, checkout, benekia, goodstay, roomcount, location;
+    private ImageView back_img;
+    private TextView placename, call_inquiry, checkin, checkout, benikia, goodstay, accomcount, location;
     public boolean star = false;
     private int content_id;
+    private Object value;
+    private String key;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.introduction_cultural);
+        setContentView(R.layout.introduction_accomodation);
 
         DBHelper dbHelper = DBHelper.getInstance(getApplicationContext(), "CHECK.db", null, 1);
 
@@ -81,16 +84,28 @@ public class Introduction_Accomodation extends BaseActivity {
         });
 
         placename = (TextView)findViewById(R.id.placename);
+        call_inquiry = (TextView)findViewById(R.id.call_inquiry);
+        checkin = (TextView)findViewById(R.id.checkin);
+        checkout = (TextView)findViewById(R.id.checkout);
+        benikia = (TextView)findViewById(R.id.benikia);
+        goodstay = (TextView)findViewById(R.id.goodstay);
+        accomcount = (TextView)findViewById(R.id.accomcount);
         location = (TextView)findViewById(R.id.location);
-        card = (ImageView)findViewById(R.id.card);
-        carriage = (ImageView)findViewById(R.id.carriage);
-        pet = (ImageView)findViewById(R.id.pet);
         back_img = (ImageView)findViewById(R.id.intro_background);
         back_btn = (ImageButton)findViewById(R.id.backBtn);
 
+        Intent intent = getIntent();
+        Bundle b = intent.getExtras();
+        Iterator<String> iter = b.keySet().iterator();
+        while(iter.hasNext()) {
+            key = iter.next();
+            value = b.get(key);
+            Log.d("TAG", "key : "+key+", value : " + value.toString());
+        }
+
         apIinterface = APIClient.getClient().create(APIinterface.class);
 
-        apIinterface.getDetail("UserSession=" + dbHelper.getCookie(), 129723).enqueue(new Callback<JsonObject>() {
+        apIinterface.getDetail("UserSession=" + dbHelper.getCookie(), (Integer)value).enqueue(new Callback<JsonObject>() {
             @Override
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                 if(response.code() == 200) {
@@ -98,26 +113,12 @@ public class Introduction_Accomodation extends BaseActivity {
 
                     placename.setText(response.body().get("title").getAsString());
                     call_inquiry.setText(response.body().get("info_center").getAsString());
-
+                    checkin.setText(response.body().get("checkin_time").getAsString());
+                    checkout.setText(response.body().get("checkout_time").getAsString());
+                    benikia.setText(response.body().get("benikia").getAsString());
+                    goodstay.setText(response.body().get("goodstay").getAsString());
+                    accomcount.setText(response.body().get("accomcount").getAsString());
                     location.setText(response.body().get("address").getAsString());
-
-                    if(response.body().get("credit_card").getAsString().equals("없음")) {
-                        card.setImageResource(R.drawable.ic_g_card);
-                    } else {
-                        card.setImageResource(R.drawable.ic_w_card);
-                    }
-
-                    if(response.body().get("baby_carriage").getAsString().equals("없음")) {
-                        carriage.setImageResource(R.drawable.ic_g_carriage);
-                    } else {
-                        carriage.setImageResource(R.drawable.ic_w_carriage);
-                    }
-
-                    if(response.body().get("pet").getAsString().equals("없음")) {
-                        pet.setImageResource(R.drawable.ic_g_pet);
-                    } else {
-                        pet.setImageResource(R.drawable.ic_w_pet);
-                    }
 
                     Glide.with(getApplicationContext()).load(response.body().get("image").getAsString()).into(back_img);
                 } else if(response.code() == 0) {

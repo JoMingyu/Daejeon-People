@@ -16,7 +16,8 @@
         <ImageView
             android:id="@+id/intro_background"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -36,7 +37,8 @@
                     android:layout_width="15dp"
                     android:layout_height="15dp"
                     android:layout_marginLeft="15dp"
-                    android:background="@drawable/ic_back" />
+                    android:background="@drawable/ic_back"
+                    android:onClick="onBackBtnClicked"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -86,7 +88,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
-                        android:text="문화예술의 전당"
                         android:textColor="@color/White"
                         android:textSize="20sp"
                         android:textStyle="bold" />
@@ -103,7 +104,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
-                        android:text="문화시설"
+                        android:text="식당"
                         android:textColor="@color/White"
                         android:textSize="12sp" />
 
@@ -116,25 +117,11 @@
                             android:layout_height="wrap_content">
 
                             <ImageButton
-                                android:layout_width="13dp"
-                                android:layout_height="10dp"
-                                android:layout_alignParentRight="true"
-                                android:layout_marginRight="80dp"
-                                android:background="@drawable/ic_w_card" />
-
-                            <ImageButton
+                                android:id="@+id/card"
                                 android:layout_width="13dp"
                                 android:layout_height="12dp"
                                 android:layout_alignParentRight="true"
-                                android:layout_marginRight="50dp"
-                                android:background="@drawable/ic_g_carriage" />
-
-                            <ImageButton
-                                android:layout_width="13dp"
-                                android:layout_height="12dp"
-                                android:layout_alignParentRight="true"
-                                android:layout_marginRight="20dp"
-                                android:background="@drawable/ic_g_pet" />
+                                android:layout_marginRight="20dp" />
                         </RelativeLayout>
                     </LinearLayout>
 
@@ -236,7 +223,6 @@
                             android:id="@+id/usetime"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="17시 30분 입장 마감"
                             android:textColor="@color/Black"
                             android:textSize="18sp" />
 
@@ -282,7 +268,6 @@
                             android:id="@+id/holiday"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="5월 8일 ~ 5월 14일"
                             android:textColor="@color/Black"
                             android:textSize="18sp" />
 
@@ -325,10 +310,9 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/charge"
+                            android:id="@+id/rep_menu"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="12,000원"
                             android:textColor="@color/Black"
                             android:textSize="18sp" />
 
@@ -336,7 +320,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:paddingTop="5dp"
-                            android:text="이용요금"
+                            android:text="대표메뉴"
                             android:textSize="10sp" />
                     </LinearLayout>
                 </TableRow>
@@ -375,7 +359,6 @@
                             android:id="@+id/location"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="대전광역시 서구 둔산대로"
                             android:textColor="@color/Black"
                             android:textSize="18sp" />
 
