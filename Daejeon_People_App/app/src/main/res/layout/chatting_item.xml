@@ -14,7 +14,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
-        android:id="@+id/friend_name"
+        android:id="@+id/userName"
         android:text="문재수"
         android:textColor="@color/White"
         android:layout_alignParentTop="true"
@@ -23,10 +23,11 @@
         android:layout_toRightOf="@+id/profile"/>
 
     <TextView
+        android:id="@+id/sendTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/friend_name"
+        android:layout_toRightOf="@+id/userName"
         android:paddingTop="8dp"
         android:layout_marginLeft="5dp"
         android:text="09:30"
@@ -36,10 +37,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/profile"
-        android:layout_below="@+id/friend_name"
+        android:layout_below="@+id/userName"
         android:background="@drawable/message_box">
         <EditText
-            android:id="@+id/chat_content"
+            android:id="@+id/chatContent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"

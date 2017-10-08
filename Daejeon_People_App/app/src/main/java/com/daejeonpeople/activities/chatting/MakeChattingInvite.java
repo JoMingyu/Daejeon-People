@@ -82,7 +82,6 @@ public class MakeChattingInvite extends BaseActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), Chatting.class);
-                intent.putExtra("topic", mIntent.getStringExtra("topic"));
                 startActivity(intent);
             }
         });

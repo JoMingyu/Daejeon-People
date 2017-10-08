@@ -174,4 +174,9 @@ public interface APIinterface {
                            @Field("topic") String topic,
                            @Field("type") String type,
                            @Field("content") String content);
+
+    @FormUrlEncoded
+    @POST("/chat/read")
+    Call<JsonArray> inqueryMessages(@Header("cookie") String cookie,
+                                    @Field("topic") String topic);
 }

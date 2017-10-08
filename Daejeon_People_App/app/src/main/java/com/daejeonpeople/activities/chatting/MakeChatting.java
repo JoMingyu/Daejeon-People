@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.daejeonpeople.R;
 import com.daejeonpeople.activities.base.BaseActivity;
 import com.daejeonpeople.support.database.DBHelper;
+import com.daejeonpeople.support.firebase.Firebase;
 import com.daejeonpeople.support.network.APIClient;
 import com.daejeonpeople.support.network.APIinterface;
 import com.google.gson.JsonObject;
@@ -48,7 +49,7 @@ public class MakeChatting extends BaseActivity {
                     @Override
                     public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                         Intent intent = new Intent(getApplicationContext(), MakeChattingInvite.class);
-                        intent.putExtra("topic", response.body().get("topic").getAsString());
+                        Firebase.subscribeTopic(response.body().get("topic").getAsString());
                         startActivity(intent);
                     }
 
