@@ -24,7 +24,7 @@ public class AttractionsListInquiry {
 		int sortType = Integer.parseInt(ctx.request().getParam("sort_type"));
 		int page = Integer.parseInt(ctx.request().getParam("page"));
 		
-		String query = "SELECT * FROM attractions_basic WHERE title LIKE '%" + keyword + "%' ORDER BY ? LIMIT " + (page - 1) * numOfRows + ", " + numOfRows;
+		String query = "SELECT * FROM attractions_basic WHERE title LIKE '%" + keyword + "%' ORDER BY ? LIMIT " + (page - 1) * numOfRows + ", " + page * numOfRows;
 
 		ResultSet rs = null;
 		switch (sortType) {
@@ -61,11 +61,11 @@ public class AttractionsListInquiry {
 
 		String query = null;
 		if(category.length() == 3) {
-			query = "SELECT * FROM attractions_basic WHERE cat1=? ORDER BY ? LIMIT " + (page - 1) * numOfRows + ", " + numOfRows;
+			query = "SELECT * FROM attractions_basic WHERE cat1=? ORDER BY ? LIMIT " + (page - 1) * numOfRows + ", " + page * numOfRows;
 		} else if(category.length() == 5) {
-			query = "SELECT * FROM attractions_basic WHERE cat2=? ORDER BY ? LIMIT " + (page - 1) * numOfRows + ", " + numOfRows;
+			query = "SELECT * FROM attractions_basic WHERE cat2=? ORDER BY ? LIMIT " + (page - 1) * numOfRows + ", " + page * numOfRows;
 		} else {
-			query ="SELECT * FROM attractions_basic WHERE cat3=? ORDER BY ? LIMIT " + (page - 1) * numOfRows + ", " + numOfRows;
+			query ="SELECT * FROM attractions_basic WHERE cat3=? ORDER BY ? LIMIT " + (page - 1) * numOfRows + ", " + page * numOfRows;
 		}
 		ResultSet rs = null;
 
@@ -101,7 +101,7 @@ public class AttractionsListInquiry {
 		int sortType = Integer.parseInt(ctx.request().getParam("sort_type"));
 		int page = Integer.parseInt(ctx.request().getParam("page"));
 		
-		String query = "SELECT * FROM ? WHERE content_type_id=" + contentTypeId + " ORDER BY ? LIMIT " + (page - 1) * numOfRows + ", " + numOfRows;
+		String query = "SELECT * FROM ? WHERE content_type_id=" + contentTypeId + " ORDER BY ? LIMIT " + (page - 1) * numOfRows + ", " + page * numOfRows;
 		ResultSet rs = null;
 		
 		switch(sortType) {
@@ -135,9 +135,8 @@ public class AttractionsListInquiry {
 		// content type 미지정 : 모든 타입에 대해 정보 얻어오기
 		int sortType = Integer.parseInt(ctx.request().getParam("sort_type"));
 		int page = Integer.parseInt(ctx.request().getParam("page"));
-		int numOfRows = AttractionsConfig.NUM_OF_ROWS;
 		
-		String query = "SELECT * FROM ? ORDER BY ? LIMIT " + (page - 1) * numOfRows + ", " + numOfRows;
+		String query = "SELECT * FROM ? ORDER BY ? LIMIT " + (page - 1) * numOfRows + ", " + page * numOfRows;
 		ResultSet rs = null;
 		
 		switch(sortType) {
