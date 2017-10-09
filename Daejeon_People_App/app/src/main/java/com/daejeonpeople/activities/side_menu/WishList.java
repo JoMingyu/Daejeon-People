@@ -24,8 +24,11 @@ import com.daejeonpeople.support.network.APIinterface;
 import com.daejeonpeople.support.network.SessionManager;
 import com.daejeonpeople.support.views.SnackbarManager;
 import com.daejeonpeople.valueobject.WishlistItem;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -66,43 +69,57 @@ public class WishList extends BaseActivity {
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        Dataset = new ArrayList<>();
-        myAdapter = new WishlistAdapter(Dataset);
-        mRecyclerView.setAdapter(myAdapter);
-
 
 
         apIinterface = APIClient.getClient().create(APIinterface.class);
-        apIinterface.getWish("UserSession="+dbHelper.getCookie()).enqueue(new Callback<JsonObject>() {
+        apIinterface.getWish("UserSession="+dbHelper.getCookie()).enqueue(new Callback<JsonArray>() {
             @Override
-            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+            public void onResponse(Call<JsonArray> call, Response<JsonArray> response) {
                 if(response.code()== 200) {
                     Log.d("response", "SUCCESS");
+                    JsonArray jsonArray = response.body();
 
+                    for(int i = 0; i < jsonArray.size(); i++){
+                        WishlistItem wishlistItem = new WishlistItem();
 
-                    response.body();
+                        wishlistItem.setTitle(jsonArray.get(i).getAsJsonObject().get("title").toString());
+                        wishlistItem.setAddress(jsonArray.get(i).getAsJsonObject().get("address").toString());
+                        wishlistItem.setBack_image(jsonArray.get(i).getAsJsonObject().get("image").toString());
+
+                        Dataset.add(wishlistItem);
+                    }
+
+//                    Gson gson = new Gson();
+//                    WishlistItem[] items = gson.fromJson(response.body().toString(), WishlistItem[].class);
+//                    ((WishlistAdapter)mRecyclerView.getAdapter()).setData(items);
+//                    mRecyclerView.getAdapter().notifyDataSetChanged();
+
+                    Dataset = new ArrayList<>();
+                    myAdapter = new WishlistAdapter(Dataset);
+                    mRecyclerView.setAdapter(myAdapter);
+
                 } else if(response.code() == 204) {
                     Log.d("response", "FAIL");
                 }
             }
 
             @Override
-            public void onFailure(Call<JsonObject> call, Throwable t) {
-
+            public void onFailure(Call<JsonArray> call, Throwable t) {
+                t.printStackTrace();
             }
         });
 
-        for(int i = 0; i < 5; i++) {
-            WishlistItem wishlistItem = new WishlistItem();
-            wishlistItem.setDate("2017/05/08");
-            wishlistItem.setAddress("부산광역시 기장군 기장읍");
-            wishlistItem.setTitle("계족산 맨발 축제");
-            wishlistItem.setBack_image(R.id.back_image);
-            wishlistItem.setLove(150);
-            this.Dataset.add(i, wishlistItem);
-        }
+//        for(int i = 0; i < 5; i++) {
+//            WishlistItem wishlistItem = new WishlistItem();
+//            wishlistItem.setDate("2017/05/08");
+//            wishlistItem.setAddress("부산광역시 기장군 기장읍");
+//            wishlistItem.setTitle("계족산 맨발 축제");
+//            wishlistItem.setBack_image(R.id.back_image);
+//            wishlistItem.setLove(150);
+//            this.Dataset.add(i, wishlistItem);
+//        }
 
-        backBtn = (Button) findViewById(R.id.back_btn);
+        backBtn = (Button) findViewById(R.id.wishlist_back_btn);
 
         AQuery aq = new AQuery(getApplicationContext());
 

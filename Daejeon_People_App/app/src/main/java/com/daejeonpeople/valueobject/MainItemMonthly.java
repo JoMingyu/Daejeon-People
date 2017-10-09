@@ -13,6 +13,7 @@ public class MainItemMonthly {
     private int content_id;
     private String title;
     private int wish_count;
+    private String eng_title;
 
     public boolean getWish () {
         return wish;
@@ -60,5 +61,13 @@ public class MainItemMonthly {
 
     public void setWish_count(int wish_count) {
         this.wish_count = wish_count;
+    }
+
+    public String getEng_title() {
+        return eng_title;
+    }
+
+    public void setEng_title(String eng_title){
+        this.eng_title = eng_title;
     }
 }

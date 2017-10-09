@@ -1,5 +1,7 @@
 package com.daejeonpeople.support.network;
 
+import com.daejeonpeople.valueobject.CulturalItem;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 import retrofit2.Call;
@@ -70,13 +72,26 @@ public interface APIinterface {
     Call<Void> doFindIdVerify(@Field("email") String email,
                               @Field("code") String code);
 
-    @FormUrlEncoded
-    @GET("attractions/list/total")
-    Call<JsonObject> getAttractionsListTotal();
-
-    @FormUrlEncoded
     @GET("attractions/list")
-    Call<JsonObject> getAttractionsList();
+    Call<JsonObject> getAttractionsList(@Header("cookie") String UserSession,
+                                        @Query("content_type_id") int content_type,
+                                        @Query("sort_type") int sort_type,
+                                        @Query("page") int page);
+
+    @GET("attractions/list/total")
+    Call<JsonObject> getAttractionsListTotal(@Header("cookie") String UserSession,
+                                             @Query("sort_type") int sort_type,
+                                             @Query("page") int page);
+
+    @GET("attractions/list/category")
+    Call<JsonArray> getFilteringPage( @Header("cookie") String UserSession,
+                                       @Query("category") String category,
+                                       @Query("sort_type") int sort_type,
+                                       @Query("page") int page);
+
+    @GET("/attractions/result_list")
+    Call<JsonObject> getAttractionsDetail();
+
 
     @GET("/user")
     Call<JsonObject> getUserInfo();
@@ -90,5 +105,79 @@ public interface APIinterface {
                                  @Query("monthly_count") int monthly_count);
 
     @GET("/wish")
-    Call<JsonObject> getWish(@Header("cookie") String UserSession);
+    Call<JsonArray> getWish(@Header("cookie") String UserSession);
+
+    @FormUrlEncoded
+    @POST("/wish")
+    Call<Void> addWish(@Field("content_id") int content_id);
+
+    @GET("/attractions/detail")
+    Call<JsonObject> getDetail( @Header("cookie") String UserSession,
+                                @Query("content_id") int content_id);
+
+    @GET("/friend")
+    Call<JsonArray> getFriendList(@Header("cookie") String UserSession);
+
+    @FormUrlEncoded
+    @POST("/friend/request")
+    Call<Void> friendRequest(@Header("cookie") String UserSession,
+                             @Field("dst") String destination);
+
+    @GET("/friend/request")
+    Call<JsonArray> getRequestList(@Header("cookie") String UserSession);
+
+    @FormUrlEncoded
+    @POST("/friend/accept")
+    Call<Void> acceptFriendRequest(@Header("cookie") String UserSession,
+                                   @Field("requester_id") String requesterId);
+
+    @FormUrlEncoded
+    @POST("/friend/refuse")
+    Call<Void> refuseFriendRequest(@Header("cookie") String UserSession,
+                                   @Field("requester_id") String requesterId);
+
+    @GET("/travel")
+    Call<JsonArray> getTravelList(@Header("cookie") String UserSession);
+
+    @GET("/attractions/list/keyworded")
+    Call<JsonArray> getSearchResult(@Header("cookie") String UserSession,
+                                    @Query("keyword") String keyword,
+                                    @Query("sort_type") int sort_type,
+                                    @Query("page") int page);
+
+    @GET("/attractions/list/keyworded")
+    Call<JsonArray> getSearchResult(@Header("cookie") String UserSession,
+                                    @Query("keyword") String keyword,
+                                    @Query("sort_type") int sort_type,
+                                    @Query("page") int page,
+                                    @Query("x") double x,
+                                    @Query("y") double y);
+
+    @FormUrlEncoded
+    @POST("/user")
+    Call<JsonObject> userInquery(@Field("id") String id);
+
+    @FormUrlEncoded
+    @POST("/travel")
+    Call<JsonObject> makeTravel(@Header("cookie") String UserSession,
+                                @Field("title") String title);
+
+    @FormUrlEncoded
+    @POST("/travel/invite")
+    Call<Void> inviteFriend(@Field("dst") String destination,
+                            @Field("topic") String topic,
+                            @Field("msg") String message);
+
+    @FormUrlEncoded
+    @POST("/chat")
+    Call<Void> sendMessage(@Header("cookie") String cookie,
+                           @Field("topic") String topic,
+                           @Field("type") String type,
+                           @Field("content") String content);
+
+    @FormUrlEncoded
+    @POST("/chat/read")
+    Call<JsonArray> inqueryMessages(@Header("cookie") String cookie,
+                                    @Field("topic") String topic,
+                                    @Field("idx") int index);
 }
