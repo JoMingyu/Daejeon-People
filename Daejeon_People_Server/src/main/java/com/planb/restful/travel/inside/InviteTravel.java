@@ -22,7 +22,7 @@ public class InviteTravel implements Handler<RoutingContext> {
 		String msg = ctx.request().getFormAttribute("msg");
 		
 		MySQL.executeUpdate("DELETE FROM travel_invites WHERE dst_id=? AND topic=?", dst, topic);
-		MySQL.executeUpdate("INSERT INTO travel_invites(src_id, dst_id, topic, msg) VALUES(?, ?, ?, ?, NOW())", clientId, dst, topic, msg);
+		MySQL.executeUpdate("INSERT INTO travel_invites(src_id, dst_id, topic, msg, date) VALUES(?, ?, ?, ?, NOW())", clientId, dst, topic, msg);
 		
 		ctx.response().setStatusCode(201).end();
 		ctx.response().close();
