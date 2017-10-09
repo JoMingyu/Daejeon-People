@@ -57,36 +57,6 @@ public class ResultList extends Activity {
         final String category_key = intent.getStringExtra("category_key");
         Log.d("checkTheDetail", category);
 
-//        ResultListItem detailItem = new ResultListItem();
-//        detailItem.setContent_id(1);
-//        detailItem.setTitle("타이틀1");
-//        detailItem.setWish(true);
-//        detailItem.setWish_count(3);
-//        detailItem.setAddress("대전광역시");
-//        detailItem.setCategory("카테고리1");
-//        detailItem.setImage("http://tong.visitkorea.or.kr/cms/resource/12/2364212_image2_1.jpg");
-//        detailItem.setMapx(1.2432);
-//        detailItem.setMapy(3.241);
-//
-//        arrayListDetail.add(detailItem);
-//
-//        ResultListItem detailItem2 = new ResultListItem();
-//        detailItem2.setContent_id(1);
-//        detailItem2.setTitle("타이틀12");
-//        detailItem2.setWish(true);
-//        detailItem2.setWish_count(3);
-//        detailItem2.setAddress("대전광역시2");
-//        detailItem2.setCategory("카테고리12");
-//        detailItem2.setImage("http://tong.visitkorea.or.kr/cms/resource/12/2364212_image2_1.jpg");
-//        detailItem2.setMapx(1.2432);
-//        detailItem2.setMapy(3.241);
-//
-//        arrayListDetail.add(detailItem2);
-
-
-//        ResultListAdapter mAdapter = new ResultListAdapter(arrayListDetail, getContext());
-//        mRecyclerView.setAdapter(mAdapter);
-
         for(int i = 1; i < 4; i++){
             apiInterface = APIClient.getClient().create(APIinterface.class);
             apiInterface.getFilteringPage("UserSession=" + dbHelper.getCookie(), category, 1 , i).enqueue(new Callback<JsonArray>() {
