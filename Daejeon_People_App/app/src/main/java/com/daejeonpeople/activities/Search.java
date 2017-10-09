@@ -97,6 +97,7 @@ public class Search extends BaseActivity {
                                                     searchItem.setAddress(jsonArray.get(i).getAsJsonObject().get("address").toString());
                                                 }
                                                 searchItem.setCategory(jsonArray.get(i).getAsJsonObject().get("category").toString());
+                                                Log.d("Search_category_log",jsonArray.get(i).getAsJsonObject().get("category").toString());
                                                 if(jsonArray.get(i).getAsJsonObject().get("image") == null){
                                                     searchItem.setImage("NoImage");
                                                 } else {
