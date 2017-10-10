@@ -109,7 +109,8 @@ public interface APIinterface {
 
     @FormUrlEncoded
     @POST("/wish")
-    Call<Void> addWish(@Field("content_id") int content_id);
+    Call<Void> addWish( @Header("cookie") String UserSession,
+                        @Query("content_id") int content_id);
 
     @GET("/attractions/detail")
     Call<JsonObject> getDetail( @Header("cookie") String UserSession,

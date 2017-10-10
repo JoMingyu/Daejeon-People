@@ -436,12 +436,12 @@
                             android:textColor="@color/Black"
                             android:textSize="18sp" />
 
-                        <fragment
-                            android:id="@+id/placemap"
-                            android:layout_width="300dp"
-                            android:layout_height="180dp"
-                            android:layout_marginTop="20dp"
-                            android:layout_marginBottom="20dp"/>
+                        <!--<fragment-->
+                            <!--android:id="@+id/placemap"-->
+                            <!--android:layout_width="300dp"-->
+                            <!--android:layout_height="180dp"-->
+                            <!--android:layout_marginTop="20dp"-->
+                            <!--android:layout_marginBottom="20dp"/>-->
 
                         <!--<ImageView-->
                             <!--android:id="@+id/placemap"-->
