@@ -3,7 +3,7 @@ from datetime import date
 
 
 class AccountModel(Document):
-    id = StringField(required=True, primary_key=True)
+    id = StringField(primary_key=True)
     pw = StringField(required=True)
 
     registration_id = StringField(required=True, unique=True)
@@ -17,5 +17,5 @@ class AccountModel(Document):
 
 
 class CertifyModel(Document):
-    user = ReferenceField(AccountModel, required=True)
+    identity = StringField(primary_key=True)
     code = IntField(required=True)
