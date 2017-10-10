@@ -1,7 +1,9 @@
 from flask import Flask
 from flask_jwt import JWT
 from flask_cors import CORS
-from server_preprocessor import decorate, add_resources
+
+import server_preprocessor
+from support import jwt
 
 
 def create_app():
@@ -20,16 +22,18 @@ def create_app():
     :rtype: Flask
     """
     app = Flask(__name__)
-
-    app.config['SECRET_KEY'] = '!owQzm[pn;?11K'
-    app.config['JWT_AUTH_URL_RULE'] = '/signin'
-    app.config['JWT_AUTH_USERNAME_KEY'] = 'id'
-    app.config['JWT_AUTH_PASSWORD_KEY'] = 'pw'
+    app.config.update(
+        SECRET_KEY='!owQzm[pn;?11K',
+        JWT_AUTH_URL_RULE='/signin',
+        JWT_AUTH_USERNAME_KEY='id',
+        JWT_AUTH_PASSWORD_KEY='pw'
+    )
 
     CORS(app)
-    # Support AJAX & Swagger API
-    decorate(app)
-    add_resources(app, api_version=0.1)
+    JWT(app, authentication_handler=jwt.authenticate, identity_handler=jwt.identity)
+
+    server_preprocessor.decorate(app)
+    server_preprocessor.add_resources(app, api_version=0.1)
 
     return app
 
