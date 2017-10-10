@@ -108,24 +108,6 @@
                                 android:layout_marginLeft="8dp"
                                 android:layout_marginTop="3dp"/>
 
-                            <ImageView
-                                android:layout_width="18dp"
-                                android:layout_height="18dp"
-                                android:src="@drawable/ic_favorite"
-                                android:layout_alignParentRight="true"
-                                android:layout_marginRight="45dp"/>
-
-                            <TextView
-                                android:id="@+id/wishlist_love"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="2548"
-                                android:layout_marginRight="10dp"
-                                android:layout_alignParentRight="true"
-                                android:textColor="@color/BrightGray"
-                                android:textSize="12sp"
-                                android:layout_marginTop="1dp"/>
-
 
                         </RelativeLayout>
 
