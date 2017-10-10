@@ -6,8 +6,6 @@ class TourModel(Document):
     content_type_id = StringField(required=True)
     title = StringField()
     address = StringField()
-    zipcode = StringField()
-    municipality = StringField()
     x = FloatField()
     y = FloatField()
 
@@ -18,8 +16,6 @@ class TourModel(Document):
     tel = StringField()
     img_big_url = StringField()
     img_small_url = StringField()
-    homepage = StringField()
-    overview = StringField()
 
     views = IntField(default=0)
     wish_count = IntField(required=True, default=0, min_value=0)
