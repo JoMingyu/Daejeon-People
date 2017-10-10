@@ -164,7 +164,8 @@ public interface APIinterface {
 
     @FormUrlEncoded
     @POST("/travel/invite")
-    Call<Void> inviteFriend(@Field("dst") String destination,
+    Call<Void> inviteFriend(@Header("cookie") String cookie,
+                            @Field("dst") String destination,
                             @Field("topic") String topic,
                             @Field("msg") String message);
 

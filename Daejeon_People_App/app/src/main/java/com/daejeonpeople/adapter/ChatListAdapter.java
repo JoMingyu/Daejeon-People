@@ -11,7 +11,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.daejeonpeople.R;
-import com.daejeonpeople.activities.chatting.Chatting;
+//import com.daejeonpeople.activities.chatting.Chatting;
+import com.daejeonpeople.activities.mChatting.mChatting;
 import com.daejeonpeople.valueobject.ChatListItem;
 
 import java.util.ArrayList;
@@ -38,14 +39,14 @@ public class ChatListAdapter extends RecyclerView.Adapter<ChatListAdapter.ViewHo
     @Override
     public void onBindViewHolder(ChatListAdapter.ViewHolder holder, final int position) {
         holder.chatTitle.setText(mChatListItems.get(position).getTitle());
-        holder.lastIndex.setText(mChatListItems.get(position).getLastIndex()+"");
-        holder.lastMessage.setText(mChatListItems.get(position).getLastMessage());
+//        holder.lastIndex.setText(mChatListItems.get(position).getLastIndex()+"");
+//        holder.lastMessage.setText(mChatListItems.get(position).getLastMessage());
         holder.chatListItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String topic = mChatListItems.get(position).getTopic();
                 String title = mChatListItems.get(position).getTitle();
-                Intent intent = new Intent(mContext, Chatting.class);
+                Intent intent = new Intent(mContext, mChatting.class);
                 intent.putExtra("topic", topic);
                 intent.putExtra("chatName", title);
                 mContext.startActivity(intent);
@@ -65,8 +66,8 @@ public class ChatListAdapter extends RecyclerView.Adapter<ChatListAdapter.ViewHo
         public ViewHolder(View view){
             super(view);
             chatTitle=(TextView)view.findViewById(R.id.chatTitle);
-            lastIndex=(TextView)view.findViewById(R.id.lastIndex);
-            lastMessage=(TextView)view.findViewById(R.id.lastMessage);
+//            lastIndex=(TextView)view.findViewById(R.id.lastIndex);
+//            lastMessage=(TextView)view.findViewById(R.id.lastMessage);
             chatListItem=(RelativeLayout)view.findViewById(R.id.chatListItem);
         }
     }

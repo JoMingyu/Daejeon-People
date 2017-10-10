@@ -10,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.daejeonpeople.R;
+import com.daejeonpeople.support.database.DBHelper;
 import com.daejeonpeople.support.network.APIClient;
 import com.daejeonpeople.support.network.APIinterface;
 import com.daejeonpeople.valueobject.FriendListItem;
@@ -28,11 +29,13 @@ import retrofit2.Response;
 public class FriendListAdapter extends RecyclerView.Adapter<FriendListAdapter.ViewHolder> {
     private ArrayList<InviteListItem> mDataSet = new ArrayList<>();
     private APIinterface apiInterface = APIClient.getClient().create(APIinterface.class);
+    private DBHelper dbHelper;
     private Context mContext;
 
     public FriendListAdapter(Context context, ArrayList<InviteListItem> friendListItems){
         this.mContext = context;
         this.mDataSet = friendListItems;
+        dbHelper = DBHelper.getInstance(context, "CHECK.db", null, 1);;
     }
 
     @Override
@@ -49,7 +52,7 @@ public class FriendListAdapter extends RecyclerView.Adapter<FriendListAdapter.Vi
         holder.addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                apiInterface.inviteFriend(mDataSet.get(position).getId().toString(), mDataSet.get(position).getTopic(), "").enqueue(new Callback<Void>() {
+                apiInterface.inviteFriend("UserSession="+dbHelper.getCookie() ,mDataSet.get(position).getId().toString(), mDataSet.get(position).getTopic(), "").enqueue(new Callback<Void>() {
                     @Override
                     public void onResponse(Call<Void> call, Response<Void> response) {
                         Toast.makeText(mContext, "초대완료", Toast.LENGTH_SHORT).show();
