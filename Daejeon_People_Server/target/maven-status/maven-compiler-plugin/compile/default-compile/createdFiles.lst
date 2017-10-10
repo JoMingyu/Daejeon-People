@@ -4,7 +4,6 @@ com\planb\support\utilities\Firebase.class
 com\planb\parser\AdditionalImageParser.class
 com\planb\restful\attractions\interation\DeleteWish.class
 com\planb\restful\account\after_signup\FindId_DemandCode.class
-com\planb\restful\travel\inside\GetUnreadMessages.class
 com\planb\restful\user\common\MyInfo.class
 com\planb\restful\travel\CreateTravel.class
 com\planb\support\restful\attractions\ValueComparator.class
@@ -46,7 +45,6 @@ com\planb\restful\account\signup\CheckIdExist.class
 com\planb\restful\attractions\main\MainPage.class
 com\planb\restful\travel\TravelInvitesInquiry.class
 com\planb\support\networking\Response.class
-com\planb\support\chatting\MySQL_Chat.class
 com\planb\support\user\UserManager.class
 com\planb\core\handlers\CORSHandler.class
 com\planb\restful\user\common\MyPage.class
@@ -82,7 +80,6 @@ com\planb\support\routing\Routing.class
 com\planb\restful\user\friend\FriendRequestsInquiry.class
 com\planb\restful\travel\inside\GetMapInfo.class
 com\planb\restful\account\after_signup\ChangePassword.class
-com\planb\restful\travel\inside\SendMessage.class
 com\planb\restful\user\friend\RefuseFriend.class
 com\planb\support\utilities\Log.class
 com\planb\restful\user\common\GetProfileImage.class

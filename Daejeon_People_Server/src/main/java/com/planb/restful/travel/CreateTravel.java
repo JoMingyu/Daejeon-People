@@ -7,7 +7,6 @@ import java.util.UUID;
 
 import org.json.JSONObject;
 
-import com.planb.support.chatting.MySQL_Chat;
 import com.planb.support.routing.API;
 import com.planb.support.routing.REST;
 import com.planb.support.routing.Route;
@@ -47,7 +46,6 @@ public class CreateTravel implements Handler<RoutingContext> {
 				if(!(rs != null && rs.next())) {
 					MySQL.executeUpdate("INSERT INTO travel_list VALUES(?, ?)", topic, title);
 					MySQL.executeUpdate("INSERT INTO travel_clients VALUES(?, ?)", topic, clientId);
-					MySQL_Chat.executeUpdate("CREATE TABLE " + topic + "(idx INT(11) PRIMARY KEY NOT NULL AUTO_INCREMENT, remaining_views INT(3) NOT NULL, type VARCHAR(20) NOT NULL, name VARCHAR(256), content VARCHAR(1024)) ENGINE=InnoDB DEFAULT CHARSET=utf8");
 					new File("chatting_resources/" + topic).mkdirs();
 					return topic;
 				}

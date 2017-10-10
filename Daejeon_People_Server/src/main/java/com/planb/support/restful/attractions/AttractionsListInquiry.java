@@ -260,6 +260,7 @@ public class AttractionsListInquiry {
 				
 				attractionInfo.put("wish_count", rs.getInt("wish_count"));
 				attractionInfo.put("content_id", rs.getInt("content_id"));
+				attractionInfo.put("content_type_id", rs.getInt("content_type_id"));
 				attractionInfo.put("title", rs.getString("title"));
 				attractionInfo.put("address", rs.getString("address"));
 				attractionInfo.put("category", rs.getString("cat3"));
