@@ -69,6 +69,7 @@ public class Main_fragment extends Fragment {
                             mainItemMonthly.setAddress(jsonArrayM.get(i).getAsJsonObject().get("address").toString());
                         }
                         mainItemMonthly.setContent_id(jsonArrayM.get(i).getAsJsonObject().get("content_id").getAsInt());
+                        mainItemMonthly.setContent_type_id(jsonArrayM.get(i).getAsJsonObject().get("content_type_id").getAsInt());
                         mainItemMonthly.setTitle(jsonArrayM.get(i).getAsJsonObject().get("title").toString().replaceAll("\"", ""));
                         mainItemMonthly.setWish_count(jsonArrayM.get(i).getAsJsonObject().get("wish_count").getAsInt());
                         if(jsonArrayM.get(i).getAsJsonObject().get("eng_title") == null) {
