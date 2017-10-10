@@ -1,6 +1,7 @@
 package com.daejeonpeople.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v4.view.PagerAdapter;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -9,9 +10,18 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.daejeonpeople.R;
+import com.daejeonpeople.activities.Introduction.Introduction_Accomodation;
+import com.daejeonpeople.activities.Introduction.Introduction_Course;
+import com.daejeonpeople.activities.Introduction.Introduction_Culture;
+import com.daejeonpeople.activities.Introduction.Introduction_Festival;
+import com.daejeonpeople.activities.Introduction.Introduction_Leisure;
+import com.daejeonpeople.activities.Introduction.Introduction_Restaurant;
+import com.daejeonpeople.activities.Introduction.Introduction_Shopping;
+import com.daejeonpeople.activities.Introduction.Introduction_Tourism;
 import com.daejeonpeople.valueobject.MainItemMonthly;
 
 import java.util.ArrayList;
@@ -39,7 +49,7 @@ public class MainMonthlyAdapter extends PagerAdapter {
     }
 
     @Override
-    public Object instantiateItem(ViewGroup container, int position) {
+    public Object instantiateItem(final ViewGroup container, final int position) {
         // TODO Auto-generated method stub
         View view = null;
         view = inflater.inflate(R.layout.main_viewpager_monthly, null);
@@ -66,8 +76,48 @@ public class MainMonthlyAdapter extends PagerAdapter {
             Log.d("url", mDataset.get(position).getImage());
         }
 
+        final int content_type_id = mDataset.get(position).getContent_type_id();
         Button btn= (Button) view.findViewById(R.id.view_button);
-        btn.getResources();
+        btn.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (content_type_id == 12) {
+                    Intent intent = new Intent(view.getContext(), Introduction_Tourism.class);
+                    intent.putExtra("content_id", mDataset.get(position).getContent_id());
+                    view.getContext().startActivity(intent);
+                } else if (content_type_id == 14) {
+                    Intent intent = new Intent(view.getContext(), Introduction_Culture.class);
+                    intent.putExtra("content_id", mDataset.get(position).getContent_id());
+                    view.getContext().startActivity(intent);
+                } else if (content_type_id == 15) {
+                    Intent intent = new Intent(view.getContext(), Introduction_Festival.class);
+                    intent.putExtra("content_id", mDataset.get(position).getContent_id());
+                    view.getContext().startActivity(intent);
+                } else if (content_type_id == 25) {
+                    Intent intent = new Intent(view.getContext(), Introduction_Course.class);
+                    intent.putExtra("content_id", mDataset.get(position).getContent_id());
+                    view.getContext().startActivity(intent);
+                } else if (content_type_id == 28) {
+                    Intent intent = new Intent(view.getContext(), Introduction_Leisure.class);
+                    intent.putExtra("content_id", mDataset.get(position).getContent_id());
+                    view.getContext().startActivity(intent);
+                } else if (content_type_id == 32) {
+                    Intent intent = new Intent(view.getContext(), Introduction_Accomodation.class);
+                    intent.putExtra("content_id", mDataset.get(position).getContent_id());
+                    view.getContext().startActivity(intent);
+                } else if (content_type_id == 38) {
+                    Intent intent = new Intent(view.getContext(), Introduction_Shopping.class);
+                    intent.putExtra("content_id", mDataset.get(position).getContent_id());
+                    view.getContext().startActivity(intent);
+                } else if (content_type_id == 39) {
+                    Intent intent = new Intent(view.getContext(), Introduction_Restaurant.class);
+                    intent.putExtra("content_id", mDataset.get(position).getContent_id());
+                    view.getContext().startActivity(intent);
+                } else {
+                    Toast.makeText(container.getContext(),"잘못된 접근입니다.", Toast.LENGTH_LONG).show();
+                }
+            }
+        }) ;
 
         container.addView(view);
         return view;

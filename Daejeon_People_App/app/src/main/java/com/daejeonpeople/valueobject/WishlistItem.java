@@ -7,7 +7,6 @@ package com.daejeonpeople.valueobject;
 public class WishlistItem {
     private String title;
     private String address;
-//    private int love;
     private String back_image;
 
     public String getTitle() {
@@ -25,14 +24,6 @@ public class WishlistItem {
     public void setAddress(String address) {
         this.address = address;
     }
-
-//    public int getLove() {
-//        return love;
-//    }
-
-//    public void setLove(int love) {
-//        this.love = love;
-//    }
 
     public String getBack_image() {
         return back_image;

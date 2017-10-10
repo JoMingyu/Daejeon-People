@@ -64,7 +64,6 @@ public class WishList extends BaseActivity {
         DBHelper dbHelper = DBHelper.getInstance(getApplicationContext(), "CHECK.db", null, 1);
 
         mRecyclerView = (RecyclerView)findViewById(R.id.wishlist_recycler);
-//        mRecyclerView.setHasFixedSize(true);
 
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
@@ -81,19 +80,11 @@ public class WishList extends BaseActivity {
 
                     for(int i = 0; i < jsonArray.size(); i++){
                         WishlistItem wishlistItem = new WishlistItem();
-
                         wishlistItem.setTitle(jsonArray.get(i).getAsJsonObject().get("title").toString());
                         wishlistItem.setAddress(jsonArray.get(i).getAsJsonObject().get("address").toString());
                         wishlistItem.setBack_image(jsonArray.get(i).getAsJsonObject().get("image").toString());
-
                         Dataset.add(wishlistItem);
                     }
-
-//                    Gson gson = new Gson();
-//                    WishlistItem[] items = gson.fromJson(response.body().toString(), WishlistItem[].class);
-//                    ((WishlistAdapter)mRecyclerView.getAdapter()).setData(items);
-//                    mRecyclerView.getAdapter().notifyDataSetChanged();
-
                     Dataset = new ArrayList<>();
                     myAdapter = new WishlistAdapter(Dataset);
                     mRecyclerView.setAdapter(myAdapter);
@@ -109,35 +100,7 @@ public class WishList extends BaseActivity {
             }
         });
 
-//        for(int i = 0; i < 5; i++) {
-//            WishlistItem wishlistItem = new WishlistItem();
-//            wishlistItem.setDate("2017/05/08");
-//            wishlistItem.setAddress("부산광역시 기장군 기장읍");
-//            wishlistItem.setTitle("계족산 맨발 축제");
-//            wishlistItem.setBack_image(R.id.back_image);
-//            wishlistItem.setLove(150);
-//            this.Dataset.add(i, wishlistItem);
-//        }
-
         backBtn = (Button) findViewById(R.id.wishlist_back_btn);
-
-        AQuery aq = new AQuery(getApplicationContext());
-
-        aq.ajax("http://52.79.134.200/wish", String.class, new AjaxCallback<String>() {
-            @Override
-            public void callback(String url, String response, AjaxStatus status) {
-                if(status.getCode() == 200) {
-                    try {
-                        JSONObject res = new JSONObject(response);
-                    } catch(JSONException e) {
-                        e.printStackTrace();
-                    }
-                } else {
-
-                }
-            }
-        }.method(AQuery.METHOD_GET).cookie("UserSession", SessionManager.getCookieFromDB(getApplicationContext())));
-
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -69,7 +69,7 @@ public class Introduction_Accomodation extends BaseActivity {
 
         getFragmentManager().beginTransaction().replace(R.id.placemap, new MapFragment());
 
-        DBHelper dbHelper = DBHelper.getInstance(getApplicationContext(), "CHECK.db", null, 1);
+        final DBHelper dbHelper = DBHelper.getInstance(getApplicationContext(), "CHECK.db", null, 1);
 
         btn_star = (ImageButton)findViewById(R.id.star);
 
@@ -86,6 +86,30 @@ public class Introduction_Accomodation extends BaseActivity {
             }
 
         });
+
+//        back_btn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                apIinterface.addWish("UserSession=" + dbHelper.getCookie(), (Integer)value).enqueue(new Callback<Void>() {
+//                    @Override
+//                    public void onResponse(Call<Void> call, Response<Void> response) {
+//                        if(response.code() == 201) {
+//                            Log.d("ResponseWish", "SUCCESS");
+//
+//
+//                        } else if(response.code() == 0) {
+//                            Log.d("ResponseWish", "FAIL");
+//
+//                        }
+//                    }
+//
+//                    @Override
+//                    public void onFailure(Call<Void> call, Throwable t) {
+//                        t.printStackTrace();
+//                    }
+//                });
+//            }
+//        });
 
         placename = (TextView)findViewById(R.id.placename);
         call_inquiry = (TextView)findViewById(R.id.call_inquiry);
@@ -124,7 +148,11 @@ public class Introduction_Accomodation extends BaseActivity {
                     accomcount.setText(response.body().get("accomcount").getAsString());
                     location.setText(response.body().get("address").getAsString());
 
-                    Glide.with(getApplicationContext()).load(response.body().get("image").getAsString()).into(back_img);
+                    if(response.body().get("image").getAsString().equals("정보 없음")) {
+                        back_img.setImageResource(R.drawable.no_image_black);
+                    } else {
+                        Glide.with(getApplicationContext()).load(response.body().get("image").getAsString()).into(back_img);
+                    }
                 } else if(response.code() == 0) {
                     Log.d("Response", "FAIL");
                 }
@@ -132,7 +160,7 @@ public class Introduction_Accomodation extends BaseActivity {
 
             @Override
             public void onFailure(Call<JsonObject> call, Throwable t) {
-
+                t.printStackTrace();
             }
         });
     }
