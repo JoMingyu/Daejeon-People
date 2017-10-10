@@ -5,7 +5,6 @@ import java.sql.SQLException;
 
 import org.json.JSONObject;
 
-import com.planb.support.crypto.SHA256;
 import com.planb.support.utilities.MySQL;
 import com.planb.support.utilities.SessionUtil;
 
@@ -20,10 +19,9 @@ public class UserManager {
 		 * 객체 생성 없이도 사용할 수 있도록 static
 		 */
 		String sessionId = SessionUtil.getClientSessionId(ctx, "UserSession");
-		String encryptedSessionId = SHA256.encrypt(sessionId);
 		String encryptedId = null;
 
-		ResultSet rs = MySQL.executeQuery("SELECT * FROM account WHERE session_id=?", encryptedSessionId);
+		ResultSet rs = MySQL.executeQuery("SELECT * FROM account WHERE session_id=?", sessionId);
 		try {
 			if(rs != null && rs.next()) {
 				encryptedId = rs.getString("id");
