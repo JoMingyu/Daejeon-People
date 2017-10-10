@@ -34,7 +34,6 @@ public class WishlistAdapter extends RecyclerView.Adapter<WishlistAdapter.ViewHo
             super(view);
             title = (TextView)view.findViewById(R.id.wishlist_title);
             address = (TextView)view.findViewById(R.id.wishlist_address);
-            love = (TextView)view.findViewById(R.id.wishlist_love);
             back_image = (ImageView)view.findViewById(R.id.wishlist_img);
         }
     }
