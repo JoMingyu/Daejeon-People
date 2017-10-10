@@ -1,5 +1,9 @@
-from flask import Flask, current_app
+from flask import Flask, current_app, request
 from flask_restful_swagger_2 import Api
+from logging.handlers import RotatingFileHandler
+from logging import Formatter, INFO
+
+from routes.api.user.account.account import EmailCheck, PhoneCheck, EmailCertify, PhoneCertify, Signup
 
 
 def decorate(app):
@@ -15,9 +19,6 @@ def decorate(app):
     @app.before_first_request
     def before_first_request():
         def make_logger():
-            from logging.handlers import RotatingFileHandler
-            from logging import Formatter, INFO
-
             handler = RotatingFileHandler('server_log.log', maxBytes=100000, backupCount=5)
             handler.setFormatter(Formatter("[%(asctime)s] %(levelname)s - %(message)s"))
 
@@ -29,8 +30,6 @@ def decorate(app):
 
     @app.before_request
     def before_request():
-        from flask import request
-
         current_app.logger.info('Requested from {0} [ {1} {2} ]'.format(request.host, request.method, request.url))
         current_app.logger.info('Request values : {0}'.format(request.values))
 
@@ -64,3 +63,8 @@ def add_resources(app, api_version):
     :rtype: None
     """
     api = Api(app, api_version=api_version)
+    api.add_resource(EmailCheck, '/check/email')
+    api.add_resource(PhoneCheck, '/check/phone')
+    api.add_resource(EmailCertify, '/certify/email')
+    api.add_resource(PhoneCertify, '/certify/phone')
+    api.add_resource(Signup, '/signup')
