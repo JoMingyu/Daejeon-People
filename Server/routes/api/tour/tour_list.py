@@ -3,7 +3,7 @@ import math
 from flask_restful_swagger_2 import swagger, Resource, request
 from flask_jwt import jwt_required, current_identity
 
-from db.models.tour import *
+from db.models.tour_base import TourTopModel
 from db.models.user import AccountModel
 
 import swagger_docs
@@ -26,12 +26,12 @@ def detect(tour_list, sort_type, client_id, x=0.0, y=0.0):
         tour_list = sorted(tour_list, key=lambda k: k.distance)
 
     return [{
-        'content_id': tour.id,
+        'content_id': tour.content_id,
         'content_type_id': tour.content_type_id,
         'title': tour.title,
         'address': tour.address,
         'category': tour.small_category,
-        'image': tour.img_big_url,
+        'image': tour.image,
         'wish_count': tour.wish_count,
         'wished': tour.id in client_wish_list,
         'x': tour.x,

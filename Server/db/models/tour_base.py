@@ -24,7 +24,7 @@ def top_insert(cls, tour, detail_images):
         y=tour['y'],
         small_category=tour['small_category'],
         tel=tour['tel'],
-        img_big_url=tour['img_big_url'],
+        image=tour['image'],
         views=tour['views'],
         images=detail_images)
 
@@ -64,7 +64,7 @@ class TourTopModel(Document):
 
     small_category = StringField()
     tel = StringField()
-    img_big_url = StringField()
+    image = StringField()
 
     views = IntField(default=0)
     wish_count = IntField(required=True, default=0, min_value=0)
