@@ -43,7 +43,6 @@ com\planb\support\utilities\Mail.class
 com\planb\restful\travel\inside\TravelInfo.class
 com\planb\restful\account\signup\CheckIdExist.class
 com\planb\restful\attractions\main\MainPage.class
-com\planb\restful\travel\TravelInvitesInquiry.class
 com\planb\support\networking\Response.class
 com\planb\support\user\UserManager.class
 com\planb\core\handlers\CORSHandler.class
