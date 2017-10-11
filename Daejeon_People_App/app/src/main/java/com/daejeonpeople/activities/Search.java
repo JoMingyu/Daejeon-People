@@ -85,7 +85,7 @@ public class Search extends BaseActivity {
                                             arrayListSearch.clear();
                                             for(int i = 0; i < jsonArray.size(); i++){
                                                 SearchItem searchItem = new SearchItem();
-
+                                                searchItem.setContent_type_id(jsonArray.get(i).getAsJsonObject().get("content_type_id").getAsInt());
                                                 searchItem.setContent_id(jsonArray.get(i).getAsJsonObject().get("content_id").getAsInt());
                                                 Log.d("checkContentid",jsonArray.get(i).getAsJsonObject().get("content_id").toString());
                                                 searchItem.setTitle(jsonArray.get(i).getAsJsonObject().get("title").toString().replaceAll("\"", ""));

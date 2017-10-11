@@ -61,8 +61,8 @@ public class ChatList extends BaseActivity {
                         JsonObject result = response.body().get(i).getAsJsonObject();
                         chatListItem.setTitle(result.get("title").getAsString());
                         chatListItem.setTopic(result.get("topic").getAsString());
-                        chatListItem.setLastIndex(result.get("last_idx").getAsInt());
-                        chatListItem.setLastMessage(result.get("last_message").getAsString());
+//                        chatListItem.setLastIndex(result.get("last_idx").getAsInt());
+//                        chatListItem.setLastMessage(result.get("last_message").getAsString());
 
                         chatListItems.add(i, chatListItem);
                     }
@@ -81,6 +81,7 @@ public class ChatList extends BaseActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(), MakeChatting.class));
+                finish();
             }
         });
     }

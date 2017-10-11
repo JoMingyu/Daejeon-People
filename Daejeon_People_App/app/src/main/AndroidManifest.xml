@@ -68,6 +68,7 @@
         <activity android:name=".activities.ResultList.ResultList"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
         <activity android:name=".activities.Introduction.Introduction_Culture"/>
+        <activity android:name=".activities.mChatting.mChatting"/>
         <activity android:name=".activities.Introduction.Introduction_Accomodation"/>
         <activity android:name=".activities.Introduction.Introduction_Course"/>
         <activity android:name=".activities.Introduction.Introduction_Festival"/>

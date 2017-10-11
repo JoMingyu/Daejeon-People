@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.daejeonpeople.R;
@@ -112,6 +113,8 @@ public class MainMonthlyAdapter extends PagerAdapter {
                     Intent intent = new Intent(view.getContext(), Introduction_Restaurant.class);
                     intent.putExtra("content_id", mDataset.get(position).getContent_id());
                     view.getContext().startActivity(intent);
+                } else {
+                    Toast.makeText(container.getContext(),"잘못된 접근입니다.", Toast.LENGTH_LONG).show();
                 }
             }
         }) ;

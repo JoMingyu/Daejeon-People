@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.daejeonpeople.R;
 import com.daejeonpeople.activities.base.BaseActivity;
+import com.daejeonpeople.activities.mChatting.mChatting;
 import com.daejeonpeople.adapter.FriendListAdapter;
 import com.daejeonpeople.support.database.DBHelper;
 import com.daejeonpeople.support.network.APIClient;
@@ -81,7 +82,7 @@ public class MakeChattingInvite extends BaseActivity {
         nextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), Chatting.class);
+                Intent intent = new Intent(getApplicationContext(), mChatting.class);
                 intent.putExtra("topic", mIntent.getStringExtra("topic"));
                 intent.putExtra("chatName", mIntent.getStringExtra("chatName"));
                 startActivity(intent);

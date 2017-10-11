@@ -13,7 +13,7 @@ public class ChattingItem extends RealmObject {
     @PrimaryKey
     @Required
     private String topic;
-    private RealmList<ChatLogItem> chatLogs;
+    private RealmList<mChatLogItem> chatLogs;
 
     public String getTopic() {
         return topic;
@@ -23,11 +23,11 @@ public class ChattingItem extends RealmObject {
         this.topic = topic;
     }
 
-    public RealmList<ChatLogItem> getChatLogs() {
+    public RealmList<mChatLogItem> getChatLogs() {
         return chatLogs;
     }
 
-    public void setChatLogs(RealmList<ChatLogItem> chatLogs) {
+    public void setChatLogs(RealmList<mChatLogItem> chatLogs) {
         this.chatLogs = chatLogs;
     }
 }
