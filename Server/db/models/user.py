@@ -16,7 +16,7 @@ class AccountModel(Document):
 
     friend_requests = ListField(StringField(), default=[])
     friends = ListField(StringField(), default=[])
-    wish_list = ListField(ReferenceField(TourTopModel, reverse_delete_rule=CASCADE), default=[])
+    wish_list = ListField(IntField())
 
 
 class CertifyModel(Document):
