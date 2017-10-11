@@ -4,6 +4,8 @@ from flask_jwt import jwt_required, current_identity
 from db.models.tour import *
 from db.models.user import AccountModel
 
+import swagger_docs
+
 
 def detect(tour_list, sort_type, client_id):
     client_wish_list = AccountModel.objects(id=client_id).first().wish_list
@@ -33,6 +35,7 @@ def detect(tour_list, sort_type, client_id):
 
 
 class SearchedTourList(Resource):
+    @swagger.doc(swagger_docs.SEARCHED_TOUR_LIST)
     @jwt_required()
     def get(self):
         keyword = request.args.get('keyword')
@@ -42,10 +45,14 @@ class SearchedTourList(Resource):
         tour_list = detect([tour for tour in TourTopModel.objects if keyword in tour.title], sort_type, client_id)
         # After keyword filtering
 
-        return tour_list
+        if tour_list:
+            return tour_list
+        else:
+            return '', 204
 
 
 class CategorizedTourList(Resource):
+    @swagger.doc(swagger_docs.CATEGORIZED_TOUR_LIST)
     @jwt_required()
     def get(self):
         category = request.args.get('category')
