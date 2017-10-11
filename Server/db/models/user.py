@@ -1,5 +1,7 @@
-from db.mongo import *
 from datetime import date
+
+from db.mongo import *
+from db.models.tour_base import TourTopModel
 
 
 class AccountModel(Document):
@@ -12,8 +14,9 @@ class AccountModel(Document):
     name = StringField(required=True)
     register_date = StringField(required=True, default=str(date.today()))
 
-    friends = ListField()
-    wish_list = ListField()
+    friend_requests = ListField(StringField(), default=[])
+    friends = ListField(StringField(), default=[])
+    wish_list = ListField(ReferenceField(TourTopModel, reverse_delete_rule=CASCADE), default=[])
 
 
 class CertifyModel(Document):
