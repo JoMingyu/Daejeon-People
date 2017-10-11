@@ -19,10 +19,9 @@ public class InviteTravel implements Handler<RoutingContext> {
 		String clientId = UserManager.getEncryptedIdFromSession(ctx);
 		String dst = ctx.request().getFormAttribute("dst");
 		String topic = ctx.request().getFormAttribute("topic");
-		String msg = ctx.request().getFormAttribute("msg");
 		
-		MySQL.executeUpdate("DELETE FROM travel_invites WHERE dst_id=? AND topic=?", dst, topic);
-		MySQL.executeUpdate("INSERT INTO travel_invites(src_id, dst_id, topic, msg, date) VALUES(?, ?, ?, ?, NOW())", clientId, dst, topic, msg);
+		MySQL.executeUpdate("DELETE FROM travel_clients WHERE topic=? AND client_id=?", topic, dst);
+		MySQL.executeUpdate("INSERT INTO travel_clients VALUES(?, ?)", topic, clientId);
 		
 		ctx.response().setStatusCode(201).end();
 		ctx.response().close();
