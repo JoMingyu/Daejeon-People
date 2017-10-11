@@ -46,5 +46,12 @@ class SearchedTourList(Resource):
 
 
 class CategorizedTourList(Resource):
+    @jwt_required()
     def get(self):
-        pass
+        category = request.args.get('category')
+        sort_type = request.args.get('sort_type', type=int)
+        client_id = current_identity
+
+        tour_list = detect([tour for tour in TourTopModel.objects if category == tour.small_category], sort_type, client_id)
+
+        return tour_list

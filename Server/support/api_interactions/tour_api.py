@@ -22,7 +22,7 @@ def parse():
             tour.update(detail_intro)
 
             cid = tour['content_type_id']
-            print(tour['content_id'])
+            print(tour['small_category'])
             if cid == 12:
                 TouristAttractionModel.insert(tour, detail_images)
             elif cid == 14:

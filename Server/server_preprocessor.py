@@ -72,3 +72,4 @@ def add_resources(app, api_version):
     api.add_resource(Signup, '/signup')
 
     api.add_resource(SearchedTourList, '/tour-list/searched')
+    api.add_resource(CategorizedTourList, '/tour-list/categorized')
