@@ -125,7 +125,11 @@ public class Introduction_Restaurant extends BaseActivity {
                         card.setImageResource(R.drawable.ic_w_card);
                     }
 
-                    Glide.with(getApplicationContext()).load(response.body().get("image").getAsString()).into(back_img);
+                    if(response.body().get("image").getAsString().equals("정보 없음")) {
+                        back_img.setImageResource(R.drawable.no_image_black);
+                    } else {
+                        Glide.with(getApplicationContext()).load(response.body().get("image").getAsString()).into(back_img);
+                    }
                 } else if(response.code() == 0) {
                     Log.d("Response", "FAIL");
                 }

@@ -54,6 +54,7 @@
                     android:layout_height="wrap_content">
 
                     <ImageButton
+                        android:scaleType="centerCrop"
                         android:id="@+id/star"
                         android:layout_width="20dp"
                         android:layout_height="20dp"

@@ -54,6 +54,7 @@
                     android:layout_height="wrap_content">
 
                     <ImageButton
+                        android:scaleType="centerCrop"
                         android:id="@+id/star"
                         android:layout_alignParentRight="true"
                         android:layout_marginRight="10dp"
@@ -117,6 +118,7 @@
                             android:layout_height="wrap_content">
 
                             <ImageButton
+                                android:scaleType="centerCrop"
                                 android:id="@+id/card"
                                 android:layout_width="13dp"
                                 android:layout_height="10dp"
@@ -124,6 +126,7 @@
                                 android:layout_marginRight="80dp" />
 
                             <ImageButton
+                                android:scaleType="centerCrop"
                                 android:id="@+id/carriage"
                                 android:layout_width="13dp"
                                 android:layout_height="12dp"
@@ -131,6 +134,7 @@
                                 android:layout_marginRight="50dp" />
 
                             <ImageButton
+                                android:scaleType="centerCrop"
                                 android:id="@+id/pet"
                                 android:layout_width="13dp"
                                 android:layout_height="12dp"

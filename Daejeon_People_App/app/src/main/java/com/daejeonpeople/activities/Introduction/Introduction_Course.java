@@ -112,7 +112,11 @@ public class Introduction_Course extends BaseActivity {
                     distance.setText(response.body().get("distance").getAsString());
                     location.setText(response.body().get("address").getAsString());
 
-                    Glide.with(getApplicationContext()).load(response.body().get("image").getAsString()).into(back_img);
+                    if(response.body().get("image").getAsString().equals("정보 없음")) {
+                        back_img.setImageResource(R.drawable.no_image_black);
+                    } else {
+                        Glide.with(getApplicationContext()).load(response.body().get("image").getAsString()).into(back_img);
+                    }
                 } else if(response.code() == 0) {
                     Log.d("Response", "FAIL");
                 }

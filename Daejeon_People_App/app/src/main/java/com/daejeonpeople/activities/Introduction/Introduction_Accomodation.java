@@ -87,30 +87,6 @@ public class Introduction_Accomodation extends BaseActivity {
 
         });
 
-        back_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                apIinterface.addWish("UserSession=" + dbHelper.getCookie(), (Integer)value).enqueue(new Callback<Void>() {
-                    @Override
-                    public void onResponse(Call<Void> call, Response<Void> response) {
-                        if(response.code() == 201) {
-                            Log.d("ResponseWish", "SUCCESS");
-
-
-                        } else if(response.code() == 0) {
-                            Log.d("ResponseWish", "FAIL");
-
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(Call<Void> call, Throwable t) {
-                        t.printStackTrace();
-                    }
-                });
-            }
-        });
-
         placename = (TextView)findViewById(R.id.placename);
         call_inquiry = (TextView)findViewById(R.id.call_inquiry);
         checkin = (TextView)findViewById(R.id.checkin);
@@ -132,6 +108,23 @@ public class Introduction_Accomodation extends BaseActivity {
         }
 
         apIinterface = APIClient.getClient().create(APIinterface.class);
+
+        back_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                apIinterface.addWish("UserSession=" + dbHelper.getCookie(), (Integer)value).enqueue(new Callback<Void>() {
+                    @Override
+                    public void onResponse(Call<Void> call, Response<Void> response) {
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<Void> call, Throwable t) {
+
+                    }
+                });
+            }
+        });
 
         apIinterface.getDetail("UserSession=" + dbHelper.getCookie(), (Integer)value).enqueue(new Callback<JsonObject>() {
             @Override
