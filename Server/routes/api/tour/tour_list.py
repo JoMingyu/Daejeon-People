@@ -1,3 +1,5 @@
+import math
+
 from flask_restful_swagger_2 import swagger, Resource, request
 from flask_jwt import jwt_required, current_identity
 
@@ -7,7 +9,7 @@ from db.models.user import AccountModel
 import swagger_docs
 
 
-def detect(tour_list, sort_type, client_id):
+def detect(tour_list, sort_type, client_id, x=0.0, y=0.0):
     client_wish_list = AccountModel.objects(id=client_id).first().wish_list
 
     if sort_type == 1:
@@ -18,7 +20,11 @@ def detect(tour_list, sort_type, client_id):
         tour_list = sorted(tour_list, key=lambda k: k.wish_count, reverse=True)
     elif sort_type == 3:
         # 거리순
-        pass
+        for tour in tour_list:
+            tour.distance = math.sqrt(math.pow(tour.x - x, 2) + math.pow(tour.y - y, 2))
+            print(tour.distance)
+
+        tour_list = sorted(tour_list, key=lambda k: k.distance)
 
     return [{
         'content_id': tour.id,
@@ -42,7 +48,7 @@ class SearchedTourList(Resource):
         sort_type = request.args.get('sort_type', type=int)
         client_id = current_identity
 
-        tour_list = detect([tour for tour in TourTopModel.objects if keyword in tour.title], sort_type, client_id)
+        tour_list = detect([tour for tour in TourTopModel.objects if keyword in tour.title], sort_type, client_id, request.args.get('x', type=float, default=0.0), request.args.get('y', type=float, default=0.0))
         # After keyword filtering
 
         if tour_list:
