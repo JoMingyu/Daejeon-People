@@ -4,7 +4,7 @@ from logging.handlers import RotatingFileHandler
 from logging import Formatter, INFO
 
 from routes.api.user.account import *
-from routes.api.tour.tour_list import *
+from routes.api.tour import *
 
 
 def decorate(app):
@@ -73,3 +73,4 @@ def add_resources(app, api_version):
 
     api.add_resource(SearchedTourList, '/tour-list/searched')
     api.add_resource(CategorizedTourList, '/tour-list/categorized')
+    api.add_resource(TourDetail, '/tour-detail')

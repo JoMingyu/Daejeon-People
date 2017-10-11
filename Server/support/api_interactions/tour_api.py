@@ -9,7 +9,7 @@ from db.models.tour import *
 def parse():
     while True:
         TourTopModel.objects.delete()
-        api = TourAPI(AreaCodes.DAEJEON, os.getenv('TOURAPI_KEY'), 'AND', 'Daejeon People')
+        api = TourAPI(AreaCodes.DAEJEON, os.getenv('TOURAPI_KEY', 'AND', 'Daejeon People')
 
         tour_list = api.get_tour_list()
         for tour in tour_list:
@@ -22,7 +22,6 @@ def parse():
             tour.update(detail_intro)
 
             cid = tour['content_type_id']
-            print(tour['small_category'])
             if cid == 12:
                 TouristAttractionModel.insert(tour, detail_images)
             elif cid == 14:
