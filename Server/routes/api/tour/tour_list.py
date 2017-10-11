@@ -22,7 +22,6 @@ def detect(tour_list, sort_type, client_id, x=0.0, y=0.0):
         # 거리순
         for tour in tour_list:
             tour.distance = math.sqrt(math.pow(tour.x - x, 2) + math.pow(tour.y - y, 2))
-            print(tour.distance)
 
         tour_list = sorted(tour_list, key=lambda k: k.distance)
 
@@ -65,6 +64,9 @@ class CategorizedTourList(Resource):
         sort_type = request.args.get('sort_type', type=int)
         client_id = current_identity
 
-        tour_list = detect([tour for tour in TourTopModel.objects if category == tour.small_category], sort_type, client_id)
+        tour_list = detect([tour for tour in TourTopModel.objects if category == tour.small_category], sort_type, client_id, request.args.get('x', type=float, default=0.0), request.args.get('y', type=float, default=0.0))
 
-        return tour_list
+        if tour_list:
+            return tour_list
+        else:
+            return '', 204
