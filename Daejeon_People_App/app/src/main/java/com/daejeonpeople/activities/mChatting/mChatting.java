@@ -68,19 +68,28 @@ public class mChatting extends BaseActivity {
         mRealm = Realm.getDefaultInstance();
         mIntent = getIntent();
 
+        Log.d("intent", mIntent+"");
+        Log.d("intent", mIntent.getStringExtra("topic")+"");
+
         chatName.setText(mIntent.getStringExtra("chatName"));
 
         mRealm.executeTransaction(new Realm.Transaction() {
             @Override
             public void execute(Realm realm) {
-                RealmList realmList = realm.where(ChattingItem.class).contains("topic", mIntent.getStringExtra("topic")).findFirst().getChatLogs();
-                ArrayList<mChatLogItem> mChatLogItems = new ArrayList<mChatLogItem>();
-                for(int i=0; i<realmList.size(); i++){
-                    mChatLogItem result = (mChatLogItem)realmList.get(i);
-                    mChatLogItems.add(i, result);
+                Log.d("realm", realm.where(ChattingItem.class).contains("topic", mIntent.getStringExtra("topic")).findFirst()+"");
+                if(realm.where(ChattingItem.class).contains("topic", mIntent.getStringExtra("topic")).findFirst() != null){
+                    RealmList realmList = realm.where(ChattingItem.class).contains("topic", mIntent.getStringExtra("topic")).findFirst().getChatLogs();
+                    ArrayList<mChatLogItem> mChatLogItems = new ArrayList<mChatLogItem>();
+                    for(int i=0; i<realmList.size(); i++){
+                        mChatLogItem result = (mChatLogItem)realmList.get(i);
+                        mChatLogItems.add(i, result);
+                    }
+                    chatLog.setAdapter(new mChatLogAdapter(mChatLogItems));
+                    chatLog.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+                } else {
+//                    Log.d("topic", mIntent.getStringArrayExtra("topic"));
+                    realm.createObject(ChattingItem.class, mIntent.getStringExtra("topic"));
                 }
-                chatLog.setAdapter(new mChatLogAdapter(mChatLogItems));
-                chatLog.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
             }
         });
 
@@ -126,6 +135,7 @@ public class mChatting extends BaseActivity {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 final mChatData chatData = dataSnapshot.getValue(mChatData.class);  // chatData를 가져오고
+                Log.d("chatData", chatData.getUserName() + " " + chatData.getMessage());
                 apiInterface.getMyPage("UserSession="+dbHelper.getCookie()).enqueue(new Callback<JsonObject>() {
                     @Override
                     public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
