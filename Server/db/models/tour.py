@@ -1,64 +1,12 @@
 from db.mongo import *
-
-
-class TourModel(Document):
-    content_id = IntField(primary_key=True)
-    content_type_id = IntField(required=True)
-    title = StringField()
-    address = StringField()
-    x = FloatField()
-    y = FloatField()
-
-    main_category = StringField()
-    middle_category = StringField()
-    small_category = StringField()
-    tel_owner = StringField()
-    tel = StringField()
-    img_big_url = StringField()
-    img_small_url = StringField()
-
-    views = IntField(default=0)
-    wish_count = IntField(required=True, default=0, min_value=0)
-    images = ListField(StringField())
-
-    meta = {'allow_inheritance': True}
-
-
-class TourBase(TourModel):
-    credit_card = StringField()
-    baby_carriage = StringField()
-    pet = StringField()
-    info_center = StringField()
-    use_time = StringField()
-    rest_date = StringField()
+from db.models.tour_base import TourTopModel, TourBase, top_insert, base_insert
 
 
 class TouristAttractionModel(TourBase):
     # content type id 12
     @classmethod
     def insert(cls, tour, detail_images):
-        cls(
-            content_id=tour['content_id'],
-            content_type_id=tour['content_type_id'],
-            title=tour['title'],
-            address=tour['address'],
-            x=tour['x'],
-            y=tour['y'],
-            main_category=tour['main_category'],
-            middle_category=tour['middle_category'],
-            small_category=tour['small_category'],
-            tel_owner=tour['tel_owner'],
-            tel=tour['tel'],
-            img_big_url=tour['img_big_url'],
-            img_small_url=tour['img_small_url'],
-            views=tour['views'],
-            images=detail_images,
-            credit_card=tour['credit_card'],
-            baby_carriage=tour['baby_carriage'],
-            pet=tour['pet'],
-            info_center=tour['info_center'],
-            use_time=tour['use_time'],
-            rest_date=tour['rest_date']).save()
+        base_insert(cls, tour, detail_images).save()
 
 
 class CulturalFacilityModel(TourBase):
@@ -68,12 +16,14 @@ class CulturalFacilityModel(TourBase):
 
     @classmethod
     def insert(cls, tour, detail_images):
-        cls(
+        _cls = base_insert(cls, tour, detail_images)
+        _cls.use_fee = tour['use_fee']
+        _cls.spend_time = tour['spend_time']
 
-        ).save()
+        _cls.save()
 
 
-class FestivalModel(TourModel):
+class FestivalModel(TourTopModel):
     # content type id 15
     start_date = StringField()
     end_date = StringField()
@@ -83,21 +33,28 @@ class FestivalModel(TourModel):
 
     @classmethod
     def insert(cls, tour, detail_images):
-        cls(
+        _cls = top_insert(cls, tour, detail_images)
+        _cls.start_date = str(tour['start_date'])
+        _cls.end_date = str(tour['end_date'])
+        _cls.use_fee = tour['use_fee']
+        _cls.spend_time = tour['spend_time']
+        _cls.place = tour['place']
 
-        ).save()
+        _cls.save()
 
 
-class TourCourseModel(TourModel):
+class TourCourseModel(TourTopModel):
     # content type id 25
     spend_time = StringField()
     distance = StringField()
 
     @classmethod
     def insert(cls, tour, detail_images):
-        cls(
+        _cls = top_insert(cls, tour, detail_images)
+        _cls.spend_time = tour['spend_time']
+        _cls.distance = tour['distance']
 
-        ).save()
+        _cls.save()
 
 
 class LeisureModel(TourBase):
@@ -106,14 +63,14 @@ class LeisureModel(TourBase):
 
     @classmethod
     def insert(cls, tour, detail_images):
-        cls(
+        _cls = base_insert(cls, tour, detail_images)
+        _cls.use_fee = tour['use_fee']
 
-        ).save()
+        _cls.save()
 
 
-class AccommodationModel(TourModel):
+class AccommodationModel(TourTopModel):
     # content type id 32
-    info_center = StringField()
     checkin_time = StringField()
     checkout_time = StringField()
     benikia = BooleanField()
@@ -122,30 +79,36 @@ class AccommodationModel(TourModel):
 
     @classmethod
     def insert(cls, tour, detail_images):
-        cls(
+        _cls = top_insert(cls, tour, detail_images)
+        _cls.checkin_time = tour['checkin_time']
+        _cls.checkout_time = tour['checkout_time']
+        _cls.benikia = tour['benikia']
+        _cls.goodstay = tour['goodstay']
+        _cls.capacity = tour['capacity']
 
-        ).save()
+        _cls.save()
 
 
 class ShoppingModel(TourBase):
     # content type id 38
     @classmethod
     def insert(cls, tour, detail_images):
-        cls(
-
-        ).save()
+        base_insert(cls, tour, detail_images).save()
 
 
-class RestaurantModel(TourModel):
+class RestaurantModel(TourTopModel):
     # content type id 39
     credit_card = StringField()
-    info_center = StringField()
-    use_time = StringField()
+    open_time = StringField()
     rest_date = StringField()
     rep_menu = StringField()
 
     @classmethod
     def insert(cls, tour, detail_images):
-        cls(
+        _cls = top_insert(cls, tour, detail_images)
+        _cls.credit_card = tour['credit_card']
+        _cls.open_time = tour['open_time']
+        _cls.rest_date = tour['rest_date']
+        _cls.rep_menu = tour['rep_menu']
 
-        ).save()
+        _cls.save()
