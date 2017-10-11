@@ -1,9 +1,12 @@
+import threading
+
 from flask import Flask
 from flask_jwt import JWT
 from flask_cors import CORS
 
 import server_preprocessor
 from support import jwt
+from support.api_interactions import tour_api
 
 
 def create_app():
@@ -45,4 +48,5 @@ def index():
     return 'hello?'
 
 if __name__ == '__main__':
+    # threading.Thread(target=tour_api.parse).start()
     _app.run(debug=True)

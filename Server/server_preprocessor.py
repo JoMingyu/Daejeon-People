@@ -1,9 +1,10 @@
-from flask import Flask, current_app, request
-from flask_restful_swagger_2 import Api
+from flask import Flask, current_app
+from flask_restful_swagger_2 import Api, request
 from logging.handlers import RotatingFileHandler
 from logging import Formatter, INFO
 
-from routes.api.user.account.account import EmailCheck, PhoneCheck, EmailCertify, PhoneCertify, Signup
+from routes.api.user.account import *
+from routes.api.tour.tour_list import *
 
 
 def decorate(app):
@@ -63,8 +64,11 @@ def add_resources(app, api_version):
     :rtype: None
     """
     api = Api(app, api_version=api_version)
+
     api.add_resource(EmailCheck, '/check/email')
     api.add_resource(PhoneCheck, '/check/phone')
     api.add_resource(EmailCertify, '/certify/email')
     api.add_resource(PhoneCertify, '/certify/phone')
     api.add_resource(Signup, '/signup')
+
+    api.add_resource(SearchedTourList, '/tour-list/searched')
