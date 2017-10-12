@@ -4,11 +4,11 @@ from flask_jwt import jwt_required, current_identity
 from db.models.user import AccountModel
 from db.models.tour_base import TourTopModel
 
-import swagger_docs
+from .doc import wish_doc
 
 
 class WishList(Resource):
-    @swagger.doc(swagger_docs.WISH_ADD)
+    @swagger.doc(wish_doc.WISH_ADD)
     @jwt_required()
     def post(self):
         content_id = request.form.get('content_id', type=int)
@@ -26,14 +26,14 @@ class WishList(Resource):
 
             return '', 201
 
-    @swagger.doc(swagger_docs.WISH_GET)
+    @swagger.doc(wish_doc.WISH_GET)
     @jwt_required()
     def get(self):
         client_id = current_identity
 
         return list(AccountModel.objects(id=client_id).first().wish_list), 200
 
-    @swagger.doc(swagger_docs.WISH_DELETE)
+    @swagger.doc(wish_doc.WISH_DELETE)
     @jwt_required()
     def delete(self):
         client_id = current_identity

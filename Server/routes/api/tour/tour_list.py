@@ -6,7 +6,7 @@ from flask_jwt import jwt_required, current_identity
 from db.models.tour_base import TourTopModel
 from db.models.user import AccountModel
 
-import swagger_docs
+from .doc import tour_doc
 
 
 def detect(tour_list, sort_type, client_id, x=0.0, y=0.0):
@@ -40,7 +40,7 @@ def detect(tour_list, sort_type, client_id, x=0.0, y=0.0):
 
 
 class SearchedTourList(Resource):
-    @swagger.doc(swagger_docs.SEARCHED_TOUR_LIST)
+    @swagger.doc(tour_doc.SEARCHED_TOUR_LIST)
     @jwt_required()
     def get(self):
         keyword = request.args.get('keyword')
@@ -57,7 +57,7 @@ class SearchedTourList(Resource):
 
 
 class CategorizedTourList(Resource):
-    @swagger.doc(swagger_docs.CATEGORIZED_TOUR_LIST)
+    @swagger.doc(tour_doc.CATEGORIZED_TOUR_LIST)
     @jwt_required()
     def get(self):
         category = request.args.get('category')

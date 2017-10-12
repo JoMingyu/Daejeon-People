@@ -5,11 +5,11 @@ from db.models.tour_base import TourTopModel
 from db.models.user import AccountModel
 from db.mongo_helper import *
 
-import swagger_docs
+from .doc import tour_doc
 
 
 class TourDetail(Resource):
-    @swagger.doc(swagger_docs.TOUR_DETAIL)
+    @swagger.doc(tour_doc.TOUR_DETAIL)
     @jwt_required()
     def get(self):
         content_id = request.args.get('content_id', type=int)
