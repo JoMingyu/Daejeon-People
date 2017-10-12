@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group
+        android:id="@+id/login_group"
+        android:checkableBehavior="single"
+        android:visible="true">
+        <group android:checkableBehavior="single">
+            <item
+                android:visible="true"
+                android:id="@+id/navigation_item01"
+                android:icon="@drawable/ic_person2"
+                android:title="@string/nav_item01" />
+            <item
+                android:visible="true"
+                android:id="@+id/navigation_item02"
+                android:icon="@drawable/ic_setting"
+                android:title="@string/nav_item02" />
+        </group>
+
+        <item android:title="@string/nav_sub_menu">
+            <menu>
+                <item
+                    android:visible="true"
+                    android:icon="@drawable/ic_star"
+                    android:id="@+id/nav_sub_menu_item01"
+                    android:title="@string/nav_sub_menu_item01" />
+                <item
+                    android:visible="true"
+                    android:icon="@drawable/ic_friend"
+                    android:id="@+id/nav_sub_menu_item02"
+                    android:title="@string/nav_sub_menu_item02" />
+                <item
+                    android:visible="true"
+                    android:icon="@drawable/ic_flight_land"
+                    android:id="@+id/nav_sub_menu_item03"
+                    android:title="@string/nav_sub_menu_item03" />
+                <item
+                    android:visible="true"
+                    android:icon="@drawable/ic_flight_takeoff"
+                    android:id="@+id/nav_sub_menu_item04"
+                    android:title="@string/nav_sub_menu_item04" />
+            </menu>
+        </item>
+    </group>
+
+    <group android:checkableBehavior="single"
+        android:visible="false"
+        android:id="@+id/not_login_group">
+        <item
+            android:id="@+id/navigation_not_login_item01"
+            android:icon="@drawable/ic_login"
+            android:title="로그인" />
+        <item
+            android:id="@+id/navigation_not_login_item02"
+            android:icon="@drawable/ic_sign_up"
+            android:title="회원 가입" />
+    </group>
+
+
+</menu>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="130dp"
+    android:background="@drawable/border_below_shadow">
+    <Button
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:background="@drawable/ic_back_dark"
+        android:layout_margin="20dp"
+        android:id="@+id/backBtn"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="검색"
+        android:textSize="25sp"
+        android:textColor="@color/Dark"
+        android:layout_toRightOf="@+id/backBtn"
+        android:layout_marginTop="17dp"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/backBtn"
+        android:background="@drawable/round_corner_border_dark">
+        <EditText
+            android:id="@+id/searchContent"
+            android:layout_width="315dp"
+            android:layout_height="match_parent"
+            android:hint="텍스트를 입력하세요"
+            android:background="@android:color/transparent"
+            android:layout_marginLeft="20dp" />
+        <Button
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:background="@drawable/ic_serach"
+            android:layout_toRightOf="@+id/searchContent"
+            android:layout_marginTop="13dp"/>
+    </RelativeLayout>
+</RelativeLayout>
