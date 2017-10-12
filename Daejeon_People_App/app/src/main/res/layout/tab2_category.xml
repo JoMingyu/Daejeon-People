@@ -68,6 +68,7 @@
                                         android:textSize="30dp" />
 
                                     <Button
+                                        android:id="@+id/category_tourist"
                                         android:background="@drawable/round_corner_gradation"
                                         android:layout_width="130dp"
                                         android:layout_height="28dp"
@@ -127,6 +128,7 @@
                                         android:textSize="30dp" />
 
                                     <Button
+                                        android:id="@+id/category_culture"
                                         android:background="@drawable/round_corner_gradation"
                                         android:layout_width="130dp"
                                         android:layout_height="28dp"
@@ -187,6 +189,7 @@
                                         android:textSize="30dp" />
 
                                     <Button
+                                        android:id="@+id/category_event"
                                         android:background="@drawable/round_corner_gradation"
                                         android:layout_width="130dp"
                                         android:layout_height="28dp"
@@ -250,6 +253,7 @@
                                         android:textSize="30dp" />
 
                                     <Button
+                                        android:id="@+id/category_course"
                                         android:background="@drawable/round_corner_gradation"
                                         android:layout_width="130dp"
                                         android:layout_height="28dp"
@@ -312,6 +316,7 @@
                                         android:textSize="30dp" />
 
                                     <Button
+                                        android:id="@+id/category_leisure"
                                         android:background="@drawable/round_corner_gradation"
                                         android:layout_width="130dp"
                                         android:layout_height="28dp"
@@ -374,6 +379,7 @@
                                         android:textSize="30dp" />
 
                                     <Button
+                                        android:id="@+id/category_accommodation"
                                         android:background="@drawable/round_corner_gradation"
                                         android:layout_width="130dp"
                                         android:layout_height="28dp"
@@ -435,6 +441,7 @@
                                         android:textSize="30dp" />
 
                                     <Button
+                                        android:id="@+id/category_shopping"
                                         android:background="@drawable/round_corner_gradation"
                                         android:layout_width="130dp"
                                         android:layout_height="28dp"
@@ -497,6 +504,7 @@
                                         android:textSize="30dp" />
 
                                     <Button
+                                        android:id="@+id/category_food"
                                         android:background="@drawable/round_corner_gradation"
                                         android:layout_width="130dp"
                                         android:layout_height="28dp"

@@ -1,6 +1,7 @@
 package com.planb.restful.attractions.list;
 
 import org.json.JSONArray;
+import org.json.JSONObject;
 
 import com.planb.support.restful.attractions.AttractionsListInquiry;
 import com.planb.support.routing.API;
@@ -20,13 +21,15 @@ public class CategoryFilteredList implements Handler<RoutingContext> {
 		String category = ctx.request().getParam("category");
 
 		JSONArray response = AttractionsListInquiry.inquire(ctx, category);
-
+		JSONObject temp = new JSONObject();
+		temp.put("data", response);
+		
 		if (response == null || response.length() == 0) {
 			ctx.response().setStatusCode(204).end();
 			ctx.response().close();
 		} else {
 			ctx.response().setStatusCode(200);
-			ctx.response().end(response.toString());
+			ctx.response().end(temp.toString());
 			ctx.response().close();
 		}
 	}

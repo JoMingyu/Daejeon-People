@@ -8,6 +8,7 @@ public class MainItemPopular {
     private String image;
     private int content_id;
     private String title;
+    private String eng_title;
 
 
     public String getImage () {
@@ -32,6 +33,14 @@ public class MainItemPopular {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getEng_title() {
+        return eng_title;
+    }
+
+    public void setEng_title(String eng_title){
+        this.eng_title = eng_title;
     }
 
 }

@@ -18,11 +18,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.daejeonpeople.R;
-import com.daejeonpeople.activities.Filter.Filter;
 import com.daejeonpeople.activities.account.SignIn;
 import com.daejeonpeople.activities.account.SignUp;
-import com.daejeonpeople.activities.side_menu.ChatList;
-import com.daejeonpeople.activities.side_menu.FriendList;
+import com.daejeonpeople.activities.chatting.ChatList;
 import com.daejeonpeople.activities.side_menu.MyInfo;
 import com.daejeonpeople.activities.side_menu.WishList;
 import com.daejeonpeople.support.database.DBHelper;
@@ -30,12 +28,7 @@ import com.daejeonpeople.support.network.APIClient;
 import com.daejeonpeople.support.network.APIinterface;
 import com.daejeonpeople.support.security.AES;
 import com.daejeonpeople.support.views.SnackbarManager;
-import com.daejeonpeople.valueobject.MainItemMonthly;
-import com.daejeonpeople.valueobject.MainItemPopular;
-import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-
-import java.util.ArrayList;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -139,8 +132,6 @@ public class Main extends AppCompatActivity
                 @Override
                 public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                     if(response.code() == 200){
-                        Log.d("name", name+"");
-                        Log.d("name", response.body().get("name").toString());
                         name.setText(aes.decrypt(response.body().get("name").toString()));
                         email.setText(aes.decrypt(response.body().get("email").toString()));
                         phonenum.setText(response.body().get("phone_number").toString());
@@ -174,17 +165,6 @@ public class Main extends AppCompatActivity
             profileimg.setImageResource(R.drawable.ic_profile_dark);
         }
 
-        //filter버튼 이벤트
-        Button filter_btn = (Button) findViewById(R.id.ic_filter);
-
-        filter_btn.setOnClickListener(new Button.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), Filter.class);
-                startActivity(intent);
-            }
-        }) ;
-
         //search버튼 이벤트
         Button search_btn = (Button) findViewById(R.id.ic_search);
 
@@ -192,6 +172,8 @@ public class Main extends AppCompatActivity
             @Override
             public void onClick(View view) {
                 //검색창
+                Intent intent=new Intent(Main.this, Search.class);
+                startActivity(intent);
             }
         }) ;
 
@@ -238,7 +220,6 @@ public class Main extends AppCompatActivity
                 case R.id.navigation_item01:
                     // 내 정보
                     fragment = new MyInfo();
-                    title = "내정보";
                     break;
                 case R.id.navigation_item02:
                     // 설정
@@ -250,7 +231,7 @@ public class Main extends AppCompatActivity
                     break;
                 case R.id.nav_sub_menu_item02:
                     // 친구 목록
-                    startActivity(new Intent(this, FriendList.class));
+                    startActivity(new Intent(this, AddressBook.class));
                     break;
                 case R.id.nav_sub_menu_item03:
                     // 최근여행지

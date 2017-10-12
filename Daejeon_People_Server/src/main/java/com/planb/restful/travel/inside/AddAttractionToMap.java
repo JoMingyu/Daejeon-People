@@ -3,8 +3,6 @@ package com.planb.restful.travel.inside;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.planb.support.chatting.ChatRoomManager;
-import com.planb.support.chatting.MySQL_Chat;
 import com.planb.support.routing.API;
 import com.planb.support.routing.REST;
 import com.planb.support.routing.Route;
@@ -54,7 +52,6 @@ public class AddAttractionToMap implements Handler<RoutingContext> {
 			double mapY = attractionInfoSet.getDouble("mapy");
 			
 			MySQL.executeUpdate("INSERT INTO travel_pins VALUES(?, ?, ?, ?, ?, ?)", topic, contentId, title, owner, mapX, mapY);
-			MySQL_Chat.executeUpdate("INSERT INTO" + topic + "(remaning_views, type, name, content) VALUES(?, ?, ?, ?)", ChatRoomManager.getUserCountInRoom(topic), "add_att", owner, title);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

@@ -3,6 +3,8 @@
     package="com.daejeonpeople">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
 
     <application
         android:allowBackup="true"
@@ -12,6 +14,24 @@
         android:supportsRtl="true"
         android:name="application.ApplicationClass"
         android:theme="@style/AppTheme">
+        <service android:name=".support.firebase.FirebaseMessageManager">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
+        <activity android:name=".activities.MapView" android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN"/>-->
+
+                <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
+        </activity>
+
         <activity android:name=".activities.splash.Splash"
             android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
@@ -22,7 +42,7 @@
         </activity>
         <activity android:name=".activities.Landing"/>
         <activity android:name=".activities.account.Email_Certified" />
-        <activity android:name=".activities.Chatting"/>
+        <activity android:name=".activities.chatting.Chatting"/>
         <activity android:name=".activities.AddressBook" />
         <activity android:name=".activities.account.SignIn"/>
         <activity
@@ -30,7 +50,8 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
         <activity
             android:name=".activities.Main"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        </activity>
         <activity android:name=".activities.account.EntryID" />
         <activity android:name=".activities.account.EntryPW" />
         <activity android:name=".activities.account.FindID" />
@@ -38,11 +59,23 @@
         <activity android:name=".activities.Search" />
         <activity android:name=".activities.InvitationTrip"/>
         <activity android:name=".activities.FriendRequest" />
-        <activity android:name=".activities.side_menu.ChatList"/>
-        <activity android:name=".activities.side_menu.FriendList"/>
+        <activity android:name=".activities.chatting.MakeChatting"/>
+        <activity android:name=".activities.chatting.MakeChattingInvite" />
+        <activity android:name=".activities.chatting.ChatList"/>
         <activity android:name=".activities.side_menu.WishList"/>
-        <activity android:name=".activities.Filter.Filter"/>
-        <activity android:name=".activities.Filter.Filter_detail"/>
+        <activity android:name=".activities.Category.Category_detail"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity android:name=".activities.ResultList.ResultList"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity android:name=".activities.Introduction.Introduction_Culture"/>
+        <activity android:name=".activities.mChatting.mChatting"/>
+        <activity android:name=".activities.Introduction.Introduction_Accomodation"/>
+        <activity android:name=".activities.Introduction.Introduction_Course"/>
+        <activity android:name=".activities.Introduction.Introduction_Festival"/>
+        <activity android:name=".activities.Introduction.Introduction_Leisure"/>
+        <activity android:name=".activities.Introduction.Introduction_Restaurant"/>
+        <activity android:name=".activities.Introduction.Introduction_Shopping"/>
+        <activity android:name=".activities.Introduction.Introduction_Tourism"/>
     </application>
 
 </manifest>

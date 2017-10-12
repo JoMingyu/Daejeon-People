@@ -1,5 +1,6 @@
 package com.planb.restful.user.common;
 
+import com.planb.support.crypto.AES256;
 import com.planb.support.routing.API;
 import com.planb.support.routing.REST;
 import com.planb.support.routing.Route;
@@ -15,7 +16,7 @@ import io.vertx.ext.web.RoutingContext;
 public class AnotherUser implements Handler<RoutingContext> {
 	@Override
 	public void handle(RoutingContext ctx) {
-		String id = ctx.request().getFormAttribute("id");
+		String id = AES256.encrypt(ctx.request().getFormAttribute("id"));
 		
 		ctx.response().setStatusCode(201);
 		ctx.response().end(UserManager.getUserInfo(id).toString());

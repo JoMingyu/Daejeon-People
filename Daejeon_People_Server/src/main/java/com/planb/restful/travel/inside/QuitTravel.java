@@ -1,10 +1,5 @@
 package com.planb.restful.travel.inside;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
-import com.planb.support.chatting.ChatRoomManager;
-import com.planb.support.chatting.MySQL_Chat;
 import com.planb.support.routing.API;
 import com.planb.support.routing.REST;
 import com.planb.support.routing.Route;
@@ -24,23 +19,9 @@ public class QuitTravel implements Handler<RoutingContext> {
 		String clientId = UserManager.getEncryptedIdFromSession(ctx);
 		String topic = ctx.request().getFormAttribute("topic");
 		
-		quitTravel(clientId, topic);
+		MySQL.executeUpdate("DELETE FROM travel_clients WHERE client_id=? AND topic=?", clientId, topic);
 		
 		ctx.response().setStatusCode(200).end();
 		ctx.response().close();
-	}
-	
-	private void quitTravel(String clientId, String topic) {
-		MySQL.executeUpdate("DELETE FROM travel_clients WHERE client_id=? AND topic=?", clientId, topic);
-		
-		ResultSet userInfoSet = MySQL.executeQuery("SELECT * FROM account WHERE id=?", clientId);
-		try {
-            assert userInfoSet != null;
-            userInfoSet.next();
-			MySQL_Chat.executeUpdate("INSERT INTO " + topic + "(remaining_views, type, name) VALUES(?, ?, ?)", ChatRoomManager.getUserCountInRoom(topic), "quit", userInfoSet.getString("name"));
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 }

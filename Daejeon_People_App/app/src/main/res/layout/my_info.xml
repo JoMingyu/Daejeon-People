@@ -37,10 +37,11 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent">
                                     <ImageView
-                                        android:layout_width="90dp"
-                                        android:layout_height="90dp"
+                                        android:layout_width="70dp"
+                                        android:layout_height="70dp"
                                         android:src="@drawable/ic_profile_dark"
-                                        android:layout_centerInParent="true"/>
+                                        android:layout_centerHorizontal="true"
+                                        android:layout_alignParentBottom="true"/>
                                 </RelativeLayout>
                             </LinearLayout>
 
@@ -52,7 +53,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent">
                                     <LinearLayout
-                                        android:layout_centerInParent="true"
+                                        android:layout_centerHorizontal="true"
                                         android:orientation="vertical"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content">
@@ -62,21 +63,21 @@
                                             android:layout_height="wrap_content"
                                             android:textColor="@color/Black"
                                             android:text="Kimdonggyu"
-                                            android:textSize="25dp" />
+                                            android:textSize="20sp" />
                                         <TextView
                                             android:layout_gravity="center"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
-                                            android:textColor="@color/Gray"
+                                            android:textColor="#555555"
                                             android:text="dododo@naver.com"
-                                            android:textSize="17dp"/>
+                                            android:textSize="15sp"/>
                                         <TextView
                                             android:layout_gravity="center"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
-                                            android:textColor="@color/Gray"
+                                            android:textColor="#555555"
                                             android:text="010-7637-2082"
-                                            android:textSize="17dp"/>
+                                            android:textSize="15sp"/>
                                     </LinearLayout>
                                 </RelativeLayout>
                             </LinearLayout>
@@ -112,8 +113,8 @@
                                     android:layout_height="wrap_content">
                                     <ImageView
                                         android:layout_gravity="center"
-                                        android:layout_width="75dp"
-                                        android:layout_height="75dp"
+                                        android:layout_width="50dp"
+                                        android:layout_height="50dp"
                                         android:src="@drawable/ic_travel"/>
                                     <TextView
                                         android:layout_gravity="center"
@@ -121,7 +122,7 @@
                                         android:layout_height="wrap_content"
                                         android:text="초대된 여행"
                                         android:textColor="@color/Black"
-                                        android:textSize="17dp"/>
+                                        android:textSize="15sp"/>
                                 </LinearLayout>
                             </RelativeLayout>
                         </LinearLayout>
@@ -140,8 +141,8 @@
                                     android:layout_height="wrap_content">
                                     <ImageView
                                         android:layout_gravity="center"
-                                        android:layout_width="75dp"
-                                        android:layout_height="75dp"
+                                        android:layout_width="50dp"
+                                        android:layout_height="50dp"
                                         android:src="@drawable/ic_friend_request"/>
                                     <TextView
                                         android:layout_gravity="center"
@@ -149,7 +150,7 @@
                                         android:layout_height="wrap_content"
                                         android:text="친구 요청"
                                         android:textColor="@color/Black"
-                                        android:textSize="17dp"/>
+                                        android:textSize="15sp"/>
                                 </LinearLayout>
                             </RelativeLayout>
                         </LinearLayout>
@@ -173,8 +174,8 @@
                                 <ImageView
                                     android:layout_marginLeft="50dp"
                                     android:layout_gravity="center"
-                                    android:layout_width="40dp"
-                                    android:layout_height="40dp"
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp"
                                     android:src="@drawable/ic_lock" />
                                 <TextView
                                     android:layout_marginLeft="50dp"
@@ -182,7 +183,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="비밀번호 변경"
-                                    android:textSize="20dp"/>
+                                    android:textSize="15sp"/>
                             </LinearLayout>
                         </LinearLayout>
 
@@ -198,8 +199,8 @@
                                 <ImageView
                                     android:layout_marginLeft="50dp"
                                     android:layout_gravity="center"
-                                    android:layout_width="40dp"
-                                    android:layout_height="40dp"
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp"
                                     android:src="@drawable/ic_secession" />
                                 <TextView
                                     android:layout_marginLeft="50dp"
@@ -207,7 +208,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="회원 탈퇴"
-                                    android:textSize="20dp"/>
+                                    android:textSize="15sp"/>
                             </LinearLayout>
                         </LinearLayout>
 
@@ -223,8 +224,8 @@
                                 <ImageView
                                     android:layout_marginLeft="50dp"
                                     android:layout_gravity="center"
-                                    android:layout_width="40dp"
-                                    android:layout_height="40dp"
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp"
                                     android:src="@drawable/ic_logout" />
                                 <TextView
                                     android:layout_marginLeft="50dp"
@@ -232,7 +233,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="로그아웃"
-                                    android:textSize="20dp"/>
+                                    android:textSize="15sp"/>
                             </LinearLayout>
                         </LinearLayout>
                     </LinearLayout>

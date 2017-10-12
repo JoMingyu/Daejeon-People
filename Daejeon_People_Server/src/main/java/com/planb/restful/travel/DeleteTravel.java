@@ -1,6 +1,5 @@
 package com.planb.restful.travel;
 
-import com.planb.support.chatting.MySQL_Chat;
 import com.planb.support.routing.API;
 import com.planb.support.routing.REST;
 import com.planb.support.routing.Route;
@@ -26,6 +25,6 @@ public class DeleteTravel implements Handler<RoutingContext> {
 	
 	private void deleteRoom(String topic) {
 		MySQL.executeUpdate("DELETE * FROM travel_list WHERE topic=?", topic);
-		MySQL_Chat.executeUpdate("DROP TABLE " + topic);
+//		MySQL_Chat.executeUpdate("DROP TABLE " + topic);
 	}
 }

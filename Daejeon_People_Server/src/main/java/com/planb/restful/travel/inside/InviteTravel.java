@@ -3,7 +3,6 @@ package com.planb.restful.travel.inside;
 import com.planb.support.routing.API;
 import com.planb.support.routing.REST;
 import com.planb.support.routing.Route;
-import com.planb.support.user.UserManager;
 import com.planb.support.utilities.MySQL;
 
 import io.vertx.core.Handler;
@@ -16,13 +15,11 @@ import io.vertx.ext.web.RoutingContext;
 public class InviteTravel implements Handler<RoutingContext> {
 	@Override
 	public void handle(RoutingContext ctx) {
-		String clientId = UserManager.getEncryptedIdFromSession(ctx);
 		String dst = ctx.request().getFormAttribute("dst");
 		String topic = ctx.request().getFormAttribute("topic");
-		String msg = ctx.request().getFormAttribute("msg");
 		
-		MySQL.executeUpdate("DELETE FROM travel_invites WHERE dst_id=? AND topic=?", dst, topic);
-		MySQL.executeUpdate("INSERT INTO travel_invites VALUES(?, ?, ?, ?, NOW())", clientId, dst, topic, msg);
+		MySQL.executeUpdate("DELETE FROM travel_clients WHERE topic=? AND client_id=?", topic, dst);
+		MySQL.executeUpdate("INSERT INTO travel_clients VALUES(?, ?)", topic, dst);
 		
 		ctx.response().setStatusCode(201).end();
 		ctx.response().close();

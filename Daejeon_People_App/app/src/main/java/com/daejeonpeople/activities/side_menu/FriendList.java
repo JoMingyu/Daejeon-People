@@ -22,6 +22,7 @@ import org.json.JSONObject;
  * Created by dsm2016 on 2017-07-20.
  */
 
+@Deprecated
 public class FriendList extends BaseActivity {
     private Button backBtn;
 
