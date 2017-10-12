@@ -1,5 +1,8 @@
 package com.planb.restful.user.friend;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 import com.planb.support.routing.API;
 import com.planb.support.routing.REST;
 import com.planb.support.routing.Route;
@@ -21,6 +24,18 @@ public class AcceptFriend implements Handler<RoutingContext> {
 		// 친구 요청을 수락한 사람
 		String requesterId = ctx.request().getFormAttribute("requester_id");
 		// 친구 요청을 보낸 사람
+		
+		ResultSet rs = MySQL.executeQuery("SELECT * FROM account WHERE id=?", requesterId);
+		try {
+			if(!rs.next()) {
+				ctx.response().setStatusCode(204).end();
+				ctx.response().close();
+				
+				return;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		
 		MySQL.executeUpdate("DELETE FROM friend_requests WHERE src_id=? AND dst_id=?", requesterId, clientId);
 		MySQL.executeUpdate("INSERT INTO friend_list VALUES(?, ?)", clientId, requesterId);

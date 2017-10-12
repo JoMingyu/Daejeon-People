@@ -7,13 +7,9 @@ import org.json.JSONObject;
 
 import com.planb.support.networking.HttpClient;
 
-class Firebase {
+public class Firebase {
 	private static final String SERVER_KEY = Config.getValue("fbServerKey");
 
-	public Firebase() {
-		
-	}
-	
 	public static void send(String title, String body, String registrationId) {
 		// Send by registration id
 		HttpClient client = new HttpClient("https://fcm.googleapis.com/fcm/send");

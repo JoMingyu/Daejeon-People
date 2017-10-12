@@ -37,6 +37,7 @@ public class MainPage implements Handler<RoutingContext> {
 				JSONObject popularAttraction = new JSONObject();
 				
 				popularAttraction.put("content_id", rsForPopular.getInt("content_id"));
+				popularAttraction.put("content_type_id", rsForPopular.getInt("content_type_id"));
 				popularAttraction.put("title", rsForPopular.getString("title"));
 				popularAttraction.put("eng_title", Translator.translate(rsForPopular.getString("title")));
 				popularAttraction.put("image", rsForPopular.getString("image_big_url"));
@@ -48,6 +49,7 @@ public class MainPage implements Handler<RoutingContext> {
 				monthlyAttraction.put("wish", wish != null ? wish.next() : false);
 				monthlyAttraction.put("wish_count", rsForMonthly.getInt("wish_count"));
 				monthlyAttraction.put("content_id", rsForMonthly.getInt("content_id"));
+				monthlyAttraction.put("content_type_id", rsForMonthly.getInt("content_type_id"));
 				monthlyAttraction.put("title", rsForMonthly.getString("title"));
 				monthlyAttraction.put("eng_title", Translator.translate(rsForMonthly.getString("title")));
 				monthlyAttraction.put("address", rsForMonthly.getString("address"));
