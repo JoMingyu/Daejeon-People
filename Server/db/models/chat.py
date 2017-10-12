@@ -1,4 +1,5 @@
-from db.mongo import *
+from mongoengine import *
+
 from db.models.user import AccountModel
 
 

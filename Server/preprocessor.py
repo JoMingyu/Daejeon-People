@@ -3,10 +3,14 @@ from flask_restful_swagger_2 import Api, request
 from logging.handlers import RotatingFileHandler
 from logging import Formatter, INFO
 
-from routes.api.user.account.account import PhoneCertify, EmailCertify, PhoneCheck, EmailCheck, Signup
+from routes.api.chat.chat import Chat, ChatInvitation
+
 from routes.api.tour.tour_list import CategorizedTourList, SearchedTourList
 from routes.api.tour.tour_detail import TourDetail
+
+from routes.api.user.account.account import PhoneCertify, EmailCertify, PhoneCheck, EmailCheck, Signup
 from routes.api.user.wish.wish import WishList
+from routes.api.user.friend.friend import Friend, FriendInvitation, ReceivedFriendInvitation
 
 
 def decorate(app):
@@ -66,6 +70,13 @@ def add_resources(app, api_version):
     :rtype: None
     """
     api = Api(app, api_version=api_version)
+
+    api.add_resource(Chat, '/chat')
+    api.add_resource(ChatInvitation, '/chat-invite')
+
+    api.add_resource(Friend, '/friend')
+    api.add_resource(FriendInvitation, '/friend-invite')
+    api.add_resource(ReceivedFriendInvitation, '/friend-invite/received')
 
     api.add_resource(EmailCheck, '/check/email')
     api.add_resource(PhoneCheck, '/check/phone')

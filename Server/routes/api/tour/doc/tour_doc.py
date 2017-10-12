@@ -1,6 +1,6 @@
 SEARCHED_TOUR_LIST = {
     'tags': ['여행지 리스트'],
-    'description': '여행지 리스트 - 검색(JWT Required)',
+    'description': '여행지 리스트 - 검색',
     'parameters': [
         {
             'name': 'keyword',
@@ -13,6 +13,12 @@ SEARCHED_TOUR_LIST = {
             'description': '정렬 타입(1: 조회순, 2: 위시리스트 많은 순, 3: 거리순)',
             'in': 'query',
             'type': 'int'
+        },
+        {
+            'name': 'Authorization',
+            'description': 'JWT Token',
+            'in': 'header',
+            'type': 'str'
         }
     ],
     'responses': {
@@ -55,7 +61,7 @@ SEARCHED_TOUR_LIST = {
 
 CATEGORIZED_TOUR_LIST = {
     'tags': ['여행지 리스트'],
-    'description': '여행지 리스트 - 카테고리 필터링(JWT Required)',
+    'description': '여행지 리스트 - 카테고리 필터링',
     'parameters': [
         {
             'name': 'category',
@@ -68,6 +74,12 @@ CATEGORIZED_TOUR_LIST = {
             'description': '정렬 타입(1: 조회순, 2: 위시리스트 많은 순, 3: 거리순)',
             'in': 'query',
             'type': 'int'
+        },
+        {
+            'name': 'Authorization',
+            'description': 'JWT Token',
+            'in': 'header',
+            'type': 'str'
         }
     ],
     'responses': {
@@ -122,13 +134,19 @@ CATEGORIZED_TOUR_LIST = {
 
 TOUR_DETAIL = {
     'tags': ['여행지 세부 정보'],
-    'description': '여행지 세부 정보 조회(JWT Required)',
+    'description': '여행지 세부 정보 조회',
     'parameters': [
         {
             'name': 'content_id',
             'description': '세부 정보를 조회할 content id',
             'in': 'query',
             'type': 'int'
+        },
+        {
+            'name': 'Authorization',
+            'description': 'JWT Token',
+            'in': 'header',
+            'type': 'str'
         }
     ],
     'responses': {

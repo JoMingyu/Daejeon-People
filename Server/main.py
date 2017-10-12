@@ -4,7 +4,7 @@ from flask import Flask
 from flask_jwt import JWT
 from flask_cors import CORS
 
-import server_preprocessor
+import preprocessor
 from support import jwt
 from support.api_interactions import tour_api
 
@@ -35,8 +35,8 @@ def create_app():
     CORS(app)
     JWT(app, authentication_handler=jwt.authenticate, identity_handler=jwt.identity)
 
-    server_preprocessor.decorate(app)
-    server_preprocessor.add_resources(app, api_version=0.1)
+    preprocessor.decorate(app)
+    preprocessor.add_resources(app, api_version=0.1)
 
     return app
 

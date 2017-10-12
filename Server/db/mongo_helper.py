@@ -1,4 +1,4 @@
-from db.mongo import *
+from mongoengine import *
 
 
 def mongo_to_dict(obj, exclude_fields=list()):
