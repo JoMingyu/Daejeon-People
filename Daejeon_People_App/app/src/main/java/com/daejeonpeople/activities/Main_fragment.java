@@ -1,6 +1,5 @@
 package com.daejeonpeople.activities;
 
-import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -10,8 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import com.daejeonpeople.R;
-import com.daejeonpeople.adapter.CustomAdapter;
-import com.daejeonpeople.adapter.CustomsAdapter;
+import com.daejeonpeople.adapter.MainPopularAdapter;
+import com.daejeonpeople.adapter.MainMonthlyAdapter;
 import com.daejeonpeople.support.database.DBHelper;
 import com.daejeonpeople.support.network.APIClient;
 import com.daejeonpeople.support.network.APIinterface;
@@ -54,31 +53,53 @@ public class Main_fragment extends Fragment {
                 if(response.code() == 200){
                     JsonArray jsonArrayM = response.body().get("monthly").getAsJsonArray();
                     JsonArray jsonArrayP = response.body().get("popular").getAsJsonArray();
-                    for(int i = 0; i < 5; i++) {
+                    for(int i = 0; i < jsonArrayM.size(); i++) {
                         MainItemMonthly mainItemMonthly = new MainItemMonthly();
                         MainItemPopular mainItemPopular = new MainItemPopular();
 
                         mainItemMonthly.setWish(jsonArrayM.get(i).getAsJsonObject().get("wish").getAsBoolean());
-                        mainItemMonthly.setImage(jsonArrayM.get(i).getAsJsonObject().get("image").toString());
-                        mainItemMonthly.setAddress(jsonArrayM.get(i).getAsJsonObject().get("address").toString());
+                        if(jsonArrayM.get(i).getAsJsonObject().get("image") == null){
+                            mainItemMonthly.setImage("NoImage");
+                        } else {
+                            mainItemMonthly.setImage(jsonArrayM.get(i).getAsJsonObject().get("image").toString());
+                        }
+                        if(jsonArrayM.get(i).getAsJsonObject().get("address") == null){
+                            mainItemMonthly.setAddress("주소 정보가 없습니다.");
+                        } else {
+                            mainItemMonthly.setAddress(jsonArrayM.get(i).getAsJsonObject().get("address").toString());
+                        }
                         mainItemMonthly.setContent_id(jsonArrayM.get(i).getAsJsonObject().get("content_id").getAsInt());
-                        mainItemMonthly.setTitle(jsonArrayM.get(i).getAsJsonObject().get("title").toString());
-                        mainItemMonthly.setContent_id(jsonArrayM.get(i).getAsJsonObject().get("wish_count").getAsInt());
-
+                        mainItemMonthly.setContent_type_id(jsonArrayM.get(i).getAsJsonObject().get("content_type_id").getAsInt());
+                        mainItemMonthly.setTitle(jsonArrayM.get(i).getAsJsonObject().get("title").toString().replaceAll("\"", ""));
+                        mainItemMonthly.setWish_count(jsonArrayM.get(i).getAsJsonObject().get("wish_count").getAsInt());
+                        if(jsonArrayM.get(i).getAsJsonObject().get("eng_title") == null) {
+                            mainItemMonthly.setEng_title("title 정보가 없습니다.");
+                        } else {
+                            mainItemMonthly.setEng_title(jsonArrayM.get(i).getAsJsonObject().get("eng_title").toString().replaceAll("\"", ""));
+                        }
                         arrayListM.add(mainItemMonthly);
 
-                        mainItemPopular.setImage(jsonArrayP.get(i).getAsJsonObject().get("image").toString());
+                        if(jsonArrayP.get(i).getAsJsonObject().get("image") == null){
+                            mainItemPopular.setImage("NoImage");
+                        } else {
+                            mainItemPopular.setImage(jsonArrayP.get(i).getAsJsonObject().get("image").toString());
+                        }
                         mainItemPopular.setContent_id(jsonArrayP.get(i).getAsJsonObject().get("content_id").getAsInt());
-                        mainItemPopular.setTitle(jsonArrayP.get(i).getAsJsonObject().get("title").toString());
+                        mainItemPopular.setTitle(jsonArrayP.get(i).getAsJsonObject().get("title").toString().replaceAll("\"", ""));
+                        if(jsonArrayP.get(i).getAsJsonObject().get("eng_title") == null) {
+                            mainItemPopular.setEng_title("title 정보가 없습니다.");
+                        } else {
+                            mainItemPopular.setEng_title(jsonArrayP.get(i).getAsJsonObject().get("eng_title").toString().replaceAll("\"", ""));
+                        }
                         arrayListP.add(mainItemPopular);
                     }
-                    CustomAdapter adapter1 = new CustomAdapter(getActivity().getLayoutInflater(), arrayListP, getActivity());
+                    MainPopularAdapter adapter1 = new MainPopularAdapter(getActivity().getLayoutInflater(), arrayListP, getActivity());
                     pager1.setAdapter(adapter1);
-                    CustomsAdapter adapter2 = new CustomsAdapter(getActivity().getLayoutInflater(), arrayListM, getActivity());
+                    MainMonthlyAdapter adapter2 = new MainMonthlyAdapter(getActivity().getLayoutInflater(), arrayListM, getActivity());
                     pager2.setAdapter(adapter2);
                     Log.d("image", arrayListM.get(3).getTitle()+"");
                 } else {
-                    Log.d("error", "ang gi mo thi");
+                    Log.d("Main_fragment_error", "ang gi mo thi");
                 }
             }
 

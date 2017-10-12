@@ -5,19 +5,9 @@ package com.daejeonpeople.valueobject;
  */
 
 public class WishlistItem {
-    private String date;
     private String title;
     private String address;
-    private int love;
-    private int back_image;
-
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
-    }
+    private String back_image;
 
     public String getTitle() {
         return title;
@@ -35,19 +25,11 @@ public class WishlistItem {
         this.address = address;
     }
 
-    public int getLove() {
-        return love;
-    }
-
-    public void setLove(int love) {
-        this.love = love;
-    }
-
-    public int getBack_image() {
+    public String getBack_image() {
         return back_image;
     }
 
-    public void setBack_image(int back_image) {
+    public void setBack_image(String back_image) {
         this.back_image = back_image;
     }
 }

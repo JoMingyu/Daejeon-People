@@ -8,11 +8,21 @@ import java.util.ArrayList;
 
 public class MainItemMonthly {
     private boolean wish;
+    private int content_type_id;
     private String image;
     private String address;
     private int content_id;
     private String title;
     private int wish_count;
+    private String eng_title;
+
+    public int getContent_type_id(){
+        return content_type_id;
+    }
+
+    public void setContent_type_id(int content_type_id) {
+        this.content_type_id = content_type_id;
+    }
 
     public boolean getWish () {
         return wish;
@@ -60,5 +70,13 @@ public class MainItemMonthly {
 
     public void setWish_count(int wish_count) {
         this.wish_count = wish_count;
+    }
+
+    public String getEng_title() {
+        return eng_title;
+    }
+
+    public void setEng_title(String eng_title){
+        this.eng_title = eng_title;
     }
 }
