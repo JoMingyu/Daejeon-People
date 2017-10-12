@@ -1,10 +1,9 @@
-from flask_restful_swagger_2 import swagger, Resource, request
 from flask_jwt import jwt_required, current_identity
+from flask_restful_swagger_2 import swagger, Resource, request
 
-from db.models.user import AccountModel
 from db.models.tour_base import TourTopModel
-
-from .doc import wish_doc
+from db.models.user import AccountModel
+from routes.api.user.doc import wish_doc
 
 
 class WishList(Resource):

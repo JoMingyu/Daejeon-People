@@ -1,7 +1,7 @@
 from flask_restful_swagger_2 import swagger, Resource, request
 
 from db.models.user import AccountModel
-from .doc import user_search_doc
+from routes.api.user.doc import user_search_doc
 
 
 class UserSearch(Resource):

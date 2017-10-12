@@ -1,12 +1,12 @@
-import random
 import os
-from smtplib import SMTP
+import random
 from email.mime.text import MIMEText
+from smtplib import SMTP
 
 from flask_restful_swagger_2 import swagger, Resource, request
 
 from db.models.user import AccountModel, CertifyModel
-from .doc import account_doc
+from routes.api.user.doc import account_doc
 
 
 class EmailCheck(Resource):

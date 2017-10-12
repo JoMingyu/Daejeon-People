@@ -3,17 +3,17 @@ from flask_jwt import jwt_required, current_identity
 
 
 class Friend(Resource):
-    @swagger.doc()
+    # @swagger.doc()
     @jwt_required()
     def post(self):
         pass
 
-    @swagger.doc()
+    # @swagger.doc()
     @jwt_required()
     def get(self):
         pass
 
-    @swagger.doc()
+    # @swagger.doc()
     @jwt_required()
     def delete(self):
         pass
@@ -21,17 +21,17 @@ class Friend(Resource):
 
 class FriendInvitation(Resource):
     # 요청자 입장
-    @swagger.doc()
+    # @swagger.doc()
     @jwt_required()
     def post(self):
         pass
 
-    @swagger.doc()
+    # @swagger.doc()
     @jwt_required()
     def get(self):
         pass
 
-    @swagger.doc()
+    # @swagger.doc()
     @jwt_required()
     def delete(self):
         pass
@@ -39,17 +39,17 @@ class FriendInvitation(Resource):
 
 class ReceivedFriendInvitation(Resource):
     # 수신자 입장
-    @swagger.doc()
+    # @swagger.doc()
     @jwt_required()
     def post(self):
         pass
 
-    @swagger.doc()
+    # @swagger.doc()
     @jwt_required()
     def get(self):
         pass
 
-    @swagger.doc()
+    # @swagger.doc()
     @jwt_required()
     def delete(self):
         pass
