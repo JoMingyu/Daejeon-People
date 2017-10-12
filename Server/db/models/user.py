@@ -1,6 +1,7 @@
 from datetime import date
 
-from mongoengine import *
+from db.mongo import *
+from db.models.chat import ChatModel
 
 
 class AccountModel(Document):
@@ -15,6 +16,7 @@ class AccountModel(Document):
 
     friend_requests = ListField(StringField(), default=[])
     friends = ListField(StringField(), default=[])
+    chat_rooms = EmbeddedDocumentListField(ChatModel)
     wish_list = ListField(IntField())
 
 

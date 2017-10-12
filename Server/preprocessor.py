@@ -11,6 +11,7 @@ from routes.api.tour.tour_detail import TourDetail
 from routes.api.user.account.account import PhoneCertify, EmailCertify, PhoneCheck, EmailCheck, Signup
 from routes.api.user.wish.wish import WishList
 from routes.api.user.friend.friend import Friend, FriendInvitation, ReceivedFriendInvitation
+from routes.api.user.account.user_search import UserSearch
 
 
 def decorate(app):
@@ -83,6 +84,7 @@ def add_resources(app, api_version):
     api.add_resource(EmailCertify, '/certify/email')
     api.add_resource(PhoneCertify, '/certify/phone')
     api.add_resource(Signup, '/signup')
+    api.add_resource(UserSearch, '/user-search')
 
     api.add_resource(SearchedTourList, '/tour-list/searched')
     api.add_resource(CategorizedTourList, '/tour-list/categorized')

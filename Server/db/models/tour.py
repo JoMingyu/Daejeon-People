@@ -1,4 +1,4 @@
-from mongoengine import *
+from db.mongo import *
 
 from db.models.tour_base import TourTopModel, TourBase, top_insert, base_insert
 

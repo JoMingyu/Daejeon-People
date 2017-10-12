@@ -1,9 +1,6 @@
-from mongoengine import *
-
-from db.models.user import AccountModel
+from db.mongo import *
 
 
-class ChatModel(Document):
+class ChatModel(EmbeddedDocument):
     topic = StringField(primary_key=True)
     title = StringField(required=True)
-    clients = ListField(ReferenceField(AccountModel))

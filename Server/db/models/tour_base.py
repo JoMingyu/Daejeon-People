@@ -1,4 +1,4 @@
-from mongoengine import *
+from db.mongo import *
 
 
 def top_insert(cls, tour, detail_images):
