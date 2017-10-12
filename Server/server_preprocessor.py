@@ -3,8 +3,10 @@ from flask_restful_swagger_2 import Api, request
 from logging.handlers import RotatingFileHandler
 from logging import Formatter, INFO
 
-from routes.api.user.account import *
-from routes.api.tour import *
+from routes.api.user.account.account import PhoneCertify, EmailCertify, PhoneCheck, EmailCheck, Signup
+from routes.api.tour.tour_list import CategorizedTourList, SearchedTourList
+from routes.api.tour.tour_detail import TourDetail
+from routes.api.user.wish.wish import WishList
 
 
 def decorate(app):
@@ -74,3 +76,5 @@ def add_resources(app, api_version):
     api.add_resource(SearchedTourList, '/tour-list/searched')
     api.add_resource(CategorizedTourList, '/tour-list/categorized')
     api.add_resource(TourDetail, '/tour-detail')
+
+    api.add_resource(WishList, '/wish-list')

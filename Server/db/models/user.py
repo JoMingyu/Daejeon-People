@@ -1,7 +1,6 @@
 from datetime import date
 
 from db.mongo import *
-from db.models.tour_base import TourTopModel
 
 
 class AccountModel(Document):

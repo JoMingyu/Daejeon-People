@@ -12,7 +12,7 @@ class TourDetail(Resource):
     @swagger.doc(swagger_docs.TOUR_DETAIL)
     @jwt_required()
     def get(self):
-        content_id = request.args.get('content_id')
+        content_id = request.args.get('content_id', type=int)
         client_id = current_identity
 
         tour = mongo_to_dict(TourTopModel.objects(content_id=content_id).first(), ['views', '_cls'])

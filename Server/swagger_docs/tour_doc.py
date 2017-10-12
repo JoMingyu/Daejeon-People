@@ -128,7 +128,7 @@ TOUR_DETAIL = {
             'name': 'content_id',
             'description': '세부 정보를 조회할 content id',
             'in': 'query',
-            'type': 'str'
+            'type': 'int'
         }
     ],
     'responses': {

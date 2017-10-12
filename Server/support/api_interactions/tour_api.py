@@ -9,7 +9,7 @@ from db.models.tour import *
 def parse():
     while True:
         TourTopModel.objects.delete()
-        api = TourAPI(AreaCodes.DAEJEON, os.getenv('TOURAPI_KEY', 'AND', 'Daejeon People')
+        api = TourAPI(AreaCodes.DAEJEON, os.getenv('TOURAPI_KEY'), 'AND', 'Daejeon People')
 
         tour_list = api.get_tour_list()
         for tour in tour_list:
