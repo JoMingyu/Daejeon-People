@@ -4,20 +4,30 @@ from flask_restful_swagger_2 import Resource, request, swagger
 from db.models.friend import FriendRequestsModel
 from db.models.user import AccountModel
 
+from routes.api.user import friend_doc
+
 
 class Friend(Resource):
-    # @swagger.doc()
+    @swagger.doc(friend_doc.FRIEND_LIST)
     @jwt_required()
     def get(self):
-        return AccountModel.objects(id=current_identity).first().friends, 200
+        friends = AccountModel.objects(id=current_identity).first().friends
 
-    # @swagger.doc()
+        if friends:
+            return friends, 200
+        else:
+            return '', 204
+
+    @swagger.doc(friend_doc.FRIEND_DELETE)
     @jwt_required()
     def delete(self):
         friend_id = request.form.get('friend_id')
 
         friends = AccountModel.objects(id=current_identity).first().friends
-        del friends[friends.index(friend_id)]
+        try:
+            del friends[friends.index(friend_id)]
+        except ValueError:
+            pass
 
         AccountModel.objects(id=current_identity).first().update(friends=friends)
 
@@ -26,7 +36,7 @@ class Friend(Resource):
 
 class FriendInvitation(Resource):
     # 요청자 관점
-    # @swagger.doc()
+    @swagger.doc(friend_doc.FRIEND_INVITE)
     @jwt_required()
     def post(self):
         # 친구 요청
@@ -39,7 +49,7 @@ class FriendInvitation(Resource):
 
             return '', 201
 
-    # @swagger.doc()
+    @swagger.doc(friend_doc.FRIEND_INVITE_LIST)
     @jwt_required()
     def get(self):
         # 친구 요청 목록
@@ -50,7 +60,7 @@ class FriendInvitation(Resource):
         else:
             return '', 204
 
-    # @swagger.doc()
+    @swagger.doc(friend_doc.FRIEND_INVITE_WITHDRAW)
     @jwt_required()
     def delete(self):
         # 친구 요청 취소
@@ -63,7 +73,7 @@ class FriendInvitation(Resource):
 
 class ReceivedFriendInvitation(Resource):
     # 수신자 입장
-    # @swagger.doc()
+    @swagger.doc(friend_doc.FRIEND_ACCEPT)
     @jwt_required()
     def post(self):
         # 친구 수락
@@ -78,7 +88,7 @@ class ReceivedFriendInvitation(Resource):
 
         return '', 201
 
-    # @swagger.doc()
+    @swagger.doc(friend_doc.FRIEND_RECEIVED_LIST)
     @jwt_required()
     def get(self):
         # 친구요청 목록
@@ -89,7 +99,7 @@ class ReceivedFriendInvitation(Resource):
         else:
             return '', 204
 
-    # @swagger.doc()
+    @swagger.doc(friend_doc.FRIEND_REFUSE)
     @jwt_required()
     def delete(self):
         # 친구 거절
