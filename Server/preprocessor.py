@@ -7,10 +7,10 @@ from flask_restful_swagger_2 import Api, request
 from routes.api.chat.chat import Chat, ChatInvitation
 from routes.api.tour.tour_detail import TourDetail
 from routes.api.tour.tour_list import CategorizedTourList, SearchedTourList
-from routes.api.user.account import (EmailCertify, EmailCheck, PhoneCertify,
-                                     PhoneCheck, Signup)
 from routes.api.user.friend import (Friend, FriendInvitation,
                                     ReceivedFriendInvitation)
+from routes.api.user.signup import (EmailCertify, EmailCheck, PhoneCertify,
+                                    PhoneCheck, Signup)
 from routes.api.user.user_search import UserSearch
 from routes.api.user.wish import WishList
 

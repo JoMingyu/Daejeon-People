@@ -3,7 +3,6 @@ from flask_restful_swagger_2 import Resource, request, swagger
 
 from db.models.friend import FriendRequestsModel
 from db.models.user import AccountModel
-
 from routes.api.user import friend_doc
 
 
