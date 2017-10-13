@@ -1,16 +1,15 @@
 import math
 
-from flask_restful_swagger_2 import swagger, Resource, request
 from flask_jwt import jwt_required, current_identity
+from flask_restful_swagger_2 import swagger, Resource, request
 
 from db.models.tour_base import TourTopModel
 from db.models.user import AccountModel
+from routes.api.tour import tour_doc
 
-from .doc import tour_doc
 
-
-def detect(tour_list, sort_type, client_id, x=0.0, y=0.0):
-    client_wish_list = AccountModel.objects(id=client_id).first().wish_list
+def detect(tour_list, sort_type, x=0.0, y=0.0):
+    client_wish_list = AccountModel.objects(id=current_identity).first().wish_list
 
     if sort_type == 1:
         # 조회순
@@ -45,9 +44,8 @@ class SearchedTourList(Resource):
     def get(self):
         keyword = request.args.get('keyword')
         sort_type = request.args.get('sort_type', type=int)
-        client_id = current_identity
 
-        tour_list = detect([tour for tour in TourTopModel.objects if keyword in tour.title], sort_type, client_id, request.args.get('x', type=float, default=0.0), request.args.get('y', type=float, default=0.0))
+        tour_list = detect([tour for tour in TourTopModel.objects if keyword in tour.title], sort_type, request.args.get('x', type=float, default=0.0), request.args.get('y', type=float, default=0.0))
         # After keyword filtering
 
         if tour_list:
@@ -62,9 +60,8 @@ class CategorizedTourList(Resource):
     def get(self):
         category = request.args.get('category')
         sort_type = request.args.get('sort_type', type=int)
-        client_id = current_identity
 
-        tour_list = detect([tour for tour in TourTopModel.objects if category == tour.small_category], sort_type, client_id, request.args.get('x', type=float, default=0.0), request.args.get('y', type=float, default=0.0))
+        tour_list = detect([tour for tour in TourTopModel.objects if category == tour.small_category], sort_type, request.args.get('x', type=float, default=0.0), request.args.get('y', type=float, default=0.0))
 
         if tour_list:
             return tour_list
