@@ -7,6 +7,12 @@ USER_SEARCH = {
             'description': '검색할 id',
             'in': 'query',
             'type': 'str'
+        },
+        {
+            'name': 'Authorization',
+            'description': 'JWT Token',
+            'in': 'header',
+            'type': 'str'
         }
     ],
     'responses': {
@@ -17,7 +23,8 @@ USER_SEARCH = {
                     "id": "city7310",
                     "email": "city7310@naver.com",
                     "phone": "01012345678",
-                    "name": "조민규"
+                    "name": "조민규",
+                    "friend_requested": True
                 }
             }
         },
