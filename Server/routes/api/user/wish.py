@@ -1,5 +1,5 @@
-from flask_jwt import jwt_required, current_identity
-from flask_restful_swagger_2 import swagger, Resource, request
+from flask_jwt import current_identity, jwt_required
+from flask_restful_swagger_2 import Resource, request, swagger
 
 from db.models.tour_base import TourTopModel
 from db.models.user import AccountModel

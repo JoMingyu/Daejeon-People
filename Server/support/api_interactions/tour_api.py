@@ -1,7 +1,7 @@
 import os
 import time
 
-from tourapi import TourAPI, AreaCodes
+from tourapi import AreaCodes, TourAPI
 
 from db.models.tour import *
 

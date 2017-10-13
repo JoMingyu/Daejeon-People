@@ -3,7 +3,7 @@ import random
 from email.mime.text import MIMEText
 from smtplib import SMTP
 
-from flask_restful_swagger_2 import swagger, Resource, request
+from flask_restful_swagger_2 import Resource, request, swagger
 
 from db.models.user import AccountModel, CertifyModel
 from routes.api.user import account_doc

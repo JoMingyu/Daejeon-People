@@ -1,7 +1,7 @@
 from datetime import date
 
-from db.mongo import *
 from db.models.chat import ChatModel
+from db.mongo import *
 
 
 class AccountModel(Document):
