@@ -47,7 +47,7 @@ public class WishList extends BaseActivity {
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter myAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
-    private ArrayList<WishlistItem> Dataset;
+    private ArrayList<WishlistItem> Dataset = new ArrayList<>();
     private APIinterface apIinterface;
 
     @Override
@@ -85,7 +85,6 @@ public class WishList extends BaseActivity {
                         wishlistItem.setBack_image(jsonArray.get(i).getAsJsonObject().get("image").toString());
                         Dataset.add(wishlistItem);
                     }
-                    Dataset = new ArrayList<>();
                     myAdapter = new WishlistAdapter(Dataset);
                     mRecyclerView.setAdapter(myAdapter);
 

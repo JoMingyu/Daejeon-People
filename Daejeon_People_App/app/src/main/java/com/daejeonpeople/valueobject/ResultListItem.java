@@ -1,5 +1,4 @@
 package com.daejeonpeople.valueobject;
-
 import com.google.gson.annotations.SerializedName;
 
 /**
@@ -63,7 +62,7 @@ public class ResultListItem {
     }
 
     public void setAddress(String address) {
-        this.address = address;
+            this.address = address;
     }
 
     public String getCategory() {
@@ -79,7 +78,7 @@ public class ResultListItem {
     }
 
     public void setImage(String image) {
-        this.image = image;
+            this.image = image;
     }
 
     public double getMapx() {
