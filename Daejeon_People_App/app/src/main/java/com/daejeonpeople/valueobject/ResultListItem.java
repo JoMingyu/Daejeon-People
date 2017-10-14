@@ -1,18 +1,29 @@
 package com.daejeonpeople.valueobject;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created by KimDongGyu on 2017-10-03.
  */
 
 public class ResultListItem {
+    @SerializedName("content_id")
     private int content_id;
+    @SerializedName("title")
     private String title;
+    @SerializedName("wish")
     private boolean wish;
+    @SerializedName("wish_count")
     private int wish_count;
+    @SerializedName("address")
     private String address;
-    private String category;
+    @SerializedName("image")
     private String image;
+    @SerializedName("category")
+    private String category;
+    @SerializedName("mapx")
     private double mapx;
+    @SerializedName("mapy")
     private double mapy;
 
     public int getContent_id() {

@@ -25,14 +25,14 @@ import com.daejeonpeople.activities.Introduction.Introduction_Tourism;
 import com.daejeonpeople.valueobject.ResultListItem;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by KimDongGyu on 2017-09-26.
  */
 
 public class ResultListAdapter extends RecyclerView.Adapter<ResultListAdapter.ViewHolder> {
-    private ArrayList<ResultListItem> arrayListDetail;
-    private Context context;
+    private List<ResultListItem> arrayListDetail = new ArrayList<>();
     private String category_key;
 
     // Provide a reference to the views for each data item
@@ -57,9 +57,8 @@ public class ResultListAdapter extends RecyclerView.Adapter<ResultListAdapter.Vi
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public ResultListAdapter(ArrayList<ResultListItem> myDataset, Context context, String category_key) {
-        arrayListDetail = myDataset;
-        this.context = context;
+    public ResultListAdapter(List<ResultListItem> myDataset, String category_key) {
+        arrayListDetail.addAll(myDataset);
         this.category_key = category_key;
     }
 
@@ -85,7 +84,7 @@ public class ResultListAdapter extends RecyclerView.Adapter<ResultListAdapter.Vi
         if(arrayListDetail.get(position).getImage() == "NoImage"){
             Glide.with(holder.itemView.getContext()).load(R.drawable.noimage).into(holder.detail_imgview);
         } else {
-            String imgUrl = arrayListDetail.get(position).getImage().substring(1,arrayListDetail.get(position).getImage().length() - 1);
+            String imgUrl = arrayListDetail.get(position).getImage();
             Glide.with(holder.itemView.getContext()).load(imgUrl).into(holder.detail_imgview);
         }
         if(category_key.equals("Tourist")) {
@@ -170,5 +169,13 @@ public class ResultListAdapter extends RecyclerView.Adapter<ResultListAdapter.Vi
     @Override
     public int getItemCount() {
         return arrayListDetail.size();
+    }
+
+    public void addData(List<ResultListItem> datas) {
+        Log.d("xxx", "data size: " + datas.size());
+        for(ResultListItem data : datas){
+            arrayListDetail.add(data);
+        }
+        notifyDataSetChanged();
     }
 }
