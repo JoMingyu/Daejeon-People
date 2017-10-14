@@ -65,23 +65,9 @@ public class Introduction_Shopping extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.introduction_shopping);
 
-        DBHelper dbHelper = DBHelper.getInstance(getApplicationContext(), "CHECK.db", null, 1);
+        final DBHelper dbHelper = DBHelper.getInstance(getApplicationContext(), "CHECK.db", null, 1);
 
         btn_star = (ImageButton)findViewById(R.id.star);
-
-        btn_star.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                star =! star;
-
-                if(star == false) {
-                    btn_star.setImageResource(R.drawable.ic_star_border);
-                } else {
-                    btn_star.setImageResource(R.drawable.ic_star);
-                }
-            }
-
-        });
 
         placename = (TextView)findViewById(R.id.placename);
         call_inquiry = (TextView)findViewById(R.id.call_inquiry);
@@ -147,7 +133,36 @@ public class Introduction_Shopping extends BaseActivity {
 
             @Override
             public void onFailure(Call<JsonObject> call, Throwable t) {
+                t.printStackTrace();
+            }
+        });
 
+        btn_star.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                star =! star;
+
+                if(star == false) {
+                    btn_star.setImageResource(R.drawable.ic_star_border);
+                } else {
+                    btn_star.setImageResource(R.drawable.ic_star);
+                    apIinterface.addWish("UserSession=" + dbHelper.getCookie(), (Integer)value).enqueue(new Callback<Void>() {
+                        @Override
+                        public void onResponse(Call<Void> call, Response<Void> response) {
+                            if(response.code() == 201) {
+                                Log.d("WishTest", "SUCCESS");
+
+                            } else {
+                                Log.d("WishTest", "FALSE");
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<Void> call, Throwable t) {
+                            t.printStackTrace();
+                        }
+                    });
+                }
             }
         });
     }

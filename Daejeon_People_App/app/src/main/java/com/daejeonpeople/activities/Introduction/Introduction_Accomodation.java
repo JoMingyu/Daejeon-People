@@ -74,20 +74,6 @@ public class Introduction_Accomodation extends BaseActivity {
 
         btn_star = (ImageButton)findViewById(R.id.star);
 
-        btn_star.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                star =! star;
-
-                if(star == false) {
-                    btn_star.setImageResource(R.drawable.ic_star_border);
-                } else {
-                    btn_star.setImageResource(R.drawable.ic_star);
-                }
-            }
-
-        });
-
         placename = (TextView)findViewById(R.id.placename);
         call_inquiry = (TextView)findViewById(R.id.call_inquiry);
         checkin = (TextView)findViewById(R.id.checkin);
@@ -109,24 +95,6 @@ public class Introduction_Accomodation extends BaseActivity {
         }
 
         apIinterface = APIClient.getClient().create(APIinterface.class);
-
-        back_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                apIinterface.addWish("UserSession=" + dbHelper.getCookie(), (Integer)value).enqueue(new Callback<Void>() {
-                    @Override
-                    public void onResponse(Call<Void> call, Response<Void> response) {
-
-                    }
-
-                    @Override
-                    public void onFailure(Call<Void> call, Throwable t) {
-
-                    }
-                });
-            }
-        });
-
         apIinterface.getDetail("UserSession=" + dbHelper.getCookie(), (Integer)value).enqueue(new Callback<JsonObject>() {
             @Override
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
@@ -155,6 +123,37 @@ public class Introduction_Accomodation extends BaseActivity {
             @Override
             public void onFailure(Call<JsonObject> call, Throwable t) {
                 t.printStackTrace();
+            }
+        });
+
+
+
+        btn_star.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                star =! star;
+
+                if(star == false) {
+                    btn_star.setImageResource(R.drawable.ic_star_border);
+                } else {
+                    btn_star.setImageResource(R.drawable.ic_star);
+                    apIinterface.addWish("UserSession=" + dbHelper.getCookie(), (Integer)value).enqueue(new Callback<Void>() {
+                        @Override
+                        public void onResponse(Call<Void> call, Response<Void> response) {
+                            if(response.code() == 201) {
+                                Log.d("WishTest", "SUCCESS");
+
+                            } else {
+                                Log.d("WishTest", "FALSE");
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<Void> call, Throwable t) {
+                            t.printStackTrace();
+                        }
+                    });
+                }
             }
         });
     }

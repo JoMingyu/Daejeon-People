@@ -112,6 +112,8 @@ public interface APIinterface {
     Call<Void> addWish(@Header("cookie") String UserSession,
                        @Field("content_id") int content_id);
 
+
+
     @GET("/attractions/detail")
     Call<JsonObject> getDetail(@Header("cookie") String UserSession,
                                @Query("content_id") int content_id);
