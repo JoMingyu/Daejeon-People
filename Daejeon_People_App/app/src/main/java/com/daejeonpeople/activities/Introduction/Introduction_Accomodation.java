@@ -21,6 +21,7 @@ import com.daejeonpeople.activities.MapView;
 import com.daejeonpeople.activities.ResultList.ResultList;
 import com.daejeonpeople.activities.base.BaseActivity;
 import com.daejeonpeople.adapter.AddressBookAdapter;
+import com.daejeonpeople.adapter.FriendRequestListAdapter;
 import com.daejeonpeople.adapter.WishlistAdapter;
 import com.daejeonpeople.support.converter.CategoryConverter;
 import com.daejeonpeople.support.database.DBHelper;
