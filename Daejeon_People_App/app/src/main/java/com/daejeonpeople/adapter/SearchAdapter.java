@@ -148,4 +148,11 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
         notifyItemRemoved(position);
     }
 
+    public void addData(ArrayList<SearchItem> datas) {
+        for(SearchItem data : datas){
+            arrayListSearch.add(data);
+        }
+        notifyDataSetChanged();
+    }
+
 }

@@ -33,12 +33,10 @@ import static com.androidquery.util.AQUtility.getContext;
 //근철
 
 public class Search extends BaseActivity {
-
     private ArrayList<SearchItem> arrayListSearch = new ArrayList<>();
     private RecyclerView mRecyclerView;
     private APIinterface apiInterface;
     private DBHelper dbHelper;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,14 +54,13 @@ public class Search extends BaseActivity {
                 finish();
             }
         }) ;
-
         //Spinner설정
         final Spinner spinner = (Spinner)findViewById(R.id.search_spinner);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             SearchAdapter mAdapter = null;
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                 // 조회순
+                // 조회순
                 if(position == 0) {
                     Button search_btn = (Button) findViewById(R.id.search_btn);
                     search_btn.setOnClickListener(new Button.OnClickListener() {
@@ -195,8 +192,6 @@ public class Search extends BaseActivity {
                             }
                         }
                     }) ;
-
-
                 } // 거리순
                 else if(position == 2) {
                     Button search_btn = (Button) findViewById(R.id.search_btn);
@@ -275,15 +270,5 @@ public class Search extends BaseActivity {
                 spinner.setSelection(0);
             }
         });
-
-
-
-
-
-
-
-
-
-
     }
 }
