@@ -7,6 +7,7 @@ from smtplib import SMTP
 from flask_restful_swagger_2 import Resource, request, swagger
 
 from db.models.user import AccountModel, CertifyModel
+from routes.api.user import after_signup_doc
 
 
 def get_certify_code():
@@ -31,25 +32,27 @@ def send_certify_mail(dst_email, code):
 
 
 class FindID(Resource):
+    @swagger.doc(after_signup_doc.FIND_ID_DEMAND)
     def get(self):
         email = request.args.get('email', default=None)
         phone = request.args.get('phone', default=None)
         code = get_certify_code()
 
-        if email:
+        if email and AccountModel.objects(email=email):
             CertifyModel(identity=email, code=code).save()
             send_certify_mail(email, code)
 
             return '', 200
-        elif phone:
+        elif phone and AccountModel.objects(phone=phone):
             pass
         else:
             return '', 204
 
+    @swagger.doc(after_signup_doc.FIND_ID_VERIFY)
     def post(self):
         email = request.form.get('email', default=None)
         phone = request.form.get('phone', default=None)
-        code = request.form.get('code')
+        code = request.form.get('code', type=int)
 
         if email:
             if CertifyModel.objects(identity=email, code=code):
