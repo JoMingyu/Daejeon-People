@@ -78,9 +78,13 @@ public class ResultListAdapter extends RecyclerView.Adapter<ResultListAdapter.Vi
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
         holder.detail_title.setText(arrayListDetail.get(position).getTitle());
-        holder.detail_address.setText(arrayListDetail.get(position).getAddress());
+        if(arrayListDetail.get(position).getAddress() == null){
+            holder.detail_address.setText("주소 정보가 존재하지 않습니다.");
+        } else {
+            holder.detail_address.setText(arrayListDetail.get(position).getAddress());
+        }
         holder.detail_love.setText(arrayListDetail.get(position).getWish_count()+"");
-        if(arrayListDetail.get(position).getImage() == "NoImage"){
+        if(arrayListDetail.get(position).getImage() == null){
             Glide.with(holder.itemView.getContext()).load(R.drawable.noimage).into(holder.detail_imgview);
         } else {
             String imgUrl = arrayListDetail.get(position).getImage();
