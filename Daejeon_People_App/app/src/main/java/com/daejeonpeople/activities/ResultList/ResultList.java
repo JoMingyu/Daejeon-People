@@ -78,7 +78,7 @@ public class ResultList extends Activity {
         apiInterface = APIClient.getClient().create(APIinterface.class);
         apiInterface.getFilteringPage("UserSession=" + dbHelper.getCookie(), category, 1 , page).enqueue(new Callback<JsonObject>() {
             @Override
-            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+            public void onResponse(Call<JsonObject> call, final Response<JsonObject> response) {
                 if(response.code() == 200){
                     JsonElement jsonElement = response.body().get("data");
                     Gson gson = new Gson();
@@ -96,8 +96,8 @@ public class ResultList extends Activity {
                                 runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
-                                        mAdapter.addData(arrayListResultList);
-                                        endless.loadMoreComplete();
+                                            mAdapter.addData(arrayListResultList);
+                                            endless.loadMoreComplete();
                                     }
                                 });
                             }
