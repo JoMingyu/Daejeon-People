@@ -23,7 +23,7 @@ public class GetMapInfo implements Handler<RoutingContext> {
 	public void handle(RoutingContext ctx) {
 		JSONArray response = new JSONArray();
 		
-		String topic = ctx.request().getFormAttribute("topic");
+		String topic = ctx.request().getParam("topic");
 		
 		ResultSet travelPinSet = MySQL.executeQuery("SELECT * FROM travel_pins WHERE topic=?", topic);
 		try {
@@ -41,6 +41,7 @@ public class GetMapInfo implements Handler<RoutingContext> {
 		} catch(SQLException e) {
 			e.printStackTrace();
 		}
+		System.out.println(response);
 		
 		if(response.length() == 0) {
 			// 아무 핀도 없으면
