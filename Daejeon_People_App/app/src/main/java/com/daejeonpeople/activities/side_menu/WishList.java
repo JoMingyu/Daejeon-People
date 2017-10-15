@@ -74,11 +74,15 @@ public class WishList extends BaseActivity {
         apIinterface.getWish("UserSession="+dbHelper.getCookie()).enqueue(new Callback<JsonArray>() {
             @Override
             public void onResponse(Call<JsonArray> call, Response<JsonArray> response) {
+                Log.d("@#$@&#$**&$", "onResponse: 정민지 ㅄ");
                 if(response.code()== 200) {
                     Log.d("response", "SUCCESS");
                     JsonArray jsonArray = response.body();
-
+                    Log.d("1561561", "onResponse: "+jsonArray.toString());
+                    Dataset = new ArrayList<>();
                     for(int i = 0; i < jsonArray.size(); i++){
+                        JsonObject object = jsonArray.get(i).getAsJsonObject();
+                        Log.d("65234234", "onResponse: "+object.get("title"));
                         WishlistItem wishlistItem = new WishlistItem();
                         wishlistItem.setTitle(jsonArray.get(i).getAsJsonObject().get("title").toString());
                         wishlistItem.setAddress(jsonArray.get(i).getAsJsonObject().get("address").toString());

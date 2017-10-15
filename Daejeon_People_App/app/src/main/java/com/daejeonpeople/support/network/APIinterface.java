@@ -112,8 +112,6 @@ public interface APIinterface {
     Call<Void> addWish(@Header("cookie") String UserSession,
                        @Field("content_id") int content_id);
 
-
-
     @GET("/attractions/detail")
     Call<JsonObject> getDetail(@Header("cookie") String UserSession,
                                @Query("content_id") int content_id);
@@ -184,4 +182,7 @@ public interface APIinterface {
     Call<JsonArray> inqueryMessages(@Header("cookie") String cookie,
                                     @Field("topic") String topic,
                                     @Field("idx") int index);
+
+    @GET("/user")
+    Call<JsonObject> getUser(@Header("cookie") String cookies);
 }
