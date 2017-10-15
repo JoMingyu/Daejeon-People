@@ -1,8 +1,8 @@
 import threading
 
 from flask import Flask
-from flask_jwt import JWT
 from flask_cors import CORS
+from flask_jwt import JWT
 
 import preprocessor
 from support import jwt

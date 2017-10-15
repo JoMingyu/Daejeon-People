@@ -3,14 +3,14 @@ import random
 from email.mime.text import MIMEText
 from smtplib import SMTP
 
-from flask_restful_swagger_2 import swagger, Resource, request
+from flask_restful_swagger_2 import Resource, request, swagger
 
 from db.models.user import AccountModel, CertifyModel
-from routes.api.user.doc import account_doc
+from routes.api.user import signup_doc
 
 
 class EmailCheck(Resource):
-    @swagger.doc(account_doc.EMAIL_CHECK)
+    @swagger.doc(signup_doc.EMAIL_CHECK)
     def post(self):
         if AccountModel.objects(email=request.form.get('email')):
             return '', 204
@@ -19,7 +19,7 @@ class EmailCheck(Resource):
 
 
 class PhoneCheck(Resource):
-    @swagger.doc(account_doc.PHONE_CHECK)
+    @swagger.doc(signup_doc.PHONE_CHECK)
     def post(self):
         if AccountModel.objects(phone=request.form.get('phone')):
             return '', 204
@@ -49,7 +49,7 @@ def send_certify_mail(dst_email, code):
 
 
 class EmailCertify(Resource):
-    @swagger.doc(account_doc.EMAIL_CERTIFY_GET)
+    @swagger.doc(signup_doc.EMAIL_CERTIFY_GET)
     def get(self):
         email = request.args.get('email')
         code = get_certify_code()
@@ -59,7 +59,7 @@ class EmailCertify(Resource):
 
         return '', 200
 
-    @swagger.doc(account_doc.EMAIL_CERTIFY_POST)
+    @swagger.doc(signup_doc.EMAIL_CERTIFY_POST)
     def post(self):
         email = request.form.get('email')
         code = request.form.get('code', type=int)
@@ -81,7 +81,7 @@ class PhoneCertify(Resource):
 
 
 class Signup(Resource):
-    @swagger.doc(account_doc.SIGNUP)
+    @swagger.doc(signup_doc.SIGNUP)
     def post(self):
         id = request.form.get('id')
         pw = request.form.get('pw')

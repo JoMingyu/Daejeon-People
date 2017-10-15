@@ -1,7 +1,7 @@
 from datetime import date
 
-from db.mongo import *
 from db.models.chat import ChatModel
+from db.mongo import *
 
 
 class AccountModel(Document):
@@ -14,7 +14,6 @@ class AccountModel(Document):
     name = StringField(required=True)
     register_date = StringField(required=True, default=str(date.today()))
 
-    friend_requests = ListField(StringField(), default=[])
     friends = ListField(StringField(), default=[])
     chat_rooms = EmbeddedDocumentListField(ChatModel)
     wish_list = ListField(IntField())

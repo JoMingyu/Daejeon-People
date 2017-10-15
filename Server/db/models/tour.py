@@ -1,6 +1,5 @@
+from db.models.tour_base import TourBase, TourTopModel, base_insert, top_insert
 from db.mongo import *
-
-from db.models.tour_base import TourTopModel, TourBase, top_insert, base_insert
 
 
 class TouristAttractionModel(TourBase):
