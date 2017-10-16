@@ -88,8 +88,16 @@ public class WishList extends BaseActivity {
                         wishlistItem.setContent_id(jsonArray.get(i).getAsJsonObject().get("content_id").getAsInt());
                         wishlistItem.setTitle(jsonArray.get(i).getAsJsonObject().get("title").toString());
                         wishlistItem.setContent_type_id(jsonArray.get(i).getAsJsonObject().get("content_type_id").getAsInt());
-                        wishlistItem.setAddress(jsonArray.get(i).getAsJsonObject().get("address").toString());
-                        wishlistItem.setBack_image(jsonArray.get(i).getAsJsonObject().get("image").toString());
+                        if(jsonArray.get(i).getAsJsonObject().get("address") == null) {
+                            wishlistItem.setAddress("주소 정보가 없습니다.");
+                        } else {
+                            wishlistItem.setAddress(jsonArray.get(i).getAsJsonObject().get("address").toString());
+                        }
+                        if(jsonArray.get(i).getAsJsonObject().get("image") == null){
+                            wishlistItem.setBack_image("NoImage");
+                        } else {
+                            wishlistItem.setBack_image(jsonArray.get(i).getAsJsonObject().get("image").toString());
+                        }
                         Dataset.add(wishlistItem);
                     }
                     myAdapter = new WishlistAdapter(Dataset);

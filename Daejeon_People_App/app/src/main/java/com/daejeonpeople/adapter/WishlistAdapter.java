@@ -72,10 +72,12 @@ public class WishlistAdapter extends RecyclerView.Adapter<WishlistAdapter.ViewHo
         holder.address.setText(mDataset.get(position).getAddress());
 //        holder.love.setText(mDataset.get(position).getLove()+"");
 //        holder.back_image.setImageResource(R.drawable.bg_accommodation);
+        if(mDataset.get(position).getBack_image() == "NoImage"){
+            Glide.with(holder.itemView.getContext()).load(R.drawable.noimage).into(holder.back_image);
+        } else {
             String imgUrl = mDataset.get(position).getBack_image().substring(1,mDataset.get(position).getBack_image().length() - 1);
             Glide.with(holder.itemView.getContext()).load(imgUrl).into(holder.back_image);
-
-
+        }
         final int content_type_id = mDataset.get(position).getContent_type_id();
         holder.wish_btn.setOnClickListener(new Button.OnClickListener() {
             @Override
