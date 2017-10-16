@@ -39,16 +39,21 @@ public class UserManager {
 
 		try {
 			assert userInfoSet != null;
-			userInfoSet.next();
-			userInfo.put("id", id);
-			userInfo.put("phone_number", userInfoSet.getString("phone_number") == null ? "전화번호 없음" : userInfoSet.getString("phone_number"));
-			userInfo.put("email", userInfoSet.getString("email"));
-			userInfo.put("name", userInfoSet.getString("name"));
+			if(userInfoSet.next()) {
+				userInfo.put("id", id);
+				userInfo.put("phone_number", userInfoSet.getString("phone_number") == null ? "전화번호 없음" : userInfoSet.getString("phone_number"));
+				userInfo.put("email", userInfoSet.getString("email"));
+				userInfo.put("name", userInfoSet.getString("name"));
+				
+				return userInfo;
+			} else {
+				return null;
+			}
 		} catch(SQLException e) {
 			e.printStackTrace();
+			
+			return null;
 		}
-		
-		return userInfo;
 	}
 
 	public static boolean isLogined(RoutingContext ctx) {

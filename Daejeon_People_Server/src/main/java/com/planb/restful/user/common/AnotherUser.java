@@ -1,5 +1,7 @@
 package com.planb.restful.user.common;
 
+import org.json.JSONObject;
+
 import com.planb.support.crypto.AES256;
 import com.planb.support.routing.API;
 import com.planb.support.routing.REST;
@@ -18,8 +20,14 @@ public class AnotherUser implements Handler<RoutingContext> {
 	public void handle(RoutingContext ctx) {
 		String id = AES256.encrypt(ctx.request().getFormAttribute("id"));
 		
-		ctx.response().setStatusCode(201);
-		ctx.response().end(UserManager.getUserInfo(id).toString());
-		ctx.response().close();
+		JSONObject userInfo = UserManager.getUserInfo(id);
+		if (userInfo == null) {
+			ctx.response().setStatusCode(204).end();
+			ctx.response().close();
+		} else {
+			ctx.response().setStatusCode(201);
+			ctx.response().end(userInfo.toString());
+			ctx.response().close();
+		}
 	}
 }

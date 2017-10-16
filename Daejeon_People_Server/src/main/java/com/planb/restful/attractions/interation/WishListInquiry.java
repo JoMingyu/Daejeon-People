@@ -37,6 +37,7 @@ public class WishListInquiry implements Handler<RoutingContext> {
 				contentInfo.put("address", contentSet.getString("address"));
 				contentInfo.put("category", contentSet.getString("cat3"));
 				contentInfo.put("content_id", contentSet.getInt("content_id"));
+				contentInfo.put("content_type_id", contentSet.getInt("content_type_id"));
 				contentInfo.put("image", contentSet.getString("image_big_url"));
 				contentInfo.put("mapx", contentSet.getDouble("mapx"));
 				contentInfo.put("mapy", contentSet.getDouble("mapy"));
