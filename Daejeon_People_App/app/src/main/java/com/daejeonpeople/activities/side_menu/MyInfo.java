@@ -41,9 +41,6 @@ import retrofit2.Response;
 
 public class MyInfo extends Fragment{
 
-    private APIinterface apIinterface;
-    private TextView myName, myEmail, myPhoneNum;
-
     @Nullable
     @Override
         public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
@@ -61,30 +58,5 @@ public class MyInfo extends Fragment{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        myName = (TextView)getActivity().findViewById(R.id.userName);
-        myEmail = (TextView)getActivity().findViewById(R.id.userEmail);
-        myPhoneNum = (TextView)getActivity().findViewById(R.id.userPhoneNum);
-
-        final DBHelper dbHelper = DBHelper.getInstance(getActivity(), "CHECK.db", null, 1);
-        apIinterface = APIClient.getClient().create(APIinterface.class);
-        apIinterface.getUser("UserSession=" + dbHelper.getCookie()).enqueue(new Callback<JsonObject>() {
-            @Override
-            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
-                if(response.code() == 200) {
-                    Log.d("TEST", "SUCCESS");
-                    myName.setText(response.body().get("name").getAsString());
-                    myEmail.setText(response.body().get("email").getAsString());
-                    myPhoneNum.setText(response.body().get("phone_number").getAsString());
-                } else {
-                    Log.d("TEST", "FAIL");
-                }
-            }
-
-            @Override
-            public void onFailure(Call<JsonObject> call, Throwable t) {
-                t.printStackTrace();
-            }
-        });
     }
 }
