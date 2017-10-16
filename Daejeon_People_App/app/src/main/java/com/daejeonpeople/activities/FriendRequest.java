@@ -135,7 +135,6 @@ public class FriendRequest extends BaseActivity {
     }
 
     public void onBackBtnClicked(View view){
-        startActivity(new Intent(getApplicationContext(), AddressBook.class));
         finish();
     }
 }

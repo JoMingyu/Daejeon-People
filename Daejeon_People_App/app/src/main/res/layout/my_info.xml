@@ -58,23 +58,23 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content">
                                         <TextView
-                                            android:id="@+id/userName"
+                                            android:id="@+id/my_info_userName"
                                             android:layout_gravity="center"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:textColor="@color/Black"
-                                            android:text="Kimdonggyu"
+                                            android:text="이름이 존재하지 않습니다."
                                             android:textSize="20sp" />
                                         <TextView
-                                            android:id="@+id/userEmail"
+                                            android:id="@+id/my_info_userEmail"
                                             android:layout_gravity="center"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:textColor="#555555"
-                                            android:text="gdgbang@naver.com"
+                                            android:text="이메일이 존재하지 않습니다."
                                             android:textSize="15sp"/>
                                         <TextView
-                                            android:id="@+id/userPhoneNum"
+                                            android:id="@+id/my_info_userPhoneNum"
                                             android:layout_gravity="center"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
@@ -110,12 +110,12 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent">
                                 <LinearLayout
+                                    android:id="@+id/my_info_travel"
                                     android:layout_centerInParent="true"
                                     android:orientation="vertical"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content">
                                     <ImageView
-                                        android:id="@+id/my_info_travel"
                                         android:layout_gravity="center"
                                         android:layout_width="50dp"
                                         android:layout_height="50dp"
@@ -139,12 +139,12 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent">
                                 <LinearLayout
+                                    android:id="@+id/my_info_friend_request"
                                     android:layout_centerInParent="true"
                                     android:orientation="vertical"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content">
                                     <ImageView
-                                        android:id="@+id/my_info_friend_request"
                                         android:layout_gravity="center"
                                         android:layout_width="50dp"
                                         android:layout_height="50dp"
@@ -172,12 +172,13 @@
                             android:layout_width="match_parent"
                             android:layout_height="0dp">
                             <LinearLayout
+                                android:id="@+id/my_info_change_password"
+                                android:layout_marginLeft="50dp"
                                 android:layout_gravity="center"
                                 android:orientation="horizontal"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content">
                                 <ImageView
-                                    android:layout_marginLeft="50dp"
                                     android:layout_gravity="center"
                                     android:layout_width="30dp"
                                     android:layout_height="30dp"
@@ -197,12 +198,13 @@
                             android:layout_width="match_parent"
                             android:layout_height="0dp">
                             <LinearLayout
+                                android:id="@+id/my_info_delete_account"
+                                android:layout_marginLeft="50dp"
                                 android:layout_gravity="center"
                                 android:orientation="horizontal"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content">
                                 <ImageView
-                                    android:layout_marginLeft="50dp"
                                     android:layout_gravity="center"
                                     android:layout_width="30dp"
                                     android:layout_height="30dp"
@@ -222,12 +224,13 @@
                             android:layout_width="match_parent"
                             android:layout_height="0dp">
                             <LinearLayout
+                                android:id="@+id/my_info_logout"
+                                android:layout_marginLeft="50dp"
                                 android:layout_gravity="center"
                                 android:orientation="horizontal"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content">
                                 <ImageView
-                                    android:layout_marginLeft="50dp"
                                     android:layout_gravity="center"
                                     android:layout_width="30dp"
                                     android:layout_height="30dp"

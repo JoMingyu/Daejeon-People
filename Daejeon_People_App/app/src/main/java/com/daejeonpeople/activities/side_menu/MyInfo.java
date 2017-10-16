@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.androidquery.AQuery;
@@ -45,12 +46,19 @@ import retrofit2.Response;
 
 public class MyInfo extends Fragment{
 
+    private APIinterface apIinterface;
+
     @Nullable
     @Override
         public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         ViewGroup viewGroup = (ViewGroup) inflater.inflate(R.layout.my_info, container, false);
+        DBHelper dbHelper = DBHelper.getInstance(getActivity(), "CHECK.db", null, 1);
 
-        ImageView imgfriend = (ImageView) viewGroup.findViewById(R.id.my_info_friend_request);
+        final TextView myName = (TextView) viewGroup.findViewById(R.id.my_info_userName);
+        final TextView myEmail = (TextView) viewGroup.findViewById(R.id.my_info_userEmail);
+        final TextView myPhoneNum = (TextView) viewGroup.findViewById(R.id.my_info_userPhoneNum);
+
+        LinearLayout imgfriend = (LinearLayout) viewGroup.findViewById(R.id.my_info_friend_request);
         imgfriend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -59,7 +67,7 @@ public class MyInfo extends Fragment{
             }
         });
 
-        ImageView imgtravel = (ImageView) viewGroup.findViewById(R.id.my_info_travel);
+        LinearLayout imgtravel = (LinearLayout) viewGroup.findViewById(R.id.my_info_travel);
         imgtravel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -68,13 +76,28 @@ public class MyInfo extends Fragment{
             }
         });
 
+
+        apIinterface = APIClient.getClient().create(APIinterface.class);
+        apIinterface.getMyPage("UserSession="+dbHelper.getCookie()).enqueue(new Callback<JsonObject>() {
+            @Override
+            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                myName.setText(AES.decrypt(response.body().get("name").toString()));
+                myEmail.setText(AES.decrypt(response.body().get("email").toString()));
+                myPhoneNum.setText(response.body().get("phone_number").toString());
+            }
+            @Override
+            public void onFailure(Call<JsonObject> call, Throwable t) {
+
+            }
+        });
+
+
         return viewGroup;
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        getActivity().getFragmentManager().beginTransaction().remove(this).commit();
     }
 
 

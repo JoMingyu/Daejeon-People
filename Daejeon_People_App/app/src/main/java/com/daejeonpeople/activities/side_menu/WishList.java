@@ -44,6 +44,7 @@ import retrofit2.Response;
 
 public class WishList extends BaseActivity {
     private Button backBtn;
+    private Button wishBtn;
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter myAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
@@ -84,7 +85,9 @@ public class WishList extends BaseActivity {
                         JsonObject object = jsonArray.get(i).getAsJsonObject();
                         Log.d("65234234", "onResponse: "+object.get("title"));
                         WishlistItem wishlistItem = new WishlistItem();
+                        wishlistItem.setContent_id(jsonArray.get(i).getAsJsonObject().get("content_id").getAsInt());
                         wishlistItem.setTitle(jsonArray.get(i).getAsJsonObject().get("title").toString());
+                        wishlistItem.setContent_type_id(jsonArray.get(i).getAsJsonObject().get("content_type_id").getAsInt());
                         wishlistItem.setAddress(jsonArray.get(i).getAsJsonObject().get("address").toString());
                         wishlistItem.setBack_image(jsonArray.get(i).getAsJsonObject().get("image").toString());
                         Dataset.add(wishlistItem);
