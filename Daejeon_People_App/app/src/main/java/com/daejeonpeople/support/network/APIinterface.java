@@ -109,12 +109,12 @@ public interface APIinterface {
 
     @FormUrlEncoded
     @POST("/wish")
-    Call<Void> addWish(@Header("cookie") String UserSession,
-                       @Field("content_id") int content_id);
+    Call<Void> addWish( @Header("cookie") String UserSession,
+                        @Query("content_id") int content_id);
 
     @GET("/attractions/detail")
-    Call<JsonObject> getDetail(@Header("cookie") String UserSession,
-                               @Query("content_id") int content_id);
+    Call<JsonObject> getDetail( @Header("cookie") String UserSession,
+                                @Query("content_id") int content_id);
 
     @GET("/friend")
     Call<JsonArray> getFriendList(@Header("cookie") String UserSession);
@@ -182,6 +182,16 @@ public interface APIinterface {
     Call<JsonArray> inqueryMessages(@Header("cookie") String cookie,
                                     @Field("topic") String topic,
                                     @Field("idx") int index);
+
+    @GET("/map")
+    Call<JsonArray> getMapData(@Header("cookie") String cookie,
+                                @Query("topic") String topic);
+
+    @FormUrlEncoded
+    @POST("/map")
+    Call<Void> addMapData(@Header("cookie") String cookie,
+                          @Field("topic") String topic,
+                          @Field("content_id") int content_id);
 
     @GET("/user")
     Call<JsonObject> getUser(@Header("cookie") String cookies);

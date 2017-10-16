@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.media.Image;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.text.Layout;
@@ -18,6 +19,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.daejeonpeople.R;
 import com.daejeonpeople.activities.ResultList.ResultList;
+import com.daejeonpeople.activities.ShareChatList;
 import com.daejeonpeople.activities.base.BaseActivity;
 import com.daejeonpeople.adapter.AddressBookAdapter;
 import com.daejeonpeople.adapter.WishlistAdapter;
@@ -55,6 +57,7 @@ public class Introduction_Shopping extends BaseActivity {
     private APIinterface apIinterface;
     private ImageView back_img, card, carriage, pet;
     private TextView placename, call_inquiry, usetime, holiday, location;
+    private FloatingActionButton shareBtn;
     public boolean star = false;
     private int content_id;
     private Object value;
@@ -68,6 +71,7 @@ public class Introduction_Shopping extends BaseActivity {
         final DBHelper dbHelper = DBHelper.getInstance(getApplicationContext(), "CHECK.db", null, 1);
 
         btn_star = (ImageButton)findViewById(R.id.star);
+        shareBtn = (FloatingActionButton)findViewById(R.id.shareBtn);
 
         placename = (TextView)findViewById(R.id.placename);
         call_inquiry = (TextView)findViewById(R.id.call_inquiry);
@@ -88,6 +92,15 @@ public class Introduction_Shopping extends BaseActivity {
             value = b.get(key);
             Log.d("TAG", "key : "+key+", value : " + value.toString());
         }
+
+        shareBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), ShareChatList.class);
+                intent.putExtra("content_id", (Integer)value);
+                startActivity(intent);
+            }
+        });
 
         apIinterface = APIClient.getClient().create(APIinterface.class);
 

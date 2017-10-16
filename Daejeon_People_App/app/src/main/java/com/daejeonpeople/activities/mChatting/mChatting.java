@@ -1,6 +1,7 @@
 package com.daejeonpeople.activities.mChatting;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -12,6 +13,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.daejeonpeople.R;
+import com.daejeonpeople.activities.MapView;
 import com.daejeonpeople.activities.base.BaseActivity;
 import com.daejeonpeople.adapter.ChatLogAdapter;
 import com.daejeonpeople.support.database.DBHelper;
@@ -27,6 +29,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.gson.JsonObject;
+import com.mikepenz.materialdrawer.MiniDrawer;
 
 import java.util.ArrayList;
 
@@ -43,7 +46,7 @@ import retrofit2.Response;
 public class mChatting extends BaseActivity {
     private RecyclerView chatLog;
     private EditText inputMessage;
-    private Button sendBtn;
+    private Button sendBtn, mapViewBtn;
     private TextView chatName;
     private APIinterface apiInterface;
     private DBHelper dbHelper;
@@ -51,6 +54,7 @@ public class mChatting extends BaseActivity {
     private DatabaseReference databaseReference = firebaseDatabase.getReference();
     private Realm mRealm;
     private Intent mIntent;
+    private int test = 0;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -60,6 +64,7 @@ public class mChatting extends BaseActivity {
         chatLog = (RecyclerView)findViewById(R.id.chatLog);
         inputMessage = (EditText)findViewById(R.id.inputMessage);
         sendBtn = (Button)findViewById(R.id.sendBtn);
+        mapViewBtn = (Button)findViewById(R.id.mapViewBtn);
         chatName = (TextView)findViewById(R.id.chatName);
 
         apiInterface = APIClient.getClient().create(APIinterface.class);
@@ -135,7 +140,9 @@ public class mChatting extends BaseActivity {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 final mChatData chatData = dataSnapshot.getValue(mChatData.class);  // chatData를 가져오고
+                Log.d("size", test+"");
                 Log.d("chatData", chatData.getUserName() + " " + chatData.getMessage());
+                test++;
                 apiInterface.getMyPage("UserSession="+dbHelper.getCookie()).enqueue(new Callback<JsonObject>() {
                     @Override
                     public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
@@ -144,20 +151,22 @@ public class mChatting extends BaseActivity {
                                 @Override
                                 public void execute(Realm realm) {
                                     RealmList realmList = realm.where(ChattingItem.class).contains("topic", mIntent.getStringExtra("topic")).findFirst().getChatLogs();
-                                    mChatLogItem mChatLogItem = new mChatLogItem();
-                                    Log.d("realmListSize", realmList.size()+"");
-                                    mChatLogItem.setUserName(chatData.getUserName());
-                                    mChatLogItem.setContent(chatData.getMessage());
-                                    realmList.add(realmList.size(), mChatLogItem);
+                                    if(test > realmList.size()){
+                                        mChatLogItem mChatLogItem = new mChatLogItem();
+                                        Log.d("realmListSize", realmList.size()+"");
+                                        mChatLogItem.setUserName(chatData.getUserName());
+                                        mChatLogItem.setContent(chatData.getMessage());
+                                        realmList.add(realmList.size(), mChatLogItem);
 
-                                    ArrayList<mChatLogItem> mChatLogItems = new ArrayList<mChatLogItem>();
+                                        ArrayList<mChatLogItem> mChatLogItems = new ArrayList<mChatLogItem>();
 
-                                    for(int i=0; i<realmList.size(); i++){
-                                        mChatLogItem result = (mChatLogItem)realmList.get(i);
-                                        mChatLogItems.add(i, result);
+                                        for(int i=0; i<realmList.size(); i++){
+                                            mChatLogItem result = (mChatLogItem)realmList.get(i);
+                                            mChatLogItems.add(i, result);
+                                        }
+                                        chatLog.setAdapter(new mChatLogAdapter(mChatLogItems));
+                                        chatLog.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
                                     }
-                                    chatLog.setAdapter(new mChatLogAdapter(mChatLogItems));
-                                    chatLog.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
                                 }
                             });
                         }
@@ -176,11 +185,20 @@ public class mChatting extends BaseActivity {
             @Override
             public void onChildRemoved(DataSnapshot dataSnapshot) { }
 
-            @Override
+            @Override 
             public void onChildMoved(DataSnapshot dataSnapshot, String s) { }
 
             @Override
             public void onCancelled(DatabaseError databaseError) { }
+        });
+
+        mapViewBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), MapView.class);
+                intent.putExtra("change", intent.getStringExtra("topic"));
+                startActivity(new Intent(getApplicationContext(), MapView.class));
+            }
         });
     }
 
