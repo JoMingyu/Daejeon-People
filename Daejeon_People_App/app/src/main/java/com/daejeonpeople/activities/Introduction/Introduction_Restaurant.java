@@ -148,13 +148,12 @@ public class Introduction_Restaurant extends BaseActivity {
                 if(star == false) {
                     btn_star.setImageResource(R.drawable.ic_star_border);
                 } else {
-                    btn_star.setImageResource(R.drawable.ic_star);
                     apIinterface.addWish("UserSession=" + dbHelper.getCookie(), (Integer)value).enqueue(new Callback<Void>() {
                         @Override
                         public void onResponse(Call<Void> call, Response<Void> response) {
                             if(response.code() == 201) {
                                 Log.d("WishTest", "SUCCESS");
-
+                                btn_star.setImageResource(R.drawable.ic_star);
                             } else {
                                 Log.d("WishTest", "FALSE");
                             }
