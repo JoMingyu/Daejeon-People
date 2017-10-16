@@ -71,7 +71,7 @@
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:textColor="#555555"
-                                            android:text="dododo@naver.com"
+                                            android:text="gdgbang@naver.com"
                                             android:textSize="15sp"/>
                                         <TextView
                                             android:id="@+id/userPhoneNum"
@@ -79,7 +79,7 @@
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:textColor="#555555"
-                                            android:text="010-7637-2082"
+                                            android:text="전화번호가 존재하지 않습니다."
                                             android:textSize="15sp"/>
                                     </LinearLayout>
                                 </RelativeLayout>

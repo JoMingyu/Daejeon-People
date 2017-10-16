@@ -1,460 +1,474 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="com.daejeonpeople.activities.Introduction.Introduction_Accomodation">
-
-    <RelativeLayout
-        android:id="@+id/back_linear"
+    android:layout_height="match_parent">
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="3"
-        android:orientation="vertical">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context="com.daejeonpeople.activities.Introduction.Introduction_Accomodation">
 
-        <ImageView
-            android:id="@+id/intro_background"
+        <RelativeLayout
+            android:id="@+id/back_linear"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="centerCrop"/>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="3"
             android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/intro_background"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:padding="5dp">
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-                <ImageButton
-                    android:id="@+id/backBtn"
-                    android:layout_width="15dp"
-                    android:layout_height="15dp"
-                    android:layout_marginLeft="15dp"
-                    android:background="@drawable/ic_back"
-                    android:onClick="onBackBtnClicked"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:text="자세히 보기"
-                    android:textColor="@color/White"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                    android:layout_weight="0.5"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="5dp">
 
                     <ImageButton
-                        android:scaleType="centerCrop"
-                        android:id="@+id/star"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginRight="10dp"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:background="@drawable/ic_star_border" />
-
-                </RelativeLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="2">
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:orientation="vertical"
-                android:background="@drawable/gradation">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.2">
+                        android:id="@+id/backBtn"
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:layout_marginLeft="15dp"
+                        android:background="@drawable/ic_back"
+                        android:onClick="onBackBtnClicked"/>
 
                     <TextView
-                        android:id="@+id/placename"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
-                        android:textColor="@color/White"
-                        android:textSize="20sp"
-                        android:textStyle="bold" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_weight="0.3">
-
-                    <TextView
-                        android:id="@+id/placekind"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
-                        android:text="숙박"
+                        android:layout_marginLeft="10dp"
+                        android:text="자세히 보기"
                         android:textColor="@color/White"
-                        android:textSize="12sp" />
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <ImageButton
+                            android:scaleType="centerCrop"
+                            android:id="@+id/star"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginRight="10dp"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:background="@drawable/ic_star_border" />
+
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2">
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:orientation="vertical"
+                    android:background="@drawable/gradation">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.2">
+
+                        <TextView
+                            android:id="@+id/placename"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:textColor="@color/White"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="0.3">
+
+                        <TextView
+                            android:id="@+id/placekind"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:text="숙박"
+                            android:textColor="@color/White"
+                            android:textSize="12sp" />
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
             </LinearLayout>
+        </RelativeLayout>
 
-        </LinearLayout>
-    </RelativeLayout>
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="6">
-
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="7"
-            android:background="@color/White"
-            android:orientation="vertical">
+            android:layout_height="0dp"
+            android:layout_weight="6">
 
-            <TableLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1">
+                android:layout_weight="7"
+                android:background="@color/White"
+                android:orientation="vertical">
 
-                <TableRow
+                <TableLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
 
-                    <LinearLayout
+                    <TableRow
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:paddingBottom="25dp"
-                        android:paddingLeft="20dp"
-                        android:paddingRight="20dp"
-                        android:paddingTop="25dp">
+                        android:layout_height="match_parent">
 
-                        <ImageView
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
-                            android:background="@drawable/ic_call" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/call_inquiry"
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textColor="@color/Black"
-                            android:textSize="18sp" />
+                            android:orientation="horizontal"
+                            android:paddingBottom="25dp"
+                            android:paddingLeft="20dp"
+                            android:paddingRight="20dp"
+                            android:paddingTop="25dp">
 
-                        <TextView
+                            <ImageView
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
+                                android:background="@drawable/ic_call" />
+                        </LinearLayout>
+
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:paddingTop="5dp"
-                            android:text="문의전화"
-                            android:textSize="10sp" />
-                    </LinearLayout>
-                </TableRow>
-            </TableLayout>
+                            android:layout_gravity="center"
+                            android:orientation="vertical">
 
-            <TableLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1">
+                            <TextView
+                                android:id="@+id/call_inquiry"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/Black"
+                                android:textSize="18sp" />
 
-                <TableRow>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingTop="5dp"
+                                android:text="문의전화"
+                                android:textSize="10sp" />
+                        </LinearLayout>
+                    </TableRow>
+                </TableLayout>
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:paddingBottom="25dp"
-                        android:paddingLeft="20dp"
-                        android:paddingRight="20dp"
-                        android:paddingTop="25dp">
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
 
-                        <ImageView
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
-                            android:background="@drawable/ic_utilization" />
-                    </LinearLayout>
+                    <TableRow>
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/checkin"
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textColor="@color/Black"
-                            android:textSize="18sp" />
+                            android:orientation="horizontal"
+                            android:paddingBottom="25dp"
+                            android:paddingLeft="20dp"
+                            android:paddingRight="20dp"
+                            android:paddingTop="25dp">
 
-                        <TextView
+                            <ImageView
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
+                                android:background="@drawable/ic_utilization" />
+                        </LinearLayout>
+
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:paddingTop="5dp"
-                            android:text="체크인"
-                            android:textSize="10sp" />
-                    </LinearLayout>
-                </TableRow>
-            </TableLayout>
+                            android:layout_gravity="center"
+                            android:orientation="vertical">
 
-            <TableLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1">
+                            <TextView
+                                android:id="@+id/checkin"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/Black"
+                                android:textSize="18sp" />
 
-                <TableRow>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingTop="5dp"
+                                android:text="체크인"
+                                android:textSize="10sp" />
+                        </LinearLayout>
+                    </TableRow>
+                </TableLayout>
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:paddingBottom="25dp"
-                        android:paddingLeft="20dp"
-                        android:paddingRight="20dp"
-                        android:paddingTop="25dp">
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
 
-                        <ImageView
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
-                            android:background="@drawable/ic_finsh_timer" />
-                    </LinearLayout>
+                    <TableRow>
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/checkout"
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textColor="@color/Black"
-                            android:textSize="18sp" />
+                            android:orientation="horizontal"
+                            android:paddingBottom="25dp"
+                            android:paddingLeft="20dp"
+                            android:paddingRight="20dp"
+                            android:paddingTop="25dp">
 
-                        <TextView
+                            <ImageView
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
+                                android:background="@drawable/ic_finsh_timer" />
+                        </LinearLayout>
+
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:paddingTop="5dp"
-                            android:text="체크아웃"
-                            android:textSize="10sp" />
-                    </LinearLayout>
-                </TableRow>
-            </TableLayout>
+                            android:layout_gravity="center"
+                            android:orientation="vertical">
 
-            <TableLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1">
+                            <TextView
+                                android:id="@+id/checkout"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/Black"
+                                android:textSize="18sp" />
 
-                <TableRow>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingTop="5dp"
+                                android:text="체크아웃"
+                                android:textSize="10sp" />
+                        </LinearLayout>
+                    </TableRow>
+                </TableLayout>
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:paddingBottom="25dp"
-                        android:paddingLeft="20dp"
-                        android:paddingRight="20dp"
-                        android:paddingTop="25dp">
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
 
-                        <ImageView
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
-                            android:background="@drawable/ic_chair" />
-                    </LinearLayout>
+                    <TableRow>
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/benikia"
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textColor="@color/Black"
-                            android:textSize="18sp" />
+                            android:orientation="horizontal"
+                            android:paddingBottom="25dp"
+                            android:paddingLeft="20dp"
+                            android:paddingRight="20dp"
+                            android:paddingTop="25dp">
 
-                        <TextView
+                            <ImageView
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
+                                android:background="@drawable/ic_chair" />
+                        </LinearLayout>
+
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:paddingTop="5dp"
-                            android:text="베네키아"
-                            android:textSize="10sp" />
-                    </LinearLayout>
-                </TableRow>
-            </TableLayout>
+                            android:layout_gravity="center"
+                            android:orientation="vertical">
 
-            <TableLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1">
+                            <TextView
+                                android:id="@+id/benikia"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/Black"
+                                android:textSize="18sp" />
 
-                <TableRow>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingTop="5dp"
+                                android:text="베네키아"
+                                android:textSize="10sp" />
+                        </LinearLayout>
+                    </TableRow>
+                </TableLayout>
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:paddingBottom="25dp"
-                        android:paddingLeft="20dp"
-                        android:paddingRight="20dp"
-                        android:paddingTop="25dp">
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
 
-                        <ImageView
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
-                            android:background="@drawable/ic_chair" />
-                    </LinearLayout>
+                    <TableRow>
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/goodstay"
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textColor="@color/Black"
-                            android:textSize="18sp" />
+                            android:orientation="horizontal"
+                            android:paddingBottom="25dp"
+                            android:paddingLeft="20dp"
+                            android:paddingRight="20dp"
+                            android:paddingTop="25dp">
 
-                        <TextView
+                            <ImageView
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
+                                android:background="@drawable/ic_chair" />
+                        </LinearLayout>
+
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:paddingTop="5dp"
-                            android:text="굿스테이"
-                            android:textSize="10sp" />
-                    </LinearLayout>
-                </TableRow>
-            </TableLayout>
+                            android:layout_gravity="center"
+                            android:orientation="vertical">
 
-            <TableLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1">
+                            <TextView
+                                android:id="@+id/goodstay"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/Black"
+                                android:textSize="18sp" />
 
-                <TableRow>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingTop="5dp"
+                                android:text="굿스테이"
+                                android:textSize="10sp" />
+                        </LinearLayout>
+                    </TableRow>
+                </TableLayout>
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:paddingBottom="25dp"
-                        android:paddingLeft="20dp"
-                        android:paddingRight="20dp"
-                        android:paddingTop="25dp">
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
 
-                        <ImageView
-                            android:layout_width="25dp"
-                            android:layout_height="20dp"
-                            android:background="@drawable/ic_bed" />
-                    </LinearLayout>
+                    <TableRow>
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/accomcount"
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textColor="@color/Black"
-                            android:textSize="18sp" />
+                            android:orientation="horizontal"
+                            android:paddingBottom="25dp"
+                            android:paddingLeft="20dp"
+                            android:paddingRight="20dp"
+                            android:paddingTop="25dp">
 
-                        <TextView
+                            <ImageView
+                                android:layout_width="25dp"
+                                android:layout_height="20dp"
+                                android:background="@drawable/ic_bed" />
+                        </LinearLayout>
+
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:paddingTop="5dp"
-                            android:text="총 수용인원"
-                            android:textSize="10sp" />
-                    </LinearLayout>
-                </TableRow>
-            </TableLayout>
+                            android:layout_gravity="center"
+                            android:orientation="vertical">
 
-            <TableLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1">
+                            <TextView
+                                android:id="@+id/accomcount"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/Black"
+                                android:textSize="18sp" />
 
-                <TableRow>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingTop="5dp"
+                                android:text="총 수용인원"
+                                android:textSize="10sp" />
+                        </LinearLayout>
+                    </TableRow>
+                </TableLayout>
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:paddingBottom="25dp"
-                        android:paddingLeft="20dp"
-                        android:paddingRight="20dp"
-                        android:paddingTop="25dp">
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
 
-                        <ImageView
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
-                            android:background="@drawable/ic_explore" />
-                    </LinearLayout>
+                    <TableRow>
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:orientation="vertical"
-                        android:paddingTop="20dp">
-
-                        <TextView
-                            android:id="@+id/location"
-                            android:layout_width="wrap_content"
+                        <LinearLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textColor="@color/Black"
-                            android:textSize="18sp" />
+                            android:orientation="horizontal"
+                            android:paddingBottom="25dp"
+                            android:paddingLeft="20dp"
+                            android:paddingRight="20dp"
+                            android:paddingTop="25dp">
 
-                        <!--<fragment-->
+                            <ImageView
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
+                                android:background="@drawable/ic_explore" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:orientation="vertical"
+                            android:paddingTop="20dp">
+
+                            <TextView
+                                android:id="@+id/location"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/Black"
+                                android:textSize="18sp" />
+
+                            <!--<fragment-->
                             <!--android:id="@+id/placemap"-->
                             <!--android:layout_width="300dp"-->
                             <!--android:layout_height="180dp"-->
                             <!--android:layout_marginTop="20dp"-->
                             <!--android:layout_marginBottom="20dp"/>-->
 
-                        <!--<ImageView-->
+                            <!--<ImageView-->
                             <!--android:id="@+id/placemap"-->
                             <!--android:layout_width="250dp"-->
                             <!--android:layout_height="150dp"-->
                             <!--android:layout_marginBottom="20dp"-->
                             <!--android:layout_marginTop="20dp"-->
                             <!--android:background="@drawable/map_culturalfacilities" />-->
-                    </LinearLayout>
-                </TableRow>
-            </TableLayout>
-        </LinearLayout>
-    </ScrollView>
+                        </LinearLayout>
+                    </TableRow>
+                </TableLayout>
+            </LinearLayout>
+        </ScrollView>
 
-</LinearLayout>
+    </LinearLayout>
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/shareBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="@dimen/fab_margin"
+        android:src="@drawable/ic_share_white_24dp"
+        android:background="@color/colorPrimary"
+        app:useCompatPadding="true" />
+</android.support.design.widget.CoordinatorLayout>
