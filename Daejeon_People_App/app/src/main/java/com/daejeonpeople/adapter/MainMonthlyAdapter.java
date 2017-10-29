@@ -31,6 +31,7 @@ import java.util.ArrayList;
  */
 
 public class MainMonthlyAdapter extends PagerAdapter {
+
     LayoutInflater inflater;
     private ArrayList<MainItemMonthly> mDataset;
     private Context mContext;
